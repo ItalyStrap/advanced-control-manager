@@ -1,4 +1,5 @@
 === ItalyStrap ===
+
 Contributors: overclokk
 Donate link: http://www.italystrap.it/
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css
@@ -30,11 +31,13 @@ Make your web site more powerfull.
 = How can I add breadcrumbs in my site? =
 
 Add this code in your template files:
+
 `<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
 	
 		new ItalyStrapBreadcrumbs();
 	
 	} ?>`
+	
 For more informations read the documentation
 
 == Screenshots ==
