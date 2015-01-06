@@ -1,5 +1,5 @@
 #Git files
-#.gitignore
+.gitattributes
 .git
 
 #Grunt developer
@@ -14,11 +14,3 @@ bower_components
 
 #Files
 lang/ItalyStrap.po
-
-#Temp file
-.gitattributes
-#.gitignore
-
-bower.json
-lib/roadmap.php
-lang/README.txt
