@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Italystrap\n"
+"POT-Creation-Date: 2015-01-05 11:09+0100\n"
+"PO-Revision-Date: 2015-01-05 11:10+0100\n"
+"Last-Translator: Enea Overclokk <info@overclokk.net>\n"
+"Language-Team: Overclokk <info@overclokk.net>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: .git\n"
+"X-Poedit-SearchPathExcluded-2: .sass-cache\n"
+"X-Poedit-SearchPathExcluded-3: bower_components\n"
+
+#: admin/ItalystrapAdmin.php:67
+msgid "ItalyStrap Dashboard"
+msgstr "ItalyStrap Dashboard"
+
+#: admin/ItalystrapAdmin.php:84 admin/ItalystrapAdmin.php:143
+#: admin/admin-template/dashboard-page.php:6
+#: admin/admin-template/documentation-page.php:6
+msgid "Documentation"
+msgstr "Documentazione"
+
+#: admin/ItalystrapAdmin.php:94 admin/ItalystrapAdmin.php:110
+#: admin/ItalystrapAdmin.php:126
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Non hai sufficienti permessi per accedere a questa pagina."
+
+#: admin/admin-template/dashboard-page.php:9
+msgid "Make your website more powerful"
+msgstr "Rendi il tuo sito più performante"
+
+#: admin/admin-template/dashboard-page.php:12
+msgid "New Entry"
+msgstr "Ultimo aggiunto"
+
+#: admin/admin-template/dashboard-page.php:20
+msgid ""
+"Add breadcrumbs to your site in a simple and fast way and get Google rich "
+"snippet with Schema.org markup"
+msgstr ""
+"Aggiungi i Breadcrumbs nel tuo sito in modo semplice e veloce e ottieni i "
+"Rich Snippet di Google grazie a Schema.org"
+
+#: admin/admin-template/dashboard-page.php:21
+msgid "Read the documentation"
+msgstr "Leggi la documentazione"
+
+#: admin/admin-template/dashboard-page.php:30
+msgid "Coming soon"
+msgstr "Prossimamente"
+
+#: admin/admin-template/dashboard-page.php:37
+msgid "Add shortcode in admin panel, only for Bootstrap Style"
+msgstr "Aggiungi gli shortcode nel pannelo admin, solo per Bootstrap CSS"
+
+#: admin/admin-template/dashboard-page.php:45
+msgid "Social Button and Markup"
+msgstr "Social Button and Markup"
+
+#: admin/admin-template/dashboard-page.php:53
+msgid "LazyLoad for your content"
+msgstr "LazyLoad per i tuo contenuti"
+
+#: classes/ItalyStrapBreadcrumbs.php:304
+msgid "Tag: "
+msgstr "Tag: "
+
+#: classes/ItalyStrapBreadcrumbs.php:311
+msgid "Yearly archive: "
+msgstr "Archivio annuale: "
+
+#: classes/ItalyStrapBreadcrumbs.php:325
+msgid "Monthly archive: "
+msgstr "Archivio mensile"
+
+#: classes/ItalyStrapBreadcrumbs.php:347
+msgid "Daily archive: "
+msgstr "Archivio giornaliero: "
+
+#: classes/ItalyStrapBreadcrumbs.php:354
+msgid "Author Archives: "
+msgstr "Archivio autore: "
+
+#: classes/ItalyStrapBreadcrumbs.php:361
+msgid "Search Results: "
+msgstr "Risultato della ricerca: "
+
+#: classes/ItalyStrapBreadcrumbs.php:367
+msgid "Not Found"
+msgstr "Non trovato"
+
+#: classes/ItalyStrapBreadcrumbs.php:376
+msgid "Page"
+msgstr "Pagina"
+
+#~ msgid "Make your website faster"
+#~ msgstr "Rendi il tuo sito più veloce"

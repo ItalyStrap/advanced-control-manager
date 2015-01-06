@@ -1,0 +1,8 @@
+{
+	"autoload": {
+		"classmap": [
+			"admin",
+			"classes"
+		]
+	}
+}

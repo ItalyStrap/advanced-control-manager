@@ -1,0 +1,26 @@
+h1{font-family:'Open Sans',sans-serif;font-weight:300;line-height: normal;}
+.jumbotron h1, .jumbotron .h1 {
+    font-size: 48px;
+}
+.text-center{
+	text-align: center
+}
+.row {
+    margin-left:0;
+    margin-right:0;
+}
+.new-md-4{
+	width: 30%;
+}
+.breadcrumb{
+	background-color: #fff;
+	margin-left:0
+}
+.image{
+	min-height: 164px;
+}
+.breadimage{
+	background-image: url('../img/breadcrumbs.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;	
+}
