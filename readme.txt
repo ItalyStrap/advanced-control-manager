@@ -4,7 +4,7 @@ Donate link: http://www.italystrap.it/
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css
 Requires at least: 4.0
 Tested up to: 4.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,7 @@ Make your web site more powerfull.
 = How can I add breadcrumbs in my site? =
 
 Add this code in your template files:
+
 `<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
 	
 		new ItalyStrapBreadcrumbs();

@@ -20,55 +20,7 @@ module.exports = function(grunt) {
                         // 'js/src/bootstrapJS/tab.js',
                         // 'js/src/bootstrapJS/affix.js',
                         'js/src/home.js' // <- Modify this
-                    ],
-
-                    'js/singular.min.js': [
-                        'js/src/bootstrapJS/transition.js',
-                        'js/src/bootstrapJS/alert.js',
-                        'js/src/bootstrapJS/button.js',
-                        'js/src/bootstrapJS/carousel.js',
-                        'js/src/bootstrapJS/collapse.js',
-                        'js/src/bootstrapJS/dropdown.js',
-                        'js/src/bootstrapJS/modal.js',
-                        'js/src/bootstrapJS/tooltip.js',
-                        'js/src/bootstrapJS/popover.js',
-                        'js/src/bootstrapJS/scrollspy.js',
-                        'js/src/bootstrapJS/tab.js',
-                        'js/src/bootstrapJS/affix.js',
-                        'js/src/singular.js' // <- Modify this
-                    ],
-
-                    'js/archive.min.js': [
-                        'js/src/bootstrapJS/transition.js',
-                        'js/src/bootstrapJS/alert.js',
-                        'js/src/bootstrapJS/button.js',
-                        'js/src/bootstrapJS/carousel.js',
-                        'js/src/bootstrapJS/collapse.js',
-                        'js/src/bootstrapJS/dropdown.js',
-                        'js/src/bootstrapJS/modal.js',
-                        'js/src/bootstrapJS/tooltip.js',
-                        'js/src/bootstrapJS/popover.js',
-                        'js/src/bootstrapJS/scrollspy.js',
-                        'js/src/bootstrapJS/tab.js',
-                        'js/src/bootstrapJS/affix.js',
-                        'js/src/archive.js' // <- Modify this
-                    ],
-
-                    'js/custom.min.js': [
-                        'js/src/bootstrapJS/transition.js',
-                        'js/src/bootstrapJS/alert.js',
-                        'js/src/bootstrapJS/button.js',
-                        'js/src/bootstrapJS/carousel.js',
-                        'js/src/bootstrapJS/collapse.js',
-                        'js/src/bootstrapJS/dropdown.js',
-                        'js/src/bootstrapJS/modal.js',
-                        'js/src/bootstrapJS/tooltip.js',
-                        'js/src/bootstrapJS/popover.js',
-                        'js/src/bootstrapJS/scrollspy.js',
-                        'js/src/bootstrapJS/tab.js',
-                        'js/src/bootstrapJS/affix.js',
-                        'js/src/custom.js' // <- Modify this
-                    ],                   
+                    ],                  
                 }
             }
         },
@@ -114,24 +66,56 @@ module.exports = function(grunt) {
             }
         },
 
+        version: {  // https://www.npmjs.com/package/grunt-version
+                    // http://jayj.dk/using-grunt-automate-theme-releases/
+            bower: {
+                src: [ 'bower.json' ],
+            },
+            php: {
+                options: {
+                    prefix: 'Version\\:\\s+'
+                },
+                src: [ 'italystrap.php' ],
+            },
+            readme: {
+                options: {
+                    prefix: 'Stable tag\\:\\s'
+                },
+                  src: ['readme.txt']
+            },
+        },
+
+        'copy-part-of-file': { // https://github.com/dehru/grunt-copy-part-of-file
+            copyReadme: {
+                options: {
+                    sourceFileStartPattern: '=== ItalyStrap ===',
+                    sourceFileEndPattern: 'First release.',
+                    destinationFileStartPattern: '=== ItalyStrap ===',
+                    destinationFileEndPattern: 'First release.'
+                },
+                files: {
+                    'README.md': ['readme.txt']
+                }
+            }
+        },
+
         copy: { // https://github.com/gruntjs/grunt-contrib-copy
-            srcfont: {
-                expand: true,
-                cwd: 'bower_components/bootstrap/',
-                src: 'fonts/*',
-                dest: 'src/',
-                filter: 'isFile',
-            },
-            destfont: {
-                expand: true,
-                cwd: 'src',
-                src: 'fonts/*',
-                dest: 'dest/',
-                filter: 'isFile',
-            },
+            // srcfont: {
+            //     expand: true,
+            //     cwd: 'bower_components/bootstrap/',
+            //     src: 'fonts/*',
+            //     dest: 'src/',
+            //     filter: 'isFile',
+            // },
+            // destfont: {
+            //     expand: true,
+            //     cwd: 'src',
+            //     src: 'fonts/*',
+            //     dest: 'dest/',
+            //     filter: 'isFile',
+            // },
             tosvn: {
                 expand: true,
-                // cwd: 'src',
                 src: [
                     '**',
                     '!node_modules/**',
@@ -144,9 +128,6 @@ module.exports = function(grunt) {
                     ],
                 dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
                 filter: 'isFile',
-                // options: {
-                //     noProcess: '!node_modules/',
-                // },
             }
         },
 
@@ -189,6 +170,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sync');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-version');
+    grunt.loadNpmTasks('grunt-copy-part-of-file');
+
+
+
+
+    grunt.registerTask('deploy', ['version', 'copy-part-of-file']);
+
 
     grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);

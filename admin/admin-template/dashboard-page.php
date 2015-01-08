@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<a href="<?php get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>"><?php _e( 'Documentation', 'ItalyStrap' ); ?></a>
+				<a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>"><?php _e( 'Documentation', 'ItalyStrap' ); ?></a>
 				<div class="jumbotron">
 					<h1 class='text-center'>ItalyStrap</h1>
 					<h3 class='text-center h2'><?php _e( 'Make your website more powerful', 'ItalyStrap' ) ?></h3>
@@ -18,7 +18,7 @@
 						<div class="caption">
 							<h4><span class="dashicons dashicons-networking"></span> Breadcrumbs</h4>
 							<p><?php _e( 'Add breadcrumbs to your site in a simple and fast way and get Google rich snippet with Schema.org markup', 'ItalyStrap' ); ?></p>
-							<p class="submit"><a href="<?php get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
 						</div><!-- / .caption -->
 					</div><!-- / .thumbnail -->
 				</div><!-- / .col-md-4 -->
