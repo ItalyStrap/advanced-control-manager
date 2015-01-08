@@ -6,11 +6,16 @@
 					<h1 class='text-center'><?php _e( 'Documentation', 'ItalyStrap' ) ?></h1>
 				</div>
 				<h3>How to use Breadcrumbs</h3>
+<!-- Start text -->
 By default the breadcrumbs is developed with <a href="http://schema.org/BreadcrumbList" target="_blank">Schema.org markups</a> for Google Rich snippets and <a href="http://getbootstrap.com/components/#breadcrumbs" target="_blank">Bootstrap style</a>.
 
-No problem if you don't have Bootstrap in your site, this class accepts your personal customization for your purpose.
+No problem if you don't have Bootstrap in your site, this class accepts your personal customization for your purpose or you can put this code in your style css:
 
-Put the code below in your theme files (single.php and page.php, optional in archive.php, 404.php <span id="result_box" class="short_text" lang="en"><span class="hps">or</span> <span class="hps">where you want to</span> <span class="hps">show it</span></span>)
+<pre>
+	<code>.breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#f5f5f5;border-radius:4px}.breadcrumb&gt;li{display:inline-block}.breadcrumb&gt;li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}.breadcrumb&gt;.active{color:#777}</code>
+</pre>
+
+For add ItalyStrap Breadcrumbs put the code below in your theme files (single.php and page.php, optional in archive.php, 404.php <span id="result_box" class="short_text" lang="en"><span class="hps">or</span> <span class="hps">where you want to</span> <span class="hps">show it</span></span>)
 <pre>&lt;?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
 	
 	    new ItalyStrapBreadcrumbs();
@@ -67,7 +72,7 @@ The breadcrumbs class accepts an optional array for your personal customizations
  'wrapper_name' =&gt; '&lt;span itemprop="name"&gt;',
  'close_wrapper_name' =&gt; '&lt;/span&gt;'
  );</pre>
-<strong>Example to show Bootstrap Glyphicon instead of Home:</strong>
+<strong>Example to show Bootstrap Glyphicon instead of Home (If you have it):</strong>
 <pre>&lt;?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
 	
 	    $defaults = array(
@@ -83,7 +88,7 @@ It will show breadcrumbs like this:
 	<li><a title="Senza categoria" href="#">Category</a></li>
 	<li>Breadcrumbs</li>
 </ol>
-
+<!-- / End text -->
 			</div>
 		</div>
 	</div>
