@@ -114,6 +114,57 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: { // https://github.com/gruntjs/grunt-contrib-copy
+            srcfont: {
+                expand: true,
+                cwd: 'bower_components/bootstrap/',
+                src: 'fonts/*',
+                dest: 'src/',
+                filter: 'isFile',
+            },
+            destfont: {
+                expand: true,
+                cwd: 'src',
+                src: 'fonts/*',
+                dest: 'dest/',
+                filter: 'isFile',
+            },
+            tosvn: {
+                expand: true,
+                // cwd: 'src',
+                src: [
+                    '**',
+                    '!node_modules/**',
+                    '!bower_components/**',
+                    '!bower.json',
+                    '!composer.json',
+                    '!Gruntfile.js',
+                    '!package.json',
+                    '!README.md',
+                    ],
+                dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
+                filter: 'isFile',
+                // options: {
+                //     noProcess: '!node_modules/',
+                // },
+            }
+        },
+
+        sync: { // https://www.npmjs.com/package/grunt-sync
+            main: {
+                files: [{
+                    cwd: 'src',
+                    src: [
+                        '**', /* Include everything */
+                        '!**/*.txt' /* but exclude txt files */
+                        ],
+                    dest: 'bin',
+                    }],
+            pretend: true, // Don't do any IO. Before you run the task with `updateAndDelete` PLEASE MAKE SURE it doesn't remove too much.
+            verbose: true // Display log messages when copying files
+            }
+        },
+
         watch: { // https://github.com/gruntjs/grunt-contrib-watch
             css: {
                 files: ['**/*.{scss,sass}'],
@@ -136,6 +187,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-sync');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);

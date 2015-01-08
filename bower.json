@@ -1,11 +1,11 @@
 {
   "name": "ItalyStrap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/overclokk/ItalyStrap-plugin",
   "authors": [
     "Enea Overclokk <info@overclokk.net>"
   ],
-  "description": "A WordPress starter theme with Schema.org, Bootstrap3, OpenGraph, Twitter cards, SEO Friedly, WPO Friendly and many more",
+  "description": "The ItalyStrap plugin",
   "keywords": [
     "wordpress",
     "theme",

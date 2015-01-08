@@ -1,11 +1,10 @@
 === ItalyStrap ===
-
 Contributors: overclokk
 Donate link: http://www.italystrap.it/
 Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css
 Requires at least: 4.0
 Tested up to: 4.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,29 +30,46 @@ Make your web site more powerfull.
 = How can I add breadcrumbs in my site? =
 
 Add this code in your template files:
-
 `<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
 	
 		new ItalyStrapBreadcrumbs();
 	
 	} ?>`
-	
+
+= What if haven't I got Bootstrap CSS? =
+
+If you haven't Bootstrap CSS style for breadcrumbs don't worry about it, you have 2 options, firts option you have to develope your own style for breadcrumbs, second option you can add this css code in your css style theme:
+
+`.breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#f5f5f5;border-radius:4px}.breadcrumb>li{display:inline-block}.breadcrumb>li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}.breadcrumb>.active{color:#777}`
+
 For more informations read the documentation
 
 == Screenshots ==
 
-1. Default breadcrumbs
-2. Custom breadcrumbs
-3. Breadcrumbs in page
+1. Default breadcrumbs (With Bootstrap CSS)
+2. Custom breadcrumbs (With Bootstrap CSS)
+3. Breadcrumbs in page (With Bootstrap CSS)
 
 == Changelog ==
 
+= 1.0.1 =
+Release Date: January 8th, 2015
+
+Dev time: 1h
+
+* Update Breadcrumbs documentation
+
 = 1.0.0 =
-Release Date: December 30th, 2014
+Release Date: January 7th, 2015
+
 Dev time: 100h
+
 * First release
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+
 
 = 1.0.0 =
 First release.
