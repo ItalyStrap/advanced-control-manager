@@ -53,6 +53,13 @@ For more informations read the documentation
 
 == Changelog ==
 
+= 1.0.2 =
+Release Date: January 8th, 2015
+
+Dev time: 1h
+
+* Fix documentation link in admin dashboard
+
 = 1.0.1 =
 Release Date: January 8th, 2015
 
@@ -69,8 +76,11 @@ Dev time: 100h
 
 == Upgrade Notice ==
 
-= 1.0.1 =
+= 1.0.2 =
+This version fixes a documentation link in admin dashboard.  Upgrade as soon as possible
 
+= 1.0.1 =
+This version updates Breadcrumbs documentation.  Upgrade as soon as possible
 
 = 1.0.0 =
 First release.
