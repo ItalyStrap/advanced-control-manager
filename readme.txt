@@ -58,7 +58,7 @@ Release Date: January 8th, 2015
 
 Dev time: 1h
 
-* Fix documentation link in admin dashboard
+* Fix documentation link in admin dashboard (Thanks to Stefano Tondi from G+)
 
 = 1.0.1 =
 Release Date: January 8th, 2015
