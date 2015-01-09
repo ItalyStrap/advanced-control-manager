@@ -99,7 +99,7 @@ module.exports = function(grunt) {
         //     }
         // },
 
-        wp_readme_to_markdown: {
+        wp_readme_to_markdown: { // https://www.npmjs.com/package/grunt-wp-readme-to-markdown
             readme: {
                 files: {
                   'README.md': 'readme.txt'
@@ -108,22 +108,9 @@ module.exports = function(grunt) {
         },
 
         copy: { // https://github.com/gruntjs/grunt-contrib-copy
-            // srcfont: {
-            //     expand: true,
-            //     cwd: 'bower_components/bootstrap/',
-            //     src: 'fonts/*',
-            //     dest: 'src/',
-            //     filter: 'isFile',
-            // },
-            // destfont: {
-            //     expand: true,
-            //     cwd: 'src',
-            //     src: 'fonts/*',
-            //     dest: 'dest/',
-            //     filter: 'isFile',
-            // },
             tosvn: {
                 expand: true,
+                // cwd: 'src',
                 src: [
                     '**',
                     '!node_modules/**',
@@ -183,7 +170,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
 
 
-
+    /**
+     * My workflow
+     * 
+     */
     grunt.registerTask('deploy', [
                                 'version',
                                 // 'copy-part-of-file',
