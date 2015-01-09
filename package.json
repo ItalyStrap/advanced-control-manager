@@ -16,6 +16,7 @@
     "grunt-sync": "~0.2.2",
     "grunt-contrib-copy": "^0.7.0",
     "grunt-version": "^0.3.0",
-    "grunt-copy-part-of-file": "^0.1.2"
+    "grunt-copy-part-of-file": "^0.1.2",
+    "grunt-wp-readme-to-markdown": "^0.8.0"
   }
 }

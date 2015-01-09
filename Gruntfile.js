@@ -99,6 +99,14 @@ module.exports = function(grunt) {
             }
         },
 
+        wp_readme_to_markdown: {
+            readme: {
+                files: {
+                  'README.md': 'readme.txt'
+                },
+            },
+        },
+
         copy: { // https://github.com/gruntjs/grunt-contrib-copy
             // srcfont: {
             //     expand: true,
@@ -172,11 +180,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-version');
     grunt.loadNpmTasks('grunt-copy-part-of-file');
+    grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
 
 
 
-
-    grunt.registerTask('deploy', ['version', 'copy-part-of-file']);
+    grunt.registerTask('deploy', [
+                                'version',
+                                // 'copy-part-of-file',
+                                'wp_readme_to_markdown',
+                                ]);
 
 
     grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
