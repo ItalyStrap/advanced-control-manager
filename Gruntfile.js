@@ -85,19 +85,19 @@ module.exports = function(grunt) {
             },
         },
 
-        'copy-part-of-file': { // https://github.com/dehru/grunt-copy-part-of-file
-            copyReadme: {
-                options: {
-                    sourceFileStartPattern: '=== ItalyStrap ===',
-                    sourceFileEndPattern: 'First release.',
-                    destinationFileStartPattern: '=== ItalyStrap ===',
-                    destinationFileEndPattern: 'First release.'
-                },
-                files: {
-                    'README.md': ['readme.txt']
-                }
-            }
-        },
+        // 'copy-part-of-file': { // https://github.com/dehru/grunt-copy-part-of-file
+        //     copyReadme: {
+        //         options: {
+        //             sourceFileStartPattern: '=== ItalyStrap ===',
+        //             sourceFileEndPattern: 'First release.',
+        //             destinationFileStartPattern: '=== ItalyStrap ===',
+        //             destinationFileEndPattern: 'First release.'
+        //         },
+        //         files: {
+        //             'README.md': ['readme.txt']
+        //         }
+        //     }
+        // },
 
         wp_readme_to_markdown: {
             readme: {
