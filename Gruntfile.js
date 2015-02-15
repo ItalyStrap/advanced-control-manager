@@ -4,23 +4,30 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            dist: {
+            // dist: {
+            //     files: {
+            //         'js/home.min.js': [
+            //             'js/src/bootstrapJS/transition.js',
+            //             // 'js/src/bootstrapJS/alert.js',
+            //             // 'js/src/bootstrapJS/button.js',
+            //             'js/src/bootstrapJS/carousel.js',
+            //             'js/src/bootstrapJS/collapse.js',
+            //             'js/src/bootstrapJS/dropdown.js',
+            //             // 'js/src/bootstrapJS/modal.js',
+            //             // 'js/src/bootstrapJS/tooltip.js',
+            //             // 'js/src/bootstrapJS/popover.js',
+            //             // 'js/src/bootstrapJS/scrollspy.js',
+            //             // 'js/src/bootstrapJS/tab.js',
+            //             // 'js/src/bootstrapJS/affix.js',
+            //             'js/src/home.js' // <- Modify this
+            //         ],                  
+            //     }
+            // },
+            admin: {
                 files: {
-                    'js/home.min.js': [
-                        'js/src/bootstrapJS/transition.js',
-                        // 'js/src/bootstrapJS/alert.js',
-                        // 'js/src/bootstrapJS/button.js',
-                        'js/src/bootstrapJS/carousel.js',
-                        'js/src/bootstrapJS/collapse.js',
-                        'js/src/bootstrapJS/dropdown.js',
-                        // 'js/src/bootstrapJS/modal.js',
-                        // 'js/src/bootstrapJS/tooltip.js',
-                        // 'js/src/bootstrapJS/popover.js',
-                        // 'js/src/bootstrapJS/scrollspy.js',
-                        // 'js/src/bootstrapJS/tab.js',
-                        // 'js/src/bootstrapJS/affix.js',
-                        'js/src/home.js' // <- Modify this
-                    ],                  
+                    'admin/js/gallery-settings.min.js': [
+                        'admin/js/src/gallery-settings.js'
+                        ]
                 }
             }
         },
@@ -123,7 +130,44 @@ module.exports = function(grunt) {
                     ],
                 dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
                 filter: 'isFile',
-            }
+            },
+            totag: {
+                expand: true,
+                // cwd: 'src',
+                src: [
+                    '**',
+                    '!node_modules/**',
+                    '!bower_components/**',
+                    '!bower.json',
+                    '!composer.json',
+                    '!Gruntfile.js',
+                    '!package.json',
+                    '!README.md',
+                    ],
+                dest: 'E:/Dropbox/svn-wordpress/italystrap/tags/<%= pkg.version %>/',
+                filter: 'isFile',
+            },
+            /**
+             * This task is only for copy files in new project site
+             * In "dest" insert the destination of new site that I have to develope
+             * Comment this code if I'm developing in this directory
+             */
+            todev: {
+                expand: true,
+                // cwd: 'src',
+                src: [
+                    '**',
+                    '!node_modules/**',
+                    '!bower_components/**',
+                    '!bower.json',
+                    '!composer.json',
+                    '!Gruntfile.js',
+                    '!package.json',
+                    '!README.md',
+                    ],
+                dest: 'F:/xampp/htdocs/spadari/wp-content/plugins/italystrap/',
+                filter: 'isFile',
+            },
         },
 
         sync: { // https://www.npmjs.com/package/grunt-sync
@@ -169,6 +213,19 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-copy-part-of-file');
     grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
 
+    /**
+     * Controllare gli aggiornamenti
+     * @link https://www.npmjs.com/package/npm-check-updates
+     *
+     * Show any new dependencies for the project in the current directory:
+     * $ npm-check-updates
+     *
+     * Upgrade a project's package.json:
+     * $ npm-check-updates -u
+     *
+     * Upgrade
+     * $ npm install
+     */
 
     /**
      * My workflow
@@ -178,6 +235,7 @@ module.exports = function(grunt) {
                                 'version',
                                 // 'copy-part-of-file',
                                 'wp_readme_to_markdown',
+                                'copy',
                                 ]);
 
 
