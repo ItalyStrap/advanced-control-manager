@@ -8,6 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'ItalyStrapAdmin' => $baseDir . '/admin/ItalystrapAdmin.php',
     'ItalyStrapBreadcrumbs' => $baseDir . '/classes/ItalyStrapBreadcrumbs.php',
-    'ItalyStrapPlugin' => $baseDir . '/classes/ItalyStrapPlugin.php',
-    'ItalyStrapPluginInit' => $baseDir . '/classes/ItalyStrapPluginInit.php',
+    'ItalyStrapCarousel' => $baseDir . '/classes/ItalyStrapCarousel.php',
+    'ItalyStrapCarouselLoader' => $baseDir . '/classes/ItalyStrapCarousel.php',
+    'ItalyStrapGallerySettings' => $baseDir . '/classes/ItalyStrapGallerySettings.php',
+    'ItalyStrapGlobals' => $baseDir . '/classes/ItalyStrapGlobals.php',
+    'ItalyStrapMedia' => $baseDir . '/classes/ItalyStrapMedia.php',
 );
