@@ -59,3 +59,12 @@
 
 	</div><!-- / .container-fluid -->
 </div><!-- / .wrap -->
+<?php
+// $args = array(
+//     'textarea_rows' => 15,
+//     'teeny' => true,
+//     'quicktags' => false
+// );
+ 
+// wp_editor( 'This is the default text!', 'editor', $args );
+// submit_button( 'Save content' );
