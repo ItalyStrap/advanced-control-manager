@@ -4,5 +4,8 @@
 			"admin",
 			"classes"
 		]
+	},
+	"require": {
+		"mobiledetect/mobiledetectlib": "dev-master"
 	}
 }
