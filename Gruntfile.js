@@ -225,6 +225,12 @@ module.exports = function(grunt) {
      *
      * Upgrade
      * $ npm install
+     *
+     * Controllare gli aggiornamenti con composer (mobile detect per ora la copio a mano in lib)
+     * $composer update
+     *
+     * Copiare dalla cartella composer dentro lib il file di interesse
+     * Eventualmente copiarlo anche nel tema
      */
 
     /**
