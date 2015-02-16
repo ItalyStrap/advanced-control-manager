@@ -7,9 +7,9 @@
  * @package ItalyStrap
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-if ( !class_exists('ItalyStrapGallerySettings') ){
+if ( !class_exists('ItalyStrapAdminGallerySettings') ){
 
-	class ItalyStrapGallerySettings {
+	class ItalyStrapAdminGallerySettings {
 		function __construct() {
 			
 			add_action( 'admin_init', array( $this, 'admin_init' ) );

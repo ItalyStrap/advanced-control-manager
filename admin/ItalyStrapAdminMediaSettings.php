@@ -6,9 +6,9 @@
  * @package ItalyStrap
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-if ( !class_exists( 'ItalyStrapMedia' ) ) {
+if ( !class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 
-	class ItalyStrapMedia {
+	class ItalyStrapAdminMediaSettings {
 		
 		function __construct() {
 
