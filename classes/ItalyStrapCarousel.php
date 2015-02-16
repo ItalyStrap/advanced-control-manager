@@ -11,12 +11,13 @@
  * include the files for you, so if they are not present, the carousel will not
  * work.
  *
- * @package   ItalyStrapCarousel
+ * @package   ItalyStrap
  * @version   1.1
  * @author    Andrés Villarreal <andrezrv@gmail.com>
  * @license   GPL-2.0
  * @link      http://github.com/andrezrv/agnosia-bootstrap-carousel
  * @copyright 2013-2014 Andrés Villarreal
+ * 
  *
  * @wordpress-plugin
  * Plugin Name: Agnosia Bootstrap Carousel by AuSoft
@@ -122,24 +123,48 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return array Mixed array of shortcode attributes.
 		 */
 		private function obtain_attributes( $atts ) {
-			// Define data by given attributes.
+
+			/**
+			 * Define data by given attributes.
+			 */
 			$attributes = shortcode_atts( array(
-				/* Ids for the images to use. */
+
+				/**
+				 * Ids for the images to use.
+				 */
 				'ids' => false,
-				/* Type of gallery. If it's not "carousel", nothing will be done. */
+
+				/**
+				 * Type of gallery. If it's not "carousel", nothing will be done.
+				 */
 				'type' => '',
-				/* Alternative appearing order of images. */
+
+				/**
+				 * Alternative appearing order of images.
+				 */
 				'orderby' => '',
-				/* Any name. String will be sanitize to be used as HTML ID. Recomended 
+
+				/**
+				 * Any name. String will be sanitize to be used as HTML ID. Recomended 
 				 * when you want to have more than one carousel in the same page. 
-				 * Default: agnosia-bootstrap-carousel. */
-				'name' => 'agnosia-bootstrap-carousel',
-				/* Carousel container width, in px or % */
-				'width' => '', 
-				/* Carousel item height, in px or % */
+				 * Default: italystrap-bootstrap-carousel.
+				 * */
+				'name' => 'italystrap-bootstrap-carousel',
+
+				/**
+				 * Carousel container width, in px or %
+				 */
+				'width' => '',
+
+				/**
+				 * Carousel item height, in px or %
+				 */
 				'height' => '',
-				/* Accepted values: before-inner, after-inner, after-control, false.
-				 * Default: before-inner. */
+
+				/**
+				 * Accepted values: before-inner, after-inner, after-control, false.
+				 * Default: before-inner.
+				 * */
 				'indicators' => 'before-inner',
 
 				/**
@@ -148,36 +173,101 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				 */
 				'control' => 'true',
 
+				'arrow' => 'true', 
+
+				/**
+				 * @todo Aggiungere inserimento glyphicon nello shortcode
+				 *       decidere se fare inserire tutto lo span o solo l'icona
+				 */
+				// 'control-left' => '<span class="glyphicon glyphicon-chevron-left"></span>',
+				// 'control-right' => '<span class="glyphicon glyphicon-chevron-right"></span>',
+
 				/**
 				 * The amount of time to delay between automatically
-				 * cycling an item in milliseconds, 5000 = 5 seconds.
-				 * Default false, carousel will not automatically cycle.
+				 * cycling an item in milliseconds.
+				 * @type integer Example 5000 = 5 seconds.
+				 * Default 0, carousel will not automatically cycle.
+				 * @link http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/
 				 */
-				'interval' => false,
+				'interval' => 0,
 
-				/* Pauses the cycling of the carousel on mouseenter and resumes the
-				 * cycling of the carousel on mouseleave. */
+				/**
+				 * Pauses the cycling of the carousel on mouseenter and resumes the
+				 * cycling of the carousel on mouseleave.
+				 * @type string Default hover.
+				 */
 				'pause' => 'hover',
-				/* Define tag for image title. Default: h4. */
+
+				/**
+				 * Define tag for image title. Default: h4.
+				 */
 				'titletag' => 'h4',
-				/* Show or hide image title. Set false to hide. Default: true. */
+
+				/**
+				 * Show or hide image title. Set false to hide. Default: true.
+				 */
 				'title' => 'true',
-				/* Type of link to show if "title" is set to true. */
+
+				/**
+				 * Type of link to show if "title" is set to true.
+				 * Default Link Parameters file, none, link
+				 */
 				'link' => '',
-				/* Show or hide image text. Set false to hide. Default: true. */
+
+				/**
+				 * Show or hide image text. Set false to hide. Default: true.
+				 */
 				'text' => 'true',
-				/* Auto-format text. Default: true. */
+
+				/**
+				 * Auto-format text. Default: true.
+				 */
 				'wpautop' => 'true',
-				/* Extra class for container. */
+
+				/**
+				 * Extra class for container.
+				 */
 				'containerclass' => '',
-				/* Extra class for item. */
+
+				/**
+				 * Extra class for item.
+				 */
 				'itemclass' => '',
-				/* Extra class for caption. */
+
+				/**
+				 * Extra class for caption.
+				 */
 				'captionclass' => '',
-				/* Size for image attachment. Accepted values: thumbnail, medium,
-				 * large, full. Default: full. See wp_get_attachment_image_src() for
-				 * further reference. */ 
-				'size' => 'full'
+
+				/**
+				 * Size for image attachment. Accepted values: thumbnail, medium,
+				 * large, full or own custom name added in add_image_size function.
+				 * Default: full.
+				 * @see wp_get_attachment_image_src() for further reference.
+				 */ 
+				'size' => 'full',
+
+				/**
+				 * Activate responsive image. Accepted values: true, false. Default false.
+				 */
+				'responsive' => false,
+
+				/**
+				 * Size for image attachment. Accepted values: thumbnail, medium,
+				 * large, full or own custom name added in add_image_size function.
+				 * Default: large.
+				 * @see wp_get_attachment_image_src() for further reference.
+				 */ 
+				'sizetablet' => 'large',
+
+				/**
+				 * Size for image attachment. Accepted values: thumbnail, medium,
+				 * large, full or own custom name added in add_image_size function.
+				 * Default: medium.
+				 * @see wp_get_attachment_image_src() for further reference.
+				 */ 
+				'sizephone' => 'medium'
+
 			), $atts );
 
 			$attributes = apply_filters( 'ItalyStrapCarousel_attributes', $attributes );
@@ -416,10 +506,29 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		private function get_img( $post ) {
 			
 			extract( $this->attributes );
+
+			global $detect;
+
+			$image_size = '';
+
+			if ( $detect->isTablet() && $responsive ) {
+
+				$image_size = $sizetablet;
+
+			}elseif( $detect->isMobile() && $responsive ) {
+
+				$image_size = $sizephone;
+
+			}else{
+
+				$image_size = $size;
+
+			}
 			$output = '';
-			$image = wp_get_attachment_image_src( $post['ID'] , $size );
+			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
 			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" />';
 			$output = apply_filters( 'ItalyStrapCarousel_img', $output, $image[0], $this->attributes, $post );
+
 			return $output;
 		}
 
@@ -491,14 +600,22 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		/**
 		 * Obtain control links.
 		 *
-		 * @return string HTML result.
+		 * @return string HTML control result.
 		 */
 		private function get_control() {
+
 			extract( $this->attributes );
-			$output = '<a class="carousel-control left" href="#' . $name . '" data-slide="prev">&lsaquo;</a>';
-			$output .= '<a class="carousel-control right" href="#' . $name . '" data-slide="next">&rsaquo;</a>';
+			/**
+			 * @todo Dare la possibilità di scegliere l'icona o l'inserimento di un carattere
+			 */
+			$output = '<a class="carousel-control left" data-slide="prev" role="button" href="#' . $name . '" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>';
+
+			$output .= '<a class="carousel-control right" data-slide="next" role="button" href="#' . $name . '" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>';
+
 			$output = apply_filters( 'ItalyStrapCarousel_control', $output, $this->attributes );
+
 			return $output;
+
 		}
 
 		/**
@@ -511,7 +628,8 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			extract( $this->attributes );
 
 			$output = '<script type="text/javascript">// <![CDATA[
-	jQuery(document).ready( function($) { $(\'#' . $name . '\').carousel( { interval : ' . $interval . ' , pause : "' . $pause . '" } ); } );
+	jQuery(document).ready(function($) {$(\'#' . $name . '\').carousel({ interval : ' . $interval . ' , pause : "' . $pause . '" });
+	 });
 	// ]]></script>';
 
 			$output = apply_filters( 'ItalyStrapCarousel_javascript', $output, $this->attributes );
