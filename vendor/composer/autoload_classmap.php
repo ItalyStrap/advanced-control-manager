@@ -7,10 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ItalyStrapAdmin' => $baseDir . '/admin/ItalystrapAdmin.php',
+    'ItalyStrapAdminGallerySettings' => $baseDir . '/admin/ItalyStrapAdminGallerySettings.php',
+    'ItalyStrapAdminMediaSettings' => $baseDir . '/admin/ItalyStrapAdminMediaSettings.php',
     'ItalyStrapBreadcrumbs' => $baseDir . '/classes/ItalyStrapBreadcrumbs.php',
     'ItalyStrapCarousel' => $baseDir . '/classes/ItalyStrapCarousel.php',
     'ItalyStrapCarouselLoader' => $baseDir . '/classes/ItalyStrapCarousel.php',
-    'ItalyStrapGallerySettings' => $baseDir . '/classes/ItalyStrapGallerySettings.php',
     'ItalyStrapGlobals' => $baseDir . '/classes/ItalyStrapGlobals.php',
-    'ItalyStrapMedia' => $baseDir . '/classes/ItalyStrapMedia.php',
+    'Mobile_Detect' => $baseDir . '/classes/lib/Mobile_Detect.php',
 );
