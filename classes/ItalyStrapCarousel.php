@@ -1,31 +1,6 @@
 <?php
 /**
- * Agnosia Bootstrap Carousel by AuSoft
- *
- * Hooks the `[gallery]` shortcode with attribute `type="carousel"` in order to
- * show a Bootstrap Carousel (http://getbootstrap.com/javascript/#carousel)
- * based on the selected images and their titles and descriptions. It's
- * important to note that this plugin assumes either your theme includes the
- * necessary Bootstrap Javascript and CSS files to display the carousel
- * properly, or that you have included the files on your own. It will not
- * include the files for you, so if they are not present, the carousel will not
- * work.
- *
- * @package   ItalyStrap
- * @version   1.1
- * @author    Andrés Villarreal <andrezrv@gmail.com>
- * @license   GPL-2.0
- * @link      http://github.com/andrezrv/agnosia-bootstrap-carousel
- * @copyright 2013-2014 Andrés Villarreal
- * 
- *
- * @wordpress-plugin
- * Plugin Name: Agnosia Bootstrap Carousel by AuSoft
- * Plugin URI: http://wordpress.org/extend/plugins/agnosia-bootstrap-carousel/
- * Description: Hooks the <code>[gallery]</code> shortcode with attribute <code>type="carousel"</code> in order to show a <a href="http://getbootstrap.com/javascript/#carousel" target="_blank">Bootstrap Carousel</a> based on the selected images and their titles and descriptions. <strong>Very important:</strong> this plugin assumes either your theme includes the necessary Bootstrap Javascript and CSS files to display the carousel properly, or that you have included the files on your own. It will not include the files for you, so if they are not present, the carousel will not work.
- * Author: Andr&eacute;s Villarreal, AuSoft
- * Author URI: http://aufieroinformatica.com/wordpress/
- * Version: 1.1
+ * ItalyStrap Carousel forked from Agnosia Bootstrap Carousel by AuSoft
  */
 
 /**
@@ -33,9 +8,7 @@
  *
  * Loads ItalyStrapCarousel to display a new carousel when needed. 
  *
- * @package ItalyStrapCarousel
- * @version 1.0
- * @since   1.0
+ * @since   1.1
  */
 if ( !class_exists('ItalyStrapCarouselLoader') ) {
 
@@ -93,12 +66,12 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			$this->attributes = $this->obtain_attributes( $atts );
 			$this->output = '';
 			if ( $this->validate_data() ) {
-				do_action( 'ItalyStrapCarousel_before_init' );
+				do_action( 'ItalyStrap_carousel_before_init' );
 				$this->container_style = $this->get_container_style();
 				$this->item_style      = $this->get_item_style();
 				$this->posts           = $this->get_posts();
 				$this->output          = $this->get_output();
-				do_action( 'ItalyStrapCarousel_init' );
+				do_action( 'ItalyStrap_carousel_init' );
 			}
 
 			add_action( 'wp_footer', array( $this, 'get_javascript'), 9999 );
@@ -173,7 +146,13 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				 */
 				'control' => 'true',
 
-				'arrow' => 'true', 
+				/**
+				 * @todo Aggiungere la possibilità di poter decidere quali simbili
+				 *       usare come selettori delle immagini (@see Vedi sotto)
+				 * Enable or disable arrow from Glyphicons
+				 * Accepted values: true, false. Default: true.
+				 */
+				// 'arrow' => 'true',
 
 				/**
 				 * @todo Aggiungere inserimento glyphicon nello shortcode
@@ -248,7 +227,8 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				'size' => 'full',
 
 				/**
-				 * Activate responsive image. Accepted values: true, false. Default false.
+				 * Activate responsive image. Accepted values: true, false.
+				 * Default false.
 				 */
 				'responsive' => false,
 
@@ -270,7 +250,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			), $atts );
 
-			$attributes = apply_filters( 'ItalyStrapCarousel_attributes', $attributes );
+			$attributes = apply_filters( 'ItalyStrap_carousel_attributes', $attributes );
 
 			return $attributes;
 
@@ -310,7 +290,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					$posts[] = get_post( intval( $image_id ) , ARRAY_A );
 				}
 			}
-			$posts = apply_filters( 'ItalyStrapCarousel_posts', $posts, $this->attributes );
+			$posts = apply_filters( 'ItalyStrap_carousel_posts', $posts, $this->attributes );
 			return $posts;
 		}
 
@@ -325,7 +305,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			if ( $width ) {
 				$container_style = 'style="width:' . $width . ';"';
 			}
-			$container_style = apply_filters( 'ItalyStrapCarousel_container_style', $container_style, $this->attributes );
+			$container_style = apply_filters( 'ItalyStrap_carousel_container_style', $container_style, $this->attributes );
 			return $container_style;
 		}
 
@@ -340,7 +320,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			if ( $height ) {
 				$item_style = 'style="height:' . $height . ';"' ;
 			}
-			$item_style = apply_filters( 'ItalyStrapCarousel_item_style', $item_style, $this->attributtes );
+			$item_style = apply_filters( 'ItalyStrap_carousel_item_style', $item_style, $this->attributtes );
 			return $item_style;
 		}
 
@@ -393,7 +373,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// Obtain javascript for carousel.
 			// $output .= $this->get_javascript();
 
-			$output = apply_filters( 'ItalyStrapCarousel_output', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_output', $output, $this->attributes );
 
 			return $output;
 
@@ -419,7 +399,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
-			$output = apply_filters( 'ItalyStrapCarousel_container', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_container', $output, $this->attributes );
 			return $output;
 		}
 
@@ -443,7 +423,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
-			$output = apply_filters( 'ItalyStrapCarousel_inner', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_inner', $output, $this->attributes );
 			return $output;
 		}
 
@@ -467,7 +447,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
-			$output = apply_filters( 'ItalyStrapCarousel_caption_container', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_caption_container', $output, $this->attributes );
 			return $output;
 		}
 
@@ -493,7 +473,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
-			$output = apply_filters( 'ItalyStrapCarousel_img_container', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_img_container', $output, $this->attributes );
 			return $output;
 		}
 
@@ -527,7 +507,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			$output = '';
 			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
 			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" />';
-			$output = apply_filters( 'ItalyStrapCarousel_img', $output, $image[0], $this->attributes, $post );
+			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $image[0], $this->attributes, $post );
 
 			return $output;
 		}
@@ -554,7 +534,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				 } 
 				$output .= '<'. $titletag .'>' . $post_title . '</' . $titletag . '>';
 			endif;
-			$output = apply_filters( 'ItalyStrapCarousel_title', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_title', $output, $this->attributes );
 			return $output;
 		}
 
@@ -569,7 +549,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			if ( 'false' !== 'text' ) {
 				$output .= ( $wpautop != 'false' ) ? wpautop( $post['post_excerpt'] ) : $post['post_excerpt'];
 			}
-			$output = apply_filters( 'ItalyStrapCarousel_excerpt', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_excerpt', $output, $this->attributes );
 			return $output;
 		}
 
@@ -592,7 +572,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				}
 			}
 			$output .= '</ol>';
-			$output = apply_filters( 'ItalyStrapCarousel_indicators', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_indicators', $output, $this->attributes );
 			return $output;
 		}
 
@@ -612,7 +592,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			$output .= '<a class="carousel-control right" data-slide="next" role="button" href="#' . $name . '" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>';
 
-			$output = apply_filters( 'ItalyStrapCarousel_control', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_control', $output, $this->attributes );
 
 			return $output;
 
@@ -632,7 +612,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 	 });
 	// ]]></script>';
 
-			$output = apply_filters( 'ItalyStrapCarousel_javascript', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes );
 
 			echo $output;
 		}
@@ -650,7 +630,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			if ( 'rand' == $orderby ) {
 				shuffle( $array );
 			}
-			$array = apply_filters( 'ItalyStrapCarousel_make_array', $array, $this->attributes );
+			$array = apply_filters( 'ItalyStrap_carousel_make_array', $array, $this->attributes );
 			return $array;
 		}
 
