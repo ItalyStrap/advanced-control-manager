@@ -4,6 +4,8 @@
  *
  * This class add some functions for use in admin panel
  *
+ * @link http://codex.wordpress.org/Adding_Administration_Menus
+ *
  * @since 1.0.0
  *
  * @package ItalyStrap
@@ -31,6 +33,10 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 			 */
 			add_action( 'admin_menu', array( $this, 'addSubMenuPage') );
 
+			// add_action( 'admin_menu', array( $this, 'italystrap_add_admin_menu') );
+
+			// add_action( 'admin_init', array( $this, 'italystrap_settings_init') );
+
 			/**
 			 * Load script only if is ItalyStrap admin panel
 			 */
@@ -40,7 +46,7 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 			}
 
 			/**
-			 * Add personal link in WP Plugin panel
+			 * Add link in plugin activation panel
 			 */
 			add_filter( 'plugin_action_links_' . ITALYSTRAP_BASENAME, array( $this, 'plugin_action_links' ) );
 		
@@ -75,24 +81,12 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 		}
 
 		/**
-		 * Add sub menù page for ItalyStrap admin page
-		 */
-		public function addSubMenuPage(){
-
-			// add_submenu_page( 'italystrap-dashboard', __('Options', 'ItalyStrap'), __('Options', 'ItalyStrap'), $this->capability, 'italystrap-options', array( $this, 'options') );
-
-			add_submenu_page( 'italystrap-dashboard', __('Documentation', 'ItalyStrap'), __('Documentation', 'ItalyStrap'), $this->capability, 'italystrap-documentation', array( $this, 'documentation') );
-
-		}
-
-		/**
 		 *	The dashboard callback
 		 */
 		public function dashboard(){
 
-			if ( !current_user_can( $this->capability ) )  {
-					wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-				}
+			if ( !current_user_can( $this->capability ) )
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 
 			/**
 			 * Require dashboard-page.php
@@ -101,30 +95,26 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 		}
 
+
 		/**
-		 * the options call back
+		 * Add sub menù page for ItalyStrap admin page
 		 */
-		public function options(){
+		public function addSubMenuPage(){
 
-			if ( !current_user_can( $this->capability ) )  {
-					wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-				}
+			add_submenu_page( 'italystrap-dashboard', __('Documentation', 'ItalyStrap'), __('Documentation', 'ItalyStrap'), $this->capability, 'italystrap-documentation', array( $this, 'documentation') );
 
-			/**
-			 * Require options-page.php
-			 */
-			require_once(ITALYSTRAP_PLUGIN_PATH . 'admin/admin-template/options-page.php');				
+			// add_submenu_page( 'italystrap-dashboard', __('Options', 'ItalyStrap'), __('Options', 'ItalyStrap'), $this->capability, 'italystrap-options', array( $this, 'options') );
 
-		}// options
+		}
+
 
 		/**
 		 * The documentation call back
 		 */
 		public function documentation(){
 
-			if ( !current_user_can( $this->capability ) )  {
-					wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-				}
+			if ( !current_user_can( $this->capability ) )
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 
 			/**
 			 * Require documentation-page.php
@@ -134,7 +124,22 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 		}// documentation()
 
 		/**
-		 * Add link in plugin panel
+		 * the options call back
+		 */
+		public function options(){
+
+			if ( !current_user_can( $this->capability ) )
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+
+			/**
+			 * Require options-page.php
+			 */
+			require_once(ITALYSTRAP_PLUGIN_PATH . 'admin/admin-template/options-page.php');				
+
+		}// options
+
+		/**
+		 * Add link in plugin activation panel
 		 * @param  array $links Array of link in wordpress dashboard
 		 * @return array        Array with my links
 		 */
@@ -146,6 +151,78 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 			return $links;
 		}// plugin_action_links()
+
+
+
+function italystrap_add_admin_menu() { 
+
+	add_options_page( 'ItalyStrap', 'ItalyStrap', 'manage_options', 'ItalyStrap', array( $this, 'italystrap_options_page') );
+
+}
+
+function italystrap_settings_init() { 
+
+	register_setting( 'pluginPage', 'italystrap_settings' );
+
+	add_settings_section(
+		'italystrap_pluginPage_section', 
+		__( 'Your section description', 'ItalyStrap' ), 
+		array( $this, 'italystrap_settings_section_callback'), 
+		'pluginPage'
+	);
+
+	add_settings_field( 
+		'italystrap_checkbox_field_0', 
+		__( 'Settings field description', 'ItalyStrap' ), 
+		array( $this, 'italystrap_checkbox_field_0_render'), 
+		'pluginPage', 
+		'italystrap_pluginPage_section'
+	);
+
+
+}
+
+
+function italystrap_checkbox_field_0_render() { 
+
+	$options = get_option( 'italystrap_settings' );
+	?>
+	<input type='checkbox' name='italystrap_settings[italystrap_checkbox_field_0]' <?php checked( $options['italystrap_checkbox_field_0'], 1 ); ?> value='1'>
+	<?php
+
+}
+
+
+function italystrap_settings_section_callback() { 
+
+	echo __( 'This section description', 'ItalyStrap' );
+
+}
+
+
+function italystrap_options_page() { 
+
+	?>
+	<form action='options.php' method='post'>
+		
+		<h2>italystrap</h2>
+		
+		<?php
+		settings_fields( 'pluginPage' );
+		do_settings_sections( 'pluginPage' );
+		submit_button();
+		?>
+		
+	</form>
+	<?php
+
+}
+
+
+
+
+
+
 
 
 	}// class
