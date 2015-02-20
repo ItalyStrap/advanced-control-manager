@@ -1,9 +1,12 @@
-<!-- <div class="wrap">
+<div class="wrap">
+	<h2>Your Plugin Page Title</h2>
 	<p>Here is where the form would go if I actually had options.</p>
 
-	<?php if ( defined('ITALYSTRAP_THEME') ) {
-		echo "<p>string</p>";
-	} ?>
+	<?php
+	// if ( defined('ITALYSTRAP_THEME') ) {
+	// 	echo "<p>string</p>";
+	// }
+	?>
 
 	<form method="post" action="options.php">
 	    <table class="form-table">
@@ -25,4 +28,4 @@
 		<?php submit_button(); ?>
 	</form>
 
-</div> -->
+</div>
