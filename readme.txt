@@ -68,6 +68,7 @@ Dev time: 50h
 * Add Bootstrap Carousel functionality forked from Agnosia Bootstrap Carousel by AuSoft
 * Renders extra controls in the Gallery Settings section of the new media UI
 * Add Mobile_Detect class from https://github.com/serbanghita/Mobile-Detect for responsive functions
+* Fix some bugs
 
 
 = 1.0.2 =
