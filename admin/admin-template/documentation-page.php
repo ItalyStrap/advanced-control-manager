@@ -88,6 +88,68 @@ It will show breadcrumbs like this:
 	<li><a title="Senza categoria" href="#">Category</a></li>
 	<li>Breadcrumbs</li>
 </ol>
+
+<!-- Gallery Carouse documentation -->
+
+<h3>How Bootstrap Carousel works with Gallery Shortcode</h3>
+(This functionality is forked from <a href="https://github.com/andrezrv/agnosia-bootstrap-carousel" target="_blank">Agnosa Bootstrap Carousel</a>)
+
+Add attribute <code>type="carousel"</code> at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise It will show standard WordPress Gallery.
+
+For more informations about WordPress Gallery see these links: <a href="http://codex.WordPress.org/The_WordPress_Gallery" target="_blank">http://codex.WordPress.org/The_WordPress_Gallery</a> <a href="http://codex.WordPress.org/Gallery_Shortcode" target="_blank">http://codex.WordPress.org/Gallery_Shortcode</a>
+<div class="alert alert-warning">This plugin assumes either your theme includes the necessary Bootstrap javascript and CSS files to display the carousel properly, or that you have included those files on your own. It will not include the files for you, so if they are not present, the carousel will not work and you will only obtain its bare HTML.</div>
+<h4>Example:</h4>
+[gallery type="carousel" ids="1,2,3,4,5"]
+
+You can add a <code>type</code> parameter directly from the Insert Media screen on the gallery tab.
+
+You can also select an image size only for standard carousel, for responsive size add it directly in the code, see below.
+<h4>Optional attributes:</h4>
+<ul class="task-list">
+	<li><code>name</code>: any name. String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page. Default: <em>italystrap-bootstrap-carousel</em>.
+Example:[gallery type="carousel" ids="61,60,59" name="myCarousel"]</li>
+	<li><code>indicators</code>: indicators position. Accepted values: <em>before-inner</em>, <em>after-inner</em>, <em>after-control</em>, <em>false</em> (hides indicators). Default: <em>before-inner</em>.
+Example:[gallery type="carousel" ids="61,60,59" indicators="after-inner"]</li>
+	<li><code>width</code>: carousel container width, in <code>px</code> or <code>%</code>. Default: not set.
+Example:[gallery type="carousel" ids="61,60,59" width="800px"]</li>
+	<li><code>height</code>: carousel item height, in <code>px</code> or <code>%</code>. Default: not set.
+Example:[gallery type="carousel" ids="61,60,59" height="400px"]</li>
+	<li><code>titletag</code>: define HTML tag for image title. Default: <em>h4</em>.
+Example:[gallery type="carousel" ids="61,60,59" titletag="h2"]</li>
+	<li><code>wpautop</code>: auto-format text. Default: <em>true</em>.
+Example:[gallery type="carousel" ids="61,60,59" wpautop="false"]</li>
+	<li><code>title</code>: show or hide image title. Set <em>false</em> to hide. Default: <em>true</em>.
+Example:[gallery type="carousel" ids="61,60,59" title="false"]</li>
+	<li><code>text</code>: show or hide image text. Set <em>false</em> to hide. Default: <em>true</em>.
+Example:[gallery type="carousel" ids="61,60,59" text="false"]</li>
+	<li><code>containerclass</code>: extra class for carousel container. Default: not set.
+Example:[gallery type="carousel" ids="61,60,59" containerclass="container"]</li>
+	<li><code>itemclass</code>: extra class for carousel item. Default: not set.
+Example:[gallery type="carousel" ids="61,60,59" itemclass="container"]</li>
+	<li><code>captionclass</code>: extra class for item caption. Default: not set.
+Example:[gallery type="carousel" ids="61,60,59" captionclass="container"]</li>
+	<li><code>control</code>: control arrows display. Accepted values: <em>true</em> (to show), <em>false</em> (to hide). Default: <em>true</em>.
+Example:[gallery type="carousel" ids="61,60,59" control="false"]</li>
+	<li><code>interval</code>: the amount of time to delay between automatically cycling an item in milliseconds. Example 5000 = 5 seconds. If <em>0</em>, carousel will not automatically cycle. Default: <em>0</em>. (<a href="http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/" target="_blank">In this link yuou find why is set to 0 by default</a>)
+Example:[gallery type="carousel" ids="61,60,59" interval="2000"]</li>
+	<li><code>pause</code>: pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave. Default: <em>"hover"</em>.
+Example:[gallery type="carousel" ids="61,60,59" interval="hover"]</li>
+	<li><code>size</code>: size for image attachment. Accepted values: <em>thumbnail</em>, <em>medium</em>, <em>large</em>, <em>full</em>. Default: <em>full </em>or your own custom name added in add_image_size function. See <a href="http://codex.WordPress.org/Function_Reference/wp_get_attachment_image_src">wp_get_attachment_image_src()</a> for further reference.
+Example:[gallery type="carousel" ids="61,60,59" size="full"]</li>
+	<li><code>responsive</code>: Activate responsive image. Accepted values: true, false. Default false. It works only if you add <code>sizetablet</code> and <code>sizephone</code> attribute. See below.
+Example:[gallery type="carousel" ids="61,60,59" responsive="true" size="medium"]</li>
+	<li><code>sizetablet</code>: Size image for tablet device. Accepted values: thumbnail, medium, large, full or your own custom name added in add_image_size function. Default: large.
+Example:[gallery type="carousel" ids="61,60,59" responsive="true" size="full" sizetablet="large"]</li>
+	<li><code>sizephone</code>: Size image for phone device. Accepted values: thumbnail, medium, large, full or your own custom name added in add_image_size function. Default: medium.
+Example:[gallery type="carousel" ids="61,60,59" responsive="true" size="full" sizephone="medium"]</li>
+</ul>
+<h4><a id="user-content-native-supported-attributes" class="anchor" href="https://github.com/andrezrv/agnosia-bootstrap-carousel#native-supported-attributes"></a>Native supported attributes:</h4>
+<ul class="task-list">
+	<li><code>orderby</code>: Alternative order for your images.
+Example:[gallery type="carousel" ids="61,60,59" orderby="rand"]</li>
+	<li><code>link</code>: where your image titles will link to. Accepted values: <em>file</em>, <em>none</em> and empty. An empty value will link to your attachment's page.
+Example:[gallery type="carousel" ids="61,60,59" link="file"]</li>
+</ul>
 <!-- / End text -->
 			</div>
 		</div>
