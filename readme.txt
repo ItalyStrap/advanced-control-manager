@@ -12,11 +12,12 @@ Make your web site more powerfull.
 
 == Description ==
 
-[ItalyStrap](http://www.italystrap.it/) will add powerful features to your WordPRess site.
+[ItalyStrap](http://www.italystrap.it/) will add powerful features to your WordPress site.
 
 **Features include:**
 
 * **Breadcrumbs.** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
+* **Carousel.** (Forked from Agnosia Bootstrap Carousel by AuSoft) Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
 
 == Installation ==
 
@@ -50,8 +51,24 @@ For more informations read the documentation
 1. Default breadcrumbs (With Bootstrap CSS)
 2. Custom breadcrumbs (With Bootstrap CSS)
 3. Breadcrumbs in page (With Bootstrap CSS)
+4. Gallery in admin dashboard
+5. Gallery with new Carousel functionality
+6. Gallery shortcode with type="carousel" for Bootstrap Carousel
+7. Example of Carousel in article page (740x370)
+
 
 == Changelog ==
+
+= 1.1.0 =
+Release Date: February 20th, 2015
+
+Dev time: 50h
+
+* Renders extra controls for image dimension in the new media UI
+* Add Bootstrap Carousel functionality forked from Agnosia Bootstrap Carousel by AuSoft
+* Renders extra controls in the Gallery Settings section of the new media UI
+* Add Mobile_Detect class from https://github.com/serbanghita/Mobile-Detect for responsive functions
+
 
 = 1.0.2 =
 Release Date: January 8th, 2015
