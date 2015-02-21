@@ -269,7 +269,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			/* Validate for necessary data */
 			if (   isset( $ids ) 
 				&& isset( $type )
-				&& 'carousel' == $type 
+				&& 'carousel' === $type 
 			) {
 				$bool = true;
 			}
@@ -336,7 +336,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// Initialize carousel HTML.
 			$output = $this->get_carousel_container( 'start' );
 			// Try to obtain indicators before inner.
-			$output .= ( 'before-inner' == $indicators ) ? $this->get_indicators() : '' ;
+			$output .= ( 'before-inner' === $indicators ) ? $this->get_indicators() : '' ;
 			// Initialize inner.
 			$output .= $this->get_carousel_inner( 'start' );
 			// Start counter for posts iteration.
@@ -345,8 +345,8 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// Process each item into $this->posts array and create HTML.
 			foreach ( $this->posts as $post ) {
 				// Make sure to include only attachments into the carousel.
-				if ( 'attachment' == $post['post_type'] ) {
-					$class = ( 0 == $i ) ? 'active ' : '';
+				if ( 'attachment' === $post['post_type'] ) {
+					$class = ( 0 === $i ) ? 'active ' : '';
 					$output .= $this->get_img_container( 'start', $i );
 					$output .= $this->get_img( $post );
 					if ( 'false' !== $title || 'false' !== $text ) {
@@ -363,11 +363,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// End inner.
 			$output .= $this->get_carousel_inner( 'end' );
 			// Try to obtain indicators after inner.
-			$output .= ( 'after-inner' == $indicators ) ? $this->get_indicators() : '' ;
+			$output .= ( 'after-inner' === $indicators ) ? $this->get_indicators() : '' ;
 			// Obtain links for carousel control.
 			$output .= ( 'false' !== $control ) ? $this->get_control() : '' ;
 			// Try to obtain indicators after control. */
-			$output .= ( 'after-control' == $indicators ) ? $this->get_indicators() : '' ;
+			$output .= ( 'after-control' === $indicators ) ? $this->get_indicators() : '' ;
 			// End carousel HTML.
 			$output .= $this->get_carousel_container( 'end' );
 			// Obtain javascript for carousel.
@@ -414,7 +414,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			switch ( $position ) {
 				case 'start':
 					extract( $this->attributes );
-					$output = '<div class="carousel-inner">';
+					$output = '<div class="carousel-inner" itemscope itemtype="http://schema.org/ImageGallery">';
 					break;
 				case 'end':
 					$output = '</div>';
@@ -438,7 +438,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			switch ( $position ) {
 				case 'start':
 					extract( $this->attributes );
-					$output .= '<div class="carousel-caption ' . $captionclass . '">';
+					$output .= '<div class="carousel-caption ' . $captionclass . '" itemprop="caption">';
 					break;
 				case 'end':
 					$output .= '</div>';
@@ -464,7 +464,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				case 'start':
 					extract( $this->attributes );
 					$class = ( $i == 0 ) ? 'active ' : '';
-					$output .= '<div class="' . $class . 'item ' . $itemclass . '" data-slide-no="' . $i . '" ' . $this->item_style . '>';
+					$output .= '<div class="' . $class . 'item ' . $itemclass . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
 					break;
 				case 'end':
 					$output .= '</div>';
@@ -506,7 +506,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			}
 			$output = '';
 			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
-			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" />';
+			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image"/><meta  itemprop="name" content="' . $post['post_title'] . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="width" content="' . $image[2] . '"/>';
 			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $image[0], $this->attributes, $post );
 
 			return $output;
@@ -520,16 +520,16 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		private function get_title( $post ) {
 			extract( $this->attributes );
 			$output = '';
-			if ( $title != 'false' ) :
+			if ( $title !== 'false' ) :
 				switch ( $link ) {
 				 	case 'file':
-				 		$post_title = '<a href="' . $post['guid'] . '">' . $post['post_title'] . '</a>';
+				 		$post_title = '<a href="' . $post['guid'] . '" itemprop="url">' . $post['post_title'] . '</a>';
 				 		break;
 				 	case 'none':
 				 		$post_title = $post['post_title'];
 				 		break;
 				 	default:
-				 		$post_title = '<a href="' . get_permalink( $post['ID'] ) . '">' . $post['post_title'] . '</a>';
+				 		$post_title = '<a href="' . get_permalink( $post['ID'] ) . '" itemprop="url">' . $post['post_title'] . '</a>';
 				 		break;
 				 } 
 				$output .= '<'. $titletag .'>' . $post_title . '</' . $titletag . '>';
@@ -549,6 +549,8 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			if ( 'false' !== 'text' ) {
 				$output .= ( $wpautop != 'false' ) ? wpautop( $post['post_excerpt'] ) : $post['post_excerpt'];
 			}
+			$output = '<div itemprop="description">' . $output . '</div>';
+
 			$output = apply_filters( 'ItalyStrap_carousel_excerpt', $output, $this->attributes );
 			return $output;
 		}
@@ -565,8 +567,8 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			$i = 0;
 			foreach ( $this->posts as $post ) {
 				// Make sure to include only attachments into the carousel.
-				if ( 'attachment' == $post['post_type'] ) {
-					$class = ( $i == 0 ) ? 'active' : '';
+				if ( 'attachment' === $post['post_type'] ) {
+					$class = ( $i === 0 ) ? 'active' : '';
 					$output .= '<li data-target="#' . $name . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
 					$i++;
 				}
