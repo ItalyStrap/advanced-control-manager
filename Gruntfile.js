@@ -209,6 +209,7 @@ module.exports = function(grunt) {
                     '!Gruntfile.js',
                     '!package.json',
                     '!README.md',
+                    '!composer.lock'
                     ],
                 dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
                 filter: 'isFile',
@@ -225,6 +226,7 @@ module.exports = function(grunt) {
                     '!Gruntfile.js',
                     '!package.json',
                     '!README.md',
+                    '!composer.lock'
                     ],
                 dest: 'E:/Dropbox/svn-wordpress/italystrap/tags/<%= pkg.version %>/',
                 filter: 'isFile',
