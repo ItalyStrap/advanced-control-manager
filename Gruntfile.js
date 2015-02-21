@@ -235,6 +235,8 @@ module.exports = function(grunt) {
 
     /**
      * My workflow
+     * Update the documentation
+     * Update Homepage plugin in admin dashboard
      * 
      */
     grunt.registerTask('deploy', [
