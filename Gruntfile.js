@@ -114,6 +114,87 @@ module.exports = function(grunt) {
             },
         },
 
+        gitcommit: { // https://www.npmjs.com/package/grunt-git
+            version: {
+                options: {
+                    message: 'New version: <%= pkg.version %>'
+                },
+                files: {
+                    // Specify the files you want to commit
+                    src: [
+                        'bower.json', //For now bower it is not uploaded
+                        'readme.txt',
+                        'README.md',
+                        'package.json',
+                        'italystrap.php'
+                        ]
+                }
+            }
+        },
+
+        gitpush: { // https://www.npmjs.com/package/grunt-git
+            version: {},
+        },
+
+        prompt: { // https://github.com/dylang/grunt-prompt
+            target: {
+                options: {
+                    questions: [
+                        {
+                        config: 'github-release.options.auth.user', // set the user to whatever is typed for this question
+                        type: 'input',
+                        message: 'GitHub username:'
+                        },
+                        {
+                        config: 'github-release.options.auth.password', // set the password to whatever is typed for this question
+                        type: 'password',
+                        message: 'GitHub password:'
+                        }
+                    ]
+                }
+            }
+        },
+
+        compress: { // https://github.com/gruntjs/grunt-contrib-compress
+            main: {
+                options: {
+                    archive: '../<%= pkg.name %> <%= pkg.version %>.zip' // Create zip file in theme directory
+                },
+                files: [
+                    {
+                        src: [
+                            '**' ,
+                            '!.git/**',
+                            '!.sass-cache/**',
+                            '!bower_components/**',
+                            '!node_modules/**',
+                            '!.gitattributes',
+                            '!.gitignore',
+                            // '!bower.json',
+                            // '!Gruntfile.js',
+                            // '!package.json',
+                            '!*.zip'], // What should be included in the zip
+                        dest: '<%= pkg.name %>/',        // Where the zipfile should go
+                        filter: 'isFile',
+                    },
+                ]
+            }
+        },
+
+        "github-release": { // https://github.com/dolbyzerr/grunt-github-releaser
+            options: {
+                repository: 'overclokk/ItalyStrap-extended', // Path to repository
+                release: {
+                    name: '<%= pkg.name %> <%= pkg.version %>',
+                    body: '## New release of <%= pkg.name %> <%= pkg.version %> \nSee the **[changelog](https://github.com/overclokk/italystrap-extended#changelog)**',
+                }
+            },
+            files: {
+                src: ['../<%= pkg.name %> <%= pkg.version %>.zip'] // Files that you want to attach to Release
+            }
+
+        },
+
         copy: { // https://github.com/gruntjs/grunt-contrib-copy
             tosvn: {
                 expand: true,
@@ -152,22 +233,22 @@ module.exports = function(grunt) {
              * In "dest" insert the destination of new site that I have to develope
              * Comment this code if I'm developing in this directory
              */
-            todev: {
-                expand: true,
-                // cwd: 'src',
-                src: [
-                    '**',
-                    '!node_modules/**',
-                    '!bower_components/**',
-                    '!bower.json',
-                    '!composer.json',
-                    '!Gruntfile.js',
-                    '!package.json',
-                    '!README.md',
-                    ],
-                dest: 'F:/xampp/htdocs/spadari/wp-content/plugins/italystrap/',
-                filter: 'isFile',
-            },
+            // todev: {
+            //     expand: true,
+            //     // cwd: 'src',
+            //     src: [
+            //         '**',
+            //         '!node_modules/**',
+            //         '!bower_components/**',
+            //         '!bower.json',
+            //         '!composer.json',
+            //         '!Gruntfile.js',
+            //         '!package.json',
+            //         '!README.md',
+            //         ],
+            //     dest: 'F:/xampp/htdocs/spadari/wp-content/plugins/italystrap/',
+            //     filter: 'isFile',
+            // },
         },
 
         sync: { // https://www.npmjs.com/package/grunt-sync
@@ -208,10 +289,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sync');
+
     grunt.loadNpmTasks('grunt-contrib-copy');
+
     grunt.loadNpmTasks('grunt-version');
-    grunt.loadNpmTasks('grunt-copy-part-of-file');
+    // grunt.loadNpmTasks('grunt-copy-part-of-file');
     grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
+    grunt.loadNpmTasks('grunt-git');
+    grunt.loadNpmTasks('grunt-prompt');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-github-releaser');
 
     /**
      * Controllare gli aggiornamenti
@@ -236,17 +323,26 @@ module.exports = function(grunt) {
     /**
      * My workflow
      * Update the documentation
-     * Update Homepage plugin in admin dashboard
+     * Update Homepage plugin in admin dashboard (the box functionality)
      * 
      */
     grunt.registerTask('deploy', [
                                 'version',
-                                // 'copy-part-of-file',
                                 'wp_readme_to_markdown',
+                                'gitcommit',
+                                'gitpush',
+                                'prompt',
+                                'compress',
+                                'github-release',
                                 'copy',
                                 ]);
 
-
+    grunt.registerTask('release', [
+                                'prompt',
+                                'compress',
+                                'github-release',
+                                ]);
+    
     grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);
 
