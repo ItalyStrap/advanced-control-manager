@@ -348,7 +348,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				if ( 'attachment' === $post['post_type'] ) {
 					$class = ( 0 === $i ) ? 'active ' : '';
 					$output .= $this->get_img_container( 'start', $i );
-					$output .= $this->get_img( $post );
+					$output .= $this->get_img( $post, $i );
 					if ( 'false' !== $title || 'false' !== $text ) {
 						$output .= $this->get_caption_container( 'start' );
 						$output .= $this->get_title( $post );
@@ -483,12 +483,14 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @param  array $post A WordPress $post object.
 		 * @return string      HTML result.
 		 */
-		private function get_img( $post ) {
+		private function get_img( $post, $schemaposition ) {
 			
 			extract( $this->attributes );
 
 			global $detect;
 
+			$imgmeta = wp_get_attachment_metadata( $post['ID'] );
+			$imgmeta = $imgmeta[ 'image_meta' ];
 			$image_size = '';
 
 			if ( $detect->isTablet() && $responsive ) {
@@ -504,9 +506,23 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				$image_size = $size;
 
 			}
+
+			$exifdata = '';
+
+			foreach ($imgmeta as $key => $value) {
+
+				if ( !empty( $value ) )
+					$exifdata .= '<meta  itemprop="exifData" content="' . $key . ': ' . $value . '"/>';
+
+			}
+
 			$output = '';
+
 			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
-			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image"/><meta  itemprop="name" content="' . $post['post_title'] . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="width" content="' . $image[2] . '"/>';
+
+			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image"/><meta  itemprop="name" content="' . $post['post_title'] . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="height" content="' . $image[2] . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>' . $exifdata;
+
+
 			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $image[0], $this->attributes, $post );
 
 			return $output;
