@@ -1,7 +1,7 @@
 === ItalyStrap ===
 Contributors: overclokk
 Donate link: http://www.italystrap.it/
-Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css
+Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, carousel, slider, slideshow, responsive, photo, photos, media, gallery, 
 Requires at least: 4.0
 Tested up to: 4.1
 Stable tag: 1.0.2
@@ -43,6 +43,10 @@ Add this code in your template files:
 If you haven't Bootstrap CSS style for breadcrumbs don't worry about it, you have 2 options, firts option you have to develope your own style for breadcrumbs, second option you can add this css code in your css style theme:
 
 `.breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#f5f5f5;border-radius:4px}.breadcrumb>li{display:inline-block}.breadcrumb>li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}.breadcrumb>.active{color:#777}`
+
+= How can I use Bootstrap Carousel? =
+
+Add attribute `type="carousel"` at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise it will show standard WordPress Gallery.
 
 For more informations read the documentation
 
