@@ -98,12 +98,15 @@ Add attribute <code>type="carousel"</code> at gallery shortcode, this will show 
 
 For more informations about WordPress Gallery see these links: <a href="http://codex.WordPress.org/The_WordPress_Gallery" target="_blank">http://codex.WordPress.org/The_WordPress_Gallery</a> <a href="http://codex.WordPress.org/Gallery_Shortcode" target="_blank">http://codex.WordPress.org/Gallery_Shortcode</a>
 <div class="alert alert-warning">This plugin assumes either your theme includes the necessary Bootstrap javascript and CSS files to display the carousel properly, or that you have included those files on your own. It will not include the files for you, so if they are not present, the carousel will not work and you will only obtain its bare HTML.</div>
+The Carousel adds Schema.org markup for ImageObject and exifData.
+
+If you want show different image size in different device (tablet or phone) you can add sizetablet and/or sizephone attribute to shortcode, see below for more informations.
 <h4>Example:</h4>
 [gallery type="carousel" ids="1,2,3,4,5"]
 
 You can add a <code>type</code> parameter directly from the Insert Media screen on the gallery tab.
 
-You can also select an image size only for standard carousel, for responsive size add it directly in the code, see below.
+You can also select an image size only for standard carousel, for responsive size add it directly in the code, see below or see screenshot n°5 in <a href="https://WordPress.org/plugins/italystrap/screenshots/" target="_blank">plugin screenshot page</a>.
 <h4>Optional attributes:</h4>
 <ul class="task-list">
 	<li><code>name</code>: any name. String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page. Default: <em>italystrap-bootstrap-carousel</em>.
