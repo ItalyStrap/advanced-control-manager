@@ -62,12 +62,13 @@ For more informations read the documentation
 = 1.1.0 =
 Release Date: February 20th, 2015
 
-Dev time: 50h
+Dev time: 80h
 
 * Renders extra controls for image dimension in the new media UI
 * Add Bootstrap Carousel functionality forked from Agnosia Bootstrap Carousel by AuSoft
 * Renders extra controls in the Gallery Settings section of the new media UI
 * Add Mobile_Detect class from https://github.com/serbanghita/Mobile-Detect for responsive functions
+* Add Schema.org in Bootstrap Carousel
 * Fix some bugs
 
 
