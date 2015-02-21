@@ -174,7 +174,8 @@ module.exports = function(grunt) {
                             // '!Gruntfile.js',
                             // '!package.json',
                             '!*.zip'], // What should be included in the zip
-                        dest: '<%= pkg.name %>/',        // Where the zipfile should go
+                        // dest: '<%= pkg.name %>/',        // Where the zipfile should go
+                        dest: 'italystrap/',        // Where the zipfile should go
                         filter: 'isFile',
                     },
                 ]
@@ -346,7 +347,7 @@ module.exports = function(grunt) {
                                 'compress',
                                 'github-release',
                                 ]);
-    
+
     grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
     grunt.registerTask('testjsbuild', ['jshint', 'uglify']);
 
