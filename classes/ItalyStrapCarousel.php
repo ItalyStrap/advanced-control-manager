@@ -489,8 +489,14 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			global $detect;
 
+			/**
+			 * Array for exifData informations
+			 * @link https://wordpress.org/support/topic/retrieving-exif-data?replies=5
+			 * @var array
+			 */
 			$imgmeta = wp_get_attachment_metadata( $post['ID'] );
 			$imgmeta = $imgmeta[ 'image_meta' ];
+			
 			$image_size = '';
 
 			if ( $detect->isTablet() && $responsive ) {
