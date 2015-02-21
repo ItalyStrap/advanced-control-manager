@@ -14,10 +14,11 @@
 
 				<div class="col-md-4 col-md-push-4">
 					<div class="thumbnail">
-						<div class="image breadimage"></div>
+						<div class="image carouimage"></div>
 						<div class="caption">
-							<h4><span class="dashicons dashicons-networking"></span> Breadcrumbs</h4>
-							<p><?php _e( 'Add breadcrumbs to your site in a simple and fast way and get Google rich snippet with Schema.org markup', 'ItalyStrap' ); ?></p>
+							<h4><span class="dashicons dashicons-images-alt"></span> Bootstrap Carousel</h4>
+							<h5>With Schema.org and responsive images</h5>
+							<p><?php _e( 'Add attribute <code>type="carousel"</code> at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise It will show standard WordPress Gallery.', 'ItalyStrap' ); ?></p>
 							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
 						</div><!-- / .caption -->
 					</div><!-- / .thumbnail -->
@@ -56,6 +57,39 @@
 				</div><!-- / .col-md-4 -->
 			</div>
 		</div><!-- / .row -->
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h3 class="text-center h1"><?php _e( 'Currently present', 'ItalyStrap' ); ?></h3>
+				</div>
+
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="image carouimage"></div>
+						<div class="caption">
+							<h4><span class="dashicons dashicons-images-alt"></span> Bootstrap Carousel</h4>
+							<h5>With Schema.org and responsive images</h5>
+							<p><?php _e( 'Add attribute <code>type="carousel"</code> at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise It will show standard WordPress Gallery.', 'ItalyStrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+						</div><!-- / .caption -->
+					</div><!-- / .thumbnail -->
+				</div><!-- / .col-md-4 -->
+
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="image breadimage"></div>
+						<div class="caption">
+							<h4><span class="dashicons dashicons-networking"></span> Breadcrumbs</h4>
+							<p><?php _e( 'Add breadcrumbs to your site in a simple and fast way and get Google rich snippet with Schema.org markup', 'ItalyStrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+						</div><!-- / .caption -->
+					</div><!-- / .thumbnail -->
+				</div><!-- / .col-md-4 -->
+
+			</div><!-- / .col-md-12 -->
+		</div><!-- / .row -->
+
 
 	</div><!-- / .container-fluid -->
 </div><!-- / .wrap -->

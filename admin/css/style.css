@@ -24,3 +24,8 @@ h1{font-family:'Open Sans',sans-serif;font-weight:300;line-height: normal;}
     background-position: center center;
     background-repeat: no-repeat;	
 }
+.carouimage{
+	background-image: url('../img/bootstrap-carousel.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;	
+}
