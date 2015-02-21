@@ -209,7 +209,8 @@ module.exports = function(grunt) {
                     '!Gruntfile.js',
                     '!package.json',
                     '!README.md',
-                    '!composer.lock'
+                    '!composer.lock',
+                    '!vendor/mobiledetect/**'
                     ],
                 dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
                 filter: 'isFile',
@@ -226,7 +227,8 @@ module.exports = function(grunt) {
                     '!Gruntfile.js',
                     '!package.json',
                     '!README.md',
-                    '!composer.lock'
+                    '!composer.lock',
+                    '!vendor/mobiledetect/**'
                     ],
                 dest: 'E:/Dropbox/svn-wordpress/italystrap/tags/<%= pkg.version %>/',
                 filter: 'isFile',
@@ -332,6 +334,10 @@ module.exports = function(grunt) {
      * Update description and changelog only in readme.txt
      * Change only version in package.json
      * $ grunt deploy
+     *
+     * Poi nella cartella svn-wordpress
+     * dx mouse e +add
+     * dx mouse e commutt
      */
     grunt.registerTask('deploy', [
                                 'version',
