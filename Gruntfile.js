@@ -329,12 +329,14 @@ module.exports = function(grunt) {
      * My workflow
      * Update the documentation
      * Update Homepage plugin in admin dashboard (the box functionality)
+     *
+     * Aggiornare la lingua con poedit
      * 
      * Checkout in master (not dev)
      * Update description and changelog only in readme.txt
      * Change only version in package.json
      * $ grunt deploy
-     *
+     * 
      * Poi nella cartella svn-wordpress
      * dx mouse e +add
      * dx mouse e commutt
