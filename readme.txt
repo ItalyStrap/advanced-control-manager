@@ -14,10 +14,10 @@ Make your web site more powerfull.
 
 [ItalyStrap](http://www.italystrap.it/) will add powerful features to your WordPress site.
 
-**Features include:**
+= Features included: =
 
 * **Breadcrumbs.** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
-* **Carousel.** (Forked from Agnosia Bootstrap Carousel by AuSoft) Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
+* **Carousel.** (Forked from Agnosia Bootstrap Carousel by AuSoft with my some improvements) Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
 
 == Installation ==
 
