@@ -638,9 +638,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// $output = '<script type="text/javascript">// <![CDATA[
 			// 	jQuery(document).ready(function($) {$(\'#' . $name . '\').carousel({ interval : ' . $interval . ' , pause : "' . $pause . '" });
 			// 	 });
-			// 	// ]]></script>';
+			// 	// ]]></script>';	
+			
+			$lazyload = '';
 
-			$output = 'jQuery(document).ready(function($){$(\'#' . $name . '\').carousel({interval:' . $interval . ',pause:"' . $pause . '" });});';
+			$output = 'jQuery(document).ready(function($){$(\'#' . $name . '\').carousel({interval:' . $interval . ',pause:"' . $pause . '" });' . $lazyload . '});';
 
 			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes );
 
