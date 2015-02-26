@@ -17,7 +17,7 @@
 // 
 // 
 
-// add_action( 'wp_footer', 'display_priority', 999 );
+// add_action( 'wp_print_footer_scripts', 'display_priority', 999 );
 // function display_priority(){
 // 	var_dump(ItalyStrapGlobals::get());
 // }
