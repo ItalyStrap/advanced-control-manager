@@ -63,6 +63,14 @@ For more informations read the documentation
 
 == Changelog ==
 
+= 1.2.0 =
+Release Date: February 20th, 2015
+
+Dev time: 80h
+
+* Fix some bug and issue
+* Append inline script and print in footer after wp_print_footer_scripts hook
+
 = 1.1.0 =
 Release Date: February 20th, 2015
 

@@ -112,18 +112,12 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		}
 
-		// public function FunctionName($value='')
-		// {
-		// 	echo "string";
-		// }
-
-
 		public function italystrap_print_script_in_footer(){
 
 			$scipt = ItalyStrapGlobals::get();
 
 			if ($scipt) echo '<script type="text/javascript">/*<![CDATA[*/' . $scipt . '/*]]>*/</script>';
-			
+
 			else echo '';
 
 		}
