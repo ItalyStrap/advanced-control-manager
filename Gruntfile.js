@@ -27,6 +27,9 @@ module.exports = function(grunt) {
                 files: {
                     'admin/js/gallery-settings.min.js': [
                         'admin/js/src/gallery-settings.js'
+                        ],
+                    'js/unveil.min.js': [
+                        'js/src/unveil.js'
                         ]
                 }
             }
