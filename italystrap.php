@@ -79,6 +79,12 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 			 */
 			add_action( 'init', array( $this, 'italystrap_init'), 100 );
 
+			/**
+			 * Print inline script in footer
+			 * Load after all and before shotdown hook
+			 */
+			add_action( 'wp_print_footer_scripts', array( $this, 'italystrap_print_script_in_footer'), 999 );
+
 		}
 
 		/**
@@ -106,8 +112,24 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		}
 
+		// public function FunctionName($value='')
+		// {
+		// 	echo "string";
+		// }
 
-	}
+
+		public function italystrap_print_script_in_footer(){
+
+			$scipt = ItalyStrapGlobals::get();
+
+			if ($scipt) echo '<script type="text/javascript">/*<![CDATA[*/' . $scipt . '/*]]>*/</script>';
+			
+			else echo '';
+
+		}
+
+
+	} // End ItalyStrapInit
 
 	new ItalyStrapInit;
 }

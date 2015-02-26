@@ -74,7 +74,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				do_action( 'ItalyStrap_carousel_init' );
 			}
 
-			add_action( 'wp_footer', array( $this, 'get_javascript'), 9999 );
+			// add_action( 'wp_footer', array( $this, 'get_javascript'), 9999 );
+			/**
+			 * Append javascript in static variable and print in front-end footer
+			 */
+			ItalyStrapGlobals::set( $this->get_javascript() );
 		}
 
 		public function __get( $property ) {
@@ -631,14 +635,17 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			extract( $this->attributes );
 
-			$output = '<script type="text/javascript">// <![CDATA[
-	jQuery(document).ready(function($) {$(\'#' . $name . '\').carousel({ interval : ' . $interval . ' , pause : "' . $pause . '" });
-	 });
-	// ]]></script>';
+			// $output = '<script type="text/javascript">// <![CDATA[
+			// 	jQuery(document).ready(function($) {$(\'#' . $name . '\').carousel({ interval : ' . $interval . ' , pause : "' . $pause . '" });
+			// 	 });
+			// 	// ]]></script>';
+
+			$output = 'jQuery(document).ready(function($){$(\'#' . $name . '\').carousel({interval:' . $interval . ',pause:"' . $pause . '" });});';
 
 			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes );
 
-			echo $output;
+			return $output;
+			// echo $output;
 		}
 
 		/**
