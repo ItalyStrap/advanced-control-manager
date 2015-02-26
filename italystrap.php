@@ -61,8 +61,12 @@ require(ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php');
 if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 	class ItalyStrapInit{
+
+		private $options = '';
 		
 		public function __construct(){
+
+			$this->options = get_option( 'italystrap_settings' );
 
 			/**
 			 * Istantiate this class only if is admin
@@ -80,11 +84,19 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 			add_action( 'init', array( $this, 'italystrap_init'), 100 );
 
 			/**
+			 * 
+			 */
+			add_action( 'wp_head', array( $this, 'italystrap_print_inline_css_in_header'), 999 );
+
+			/**
 			 * Print inline script in footer
 			 * Load after all and before shotdown hook
 			 */
-			add_action( 'wp_print_footer_scripts', array( $this, 'italystrap_print_script_in_footer'), 999 );
+			add_action( 'wp_print_footer_scripts', array( $this, 'italystrap_print_inline_script_in_footer'), 999 );
 
+			if ( isset( $this->options['lazyload'] ) && !is_admin() )
+				ItalyStrapLazyload::init();
+			
 		}
 
 		/**
@@ -112,7 +124,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		}
 
-		public function italystrap_print_script_in_footer(){
+		public function italystrap_print_inline_script_in_footer(){
 
 			$scipt = ItalyStrapGlobals::get();
 
@@ -122,6 +134,14 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		}
 
+		public function italystrap_print_inline_css_in_header(){
+
+			$css = ItalyStrapGlobalsCss::get();
+
+			if ($css) echo '<style>' . $css . '</style>';
+
+			else echo '';
+		}
 
 	} // End ItalyStrapInit
 
