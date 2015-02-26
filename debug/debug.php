@@ -31,6 +31,6 @@
  */
 // add_action( 'shutdown', function(){
 	// var_dump($GLOBALS['wp_actions']);
-    // foreach( $GLOBALS['wp_actions'] as $action => $count )
-    //     printf( '%s (%d) <br/>' . PHP_EOL, $action, $count );
+	// foreach( $GLOBALS['wp_actions'] as $action => $count )
+	// 	printf( '%s (%d) <br/>' . PHP_EOL, $action, $count );
 // });
