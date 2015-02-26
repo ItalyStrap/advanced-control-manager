@@ -18,7 +18,6 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 		 * Definition of variables containing the configuration
 		 * to be applied to the various function calls wordpress
 		 */
-
 		protected $capability      = 'manage_options';
 
 		public function __construct(){
@@ -33,17 +32,14 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 			 */
 			add_action( 'admin_menu', array( $this, 'addSubMenuPage') );
 
-			// add_action( 'admin_menu', array( $this, 'italystrap_add_admin_menu') );
 
-			// add_action( 'admin_init', array( $this, 'italystrap_settings_init') );
+			add_action( 'admin_init', array( $this, 'italystrap_settings_init') );
 
 			/**
 			 * Load script only if is ItalyStrap admin panel
 			 */
-			if (isset($_GET['page']) && ($_GET['page'] === 'italystrap-dashboard' || $_GET['page'] === 'italystrap-documentation')) {
-			
+			if ( isset($_GET['page']) && ($_GET['page'] === 'italystrap-dashboard' || $_GET['page'] === 'italystrap-documentation') )
 				add_action('admin_enqueue_scripts', array( $this, 'ItalyStrap_admin_style_script' ));
-			}
 
 			/**
 			 * Add link in plugin activation panel
@@ -77,7 +73,8 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 				array( $this, 'dashboard'),
 				'dashicons-performance',
 				NULL,
-				NULL );
+				NULL
+				);
 		}
 
 		/**
@@ -101,9 +98,23 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 		 */
 		public function addSubMenuPage(){
 
-			add_submenu_page( 'italystrap-dashboard', __('Documentation', 'ItalyStrap'), __('Documentation', 'ItalyStrap'), $this->capability, 'italystrap-documentation', array( $this, 'documentation') );
+			add_submenu_page(
+				'italystrap-dashboard',
+				__('Documentation', 'ItalyStrap'),
+				__('Documentation', 'ItalyStrap'),
+				$this->capability,
+				'italystrap-documentation',
+				array( $this, 'documentation')
+				);
 
-			// add_submenu_page( 'italystrap-dashboard', __('Options', 'ItalyStrap'), __('Options', 'ItalyStrap'), $this->capability, 'italystrap-options', array( $this, 'options') );
+			add_submenu_page(
+				'italystrap-dashboard',
+				__('Options', 'ItalyStrap'),
+				 __('Options', 'ItalyStrap'),
+				 $this->capability,
+				 'italystrap-options',
+				 array( $this, 'options')
+				 );
 
 		}
 
@@ -154,75 +165,55 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 
 
-function italystrap_add_admin_menu() { 
 
-	add_options_page( 'ItalyStrap', 'ItalyStrap', 'manage_options', 'ItalyStrap', array( $this, 'italystrap_options_page') );
+		public function italystrap_settings_init() {
 
-}
+			// If the theme options don't exist, create them.
+		    if( false === get_option( 'italystrap_settings' ) )
+		        add_option( 'italystrap_settings' );
 
-function italystrap_settings_init() { 
+			add_settings_section(
+				'italystrap_pluginPage_section', 
+				__( 'ItalyStrap options page', 'ItalyStrap' ), 
+				array( $this, 'italystrap_settings_section_callback'), 
+				'italystrap_options_page'
+			);
 
-	register_setting( 'pluginPage', 'italystrap_settings' );
+			add_settings_field( 
+				'lazyload', 
+				__( 'LazyLoad', 'ItalyStrap' ), 
+				array( $this, 'italystrap_option_lazyload'), 
+				'italystrap_options_page', 
+				'italystrap_pluginPage_section'
+				);
 
-	add_settings_section(
-		'italystrap_pluginPage_section', 
-		__( 'Your section description', 'ItalyStrap' ), 
-		array( $this, 'italystrap_settings_section_callback'), 
-		'pluginPage'
-	);
-
-	add_settings_field( 
-		'italystrap_checkbox_field_0', 
-		__( 'Settings field description', 'ItalyStrap' ), 
-		array( $this, 'italystrap_checkbox_field_0_render'), 
-		'pluginPage', 
-		'italystrap_pluginPage_section'
-	);
-
-
-}
-
-
-function italystrap_checkbox_field_0_render() { 
-
-	$options = get_option( 'italystrap_settings' );
-	?>
-	<input type='checkbox' name='italystrap_settings[italystrap_checkbox_field_0]' <?php checked( $options['italystrap_checkbox_field_0'], 1 ); ?> value='1'>
-	<?php
-
-}
+			register_setting(
+				'italystrap_options_page',
+				'italystrap_settings'
+				);
 
 
-function italystrap_settings_section_callback() { 
-
-	echo __( 'This section description', 'ItalyStrap' );
-
-}
+		}
 
 
-function italystrap_options_page() { 
+		public function italystrap_settings_section_callback() { 
 
-	?>
-	<form action='options.php' method='post'>
-		
-		<h2>italystrap</h2>
-		
-		<?php
-		settings_fields( 'pluginPage' );
-		do_settings_sections( 'pluginPage' );
-		submit_button();
+			// _e( 'This section description', 'ItalyStrap' );
+
+		}
+
+		public function italystrap_option_lazyload($args) { 
+
+			$options = get_option( 'italystrap_settings' );
+
 		?>
-		
-	</form>
-	<?php
 
-}
+			<input type='checkbox' name='italystrap_settings[lazyload]' <?php checked( isset($options['lazyload']), 1 ); ?> value='1'>
+			<label for="italystrap_settings[lazyload]"><?php _e( '(Activate LazyLoad for images)', 'ItalyStrap' ); ?></label>
 
+		<?php
 
-
-
-
-
+		}
 
 
 	}// class
