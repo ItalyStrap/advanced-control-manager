@@ -177,19 +177,19 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 				'italystrap_pluginPage_section', 
 				__( 'ItalyStrap options page', 'ItalyStrap' ), 
 				array( $this, 'italystrap_settings_section_callback'), 
-				'italystrap_options_page'
+				'italystrap_options_group'
 			);
 
 			add_settings_field( 
 				'lazyload', 
 				__( 'LazyLoad', 'ItalyStrap' ), 
 				array( $this, 'italystrap_option_lazyload'), 
-				'italystrap_options_page', 
+				'italystrap_options_group', 
 				'italystrap_pluginPage_section'
 				);
 
 			register_setting(
-				'italystrap_options_page',
+				'italystrap_options_group',
 				'italystrap_settings'
 				);
 
