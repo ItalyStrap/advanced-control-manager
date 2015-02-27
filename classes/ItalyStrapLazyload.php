@@ -89,7 +89,7 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 			 * The meta tag works only if there is Schema.org markup
 			 * @var string
 			 */
-			$content = preg_replace( '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', sprintf( '<img${1}src="%s" data-src="${2}"${3}><meta  itemprop="url" content="${2}"/><noscript><img${1}src="${2}"${3}></noscript>', $placeholder_image ), $content );
+			$content = preg_replace( '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', sprintf( '<img${1}src="%s" data-src="${2}"${3}><meta  itemprop="image" content="${2}"/><noscript><img${1}src="${2}"${3}></noscript>', $placeholder_image ), $content );
 
 			return $content;
 		}
@@ -144,8 +144,10 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 	 * Funtion for apply lazyload for custom content
 	 * @param string $content Custom content
 	 */
-	function ItalyStrapLazyload_add_placeholders( $content ) {
+	function italystrap_apply_lazyload( $content ) {
+
 		return ItalyStrapLazyload::add_image_placeholders( $content );
+
 	}
 
 }
