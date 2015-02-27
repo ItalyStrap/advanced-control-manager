@@ -1,7 +1,7 @@
 === ItalyStrap ===
 Contributors: overclokk
 Donate link: http://www.italystrap.it/
-Tags: breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, carousel, slider, slideshow, responsive, photo, photos, media, gallery, 
+Tags: italystrap, breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, carousel, slider, slideshow, responsive, photo, photos, media, gallery, lazy load, lazy loading, images, front-end optimization, optimize, bandwidth, responsive design,
 Requires at least: 4.0
 Tested up to: 4.1
 Stable tag: 1.1.0
@@ -13,11 +13,15 @@ Make your web site more powerfull.
 == Description ==
 
 [ItalyStrap](http://www.italystrap.it/) will add powerful features to your WordPress site.
+[ItalyStrap](https://github.com/overclokk/italystrap-extended) Also on github.
+
+May the force be with you!
 
 = Features included: =
 
-* **Breadcrumbs.** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
-* **Carousel.** (Forked from Agnosia Bootstrap Carousel by AuSoft with my some improvements) Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
+* **Breadcrumbs** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
+* **Carousel** (Forked from Agnosia Bootstrap Carousel by AuSoft with my some improvements) Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
+* **LazyLoad** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from https://wordpress.org/plugins/lazy-load/ plugin with my improvements. It work also with my Bootstrap Carousel. 
 
 == Installation ==
 
@@ -48,7 +52,56 @@ If you haven't Bootstrap CSS style for breadcrumbs don't worry about it, you hav
 
 Add attribute `type="carousel"` at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise it will show standard WordPress Gallery.
 
+= How do I change the placeholder image =
+
+`
+add_filter( 'ItalyStrapLazyload_placeholder_image', 'my_custom_lazyload_placeholder_image' );
+function my_custom_lazyload_placeholder_image( $image ) {
+	return 'http://url/to/image';
+}
+`
+
+= How do I lazy load other images in my theme? =
+
+You can use the italystrap_apply_lazyload helper function:
+
+`if ( function_exists( 'italystrap_apply_lazyload' ) )
+	$content = italystrap_apply_lazyload( $content );`
+
+Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
+
+You can also use output buffering, though this isn't recommended:
+
+`if ( function_exists( 'italystrap_apply_lazyload' ) )
+	ob_start( 'italystrap_apply_lazyload' );`
+
+This will lazy load <em>all</em> your images.
+
+= This plugin is using JavaScript. What about visitors without JS? =
+
+No worries. They get the original element in a noscript element. No Lazy Loading for them, though.
+
+= I'm using a CDN. Will this plugin interfere? =
+
+Lazy loading works just fine. The images will still load from your CDN. If you have any problem please open a ticket :-)
+
+= How can I verify that the plugin is working? =
+
+Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
+
+= I'm using my custom Bootstrap Carousel, why doesn't the second image appear? =
+
+Put the code below in your file js and type your Bootstrap Carousell ID in place of "#YOURCAROUSELID"
+
+`var cHeight = 0;$("#YOURCAROUSELID").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});`
+
+= I'm using an external carousel, will Lazy Load work with it? = 
+
+I tried only with ItalyStrap Bootstrap Carousel, please send me any feedback 
+
 For more informations read the documentation
+
+If you have any problem please open a ticket :-)
 
 == Screenshots ==
 
@@ -59,17 +112,20 @@ For more informations read the documentation
 5. Gallery with new Carousel functionality
 6. Gallery shortcode with type="carousel" for Bootstrap Carousel
 7. Example of Carousel in article page (740x370)
+8. Example of Lazy Loading for image
 
 
 == Changelog ==
 
 = 1.2.0 =
-Release Date: February 20th, 2015
+Release Date: February 27th, 2015
 
-Dev time: 80h
+Dev time: 40h
 
 * Fix some bug and issue
-* Append inline script and print in footer after wp_print_footer_scripts hook
+* Add static class for appending inline script and print it in footer after wp_print_footer_scripts hook (for performance purpose)
+* Add static class for appending inline css and print it in header after wp_head hook  (for performance purpose)
+* Add class for Lazy Load image functionality
 
 = 1.1.0 =
 Release Date: February 20th, 2015
@@ -129,3 +185,6 @@ First release.
 **Idea Behind / Philosophy:** A plugin for improve and add some powerful improvement to your site. I'll try to add more feautures if it makes some sense. So stay tuned :).
  
 == Credits ==
+
+* [Agnosia Bootstrap Carousel](https://wordpress.org/plugins/agnosia-bootstrap-carousel/)
+* [Lazy Load](https://wordpress.org/plugins/lazy-load/)
