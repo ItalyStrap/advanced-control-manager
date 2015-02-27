@@ -336,6 +336,8 @@ module.exports = function(grunt) {
      * Update Homepage plugin in admin dashboard (the box functionality)
      *
      * Aggiornare la lingua con poedit
+     *
+     * Merge Dev into Master
      * 
      * Checkout in master (not dev)
      * 
