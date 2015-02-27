@@ -5,6 +5,7 @@
  * This class add some functions for use in admin panel
  *
  * @link http://codex.wordpress.org/Adding_Administration_Menus
+ * @link http://code.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options--wp-24902
  *
  * @since 1.0.0
  *
