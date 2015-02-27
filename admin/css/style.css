@@ -29,3 +29,8 @@ h1{font-family:'Open Sans',sans-serif;font-weight:300;line-height: normal;}
     background-position: center center;
     background-repeat: no-repeat;	
 }
+.lazyimage{
+	background-image: url('../img/lazy-load.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;	
+}

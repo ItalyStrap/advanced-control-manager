@@ -14,15 +14,16 @@
 
 				<div class="col-md-4 col-md-push-4">
 					<div class="thumbnail">
-						<div class="image carouimage"></div>
+						<div class="image lazyimage"></div>
 						<div class="caption">
-							<h4><span class="dashicons dashicons-images-alt"></span> Bootstrap Carousel</h4>
-							<h5>With Schema.org and responsive images</h5>
-							<p><?php _e( 'Add attribute <code>type="carousel"</code> at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise It will show standard WordPress Gallery.', 'ItalyStrap' ); ?></p>
+							<h4><span class="dashicons dashicons-performance"></span> Lazy Load</h4>
+							<h5>Lazy Load for images and Carousel</h5>
+							<p><?php _e( 'Activate Lazy Load from Option Page and let the magic begin :-)', 'ItalyStrap' ); ?></p>
 							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
 						</div><!-- / .caption -->
 					</div><!-- / .thumbnail -->
 				</div><!-- / .col-md-4 -->
+
 			</div><!-- / .col-md-12 -->
 		</div><!-- / .row -->
 
@@ -50,8 +51,8 @@
 				<div class="col-md-4 new-md-4">
 					<div class="thumbnail">
 						<div class="caption">
-							<h4><span class="dashicons dashicons-performance"></span> LazyLoad</h4>
-							<p><?php _e( 'LazyLoad for your content', 'ItalyStrap' ); ?></p>
+							<h4><span class="dashicons dashicons-id"></span> OpenGraph and Twitter Cards</h4>
+							<p><?php _e( 'OpenGraph and Twitter Cards for your social', 'ItalyStrap' ); ?></p>
 						</div><!-- / .caption -->
 					</div><!-- / .thumbnail -->
 				</div><!-- / .col-md-4 -->
@@ -64,7 +65,19 @@
 					<h3 class="text-center h1"><?php _e( 'Currently present', 'ItalyStrap' ); ?></h3>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-4 new-md-4">
+					<div class="thumbnail">
+						<div class="image lazyimage"></div>
+						<div class="caption">
+							<h4><span class="dashicons dashicons-performance"></span> Lazy Load</h4>
+							<h5>Lazy Load for images and Carousel</h5>
+							<p><?php _e( 'Activate Lazy Load from Option Page and let the magic begin :-)', 'ItalyStrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+						</div><!-- / .caption -->
+					</div><!-- / .thumbnail -->
+				</div><!-- / .col-md-4 -->
+
+				<div class="col-md-4 new-md-4">
 					<div class="thumbnail">
 						<div class="image carouimage"></div>
 						<div class="caption">
@@ -76,7 +89,7 @@
 					</div><!-- / .thumbnail -->
 				</div><!-- / .col-md-4 -->
 
-				<div class="col-md-4">
+				<div class="col-md-4 new-md-4">
 					<div class="thumbnail">
 						<div class="image breadimage"></div>
 						<div class="caption">
