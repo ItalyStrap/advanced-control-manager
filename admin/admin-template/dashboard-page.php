@@ -52,7 +52,7 @@
 					<div class="thumbnail">
 						<div class="caption">
 							<h4><span class="dashicons dashicons-id"></span> OpenGraph and Twitter Cards</h4>
-							<p><?php _e( 'OpenGraph and Twitter Cards for your social', 'ItalyStrap' ); ?></p>
+							<p><?php _e( 'OpenGraph and Twitter Cards for your social share', 'ItalyStrap' ); ?></p>
 						</div><!-- / .caption -->
 					</div><!-- / .thumbnail -->
 				</div><!-- / .col-md-4 -->
