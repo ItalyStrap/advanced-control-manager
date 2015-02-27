@@ -153,6 +153,39 @@ Example:[gallery type="carousel" ids="61,60,59" orderby="rand"]</li>
 	<li><code>link</code>: where your image titles will link to. Accepted values: <em>file</em>, <em>none</em> and empty. An empty value will link to your attachment's page.
 Example:[gallery type="carousel" ids="61,60,59" link="file"]</li>
 </ul>
+
+<!-- Lazy Load documentation -->
+<h3>Lazy Load Documentation</h3>
+
+<h4>How to activate Lazy Load for images</h4>
+For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that page there is a checkbox, check on LazyLoad and that the magic begin :-P
+<h4>How do I change the placeholder image in Lazy Load functionality</h4>
+<pre>add_filter( 'ItalyStrapLazyload_placeholder_image', 'my_custom_lazyload_placeholder_image' );
+ function my_custom_lazyload_placeholder_image( $image ) {
+ return 'http://url/to/image';
+ }</pre>
+<h4>How do I lazy load other images in my theme?</h4>
+You can use the italystrap_apply_lazyload helper function:
+<pre>if ( function_exists( 'italystrap_apply_lazyload' ) )
+    $content = italystrap_apply_lazyload( $content );</pre>
+Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
+
+You can also use output buffering, though this isn't recommended:
+<pre>if ( function_exists( 'italystrap_apply_lazyload' ) )
+ ob_start( 'italystrap_apply_lazyload' );</pre>
+This will lazy load <em>all</em> your images.
+<h4>This plugin is using JavaScript. What about visitors without JS?</h4>
+No worries. They get the original element in a noscript element. No Lazy Loading for them, though.
+<h4>I'm using a CDN. Will this plugin interfere?</h4>
+Lazy loading works just fine. The images will still load from your CDN. If you have any problem please <a href="https://WordPress.org/support/plugin/italystrap" target="_blank">open a ticket</a> :-)
+<h4>How can I verify that the plugin is working?</h4>
+Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
+<h4>I'm using my custom Bootstrap Carousel, why doesn't the second image appear?</h4>
+Put the code below in your file js and type your Bootstrap Carousell ID in place of "#YOURCAROUSELID"
+<pre>var cHeight = 0;$("#YOURCAROUSELID").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" &amp;&amp; src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});</pre>
+<h4>I'm using an external carousel, will Lazy Load work with it?</h4>
+I tried only with ItalyStrap Bootstrap Carousel, please send me a feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
+
 <!-- / End text -->
 			</div>
 		</div>
