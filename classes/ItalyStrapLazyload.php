@@ -141,7 +141,7 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 	}
 
 	/**
-	 * Funtion for apply lazyload for custom content
+	 * Function for apply lazyload for custom content
 	 * @param string $content Custom content
 	 */
 	function italystrap_apply_lazyload( $content ) {
