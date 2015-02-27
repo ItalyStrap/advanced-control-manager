@@ -330,13 +330,12 @@ module.exports = function(grunt) {
 
     /**
      * My workflow
-     * Update Readme Documentation
-     * Update the documentation
+     * Update Readme.txt Documentation
+     * Update changelog only in readme.txt
+     * Update the documentation in plugin file
      * Update Homepage plugin in admin dashboard (the box functionality)
      *
      * Aggiornare la lingua con poedit
-     *
-     * Update description and changelog only in readme.txt
      * 
      * Checkout in master (not dev)
      * 
