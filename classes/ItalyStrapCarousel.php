@@ -523,14 +523,17 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 				if ( !empty( $value ) )
 					$exifdata .= '<meta  itemprop="exifData" content="' . $key . ': ' . $value . '"/>';
-
 			}
 
 			$output = '';
 
 			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
 
-			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image"/><meta  itemprop="name" content="' . $post['post_title'] . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="height" content="' . $image[2] . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>' . $exifdata;
+			/**
+			 * style="max-height:' . $image[2] . 'px"
+			 * Is in testing
+			 */
+			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image" style="max-height:' . $image[2] . 'px"/><meta  itemprop="name" content="' . $post['post_title'] . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="height" content="' . $image[2] . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>' . $exifdata;
 
 
 			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $image[0], $this->attributes, $post );
@@ -640,7 +643,12 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// 	 });
 			// 	// ]]></script>';	
 			
-			$lazyload = '';
+			/**
+			 * LazyLoad for Bootstrap carousel
+			 * http://stackoverflow.com/questions/27675968/lazy-load-not-work-in-bootstrap-carousel
+			 * http://jsfiddle.net/51muqdLf/5/
+			 */
+			$lazyload = 'var cHeight = 0;$("#' . $name . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
 
 			$output = 'jQuery(document).ready(function($){$(\'#' . $name . '\').carousel({interval:' . $interval . ',pause:"' . $pause . '" });' . $lazyload . '});';
 
