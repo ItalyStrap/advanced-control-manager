@@ -330,14 +330,17 @@ module.exports = function(grunt) {
 
     /**
      * My workflow
+     * Update Readme Documentation
      * Update the documentation
      * Update Homepage plugin in admin dashboard (the box functionality)
      *
      * Aggiornare la lingua con poedit
+     *
+     * Update description and changelog only in readme.txt
      * 
      * Checkout in master (not dev)
-     * Update description and changelog only in readme.txt
-     * Change only version in package.json
+     * 
+     * Change version only in package.json
      * $ grunt deploy
      * 
      * Poi nella cartella svn-wordpress
