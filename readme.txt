@@ -52,7 +52,11 @@ If you haven't Bootstrap CSS style for breadcrumbs don't worry about it, you hav
 
 Add attribute `type="carousel"` at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise it will show standard WordPress Gallery.
 
-= How do I change the placeholder image =
+= How to activate Lazy Load for images =
+
+For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
+
+= How do I change the placeholder image in Lazy Load functionality =
 
 `
 add_filter( 'ItalyStrapLazyload_placeholder_image', 'my_custom_lazyload_placeholder_image' );
@@ -97,7 +101,7 @@ Put the code below in your file js and type your Bootstrap Carousell ID in place
 
 = I'm using an external carousel, will Lazy Load work with it? = 
 
-I tried only with ItalyStrap Bootstrap Carousel, please send me any feedback 
+I tried only with ItalyStrap Bootstrap Carousel, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
 
 For more informations read the documentation
 
