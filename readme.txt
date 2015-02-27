@@ -4,7 +4,7 @@ Donate link: http://www.italystrap.it/
 Tags: italystrap, breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, carousel, slider, slideshow, responsive, photo, photos, media, gallery, lazy load, lazy loading, images, front-end optimization, optimize, bandwidth, responsive design,
 Requires at least: 4.0
 Tested up to: 4.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
