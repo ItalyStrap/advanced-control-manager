@@ -36,11 +36,11 @@ May the force be with you!
 
 Add this code in your template files:
 
-`<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
-	
+`
+<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
 		new ItalyStrapBreadcrumbs();
-	
-	} ?>`
+	} ?>
+`
 
 = What if haven't I got Bootstrap CSS? =
 
@@ -67,17 +67,28 @@ function my_custom_lazyload_placeholder_image( $image ) {
 
 = How do I lazy load other images in my theme? =
 
-You can use the italystrap_apply_lazyload helper function:
+You can use the italystrap_get_apply_lazyload helper function:
 
-`if ( function_exists( 'italystrap_apply_lazyload' ) )
-	$content = italystrap_apply_lazyload( $content );`
+`
+if ( function_exists( 'italystrap_get_apply_lazyload' ) )
+	$content = italystrap_get_apply_lazyload( $content );
+`
 
 Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
 
-You can also use output buffering, though this isn't recommended:
+You can also use italystrap_apply_lazyload helper function for print content:
 
-`if ( function_exists( 'italystrap_apply_lazyload' ) )
-	ob_start( 'italystrap_apply_lazyload' );`
+`
+if ( function_exists( 'italystrap_apply_lazyload' ) )
+	italystrap_apply_lazyload( $content );
+`
+
+Otherwise you can also use output buffering, though this isn't recommended:
+
+`
+if ( function_exists( 'italystrap_get_apply_lazyload' ) )
+	ob_start( 'italystrap_get_apply_lazyload' );
+`
 
 This will lazy load <em>all</em> your images.
 
@@ -120,6 +131,13 @@ If you have any problem please open a ticket :-)
 
 
 == Changelog ==
+
+= 1.2.1 =
+Release Date: February 27th, 2015
+
+Dev time: 40h
+
+*
 
 = 1.2.0 =
 Release Date: February 27th, 2015

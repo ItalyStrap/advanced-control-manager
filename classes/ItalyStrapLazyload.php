@@ -25,6 +25,12 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 			add_filter( 'post_gallery', array( __CLASS__, 'add_image_placeholders' ), 9 );
 
 			/**
+			 * Experimental
+			 * Da testare ed eventualmente mettere sotto opzione attivabile
+			 */
+			add_filter( 'widget_text', array( __CLASS__, 'add_image_placeholders' ), 11 );
+
+			/**
 			 * Run this later, so other content filters have run,
 			 * including image_add_wh on WP.com
 			 */
@@ -118,7 +124,12 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 			 * Add script for img opacity
 			 * @var string Js Code
 			 */
-			$output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});$(this).parent("img").css( "opacity","1");});});';
+			// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});$(this).parent("img").css( "opacity","1");});});';
+			
+			//Da testare
+			// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$(this).load(function(){$(this).css( "opacity","1");});});});';
+
+			$output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});});});';
 
 			$content .= $content . $output;
 
@@ -141,12 +152,24 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 	}
 
 	/**
-	 * Function for apply lazyload for custom content
-	 * @param string $content Custom content
+	 * Return img tag lazyloaded
+	 * @param  string $content Text content to be processed
+	 * @return string          Text content processed
+	 */
+	function italystrap_get_apply_lazyload( $content ) {
+
+		return ItalyStrapLazyload::add_image_placeholders( $content );
+
+	}
+
+	/**
+	 * Echo img tag lazyloaded
+	 * @param  string $content Text content to be processed
+	 * @return string          Text content processed
 	 */
 	function italystrap_apply_lazyload( $content ) {
 
-		return ItalyStrapLazyload::add_image_placeholders( $content );
+		echo ItalyStrapLazyload::add_image_placeholders( $content );
 
 	}
 

@@ -158,21 +158,24 @@ Example:[gallery type="carousel" ids="61,60,59" link="file"]</li>
 <h3>Lazy Load Documentation</h3>
 
 <h4>How to activate Lazy Load for images</h4>
-For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
+For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that page there is a checkbox, check on LazyLoad and that the magic begin :-P
 <h4>How do I change the placeholder image in Lazy Load functionality</h4>
 <pre>add_filter( 'ItalyStrapLazyload_placeholder_image', 'my_custom_lazyload_placeholder_image' );
  function my_custom_lazyload_placeholder_image( $image ) {
  return 'http://url/to/image';
  }</pre>
 <h4>How do I lazy load other images in my theme?</h4>
-You can use the italystrap_apply_lazyload helper function:
-<pre>if ( function_exists( 'italystrap_apply_lazyload' ) )
-    $content = italystrap_apply_lazyload( $content );</pre>
+You can use the italystrap_get_apply_lazyload helper function:
+<pre>if ( function_exists( 'italystrap_get_apply_lazyload' ) )
+    $content = italystrap_get_apply_lazyload( $content );</pre>
 Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
 
-You can also use output buffering, though this isn't recommended:
+You can also use italystrap_apply_lazyload helper function for print content:
 <pre>if ( function_exists( 'italystrap_apply_lazyload' ) )
- ob_start( 'italystrap_apply_lazyload' );</pre>
+    italystrap_apply_lazyload( $content );</pre>
+Otherwise you can also use output buffering, though this isn't recommended:
+<pre>if ( function_exists( 'italystrap_get_apply_lazyload' ) )
+ ob_start( 'italystrap_get_apply_lazyload' );</pre>
 This will lazy load <em>all</em> your images.
 <h4>This plugin is using JavaScript. What about visitors without JS?</h4>
 No worries. They get the original element in a noscript element. No Lazy Loading for them, though.
