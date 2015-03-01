@@ -133,11 +133,12 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 1.2.1 =
-Release Date: February 27th, 2015
+Release Date: March 1st, 2015
 
-Dev time: 40h
+Dev time: 5h
 
-*
+* Add new function for LazyLoad
+* Fix some issue
 
 = 1.2.0 =
 Release Date: February 27th, 2015
