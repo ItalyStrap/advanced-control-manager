@@ -15,5 +15,7 @@ return array(
     'ItalyStrapGlobals' => $baseDir . '/classes/ItalyStrapGlobals.php',
     'ItalyStrapGlobalsCss' => $baseDir . '/classes/ItalyStrapGlobals.php',
     'ItalyStrapLazyload' => $baseDir . '/classes/ItalyStrapLazyload.php',
+    'ItalyStrapVcardWidget' => $baseDir . '/classes/ItalyStrapVcardWidget.php',
+    'ItalyStrapVcardWidgetLoader' => $baseDir . '/classes/ItalyStrapVcardWidget.php',
     'Mobile_Detect' => $baseDir . '/classes/lib/Mobile_Detect.php',
 );

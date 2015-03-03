@@ -96,6 +96,9 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 			if ( isset( $this->options['lazyload'] ) && !is_admin() )
 				ItalyStrapLazyload::init();
+
+			if ( isset( $this->options['vcardwidget'] ) )
+			add_action('widgets_init', function(){ register_widget('ItalyStrapVcardWidget' ); } );
 			
 		}
 

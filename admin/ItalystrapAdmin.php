@@ -188,6 +188,14 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 				'italystrap_pluginPage_section'
 				);
 
+			add_settings_field( 
+				'vcardwidget', 
+				__( 'Vcard Widget Local Business', 'ItalyStrap' ), 
+				array( $this, 'italystrap_option_vcardwidget'), 
+				'italystrap_options_group', 
+				'italystrap_pluginPage_section'
+				);
+
 			register_setting(
 				'italystrap_options_group',
 				'italystrap_settings'
@@ -210,7 +218,20 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 		?>
 
 			<input type='checkbox' name='italystrap_settings[lazyload]' <?php checked( isset($options['lazyload']), 1 ); ?> value='1'>
-			<label for="italystrap_settings[lazyload]"><?php _e( '(Activate LazyLoad for images)', 'ItalyStrap' ); ?></label>
+			<label for="italystrap_settings[lazyload]"><?php _e( 'Activate LazyLoad for images', 'ItalyStrap' ); ?></label>
+
+		<?php
+
+		}
+
+		public function italystrap_option_vcardwidget($args) { 
+
+			$options = get_option( 'italystrap_settings' );
+
+		?>
+
+			<input type='checkbox' name='italystrap_settings[vcardwidget]' <?php checked( isset($options['vcardwidget']), 1 ); ?> value='1'>
+			<label for="italystrap_settings[vcardwidget]"><?php _e( 'Activate Vcard Widget for your local business (Experimental)', 'ItalyStrap' ); ?></label>
 
 		<?php
 
