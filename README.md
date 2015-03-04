@@ -1,14 +1,16 @@
 # ItalyStrap #
 **Contributors:** overclokk  
 **Donate link:** http://www.italystrap.it/  
-**Tags:** italystrap, breadcrumbs, breadcrumb, seo, performance, schema.org, rich snippet, bootstrap, twitter bootstrap, css, carousel, slider, slideshow, responsive, photo, photos, media, gallery, lazy load, lazy loading, images, front-end optimization, optimize, bandwidth, responsive design,  
+**Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.1  
-**Stable tag:** 1.2.1  
+**Stable tag:** 1.3.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Make your web site more powerfull.
+Make your web site more powerfull
+
+Bootstrap, Performance and Schema.org
 
 ## Description ##
 
@@ -20,15 +22,22 @@ May the force be with you!
 ### Features included: ###
 
 * **Breadcrumbs** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
-* **Carousel** (Forked from Agnosia Bootstrap Carousel by AuSoft with my some improvements) Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
-* **LazyLoad** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from https://wordpress.org/plugins/lazy-load/ plugin with my improvements. It work also with my Bootstrap Carousel. 
+
+* **Carousel** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
+
+* **LazyLoad** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It work also with my Bootstrap Carousel.
+
+* **Schema.org Local Business** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
+This widget will add microdata information about your  site for SEO purposes.
+This widget was present in my [ItalyStrap starter theme](http://www.italystrap.it/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus
 
 ## Installation ##
 
 1. Install ItalyStrap either via the WordPress.org plugin directory, or by uploading the files to the `/wp-content/plugins/` directory in your server.
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. After activating ItalyStrap, read the documentation for any kind of customization.
-6. That's it.  You're ready to go!
+3. Activate your desired functionality from ItalyStrap option page.
+4. After activating ItalyStrap, read the documentation for any kind of customization.
+5. That's it.  You're ready to go!
 
 ## Frequently Asked Questions ##
 
@@ -114,6 +123,10 @@ Put the code below in your file js and type your Bootstrap Carousell ID in place
 
 I tried only with ItalyStrap Bootstrap Carousel, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
 
+### How can I use Local Business widget ###
+
+Simply activate functionality from ItalyStrap option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input
+
 For more informations read the documentation
 
 If you have any problem please open a ticket :-)
@@ -144,9 +157,25 @@ If you have any problem please open a ticket :-)
 ### 8. Example of Lazy Loading for image ###
 ![Example of Lazy Loading for image](http://s.wordpress.org/extend/plugins/italystrap/screenshot-8.png)
 
+### 9. ItalyStrap Local Business widget in admin panel ###
+![ItalyStrap Local Business widget in admin panel](http://s.wordpress.org/extend/plugins/italystrap/screenshot-9.png)
+
+### 10. ItalyStrap Local Business widget in widgetized themes (sidebar, footer, ...) ###
+![ItalyStrap Local Business widget in widgetized themes (sidebar, footer, ...)](http://s.wordpress.org/extend/plugins/italystrap/screenshot-10.png)
+
+### 11. ItalyStrap Local Business widget HTML markup example ###
+![ItalyStrap Local Business widget HTML markup example](http://s.wordpress.org/extend/plugins/italystrap/screenshot-11.png)
+
 
 
 ## Changelog ##
+
+### 1.3.0 ###
+**Release Date:** March 4th, 2015  
+
+**Dev time:** 30h  
+
+* Add Local Business widget for widgetized themes
 
 ### 1.2.1 ###
 **Release Date:** March 1st, 2015  
