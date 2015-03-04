@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2015-02-27 19:10+0100\n"
-"PO-Revision-Date: 2015-02-27 19:15+0100\n"
+"POT-Creation-Date: 2015-03-04 21:38+0100\n"
+"PO-Revision-Date: 2015-03-04 23:43+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
@@ -59,9 +59,17 @@ msgstr "Pagina opzioni di ItalyStrap"
 msgid "LazyLoad"
 msgstr "LazyLoad"
 
-#: admin/ItalystrapAdmin.php:213
-msgid "(Activate LazyLoad for images)"
-msgstr "(Attiva Lazy Load per le immagini)"
+#: admin/ItalystrapAdmin.php:193
+msgid "Vcard Widget Local Business"
+msgstr "Vcard Widget Local Business"
+
+#: admin/ItalystrapAdmin.php:221
+msgid "Activate LazyLoad for images"
+msgstr "Attiva LazyLoad per le immagini"
+
+#: admin/ItalystrapAdmin.php:234
+msgid "Activate Vcard Widget for your local business (Experimental)"
+msgstr "Attiva la scheda per la tua Local Business (sperimentale)"
 
 #: admin/admin-template/dashboard-page.php:9
 msgid "Make your website more powerful"
@@ -72,14 +80,18 @@ msgid "New Entry"
 msgstr "Ultimo aggiunto"
 
 #: admin/admin-template/dashboard-page.php:21
-#: admin/admin-template/dashboard-page.php:74
-msgid "Activate Lazy Load from Option Page and let the magic begin :-)"
-msgstr "Attiva Lazy Load dalla pagina \"Opzioni\" e che la magia cominci :-)"
+#: admin/admin-template/dashboard-page.php:76
+msgid ""
+"A simple Widget to add Schema.org Local business in your widgetized themes"
+msgstr ""
+"Un semplice widget per aggiungere il markup per la Local Busines di Schema."
+"org nel tuo sito"
 
 #: admin/admin-template/dashboard-page.php:22
-#: admin/admin-template/dashboard-page.php:75
-#: admin/admin-template/dashboard-page.php:87
-#: admin/admin-template/dashboard-page.php:98
+#: admin/admin-template/dashboard-page.php:77
+#: admin/admin-template/dashboard-page.php:90
+#: admin/admin-template/dashboard-page.php:102
+#: admin/admin-template/dashboard-page.php:113
 msgid "Read the documentation"
 msgstr "Leggi la documentazione"
 
@@ -103,7 +115,11 @@ msgstr "OpenGraph and Twitter Cards per la tua condivisione sui social"
 msgid "Currently present"
 msgstr "Attualmente presenti"
 
-#: admin/admin-template/dashboard-page.php:86
+#: admin/admin-template/dashboard-page.php:89
+msgid "Activate Lazy Load from Option Page and let the magic begin :-)"
+msgstr "Attiva Lazy Load dalla pagina \"Opzioni\" e che la magia cominci :-)"
+
+#: admin/admin-template/dashboard-page.php:101
 msgid ""
 "Add attribute <code>type=\"carousel\"</code> at gallery shortcode, this will "
 "show Bootstrap Carousel based on the selected images and their titles and "
@@ -114,7 +130,7 @@ msgstr ""
 "selezionate mostrando anche titoli e descrizioni, altrimenti verrà "
 "visualizzata la galleria standard di WordPress."
 
-#: admin/admin-template/dashboard-page.php:97
+#: admin/admin-template/dashboard-page.php:112
 msgid ""
 "Add breadcrumbs to your site in a simple and fast way and get Google rich "
 "snippet with Schema.org markup"
@@ -153,6 +169,101 @@ msgstr "Non trovato"
 #: classes/ItalyStrapBreadcrumbs.php:375
 msgid "Page"
 msgstr "Pagina"
+
+#: classes/ItalyStrapVcardWidget.php:28
+msgid "Local or Organization?"
+msgstr "Local or Organization?"
+
+#: classes/ItalyStrapVcardWidget.php:29
+msgid "Widget Title (optional)"
+msgstr "Titolo del widget (opzionale)"
+
+#: classes/ItalyStrapVcardWidget.php:30
+msgid "Company name"
+msgstr "Nome azienda"
+
+#: classes/ItalyStrapVcardWidget.php:31
+msgid "Logo URL"
+msgstr "URL del Logo"
+
+#: classes/ItalyStrapVcardWidget.php:32
+msgid "Street Address"
+msgstr "Indirizzo"
+
+#: classes/ItalyStrapVcardWidget.php:33
+msgid "Zipcode/Postal Code"
+msgstr "Codice postale"
+
+#: classes/ItalyStrapVcardWidget.php:34
+msgid "City/Locality"
+msgstr "Citt&agrave;"
+
+#: classes/ItalyStrapVcardWidget.php:35
+msgid "State/Region"
+msgstr "Regione"
+
+#: classes/ItalyStrapVcardWidget.php:36
+msgid "Country"
+msgstr "Stato"
+
+#: classes/ItalyStrapVcardWidget.php:37
+msgid "Telephone number"
+msgstr "Numero di telefono"
+
+#: classes/ItalyStrapVcardWidget.php:38
+msgid "Mobile number"
+msgstr "Numero cellulare"
+
+#: classes/ItalyStrapVcardWidget.php:39
+msgid "Fax number"
+msgstr "Numero fax"
+
+#: classes/ItalyStrapVcardWidget.php:40
+msgid "Email"
+msgstr "Email"
+
+#: classes/ItalyStrapVcardWidget.php:41
+msgid "TaxID"
+msgstr "Partita I.V.A."
+
+#: classes/ItalyStrapVcardWidget.php:42
+msgid "Facebook page (hidden)"
+msgstr "Pagina Facebook (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:43
+msgid "Twitter page (hidden)"
+msgstr "Pagina di Twitter (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:44
+msgid "Googleplus page (hidden)"
+msgstr "Pagina Googleplus (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:45
+msgid "Pinterest page (hidden)"
+msgstr "Pagina di Pinterest (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:46
+msgid "Instagram page (hidden)"
+msgstr "Pagina Instagram (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:47
+msgid "Youtube page (hidden)"
+msgstr "Pagina di youtube (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:48
+msgid "Linkedin page (hidden)"
+msgstr "Pagina di Linkedin (nascosto)"
+
+#: classes/ItalyStrapVcardWidget.php:54
+msgid "Use this widget to add a vCard Local Business"
+msgstr "Usa questo wodget per aggiungere una scheda per la Local Business"
+
+#: classes/ItalyStrapVcardWidget.php:57
+msgid "ItalyStrap: vCard Local Business"
+msgstr "ItalyStrap: vCard Local Business"
+
+#~ msgid "(Activate LazyLoad for images)"
+#~ msgstr "(Attiva Lazy Load per le immagini)"
 
 #~ msgid "LazyLoad for your content"
 #~ msgstr "LazyLoad per i tuo contenuti"
