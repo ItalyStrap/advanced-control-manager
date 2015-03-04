@@ -14,11 +14,11 @@
 
 				<div class="col-md-4 col-md-push-4">
 					<div class="thumbnail">
-						<div class="image lazyimage"></div>
+						<div class="image local"></div>
 						<div class="caption">
-							<h4><span class="dashicons dashicons-performance"></span> Lazy Load</h4>
-							<h5>Lazy Load for images and Carousel</h5>
-							<p><?php _e( 'Activate Lazy Load from Option Page and let the magic begin :-)', 'ItalyStrap' ); ?></p>
+							<h4><span class="dashicons dashicons-store"></span> ItalyStrap vCard for Local Business</h4>
+							<h5>Add Schema.org Local business in your site</h5>
+							<p><?php _e( 'A simple Widget to add Schema.org Local business in your widgetized themes', 'ItalyStrap' ); ?></p>
 							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
 						</div><!-- / .caption -->
 					</div><!-- / .thumbnail -->
@@ -64,6 +64,21 @@
 				<div class="page-header">
 					<h3 class="text-center h1"><?php _e( 'Currently present', 'ItalyStrap' ); ?></h3>
 				</div>
+
+
+
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<div class="image local"></div>
+						<div class="caption">
+							<h4><span class="dashicons dashicons-store"></span> ItalyStrap vCard for Local Business</h4>
+							<h5>Add Schema.org Local business in your site</h5>
+							<p><?php _e( 'A simple Widget to add Schema.org Local business in your widgetized themes', 'ItalyStrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+						</div><!-- / .caption -->
+					</div><!-- / .thumbnail -->
+				</div><!-- / .col-md-4 -->
+
 
 				<div class="col-md-4 new-md-4">
 					<div class="thumbnail">
