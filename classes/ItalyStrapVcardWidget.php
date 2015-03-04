@@ -8,7 +8,7 @@
 /**
 * vCard Widget Local Business
 * @todo Controllare i vari link Schema.org, qualcuno potrebbe dare errore
-*       Mettere lista opzioni in ordine alfabetico con jquery
+* @todo Mettere lista opzioni in ordine alfabetico con jquery
 */
 if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 

@@ -127,6 +127,12 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		}
 
+		/**
+		 * Print inline script in footer after all and before shotdown hook
+		 * @return string Internal script
+		 * @todo Creare un sistema che appenda regolarmente dopo gli script
+		 *       e tenga presente delle dipendenze da jquery
+		 */
 		public function italystrap_print_inline_script_in_footer(){
 
 			$scipt = ItalyStrapGlobals::get();

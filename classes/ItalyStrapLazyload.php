@@ -4,6 +4,9 @@
  * This function is used for lazy loading every image
  * It works with unveil.js (Not jquery.sonar)
  * @link http://luis-almeida.github.io/unveil/
+ *
+ * @todo Verificare perché stampa gli script anche se
+ *       non ci sono immagini da mettere in lazyload
  */
 if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 
