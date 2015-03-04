@@ -331,6 +331,7 @@ module.exports = function(grunt) {
     /**
      * My workflow
      * Update Readme.txt Documentation
+     * Add new screanshot
      * Update changelog only in readme.txt
      * Update the documentation in plugin file
      * Update Homepage plugin in admin dashboard (the box functionality)
