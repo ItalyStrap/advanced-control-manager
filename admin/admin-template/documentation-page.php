@@ -189,6 +189,85 @@ Put the code below in your file js and type your Bootstrap Carousell ID in place
 <h4>I'm using an external carousel, will Lazy Load work with it?</h4>
 I tried only with ItalyStrap Bootstrap Carousel, please send me a feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
 
+
+<!-- Local Busines docs -->
+<h3>ItalyStrap vCard Local Business documentation</h3>
+
+
+<h4>How can I use Local Business widget</h4>
+Simply activate functionality from ItalyStrap option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input of ItalyStrap vCard Local Business
+<h4>Available Local Business Types for now (list from schema.org):</h4>
+<ul>
+	<li>AccountingService</li>
+	<li>AutoDealer</li>
+	<li>AutoRental</li>
+	<li>AutoRepair</li>
+	<li>AutoWash</li>
+	<li>Attorney</li>
+	<li>Bakery</li>
+	<li>BarOrPub</li>
+	<li>ChildCare</li>
+	<li>ClothingStore</li>
+	<li>Dentist</li>
+	<li>ElectronicsStore</li>
+	<li>EmergencyService</li>
+	<li>EntertainmentBusiness</li>
+	<li>EventVenue</li>
+	<li>ExerciseGym</li>
+	<li>FinancialService</li>
+	<li>FurnitureStore</li>
+	<li>GardenStore</li>
+	<li>GeneralContractor</li>
+	<li>GolfCourse</li>
+	<li>HardwareStore</li>
+	<li>HealthAndBeautyBusiness</li>
+	<li>HomeAndConstructionBusiness</li>
+	<li>HobbyShop</li>
+	<li>HomeGoodsStore</li>
+	<li>Hotel</li>
+	<li>HVACBusiness</li>
+	<li>InsuranceAgency</li>
+	<li>LodgingBusiness</li>
+	<li>MedicalClinic</li>
+	<li>MensClothingStore</li>
+	<li>MotorcycleDealer</li>
+	<li>MovingCompany</li>
+	<li>PetStore</li>
+	<li>Physician</li>
+	<li>ProfessionalService</li>
+	<li>RealEstateAgent</li>
+	<li>Residence</li>
+	<li>Restaurant</li>
+	<li>School</li>
+	<li>SportingGoodsStore</li>
+	<li>Store</li>
+	<li>TattooParlor</li>
+	<li>TravelAgency</li>
+	<li>VeterinaryCare</li>
+</ul>
+<h4>Available Fields:</h4>
+<ul>
+	<li>Business Name</li>
+	<li>Logo URL</li>
+	<li>Street Address</li>
+	<li>Zipcode/Postal Code</li>
+	<li>City/Locality</li>
+	<li>State/Region</li>
+	<li>Country</li>
+	<li>Telephone number</li>
+	<li>Mobile number</li>
+	<li>Fax number</li>
+	<li>Email</li>
+	<li>TaxID</li>
+	<li>Facebook page (hidden)</li>
+	<li>Twitter page (hidden)</li>
+	<li>Googleplus page (hidden)</li>
+	<li>Pinterest page (hidden)</li>
+	<li>Instagram page (hidden)</li>
+	<li>Youtube page (hidden)</li>
+	<li>Linkedin page (hidden)</li>
+</ul>
+
 <!-- / End text -->
 			</div>
 		</div>
