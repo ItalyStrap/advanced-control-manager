@@ -14,6 +14,11 @@
 * @todo Ordinare la lista per dipendenze
 *       store
 *       store - musicstore
+* @todo creare array nome -> valore con lista di tutte le attività
+* @todo https://wordpress.org/plugins/mdp-local-business-seo/
+* @todo https://wordpress.org/plugins/local-business-microdata-widget/
+* @todo https://wordpress.org/plugins/local-search-seo-contact-page/
+* @todo search local seo
 */
 if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 
