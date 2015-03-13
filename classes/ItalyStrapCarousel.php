@@ -269,15 +269,18 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			// Initialize boolean.
 			$bool = false;
 			// Convert attributes to variables.
-			extract( $this->attributes );
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			/* Validate for necessary data */
 			if (   isset( $ids ) 
 				&& isset( $type )
 				&& 'carousel' === $type 
-			) {
-				$bool = true;
-			}
+			) $bool = true;
+
 			return $bool;
+
 		}
 
 		/**
@@ -287,15 +290,23 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 */
 		private function get_posts() {
 			$posts = array();
-			extract( $this->attributes );
+
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			$images = $this->make_array( $ids, $orderby );
-			if ( is_array( $images ) and !empty( $images ) ) {
-				foreach ( $images as $image_id ) {
+
+			if ( is_array( $images ) and !empty( $images ) )
+				foreach ( $images as $image_id )
 					$posts[] = get_post( intval( $image_id ) , ARRAY_A );
-				}
-			}
+
+
+
 			$posts = apply_filters( 'ItalyStrap_carousel_posts', $posts, $this->attributes );
+
 			return $posts;
+
 		}
 
 		/**
@@ -304,13 +315,21 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string HTML result.
 		 */
 		private function get_container_style() {
-			extract( $this->attributes );
+
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			$container_style = '';
-			if ( $width ) {
+
+			if ( $width )
 				$container_style = 'style="width:' . $width . ';"';
-			}
+
+
 			$container_style = apply_filters( 'ItalyStrap_carousel_container_style', $container_style, $this->attributes );
+
 			return $container_style;
+
 		}
 
 		/**
@@ -319,12 +338,18 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string HTML result.
 		 */
 		private function get_item_style() {
-			extract( $this->attributes );
+
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			$item_style = '';
-			if ( $height ) {
+
+			if ( $height )
 				$item_style = 'style="height:' . $height . ';"' ;
-			}
+
 			$item_style = apply_filters( 'ItalyStrap_carousel_item_style', $item_style, $this->attributtes );
+
 			return $item_style;
 		}
 
@@ -336,7 +361,10 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		private function get_output() {
 
 			// Convert attributes to variables.
-			extract( $this->attributes );
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			// Initialize carousel HTML.
 			$output = $this->get_carousel_container( 'start' );
 			// Try to obtain indicators before inner.
@@ -347,7 +375,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			$i = 0;
 
 			// Process each item into $this->posts array and create HTML.
-			foreach ( $this->posts as $post ) {
+			foreach ( $this->posts as $post )
 				// Make sure to include only attachments into the carousel.
 				if ( 'attachment' === $post['post_type'] ) {
 					$class = ( 0 === $i ) ? 'active ' : '';
@@ -362,7 +390,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					$output .= $this->get_img_container( 'end' );
 					$i++;
 				}
-			}
+
 
 			// End inner.
 			$output .= $this->get_carousel_inner( 'end' );
@@ -390,7 +418,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string           HTML result.
 		 */
 		private function get_carousel_container( $position ) {
+
 			$output = '';
+
 			switch ( $position ) {
 				case 'start':
 					extract( $this->attributes );
@@ -403,7 +433,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
+
 			$output = apply_filters( 'ItalyStrap_carousel_container', $output, $this->attributes );
+
 			return $output;
 		}
 
@@ -414,7 +446,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string           HTML result.
 		 */
 		private function get_carousel_inner( $position ) {
+
 			$output = '';
+
 			switch ( $position ) {
 				case 'start':
 					extract( $this->attributes );
@@ -427,8 +461,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
+
 			$output = apply_filters( 'ItalyStrap_carousel_inner', $output, $this->attributes );
+
 			return $output;
+
 		}
 
 		/**
@@ -438,7 +475,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string           HTML result.
 		 */
 		private function get_caption_container( $position ) {
+
 			$output = '';
+
 			switch ( $position ) {
 				case 'start':
 					extract( $this->attributes );
@@ -451,8 +490,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
+
 			$output = apply_filters( 'ItalyStrap_carousel_caption_container', $output, $this->attributes );
+
 			return $output;
+
 		}
 
 		/**
@@ -463,7 +505,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string            HTML result.
 		 */
 		private function get_img_container( $position, $i = 0 ) {
+
 			$output = '';
+
 			switch ( $position ) {
 				case 'start':
 					extract( $this->attributes );
@@ -477,8 +521,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					// Do nothing.
 					break;
 			}
+
 			$output = apply_filters( 'ItalyStrap_carousel_img_container', $output, $this->attributes );
+
 			return $output;
+
 		}
 
 		/**
@@ -489,7 +536,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 */
 		private function get_img( $post, $schemaposition ) {
 			
-			extract( $this->attributes );
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
 
 			global $detect;
 
@@ -503,27 +552,20 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			
 			$image_size = '';
 
-			if ( $detect->isTablet() && $responsive ) {
-
+			if ( $detect->isTablet() && $responsive )
 				$image_size = $sizetablet;
 
-			}elseif( $detect->isMobile() && $responsive ) {
-
+			elseif( $detect->isMobile() && $responsive )
 				$image_size = $sizephone;
 
-			}else{
-
+			else
 				$image_size = $size;
-
-			}
 
 			$exifdata = '';
 
-			foreach ($imgmeta as $key => $value) {
-
+			foreach ($imgmeta as $key => $value)
 				if ( !empty( $value ) )
 					$exifdata .= '<meta  itemprop="exifData" content="' . $key . ': ' . $value . '"/>';
-			}
 
 			$output = '';
 
@@ -547,7 +589,11 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string HTML result.
 		 */
 		private function get_title( $post ) {
-			extract( $this->attributes );
+
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			$output = '';
 			if ( $title !== 'false' ) :
 				switch ( $link ) {
@@ -573,15 +619,22 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string HTML result.
 		 */
 		private function get_excerpt( $post ) {
-			extract( $this->attributes );
+
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			$output = '';
-			if ( 'false' !== 'text' ) {
+
+			if ( 'false' !== 'text' )
 				$output .= ( $wpautop != 'false' ) ? wpautop( $post['post_excerpt'] ) : $post['post_excerpt'];
-			}
+
 			$output = '<div itemprop="description">' . $output . '</div>';
 
 			$output = apply_filters( 'ItalyStrap_carousel_excerpt', $output, $this->attributes );
+
 			return $output;
+
 		}
 
 
@@ -591,19 +644,26 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string HTML result.
 		 */
 		private function get_indicators() {
-			extract( $this->attributes );
+
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			$output = '<ol class="carousel-indicators">';
 			$i = 0;
-			foreach ( $this->posts as $post ) {
+
+			foreach ( $this->posts as $post )
 				// Make sure to include only attachments into the carousel.
 				if ( 'attachment' === $post['post_type'] ) {
 					$class = ( $i === 0 ) ? 'active' : '';
 					$output .= '<li data-target="#' . $name . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
 					$i++;
 				}
-			}
+
 			$output .= '</ol>';
+
 			$output = apply_filters( 'ItalyStrap_carousel_indicators', $output, $this->attributes );
+
 			return $output;
 		}
 
@@ -615,7 +675,10 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 */
 		private function get_control() {
 
-			extract( $this->attributes );
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 			/**
 			 * @todo Dare la possibilità di scegliere l'icona o l'inserimento di un carattere
 			 */
@@ -636,7 +699,10 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 */
 		function get_javascript() {
 
-			extract( $this->attributes );
+			// extract( $this->attributes );
+			foreach($this->attributes as $key => $value)
+				$$key = $value;
+
 
 			// $output = '<script type="text/javascript">// <![CDATA[
 			// 	jQuery(document).ready(function($) {$(\'#' . $name . '\').carousel({ interval : ' . $interval . ' , pause : "' . $pause . '" });
@@ -666,13 +732,17 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return array           Array of WordPress post IDs.
 		 */
 		private function make_array( $string, $orderby = '' ) {
+
 			$array = explode( ',' , $string );
+
 			// Support for random order.
-			if ( 'rand' == $orderby ) {
+			if ( 'rand' == $orderby )
 				shuffle( $array );
-			}
+
 			$array = apply_filters( 'ItalyStrap_carousel_make_array', $array, $this->attributes );
+
 			return $array;
+
 		}
 
 	}
