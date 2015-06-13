@@ -149,9 +149,9 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 1.3.1 =
-Release Date: March 4th, 2015
+Release Date: June 13th, 2015
 
-Dev time: 30h
+Dev time: 1h
 
 * Added taxonomy support for breadcrumbs
 
