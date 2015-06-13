@@ -148,7 +148,8 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 
 			$custom_css = 'img{opacity:0;transition:opacity .3s ease-in;}';
 
-			return $custom_css;
+			// return $custom_css;
+			return null;
 
 		}
 
