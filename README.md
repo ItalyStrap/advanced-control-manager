@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.1  
-**Stable tag:** 1.3.0  
+**Stable tag:** 1.3.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -170,30 +170,37 @@ If you have any problem please open a ticket :-)
 
 ## Changelog ##
 
+### 1.3.1 ###
+**Release Date:** June 13th, 2015  
+
+**Dev time:** 1h  
+
+* Added taxonomy support for breadcrumbs
+
 ### 1.3.0 ###
 **Release Date:** March 4th, 2015  
 
 **Dev time:** 30h  
 
-* Add Local Business widget for widgetized themes
+* Added Local Business widget for widgetized themes
 
 ### 1.2.1 ###
 **Release Date:** March 1st, 2015  
 
 **Dev time:** 5h  
 
-* Add new function for LazyLoad
-* Fix some issue
+* Added new function for LazyLoad
+* Fixed some issue
 
 ### 1.2.0 ###
 **Release Date:** February 27th, 2015  
 
 **Dev time:** 40h  
 
-* Fix some bug and issue
-* Add static class for appending inline script and print it in footer after wp_print_footer_scripts hook (for performance purpose)
-* Add static class for appending inline css and print it in header after wp_head hook  (for performance purpose)
-* Add class for Lazy Load image functionality
+* Fixed some bug and issue
+* Added static class for appending inline script and print it in footer after wp_print_footer_scripts hook (for performance purpose)
+* Added static class for appending inline css and print it in header after wp_head hook  (for performance purpose)
+* Added class for Lazy Load image functionality
 
 ### 1.1.0 ###
 **Release Date:** February 20th, 2015  
@@ -201,11 +208,11 @@ If you have any problem please open a ticket :-)
 **Dev time:** 80h  
 
 * Renders extra controls for image dimension in the new media UI
-* Add Bootstrap Carousel functionality forked from Agnosia Bootstrap Carousel by AuSoft
+* Added Bootstrap Carousel functionality forked from Agnosia Bootstrap Carousel by AuSoft
 * Renders extra controls in the Gallery Settings section of the new media UI
-* Add Mobile_Detect class from https://github.com/serbanghita/Mobile-Detect for responsive functions
-* Add Schema.org in Bootstrap Carousel
-* Fix some bugs
+* Added Mobile_Detect class from https://github.com/serbanghita/Mobile-Detect for responsive functions
+* Added Schema.org in Bootstrap Carousel
+* Fixed some bugs
 
 
 ### 1.0.2 ###
@@ -213,14 +220,14 @@ If you have any problem please open a ticket :-)
 
 **Dev time:** 1h  
 
-* Fix documentation link in admin dashboard (Thanks to Stefano Tondi from G+)
+* Fixed documentation link in admin dashboard (Thanks to Stefano Tondi from G+)
 
 ### 1.0.1 ###
 **Release Date:** January 8th, 2015  
 
 **Dev time:** 1h  
 
-* Update Breadcrumbs documentation
+* Updated Breadcrumbs documentation
 
 ### 1.0.0 ###
 **Release Date:** January 7th, 2015  
