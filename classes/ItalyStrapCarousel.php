@@ -82,15 +82,17 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		}
 
 		public function __get( $property ) {
-			if ( property_exists( $this, $property ) ) {
+
+			if ( property_exists( $this, $property ) )
 				return $this->$property;
-			}
+
 		}
 
 		public function __set( $property, $value ) {
-			if ( property_exists( $this, $property ) ) {
+			
+			if ( property_exists( $this, $property ) )
 				$this->$property = $value;
-			}
+
 			return $this;
 		}
 
@@ -569,14 +571,24 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			$output = '';
 
+			/**
+			 * Get the image attribute
+			 * @var array
+			 */
 			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
+
+			/**
+			 * Escape img value for security reasone
+			 */
+			$image[0] = esc_url( $image[0] );
+			$image[1] = esc_attr( $image[1] );
+			$image[2] = esc_attr( $image[2] );
 
 			/**
 			 * style="max-height:' . $image[2] . 'px"
 			 * Is in testing
 			 */
-			$output .= '<img class="img-responsive" alt="' . $post['post_title'] . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image" style="max-height:' . $image[2] . 'px"/><meta  itemprop="name" content="' . $post['post_title'] . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="height" content="' . $image[2] . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>' . $exifdata;
-
+			$output .= '<img class="img-responsive" alt="' . esc_attr( $post['post_title'] ) . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image" style="max-height:' . $image[2] . 'px"/><meta  itemprop="name" content="' . esc_attr( $post['post_title'] ) . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="height" content="' . $image[2] . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>' . $exifdata;
 
 			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $image[0], $this->attributes, $post );
 
@@ -598,13 +610,13 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			if ( $title !== 'false' ) :
 				switch ( $link ) {
 				 	case 'file':
-				 		$post_title = '<a href="' . $post['guid'] . '" itemprop="url">' . $post['post_title'] . '</a>';
+				 		$post_title = '<a href="' . $post['guid'] . '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
 				 		break;
 				 	case 'none':
-				 		$post_title = $post['post_title'];
+				 		$post_title = esc_attr( $post['post_title'] );
 				 		break;
 				 	default:
-				 		$post_title = '<a href="' . get_permalink( $post['ID'] ) . '" itemprop="url">' . $post['post_title'] . '</a>';
+				 		$post_title = '<a href="' . esc_url( get_permalink( $post['ID'] ) ). '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
 				 		break;
 				 } 
 				$output .= '<'. $titletag .'>' . $post_title . '</' . $titletag . '>';
