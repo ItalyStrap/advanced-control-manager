@@ -305,7 +305,7 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 			} elseif ( is_tax() ) {
 
 				/**
-				 * If is tag (default archive.php) add tag title
+				 * If is tax (default archive.php) add tag title
 				 */
 				$breadcrumb .= $before_element_active . $wrapper_name . __('Tax: ', 'ItalyStrap') . single_tag_title('', false) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
