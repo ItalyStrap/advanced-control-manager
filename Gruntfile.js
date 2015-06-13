@@ -76,6 +76,32 @@ module.exports = function(grunt) {
             }
         },
 
+        gitcheckout: {
+            devtomaster: { // Mi sposto da Dev a master
+                options: {
+                    branch: 'master'
+                }
+            },
+            mastertodev: { // Mi sposto da master a Dev
+                options: {
+                    branch: 'Dev'
+                }
+            }
+        },
+
+        gitmerge: {
+            fromdev: { // Prima devo essewre in master e poi fare il merge da Dev
+                options: {
+                    branch: 'Dev'
+                }
+            },
+            frommaster: { // Prima devo essere in dev e poi fare il merge sa master
+                options: {
+                    branch: 'master'
+                }
+            }
+        },
+
         version: {  // https://www.npmjs.com/package/grunt-version
                     // http://jayj.dk/using-grunt-automate-theme-releases/
             bower: {
@@ -94,20 +120,6 @@ module.exports = function(grunt) {
                   src: ['readme.txt']
             },
         },
-
-        // 'copy-part-of-file': { // https://github.com/dehru/grunt-copy-part-of-file
-        //     copyReadme: {
-        //         options: {
-        //             sourceFileStartPattern: '=== ItalyStrap ===',
-        //             sourceFileEndPattern: 'First release.',
-        //             destinationFileStartPattern: '=== ItalyStrap ===',
-        //             destinationFileEndPattern: 'First release.'
-        //         },
-        //         files: {
-        //             'README.md': ['readme.txt']
-        //         }
-        //     }
-        // },
 
         wp_readme_to_markdown: { // https://www.npmjs.com/package/grunt-wp-readme-to-markdown
             readme: {
@@ -130,6 +142,19 @@ module.exports = function(grunt) {
                         'README.md',
                         'package.json',
                         'italystrap.php'
+                        ]
+                }
+            },
+           first:{
+                options: {
+                    message: 'Commit before deploy of new version'
+                },
+                files: {
+                    src: [
+                        '*.js',
+                        '*.txt',
+                        '*.php',
+                        '*.json'
                         ]
                 }
             }
@@ -179,6 +204,30 @@ module.exports = function(grunt) {
                             '!*.zip'], // What should be included in the zip
                         // dest: '<%= pkg.name %>/',        // Where the zipfile should go
                         dest: 'italystrap/',        // Where the zipfile should go
+                        filter: 'isFile',
+                    },
+                ]
+            },
+            backup: {
+                options: {
+                    archive: '../<%= pkg.name %> <%= pkg.version %>backup.zip' // Create zip file in theme directory
+                },
+                files: [
+                    {
+                        src: [
+                            '**' ,
+                            '!.git/**',
+                            '!.sass-cache/**',
+                            '!bower_components/**',
+                            '!node_modules/**',
+                            '!.gitattributes',
+                            '!.gitignore',
+                            // '!bower.json',
+                            // '!Gruntfile.js',
+                            // '!package.json',
+                            '!*.zip'], // What should be included in the zip
+                        dest: '<%= pkg.name %>/',        // Where the zipfile should go
+                        // dest: 'italystrap/',        // Where the zipfile should go
                         filter: 'isFile',
                     },
                 ]
@@ -301,7 +350,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.loadNpmTasks('grunt-version');
-    // grunt.loadNpmTasks('grunt-copy-part-of-file');
     grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
     grunt.loadNpmTasks('grunt-git');
     grunt.loadNpmTasks('grunt-prompt');
@@ -337,12 +385,10 @@ module.exports = function(grunt) {
      * Update Homepage plugin in admin dashboard (the box functionality)
      *
      * Aggiornare la lingua con poedit
-     *
-     * Merge Dev into Master
-     * 
-     * Checkout in master (not dev)
      * 
      * Change version only in package.json
+     *
+     * 
      * $ grunt deploy
      * 
      * Poi nella cartella svn-wordpress
@@ -350,14 +396,20 @@ module.exports = function(grunt) {
      * dx mouse e committ
      */
     grunt.registerTask('deploy', [
+                                'gitcommit:first',
+                                'gitcheckout:devtomaster',
+                                'gitmerge:fromdev',
                                 'version',
                                 'wp_readme_to_markdown',
-                                'gitcommit',
+                                'gitcommit:version',
                                 'gitpush',
                                 'prompt',
-                                'compress',
+                                'compress:main',
                                 'github-release',
                                 'copy',
+                                'gitcheckout:mastertodev',
+                                'gitmerge:frommaster',
+                                'gitpush',
                                 ]);
 
     grunt.registerTask('release', [
