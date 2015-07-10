@@ -148,6 +148,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 1.3.2 =
+Release Date: July 13th, 2015
+
+Dev time: 20h
+
+* Added HTML sitemaps
+
 = 1.3.1 =
 Release Date: June 13th, 2015
 

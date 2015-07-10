@@ -14,8 +14,8 @@ return array(
     'ItalyStrapCarouselLoader' => $baseDir . '/classes/ItalyStrapCarousel.php',
     'ItalyStrapGlobals' => $baseDir . '/classes/ItalyStrapGlobals.php',
     'ItalyStrapGlobalsCss' => $baseDir . '/classes/ItalyStrapGlobals.php',
+    'ItalyStrapHTMLSitemaps' => $baseDir . '/classes/ItalyStrapHTMLSitemaps.php',
     'ItalyStrapLazyload' => $baseDir . '/classes/ItalyStrapLazyload.php',
     'ItalyStrapVcardWidget' => $baseDir . '/classes/ItalyStrapVcardWidget.php',
-    'ItalyStrapVcardWidgetLoader' => $baseDir . '/classes/ItalyStrapVcardWidget.php',
     'Mobile_Detect' => $baseDir . '/classes/lib/Mobile_Detect.php',
 );
