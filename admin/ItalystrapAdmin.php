@@ -152,6 +152,7 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 		/**
 		 * Add link in plugin activation panel
+		 * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
 		 * @param  array $links Array of link in wordpress dashboard
 		 * @return array        Array with my links
 		 */
