@@ -153,7 +153,8 @@ Release Date: July 13th, 2015
 
 Dev time: 20h
 
-* Added HTML sitemaps
+* Added a simple HTML sitemaps class for theme (beta version)
+* [Fixed Deprecating PHP4 style constructors in WordPress 4.3](https://make.wordpress.org/core/2015/07/02/deprecating-php4-style-constructors-in-wordpress-4-3/)
 
 = 1.3.1 =
 Release Date: June 13th, 2015
