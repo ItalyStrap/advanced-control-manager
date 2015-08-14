@@ -28,6 +28,8 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 
 		function __construct() {
 
+			parent::__construct('widget_italystrap_vcard', __('ItalyStrap: vCard Local Business', 'ItalyStrap'), $widget_ops);
+
 			$this->fields = array(
 
 				'schema'			=> __( 'Local or Organization?', 'ItalyStrap' ),
@@ -59,7 +61,6 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 				'description' => __( 'Use this widget to add a vCard Local Business', 'ItalyStrap' )
 				);
 
-			$this->WP_Widget('widget_italystrap_vcard', __('ItalyStrap: vCard Local Business', 'ItalyStrap'), $widget_ops);
 			$this->alt_option_name = 'widget_italystrap_vcard';
 
 			add_action('save_post', array(&$this, 'flush_widget_cache'));
