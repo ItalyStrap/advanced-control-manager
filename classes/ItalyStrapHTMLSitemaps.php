@@ -7,6 +7,8 @@ if ( ! class_exists( 'ItalyStrapSitemaps' ) ) {
 	*/
 	class ItalyStrapHTMLSitemaps{
 
+		private $args = array();
+
 		/**
 		 * The post HTML output
 		 * @var string
@@ -15,8 +17,10 @@ if ( ! class_exists( 'ItalyStrapSitemaps' ) ) {
 		
 		function __construct( $args = array()  ){
 
-			if ( !$args['print'] )
-				$this->the_html_sitemaps( $args );
+			$this->args = $args;
+
+			if ( !$this->args['print'] )
+				$this->the_html_sitemaps( $this->args );
 
 		}
 
