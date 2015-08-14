@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.1  
-**Stable tag:** 1.3.1  
+**Stable tag:** 1.3.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -169,6 +169,14 @@ If you have any problem please open a ticket :-)
 
 
 ## Changelog ##
+
+### 1.3.2 ###
+**Release Date:** July 13th, 2015  
+
+**Dev time:** 20h  
+
+* Added a simple HTML sitemaps class for theme (beta version)
+* [Fixed Deprecating PHP4 style constructors in WordPress 4.3](https://make.wordpress.org/core/2015/07/02/deprecating-php4-style-constructors-in-wordpress-4-3/)
 
 ### 1.3.1 ###
 **Release Date:** June 13th, 2015  
