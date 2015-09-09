@@ -514,7 +514,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				case 'start':
 					extract( $this->attributes );
 					$class = ( $i == 0 ) ? 'active ' : '';
-					$output .= '<div class="' . $class . 'item ' . $itemclass . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
+					$output .= '<div class="' . $class . 'item carousel-item ' . $itemclass . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
 					break;
 				case 'end':
 					$output .= '</div>';
