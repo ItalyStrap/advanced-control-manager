@@ -28,6 +28,11 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 
 		function __construct() {
 
+			$widget_ops = array(
+				'classname' => 'widget_italystrap_vcard',
+				'description' => __( 'Use this widget to add a vCard Local Business', 'ItalyStrap' )
+				);
+
 			parent::__construct('widget_italystrap_vcard', __('ItalyStrap: vCard Local Business', 'ItalyStrap'), $widget_ops);
 
 			$this->fields = array(
@@ -55,11 +60,6 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 				'linkedin'			=> __( 'Linkedin page (hidden)', 'ItalyStrap' )
 
 			);
-
-			$widget_ops = array(
-				'classname' => 'widget_italystrap_vcard',
-				'description' => __( 'Use this widget to add a vCard Local Business', 'ItalyStrap' )
-				);
 
 			$this->alt_option_name = 'widget_italystrap_vcard';
 
