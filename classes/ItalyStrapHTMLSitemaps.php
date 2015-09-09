@@ -41,7 +41,7 @@ if ( ! class_exists( 'ItalyStrapSitemaps' ) ) {
 		/**
 		 * Get the pages list
 		 * @see https://codex.wordpress.org/Function_Reference/wp_list_pages
-		 * @param  array  $pages_args Argumento for wp_list_pagers()
+		 * @param  array  $pages_args Argument for wp_list_pages()
 		 * @return string             Return list of pages
 		 */
 		private function get_wp_list_pages( $pages_args = array() ){
@@ -138,7 +138,7 @@ if ( ! class_exists( 'ItalyStrapSitemaps' ) ) {
 
 					} elseif ( $post_type === 'page' ) {
 
-						$posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>' . $this->get_wp_list_pages( $pages_args ) . '</ul>';
+						$posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>' . $this->get_wp_list_pages() . '</ul>';
 
 					} elseif ( $post_type === 'attachment' ) {
 						continue;
