@@ -148,6 +148,14 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 1.3.3 =
+Release Date: September 19th, 2015
+
+Dev time: 8h
+
+* Added logo upload in vCard widget
+* Fixed some issue
+
 = 1.3.2 =
 Release Date: August 14th, 2015
 

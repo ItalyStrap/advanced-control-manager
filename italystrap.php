@@ -38,6 +38,13 @@ if ( !defined( 'ITALYSTRAP_FILE' ) )
  */
 if ( !defined( 'ITALYSTRAP_PLUGIN_PATH' ) )
 	define('ITALYSTRAP_PLUGIN_PATH', plugin_dir_path( ITALYSTRAP_FILE ));
+
+/**
+ * Example: 'http://192.168.1.10/italystrap/wp-content/plugins/italystrap-extended/'
+ */
+if ( !defined( 'ITALYSTRAP_PLUGIN_URL' ) )
+	define('ITALYSTRAP_PLUGIN_URL', plugin_dir_url( ITALYSTRAP_FILE ));
+
 /**
  * Example = italystrap-extended/italystrap.php
  */
