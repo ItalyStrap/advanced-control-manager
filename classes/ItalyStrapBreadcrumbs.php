@@ -109,9 +109,17 @@ if ( ! class_exists( 'ItalyStrapBreadcrumbs' ) ) {
 			/**
 			 * Get the first element of breadcrumbs
 			 */
-			if ( is_home() || is_front_page() ) {
+			if ( ( is_home() && is_front_page() ) || is_front_page() ) {
 
 				$breadcrumb .= $before_element_active . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /><meta itemprop="position" content="1" />'. $after_element;
+
+			} else if ( is_home() && ! is_front_page() ) {
+
+				$page_ID = get_option( 'page_for_posts' );
+
+				$breadcrumb .= $before_element .'<a itemprop="item" href="' . home_url() . '" title="' . $bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+
+				$breadcrumb .= $before_element_active . $wrapper_name . get_the_title( $page_ID ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 			} else {
 
