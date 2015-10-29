@@ -324,18 +324,35 @@ module.exports = function(grunt) {
         },
 
         watch: { // https://github.com/gruntjs/grunt-contrib-watch
-            css: {
-                files: ['**/*.{scss,sass}'],
-                tasks: ['testcssbuild'],
+            compass: {
+                files: ['admin/css/src/sass/*.{scss,sass}'],
+                tasks: ['testcompassbuild'],
+                options: {
+                    livereload: 35729,
+                },
+            },
+            less: {
+                files: ['admin/css/src/less/*.less'],
+                tasks: ['testlessbuild'],
+                options: {
+                    livereload: 35729,
+                },
             },
             js: {
-                files: ['src/js/*.js'],
+                files: ['admin/js/src/*.js', 'js/src/*.js'],
                 tasks: ['testjsbuild'],
+                options: {
+                    livereload: 35729,
+                },
             },
-            options: {
-                livereload: 9000,
+            php: {
+                files: ['**/*.php'],
+                tasks: ['php'],
+                options: {
+                    livereload: 35729,
+                },
             },
-        },
+        }, // End watch
 
     });
 
