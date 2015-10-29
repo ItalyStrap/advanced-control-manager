@@ -56,6 +56,8 @@ if ( !defined( 'ITALYSTRAP_BASENAME' ) )
  */
 require(ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php');
 
+require(ITALYSTRAP_PLUGIN_PATH . 'classes/class-italystrap-posts-widget.php');
+
 /**
  * Require Debug file
  */
