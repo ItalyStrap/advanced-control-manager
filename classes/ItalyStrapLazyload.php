@@ -87,7 +87,7 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 			 * R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
 			 * Gif grigia
 			 * R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
-			 * Gir trasparente
+			 * Gif trasparente
 			 * R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
 			 * @var string
 			 */
