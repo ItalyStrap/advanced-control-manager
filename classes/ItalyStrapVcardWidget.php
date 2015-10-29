@@ -297,18 +297,29 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 			$cache[$args['widget_id']] = ob_get_flush();
 				wp_cache_set('widget_italystrap_vcard', $cache, 'widget');
 
-		}
+		} // End $this->widget()
 
+
+		/**
+		 * Update widget data
+		 * @param  array $new_instance
+		 * @param  array $old_instance
+		 * @return array               Return the sanitized array
+		 */
 		function update($new_instance, $old_instance) {
 
+			/**
+			 * Sanitizzo l'array con array_map
+			 * @var array
+			 */
 			$instance = array_map('strip_tags', $new_instance);
 
 			$this->flush_widget_cache();
 
 			$alloptions = wp_cache_get('alloptions', 'options');
 
-			if (isset($alloptions['widget_italystrap_vcard']))
-				delete_option('widget_italystrap_vcard');
+			if ( isset( $alloptions[ 'widget_italystrap_vcard' ] ) )
+				delete_option( 'widget_italystrap_vcard' );
 
 			return $instance;
 		}
@@ -380,10 +391,10 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 				<?php } //!- else
 			}
 
-		} // function
+		} // End $this->form()
 
 		/**
-		 * Upload the Javascripts for the media uploader
+		 * Upload the Javascripts for the media uploader in widget config
 		 */
 		public function upload_scripts(){
 
