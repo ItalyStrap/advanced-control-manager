@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+    "use strict";
     $(document).on("click", ".upload_image_button", function() {
 
         jQuery.data(document.body, 'prevElement', $(this).prev());
@@ -7,7 +8,7 @@ jQuery(document).ready(function($) {
             var imgurl = jQuery('img',html).attr('src');
             var inputText = jQuery.data(document.body, 'prevElement');
 
-            if(inputText != undefined && inputText != ''){
+            if(inputText !== undefined && inputText !== ''){
                 inputText.val(imgurl);
             }
 
@@ -16,5 +17,8 @@ jQuery(document).ready(function($) {
 
         tb_show('', 'media-upload.php?type=image&TB_iframe=true');
         return false;
+    });
+    $(document).ready(function() {
+
     });
 });
