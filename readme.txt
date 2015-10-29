@@ -3,7 +3,7 @@ Contributors: overclokk
 Donate link: http://www.italystrap.it/
 Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
 Requires at least: 4.0
-Tested up to: 4.1
+Tested up to: 4.5
 Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -147,6 +147,17 @@ If you have any problem please open a ticket :-)
 
 
 == Changelog ==
+
+= 1.3.4 =
+Release Date: September 19th, 2015
+
+Dev time: 1h
+
+* Fix posts page (not home page) visualization
+Promemoria prima di fare il deploy
+	Verificare questo ( is_home() && is_front_page() ) || is_front_page() nei breadcrumbs
+	Verificare home e post statici o di default
+* Added new widget for post display
 
 = 1.3.3 =
 Release Date: September 19th, 2015
