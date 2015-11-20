@@ -51,9 +51,10 @@ if ( !class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 			foreach( $get_intermediate_image_sizes as $_size ) {
 
 				/**
-				 * var $_size string The name of each thumb
+				 * The name of each thumb
+				 * var $_size string
 				 */
-				if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+				if ( $_size && in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 
 					/**
 					 * Get the size of each standard thumb
@@ -62,15 +63,15 @@ if ( !class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 					$sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );
 	 				$sizes[ $_size ]['crop'] = (bool) get_option( $_size . '_crop' );
 
-				} elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+				} elseif ( $_size && isset( $_wp_additional_image_sizes[ $_size ] ) ) {
 
 					/**
 					 * Get the size of each custom thumb
 					 */
-					$sizes[ $_size ] = array( 
-							'width' => $_wp_additional_image_sizes[ $_size ]['width'],
-							'height' => $_wp_additional_image_sizes[ $_size ]['height'],
-							'crop' =>  $_wp_additional_image_sizes[ $_size ]['crop']
+					$sizes[ $_size ] = array(
+							'width'		=> $_wp_additional_image_sizes[ $_size ]['width'],
+							'height'	=> $_wp_additional_image_sizes[ $_size ]['height'],
+							'crop'		=> $_wp_additional_image_sizes[ $_size ]['crop'],
 							);
 
 				}
@@ -78,13 +79,13 @@ if ( !class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 				/**
 				 * Add thumb name to administrators in the WordPress Media Library
 				 */
-				$custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
+				if ( isset( $sizes[ $_size ] ) )
+					$custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
 
 			}
 
 			return array_merge( $args, $custom );
 		}
-
 	}
 
 }

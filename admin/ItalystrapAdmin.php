@@ -197,6 +197,22 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 				'italystrap_pluginPage_section'
 				);
 
+			add_settings_field( 
+				'post_widget', 
+				__( 'Post Widget for Custom Loop', 'ItalyStrap' ), 
+				array( $this, 'italystrap_option_post_widget'), 
+				'italystrap_options_group', 
+				'italystrap_pluginPage_section'
+				);
+
+			add_settings_field( 
+				'media_widget', 
+				__( 'Widget for Media Carousel', 'ItalyStrap' ), 
+				array( $this, 'italystrap_option_media_widget'), 
+				'italystrap_options_group', 
+				'italystrap_pluginPage_section'
+				);
+
 			register_setting(
 				'italystrap_options_group',
 				'italystrap_settings'
@@ -212,7 +228,7 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 		}
 
-		public function italystrap_option_lazyload($args) { 
+		public function italystrap_option_lazyload( $args ) { 
 
 			$options = get_option( 'italystrap_settings' );
 
@@ -225,7 +241,7 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 		}
 
-		public function italystrap_option_vcardwidget($args) { 
+		public function italystrap_option_vcardwidget( $args ) {
 
 			$options = get_option( 'italystrap_settings' );
 
@@ -233,6 +249,32 @@ if ( !class_exists( 'ItalyStrapAdmin' ) ){
 
 			<input type='checkbox' name='italystrap_settings[vcardwidget]' <?php checked( isset($options['vcardwidget']), 1 ); ?> value='1'>
 			<label for="italystrap_settings[vcardwidget]"><?php _e( 'Activate Vcard Widget for your local business (Experimental)', 'ItalyStrap' ); ?></label>
+
+		<?php
+
+		}
+
+		public function italystrap_option_post_widget( $args ) {
+
+			$options = get_option( 'italystrap_settings' );
+
+		?>
+
+			<input type='checkbox' name='italystrap_settings[post_widget]' <?php checked( isset($options['post_widget']), 1 ); ?> value='1'>
+			<label for="italystrap_settings[post_widget]"><?php _e( 'Activate Post Widget for Custom posts loop', 'ItalyStrap' ); ?></label>
+
+		<?php
+
+		}
+
+		public function italystrap_option_media_widget( $args ) {
+
+			$options = get_option( 'italystrap_settings' );
+
+		?>
+
+			<input type='checkbox' name='italystrap_settings[media_widget]' <?php checked( isset($options['media_widget']), 1 ); ?> value='1'>
+			<label for="italystrap_settings[media_widget]"><?php _e( 'Activate Bootstrap Carousel Media Widget', 'ItalyStrap' ); ?></label>
 
 		<?php
 

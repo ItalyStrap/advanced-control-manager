@@ -1,11 +1,20 @@
 {
+	"require": {
+		"php": ">=5.3.0",
+		"mobiledetect/mobiledetectlib": "dev-master",
+		"webdevstudios/cmb2": "dev-master"
+	},
 	"autoload": {
 		"classmap": [
 			"admin",
-			"classes"
-		]
+			"classes",
+			"widget"
+		],
+		"files": ["vendor/webdevstudios/cmb2/init.php"]
 	},
-	"require": {
-		"mobiledetect/mobiledetectlib": "dev-master"
+	"extra": {
+		"installer-paths": {
+			"vendor/{$name}/": ["webdevstudios/cmb2"]
+		}
 	}
 }

@@ -2,7 +2,7 @@
 /**
  *	Plugin Name:	ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
- *	Description:	Make your website more powerfull. | <a href="admin.php?page=italystrap-documentation">Documentation</a> 
+ *	Description:	Make your website more powerfull. | <a href="admin.php?page=italystrap-documentation">Documentation</a>
  *	Version:		1.3.3
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
@@ -15,53 +15,54 @@
  * @since 1.0.0
  */
 
+use \ItalyStrap\Core\Posts_Widget;
+use \ItalyStrap\Core\CarouselMediaWidget;
+
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
  */
-if ( !defined( 'WPINC' ) )
+if ( ! defined( 'WPINC' ) )
 	die;
 
 /**
  * Define some costant for internal use
  */
-if ( !defined( 'ITALYSTRAP_PLUGIN' ) )
-	define('ITALYSTRAP_PLUGIN', true);
+if ( ! defined( 'ITALYSTRAP_PLUGIN' ) )
+	define( 'ITALYSTRAP_PLUGIN', true );
 
 /**
  * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended\italystrap.php
  */
-if ( !defined( 'ITALYSTRAP_FILE' ) )
-	define('ITALYSTRAP_FILE', __FILE__ );
+if ( ! defined( 'ITALYSTRAP_FILE' ) )
+	define( 'ITALYSTRAP_FILE', __FILE__ );
 
 /**
  * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended/
  */
-if ( !defined( 'ITALYSTRAP_PLUGIN_PATH' ) )
-	define('ITALYSTRAP_PLUGIN_PATH', plugin_dir_path( ITALYSTRAP_FILE ));
+if ( ! defined( 'ITALYSTRAP_PLUGIN_PATH' ) )
+	define( 'ITALYSTRAP_PLUGIN_PATH', plugin_dir_path( ITALYSTRAP_FILE ) );
 
 /**
  * Example: 'http://192.168.1.10/italystrap/wp-content/plugins/italystrap-extended/'
  */
-if ( !defined( 'ITALYSTRAP_PLUGIN_URL' ) )
-	define('ITALYSTRAP_PLUGIN_URL', plugin_dir_url( ITALYSTRAP_FILE ));
+if ( ! defined( 'ITALYSTRAP_PLUGIN_URL' ) )
+	define( 'ITALYSTRAP_PLUGIN_URL', plugin_dir_url( ITALYSTRAP_FILE ) );
 
 /**
  * Example = italystrap-extended/italystrap.php
  */
-if ( !defined( 'ITALYSTRAP_BASENAME' ) )
-	define('ITALYSTRAP_BASENAME', plugin_basename( ITALYSTRAP_FILE ));
+if ( ! defined( 'ITALYSTRAP_BASENAME' ) )
+	define( 'ITALYSTRAP_BASENAME', plugin_basename( ITALYSTRAP_FILE ) );
 
 /**
  * Require PHP autoload
  */
-require(ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php');
-
-require(ITALYSTRAP_PLUGIN_PATH . 'classes/class-italystrap-posts-widget.php');
+require( ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php' );
 
 /**
  * Require Debug file
  */
-require(ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php');
+require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
 
 /**
  * Initialize class
@@ -73,7 +74,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		private $options = '';
 		
-		public function __construct(){
+		public function __construct() {
 
 			$this->options = get_option( 'italystrap_settings' );
 
@@ -85,30 +86,36 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 				new ItalyStrapAdmin;
 				new ItalyStrapAdminMediaSettings;
 				new ItalyStrapAdminGallerySettings;
-			}			
+			}
 
 			/**
-			 * adjust priority to make sure this runs
+			 * Adjust priority to make sure this runs
 			 */
-			add_action( 'init', array( $this, 'italystrap_init'), 100 );
+			add_action( 'init', array( $this, 'italystrap_init' ), 100 );
 
 			/**
-			 * 
+			 * Print inline css in header
 			 */
-			add_action( 'wp_head', array( $this, 'italystrap_print_inline_css_in_header'), 999 );
+			add_action( 'wp_head', array( $this, 'italystrap_print_inline_css_in_header' ), 999 );
 
 			/**
 			 * Print inline script in footer
 			 * Load after all and before shotdown hook
 			 */
-			add_action( 'wp_print_footer_scripts', array( $this, 'italystrap_print_inline_script_in_footer'), 999 );
+			add_action( 'wp_print_footer_scripts', array( $this, 'italystrap_print_inline_script_in_footer' ), 999 );
 
-			if ( isset( $this->options['lazyload'] ) && !is_admin() )
+			if ( isset( $this->options['lazyload'] ) && ! is_admin() )
 				ItalyStrapLazyload::init();
 
 			if ( isset( $this->options['vcardwidget'] ) )
-				add_action('widgets_init', function(){ register_widget('ItalyStrapVcardWidget' ); } );
-			
+				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrapVcardWidget' ); } );
+
+			if ( isset( $this->options['post_widget'] ) )
+				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Posts_Widget' ); } );
+
+			if ( isset( $this->options['media_widget'] ) )
+				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\CarouselMediaWidget' ); } );
+
 		}
 
 		/**
@@ -128,39 +135,38 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 			$post = get_post();
 			$gallery = false;
 
-			if( isset($post->post_content) && has_shortcode( $post->post_content, 'gallery') )
-			        $gallery = true; // http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/
+			if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) )
+				$gallery = true; // http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
 
-			if( !$gallery )
-			    new ItalyStrapCarouselLoader();
+			if ( ! $gallery )
+				new ItalyStrapCarouselLoader();
 
 		}
 
 		/**
-		 * Print inline script in footer after all and before shotdown hook
-		 * @return string Internal script
+		 * Print inline script in footer after all and before shotdown hook.
+		 *
 		 * @todo Creare un sistema che appenda regolarmente dopo gli script
 		 *       e tenga presente delle dipendenze da jquery
 		 */
-		public function italystrap_print_inline_script_in_footer(){
+		public function italystrap_print_inline_script_in_footer() {
 
 			$scipt = ItalyStrapGlobals::get();
 
-			if ($scipt) echo '<script type="text/javascript">/*<![CDATA[*/' . $scipt . '/*]]>*/</script>';
+			if ( $scipt ) echo '<script type="text/javascript">/*<![CDATA[*/' . $scipt . '/*]]>*/</script>';
 
 			else echo '';
 
 		}
 
-		public function italystrap_print_inline_css_in_header(){
+		public function italystrap_print_inline_css_in_header() {
 
 			$css = ItalyStrapGlobalsCss::get();
 
-			if ($css) echo '<style>' . $css . '</style>';
+			if ( $css ) echo '<style>' . $css . '</style>';
 
 			else echo '';
 		}
-
 	} // End ItalyStrapInit
 
 	new ItalyStrapInit;
@@ -171,4 +177,5 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
  * @todo Passare l'istanza dentro la classe http://stackoverflow.com/a/10634148
  * @var obj
  */
+// $detect = new \Detection\MobileDetect;
 $detect = new Mobile_Detect;

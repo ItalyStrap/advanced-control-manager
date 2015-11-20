@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Detection\\MobileDetect' => $vendorDir . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
     'ItalyStrapAdmin' => $baseDir . '/admin/ItalystrapAdmin.php',
     'ItalyStrapAdminGallerySettings' => $baseDir . '/admin/ItalyStrapAdminGallerySettings.php',
     'ItalyStrapAdminMediaSettings' => $baseDir . '/admin/ItalyStrapAdminMediaSettings.php',
@@ -17,5 +18,7 @@ return array(
     'ItalyStrapHTMLSitemaps' => $baseDir . '/classes/ItalyStrapHTMLSitemaps.php',
     'ItalyStrapLazyload' => $baseDir . '/classes/ItalyStrapLazyload.php',
     'ItalyStrapVcardWidget' => $baseDir . '/classes/ItalyStrapVcardWidget.php',
-    'Mobile_Detect' => $baseDir . '/classes/lib/Mobile_Detect.php',
+    'ItalyStrap\\Core\\CarouselMediaWidget' => $baseDir . '/widget/CarouselMediaWidget.php',
+    'ItalyStrap\\Core\\Posts_Widget' => $baseDir . '/classes/class-italystrap-posts-widget.php',
+    'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
 );

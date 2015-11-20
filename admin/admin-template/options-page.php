@@ -1,11 +1,11 @@
-<div class="wrap">
-	<?php
-	// if ( defined('ITALYSTRAP_THEME') ) {
-	// 	echo "<p>string</p>";
-	// }
-	?>
-		<?php settings_errors(); ?>
+<?php
+/**
+ * Display the options page
+ * @package ItalyStrap
+ */
 
+?>
+<div class="wrap">
 	<form action='options.php' method='post'>
 		
 		<?php
