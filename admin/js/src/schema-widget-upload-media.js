@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 	"use strict";
-	$( "#sortable" ).sortable();
+
 	$(document).on("click", ".upload_image_button", function() {
 
 		jQuery.data(document.body, 'prevElement', $(this).prev());
@@ -20,35 +20,47 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
+
+	// http://mikejolley.com/2012/12/21/using-the-new-wordpress-3-5-media-uploader-in-plugins/
 	// Uploading files
 	var file_frame;
-
 	var images_container;
 	var image_container;
+	var ul_container = $('#media_carousel_sortable ul');
+	var input_ids = $('.ids');
+
+	/**
+	 * Sortable works only in a wrapper
+	 * {@link https://wordpress.org/support/topic/jquery-ui-sortable-doesnt-seem-to-work-in-admin-in-widget}
+	 * Use disableSelection() only for disabling text that is must not to be selectable
+	 */
+	$( "#media_carousel_sortable ul" ).sortable({
+		cursor: 'move',
+		stop: function(){
+			_update_input_ids ( ul_container, input_ids );
+		}
+	});
 
 	/**
 	 * Delete image on click and update input.ids
 	 */
-	$(document).on("click", ".carousel-image", function() {
+	$(document).on("click", ".dashicons-no", function() {
 
 		/**
 		 * This is the span wrapper of a single image
 		 * @type {obj}
 		 */
-		image_container = $(this).parent();
+		image_container = $(this).parent().parent();
 
-		$(this).remove();
+		/**
+		 * Remove the image selected
+		 */
+		image_container.remove();
 
-		var stringIDS = '';
-
-		image_container.children().each(function(i, el) {
-
-			stringIDS += $(el).children().data('id') + ',';
-
-		});
-
-		var input_ids = image_container.parent().find('.ids');
-		input_ids.val( stringIDS );
+		/**
+		 * Update the input ids
+		 */
+		_update_input_ids ( ul_container, input_ids );
 
 	});
 
@@ -84,7 +96,7 @@ jQuery(document).ready(function($) {
 			 */
 			var url = attachment.sizes.thumbnail.url ? attachment.sizes.thumbnail.url : attachment.url ;
 
-			images_container.find('.carousel_images').append('<span class="carousel-image ui-state-default"><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></span>');
+			images_container.find('.carousel_images').append('<li class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></div></li>');
 
 			var input_ids = images_container.find('.ids');
 			input_ids.val( input_ids.val() + attachment.id + ',' );
@@ -100,17 +112,33 @@ jQuery(document).ready(function($) {
 		// Finally, open the modal
 		file_frame.open();
 	});
-
-	
-	$(document).ready(function() {
-		$( "#sortable" ).sortable({
-			stop: function( event, ui ) {
-
-			}
-		});
-		// $(function() {
-		// 	$( "#sortable" ).sortable();
-		// 	$( "#sortable" ).disableSelection();
-		// });
-	});
 });
+
+/**
+ * Get the IDS from all images in the list
+ * @param  {obj} container Object of the container
+ * @return {string}        Return the ids like this 1,2,3,
+ */
+function _get_the_images_id ( container ) {
+
+		var ids = '';
+
+		container.children().each(function(i, el) {
+
+			ids += jQuery(el).find('img').data('id') + ',';
+
+		});
+
+		return ids;
+}
+
+/**
+ * Update the input ids
+ * @param  {obj} ul_container Object of list container
+ * @param  {obj} input_ids    Object of input ids
+ */
+function _update_input_ids ( ul_container, input_ids ) {
+
+	input_ids.val( _get_the_images_id( ul_container ) );
+
+}

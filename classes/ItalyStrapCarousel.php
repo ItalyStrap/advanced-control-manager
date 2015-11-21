@@ -10,7 +10,7 @@
  *
  * @since   1.1
  */
-if ( !class_exists('ItalyStrapCarouselLoader') ) {
+if ( ! class_exists('ItalyStrapCarouselLoader') ) {
 
 	class ItalyStrapCarouselLoader {
 
@@ -23,6 +23,14 @@ if ( !class_exists('ItalyStrapCarouselLoader') ) {
 		}
 
 		function gallery_shortcode( $output = '', $atts, $content = false, $tag = false ) {
+
+			/**
+			 * @deprecated 1.4.0 Deprecated title attribute for shortcode, use image_title instead
+			 */
+			if ( ! empty( $atts['title'] ) )
+				_deprecated_argument( __FUNCTION__, '1.4.0', __( 'Use $atts[\'image_title\'] instead of $atts[\'title\']', 'ItalyStrap' ) );
+
+			$atts['image_title'] = ( isset( $atts['title'] ) ) ? $atts['title'] : null ;
 
 			$ItalyStrapCarousel = new ItalyStrapCarousel( $atts );
 			return $ItalyStrapCarousel->__get( 'output' );
@@ -191,7 +199,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				/**
 				 * Show or hide image title. Set false to hide. Default: true.
 				 */
-				'title' => 'true',
+				'image_title' => 'true',
 
 				/**
 				 * Type of link to show if "title" is set to true.
@@ -383,7 +391,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 					$class = ( 0 === $i ) ? 'active ' : '';
 					$output .= $this->get_img_container( 'start', $i );
 					$output .= $this->get_img( $post, $i );
-					if ( 'false' !== $title || 'false' !== $text ) {
+					if ( 'false' !== $image_title || 'false' !== $text ) {
 						$output .= $this->get_caption_container( 'start' );
 						$output .= $this->get_title( $post );
 						$output .= $this->get_excerpt( $post );
@@ -607,7 +615,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				$$key = $value;
 
 			$output = '';
-			if ( $title !== 'false' ) :
+			if ( $image_title !== 'false' ) :
 				switch ( $link ) {
 				 	case 'file':
 				 		$post_title = '<a href="' . $post['guid'] . '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';

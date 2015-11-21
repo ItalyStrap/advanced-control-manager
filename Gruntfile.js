@@ -1,5 +1,5 @@
-'use strict';
 module.exports = function(grunt) {
+	'use strict';
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -28,6 +28,9 @@ module.exports = function(grunt) {
 					'admin/js/gallery-settings.min.js': [
 						'admin/js/src/gallery-settings.js'
 						],
+					'admin/js/widget.min.js': [
+						'admin/js/src/widget.js'
+						],
 					'js/unveil.min.js': [
 						'js/src/unveil.js'
 						]
@@ -46,8 +49,8 @@ module.exports = function(grunt) {
 		compass:{ // https://github.com/gruntjs/grunt-contrib-compass
 			src:{
 				options: {
-					sassDir:['css/src/sass'],
-					cssDir:['css'],
+					sassDir:['admin/css/src/scss'],
+					cssDir:['admin/css'],
 					outputStyle: 'compressed'
 				}
 			},

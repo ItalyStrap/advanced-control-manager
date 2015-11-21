@@ -40,14 +40,13 @@ class Posts_Widget extends WP_Widget {
 
 		add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_admin_scripts' ) );
 
+		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 		/**
 		 * Valutare se inserire uno stile predefinito.
 		 * if (apply_filters('italystrap_enqueue_styles', true) && !is_admin()) {
 		 * 	add_action('wp_enqueue_scripts', array(&$this, 'enqueue_theme_scripts'));
 		 * }
 		 */
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
 	}
 	/**
@@ -292,33 +291,6 @@ class Posts_Widget extends WP_Widget {
 
 		return $instance;
 
-	}
-
-	function flush_widget_cache() {
-
-		wp_cache_delete( 'italystrap_posts_widget', 'widget' );
-
-	}
-
-	/**
-	 * Enqueue scripts and styles in admin panel
-	 */
-	function enqueue_admin_scripts() {
-
-		wp_register_style( 'italystrap_admin_styles', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget-post-admin.min.css' );
-		wp_enqueue_style( 'italystrap_admin_styles' );
-
-		wp_register_script( 'italystrap_admin_scripts', ITALYSTRAP_PLUGIN_URL . 'admin/js/widget-post-admin.min.js', array( 'jquery' ), null, true );
-		wp_enqueue_script( 'italystrap_admin_scripts' );
-
-	}
-
-	/**
-	 * Add custom stile in front-end
-	 */
-	function enqueue_theme_scripts() {
-		wp_register_style( 'italystrap_theme_standard', ITALYSTRAP_PLUGIN_URL . 'css/widget-post-theme-standard.min.css' );
-		wp_enqueue_style( 'italystrap_theme_standard' );
 	}
 
 	/**
@@ -784,6 +756,34 @@ var toggleExcerptReadmore = function() {
 }
 
 	}
+
+
+	function flush_widget_cache() {
+
+		wp_cache_delete( 'italystrap_posts_widget', 'widget' );
+
+	}
+
+	/**
+	 * Enqueue scripts and styles in admin panel
+	 */
+	function enqueue_admin_scripts() {
+
+		wp_register_style( 'italystrap_admin_styles', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
+		wp_enqueue_style( 'italystrap_admin_styles' );
+
+		wp_register_script( 'italystrap_admin_scripts', ITALYSTRAP_PLUGIN_URL . 'admin/js/widget-post-admin.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'italystrap_admin_scripts' );
+
+	}
+
+	/**
+	 * Add custom stile in front-end
+	 */
+	// function enqueue_theme_scripts() {
+	// 	wp_register_style( 'italystrap_theme_standard', ITALYSTRAP_PLUGIN_URL . 'css/widget-post-theme-standard.min.css' );
+	// 	wp_enqueue_style( 'italystrap_theme_standard' );
+	// }
 
 	/**
 	 * Upload the Javascripts for the media uploader in widget config

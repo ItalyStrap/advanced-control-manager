@@ -398,11 +398,13 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 		 */
 		public function upload_scripts(){
 
+			$js_file = ( WP_DEBUG ) ? 'admin/js/src/widget.js' : 'admin/js/widget.min.js';
+
 			wp_enqueue_script('media-upload');
 			wp_enqueue_script('thickbox');
 			wp_enqueue_script(
 				'upload_media_widget',
-				ITALYSTRAP_PLUGIN_URL . 'js/src/schema-widget-upload-media.js',
+				ITALYSTRAP_PLUGIN_URL . $js_file,
 				array('jquery')
 				);
 			wp_enqueue_style('thickbox');

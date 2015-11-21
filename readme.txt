@@ -148,6 +148,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 1.4.0 =
+Release Date: September 19th, 2015
+
+Dev time: 100h
+
+* Deprecated title attribute ($atts['title']) in gallery shortcode, use image_title instead 
+
 = 1.3.4 =
 Release Date: September 19th, 2015
 
