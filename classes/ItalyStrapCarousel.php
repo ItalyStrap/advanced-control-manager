@@ -8,6 +8,8 @@
  *
  * Loads ItalyStrapCarousel to display a new carousel when needed. 
  *
+ * @todo https://codex.wordpress.org/it:Shortcode_Gallery Aggiungere parametri mancanti
+ *
  * @since   1.1
  */
 if ( ! class_exists('ItalyStrapCarouselLoader') ) {
