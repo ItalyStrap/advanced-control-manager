@@ -20,5 +20,6 @@ return array(
     'ItalyStrapVcardWidget' => $baseDir . '/widget/ItalyStrapVcardWidget.php',
     'ItalyStrap\\Core\\CarouselMediaWidget' => $baseDir . '/widget/CarouselMediaWidget.php',
     'ItalyStrap\\Core\\Posts_Widget' => $baseDir . '/widget/class-italystrap-posts-widget.php',
+    'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/ItalyStrapWidget.php',
     'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
 );

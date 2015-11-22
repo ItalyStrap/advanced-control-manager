@@ -720,28 +720,29 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		function get_javascript() {
 
 			// extract( $this->attributes );
-			foreach($this->attributes as $key => $value)
-				$$key = $value;
-
+			// foreach($this->attributes as $key => $value)
+			// 	$$key = $value;
 
 			// $output = '<script type="text/javascript">// <![CDATA[
 			// 	jQuery(document).ready(function($) {$(\'#' . $name . '\').carousel({ interval : ' . $interval . ' , pause : "' . $pause . '" });
 			// 	 });
-			// 	// ]]></script>';	
-			
+			// 	// ]]></script>';
+
+			$pause = ( '1' === $this->attributes['pause'] ) ? ',pause:"' . $this->attributes['pause'] . '"' : '' ;
+
 			/**
 			 * LazyLoad for Bootstrap carousel
 			 * http://stackoverflow.com/questions/27675968/lazy-load-not-work-in-bootstrap-carousel
 			 * http://jsfiddle.net/51muqdLf/5/
 			 */
-			$lazyload = 'var cHeight = 0;$("#' . $name . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
+			$lazyload = 'var cHeight = 0;$("#' . $this->attributes['name'] . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
 
-			$output = 'jQuery(document).ready(function($){$(\'#' . $name . '\').carousel({interval:' . $interval . ',pause:"' . $pause . '" });' . $lazyload . '});';
+			$output = 'jQuery(document).ready(function($){$(\'#' . $this->attributes['name'] . '\').carousel({interval:' . $this->attributes['interval'] . $pause .' });' . $lazyload . '});';
 
 			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes );
 
 			return $output;
-			// echo $output;
+
 		}
 
 		/**
@@ -756,7 +757,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			$array = explode( ',' , $string );
 
 			// Support for random order.
-			if ( 'rand' == $orderby )
+			if ( 'rand' === $orderby )
 				shuffle( $array );
 
 			$array = apply_filters( 'ItalyStrap_carousel_make_array', $array, $this->attributes );
@@ -766,5 +767,4 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		}
 
 	}
-
 }

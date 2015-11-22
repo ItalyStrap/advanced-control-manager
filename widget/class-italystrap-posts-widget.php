@@ -9,7 +9,7 @@ use WP_Query;
  * and schema.org markup.
  * Original plugin here http://wordpress.org/plugins/ultimate-posts-widget/
  */
-class Posts_Widget extends WP_Widget {
+class Posts_Widget extends Widget {
 
 	/**
 	 * Init the post widget
@@ -38,7 +38,7 @@ class Posts_Widget extends WP_Widget {
 		add_action( 'deleted_post', array( &$this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( &$this, 'flush_widget_cache' ) );
 
-		add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_admin_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_admin_scripts' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 		/**
@@ -767,15 +767,15 @@ var toggleExcerptReadmore = function() {
 	/**
 	 * Enqueue scripts and styles in admin panel
 	 */
-	function enqueue_admin_scripts() {
+	// function enqueue_admin_scripts() {
 
-		wp_register_style( 'italystrap_admin_styles', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
-		wp_enqueue_style( 'italystrap_admin_styles' );
+	// 	wp_register_style( 'italystrap_admin_styles', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
+	// 	wp_enqueue_style( 'italystrap_admin_styles' );
 
-		wp_register_script( 'italystrap_admin_scripts', ITALYSTRAP_PLUGIN_URL . 'admin/js/widget-post-admin.min.js', array( 'jquery' ), null, true );
-		wp_enqueue_script( 'italystrap_admin_scripts' );
+	// 	wp_register_script( 'italystrap_admin_scripts', ITALYSTRAP_PLUGIN_URL . 'admin/js/widget-post-admin.min.js', array( 'jquery' ), null, true );
+	// 	wp_enqueue_script( 'italystrap_admin_scripts' );
 
-	}
+	// }
 
 	/**
 	 * Add custom stile in front-end
@@ -788,23 +788,23 @@ var toggleExcerptReadmore = function() {
 	/**
 	 * Upload the Javascripts for the media uploader in widget config
 	 */
-	public function upload_scripts() {
+	// public function upload_scripts() {
 
-		if ( ! wp_script_is( 'media-upload', 'enqueued' ) )
-			wp_enqueue_script( 'media-upload' );
+	// 	if ( ! wp_script_is( 'media-upload', 'enqueued' ) )
+	// 		wp_enqueue_script( 'media-upload' );
 
-		if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
-			wp_enqueue_script( 'thickbox' );
+	// 	if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
+	// 		wp_enqueue_script( 'thickbox' );
 
-		if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
-			wp_enqueue_script(
-				'upload_media_widget',
-				ITALYSTRAP_PLUGIN_URL . 'js/src/schema-widget-upload-media.js',
-				array( 'jquery' )
-			);
+	// 	if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
+	// 		wp_enqueue_script(
+	// 			'upload_media_widget',
+	// 			ITALYSTRAP_PLUGIN_URL . 'js/src/schema-widget-upload-media.js',
+	// 			array( 'jquery' )
+	// 		);
 
-		if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
-			wp_enqueue_style( 'thickbox' );
+	// 	if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
+	// 		wp_enqueue_style( 'thickbox' );
 
-	}
+	// }
 } // end class

@@ -48,21 +48,40 @@ jQuery(document).ready(function($) {
 	var input_ids = $('.ids');
 
 	/**
-	 * Sortable works only in a wrapper
-	 * {@link https://wordpress.org/support/topic/jquery-ui-sortable-doesnt-seem-to-work-in-admin-in-widget}
-	 * Use disableSelection() only for disabling text that is must not to be selectable
+	 * Function for sortable functionality
 	 */
-	$( "#media_carousel_sortable ul" ).sortable({
-		cursor: 'move',
-		stop: function(){
-			_update_input_ids ( ul_container, input_ids );
-		}
-	});
+	function runSortable () {
+
+		/**
+		 * Sortable works only in a wrapper
+		 * {@link https://wordpress.org/support/topic/jquery-ui-sortable-doesnt-seem-to-work-in-admin-in-widget}
+		 * Use disableSelection() only for disabling text that is must not to be selectable
+		 */
+		$( "#media_carousel_sortable ul" ).sortable({
+			cursor: 'move',
+			stop: function(){
+				_update_input_ids ( ul_container, input_ids );
+			}
+		});
+
+	}
+	runSortable();
+
+	/**
+	 * Run sortable every time is saved a widget configuration
+	 * @link http://wordpress.stackexchange.com/questions/130084/executing-javascript-when-a-widget-is-added-in-the-backend
+	 * @see  also https://core.trac.wordpress.org/ticket/19675 for widget events
+	 */
+	$( document ).ajaxStop( function() {
+		runSortable();
+	} );
 
 	/**
 	 * Delete image on click and update input.ids
 	 */
-	$(document).on("click", ".dashicons-no", function() {
+	$(document).on("click", ".dashicons-no", function( event ) {
+
+		event.preventDefault();
 
 		/**
 		 * This is the span wrapper of a single image

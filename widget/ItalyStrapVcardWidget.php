@@ -1,4 +1,6 @@
 <?php
+
+use \ItalyStrap\Core\Widget;
 /**
  * @link http://codex.wordpress.org/Function_Reference/the_widget
  * @link https://core.trac.wordpress.org/browser/tags/3.9.2/src/wp-includes/default-widgets.php#L0
@@ -25,7 +27,7 @@
  */
 if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 
-	class ItalyStrapVcardWidget extends WP_Widget {
+	class ItalyStrapVcardWidget extends Widget {
 
 		/**
 		 * Array with widget fields
@@ -324,12 +326,6 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 			return $instance;
 		}
 
-		function flush_widget_cache(){
-
-			wp_cache_delete('widget_italystrap_vcard', 'widget');
-		}
-
-
 		/**
 		 * Form imput in widget admin panel
 		 * @param  array  $instance Array of input field
@@ -393,23 +389,10 @@ if ( ! class_exists( 'ItalyStrapVcardWidget' ) ){
 
 		} // End $this->form()
 
-		/**
-		 * Upload the Javascripts for the media uploader in widget config
-		 */
-		public function upload_scripts(){
+		function flush_widget_cache(){
 
-			$js_file = ( WP_DEBUG ) ? 'admin/js/src/widget.js' : 'admin/js/widget.min.js';
-
-			wp_enqueue_script('media-upload');
-			wp_enqueue_script('thickbox');
-			wp_enqueue_script(
-				'upload_media_widget',
-				ITALYSTRAP_PLUGIN_URL . $js_file,
-				array('jquery')
-				);
-			wp_enqueue_style('thickbox');
-
+			wp_cache_delete('widget_italystrap_vcard', 'widget');
 		}
-
+		
 	}
 }// if class_exist

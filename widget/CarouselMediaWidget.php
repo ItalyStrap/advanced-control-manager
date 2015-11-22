@@ -3,27 +3,28 @@
 use \WP_Widget;
 use \ItalyStrapCarousel;
 /**
- * Widget API: WP_Widget_Text class
+ * Widget API: CarouselMediaWidget class
  *
- * @package WordPress
- * @subpackage Widgets
- * @since 4.4.0
+ * @package ItalyStrap
+ * @since 1.4.0
  */
 
 /**
- * Core class used to implement a Text widget.
+ * Core class used to implement a Bootstrap Carousel widget.
  *
  * @since 1.4.0
  *
  * @see WP_Widget
  */
-class CarouselMediaWidget extends WP_Widget {
+class CarouselMediaWidget extends Widget {
 
 	/**
 	 * Array with default value
 	 * @var array
 	 */
 	private $fields = array();
+
+	private $carousel_options = array();
 
 	/**
 	 * Sets up a new Bootstrap carousel widget instance.
@@ -188,6 +189,44 @@ class CarouselMediaWidget extends WP_Widget {
 
 		);
 
+		$this->carousel_options = array(
+			'orderby'		=> array(
+					'menu_order',
+					'title',
+					'post_date',
+					'rand',
+					'ID',
+				),
+			'indicators'	=> array(
+					'before-inner',
+					'after-inner',
+					'after-control',
+					'false',
+				),
+			'control'		=> array(
+				'true',
+				'false',
+				),
+			'pause'			=> array(
+					'',
+					'hover',
+				),
+			'image_title'	=> array(
+				'true',
+				'false',
+				),
+			'text'			=> array(
+				'true',
+				'false',
+				),
+			'wpautop'		=> array(
+				'true',
+				'false',
+				),
+
+
+			);
+
 		$widget_ops = array(
 			'classname'		=> 'widget_italystrap_media_carousel',
 			'description'	=> __( 'Use this widget to add a Bootstrap Media Carousel', 'ItalyStrap' ),
@@ -197,7 +236,10 @@ class CarouselMediaWidget extends WP_Widget {
 		 * The width and eight of the widget in admin
 		 * @var array
 		 */
-		$control_ops = array( 'width' => 350, 'height' => 350 );
+		$control_ops = array(
+			// 'width' => 350,
+			// 'height' => 350
+			);
 
 		parent::__construct(
 			'widget_italystrap_media_carousel',
@@ -346,25 +388,6 @@ class CarouselMediaWidget extends WP_Widget {
 				</label>
 				<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${ $key }; ?>" placeholder="<?php echo $label; ?>">
 			</p>
-
-<style>
-/*.carousel-image:hover{
-	cursor: move;
-}
-.carousel-image:hover .dashicons-no{
-	background: white;
-	border-radius: 50%;
-	color: red !important;
-	cursor: pointer !important;
-	z-index: 10;
-}
-#media_carousel_sortable ul {list-style-type: none;min-height: 155px; overflow: hidden;}
-#media_carousel_sortable ul:after {clear: both;content: "";display: block;}
-#media_carousel_sortable li { margin: 3px 3px 3px 0; padding: 1px;float: left;}
-#media_carousel_sortable li div{ position: relative;}
-#media_carousel_sortable li div img:hover{ opacity:0.5; }
-#media_carousel_sortable li div .dashicons-no{color: transparent; font-size: 20px; position: absolute; top: 10px; right: 10px;}*/
-</style>
 				<div id="media_carousel_sortable">
 					<ul  id="sortable" class="carousel_images">
 					<?php if ( ! empty( $ids ) ) : ?>
@@ -392,7 +415,7 @@ class CarouselMediaWidget extends WP_Widget {
 				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add Image', 'ItalyStrap' ); ?>" />
 			<hr>
 			<?php
-			} else if ( 'schema' === $key ) {
+			} else if ( 'indicatorss' === $key ) {
 
 			?>
 			<p>
@@ -403,7 +426,7 @@ class CarouselMediaWidget extends WP_Widget {
 
 					<?php
 					$option = '';
-					foreach ( $this->schema as $key => $value )
+					foreach ( $this->carousel_options[ $key ] as $key => $value )
 						$option .= '<option ' . ( $selected = ( $key === ${$key} ) ? 'selected="selected"' : '' ) . ' value="' . $key . '">' . $value . '</option>';
 					echo $option;
 					?>
@@ -416,7 +439,19 @@ class CarouselMediaWidget extends WP_Widget {
 				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
 					<?php echo esc_attr( $key ); ?>:
 				</label>
+				<?php if ( isset( $this->carousel_options[ $key ] ) ) : ?>
+				<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="width:100%;" id="selectSchema" class="selectSchema">
+
+					<?php
+					$option = '';
+					foreach ( $this->carousel_options[ $key ] as $key => $value )
+						$option .= '<option ' . ( $selected = ( $key === ${$key} ) ? 'selected="selected"' : '' ) . ' value="' . $key . '">' . $value . '</option>';
+					echo $option;
+					?>
+				</select>
+				<?php else : ?>
 				<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${$key}; ?>" placeholder="<?php echo $label; ?>">
+				<?php endif; ?>
 			</p>
 			<?php } //!- else
 		}
@@ -429,41 +464,5 @@ class CarouselMediaWidget extends WP_Widget {
 	function flush_widget_cache() {
 
 		wp_cache_delete( 'widget_italystrap_media_carousel', 'widget' );
-	}
-
-	/**
-	 * Upload the Javascripts for the media uploader in widget config
-	 *
-	 * @param string $hook The name of the page.
-	 */
-	public function upload_scripts( $hook ) {
-
-		if ( 'widgets.php' !== $hook ) {
-			return;
-		}
-
-		wp_enqueue_style( 'italystrap_widget', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
-
-		if ( function_exists( 'wp_enqueue_media' ) ) {
-
-			wp_enqueue_media();
-
-		} else {
-
-			$js_file = ( WP_DEBUG ) ? 'admin/js/src/widget.js' : 'admin/js/widget.min.js';
-
-			wp_enqueue_style( 'thickbox' );
-			wp_enqueue_script( 'media-upload' );
-			wp_enqueue_script( 'thickbox' );
-			wp_enqueue_script(
-				'upload_media_widget',
-				ITALYSTRAP_PLUGIN_URL . $js_file,
-				array( 'jquery', 'jquery-ui-sortable' )
-			);
-
-		}
-
-		wp_enqueue_script( 'jquery-ui-sortable' );
-
 	}
 }

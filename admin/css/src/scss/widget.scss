@@ -1,73 +1,97 @@
 // Post Widget
 .upw-divider {
-  border: 0;
-  border-top: 1px solid #DFDFDF;
+	border: 0;
+	border-top: 1px solid #DFDFDF;
 }
 
 .upw-tabs {
-  display: block;
-  border-bottom: 1px solid #DFDFDF;
-  margin: 1em 0;
+	display: block;
+	border-bottom: 1px solid #DFDFDF;
+	margin: 1em 0;
 }
 
 .upw-tab-item {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-bottom: 0;
-  color: #666;
-  padding: 8px 10px;
-  &:not(.active) {
-    &:hover,
-    &:focus {
-      color: darken(#666, 10%);
-      background-color: darken(#fff, 3%);
-      cursor: pointer;
-    }
-    &:active {
-      color: darken(#666, 20%);
-      background-color: darken(#fff, 6%);
-    }
-  }
-  &.active {
-    color: #444;
-    border-color: #DFDFDF;
-    background: #fff;
-    position: relative;
-    bottom: -1px;
-    cursor: default;
-    font-weight: bold;
-  }
+	display: inline-block;
+	border: 1px solid transparent;
+	border-bottom: 0;
+	color: #666;
+	padding: 8px 10px;
+	&:not(.active) {
+		&:hover,
+		&:focus {
+			color: darken(#666, 10%);
+			background-color: darken(#fff, 3%);
+			cursor: pointer;
+		}
+		&:active {
+			color: darken(#666, 20%);
+			background-color: darken(#fff, 6%);
+		}
+	}
+	&.active {
+		color: #444;
+		border-color: #DFDFDF;
+		background: #fff;
+		position: relative;
+		bottom: -1px;
+		cursor: default;
+		font-weight: bold;
+	}
 }
 
 .upw-hide {
-  display: none !important;
+	display: none !important;
 }
 
 .upw-credits {
-  font-size: 0.9em;
-  background: darken(#fff, 3%);
-  border: 1px solid darken(#fff, 8%);
-  padding: 4px 6px;
+	font-size: 0.9em;
+	background: darken(#fff, 3%);
+	border: 1px solid darken(#fff, 8%);
+	padding: 4px 6px;
 }
 // Fine post widget
 
-// Bootstrap Carousel widget
 
+// Bootstrap Carousel widget
 .carousel-image:hover{
-  cursor: move;
+	cursor: move;
 }
 .carousel-image:hover .dashicons-no{
-  background: white;
-  border-radius: 50%;
-  color: red !important;
-  cursor: pointer !important;
-  z-index: 10;
+	background: white;
+	border-radius: 50%;
+	color: red !important;
+	cursor: pointer !important;
+	z-index: 10;
 }
-#media_carousel_sortable ul {list-style-type: none;min-height: 155px; overflow: hidden;}
-#media_carousel_sortable ul:after {clear: both;content: "";display: block;}
-#media_carousel_sortable li { margin: 3px 3px 3px 0; padding: 1px;float: left;}
-#media_carousel_sortable li div{ position: relative;}
-#media_carousel_sortable li div img:hover{ opacity:0.5; }
-#media_carousel_sortable li div .dashicons-no{color: transparent; font-size: 20px; position: absolute; top: 10px; right: 10px;}
 
+#media_carousel_sortable {
+	ul {
+		list-style-type: none;
+		min-height: 155px;
+		overflow: hidden;
+		&:after{
+			clear: both;content: "";display: block;
+		}
+	}
+	li {
+		margin: 3px 3px 3px 0;
+		padding: 1px;
+		float: left;
+		div{
+			position: relative;
+			img{
+				&:hover{
+					opacity:0.5;
+				}
+			}
+			.dashicons-no{
+				color: transparent;
+				font-size: 20px;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+		}
+	}
+}
 // Fine Bootstrap Carousel widget
