@@ -6,13 +6,13 @@
  * @package ItalyStrap
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
-if ( !class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
+if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 
 	class ItalyStrapAdminMediaSettings {
 		
 		function __construct() {
 
-			add_filter( 'image_size_names_choose', array( $this, 'italystrap_get_image_sizes' ), 999 );
+			// add_filter( 'image_size_names_choose', array( $this, 'get_image_sizes' ), 999 );
 
 		}
 
@@ -29,7 +29,7 @@ if ( !class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 		 * @param  array $args Default WordPres image list ('thumbnail', 'medium', 'large')
 		 * @return array       New list with custom and standard thumb
 		 */
-		function italystrap_get_image_sizes( $args ) {
+		function get_image_sizes( $args = array() ) {
 
 			global $_wp_additional_image_sizes;
 

@@ -2,6 +2,7 @@
 
 use \WP_Widget;
 use \ItalyStrapCarousel;
+use \ItalyStrapAdminMediaSettings;
 /**
  * Widget API: CarouselMediaWidget class
  *
@@ -37,191 +38,41 @@ class CarouselMediaWidget extends Widget {
 		/**
 		 * Define data by given attributes.
 		 */
-		$this->fields = array(
-
-			/**
-			 * Ids for the images to use.
-			 */
-			'ids' => false,
-
-			/**
-			 * Type of gallery. If it's not "carousel", nothing will be done.
-			 */
-			'type' => '',
-
-			/**
-			 * Alternative appearing order of images.
-			 */
-			'orderby' => '',
-
-			/**
-			 * Any name. String will be sanitize to be used as HTML ID. Recomended
-			 * when you want to have more than one carousel in the same page.
-			 * Default: italystrap-bootstrap-carousel.
-			 * */
-			'name' => 'media-bootstrap-carousel',
-
-			/**
-			 * Carousel container width, in px or %
-			 */
-			'width' => '',
-
-			/**
-			 * Carousel item height, in px or %
-			 */
-			'height' => '',
-
-			/**
-			 * Accepted values: before-inner, after-inner, after-control, false.
-			 * Default: before-inner.
-			 * */
-			'indicators' => 'before-inner',
-
-			/**
-			 * Enable or disable arrow right and left
-			 * Accepted values: true, false. Default: true.
-			 */
-			'control' => 'true',
-
-			/**
-			 * Add custom control icon
-			 * @todo Aggiungere la possibilità di poter decidere quali simbili
-			 *       usare come selettori delle immagini (@see Vedi sotto)
-			 * Enable or disable arrow from Glyphicons
-			 * Accepted values: true, false. Default: true.
-			 * 'arrow' => 'true',
-			 */
-
-			/**
-			 * Add custom control icon
-			 * @todo Aggiungere inserimento glyphicon nello shortcode
-			 *       decidere se fare inserire tutto lo span o solo l'icona
-			 * 'control-left' => '<span class="glyphicon glyphicon-chevron-left"></span>',
-			 * 'control-right' => '<span class="glyphicon glyphicon-chevron-right"></span>',
-			 */
-
-			/**
-			 * The amount of time to delay between automatically
-			 * cycling an item in milliseconds.
-			 * @type integer Example 5000 = 5 seconds.
-			 * Default 0, carousel will not automatically cycle.
-			 * @link http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/
-			 */
-			'interval' => 0,
-
-			/**
-			 * Pauses the cycling of the carousel on mouseenter and resumes the
-			 * cycling of the carousel on mouseleave.
-			 * @type string Default hover.
-			 */
-			'pause' => 'hover',
-
-			/**
-			 * Define tag for image title. Default: h4.
-			 */
-			'titletag' => 'h4',
-
-			/**
-			 * Show or hide image title. Set false to hide. Default: true.
-			 */
-			'image_title' => 'true',
-
-			/**
-			 * Type of link to show if "title" is set to true.
-			 * Default Link Parameters file, none, link
-			 */
-			'link' => '',
-
-			/**
-			 * Show or hide image text. Set false to hide. Default: true.
-			 */
-			'text' => 'true',
-
-			/**
-			 * Auto-format text. Default: true.
-			 */
-			'wpautop' => 'true',
-
-			/**
-			 * Extra class for container.
-			 */
-			'containerclass' => '',
-
-			/**
-			 * Extra class for item.
-			 */
-			'itemclass' => '',
-
-			/**
-			 * Extra class for caption.
-			 */
-			'captionclass' => '',
-
-			/**
-			 * Size for image attachment. Accepted values: thumbnail, medium,
-			 * large, full or own custom name added in add_image_size function.
-			 * Default: full.
-			 * @see wp_get_attachment_image_src() for further reference.
-			 */
-			'size' => 'full',
-
-			/**
-			 * Activate responsive image. Accepted values: true, false.
-			 * Default false.
-			 */
-			'responsive' => false,
-
-			/**
-			 * Size for image attachment. Accepted values: thumbnail, medium,
-			 * large, full or own custom name added in add_image_size function.
-			 * Default: large.
-			 * @see wp_get_attachment_image_src() for further reference.
-			 */
-			'sizetablet' => 'large',
-
-			/**
-			 * Size for image attachment. Accepted values: thumbnail, medium,
-			 * large, full or own custom name added in add_image_size function.
-			 * Default: medium.
-			 * @see wp_get_attachment_image_src() for further reference.
-			 */
-			'sizephone' => 'medium',
-
-		);
+		$this->fields = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' );
 
 		$this->carousel_options = array(
 			'orderby'		=> array(
-					'menu_order',
-					'title',
-					'post_date',
-					'rand',
-					'ID',
+					'menu_order'	=> __( 'menu_order (Default)', 'ItalyStrap' ),
+					'title'			=> __( 'title', 'ItalyStrap' ),
+					'post_date'		=> __( 'post_date', 'ItalyStrap' ),
+					'rand'			=> __( 'rand', 'ItalyStrap' ),
+					'ID'			=> __( 'ID', 'ItalyStrap' ),
 				),
 			'indicators'	=> array(
-					'before-inner',
-					'after-inner',
-					'after-control',
-					'false',
+					'before-inner'	=> __( 'before-inner', 'ItalyStrap' ),
+					'after-inner'	=> __( 'after-inner', 'ItalyStrap' ),
+					'after-control'	=> __( 'after-control', 'ItalyStrap' ),
+					'false'	=> __( 'false', 'ItalyStrap' ),
 				),
 			'control'		=> array(
-				'true',
-				'false',
+				'true'	=> __( 'true', 'ItalyStrap' ),
+				'false'	=> __( 'false', 'ItalyStrap' ),
 				),
 			'pause'			=> array(
-					'',
-					'hover',
+					'false'	=> __( 'none', 'ItalyStrap' ),
+					'hover'	=> __( 'hover', 'ItalyStrap' ),
 				),
 			'image_title'	=> array(
-				'true',
-				'false',
+				'true'	=> __( 'true', 'ItalyStrap' ),
+				'false'	=> __( 'false', 'ItalyStrap' ),
 				),
 			'text'			=> array(
-				'true',
-				'false',
+				'true'	=> __( 'true', 'ItalyStrap' ),
+				'false'	=> __( 'false', 'ItalyStrap' ),
 				),
 			'wpautop'		=> array(
-				'true',
-				'false',
+				'true'	=> __( 'true', 'ItalyStrap' ),
+				'false'	=> __( 'false', 'ItalyStrap' ),
 				),
 
 
@@ -361,6 +212,10 @@ class CarouselMediaWidget extends Widget {
 
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 
+		$instance['type'] = 'carousel';
+		$instance['name'] = 'media-bootstrap-carousel';
+
+
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title:' ); ?></label>
@@ -380,14 +235,14 @@ class CarouselMediaWidget extends Widget {
 			if ( 'ids' === $key ) {
 
 			?>
-			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
-			<hr>
-			<p>
-				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="display:none">
-					<?php echo $key; ?>:
-				</label>
-				<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${ $key }; ?>" placeholder="<?php echo $label; ?>">
-			</p>
+				<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+				<hr>
+				<p>
+					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="display:none">
+						<?php echo $key; ?>:
+					</label>
+					<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${ $key }; ?>" placeholder="<?php echo $label; ?>">
+				</p>
 				<div id="media_carousel_sortable">
 					<ul  id="sortable" class="carousel_images">
 					<?php if ( ! empty( $ids ) ) : ?>
@@ -415,22 +270,18 @@ class CarouselMediaWidget extends Widget {
 				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add Image', 'ItalyStrap' ); ?>" />
 			<hr>
 			<?php
-			} else if ( 'indicatorss' === $key ) {
+			} else if ( 'size' === $key ) {
 
+				// var_dump(new ItalyStrapAdminMediaSettings);
+
+				$image_size = new ItalyStrapAdminMediaSettings;
+var_dump( $image_size->get_image_sizes() );
 			?>
 			<p>
 				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
 					<?php echo $label; ?>
 				</label>
-				<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="width:100%;" id="selectSchema" class="selectSchema">
-
-					<?php
-					$option = '';
-					foreach ( $this->carousel_options[ $key ] as $key => $value )
-						$option .= '<option ' . ( $selected = ( $key === ${$key} ) ? 'selected="selected"' : '' ) . ' value="' . $key . '">' . $value . '</option>';
-					echo $option;
-					?>
-				</select>
+				<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${ $key }; ?>" placeholder="<?php echo $label; ?>">
 			</p>
 			<?php
 			} else {
@@ -439,13 +290,21 @@ class CarouselMediaWidget extends Widget {
 				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
 					<?php echo esc_attr( $key ); ?>:
 				</label>
-				<?php if ( isset( $this->carousel_options[ $key ] ) ) : ?>
-				<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="width:100%;" id="selectSchema" class="selectSchema">
+				<?php if ( isset( $this->carousel_options[ $key ] ) && is_array( $this->carousel_options[ $key ] ) ) :
+
+					$saved_option = ( isset( ${$key} ) ) ? ${$key} : '' ;
+				?>
+				<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" class="widefat">
 
 					<?php
 					$option = '';
-					foreach ( $this->carousel_options[ $key ] as $key => $value )
-						$option .= '<option ' . ( $selected = ( $key === ${$key} ) ? 'selected="selected"' : '' ) . ' value="' . $key . '">' . $value . '</option>';
+
+					foreach ( $this->carousel_options[ $key ] as $key => $value ) {
+
+						$option .= '<option ' . ( selected( $key, $saved_option ) ) . ' value="' . $key . '">' . $value . '</option>';
+
+					}
+
 					echo $option;
 					?>
 				</select>
