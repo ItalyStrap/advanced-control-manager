@@ -25,6 +25,10 @@ class CarouselMediaWidget extends Widget {
 	 */
 	private $fields = array();
 
+	/**
+	 * Default option
+	 * @var array
+	 */
 	private $carousel_options = array();
 
 	/**
@@ -52,31 +56,17 @@ class CarouselMediaWidget extends Widget {
 					'before-inner'	=> __( 'before-inner', 'ItalyStrap' ),
 					'after-inner'	=> __( 'after-inner', 'ItalyStrap' ),
 					'after-control'	=> __( 'after-control', 'ItalyStrap' ),
-					'false'	=> __( 'false', 'ItalyStrap' ),
+					'false'			=> __( 'false', 'ItalyStrap' ),
 				),
-			'control'		=> array(
-				'true'	=> __( 'true', 'ItalyStrap' ),
-				'false'	=> __( 'false', 'ItalyStrap' ),
-				),
+			'control'		=> true,
 			'pause'			=> array(
-					'false'	=> __( 'none', 'ItalyStrap' ),
-					'hover'	=> __( 'hover', 'ItalyStrap' ),
+					'false'			=> __( 'none', 'ItalyStrap' ),
+					'hover'			=> __( 'hover', 'ItalyStrap' ),
 				),
-			'image_title'	=> array(
-				'true'	=> __( 'true', 'ItalyStrap' ),
-				'false'	=> __( 'false', 'ItalyStrap' ),
-				),
-			'text'			=> array(
-				'true'	=> __( 'true', 'ItalyStrap' ),
-				'false'	=> __( 'false', 'ItalyStrap' ),
-				),
-			'wpautop'		=> array(
-				'true'	=> __( 'true', 'ItalyStrap' ),
-				'false'	=> __( 'false', 'ItalyStrap' ),
-				),
-
-
-			);
+			'image_title'	=> true,
+			'text' => true,
+			'wpautop' => true,
+		);
 
 		$widget_ops = array(
 			'classname'		=> 'widget_italystrap_media_carousel',
@@ -165,7 +155,6 @@ class CarouselMediaWidget extends Widget {
 		$cache[ $args['widget_id'] ] = ob_get_flush();
 			wp_cache_set( 'widget_italystrap_media_carousel', $cache, 'widget' );
 
-
 	}
 
 	/**
@@ -182,10 +171,12 @@ class CarouselMediaWidget extends Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		/**
-		 * Sanitizzo l'array con array_map
-		 * @var array
+		 * Sanitizzo l'array
 		 */
-		$instance = array_map( 'sanitize_text_field', $new_instance );
+		foreach ( $this->fields as $key => $value ) {
+			$new_instance[ $key ] = ( isset( $new_instance[ $key ] ) ) ? sanitize_text_field( $new_instance[ $key ] ) : '';
+		}
+		$instance = $new_instance;
 
 		$this->flush_widget_cache();
 
@@ -195,8 +186,6 @@ class CarouselMediaWidget extends Widget {
 			delete_option( 'widget_italystrap_media_carousel' );
 
 		return $instance;
-
-
 
 	}
 
@@ -210,11 +199,18 @@ class CarouselMediaWidget extends Widget {
 	 */
 	public function form( $instance ) {
 
-		$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
+		$instance = wp_parse_args( (array) $instance, (array) $this->fields );
 
+		$instance['title'] = ( isset( $instance['title'] ) ) ? $instance['title'] : '' ;
 		$instance['type'] = 'carousel';
-		$instance['name'] = 'media-bootstrap-carousel';
+		$instance['name'] = $this->id;
 
+		/**
+		 * Instance of list of image sizes
+		 * @var ItalyStrapAdminMediaSettings
+		 */
+		$image_size_media = new ItalyStrapAdminMediaSettings;
+		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) )
 
 		?>
 		<p>
@@ -225,7 +221,7 @@ class CarouselMediaWidget extends Widget {
 
 		foreach ( $this->fields as $key => $label ) {
 
-			${ $key } = ! empty( $instance[ $key ] ) ? esc_attr( $instance[ $key ] ) : $this->fields[ $key ];
+			$instance[ $key ] = isset( $instance[ $key ] ) ? $instance[ $key ] : '';
 
 			/**
 			 * Save select in widget
@@ -241,7 +237,7 @@ class CarouselMediaWidget extends Widget {
 					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="display:none">
 						<?php echo $key; ?>:
 					</label>
-					<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${ $key }; ?>" placeholder="<?php echo $label; ?>">
+					<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $instance[ $key ] ); ?>" placeholder="<?php echo $label; ?>">
 				</p>
 				<div id="media_carousel_sortable">
 					<ul  id="sortable" class="carousel_images">
@@ -270,46 +266,69 @@ class CarouselMediaWidget extends Widget {
 				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add Image', 'ItalyStrap' ); ?>" />
 			<hr>
 			<?php
-			} else if ( 'size' === $key ) {
+			} else if ( 'size' === $key || 'sizetablet' === $key || 'sizephone' === $key ) {
 
-				// var_dump(new ItalyStrapAdminMediaSettings);
-
-				$image_size = new ItalyStrapAdminMediaSettings;
-var_dump( $image_size->get_image_sizes() );
 			?>
 			<p>
 				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
-					<?php echo $label; ?>
+					<?php echo $key; ?>
 				</label>
-				<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${ $key }; ?>" placeholder="<?php echo $label; ?>">
-			</p>
-			<?php
-			} else {
-			?>
-			<p>
-				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
-					<?php echo esc_attr( $key ); ?>:
-				</label>
-				<?php if ( isset( $this->carousel_options[ $key ] ) && is_array( $this->carousel_options[ $key ] ) ) :
-
-					$saved_option = ( isset( ${$key} ) ) ? ${$key} : '' ;
-				?>
+				<?php $saved_option = ( isset( $instance[ $key ] ) ) ? $instance[ $key ] : '' ; ?>
 				<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" class="widefat">
-
 					<?php
 					$option = '';
 
-					foreach ( $this->carousel_options[ $key ] as $key => $value ) {
+					foreach ( $image_size_media_array as $k => $v ) {
 
-						$option .= '<option ' . ( selected( $key, $saved_option ) ) . ' value="' . $key . '">' . $value . '</option>';
+						$option .= '<option ' . ( selected( $k, $saved_option ) ) . ' value="' . $k . '">' . $v . '</option>';
 
 					}
 
 					echo $option;
 					?>
 				</select>
+			</p>
+			<?php
+			} else {
+			?>
+			<p>
+				<?php if ( isset( $this->carousel_options[ $key ] ) && is_array( $this->carousel_options[ $key ] ) ) :	?>
+					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
+						<?php echo esc_attr( $key ); ?>:
+					</label>
+					<?php $saved_option = ( isset( $instance[ $key ] ) ) ? $instance[ $key ] : '' ; ?>
+					<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" class="widefat">
+
+						<?php
+						$option = '';
+
+						foreach ( $this->carousel_options[ $key ] as $k => $v ) {
+
+							$option .= '<option ' . ( selected( $k, $saved_option ) ) . ' value="' . $k . '">' . $v . '</option>';
+
+						}
+
+						echo $option;
+						?>
+					</select>
+				<?php elseif ( isset( $this->carousel_options[ $key ] ) ) :
+
+	if ( 'true' === $instance[ $key ] ) {
+		$instance[ $key ] = true;
+	}
+				?>
+					<input id="<?php echo $this->get_field_id( $key ); ?>" name="<?php echo $this->get_field_name( $key ); ?>" type="checkbox" value='1' <?php checked( $instance[ $key ], true ); ?> />
+					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
+						<?php echo esc_attr( $key ); ?>
+					</label>
+
 				<?php else : ?>
-				<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo ${$key}; ?>" placeholder="<?php echo $label; ?>">
+
+					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
+						<?php echo esc_attr( $key ); ?>:
+					</label>
+					<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $instance[ $key ] ); ?>" placeholder="<?php echo $label; ?>">
+
 				<?php endif; ?>
 			</p>
 			<?php } //!- else

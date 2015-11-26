@@ -84,8 +84,10 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 			if ( is_admin() ) {
 
 				new ItalyStrapAdmin;
-				new ItalyStrapAdminMediaSettings;
 				new ItalyStrapAdminGallerySettings;
+				
+				$image_size_media = new ItalyStrapAdminMediaSettings;
+				add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
 			}
 
 			/**
