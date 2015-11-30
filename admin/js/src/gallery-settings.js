@@ -12,18 +12,66 @@
 			var $el = this.$el;
 
 			media.view.Settings.prototype.render.apply( this, arguments );
-console.log(gallery_fields);
+
 			/**
 			 * Append the type template and update the settings.
 			 */
 			$el.append( media.template( 'italystrap-gallery-settings' ) );
+			// media.gallery.defaults.type = 'default'; // lil hack that lets media know there's a type attribute.
+			
+			// console.log(gallery_fields);
+			// {"ids":false,"type":"","orderby":"","name":"italystrap-bootstrap-carousel","width":"","height":"","indicators":"before-inner","control":"true","interval":0,"pause":"hover","titletag":"h4","image_title":"true","link":"","text":"true","wpautop":"true","containerclass":"","itemclass":"","captionclass":"","size":"full","responsive":false,"sizetablet":"large","sizephone":"medium"}
+			// console.log(JSON.parse(gallery_fields));
+			// console.log(gallery_fields.length);
+			// gallery_fields = JSON.parse( gallery_fields );
+			// var key;
+			// for (var key in gallery_fields) {
+			// 		console.log(key, gallery_fields[key]);
+			// 		media.gallery.defaults.key = gallery_fields[key];
+			// 		console.log(media.gallery.defaults.key);
+			// 		// this.update.apply( this, [key] );
+			// }
+			// console.log(media.gallery.defaults);
+
 			media.gallery.defaults.type = 'default'; // lil hack that lets media know there's a type attribute.
-			media.gallery.defaults.interval = '';
-			media.gallery.defaults.indicators = '';
+			media.gallery.defaults.orderby = '';
+			media.gallery.defaults.name = 'italystrap-bootstrap-carousel';
+			media.gallery.defaults.width = '';
+			media.gallery.defaults.height = '';
+			media.gallery.defaults.indicators = 'before-inner';
+			media.gallery.defaults.control = true;
+			media.gallery.defaults.interval = 0;
+			media.gallery.defaults.pause = 'hover';
+			media.gallery.defaults.titletag = 'h4';
+			media.gallery.defaults.image_title = true;
+			media.gallery.defaults.link = '';
+			media.gallery.defaults.text = true;
+			media.gallery.defaults.containerclass = '';
+			media.gallery.defaults.itemclass = '';
+			media.gallery.defaults.captionclass = '';
+			media.gallery.defaults.responsive = false;
+			media.gallery.defaults.sizetablet = 'large';
+			media.gallery.defaults.sizephone = 'medium';
 
 			this.update.apply( this, ['type'] );
-			this.update.apply( this, ['interval'] );
+			this.update.apply( this, ['orderby'] );
+			this.update.apply( this, ['name'] );
+			this.update.apply( this, ['width'] );
+			this.update.apply( this, ['height'] );
 			this.update.apply( this, ['indicators'] );
+			this.update.apply( this, ['control'] );
+			this.update.apply( this, ['interval'] );
+			this.update.apply( this, ['pause'] );
+			this.update.apply( this, ['titletag'] );
+			this.update.apply( this, ['image_title'] );
+			this.update.apply( this, ['link'] );
+			this.update.apply( this, ['text'] );
+			this.update.apply( this, ['containerclass'] );
+			this.update.apply( this, ['itemclass'] );
+			this.update.apply( this, ['captionclass'] );
+			this.update.apply( this, ['responsive'] );
+			this.update.apply( this, ['sizetablet'] );
+			this.update.apply( this, ['sizephone'] );
 
 			// Hide the Columns setting for all types except Default
 			$el.find( 'select[name=type]' ).on( 'change', function () {

@@ -103,7 +103,8 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 
 			}
 
-			$translation_array = wp_json_encode( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ) );
+			$translation_array = json_encode( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ) );
+			// var_dump( $translation_array ); die();
 			wp_localize_script( 'italystrap-gallery-settings', 'gallery_fields', $translation_array );
 
 			wp_enqueue_script( 'italystrap-gallery-settings' );
