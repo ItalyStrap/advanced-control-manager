@@ -314,9 +314,9 @@ class Carousel_Media_Widget extends Widget {
 					</select>
 				<?php elseif ( isset( $this->carousel_options[ $key ] ) ) :
 
-	if ( 'true' === $instance[ $key ] ) {
-		$instance[ $key ] = true;
-	}
+					if ( 'true' === $instance[ $key ] ) {
+						$instance[ $key ] = true;
+					}
 				?>
 					<input id="<?php echo $this->get_field_id( $key ); ?>" name="<?php echo $this->get_field_name( $key ); ?>" type="checkbox" value='1' <?php checked( $instance[ $key ], true ); ?> />
 					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
@@ -333,7 +333,7 @@ class Carousel_Media_Widget extends Widget {
 				<?php endif; ?>
 			</p>
 			<?php } //!- else
-		}
+		}//!- foreach
 
 	}
 

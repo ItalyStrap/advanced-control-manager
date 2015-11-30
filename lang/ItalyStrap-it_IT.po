@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2015-09-19 20:31+0200\n"
-"PO-Revision-Date: 2015-09-19 20:31+0200\n"
+"POT-Creation-Date: 2015-11-30 15:16+0100\n"
+"PO-Revision-Date: 2015-11-30 15:17+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,19 +20,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: .sass-cache\n"
 "X-Poedit-SearchPathExcluded-3: bower_components\n"
 
-#: admin/ItalyStrapAdminGallerySettings.php:173
+#: admin/ItalyStrapAdminGallerySettings.php:34
 msgid "Standard gallery"
 msgstr "Galleria standard"
 
-#: admin/ItalyStrapAdminGallerySettings.php:174
+#: admin/ItalyStrapAdminGallerySettings.php:35
 msgid "Bootstrap Carousel"
 msgstr "Bootstrap Carousel"
 
-#: admin/ItalyStrapAdminGallerySettings.php:211
+#: admin/ItalyStrapAdminGallerySettings.php:72
 msgid "Type"
 msgstr "Tipo"
 
-#: admin/ItalyStrapAdminGallerySettings.php:219
+#: admin/ItalyStrapAdminGallerySettings.php:80
 msgid ""
 "For more informations about the options below see the <a href=\"admin.php?"
 "page=italystrap-documentation#carousel\" target=\"_blank\">documentation.</a>"
@@ -41,15 +41,15 @@ msgstr ""
 "page=italystrap-documentation#carousel\" target=\"_blank\">documentazione.</"
 "a>"
 
-#: admin/ItalyStrapAdminGallerySettings.php:221
+#: admin/ItalyStrapAdminGallerySettings.php:82
 msgid "Indicators"
 msgstr "Indicatori"
 
-#: admin/ItalyStrapAdminGallerySettings.php:230
+#: admin/ItalyStrapAdminGallerySettings.php:91
 msgid "HTML ID"
 msgstr "ID HTML"
 
-#: admin/ItalyStrapAdminGallerySettings.php:234
+#: admin/ItalyStrapAdminGallerySettings.php:95
 msgid "Interval"
 msgstr "Intervallo"
 
@@ -84,13 +84,29 @@ msgstr "LazyLoad"
 msgid "Vcard Widget Local Business"
 msgstr "Vcard Widget Local Business"
 
-#: admin/ItalystrapAdmin.php:222
+#: admin/ItalystrapAdmin.php:202
+msgid "Post Widget for Custom Loop"
+msgstr ""
+
+#: admin/ItalystrapAdmin.php:210
+msgid "Widget for Media Carousel"
+msgstr ""
+
+#: admin/ItalystrapAdmin.php:238
 msgid "Activate LazyLoad for images"
 msgstr "Attiva LazyLoad per le immagini"
 
-#: admin/ItalystrapAdmin.php:235
+#: admin/ItalystrapAdmin.php:251
 msgid "Activate Vcard Widget for your local business (Experimental)"
 msgstr "Attiva la scheda per la tua Local Business (sperimentale)"
+
+#: admin/ItalystrapAdmin.php:264
+msgid "Activate Post Widget for Custom posts loop"
+msgstr ""
+
+#: admin/ItalystrapAdmin.php:277
+msgid "Activate Bootstrap Carousel Media Widget"
+msgstr ""
 
 #: admin/admin-template/dashboard-page.php:9
 msgid "Make your website more powerful"
@@ -159,141 +175,1112 @@ msgstr ""
 "Aggiungi i Breadcrumbs nel tuo sito in modo semplice e veloce e ottieni i "
 "Rich Snippet di Google grazie a Schema.org"
 
-#: classes/ItalyStrapBreadcrumbs.php:303
+#: classes/ItalyStrapBreadcrumbs.php:311
 msgid "Tag: "
 msgstr "Tag: "
 
-#: classes/ItalyStrapBreadcrumbs.php:310
+#: classes/ItalyStrapBreadcrumbs.php:318
 msgid "Tax: "
 msgstr "Tax:"
 
-#: classes/ItalyStrapBreadcrumbs.php:317
+#: classes/ItalyStrapBreadcrumbs.php:325
 msgid "Yearly archive: "
 msgstr "Archivio annuale: "
 
-#: classes/ItalyStrapBreadcrumbs.php:331
+#: classes/ItalyStrapBreadcrumbs.php:339
 msgid "Monthly archive: "
 msgstr "Archivio mensile"
 
-#: classes/ItalyStrapBreadcrumbs.php:353
+#: classes/ItalyStrapBreadcrumbs.php:361
 msgid "Daily archive: "
 msgstr "Archivio giornaliero: "
 
-#: classes/ItalyStrapBreadcrumbs.php:360
+#: classes/ItalyStrapBreadcrumbs.php:368
 msgid "Author Archives: "
 msgstr "Archivio autore: "
 
-#: classes/ItalyStrapBreadcrumbs.php:367
+#: classes/ItalyStrapBreadcrumbs.php:375
 msgid "Search Results: "
 msgstr "Risultato della ricerca: "
 
-#: classes/ItalyStrapBreadcrumbs.php:373
+#: classes/ItalyStrapBreadcrumbs.php:381
 msgid "Not Found"
 msgstr "Non trovato"
 
-#: classes/ItalyStrapBreadcrumbs.php:382
+#: classes/ItalyStrapBreadcrumbs.php:390
 msgid "Page"
 msgstr "Pagina"
+
+#: classes/ItalyStrapCarousel.php:33
+msgid "Use $atts['image_title'] instead of $atts['title']"
+msgstr ""
 
 #: classes/ItalyStrapHTMLSitemaps.php:92
 msgid "Authors:"
 msgstr "Autori:"
 
-#: classes/ItalyStrapVcardWidget.php:42
+#: options/options-vcard-widget.php:16
+msgid "Local Business - (Default)"
+msgstr ""
+
+#: options/options-vcard-widget.php:17
+msgid "Organization - (For services and home offices)"
+msgstr ""
+
+#: options/options-vcard-widget.php:18
+msgid "Accounting Service"
+msgstr ""
+
+#: options/options-vcard-widget.php:19
+msgid "Auto Body Shop"
+msgstr ""
+
+#: options/options-vcard-widget.php:20
+msgid "Auto Dealer"
+msgstr ""
+
+#: options/options-vcard-widget.php:21
+msgid "Auto Parts Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:22
+msgid "Auto Rental"
+msgstr ""
+
+#: options/options-vcard-widget.php:23
+msgid "Auto Repair"
+msgstr ""
+
+#: options/options-vcard-widget.php:24
+msgid "Auto Wash"
+msgstr ""
+
+#: options/options-vcard-widget.php:25
+msgid "Attorney"
+msgstr ""
+
+#: options/options-vcard-widget.php:26
+msgid "Bakery"
+msgstr ""
+
+#: options/options-vcard-widget.php:27
+msgid "Bar Or Pub"
+msgstr ""
+
+#: options/options-vcard-widget.php:28
+msgid "Beauty Salon"
+msgstr ""
+
+#: options/options-vcard-widget.php:29
+msgid "Bed &amp; Breakfast"
+msgstr ""
+
+#: options/options-vcard-widget.php:30
+msgid "Bicycle Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:31
+msgid "Book Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:32
+msgid "Cafe Or Coffee Shop"
+msgstr ""
+
+#: options/options-vcard-widget.php:33
+msgid "Child Care"
+msgstr ""
+
+#: options/options-vcard-widget.php:34
+msgid "Clothing Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:35
+msgid "Computer Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:36
+msgid "Day Spa"
+msgstr ""
+
+#: options/options-vcard-widget.php:37
+msgid "Dentist"
+msgstr ""
+
+#: options/options-vcard-widget.php:38
+msgid "Dry Cleaning Or Laundry"
+msgstr ""
+
+#: options/options-vcard-widget.php:39
+msgid "Electrician"
+msgstr ""
+
+#: options/options-vcard-widget.php:40
+msgid "Electronics Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:41
+msgid "Emergency Service"
+msgstr ""
+
+#: options/options-vcard-widget.php:42
+msgid "Entertainment Business"
+msgstr ""
+
+#: options/options-vcard-widget.php:43
+msgid "Event Venue"
+msgstr ""
+
+#: options/options-vcard-widget.php:44
+msgid "Exercise Gym"
+msgstr ""
+
+#: options/options-vcard-widget.php:45
+msgid "Financial Service"
+msgstr ""
+
+#: options/options-vcard-widget.php:46
+msgid "Florist"
+msgstr ""
+
+#: options/options-vcard-widget.php:47
+msgid "Furniture Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:48
+msgid "Food Establishment"
+msgstr ""
+
+#: options/options-vcard-widget.php:49
+msgid "Garden Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:50
+msgid "General Contractor"
+msgstr ""
+
+#: options/options-vcard-widget.php:51
+msgid "Golf Course"
+msgstr ""
+
+#: options/options-vcard-widget.php:52
+msgid "Hair Salon"
+msgstr ""
+
+#: options/options-vcard-widget.php:53
+msgid "Hardware Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:54
+msgid "Health And Beauty Business"
+msgstr ""
+
+#: options/options-vcard-widget.php:55
+msgid "Home And Construction Business"
+msgstr ""
+
+#: options/options-vcard-widget.php:56
+msgid "Hobby Shop"
+msgstr ""
+
+#: options/options-vcard-widget.php:57
+msgid "Home Goods Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:58
+msgid "Hospital"
+msgstr ""
+
+#: options/options-vcard-widget.php:59
+msgid "Hotel"
+msgstr ""
+
+#: options/options-vcard-widget.php:60
+msgid "House Painter"
+msgstr ""
+
+#: options/options-vcard-widget.php:61
+msgid "HVAC Business"
+msgstr ""
+
+#: options/options-vcard-widget.php:62
+msgid "Insurance Agency"
+msgstr ""
+
+#: options/options-vcard-widget.php:63
+msgid "Jewelry Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:64
+msgid "Liquor Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:65
+msgid "Locksmith"
+msgstr ""
+
+#: options/options-vcard-widget.php:66
+msgid "Lodging Business"
+msgstr ""
+
+#: options/options-vcard-widget.php:67
+msgid "Medical Clinic"
+msgstr ""
+
+#: options/options-vcard-widget.php:68
+msgid "Mens Clothing Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:69
+msgid "Mobile Phone Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:70
+msgid "Motel"
+msgstr ""
+
+#: options/options-vcard-widget.php:71
+msgid "Motorcycle Dealer"
+msgstr ""
+
+#: options/options-vcard-widget.php:72
+msgid "Motorcycle Repair"
+msgstr ""
+
+#: options/options-vcard-widget.php:73
+msgid "Moving Company"
+msgstr ""
+
+#: options/options-vcard-widget.php:74
+msgid "Music Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:75
+msgid "Nail Salon"
+msgstr ""
+
+#: options/options-vcard-widget.php:76
+msgid "Night Club"
+msgstr ""
+
+#: options/options-vcard-widget.php:77
+msgid "Notary Public"
+msgstr ""
+
+#: options/options-vcard-widget.php:78
+msgid "Office Equipment Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:79
+msgid "Optician"
+msgstr ""
+
+#: options/options-vcard-widget.php:80
+msgid "PetStore"
+msgstr ""
+
+#: options/options-vcard-widget.php:81
+msgid "Physician"
+msgstr ""
+
+#: options/options-vcard-widget.php:82
+msgid "Plumber"
+msgstr ""
+
+#: options/options-vcard-widget.php:83
+msgid "Professional Service"
+msgstr ""
+
+#: options/options-vcard-widget.php:84
+msgid "Real Estate Agent"
+msgstr ""
+
+#: options/options-vcard-widget.php:85
+msgid "Residence"
+msgstr ""
+
+#: options/options-vcard-widget.php:86
+msgid "Restaurant"
+msgstr ""
+
+#: options/options-vcard-widget.php:87
+msgid "Roofing Contractor"
+msgstr ""
+
+#: options/options-vcard-widget.php:88
+msgid "RV Park"
+msgstr ""
+
+#: options/options-vcard-widget.php:89
+msgid "School"
+msgstr ""
+
+#: options/options-vcard-widget.php:90
+msgid "Self Storage"
+msgstr ""
+
+#: options/options-vcard-widget.php:91
+msgid "ShoeStore"
+msgstr ""
+
+#: options/options-vcard-widget.php:92
+msgid "Ski Resort"
+msgstr ""
+
+#: options/options-vcard-widget.php:93
+msgid "Sporting Goods Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:94
+msgid "Sports Club"
+msgstr ""
+
+#: options/options-vcard-widget.php:95
+msgid "Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:96
+msgid "Tattoo Parlor"
+msgstr ""
+
+#: options/options-vcard-widget.php:97
+msgid "Taxi"
+msgstr ""
+
+#: options/options-vcard-widget.php:98
+msgid "Tennis Complex"
+msgstr ""
+
+#: options/options-vcard-widget.php:99
+msgid "Tire Shop"
+msgstr ""
+
+#: options/options-vcard-widget.php:100
+msgid "Toy Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:101
+msgid "Travel Agency"
+msgstr ""
+
+#: options/options-vcard-widget.php:102
+msgid "Veterinary Care"
+msgstr ""
+
+#: options/options-vcard-widget.php:103
+msgid "Wholesale Store"
+msgstr ""
+
+#: options/options-vcard-widget.php:104
+msgid "Winery"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:80
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:293
+msgid "Test Metabox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:91
+#: vendor/webdevstudios/cmb2/example-functions.php:376
+msgid "Test Text"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:92
+#: vendor/webdevstudios/cmb2/example-functions.php:104
+#: vendor/webdevstudios/cmb2/example-functions.php:112
+#: vendor/webdevstudios/cmb2/example-functions.php:120
+#: vendor/webdevstudios/cmb2/example-functions.php:129
+#: vendor/webdevstudios/cmb2/example-functions.php:137
+#: vendor/webdevstudios/cmb2/example-functions.php:151
+#: vendor/webdevstudios/cmb2/example-functions.php:158
+#: vendor/webdevstudios/cmb2/example-functions.php:166
+#: vendor/webdevstudios/cmb2/example-functions.php:183
+#: vendor/webdevstudios/cmb2/example-functions.php:192
+#: vendor/webdevstudios/cmb2/example-functions.php:200
+#: vendor/webdevstudios/cmb2/example-functions.php:207
+#: vendor/webdevstudios/cmb2/example-functions.php:214
+#: vendor/webdevstudios/cmb2/example-functions.php:228
+#: vendor/webdevstudios/cmb2/example-functions.php:241
+#: vendor/webdevstudios/cmb2/example-functions.php:254
+#: vendor/webdevstudios/cmb2/example-functions.php:266
+#: vendor/webdevstudios/cmb2/example-functions.php:275
+#: vendor/webdevstudios/cmb2/example-functions.php:283
+#: vendor/webdevstudios/cmb2/example-functions.php:292
+#: vendor/webdevstudios/cmb2/example-functions.php:299
+#: vendor/webdevstudios/cmb2/example-functions.php:313
+#: vendor/webdevstudios/cmb2/example-functions.php:377
+#: vendor/webdevstudios/cmb2/example-functions.php:468
+#: vendor/webdevstudios/cmb2/example-functions.php:476
+#: vendor/webdevstudios/cmb2/example-functions.php:483
+#: vendor/webdevstudios/cmb2/example-functions.php:490
+#: vendor/webdevstudios/cmb2/example-functions.php:497
+#: vendor/webdevstudios/cmb2/example-functions.php:504
+#: vendor/webdevstudios/cmb2/example-functions.php:511
+#: vendor/webdevstudios/cmb2/example-functions.php:538
+#: vendor/webdevstudios/cmb2/example-functions.php:546
+#: vendor/webdevstudios/cmb2/example-functions.php:553
+#: vendor/webdevstudios/cmb2/example-functions.php:590
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:305
+msgid "field description (optional)"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:103
+msgid "Test Text Small"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:111
+msgid "Test Text Medium"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:119
+msgid "Website URL"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:128
+msgid "Test Text Email"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:136
+msgid "Test Time"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:143
+#: vendor/webdevstudios/cmb2/example-functions.php:144
+msgid "Time zone"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:150
+msgid "Test Date Picker"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:157
+msgid "Test Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:165
+msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:182
+msgid "Test Money"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:191
+msgid "Test Color Picker"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:199
+msgid "Test Text Area"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:206
+msgid "Test Text Area Small"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:213
+msgid "Test Text Area for Code"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:220
+msgid "Test Title Weeeee"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:221
+msgid "This is a title description"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:227
+msgid "Test Select"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:233
+#: vendor/webdevstudios/cmb2/example-functions.php:246
+#: vendor/webdevstudios/cmb2/example-functions.php:258
+msgid "Option One"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:234
+#: vendor/webdevstudios/cmb2/example-functions.php:247
+#: vendor/webdevstudios/cmb2/example-functions.php:259
+msgid "Option Two"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:235
+#: vendor/webdevstudios/cmb2/example-functions.php:248
+#: vendor/webdevstudios/cmb2/example-functions.php:260
+msgid "Option Three"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:240
+msgid "Test Radio inline"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:253
+msgid "Test Radio"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:265
+msgid "Test Taxonomy Radio"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:274
+msgid "Test Taxonomy Select"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:282
+msgid "Test Taxonomy Multi Checkbox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:291
+msgid "Test Checkbox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:298
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:304
+msgid "Test Multi Checkbox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:304
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:310
+msgid "Check One"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:305
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:311
+msgid "Check Two"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:306
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:312
+msgid "Check Three"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:312
+msgid "Test wysiwyg"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:320
+msgid "Test Image"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:321
+msgid "Upload an image or enter a URL."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:327
+msgid "Multiple Files"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:328
+msgid "Upload or add multiple images/attachments."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:335
+msgid "oEmbed"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:336
+msgid ""
+"Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
+"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
+"Embeds</a>."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:367
+msgid "About Page Metabox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:396
+msgid "Repeating Field Group"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:404
+msgid "Generates reusable form entries"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:406
+msgid "Entry {#}"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:407
+msgid "Add Another Entry"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:408
+msgid "Remove Entry"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:421
+msgid "Entry Title"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:428
+msgid "Description"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:429
+msgid "Write a short description for this entry"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:435
+msgid "Entry Image"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:441
+msgid "Image Caption"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:460
+#: vendor/webdevstudios/cmb2/example-functions.php:530
+msgid "User Profile Metabox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:467
+#: vendor/webdevstudios/cmb2/example-functions.php:537
+msgid "Extra Info"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:475
+msgid "Avatar"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:482
+msgid "Facebook URL"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:489
+msgid "Twitter URL"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:496
+msgid "Google+ URL"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:503
+msgid "Linkedin URL"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:510
+msgid "User Field"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:545
+msgid "Term Image"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:552
+msgid "Arbitrary Term Field"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:574
+msgid "Theme Options Metabox"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/example-functions.php:589
+msgid "Site Background Color"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2.php:122
+msgid "Metabox configuration is required to have an ID parameter"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2.php:375
+msgid "Click to toggle"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Ajax.php:40
+msgid "Please Try Again"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Ajax.php:135
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:834
+msgid "Remove Embed"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Ajax.php:139
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:835
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1020
+msgid "Add Group"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1021
+msgid "Remove Group"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1043
+#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1047
+#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:265
+msgid "None"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:86
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:119
+msgid "Clear"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:87
+msgid "Default"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:88
+msgid "Select Color"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:89
+msgid "Current Color"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:110
+msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:111
+msgid "Su, Mo, Tu, We, Th, Fr, Sa"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:112
+msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:113
+msgid ""
+"January, February, March, April, May, June, July, August, September, "
+"October, November, December"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:114
+msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:115
+msgid "Next"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:116
+msgid "Prev"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:117
+msgid "Today"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:118
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:128
+msgid "Done"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:122
+msgid "Choose Time"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:123
+msgid "Time"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:124
+msgid "Hour"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:125
+msgid "Minute"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:126
+msgid "Second"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:127
+msgid "Now"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:135
+msgid "Use this file"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:136
+msgid "Use these files"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:137
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1009
+msgid "Remove Image"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:138
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:357
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1028
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:155
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:163
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:779
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
+msgid "Remove"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:139
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1023
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:779
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
+msgid "File:"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:140
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1026
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:779
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
+msgid "Download"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:141
+msgid "Select / Deselect All"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:298
+msgid "Add Row"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:756
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:804
+msgid "No terms"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:872
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:736
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:760
+msgid "Add or Upload Files"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:933
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:788
+#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
+msgid "Add or Upload File"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:141
+msgid ""
+"Term Metadata is a WordPress > 4.4 feature. Please upgrade your WordPress "
+"install."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:145
+msgid "Term metaboxes configuration requires a 'taxonomies' parameter"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/helper-functions.php:250
+msgid "Save"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:49
+msgid "Menu order (Default)"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:50
+msgid "Order by the image's title"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:51
+msgid "Sort by date/time"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:52
+msgid "Order randomly"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:53
+msgid "Order by the image's ID"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:56
+msgid "before-inner"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:57
+msgid "after-inner"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:58
+msgid "after-control"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:59
+msgid "false"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:63
+msgid "none"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:64
+msgid "hover"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:74
+msgid "Use this widget to add a Bootstrap Media Carousel"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:88
+msgid "ItalyStrap: Bootstrap Media Carousel"
+msgstr ""
+
+#: widget/class-carousel-media-widget.php:214
+msgid "Real size"
+msgstr ""
+
+#: widget/class-posts-widget.php:21
+msgid "Displays list of posts with an array of options"
+msgstr ""
+
+#: widget/class-posts-widget.php:30
+msgid "ItalyStrap Posts Widget"
+msgstr ""
+
+#: widget/class-posts-widget.php:307
+msgid "ItalyStrap Widget Posts"
+msgstr ""
+
+#: widget/class-posts-widget.php:318
+msgid "Read more &rarr;"
+msgstr ""
+
+#: widget/class-vcard-widget.php:43
 msgid "Use this widget to add a vCard Local Business"
 msgstr "Usa questo wodget per aggiungere una scheda per la Local Business"
 
-#: classes/ItalyStrapVcardWidget.php:45
+#: widget/class-vcard-widget.php:46
 msgid "ItalyStrap: vCard Local Business"
 msgstr "ItalyStrap: vCard Local Business"
 
-#: classes/ItalyStrapVcardWidget.php:48
+#: widget/class-vcard-widget.php:49
 msgid "Local or Organization?"
 msgstr "Local or Organization?"
 
-#: classes/ItalyStrapVcardWidget.php:49
+#: widget/class-vcard-widget.php:50
 msgid "Widget Title (optional)"
 msgstr "Titolo del widget (opzionale)"
 
-#: classes/ItalyStrapVcardWidget.php:50
+#: widget/class-vcard-widget.php:51
 msgid "Company name"
 msgstr "Nome azienda"
 
-#: classes/ItalyStrapVcardWidget.php:51
+#: widget/class-vcard-widget.php:52
 msgid "Logo URL"
 msgstr "URL del Logo"
 
-#: classes/ItalyStrapVcardWidget.php:52
+#: widget/class-vcard-widget.php:53
 msgid "Show Logo"
 msgstr "Mostra logo"
 
-#: classes/ItalyStrapVcardWidget.php:53
+#: widget/class-vcard-widget.php:54
 msgid "Street Address"
 msgstr "Indirizzo"
 
-#: classes/ItalyStrapVcardWidget.php:54
+#: widget/class-vcard-widget.php:55
 msgid "Zipcode/Postal Code"
 msgstr "Codice postale"
 
-#: classes/ItalyStrapVcardWidget.php:55
+#: widget/class-vcard-widget.php:56
 msgid "City/Locality"
 msgstr "Citt&agrave;"
 
-#: classes/ItalyStrapVcardWidget.php:56
+#: widget/class-vcard-widget.php:57
 msgid "State/Region"
 msgstr "Regione"
 
-#: classes/ItalyStrapVcardWidget.php:57
+#: widget/class-vcard-widget.php:58
 msgid "Country"
 msgstr "Stato"
 
-#: classes/ItalyStrapVcardWidget.php:58
+#: widget/class-vcard-widget.php:59
 msgid "Telephone number"
 msgstr "Numero di telefono"
 
-#: classes/ItalyStrapVcardWidget.php:59
+#: widget/class-vcard-widget.php:60
 msgid "Mobile number"
 msgstr "Numero cellulare"
 
-#: classes/ItalyStrapVcardWidget.php:60
+#: widget/class-vcard-widget.php:61
 msgid "Fax number"
 msgstr "Numero fax"
 
-#: classes/ItalyStrapVcardWidget.php:61
+#: widget/class-vcard-widget.php:62
 msgid "Email"
 msgstr "Email"
 
-#: classes/ItalyStrapVcardWidget.php:62
+#: widget/class-vcard-widget.php:63
 msgid "TaxID"
 msgstr "Partita I.V.A."
 
-#: classes/ItalyStrapVcardWidget.php:63
+#: widget/class-vcard-widget.php:64
 msgid "Facebook page (hidden)"
 msgstr "Pagina Facebook (nascosto)"
 
-#: classes/ItalyStrapVcardWidget.php:64
+#: widget/class-vcard-widget.php:65
 msgid "Twitter page (hidden)"
 msgstr "Pagina di Twitter (nascosto)"
 
-#: classes/ItalyStrapVcardWidget.php:65
+#: widget/class-vcard-widget.php:66
 msgid "Googleplus page (hidden)"
 msgstr "Pagina Googleplus (nascosto)"
 
-#: classes/ItalyStrapVcardWidget.php:66
+#: widget/class-vcard-widget.php:67
 msgid "Pinterest page (hidden)"
 msgstr "Pagina di Pinterest (nascosto)"
 
-#: classes/ItalyStrapVcardWidget.php:67
+#: widget/class-vcard-widget.php:68
 msgid "Instagram page (hidden)"
 msgstr "Pagina Instagram (nascosto)"
 
-#: classes/ItalyStrapVcardWidget.php:68
+#: widget/class-vcard-widget.php:69
 msgid "Youtube page (hidden)"
 msgstr "Pagina di youtube (nascosto)"
 
-#: classes/ItalyStrapVcardWidget.php:69
+#: widget/class-vcard-widget.php:70
 msgid "Linkedin page (hidden)"
 msgstr "Pagina di Linkedin (nascosto)"
+
+#: widget/templates/legacy.php:51
+msgid "By"
+msgstr ""
+
+#: widget/templates/legacy.php:58
+msgid "No responses"
+msgstr ""
+
+#: widget/templates/legacy.php:58
+msgid "One response"
+msgstr ""
+
+#: widget/templates/legacy.php:58
+msgid "% responses"
+msgstr ""
+
+#: widget/templates/legacy.php:81
+msgid "Categories"
+msgstr ""
+
+#: widget/templates/legacy.php:91
+msgid "Tags"
+msgstr ""
+
+#: widget/templates/legacy.php:127
+msgid "No posts found."
+msgstr ""
+
+#: widget/templates/standard.php:87
+msgid "No comments"
+msgstr ""
+
+#: widget/templates/standard.php:87
+msgid "One comment"
+msgstr ""
+
+#: widget/templates/standard.php:87
+#, php-format
+msgid "% comments"
+msgstr ""
 
 #~ msgid "(Activate LazyLoad for images)"
 #~ msgstr "(Attiva Lazy Load per le immagini)"

@@ -16,7 +16,8 @@
  */
 
 use \ItalyStrap\Core\Posts_Widget;
-use \ItalyStrap\Core\CarouselMediaWidget;
+use \ItalyStrap\Core\Carousel_Media_Widget;
+use \ItalyStrap\Core\Vcard_Widget;
 
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
