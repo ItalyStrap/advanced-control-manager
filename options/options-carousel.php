@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Array definition for carousel default options
  *
@@ -8,54 +7,56 @@
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
 
-// Definition array() with all the options connected to the
-// module which must be called by an include (setoptions)
+/**
+ * Definition array() with all the options connected to the
+ * module which must be called by an include (setoptions).
+ */
 
 return array(
 
 	/**
 	 * Ids for the images to use.
 	 */
-	'ids' => false,
+	'ids'				=> false,
 
 	/**
 	 * Type of gallery. If it's not "carousel", nothing will be done.
 	 */
-	'type' => '',
+	'type'				=> '',
 
 	/**
 	 * Alternative appearing order of images.
 	 */
-	'orderby' => '',
+	'orderby'			=> '',
 
 	/**
 	 * Any name. String will be sanitize to be used as HTML ID. Recomended
 	 * when you want to have more than one carousel in the same page.
 	 * Default: italystrap-bootstrap-carousel.
 	 * */
-	'name' => 'italystrap-bootstrap-carousel',
+	'name'				=> 'italystrap-bootstrap-carousel',
 
 	/**
 	 * Carousel container width, in px or %
 	 */
-	'width' => '',
+	'width'				=> '',
 
 	/**
 	 * Carousel item height, in px or %
 	 */
-	'height' => '',
+	'height'			=> '',
 
 	/**
 	 * Accepted values: before-inner, after-inner, after-control, false.
 	 * Default: before-inner.
 	 * */
-	'indicators' => 'before-inner',
+	'indicators'		=> 'before-inner',
 
 	/**
 	 * Enable or disable arrow right and left
 	 * Accepted values: true, false. Default: true.
 	 */
-	'control' => 'true',
+	'control'			=> 'true',
 
 	/**
 	 * Add custom control icon
@@ -81,55 +82,55 @@ return array(
 	 * Default 0, carousel will not automatically cycle.
 	 * @link http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/
 	 */
-	'interval' => 0,
+	'interval'			=> 0,
 
 	/**
 	 * Pauses the cycling of the carousel on mouseenter and resumes the
 	 * cycling of the carousel on mouseleave.
 	 * @type string Default hover.
 	 */
-	'pause' => 'hover',
+	'pause'				=> 'hover',
 
 	/**
 	 * Define tag for image title. Default: h4.
 	 */
-	'titletag' => 'h4',
+	'titletag'			=> 'h4',
 
 	/**
 	 * Show or hide image title. Set false to hide. Default: true.
 	 */
-	'image_title' => 'true',
+	'image_title'		=> 'true',
 
 	/**
 	 * Type of link to show if "title" is set to true.
 	 * Default Link Parameters file, none, link
 	 */
-	'link' => '',
+	'link'				=> '',
 
 	/**
 	 * Show or hide image text. Set false to hide. Default: true.
 	 */
-	'text' => 'true',
+	'text'				=> 'true',
 
 	/**
 	 * Auto-format text. Default: true.
 	 */
-	'wpautop' => 'true',
+	'wpautop'			=> 'true',
 
 	/**
 	 * Extra class for container.
 	 */
-	'containerclass' => '',
+	'containerclass'	=> '',
 
 	/**
 	 * Extra class for item.
 	 */
-	'itemclass' => '',
+	'itemclass'			=> '',
 
 	/**
 	 * Extra class for caption.
 	 */
-	'captionclass' => '',
+	'captionclass'		=> '',
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -137,13 +138,13 @@ return array(
 	 * Default: full.
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
-	'size' => 'full',
+	'size'				=> 'full',
 
 	/**
 	 * Activate responsive image. Accepted values: true, false.
 	 * Default false.
 	 */
-	'responsive' => false,
+	'responsive'		=> false,
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -151,7 +152,7 @@ return array(
 	 * Default: large.
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
-	'sizetablet' => 'large',
+	'sizetablet'		=> 'large',
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -159,6 +160,6 @@ return array(
 	 * Default: medium.
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
-	'sizephone' => 'medium',
+	'sizephone'			=> 'medium',
 
 );

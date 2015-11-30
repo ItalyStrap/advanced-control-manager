@@ -593,7 +593,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			$output = 'jQuery(document).ready(function($){$(\'#' . $this->attributes['name'] . '\').carousel({interval:' . $this->attributes['interval'] . $pause .' });' . $lazyload . '});';
 
-			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes, $lazyload );
 
 			return $output;
 

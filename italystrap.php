@@ -73,7 +73,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 	class ItalyStrapInit{
 
 		private $options = '';
-		
+
 		public function __construct() {
 
 			$this->options = get_option( 'italystrap_settings' );
@@ -85,7 +85,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 				new ItalyStrapAdmin;
 				new ItalyStrapAdminGallerySettings;
-				
+
 				$image_size_media = new ItalyStrapAdminMediaSettings;
 				add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
 			}
@@ -110,13 +110,13 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 				ItalyStrapLazyload::init();
 
 			if ( isset( $this->options['vcardwidget'] ) )
-				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrapVcardWidget' ); } );
+				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Vcard_Widget' ); } );
 
 			if ( isset( $this->options['post_widget'] ) )
 				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Posts_Widget' ); } );
 
 			if ( isset( $this->options['media_widget'] ) )
-				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\CarouselMediaWidget' ); } );
+				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Carousel_Media_Widget' ); } );
 
 		}
 

@@ -17,9 +17,9 @@ return array(
     'ItalyStrapGlobalsCss' => $baseDir . '/classes/ItalyStrapGlobals.php',
     'ItalyStrapHTMLSitemaps' => $baseDir . '/classes/ItalyStrapHTMLSitemaps.php',
     'ItalyStrapLazyload' => $baseDir . '/classes/ItalyStrapLazyload.php',
-    'ItalyStrapVcardWidget' => $baseDir . '/widget/ItalyStrapVcardWidget.php',
-    'ItalyStrap\\Core\\CarouselMediaWidget' => $baseDir . '/widget/CarouselMediaWidget.php',
-    'ItalyStrap\\Core\\Posts_Widget' => $baseDir . '/widget/class-italystrap-posts-widget.php',
-    'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/ItalyStrapWidget.php',
+    'ItalyStrap\\Core\\Carousel_Media_Widget' => $baseDir . '/widget/class-carousel-media-widget.php',
+    'ItalyStrap\\Core\\Posts_Widget' => $baseDir . '/widget/class-posts-widget.php',
+    'ItalyStrap\\Core\\Vcard_Widget' => $baseDir . '/widget/class-vcard-widget.php',
+    'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/class-widget.php',
     'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
 );

@@ -1,9 +1,9 @@
 jQuery(document).ready(function($) {
 	"use strict";
 
-	/**
+	/************************
 	 * ItalyStrap Post Widget
-	 */
+	 ************************/
 	$('#widgets-right').on('click', '.upw-tab-item', function(event) {
 		event.preventDefault();
 		var widget = $(this).parents('.widget');
@@ -14,9 +14,9 @@ jQuery(document).ready(function($) {
 		widget.find('.' + $(this).data('toggle')).removeClass('upw-hide');
 	});
 
-	/**
+	/**********************************
 	 * ItalyStrap vCard Local Business
-	 */
+	 **********************************/
 	$(document).on("click", ".upload_image_button", function() {
 
 		jQuery.data(document.body, 'prevElement', $(this).prev());
@@ -36,45 +36,41 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
+	/*************************************
+	 * ItalyStrap Bootstrap Media Carousel
+	 *************************************/
 	/**
 	 * Upload media in ItalyStrap Bootstrap Media
+	 * @link http://mikejolley.com/2012/12/21/using-the-new-wordpress-3-5-media-uploader-in-plugins/
+	 * @link https://coderwall.com/p/vjxfzw/wordpress-advanced-media-upload-usage
 	 */
-	// http://mikejolley.com/2012/12/21/using-the-new-wordpress-3-5-media-uploader-in-plugins/
 	// Uploading files
 	var file_frame;
 	var images_container;
 	var image_container;
-	var ul_container = $('#media_carousel_sortable ul');
-	var input_ids = $('.ids');
+	// var ul_container = $('.media_carousel_sortable ul');
+	// var input_ids = $('.ids');
 
-	/**
-	 * Function for sortable functionality
-	 */
-	function runSortable () {
+	$(document).on('hover', '.widget-content', function( event ) {
 
-		/**
-		 * Sortable works only in a wrapper
-		 * {@link https://wordpress.org/support/topic/jquery-ui-sortable-doesnt-seem-to-work-in-admin-in-widget}
-		 * Use disableSelection() only for disabling text that is must not to be selectable
-		 */
-		$( "#media_carousel_sortable ul" ).sortable({
-			cursor: 'move',
-			stop: function(){
-				_update_input_ids ( ul_container, input_ids );
-			}
-		});
+		event.preventDefault();
 
-	}
-	runSortable();
+		var ul_container = $(this).find('.media_carousel_sortable ul');
+
+		var input_ids = $(this).find('.ids');
+
+		runSortable( ul_container, input_ids );
+
+	});
 
 	/**
 	 * Run sortable every time is saved a widget configuration
 	 * @link http://wordpress.stackexchange.com/questions/130084/executing-javascript-when-a-widget-is-added-in-the-backend
 	 * @see  also https://core.trac.wordpress.org/ticket/19675 for widget events
 	 */
-	$( document ).ajaxStop( function() {
-		runSortable();
-	} );
+	// $( document ).ajaxStop( function() {
+		// runSortable();
+	// } );
 
 	/**
 	 * Delete image on click and update input.ids
@@ -88,6 +84,10 @@ jQuery(document).ready(function($) {
 		 * @type {obj}
 		 */
 		image_container = $(this).parent().parent();
+
+		var ul_container = image_container.closest('.media_carousel_sortable ul');
+
+		var input_ids = image_container.closest('.widget-content').find('.ids');
 
 		/**
 		 * Remove the image selected
@@ -151,6 +151,25 @@ jQuery(document).ready(function($) {
 	});
 });
 
+
+/**
+ * Function for sortable functionality
+ */
+function runSortable ( ul_container, input_ids ) {
+
+	/**
+	 * Sortable works only in a wrapper
+	 * {@link https://wordpress.org/support/topic/jquery-ui-sortable-doesnt-seem-to-work-in-admin-in-widget}
+	 * Use disableSelection() only for disabling text that is must not to be selectable
+	 */
+	ul_container.sortable({
+		cursor: 'move',
+		stop: function(){
+			_update_input_ids ( ul_container, input_ids );
+		}
+	});
+}
+
 /**
  * Get the IDS from all images in the list
  * @param  {obj} container Object of the container
@@ -174,8 +193,8 @@ function _get_the_images_id ( container ) {
  * @param  {obj} ul_container Object of list container
  * @param  {obj} input_ids    Object of input ids
  */
-function _update_input_ids ( ul_container, input_ids ) {
+function _update_input_ids ( container, input_ids ) {
 
-	input_ids.val( _get_the_images_id( ul_container ) );
+	input_ids.val( _get_the_images_id( container ) );
 
 }

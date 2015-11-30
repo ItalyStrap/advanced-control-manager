@@ -1,7 +1,7 @@
 <?php namespace ItalyStrap\Core;
 
-use WP_Widget;
-use WP_Query;
+use \WP_Widget;
+use \WP_Query;
 
 /**
  * This class is forked from Ultimate Posts Widget by Boston Dell-Vandenberg
@@ -764,47 +764,4 @@ var toggleExcerptReadmore = function() {
 
 	}
 
-	/**
-	 * Enqueue scripts and styles in admin panel
-	 */
-	// function enqueue_admin_scripts() {
-
-	// 	wp_register_style( 'italystrap_admin_styles', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
-	// 	wp_enqueue_style( 'italystrap_admin_styles' );
-
-	// 	wp_register_script( 'italystrap_admin_scripts', ITALYSTRAP_PLUGIN_URL . 'admin/js/widget-post-admin.min.js', array( 'jquery' ), null, true );
-	// 	wp_enqueue_script( 'italystrap_admin_scripts' );
-
-	// }
-
-	/**
-	 * Add custom stile in front-end
-	 */
-	// function enqueue_theme_scripts() {
-	// 	wp_register_style( 'italystrap_theme_standard', ITALYSTRAP_PLUGIN_URL . 'css/widget-post-theme-standard.min.css' );
-	// 	wp_enqueue_style( 'italystrap_theme_standard' );
-	// }
-
-	/**
-	 * Upload the Javascripts for the media uploader in widget config
-	 */
-	// public function upload_scripts() {
-
-	// 	if ( ! wp_script_is( 'media-upload', 'enqueued' ) )
-	// 		wp_enqueue_script( 'media-upload' );
-
-	// 	if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
-	// 		wp_enqueue_script( 'thickbox' );
-
-	// 	if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
-	// 		wp_enqueue_script(
-	// 			'upload_media_widget',
-	// 			ITALYSTRAP_PLUGIN_URL . 'js/src/schema-widget-upload-media.js',
-	// 			array( 'jquery' )
-	// 		);
-
-	// 	if ( ! wp_script_is( 'thickbox', 'enqueued' ) )
-	// 		wp_enqueue_style( 'thickbox' );
-
-	// }
 } // end class

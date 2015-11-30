@@ -17,7 +17,7 @@ use \ItalyStrapAdminMediaSettings;
  *
  * @see WP_Widget
  */
-class CarouselMediaWidget extends Widget {
+class Carousel_Media_Widget extends Widget {
 
 	/**
 	 * Array with default value
@@ -46,11 +46,11 @@ class CarouselMediaWidget extends Widget {
 
 		$this->carousel_options = array(
 			'orderby'		=> array(
-					'menu_order'	=> __( 'menu_order (Default)', 'ItalyStrap' ),
-					'title'			=> __( 'title', 'ItalyStrap' ),
-					'post_date'		=> __( 'post_date', 'ItalyStrap' ),
-					'rand'			=> __( 'rand', 'ItalyStrap' ),
-					'ID'			=> __( 'ID', 'ItalyStrap' ),
+					'menu_order'	=> __( 'Menu order (Default)', 'ItalyStrap' ),
+					'title'			=> __( 'Order by the image\'s title', 'ItalyStrap' ),
+					'post_date'		=> __( 'Sort by date/time', 'ItalyStrap' ),
+					'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
+					'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
 				),
 			'indicators'	=> array(
 					'before-inner'	=> __( 'before-inner', 'ItalyStrap' ),
@@ -64,8 +64,9 @@ class CarouselMediaWidget extends Widget {
 					'hover'			=> __( 'hover', 'ItalyStrap' ),
 				),
 			'image_title'	=> true,
-			'text' => true,
-			'wpautop' => true,
+			'text' 			=> true,
+			'wpautop' 		=> true,
+			'responsive'	=> false,
 		);
 
 		$widget_ops = array(
@@ -239,11 +240,11 @@ class CarouselMediaWidget extends Widget {
 					</label>
 					<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $instance[ $key ] ); ?>" placeholder="<?php echo $label; ?>">
 				</p>
-				<div id="media_carousel_sortable">
+				<div class="media_carousel_sortable">
 					<ul  id="sortable" class="carousel_images">
-					<?php if ( ! empty( $ids ) ) : ?>
+					<?php if ( ! empty( $instance['ids'] ) ) : ?>
 						<?php
-						$images = explode( ',', $ids );
+						$images = explode( ',', $instance['ids'] );
 						foreach ( $images as $image ) :
 							$image_attributes = wp_get_attachment_image_src( $image );
 							if ( $image_attributes ) :
@@ -252,7 +253,7 @@ class CarouselMediaWidget extends Widget {
 							<li class="carousel-image ui-state-default">
 								<div>
 									<i class="dashicons dashicons-no"></i>
-									<img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>" data-id="<?php echo $image; ?>">
+									<img src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" data-id="<?php echo esc_attr( $image ); ?>">
 								</div>
 							</li>
 					
@@ -263,13 +264,13 @@ class CarouselMediaWidget extends Widget {
 					</ul>
 				</div>
 				<span style="clear:both;"></span>
-				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add Image', 'ItalyStrap' ); ?>" />
+				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
 			<hr>
 			<?php
 			} else if ( 'size' === $key || 'sizetablet' === $key || 'sizephone' === $key ) {
 
 			?>
-			<p>
+			<p class="<?php echo $key; ?>">
 				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
 					<?php echo $key; ?>
 				</label>
