@@ -215,6 +215,7 @@ class Carousel_Media_Widget extends Widget {
 
 		?>
 		<p>
+			<?php echo $this->create_field_label( 'Title', 'Id' ) . '<br/>'; ?>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>

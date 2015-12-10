@@ -18,6 +18,7 @@
 use \ItalyStrap\Core\Posts_Widget;
 use \ItalyStrap\Core\Carousel_Media_Widget;
 use \ItalyStrap\Core\Vcard_Widget;
+use \ItalyStrap\Core\ItalyStrapCarouselLoader;
 
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
@@ -142,7 +143,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 				$gallery = true; // http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
 
 			if ( ! $gallery )
-				new ItalyStrapCarouselLoader();
+				new \ItalyStrap\Core\ItalyStrapCarouselLoader();
 
 		}
 

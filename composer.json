@@ -8,6 +8,7 @@
 		"classmap": [
 			"admin",
 			"classes",
+			"shortcode",
 			"widget"
 		],
 		"files": ["vendor/webdevstudios/cmb2/init.php"]

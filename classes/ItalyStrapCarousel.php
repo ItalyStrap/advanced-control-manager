@@ -1,74 +1,37 @@
-<?php
+<?php namespace ItalyStrap\Core;
 /**
- * ItalyStrap Carousel forked from Agnosia Bootstrap Carousel by AuSoft
- */
-
-/**
- * ItalyStrapCarouselLoader
- *
- * Loads ItalyStrapCarousel to display a new carousel when needed. 
- *
- * @todo https://codex.wordpress.org/it:Shortcode_Gallery Aggiungere parametri mancanti
- *
- * @since   1.1
- */
-if ( ! class_exists('ItalyStrapCarouselLoader') ) {
-
-	class ItalyStrapCarouselLoader {
-
-		function __construct() {
-
-			add_filter( 'post_gallery', array( $this, 'gallery_shortcode' ), 10, 4 );
-			add_filter( 'jetpack_gallery_types', array( $this, 'gallery_types' ) );
-			// add_filter( 'ItalyStrap_gallery_types', array( $this, 'gallery_types' ), 999 );
-
-		}
-
-		function gallery_shortcode( $output = '', $atts, $content = false, $tag = false ) {
-
-			/**
-			 * @deprecated 1.4.0 Deprecated title attribute for shortcode, use image_title instead
-			 */
-			if ( ! empty( $atts['title'] ) )
-				_deprecated_argument( __FUNCTION__, '1.4.0', __( 'Use $atts[\'image_title\'] instead of $atts[\'title\']', 'ItalyStrap' ) );
-
-			$atts['image_title'] = ( isset( $atts['title'] ) ) ? $atts['title'] : null ;
-
-			$ItalyStrapCarousel = new ItalyStrapCarousel( $atts );
-			return $ItalyStrapCarousel->__get( 'output' );
-
-		}
-
-		function gallery_types( $gallery_types ) {
-
-			$gallery_types['carousel'] = 'Bootstrap Carousel';
-			return $gallery_types;
-
-		}
-
-	}
-
-}
-
-/**
- * ItalyStrapCarousel
+ * ItalyStrap Carousel initially forked from Agnosia Bootstrap Carousel by AuSoft
  *
  * Display a Bootstrap Carousel based on selected images and their titles and
  * descriptions. You need to include the Bootstrap CSS and Javascript files on
  * your own; otherwise the class will not work.
  *
+ * @todo https://codex.wordpress.org/it:Shortcode_Gallery Aggiungere parametri mancanti
+ *
  * @package ItalyStrapCarousel
  * @version 1.0
  * @since   1.0
  */
-if ( !class_exists('ItalyStrapCarousel') ) {
+if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
+	/**
+	 * The Carousel Bootsrap class
+	 */
 	class ItalyStrapCarousel {
 
+		/**
+		 * The attribute for Carousel
+		 * @var array
+		 */
 		private $attributes = array();
 		private $posts = array();
 		private $container_style = '';
 		private $item_style = '';
+
+		/**
+		 * The carousel output
+		 * @var string
+		 */
 		private $output = '';
 
 		function __construct( $atts ) {
@@ -287,7 +250,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			switch ( $position ) {
 				case 'start':
-					extract( $this->attributes );
+					// extract( $this->attributes );
+					foreach($this->attributes as $key => $value)
+						$$key = $value;
 					$output .= '<div id="' . $name . '" class="carousel slide ' . $containerclass . '" ' . $this->container_style . '>';
 					break;
 				case 'end':
@@ -315,7 +280,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			switch ( $position ) {
 				case 'start':
-					extract( $this->attributes );
+					// extract( $this->attributes );
+					foreach($this->attributes as $key => $value)
+						$$key = $value;
 					$output = '<div class="carousel-inner" itemscope itemtype="http://schema.org/ImageGallery">';
 					break;
 				case 'end':
@@ -344,7 +311,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			switch ( $position ) {
 				case 'start':
-					extract( $this->attributes );
+					// extract( $this->attributes );
+					foreach($this->attributes as $key => $value)
+						$$key = $value;
 					$output .= '<div class="carousel-caption ' . $captionclass . '" itemprop="caption">';
 					break;
 				case 'end':
@@ -374,7 +343,9 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 			switch ( $position ) {
 				case 'start':
-					extract( $this->attributes );
+					// extract( $this->attributes );
+					foreach($this->attributes as $key => $value)
+						$$key = $value;
 					$class = ( $i == 0 ) ? 'active ' : '';
 					$output .= '<div class="' . $class . 'item carousel-item ' . $itemclass . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
 					break;
@@ -399,7 +370,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 		 * @return string      HTML result.
 		 */
 		private function get_img( $post, $schemaposition ) {
-			
+
 			// extract( $this->attributes );
 			foreach($this->attributes as $key => $value)
 				$$key = $value;
@@ -413,22 +384,21 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			 */
 			$imgmeta = wp_get_attachment_metadata( $post['ID'] );
 			$imgmeta = $imgmeta[ 'image_meta' ];
-			
+
 			$image_size = '';
 
 			if ( $detect->isTablet() && $responsive )
 				$image_size = $sizetablet;
 
-			elseif( $detect->isMobile() && $responsive )
+			elseif ( $detect->isMobile() && $responsive )
 				$image_size = $sizephone;
 
-			else
-				$image_size = $size;
+			else $image_size = $size;
 
 			$exifdata = '';
 
 			foreach ($imgmeta as $key => $value)
-				if ( !empty( $value ) )
+				if ( ! empty( $value ) )
 					$exifdata .= '<meta  itemprop="exifData" content="' . $key . ': ' . $value . '"/>';
 
 			$output = '';
@@ -469,7 +439,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				$$key = $value;
 
 			$output = '';
-			if ( $image_title !== 'false' ) :
+			if ( 'false' !== $image_title ) :
 				switch ( $link ) {
 				 	case 'file':
 				 		$post_title = '<a href="' . $post['guid'] . '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
@@ -480,7 +450,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 				 	default:
 				 		$post_title = '<a href="' . esc_url( get_permalink( $post['ID'] ) ). '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
 				 		break;
-				 } 
+				 }
 				$output .= '<'. $titletag .'>' . $post_title . '</' . $titletag . '>';
 			endif;
 			$output = apply_filters( 'ItalyStrap_carousel_title', $output, $this->attributes );
@@ -501,7 +471,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			$output = '';
 
 			if ( 'false' !== 'text' )
-				$output .= ( $wpautop != 'false' ) ? wpautop( $post['post_excerpt'] ) : $post['post_excerpt'];
+				$output .= ( 'false' !== $wpautop ) ? wpautop( $post['post_excerpt'] ) : $post['post_excerpt'];
 
 			$output = '<div itemprop="description">' . $output . '</div>';
 
@@ -601,7 +571,7 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 
 		/**
 		 * Obtain array of id given comma-separated values in a string.
-		 * 
+		 *
 		 * @param  string $string  Comma-separated IDs of posts.
 		 * @param  string $orderby Alternative order for array to be returned.
 		 * @return array           Array of WordPress post IDs.
@@ -619,6 +589,5 @@ if ( !class_exists('ItalyStrapCarousel') ) {
 			return $array;
 
 		}
-
 	}
 }

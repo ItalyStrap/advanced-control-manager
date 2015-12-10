@@ -11,6 +11,8 @@
 		render: function() {
 			var $el = this.$el;
 
+			console.log(this.$el);
+
 			media.view.Settings.prototype.render.apply( this, arguments );
 
 			/**
@@ -23,14 +25,14 @@
 			// {"ids":false,"type":"","orderby":"","name":"italystrap-bootstrap-carousel","width":"","height":"","indicators":"before-inner","control":"true","interval":0,"pause":"hover","titletag":"h4","image_title":"true","link":"","text":"true","wpautop":"true","containerclass":"","itemclass":"","captionclass":"","size":"full","responsive":false,"sizetablet":"large","sizephone":"medium"}
 			// console.log(JSON.parse(gallery_fields));
 			// console.log(gallery_fields.length);
-			// gallery_fields = JSON.parse( gallery_fields );
+			gallery_fields = JSON.parse( gallery_fields );
 			// var key;
 			// for (var key in gallery_fields) {
-			// 		console.log(key, gallery_fields[key]);
-			// 		media.gallery.defaults.key = gallery_fields[key];
-			// 		console.log(media.gallery.defaults.key);
-			// 		// this.update.apply( this, [key] );
-			// }
+			//		console.log(key, gallery_fields[key]);
+			//		media.gallery.defaults.key = gallery_fields[key];
+			//		console.log(media.gallery.defaults.key);
+			//		// this.update.apply( this, [key] );
+			//	}
 			// console.log(media.gallery.defaults);
 
 			media.gallery.defaults.type = 'default'; // lil hack that lets media know there's a type attribute.
@@ -39,17 +41,18 @@
 			media.gallery.defaults.width = '';
 			media.gallery.defaults.height = '';
 			media.gallery.defaults.indicators = 'before-inner';
-			media.gallery.defaults.control = true;
+			media.gallery.defaults.control = 'true';
 			media.gallery.defaults.interval = 0;
 			media.gallery.defaults.pause = 'hover';
 			media.gallery.defaults.titletag = 'h4';
-			media.gallery.defaults.image_title = true;
-			media.gallery.defaults.link = '';
-			media.gallery.defaults.text = true;
+			media.gallery.defaults.image_title = 'true';
+			media.gallery.defaults.link = 'none';
+			media.gallery.defaults.text = 'true';
+			media.gallery.defaults.wpautop = 'true';
 			media.gallery.defaults.containerclass = '';
 			media.gallery.defaults.itemclass = '';
 			media.gallery.defaults.captionclass = '';
-			media.gallery.defaults.responsive = false;
+			media.gallery.defaults.responsive = 'false';
 			media.gallery.defaults.sizetablet = 'large';
 			media.gallery.defaults.sizephone = 'medium';
 
@@ -66,6 +69,7 @@
 			this.update.apply( this, ['image_title'] );
 			this.update.apply( this, ['link'] );
 			this.update.apply( this, ['text'] );
+			this.update.apply( this, ['wpautop'] );
 			this.update.apply( this, ['containerclass'] );
 			this.update.apply( this, ['itemclass'] );
 			this.update.apply( this, ['captionclass'] );

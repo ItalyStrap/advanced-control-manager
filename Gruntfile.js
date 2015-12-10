@@ -336,7 +336,7 @@ module.exports = function(grunt) {
 				expand: true,
 				// cwd: 'src',
 				src: [
-					// '**',
+					'**',
 					'!node_modules/**',
 					'!bower_components/**',
 					'!bower.json',
@@ -348,7 +348,7 @@ module.exports = function(grunt) {
 					// 'vendor/mobiledetect/namespaced/Detection/**',
 					'vendor/mobiledetect/mobiledetectlib/Mobile_Detect.php',
 					// '!vendor/mobiledetect/**',
-					'!vendor/webdevstudios/**',
+					// '!vendor/webdevstudios/**',
 					],
 				dest: 'E:/WEB progetti/ItalyStrap/<%= pkg.version %>/',
 				filter: 'isFile',
