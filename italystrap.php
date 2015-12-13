@@ -15,10 +15,11 @@
  * @since 1.0.0
  */
 
-use \ItalyStrap\Core\Posts_Widget;
-use \ItalyStrap\Core\Carousel_Media_Widget;
+use \ItalyStrap\Core\Widget_Posts;
+use \ItalyStrap\Core\Widget_Media_Carousel;
 use \ItalyStrap\Core\Vcard_Widget;
 use \ItalyStrap\Core\ItalyStrapCarouselLoader;
+use \ItalyStrap\Core\MV_My_Recent_Posts_Widget;
 
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
@@ -72,10 +73,20 @@ require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
 
 if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
-	class ItalyStrapInit{
+	/**
+	 * Init Class fo r ItalyStrap core
+	 */
+	class ItalyStrapInit {
 
+		/**
+		 * The plugin's options
+		 * @var string
+		 */
 		private $options = '';
 
+		/**
+		 * Fire the construct
+		 */
 		public function __construct() {
 
 			$this->options = get_option( 'italystrap_settings' );
@@ -112,13 +123,23 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 				ItalyStrapLazyload::init();
 
 			if ( isset( $this->options['vcardwidget'] ) )
-				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Vcard_Widget' ); } );
+				add_action( 'widgets_init', function() {
+					register_widget( 'ItalyStrap\Core\Vcard_Widget' );
+				});
 
 			if ( isset( $this->options['post_widget'] ) )
-				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Posts_Widget' ); } );
+				add_action( 'widgets_init', function() {
+					register_widget( 'ItalyStrap\Core\Widget_Posts' );
+				});
 
 			if ( isset( $this->options['media_widget'] ) )
-				add_action( 'widgets_init', function(){ register_widget( 'ItalyStrap\Core\Carousel_Media_Widget' ); } );
+				add_action( 'widgets_init', function() {
+					register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
+				});
+
+				add_action( 'widgets_init', function() {
+					register_widget( 'ItalyStrap\Core\MV_My_Recent_Posts_Widget' );
+				});
 
 		}
 
@@ -140,7 +161,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 			$gallery = false;
 
 			if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) )
-				$gallery = true; // http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
+				$gallery = true; // A http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
 
 			if ( ! $gallery )
 				new \ItalyStrap\Core\ItalyStrapCarouselLoader();
@@ -163,6 +184,9 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 		}
 
+		/**
+		 * Print inline css.
+		 */
 		public function italystrap_print_inline_css_in_header() {
 
 			$css = ItalyStrapGlobalsCss::get();

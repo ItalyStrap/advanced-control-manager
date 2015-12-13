@@ -17,7 +17,7 @@ use \ItalyStrapAdminMediaSettings;
  *
  * @see WP_Widget
  */
-class Carousel_Media_Widget extends Widget {
+class Widget_Media_Carousel extends Widget {
 
 	/**
 	 * Array with default value

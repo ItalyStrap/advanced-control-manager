@@ -9,7 +9,7 @@ use \WP_Query;
  * and schema.org markup.
  * Original plugin here http://wordpress.org/plugins/ultimate-posts-widget/
  */
-class Posts_Widget extends Widget {
+class Widget_Posts extends Widget {
 
 	/**
 	 * Init the post widget

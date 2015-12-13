@@ -1,6 +1,4 @@
 <?php namespace ItalyStrap\Core;
-
-use \WP_Widget;
 /**
  * Widget API: Widget class
  *
@@ -10,6 +8,8 @@ use \WP_Widget;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
 
+use \WP_Widget;
+
 /**
  * Core class used to implement some common method to widget.
  *
@@ -17,7 +17,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
  *
  * @see WP_Widget
  */
-class Widget extends WP_Widget {
+abstract class Widget extends WP_Widget {
 
 	/**
 	 * Create Widget and call PHP5 constructor.
@@ -355,7 +355,7 @@ class Widget extends WP_Widget {
 	protected function create_field( $key, $out = '' ) {
 
 		/* Set Defaults */
-		$key['std'] = isset( $key['std'] ) ? $key['std'] : '';
+		$key['default_value'] = isset( $key['default_value'] ) ? $key['default_value'] : '';
 
 		$slug = $key['id'];
 
@@ -374,11 +374,11 @@ class Widget extends WP_Widget {
 		$field_method = 'create_field_' . str_replace( '-', '_', $key['type'] );
 
 		/* Check for <p> Class */
-		$p = ( isset( $key['class-p'] ) ) ? '<p class="'.$key['class-p'].'">' : '<p>';
+		$p_class = ( isset( $key['class-p'] ) ) ? ' class="'.$key['class-p'].'"' : '';
 
 		/* Run method */
 		if ( method_exists( $this, $field_method ) )
-			return $p.$this->$field_method( $key ).'</p>';
+			return '<p' . $p_class . '>' . $this->$field_method( $key ) . '</p>';
 
 	}
 
@@ -398,7 +398,7 @@ class Widget extends WP_Widget {
 		if ( isset( $key['class'] ) )
 			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
 
-		$value = isset( $key['value'] ) ? $key['value'] : $key['std'];
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default_value'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
@@ -435,7 +435,7 @@ class Widget extends WP_Widget {
 		if ( isset( $key['cols'] ) )
 			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" ';
 
-		$value = isset( $key['value'] ) ? $key['value'] : $key['std'];
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default_value'];
 
 		$out .= 'id="'. esc_attr( $key['_id'] ) .'" name="' . esc_attr( $key['_name'] ) . '">'.esc_html( $value );
 
@@ -456,7 +456,6 @@ class Widget extends WP_Widget {
 	 * @return string      Return the HTML Field Checkbox
 	 */
 	protected function create_field_checkbox( $key, $out = '' ) {
-		$out .= $this->create_field_label( $key['name'], $key['_id'] );
 
 		$out .= ' <input type="checkbox" ';
 
@@ -465,10 +464,12 @@ class Widget extends WP_Widget {
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
 
-		if ( ( isset( $key['value'] ) && 1 === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['std'] ) )
+		if ( ( isset( $key['value'] ) && 1 === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default_value'] ) )
 			$out .= ' checked="checked" ';
 
 		$out .= ' /> ';
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] );
 
 		if ( isset( $key['desc'] ) )
 			$out .= $this->create_field_description( $key['desc'] );
@@ -494,7 +495,7 @@ class Widget extends WP_Widget {
 
 		$out .= '> ';
 
-		$selected = isset( $key['value'] ) ? $key['value'] : $key['std'];
+		$selected = isset( $key['value'] ) ? $key['value'] : $key['default_value'];
 
 		foreach ( $key['fields'] as $field => $option ) {
 
@@ -534,7 +535,7 @@ class Widget extends WP_Widget {
 
 		$out .= '> ';
 
-		$selected = isset( $key['value'] ) ? $key['value'] : $key['std'];
+		$selected = isset( $key['value'] ) ? $key['value'] : $key['default_value'];
 
 		foreach ( $key['fields'] as $group => $fields ) {
 
@@ -579,7 +580,7 @@ class Widget extends WP_Widget {
 		if ( isset( $key['class'] ) )
 			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
 
-		$value = isset( $key['value'] ) ? $key['value'] : $key['std'];
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default_value'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 

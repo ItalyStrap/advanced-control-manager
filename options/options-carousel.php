@@ -11,7 +11,6 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
  * Definition array() with all the options connected to the
  * module which must be called by an include (setoptions).
  */
-
 return array(
 
 	/**
