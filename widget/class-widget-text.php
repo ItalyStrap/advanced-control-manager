@@ -16,15 +16,16 @@ if ( ! class_exists( 'MV_My_Recent_Posts_Widget' ) )
 				// Widget Backend label
 				'label' => __( 'My Recent Posts', 'mv-my-recente-posts' ), 
 				// Widget Backend Description								
-				'description' => __( 'My Recent Posts Widget Description', 'mv-my-recente-posts' ), 		
+				'description' => __( 'My Recent Posts Widget Description', 'mv-my-recente-posts' ),
+				'control_options' => array( 'width' => 340 ),
 			 );
 		
 			// Configure the widget fields
 			// Example for: Title ( text ) and Amount of posts to show ( select box )
 		
 			// fields array
-			$args['fieldss'] =  require( ITALYSTRAP_PLUGIN_PATH . 'options/options-test.php' );							
-			$args['fields'] = array(							
+			$args['fields'] =  require( ITALYSTRAP_PLUGIN_PATH . 'options/options-test.php' );							
+			$args['fieldss'] = array(							
 			
 				// Title field
 				array( 		
@@ -39,7 +40,7 @@ if ( ! class_exists( 'MV_My_Recent_Posts_Widget' ) )
 				// class, rows, cols								
 				'class' => 'widefat', 	
 				// default value						
-				'default_value' => __( 'Recent Posts', 'mv-my-recente-posts' ), 
+				'default' => __( 'Recent Posts', 'mv-my-recente-posts' ), 
 				
 				/*
 					Set the field validation type/s
@@ -126,13 +127,15 @@ if ( ! class_exists( 'MV_My_Recent_Posts_Widget' ) )
 				'id' => 'list', 							
 				'type'=>'checkbox', 				
 				// checked by default: 
-				'default_value' => 1, // 0 or 1
+				'default' => 1, // 0 or 1
 				'filter' => 'strip_tags|esc_attr', 
 				 ), 
 			
 				// add more fields
 			
 			 ); // fields array
+
+			// $args['control_options'] = array( 'width' => 350 );
 
 			// var_dump($args);
 

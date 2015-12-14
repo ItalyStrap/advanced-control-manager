@@ -211,7 +211,7 @@ class Widget_Media_Carousel extends Widget {
 		 * @var ItalyStrapAdminMediaSettings
 		 */
 		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) )
+		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
 
 		?>
 		<p>

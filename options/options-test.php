@@ -16,54 +16,38 @@ return array(
 	/**
 	 * Ids for the images to use.
 	 */
-	'ids'				=> array( 
-				'name' => __( 'Output as list1', 'mv-my-recente-posts' ), 							
-				'desc' => __( 'Wraps posts with the <li> tag.', 'mv-my-recente-posts' ), 
-				'id' => 'list1',
-				'class' => 'widefat',
-				'type'=>'text', 				
-				// checked by default: 
-				'default_value' => false, // 0 or 1
-				'filter' => 'strip_tags|esc_attr', 
-				 ), 
+	'ids'				=> array(
+				'name'		=> __( 'Images ID', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the image ID.', 'ItalyStrap' ),
+				'id'		=> 'ids',
+				'type'		=> 'text',
+				'class'		=> 'widefat',
+				'default'	=> false,
+				'validate'	=> 'alpha_dash',
+				'filter'	=> 'strip_tags|esc_attr',
+				 ),
 
 	/**
 	 * Type of gallery. If it's not "carousel", nothing will be done.
 	 */
-	'type'				=> array( 
-				'name' => __( 'Output as list2', 'mv-my-recente-posts' ), 							
-				'desc' => __( 'Wraps posts with the <li> tag.', 'mv-my-recente-posts' ), 
-				'id' => 'list2',
-				'class' => 'widefat',
-				'type'=>'text',			
-				// checked by default: 
-				'default_value' => 'Ciao ', // 0 or 1
-				'filter' => 'strip_tags|esc_attr', 
-				 ), 
-
-	/**
-	 * Alternative appearing order of images.
-	 */
-	'orderby'			=> array( 
-				'name' => __( 'Output as list3', 'mv-my-recente-posts' ), 							
-				'desc' => __( 'Wraps posts with the <li> tag.', 'mv-my-recente-posts' ), 
-				'id' => 'list3',
-				'class' => 'widefat',
-				'type'=>'text', 				
-				// checked by default: 
-				'default_value' => 'Bello',
-				'filter' => 'strip_tags|esc_attr', 
-				 ), 
-
-	array( 
-				'name' => __( 'Output as list4', 'mv-my-recente-posts' ), 							
-				'desc' => __( 'Wraps posts with the <li> tag.', 'mv-my-recente-posts' ), 
-				'id' => 'list4',
-				'class' => 'widefat',
-				'type'=>'checkbox', 				
-				// checked by default: 
-				'default_value' => 1, // 0 or 1
-				'filter' => 'strip_tags|esc_attr', 
-				 ), 
+	'type'				=> array(
+				'name'		=> __( 'Type of gallery', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'ItalyStrap' ),
+				'id'		=> 'type',
+				'type'		=> 'select',
+				'class'		=> 'widefat',
+				'fields' => array(
+								array(
+									'name'  => __( 'Standard Gallery', 'mv-my-recente-posts' ),
+									'value' => '',
+								 ),
+								array(
+									'name'  => __( 'Carousel', 'mv-my-recente-posts' ),
+									'value' => 'carousel',
+								 ),
+				 			),
+				'validate'	=> 'alpha_dash',
+				'filter'	=> 'strip_tags|esc_attr',
+				 ),
 
 );
