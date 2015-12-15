@@ -553,14 +553,14 @@ abstract class Widget extends WP_Widget {
 
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		foreach ( $key['fields'] as $field => $option ) {
+		foreach ( $key['options'] as $field => $option ) {
 
-			$out .= '<option value="' . esc_attr__( $option['value'] ) . '" ';
+			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
-			if ( $selected === $option['value'] )
+			if ( $selected === $field )
 				$out .= ' selected="selected" ';
 
-			$out .= '> '.esc_html( $option['name'] ).'</option>';
+			$out .= '> '.esc_html( $option ).'</option>';
 
 		}
 
@@ -593,18 +593,18 @@ abstract class Widget extends WP_Widget {
 
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		foreach ( $key['fields'] as $group => $fields ) {
+		foreach ( $key['options'] as $group => $options ) {
 
 			$out .= '<optgroup label="' . $group . '">';
 
-			foreach ( $fields as $field => $option ) {
+			foreach ( $options as $field => $option ) {
 
-				$out .= '<option value="' . esc_attr( $option['value'] ) . '" ';
+				$out .= '<option value="' . esc_attr( $field ) . '" ';
 
-				if ( esc_attr( $selected ) === $option['value'] )
+				if ( esc_attr( $selected ) === $field )
 					$out .= ' selected="selected" ';
 
-				$out .= '> ' . esc_html( $option['name'] ) . '</option>';
+				$out .= '> ' . esc_html( $option ) . '</option>';
 			}
 
 			$out .= '</optgroup>';
