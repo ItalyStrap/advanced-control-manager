@@ -26,6 +26,83 @@ abstract class Widget extends WP_Widget {
 	private $fields = array();
 
 	/**
+	 * Echoes the widget content.
+	 *
+	 * Sub-classes should over-ride this function to generate their widget code.
+	 *
+	 * @since 2.8.0
+	 * @access public
+	 *
+	 * @param array $args     Display arguments including 'before_title', 'after_title',
+	 *                        'before_widget', and 'after_widget'.
+	 * @param array $instance The settings for the particular instance of the widget.
+	 */
+	public function widget( $args, $instance ) {
+
+		$output = '';
+
+		$output .= $args['before_widget'];
+
+		/**
+		 * Print the optional widget title
+		 */
+		$output .= $this->widget_title( $args, $instance );
+
+		/**
+		 * Modify this for outputting the HTML
+		 */
+		$output .= $this->widget_render( $args, $instance );
+
+		$output .= $args['after_widget'];
+
+		echo apply_filters( 'widget_text', $output ); // XSS ok.
+
+	}
+
+	/**
+	 * Dispay the widget content
+	 *
+	 * @since 2.0.0
+	 * @access public
+	 *
+	 * @param  array $args     Display arguments including 'before_title', 'after_title',
+	 *                        'before_widget', and 'after_widget'.
+	 * @param  array $instance The settings for the particular instance of the widget.
+	 */
+	public function widget_render( $args, $instance ) {}
+
+	/**
+	 * Dispay the optional title
+	 *
+	 * @since 2.0.0
+	 * @access public
+	 *
+	 * @param  array $args     Display arguments including 'before_title', 'after_title',
+	 *                        'before_widget', and 'after_widget'.
+	 * @param  array $instance The settings for the particular instance of the widget.
+	 * @return string          Return the optional title
+	 */
+	public function widget_title( $args, $instance ) {
+
+		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+		$title = apply_filters(
+			'widget_title',
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);
+
+		/**
+		 * Return the optional widget title with before_title and after_title
+		 */
+		if ( $title )
+			$title = $args['before_title'] . $title . $args['after_title']; // XSS ok.
+
+		return $title;
+
+	}
+
+	/**
 	 * Create Widget and call PHP5 constructor.
 	 * Creates a new widget and sets it's labels, description, fields and options.
 	 *
@@ -53,11 +130,6 @@ abstract class Widget extends WP_Widget {
 		$args = wp_parse_args( (array) $args, (array) $defaults );
 
 		/**
-		 * Extract each arg to its own variable.
-		 * extract( $args, EXTR_SKIP );
-		 */
-
-		/**
 		 * Set the widget vars.
 		 */
 		$id_base    = sanitize_title( $args['label'] );
@@ -69,8 +141,6 @@ abstract class Widget extends WP_Widget {
 		 * @var array
 		 */
 		$widget_options = array( 'description' => $args['description'] );
-
-		// if ( ! empty( $args['widget_options'] ) ) $widget_options = array_merge( $widget_options, $args['widget_options'] );
 
 		$widget_options = wp_parse_args( (array) $args['widget_options'], (array) $widget_options );
 
@@ -91,8 +161,7 @@ abstract class Widget extends WP_Widget {
 		 */
 		$control_options = $args['control_options'];
 
-		// if ( ! empty( $args['control_options'] ) )
-		// 	$control_options = wp_parse_args( (array) $args['control_options'], (array) $control_options );
+		$this->fields  = $args['fields'];
 
 		/**
 		 * Call WP_Widget to create the widget.
@@ -112,8 +181,6 @@ abstract class Widget extends WP_Widget {
 		 *                                information on accepted arguments. Default empty array.
 		 */
 		parent::__construct( $id_base, $name, $widget_options, $control_options );
-
-		$this->fields  = $args['fields'];
 
 	}
 
@@ -153,29 +220,26 @@ abstract class Widget extends WP_Widget {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
+
+		$instance = $new_instance;
 
 		$this->before_update_fields();
 
 		foreach ( $this->fields as $key ) {
-			$slug = $key['id'];
 
 			if ( isset( $key['validate'] ) ) {
-				if ( false === $this->validate( $key['validate'], $new_instance[ $slug ] ) )
-				return $instance;
+
+				if ( false === $this->validate( $key['validate'], $instance[ $key['id'] ] ) ) {
+
+					$instance[ $key['id'] ] = '';
+				}
 			}
 
 			if ( isset( $key['filter'] ) )
-				$instance[ $slug ] = $this->filter( $key['filter'], $new_instance[ $slug ] );
-			else $instance[ $slug ] = strip_tags( $new_instance[ $slug ] );
+				$instance[ $key['id'] ] = $this->filter( $key['filter'], $instance[ $key['id'] ] );
+			else $instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] );
+
 		}
-
-		$this->flush_widget_cache();
-
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-
-		if ( isset( $alloptions[ $this->option_name ] ) )
-			delete_option( $this->option_name );
 
 		return $this->after_validate_fields( $instance );
 	}
@@ -200,18 +264,20 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $instance The $instance of widget.
 	 * @return string           Return the $instance of widget
 	 */
-	public function after_validate_fields( $instance = '' ) {
+	public function after_validate_fields( $instance ) {
+
 		return $instance;
+
 	}
 
 	/**
 	 * Validate the value of key
 	 *
 	 * @access private
-	 * @param  string $rules Insert the rule name you want to use for validation.
-	 *                       Use | to separate more rules.
+	 * @param  string $rules          Insert the rule name you want to use for validation.
+	 *                                Use | to separate more rules.
 	 * @param  string $instance_value The value you want to validate.
-	 * @return string                 Return the value validated
+	 * @return bool                   Return true if valid and folse if it is not
 	 */
 	private function validate( $rules, $instance_value ) {
 		$rules = explode( '|', $rules );
@@ -411,15 +477,13 @@ abstract class Widget extends WP_Widget {
 		/* Set Defaults */
 		$key['default'] = isset( $key['default'] ) ? $key['default'] : '';
 
-		$slug = $key['id'];
-
-		if ( isset( $this->instance[ $slug ] ) )
-			$key['value'] = empty( $this->instance[ $slug ] ) ? '' : strip_tags( $this->instance[ $slug ] );
+		if ( isset( $this->instance[ $key['id'] ] ) )
+			$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
 		else unset( $key['value'] );
 
 		/* Set field id and name  */
-		$key['_id'] = $this->get_field_id( $slug );
-		$key['_name'] = $this->get_field_name( $slug );
+		$key['_id'] = $this->get_field_id( $key['id'] );
+		$key['_name'] = $this->get_field_name( $key['id'] );
 
 		/* Set field type */
 		if ( ! isset( $key['type'] ) ) $key['type'] = 'text';
@@ -428,12 +492,60 @@ abstract class Widget extends WP_Widget {
 		$field_method = 'create_field_' . str_replace( '-', '_', $key['type'] );
 
 		/* Check for <p> Class */
-		$p_class = ( isset( $key['class-p'] ) ) ? ' class="'.$key['class-p'].'"' : '';
+		$p_class = ( isset( $key['class-p'] ) ) ? ' class="' . $key['class-p'] . '"' : '';
 
 		/* Run method */
 		if ( method_exists( $this, $field_method ) )
 			return '<p' . $p_class . '>' . $this->$field_method( $key ) . '</p>';
+		else return '<p' . $p_class . '>' . $this->create_field_text( $key ) . '</p>';
 
+	}
+
+	/**
+	 * Combines attributes into a string for a form element
+	 * @since  1.1.0
+	 * @param  array $attrs        Attributes to concatenate.
+	 * @param  array $attr_exclude Attributes that should NOT be concatenated.
+	 * @return string               String of attributes for form element
+	 */
+	public function concat_attrs( $attrs, $attr_exclude = array() ) {
+		$attributes = '';
+		foreach ( $attrs as $attr => $val ) {
+			$excluded = in_array( $attr, (array) $attr_exclude, true );
+			$empty    = false === $val && 'value' !== $attr;
+			if ( ! $excluded && ! $empty ) {
+				// If data attribute, use single quote wraps, else double.
+				$quotes = stripos( $attr, 'data-' ) !== false ? "'" : '"';
+				$attributes .= sprintf( ' %1$s=%3$s%2$s%3$s', $attr, $val, $quotes );
+			}
+		}
+		return $attributes;
+	}
+
+	/**
+	 * Handles outputting an 'input' element
+	 * @since  2.0.0
+	 * @param  array $attr Override arguments.
+	 * @param  array $key Override arguments.
+	 * @return string     Form input element
+	 */
+	public function input( $attr = array(), $key = array() ) {
+
+		$a = array(
+			'type'            => 'text',
+			'class'           => esc_attr( $key['class'] ),
+			'name'            => esc_attr( $key['_name'] ),
+			'id'              => esc_attr( $key['_id'] ),
+			'value'           => ( isset( $key['value'] ) ? $key['value'] : $key['default'] ),
+			'desc'            => $this->create_field_description( $key['desc'] ),
+			'js_dependencies' => array(),
+		);
+
+		if ( ! empty( $a['js_dependencies'] ) ) {
+			CMB2_JS::add_dependencies( $a['js_dependencies'] );
+		}
+
+		return sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc', 'js_dependencies' ) ), $a['desc'] );
 	}
 
 	/**
@@ -465,7 +577,7 @@ abstract class Widget extends WP_Widget {
 		if ( isset( $key['desc'] ) )
 			$out .= $this->create_field_description( $key['desc'] );
 
-		return $out;
+		return $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( array(), $key );
 	}
 
 	/**
@@ -519,8 +631,17 @@ abstract class Widget extends WP_Widget {
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
 
-		if ( ( isset( $key['value'] ) && 1 === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) )
+		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) )
 			$out .= ' checked="checked" ';
+
+		/**
+		 * Da vedere se utilizzabile per fare il controllo sulle checkbox.
+		 * if ( isset( $key['value'] ) && 'true' === $key['value'] ) {
+		 * 	$key['value'] = true;
+		 * 	} else $key['value'] = false;
+		 *
+		 * $out .= checked( $key['value'], true );
+		 */
 
 		$out .= ' /> ';
 
@@ -560,7 +681,7 @@ abstract class Widget extends WP_Widget {
 			if ( $selected === $field )
 				$out .= ' selected="selected" ';
 
-			$out .= '> '.esc_html( $option ).'</option>';
+			$out .= '> ' . esc_html( $option ) . '</option>';
 
 		}
 
@@ -723,13 +844,5 @@ abstract class Widget extends WP_Widget {
 
 		}
 
-	}
-
-	/**
-	 * Flush widget cache
-	 */
-	function flush_widget_cache() {
-
-		wp_cache_delete( $this->option_name, 'widget' );
 	}
 }
