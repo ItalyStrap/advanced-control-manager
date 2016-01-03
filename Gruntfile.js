@@ -468,7 +468,7 @@ module.exports = function(grunt) {
 	 * 
 	 * Change version only in package.json
 	 *
-	 * 
+	 * Open Git Bash and type:
 	 * $ grunt deploy
 	 * 
 	 * Poi nella cartella svn-wordpress
