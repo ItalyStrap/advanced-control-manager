@@ -20,10 +20,11 @@ return array(
 				'name'		=> __( 'Images ID', 'ItalyStrap' ),
 				'desc'		=> __( 'Enter the image ID.', 'ItalyStrap' ),
 				'id'		=> 'ids',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
+				'type'		=> 'media_list',
+				// 'type'		=> 'text',
+				'class'		=> 'widefat ids',
 				'default'	=> false,
-				'validate'	=> 'alpha_dash',
+				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -41,7 +42,7 @@ return array(
 							'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
 							'carousel'  => __( 'Carousel', 'ItalyStrap' ),
 				 			),
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -62,7 +63,7 @@ return array(
 							'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
 							'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -77,8 +78,8 @@ return array(
 				'id'		=> 'name',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
-				'default'	=> rand(),
-				'validate'	=> 'alpha_dash',
+				'default'	=> 'widget-media-carousel-' . rand(),
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -92,7 +93,7 @@ return array(
 				'type'		=> 'number',
 				'class'		=> 'widefat',
 				'default'	=> '',
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -106,7 +107,7 @@ return array(
 				'type'		=> 'number',
 				'class'		=> 'widefat',
 				'default'	=> '',
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -127,7 +128,7 @@ return array(
 							'after-control'	=> __( 'After control', 'ItalyStrap' ),
 							'false'			=> __( 'False', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -195,7 +196,7 @@ return array(
 							'false'			=> __( 'none', 'ItalyStrap' ),
 							'hover'			=> __( 'hover', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -209,7 +210,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'default'	=> 'h4',
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -241,7 +242,7 @@ return array(
 							'none'			=> __( 'None', 'ItalyStrap' ),
 							'link'			=> __( 'Link', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -276,7 +277,7 @@ return array(
 				'id'		=> 'containerclass',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -289,7 +290,7 @@ return array(
 				'id'		=> 'itemclass',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -302,7 +303,7 @@ return array(
 				'id'		=> 'captionclass',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -320,7 +321,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'full',
 				'options'	=> $image_size_media_array,
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -346,12 +347,12 @@ return array(
 	'sizetablet'		=> array(
 				'name'		=> __( 'Size for images', 'ItalyStrap' ),
 				'desc'		=> __( '', 'ItalyStrap' ),
-				'id'		=> 'size',
+				'id'		=> 'sizetablet',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
 				'default'	=> 'large',
 				'options'	=> $image_size_media_array,
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -364,12 +365,12 @@ return array(
 	'sizephone'			=> array(
 				'name'		=> __( 'Size for images', 'ItalyStrap' ),
 				'desc'		=> __( '', 'ItalyStrap' ),
-				'id'		=> 'size',
+				'id'		=> 'sizephone',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
 				'default'	=> 'medium',
 				'options'	=> $image_size_media_array,
-				'validate'	=> 'alpha_dash',
+				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
