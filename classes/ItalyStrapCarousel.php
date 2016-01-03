@@ -69,7 +69,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			/**
 			 * Append javascript in static variable and print in front-end footer
 			 */
-			ItalyStrapGlobals::set( $this->get_javascript() );
+			\ItalyStrapGlobals::set( $this->get_javascript() );
 		}
 
 		/**
