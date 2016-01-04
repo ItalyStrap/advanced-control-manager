@@ -26,6 +26,25 @@ abstract class Widget extends WP_Widget {
 	private $fields = array();
 
 	/**
+	 * Set the title field
+	 */
+	protected function title_field() {
+
+		return array(
+			'title'	=> array(
+				'name'		=> __( 'Title', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the widget title.', 'ItalyStrap' ),
+				'id'		=> 'title',
+				'type'		=> 'text',
+				'class'		=> 'widefat',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'filter'	=> 'strip_tags|esc_attr',
+			),
+		);
+	}
+
+	/**
 	 * Echoes the widget content.
 	 *
 	 * Sub-classes should over-ride this function to generate their widget code.
@@ -130,11 +149,16 @@ abstract class Widget extends WP_Widget {
 		$args = wp_parse_args( (array) $args, (array) $defaults );
 
 		/**
-		 * Set the widget vars.
+		 * Convert $args['label'] spaces with dash '-'.
 		 */
 		$id_base    = sanitize_title( $args['label'] );
 
 		$name = $args['label'];
+
+		/**
+		 * Set the default widget title
+		 */
+		$args['fields']['title']['default'] = $name;
 
 		/**
 		 * Check options.
