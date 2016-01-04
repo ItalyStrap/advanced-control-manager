@@ -19,7 +19,6 @@ use \ItalyStrap\Core\Widget_Posts;
 use \ItalyStrap\Core\Widget_Media_Carousel;
 use \ItalyStrap\Core\Vcard_Widget;
 use \ItalyStrap\Core\ItalyStrapCarouselLoader;
-use \ItalyStrap\Core\MV_My_Recent_Posts_Widget;
 
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
@@ -138,7 +137,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 				});
 
 				add_action( 'widgets_init', function() {
-					register_widget( 'ItalyStrap\Core\MV_My_Recent_Posts_Widget' );
+					register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 				});
 
 		}
