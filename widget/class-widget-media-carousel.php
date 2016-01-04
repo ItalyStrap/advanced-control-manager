@@ -1,251 +1,90 @@
 <?php namespace ItalyStrap\Core;
 
-use \WP_Widget;
-use \ItalyStrapCarousel;
 use \ItalyStrapAdminMediaSettings;
-/**
- * Widget API: CarouselMediaWidget class
- *
- * @package ItalyStrap
- * @since 1.4.0
- */
 
 /**
- * Core class used to implement a Bootstrap Carousel widget.
- *
- * @since 1.4.0
- *
- * @see WP_Widget
+ * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
  */
-class Widget_Media_Carousel extends Widget {
+
+if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 
 	/**
-	 * Array with default value
-	 * @var array
+	 * Class
 	 */
-	private $fields = array();
-
-	/**
-	 * Default option
-	 * @var array
-	 */
-	private $carousel_options = array();
-
-	/**
-	 * Sets up a new Bootstrap carousel widget instance.
-	 *
-	 * @since 1.4.0
-	 * @access public
-	 */
-	public function __construct() {
+	class Widget_Media_Carousel extends Widget implements Interface_Widget {
 
 		/**
-		 * Define data by given attributes.
+		 * Init the constructor
 		 */
-		$this->fields = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' );
-
-		$this->carousel_options = array(
-			'orderby'		=> array(
-					'menu_order'	=> __( 'Menu order (Default)', 'ItalyStrap' ),
-					'title'			=> __( 'Order by the image\'s title', 'ItalyStrap' ),
-					'post_date'		=> __( 'Sort by date/time', 'ItalyStrap' ),
-					'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
-					'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
-				),
-			'indicators'	=> array(
-					'before-inner'	=> __( 'before-inner', 'ItalyStrap' ),
-					'after-inner'	=> __( 'after-inner', 'ItalyStrap' ),
-					'after-control'	=> __( 'after-control', 'ItalyStrap' ),
-					'false'			=> __( 'false', 'ItalyStrap' ),
-				),
-			'control'		=> true,
-			'pause'			=> array(
-					'false'			=> __( 'none', 'ItalyStrap' ),
-					'hover'			=> __( 'hover', 'ItalyStrap' ),
-				),
-			'image_title'	=> true,
-			'text' 			=> true,
-			'wpautop' 		=> true,
-			'responsive'	=> false,
-		);
-
-		$widget_ops = array(
-			'classname'		=> 'widget_italystrap_media_carousel',
-			'description'	=> __( 'Use this widget to add a Bootstrap Media Carousel', 'ItalyStrap' ),
-			);
-
-		/**
-		 * The width and eight of the widget in admin
-		 * @var array
-		 */
-		$control_ops = array(
-			// 'width' => 350,
-			// 'height' => 350
-			);
-
-		parent::__construct(
-			'widget_italystrap_media_carousel',
-			__( 'ItalyStrap: Bootstrap Media Carousel', 'ItalyStrap' ),
-			$widget_ops,
-			$control_ops
-		);
-
-		add_action( 'save_post', array( &$this, 'flush_widget_cache' ) );
-		add_action( 'deleted_post', array( &$this, 'flush_widget_cache' ) );
-		add_action( 'switch_theme', array( &$this, 'flush_widget_cache' ) );
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
-
-	}
-
-	/**
-	 * Outputs the content for the current Bootstrap carousel widget instance.
-	 *
-	 * @since 1.4.0
-	 * @access public
-	 *
-	 * @param array $args     Display arguments including 'before_title', 'after_title',
-	 *                        'before_widget', and 'after_widget'.
-	 * @param array $instance Settings for the current Bootstrap carousel widget instance.
-	 */
-	public function widget( $args, $instance ) {
-
-		$cache = wp_cache_get( 'widget_italystrap_media_carousel', 'widget' );
-
-		if ( ! is_array( $cache ) )
-			$cache = array();
-
-		if ( ! isset( $args['widget_id'] ) )
-			$args['widget_id'] = null;
-
-		if ( isset( $cache[ $args['widget_id'] ] ) ) {
-
-			echo $cache[ $args['widget_id'] ];
-			return;
-
-		}
-
-		ob_start();
-
-		$title = apply_filters(
-			'italystrap_media_carousel_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
-
-		// foreach ( $this->fields as $name => $label )
-		// 	$instance[ $name ] = ! empty( $instance[ $name ] ) ? esc_attr( $instance[ $name ] ) : $this->fields[ $name ];
-
-		echo $args['before_widget'];
-
-		/**
-		 * Print the optional widget title
-		 */
-		if ( ! empty( $title ) ) {
-			echo $args['before_title'] . $title . $args['after_title'];
-		}
-
-		$instance['type'] = $instance['ids'] ? 'carousel' : '';
-
-		$mediacarousel = new ItalyStrapCarousel( $instance );
-		echo $mediacarousel->__get( 'output' );
-
-		echo $args['after_widget'];
-
-		$cache[ $args['widget_id'] ] = ob_get_flush();
-			wp_cache_set( 'widget_italystrap_media_carousel', $cache, 'widget' );
-
-	}
-
-	/**
-	 * Handles updating settings for the current Bootstrap carousel widget instance.
-	 *
-	 * @since 1.4.0
-	 * @access public
-	 *
-	 * @param array $new_instance New settings for this instance as input by the user via
-	 *                            WP_Widget::form().
-	 * @param array $old_instance Old settings for this instance.
-	 * @return array Settings to save or bool false to cancel saving.
-	 */
-	public function update( $new_instance, $old_instance ) {
-
-		/**
-		 * Sanitizzo l'array
-		 */
-		foreach ( $this->fields as $key => $value ) {
-			$new_instance[ $key ] = ( isset( $new_instance[ $key ] ) ) ? sanitize_text_field( $new_instance[ $key ] ) : '';
-		}
-		$instance = $new_instance;
-
-		$this->flush_widget_cache();
-
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-
-		if ( isset( $alloptions['widget_italystrap_media_carousel'] ) )
-			delete_option( 'widget_italystrap_media_carousel' );
-
-		return $instance;
-
-	}
-
-	/**
-	 * Outputs the Bootstrap carousel widget settings form.
-	 *
-	 * @since 1.4.0
-	 * @access public
-	 *
-	 * @param array $instance Current settings.
-	 */
-	public function form( $instance ) {
-
-		$instance = wp_parse_args( (array) $instance, (array) $this->fields );
-
-		$instance['title'] = ( isset( $instance['title'] ) ) ? $instance['title'] : '' ;
-		$instance['type'] = 'carousel';
-		$instance['name'] = $this->id;
-
-		/**
-		 * Instance of list of image sizes
-		 * @var ItalyStrapAdminMediaSettings
-		 */
-		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
-
-		?>
-		<p>
-			<?php echo $this->create_field_label( 'Title', 'Id' ) . '<br/>'; ?>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title:' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
-		</p>
-		<?php
-
-		foreach ( $this->fields as $key => $label ) {
-
-			$instance[ $key ] = isset( $instance[ $key ] ) ? $instance[ $key ] : '';
+		function __construct() {
 
 			/**
-			 * Save select in widget
-			 * @link https://wordpress.org/support/topic/wordpress-custom-widget-select-options-not-saving
-			 * Display select only if is schema
+			 * Instance of list of image sizes
+			 * @var ItalyStrapAdminMediaSettings
 			 */
-			if ( 'ids' === $key ) {
+			$image_size_media = new ItalyStrapAdminMediaSettings;
+			$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+
+			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ) );
+
+			/**
+			 * Configure widget array.
+			 * @var array
+			 */
+			$args = array(
+				// Widget Backend label.
+				'label'				=> __( 'ItalyStrap Media Carousel', 'ItalyStrap' ),
+				// Widget Backend Description.
+				'description'		=> __( 'Add a Carousel for your media files', 'ItalyStrap' ),
+				'fields'			=> $fields,
+				'control_options'	=> array( 'width' => 340 ),
+			 );
+
+			/**
+			 * Create Widget
+			 */
+			$this->create_widget( $args );
+		}
+
+		/**
+		 * Create the Field Text
+		 *
+		 * @access protected
+		 * @param  array  $key The key of field's array to create the HTML field.
+		 * @param  string $out The HTML form output.
+		 * @return string      Return the HTML Field Text
+		 */
+		protected function create_field_media_list( $key, $out = '' ) {
+
+			$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+			$out .= '<input type="hidden" ';
+
+			if ( isset( $key['class'] ) )
+				$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+
+			$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+			$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+
+			if ( isset( $key['size'] ) )
+				$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+
+			$out .= ' />';
+
+			if ( isset( $key['desc'] ) )
+				$out .= $this->create_field_description( $key['desc'] );
+
+			ob_start();
 
 			?>
 				<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
 				<hr>
-				<p>
-					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="display:none">
-						<?php echo $key; ?>:
-					</label>
-					<input type="hidden" class="widefat ids" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $instance[ $key ] ); ?>" placeholder="<?php echo $label; ?>">
-				</p>
 				<div class="media_carousel_sortable">
-					<ul  id="sortable" class="carousel_images">
-					<?php if ( ! empty( $instance['ids'] ) ) : ?>
+					<ul id="sortable" class="carousel_images">
+					<?php if ( ! empty( $value ) ) : ?>
 						<?php
-						$images = explode( ',', $instance['ids'] );
+						$images = explode( ',', $value );
 						foreach ( $images as $image ) :
 							$image_attributes = wp_get_attachment_image_src( $image );
 							if ( $image_attributes ) :
@@ -265,84 +104,52 @@ class Widget_Media_Carousel extends Widget {
 					</ul>
 				</div>
 				<span style="clear:both;"></span>
-				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+				<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
 			<hr>
 			<?php
-			} else if ( 'size' === $key || 'sizetablet' === $key || 'sizephone' === $key ) {
 
-			?>
-			<p class="<?php echo $key; ?>">
-				<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
-					<?php echo $key; ?>
-				</label>
-				<?php $saved_option = ( isset( $instance[ $key ] ) ) ? $instance[ $key ] : '' ; ?>
-				<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" class="widefat">
-					<?php
-					$option = '';
+			$output = ob_get_contents();
+			ob_end_clean();
 
-					foreach ( $image_size_media_array as $k => $v ) {
+			return $out . $output;
+		}
 
-						$option .= '<option ' . ( selected( $k, $saved_option ) ) . ' value="' . $k . '">' . $v . '</option>';
+		/**
+		 * Dispay the widget content
+		 *
+		 * @param  array $args     Display arguments including 'before_title', 'after_title',
+		 *                        'before_widget', and 'after_widget'.
+		 * @param  array $instance The settings for the particular instance of the widget.
+		 */
+		public function widget_render( $args, $instance ) {
 
-					}
+			// Check for transient. If none, then execute ItalyStrapCarousel.
+			if ( false === ( $mediacarousel = get_transient( $this->id ) ) ) {
 
-					echo $option;
-					?>
-				</select>
-			</p>
-			<?php
-			} else {
-			?>
-			<p>
-				<?php if ( isset( $this->carousel_options[ $key ] ) && is_array( $this->carousel_options[ $key ] ) ) :	?>
-					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
-						<?php echo esc_attr( $key ); ?>:
-					</label>
-					<?php $saved_option = ( isset( $instance[ $key ] ) ) ? $instance[ $key ] : '' ; ?>
-					<select name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" class="widefat">
+				$mediacarousel = new ItalyStrapCarousel( $instance );
 
-						<?php
-						$option = '';
+				// Put the results in a transient. Expire after 12 hours.
+				set_transient( $this->id, $mediacarousel, 24 * HOUR_IN_SECONDS );
 
-						foreach ( $this->carousel_options[ $key ] as $k => $v ) {
+			}
 
-							$option .= '<option ' . ( selected( $k, $saved_option ) ) . ' value="' . $k . '">' . $v . '</option>';
+			// delete_transient( $this->id );
 
-						}
+			// $mediacarousel = new ItalyStrapCarousel( $instance );
+			$out = $mediacarousel->__get( 'output' );
 
-						echo $option;
-						?>
-					</select>
-				<?php elseif ( isset( $this->carousel_options[ $key ] ) ) :
+			return apply_filters( 'widget_text', $out );
+		}
 
-					if ( 'true' === $instance[ $key ] ) {
-						$instance[ $key ] = true;
-					}
-				?>
-					<input id="<?php echo $this->get_field_id( $key ); ?>" name="<?php echo $this->get_field_name( $key ); ?>" type="checkbox" value='1' <?php checked( $instance[ $key ], true ); ?> />
-					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
-						<?php echo esc_attr( $key ); ?>
-					</label>
+		/**
+		 * Validate if is the format num,num,
+		 * @param  int $value The vallue of the field.
+		 * @return bool       Return tru if is format num,num, else return false
+		 */
+		function numeric_comma( $value ) {
 
-				<?php else : ?>
+			return (bool) preg_match( '/(?:\d+\,)+?/', $instance_value );
 
-					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>">
-						<?php echo esc_attr( $key ); ?>:
-					</label>
-					<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $instance[ $key ] ); ?>" placeholder="<?php echo $label; ?>">
-
-				<?php endif; ?>
-			</p>
-			<?php } //!- else
-		}//!- foreach
-
-	}
-
-	/**
-	 * Flush widget cache
-	 */
-	function flush_widget_cache() {
-
-		wp_cache_delete( 'widget_italystrap_media_carousel', 'widget' );
-	}
+		}
+	} // class
 }

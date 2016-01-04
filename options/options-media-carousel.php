@@ -21,7 +21,6 @@ return array(
 				'desc'		=> __( 'Enter the image ID.', 'ItalyStrap' ),
 				'id'		=> 'ids',
 				'type'		=> 'media_list',
-				// 'type'		=> 'text',
 				'class'		=> 'widefat ids',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
@@ -37,10 +36,11 @@ return array(
 				'id'		=> 'type',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
+				'class-p'	=> 'hidden',
 				'default'	=> 'carousel',
 				'options'	=> array(
 							'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
-							'carousel'  => __( 'Carousel', 'ItalyStrap' ),
+							'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
 				 			),
 				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
@@ -78,8 +78,8 @@ return array(
 				'id'		=> 'name',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
-				'default'	=> 'widget-media-carousel-' . rand(),
-				'validate'	=> 'alpha_numeric',
+				'default'	=> 'italystrap-media-carousel-' . rand(),
+				// 'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
 				 ),
 
@@ -123,7 +123,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'before-inner',
 				'options'	=> array(
-							'before-inner'	=> __( 'Before inner', 'ItalyStrap' ),
+							'before-inner'	=> __( 'Before inner (Default)', 'ItalyStrap' ),
 							'after-inner'	=> __( 'After inner', 'ItalyStrap' ),
 							'after-control'	=> __( 'After control', 'ItalyStrap' ),
 							'false'			=> __( 'False', 'ItalyStrap' ),
@@ -194,7 +194,7 @@ return array(
 				'default'	=> 'hover',
 				'options'	=> array(
 							'false'			=> __( 'none', 'ItalyStrap' ),
-							'hover'			=> __( 'hover', 'ItalyStrap' ),
+							'hover'			=> __( 'hover (Default)', 'ItalyStrap' ),
 						),
 				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'strip_tags|esc_attr',
@@ -239,7 +239,7 @@ return array(
 				'default'	=> 'none',
 				'options'	=> array(
 							'file'			=> __( 'File', 'ItalyStrap' ),
-							'none'			=> __( 'None', 'ItalyStrap' ),
+							'none'			=> __( 'None (Default)', 'ItalyStrap' ),
 							'link'			=> __( 'Link', 'ItalyStrap' ),
 						),
 				'validate'	=> 'alpha_numeric',
