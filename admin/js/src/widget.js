@@ -101,17 +101,18 @@ jQuery(document).ready(function($) {
 
 	});
 
-	jQuery('.upload_carousel_image_button').live('click', function( event ){
+	$(document).on('click', '.upload_carousel_image_button', function( event ){
 
 		event.preventDefault();
 
-		// If the media frame already exists, reopen it.
-		if ( file_frame ) {
-			file_frame.open();
-			return;
-		}
+		var images_container = $(this).offsetParent();
 
-		images_container = $(this).parent();
+		// If the media frame already exists, reopen it.
+		// if ( file_frame ) {
+		// 	console.log(file_frame);
+		// 	file_frame.open();
+		// 	return;
+		// }
 
 		// Create the media frame.
 		file_frame = wp.media.frames.file_frame = wp.media({
@@ -133,9 +134,13 @@ jQuery(document).ready(function($) {
 			 */
 			var url = attachment.sizes.thumbnail.url ? attachment.sizes.thumbnail.url : attachment.url ;
 
-			images_container.find('.carousel_images').append('<li class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></div></li>');
+			var ul_container = null;
+			var input_ids = null;
 
-			var input_ids = images_container.find('.ids');
+			ul_container = images_container.find('.carousel_images');
+			ul_container.append('<li class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></div></li>');
+
+			input_ids = images_container.find('.ids');
 			input_ids.val( input_ids.val() + attachment.id + ',' );
 
 			// console.log( attachment );
@@ -144,6 +149,8 @@ jQuery(document).ready(function($) {
 			// console.log( attachment.sizes.thumbnail.url );
 
 			// Do something with attachment.id and/or attachment.url here
+			ul_container = null;
+			input_ids = null;
 		});
 
 		// Finally, open the modal
