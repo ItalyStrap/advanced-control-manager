@@ -138,6 +138,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 
 				add_action( 'widgets_init', function() {
 					register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
+					register_widget( 'ItalyStrap\Core\Widget_VCard' );
 				});
 
 		}

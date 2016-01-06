@@ -240,7 +240,7 @@ if( $instance['linkedin'] )
 	 * @return string			Return form HTML
 	 */
 	function form( $instance ) {
-
+// var_dump(get_option( 'widget_widget_italystrap_vcard' ));
 		$form = '';
 
 		foreach ( $this->fields as $name => $label ) {
