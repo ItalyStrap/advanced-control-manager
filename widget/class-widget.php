@@ -548,6 +548,9 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * Handles outputting an 'input' element
+	 *
+	 * @link http://html5doctor.com/html5-forms-input-types/
+	 *
 	 * @since  2.0.0
 	 * @param  array $attr Override arguments.
 	 * @param  array $key Override arguments.
@@ -777,6 +780,102 @@ abstract class Widget extends WP_Widget {
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
 		$out .= '<input type="number" ';
+
+		if ( isset( $key['class'] ) )
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+
+		if ( isset( $key['size'] ) )
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+
+		$out .= ' />';
+
+		if ( isset( $key['desc'] ) )
+			$out .= $this->create_field_description( $key['desc'] );
+
+		return $out;
+	}
+
+	/**
+	 * Create the field email
+	 *
+	 * @access protected
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field email
+	 */
+	protected function create_field_email( $key, $out = '' ) {
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<input type="email" ';
+
+		if ( isset( $key['class'] ) )
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+
+		if ( isset( $key['size'] ) )
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+
+		$out .= ' />';
+
+		if ( isset( $key['desc'] ) )
+			$out .= $this->create_field_description( $key['desc'] );
+
+		return $out;
+	}
+
+	/**
+	 * Create the field url
+	 *
+	 * @access protected
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field url
+	 */
+	protected function create_field_url( $key, $out = '' ) {
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<input type="url" ';
+
+		if ( isset( $key['class'] ) )
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+
+		if ( isset( $key['size'] ) )
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+
+		$out .= ' />';
+
+		if ( isset( $key['desc'] ) )
+			$out .= $this->create_field_description( $key['desc'] );
+
+		return $out;
+	}
+
+	/**
+	 * Create the field tel
+	 *
+	 * @access protected
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field tel
+	 */
+	protected function create_field_tel( $key, $out = '' ) {
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<input type="tel" ';
 
 		if ( isset( $key['class'] ) )
 			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
