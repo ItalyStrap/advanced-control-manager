@@ -23,31 +23,31 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * The attribute for Carousel
 		 * @var array
 		 */
-		private $attributes = array();
+		public $attributes = array();
 
 		/**
 		 * Array of WordPress $post objects.
 		 * @var array
 		 */
-		private $posts = array();
+		public $posts = array();
 
 		/**
 		 * The width of the container
 		 * @var string
 		 */
-		private $container_style = '';
+		public $container_style = '';
 
 		/**
 		 * The height of the item
 		 * @var string
 		 */
-		private $item_style = '';
+		public $item_style = '';
 
 		/**
 		 * The carousel output
 		 * @var string
 		 */
-		private $output = '';
+		public $output = '';
 
 		/**
 		 * Initialize the contstructor
@@ -103,7 +103,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  array $atts The carousel attribute.
 		 * @return array Mixed array of shortcode attributes.
 		 */
-		private function get_attributes( $atts ) {
+		public function get_attributes( $atts ) {
 
 			/**
 			 * Define data by given attributes.
@@ -121,7 +121,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return boolean
 		 */
-		private function validate_data() {
+		public function validate_data() {
 			// Initialize boolean.
 			$bool = false;
 			// Convert attributes to variables.
@@ -143,17 +143,17 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return array Array of WordPress $post objects.
 		 */
-		private function get_posts() {
+		public function get_posts() {
 			$posts = array();
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
 
-			$images = $this->make_array( $ids, $orderby );
+			$post_type_ids = $this->make_array( $ids, $orderby );
 
-			if ( is_array( $images ) and ! empty( $images ) )
-				foreach ( $images as $image_id )
-					$posts[] = get_post( intval( $image_id ) , ARRAY_A );
+			if ( is_array( $post_type_ids ) and ! empty( $post_type_ids ) )
+				foreach ( $post_type_ids as $post_type_id )
+					$posts[] = get_post( intval( $post_type_id ) , ARRAY_A );
 
 			$posts = apply_filters( 'ItalyStrap_carousel_posts', $posts, $this->attributes );
 
@@ -166,7 +166,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return string HTML result.
 		 */
-		private function get_container_style() {
+		public function get_container_style() {
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
@@ -187,7 +187,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return string HTML result.
 		 */
-		private function get_item_style() {
+		public function get_item_style() {
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
@@ -207,7 +207,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return string HTML result.
 		 */
-		private function get_output() {
+		public function get_output() {
 
 			// Convert attributes to variables.
 			foreach ( $this->attributes as $key => $value )
@@ -222,10 +222,17 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			// Start counter for posts iteration.
 			$i = 0;
 
-			// Process each item into $this->posts array and create HTML.
+			/**
+			 * Process each item into $this->posts array and create HTML.
+			 *
+			 * @todo $post viene creato da get_post() che è usato anche dentro
+			 *       $this->get_img con la funzione wp_get_attachment_image()
+			 *       Valutare se è possibile ridurre a una sola chiamata di get_post()
+			 */
 			foreach ( $this->posts as $post ) {
+
 				// Make sure to include only attachments into the carousel.
-				if ( 'attachment' === $post['post_type'] ) {
+				// if ( 'attachment' === $post['post_type'] ) {
 					$class = ( 0 === $i ) ? 'active ' : '';
 					$output .= $this->get_img_container( 'start', $i );
 					$output .= $this->get_img( $post, $i );
@@ -237,7 +244,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 					}
 					$output .= $this->get_img_container( 'end' );
 					$i++;
-				}
+				// }
 			}
 
 			// End inner.
@@ -263,7 +270,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  string $position Indicator for starting or ending tag.
 		 * @return string           HTML result.
 		 */
-		private function get_carousel_container( $position ) {
+		public function get_carousel_container( $position ) {
 
 			$output = '';
 
@@ -292,7 +299,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  string $position Indicator for starting or ending tag.
 		 * @return string           HTML result.
 		 */
-		private function get_carousel_inner( $position ) {
+		public function get_carousel_inner( $position ) {
 
 			$output = '';
 
@@ -322,7 +329,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  string $position Indicator for starting or ending tag.
 		 * @return string           HTML result.
 		 */
-		private function get_caption_container( $position ) {
+		public function get_caption_container( $position ) {
 
 			$output = '';
 
@@ -353,7 +360,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  integer $i        Position of the current item into carousel.
 		 * @return string            HTML result.
 		 */
-		private function get_img_container( $position, $i = 0 ) {
+		public function get_img_container( $position, $i = 0 ) {
 
 			$output = '';
 
@@ -385,62 +392,91 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  array $schemaposition The position of the item for schema.org.
 		 * @return string                HTML result.
 		 */
-		private function get_img( $post, $schemaposition ) {
+		public function get_img( $post, $schemaposition ) {
 
-			foreach ( $this->attributes as $key => $value )
-				$$key = $value;
+			$post_thumbnail_id = ( 'attachment' === $post['post_type'] ) ? (int) $post['ID'] : (int) get_post_thumbnail_id( $post['ID'] ) ;
 
-			global $detect;
+			if ( empty( $post_thumbnail_id ) ) {
+				return;
+			}
+
+			$size_class = $this->get_img_size_attr();
+
+			$img_attr = array();
+
+			/**
+			 * Get the image attribute
+			 * [0] => url
+			 * [1] => larghezza
+			 * [2] => altezza
+			 * [3] => boolean: true se $url è un'immagine ridimensionata,
+			 *        false se è l'originale.
+			 * @var array
+			 */
+			$img_attr = wp_get_attachment_image_src( $post_thumbnail_id, $size_class );
+
+			$attr = array(
+				'class'		=> "center-block img-responsive attachment-$size_class size-$size_class",
+				'itemprop'	=> 'image',
+				'style'		=> 'max-height:' . absint( $img_attr[2] ) . 'px',
+				);
+
+			$output = wp_get_attachment_image( $post_thumbnail_id , $size_class, false, $attr );
+
+			$output .= $this->get_img_metadata( $post_thumbnail_id, $post, $img_attr, $schemaposition );
+
+			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $img_attr, $this->attributes, $post );
+
+			return $output;
+		}
+
+		/**
+		 * Get the image metadata (built for get the exif data)
+		 * @param  array/int $post Array of post o
+		 * @return string      The metadata fo image
+		 */
+		public function get_img_metadata( $id, array $post, array $img_attr, $schemaposition ) {
 
 			/**
 			 * Array for exifData informations
 			 * @link https://wordpress.org/support/topic/retrieving-exif-data?replies=5
 			 * @var array
 			 */
-			$imgmeta = wp_get_attachment_metadata( $post['ID'] );
-			$imgmeta = $imgmeta['image_meta'];
+			$imgmeta = wp_get_attachment_metadata( $id );
+			$imgmeta = ( isset( $imgmeta['image_meta'] ) ) ? $imgmeta['image_meta'] : array();
+
+			/**
+			 * The metadata of the image.
+			 * @var string
+			 */
+			$metadata = '<meta  itemprop="name" content="' . esc_attr( $post['post_title'] ) . '"/><meta  itemprop="width" content="' . absint( $img_attr[1] ) . '"/><meta  itemprop="height" content="' . absint( $img_attr[2] ) . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>';
+
+			foreach ( $imgmeta as $key => $value )
+				if ( ! empty( $value ) )
+					$metadata .= '<meta  itemprop="exifData" content="' . esc_attr( $key ) . ': ' . esc_attr( $value ) . '"/>';
+
+			return $metadata;
+		}
+
+		/**
+		 * Get the image size attribute from user options and selecte wich to use on desktop, tablet or mobile.
+		 * @return string The image size selected
+		 */
+		public function get_img_size_attr() {
+
+			global $detect;
 
 			$image_size = '';
 
 			if ( $detect->isTablet() && $responsive )
-				$image_size = $sizetablet;
+				$image_size = $this->attributes['sizetablet'];
 
 			elseif ( $detect->isMobile() && $responsive )
-				$image_size = $sizephone;
+				$image_size = $this->attributes['sizephone'];
 
-			else $image_size = $size;
+			else $image_size = $this->attributes['size'];
 
-			$exifdata = '';
-
-			foreach ($imgmeta as $key => $value)
-				if ( ! empty( $value ) )
-					$exifdata .= '<meta  itemprop="exifData" content="' . $key . ': ' . $value . '"/>';
-
-			$output = '';
-
-			/**
-			 * Get the image attribute
-			 * @var array
-			 */
-			$image = wp_get_attachment_image_src( $post['ID'] , $image_size );
-
-			/**
-			 * Escape img value for security reasone
-			 */
-			$image[0] = esc_url( $image[0] );
-			$image[1] = esc_attr( $image[1] );
-			$image[2] = esc_attr( $image[2] );
-
-			/**
-			 * Testing for max item height.
-			 * style="max-height:' . $image[2] . 'px"
-			 * Is in testing
-			 */
-			$output .= '<img class="img-responsive" alt="' . esc_attr( $post['post_title'] ) . '" src="' . $image[0] . '" width="' . $image[1] . '" height="' . $image[2] . '" itemprop="image" style="max-height:' . $image[2] . 'px"/><meta  itemprop="name" content="' . esc_attr( $post['post_title'] ) . '"/><meta  itemprop="width" content="' . $image[1] . '"/><meta  itemprop="height" content="' . $image[2] . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>' . $exifdata;
-
-			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $image[0], $this->attributes, $post );
-
-			return $output;
+			return $image_size;
 		}
 
 		/**
@@ -449,7 +485,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param array $post The post object.
 		 * @return string HTML result.
 		 */
-		private function get_title( $post ) {
+		public function get_title( $post ) {
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
@@ -479,7 +515,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param array $post The post object.
 		 * @return string     HTML result.
 		 */
-		private function get_excerpt( $post ) {
+		public function get_excerpt( $post ) {
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
@@ -503,7 +539,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return string HTML result.
 		 */
-		private function get_indicators() {
+		public function get_indicators() {
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
@@ -511,13 +547,16 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			$output = '<ol class="carousel-indicators">';
 			$i = 0;
 
+			/**
+			 * @todo fare il foreach solo sul numero degli ID validi nell'array degli ID
+			 */
 			foreach ( $this->posts as $post ) {
 				// Make sure to include only attachments into the carousel.
-				if ( 'attachment' === $post['post_type'] ) {
+				// if ( 'attachment' === $post['post_type'] ) {
 					$class = ( 0 === $i ) ? 'active' : '';
 					$output .= '<li data-target="#' . $name . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
 					$i++;
-				}
+				// }
 			}
 
 			$output .= '</ol>';
@@ -533,7 +572,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 *
 		 * @return string HTML control result.
 		 */
-		private function get_control() {
+		public function get_control() {
 
 			foreach ( $this->attributes as $key => $value )
 				$$key = $value;
@@ -583,7 +622,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * @param  string $orderby Alternative order for array to be returned.
 		 * @return array           Array of WordPress post IDs.
 		 */
-		private function make_array( $string, $orderby = '' ) {
+		public function make_array( $string, $orderby = '' ) {
 
 			$array = explode( ',' , $string );
 
