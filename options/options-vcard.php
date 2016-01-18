@@ -115,7 +115,7 @@ return array(
 						'Winery'						=> __( 'Winery', 'ItalyStrap' ),
 					),
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'esc_textarea',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -128,7 +128,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -141,7 +141,7 @@ return array(
 				'type'		=> 'url',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -167,7 +167,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -180,7 +180,7 @@ return array(
 				'type'		=> 'number',
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -193,7 +193,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -206,7 +206,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -219,7 +219,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -232,7 +232,7 @@ return array(
 				'type'		=> 'tel',
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -245,7 +245,7 @@ return array(
 				'type'		=> 'tel',
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -258,7 +258,7 @@ return array(
 				'type'		=> 'tel',
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -271,7 +271,7 @@ return array(
 				'type'		=> 'email',
 				'class'		=> 'widefat',
 				'validate'	=> 'email',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -284,7 +284,7 @@ return array(
 				'type'		=> 'number',
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**

@@ -24,7 +24,7 @@ return array(
 				'class'		=> 'widefat ids',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -43,7 +43,7 @@ return array(
 							'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
 				 			),
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -64,7 +64,7 @@ return array(
 							'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
 						),
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -80,7 +80,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'italystrap-media-carousel-' . rand(),
 				// 'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -94,7 +94,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -108,7 +108,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -129,7 +129,7 @@ return array(
 							'false'			=> __( 'False', 'ItalyStrap' ),
 						),
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -142,7 +142,7 @@ return array(
 				'id'		=> 'control',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -177,7 +177,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 0,
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -197,7 +197,7 @@ return array(
 							'hover'			=> __( 'hover (Default)', 'ItalyStrap' ),
 						),
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -211,7 +211,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'h4',
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -223,7 +223,7 @@ return array(
 				'id'		=> 'image_title',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -243,7 +243,7 @@ return array(
 							'link'			=> __( 'Link', 'ItalyStrap' ),
 						),
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -255,7 +255,7 @@ return array(
 				'id'		=> 'text',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 	/**
 	 * Auto-format text. Default: true.
@@ -266,7 +266,7 @@ return array(
 				'id'		=> 'wpautop',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 	/**
 	 * Extra class for container.
@@ -278,7 +278,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -291,7 +291,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -304,7 +304,7 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -322,7 +322,7 @@ return array(
 				'default'	=> 'full',
 				'options'	=> $image_size_media_array,
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -335,7 +335,7 @@ return array(
 				'id'		=> 'responsive',
 				'type'		=> 'checkbox',
 				'default'	=> 0,
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -353,7 +353,7 @@ return array(
 				'default'	=> 'large',
 				'options'	=> $image_size_media_array,
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 	/**
@@ -371,7 +371,7 @@ return array(
 				'default'	=> 'medium',
 				'options'	=> $image_size_media_array,
 				'validate'	=> 'alpha_numeric',
-				'filter'	=> 'strip_tags|esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				 ),
 
 );
