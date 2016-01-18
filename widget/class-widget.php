@@ -431,6 +431,58 @@ abstract class Widget extends WP_Widget {
 				return esc_textarea( $instance_value );
 			break;
 
+			case 'sanitize_email':
+				return sanitize_email( $instance_value );
+			break;
+
+			case 'sanitize_file_name':
+				return sanitize_file_name( $instance_value );
+			break;
+
+			case 'sanitize_html_class':
+				return sanitize_html_class( $instance_value );
+			break;
+
+			case 'sanitize_key':
+				return sanitize_key( $instance_value );
+			break;
+
+			case 'sanitize_meta':
+				return sanitize_meta( $instance_value );
+			break;
+
+			case 'sanitize_mime_type':
+				return sanitize_mime_type( $instance_value );
+			break;
+
+			case 'sanitize_option':
+				return sanitize_option( $instance_value );
+			break;
+
+			case 'sanitize_sql_orderby':
+				return sanitize_sql_orderby( $instance_value );
+			break;
+
+			case 'sanitize_text_field':
+				return sanitize_text_field( $instance_value );
+			break;
+
+			case 'sanitize_title':
+				return sanitize_title( $instance_value );
+			break;
+
+			case 'sanitize_title_for_query':
+				return sanitize_title_for_query( $instance_value );
+			break;
+
+			case 'sanitize_title_with_dashes':
+				return sanitize_title_with_dashes( $instance_value );
+			break;
+
+			case 'sanitize_user':
+				return sanitize_user( $instance_value );
+			break;
+
 			default:
 				if ( method_exists( $this, $filter ) )
 					return $this->$filter( $instance_value );
