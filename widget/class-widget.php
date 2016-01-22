@@ -26,6 +26,12 @@ abstract class Widget extends WP_Widget {
 	private $fields = array();
 
 	/**
+	 * Sections fields of widget forms
+	 * @var array
+	 */
+	private $sections_keys = array();
+
+	/**
 	 * Set the title field
 	 */
 	protected function title_field() {
@@ -223,7 +229,7 @@ abstract class Widget extends WP_Widget {
 		 * Creates the settings form.
 		 * @var string
 		 */
-		$form = $this->create_fields();
+		$form = $this->render_form();
 
 		echo $form; // WPCS: XSS OK.
 
@@ -349,11 +355,11 @@ abstract class Widget extends WP_Widget {
 	private function do_validation( $rule, $instance_value = '' ) {
 		switch ( $rule ) {
 
-			case 'alpha':
+			case 'ctype_alpha':
 				return ctype_alpha( $instance_value );
 			break;
 
-			case 'alpha_numeric':
+			case 'ctype_alnum':
 				return ctype_alnum( $instance_value );
 			break;
 
@@ -491,22 +497,92 @@ abstract class Widget extends WP_Widget {
 		}
 	}
 
-	/**
-	 * Create Fields
-	 *
-	 * Creates each field defined.
-	 *
-	 * @access protected
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Fields
-	 */
-	protected function create_fields( $out = '' ) {
+	private function make_sections_array() {
+
+		$sections = array();
+
+		foreach ( (array) $this->fields as $key ) {
+
+			if ( isset( $key['section'] ) && 'general' !== $key['section'] ) {
+
+				$sections[ $key['section'] ][ $key['id'] ] = (array) $key;
+
+			} else {
+
+				$sections['general'][ $key['id'] ] = (array) $key;
+
+			}
+
+		}
+
+		return $sections;
+
+	}
+
+	private function get_sections_keys( array $sections ) {
+
+		return array_keys( $sections );
+
+	}
+
+	protected function create_sections_tabs_menu( array $sections ) {
+
+		$tabs = '<div class="upw-tabs">'; 
+		$i = 0;
+
+		foreach ( $this->sections_keys as $key ) {
+			$tabs .= '<a class="upw-tab-item ' . ( ( 0 === $i ) ? 'active' : '' ) . '" data-toggle="upw-tab-' . $key . '">' . ucfirst( $key ) . '</a>';
+			$i++;
+		}
+
+		$tabs .= '</div>';
+
+		return $tabs;
+
+	}
+
+	protected function create_sections_tabs( array $sections ) {
+
+		$out = '';
+		$i = 0;
+
+		foreach ( $this->sections_keys as $key => $value) {
+
+			$out .= '<div class="upw-tab' . ( ( 0 === $i ) ? '' : ' upw-hide' ) . ' upw-tab-' . $value . '">';
+
+			foreach ( $sections[ $value ] as $key ) {
+
+				$out .= $this->create_field( $key );
+
+			}
+
+			$out .= '</div>';
+			$i++;
+
+		}
+
+		return $out;
+
+	}
+
+	protected function render_form( $out = '' ) {
+
+		$sections = $this->make_sections_array();
+
+		$this->sections_keys = $this->get_sections_keys( $sections );
 
 		$out = $this->before_create_fields( $out );
 
-		if ( ! empty( $this->fields ) ) {
-			foreach ( $this->fields as $key )
-				$out .= $this->create_field( $key );
+		if ( count( $this->sections_keys ) <= 1 ) {
+
+			$out .= $this->create_fields();
+
+		} else {
+
+			$out .= $this->create_sections_tabs_menu( $sections );
+
+			$out .= $this->create_sections_tabs( $sections );
+
 		}
 
 		$out = $this->after_create_fields( $out );
@@ -541,6 +617,24 @@ abstract class Widget extends WP_Widget {
 	}
 
 	/**
+	 * Create Fields
+	 *
+	 * Creates each field defined.
+	 *
+	 * @access protected
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Fields
+	 */
+	protected function create_fields( $out = '' ) {
+
+		foreach ( $this->fields as $key )
+			$out .= $this->create_field( $key );
+
+		return $out;
+
+	}
+
+	/**
 	 * Create the Fields
 	 *
 	 * @access protected
@@ -548,7 +642,7 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Fields
 	 */
-	protected function create_field( $key, $out = '' ) {
+	protected function create_field( array $key, $out = '' ) {
 
 		/* Set Defaults */
 		$key['default'] = isset( $key['default'] ) ? $key['default'] : '';
