@@ -6,12 +6,12 @@ use \ItalyStrapAdminMediaSettings;
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
  */
 
-if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
+if ( ! class_exists( 'Widget_Posts2' ) ) {
 
 	/**
 	 * Class
 	 */
-	class Widget_Media_Carousel extends Widget implements Interface_Widget {
+	class Widget_Posts2 extends Widget implements Interface_Widget {
 
 		/**
 		 * Init the constructor
@@ -25,7 +25,7 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 			$image_size_media = new ItalyStrapAdminMediaSettings;
 			$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
 
-			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ) );
+			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ) );
 
 			/**
 			 * Configure widget array.
@@ -33,11 +33,11 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 			 */
 			$args = array(
 				// Widget Backend label.
-				'label'				=> __( 'ItalyStrap Media Carousel', 'ItalyStrap' ),
+				'label'				=> __( 'ItalyStrap Posts', 'ItalyStrap' ),
 				// Widget Backend Description.
-				'description'		=> __( 'Add a Carousel for your media files', 'ItalyStrap' ),
+				'description'		=> __( 'Displays list of posts with an array of options', 'ItalyStrap' ),
 				'fields'			=> $fields,
-				'control_options'	=> array( 'width' => 340 ),
+				'control_options'	=> array( 'width' => 450 ),
 			 );
 
 			/**
@@ -123,10 +123,12 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 		 */
 		public function widget_render( $args, $instance ) {
 
+			$out = '';
+
 			// Check for transient. If none, then execute ItalyStrapCarousel.
 			// if ( false === ( $mediacarousel = get_transient( $this->id ) ) ) {
 
-				$mediacarousel = new ItalyStrapCarousel( $instance );
+				// $mediacarousel = new ItalyStrapCarousel( $instance );
 
 				// Put the results in a transient. Expire after 12 hours.
 				// set_transient( $this->id, $mediacarousel, 24 * HOUR_IN_SECONDS );
@@ -136,20 +138,9 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 			// delete_transient( $this->id );
 
 			// $mediacarousel = new ItalyStrapCarousel( $instance );
-			$out = $mediacarousel->__get( 'output' );
+			// $out = $mediacarousel->__get( 'output' );
 
 			return apply_filters( 'widget_text', $out );
-		}
-
-		/**
-		 * Validate if is the format num,num,
-		 * @param  int $value The vallue of the field.
-		 * @return bool       Return tru if is format num,num, else return false
-		 */
-		function numeric_comma( $value ) {
-
-			return (bool) preg_match( '/(?:\d+\,)+?/', $instance_value );
-
 		}
 	} // class
 }

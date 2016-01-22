@@ -139,6 +139,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 				add_action( 'widgets_init', function() {
 					register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 					register_widget( 'ItalyStrap\Core\Widget_VCard' );
+					register_widget( 'ItalyStrap\Core\Widget_Posts2' );
 				});
 
 		}
@@ -207,3 +208,60 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
  */
 // $detect = new \Detection\MobileDetect;
 $detect = new Mobile_Detect;
+
+function test_carousel_posts() {
+
+	$atts = array();
+
+	$atts['ids'] = '1045,2051,13,12,1177,16,1163';
+	$atts['type'] = 'carousel';
+	$atts['name'] = 'prova';
+	$atts['size'] = 'large';
+
+	// $atts['ids'] = array(
+	// 	'id'	=> 'ids',
+	// 	'default'	=> '1777,1016,1011',
+	// 	);
+	// $atts['type'] = array(
+	// 	'id'		=> 'type',
+	// 	'default'	=> 'carousel',
+	// 	);
+
+	// 'ids'				=> array(
+	// 			'name'		=> __( 'Images ID', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter the image ID.', 'ItalyStrap' ),
+	// 			'id'		=> 'ids',
+	// 			'type'		=> 'media_list',
+	// 			'class'		=> 'widefat ids',
+	// 			'default'	=> false,
+	// 			// 'validate'	=> 'numeric_comma',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			 ),
+
+	// /**
+	//  * Type of gallery. If it's not "carousel", nothing will be done.
+	//  */
+	// 'type'				=> array(
+	// 			'name'		=> __( 'Type of gallery', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'ItalyStrap' ),
+	// 			'id'		=> 'type',
+	// 			'type'		=> 'select',
+	// 			'class'		=> 'widefat',
+	// 			'class-p'	=> 'hidden',
+	// 			'default'	=> 'carousel',
+	// 			'options'	=> array(
+	// 						'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
+	// 						'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
+	// 			 			),
+	// 			'validate'	=> 'alpha_numeric',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			 ),
+
+	$carousel_posts = new \ItalyStrap\Core\Carousel_Posts( $atts );
+	// var_dump( $carousel_posts->validate_data() );
+	// var_dump( $carousel_posts->__get( 'output' ) );
+	echo $carousel_posts->__get( 'output' );
+
+}
+// add_action( 'content_container_open', 'test_carousel_posts' );
+add_action( 'single', 'test_carousel_posts' );

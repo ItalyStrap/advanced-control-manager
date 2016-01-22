@@ -180,12 +180,12 @@ class Widget_Posts extends Widget {
 		 * @var array
 		 */
 		$args = array(
-			'posts_per_page' => $number,
-			'order' => $order,
-			'orderby' => $orderby,
-			'category__in' => $cats,
-			'tag__in' => $tags,
-			'post_type' => $types,
+			'posts_per_page'	=> $number,
+			'order'				=> $order,
+			'orderby'			=> $orderby,
+			'category__in'		=> $cats,
+			'tag__in'			=> $tags,
+			'post_type'			=> $types,
 			);
 
 		if ( 'meta_value' === $orderby ) {
