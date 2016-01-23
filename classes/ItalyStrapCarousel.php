@@ -23,7 +23,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 * The attribute for Carousel
 		 * @var array
 		 */
-		public $attributes = array();
+		public $args = array();
 
 		/**
 		 * Array of WordPress $post objects.
@@ -51,11 +51,11 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 		/**
 		 * Initialize the contstructor
-		 * @param array $atts The carousel attribute.
+		 * @param array $args The carousel attribute.
 		 */
-		function __construct( $atts ) {
+		function __construct( $args ) {
 
-			$this->attributes = $this->get_attributes( $atts );
+			$this->args = $this->get_attributes( $args );
 			$this->output = '';
 			if ( $this->validate_data() ) {
 				do_action( 'ItalyStrap_carousel_before_init' );
@@ -100,19 +100,19 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		/**
 		 * Get shortcode attributes.
 		 *
-		 * @param  array $atts The carousel attribute.
+		 * @param  array $args The carousel attribute.
 		 * @return array Mixed array of shortcode attributes.
 		 */
-		public function get_attributes( $atts ) {
+		public function get_attributes( $args ) {
 
 			/**
 			 * Define data by given attributes.
 			 */
-			$attributes = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ), $atts, 'gallery' );
+			$args = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ), $args, 'gallery' );
 
-			$attributes = apply_filters( 'ItalyStrap_carousel_attributes', $attributes );
+			$args = apply_filters( 'ItalyStrap_carousel_attributes', $args );
 
-			return $attributes;
+			return $args;
 
 		}
 
@@ -126,9 +126,9 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			$bool = false;
 
 			/* Validate for necessary data */
-			if ( isset( $this->attributes['ids'] )
-				&& isset( $this->attributes['type'] )
-				&& 'carousel' === $this->attributes['type']
+			if ( isset( $this->args['ids'] )
+				&& isset( $this->args['type'] )
+				&& 'carousel' === $this->args['type']
 			) $bool = true;
 
 			return $bool;
@@ -144,13 +144,13 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$posts = array();
 
-			$post_type_ids = $this->make_array( $this->attributes['ids'], $this->attributes['orderby'] );
+			$post_type_ids = $this->make_array( $this->args['ids'], $this->args['orderby'] );
 
 			if ( is_array( $post_type_ids ) and ! empty( $post_type_ids ) )
 				foreach ( $post_type_ids as $post_type_id )
 					$posts[] = get_post( intval( $post_type_id ) , ARRAY_A );
 
-			$posts = apply_filters( 'ItalyStrap_carousel_posts', $posts, $this->attributes );
+			$posts = apply_filters( 'ItalyStrap_carousel_posts', $posts, $this->args );
 
 			return $posts;
 
@@ -165,10 +165,10 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$container_style = '';
 
-			if ( $this->attributes['width'] )
-				$container_style = 'style="width:' . $this->attributes['width'] . ';"';
+			if ( $this->args['width'] )
+				$container_style = 'style="width:' . $this->args['width'] . ';"';
 
-			$container_style = apply_filters( 'ItalyStrap_carousel_container_style', $container_style, $this->attributes );
+			$container_style = apply_filters( 'ItalyStrap_carousel_container_style', $container_style, $this->args );
 
 			return $container_style;
 
@@ -183,8 +183,8 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$item_style = '';
 
-			if ( $this->attributes['height'] )
-				$item_style = 'style="height:' . $this->attributes['height'] . ';"' ;
+			if ( $this->args['height'] )
+				$item_style = 'style="height:' . $this->args['height'] . ';"' ;
 
 			$item_style = apply_filters( 'ItalyStrap_carousel_item_style', $item_style, $this->attributtes );
 
@@ -201,7 +201,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			// Initialize carousel HTML.
 			$output = $this->get_carousel_container( 'start' );
 			// Try to obtain indicators before inner.
-			$output .= ( 'before-inner' === $this->attributes['indicators'] ) ? $this->get_indicators() : '' ;
+			$output .= ( 'before-inner' === $this->args['indicators'] ) ? $this->get_indicators() : '' ;
 			// Initialize inner.
 			$output .= $this->get_carousel_inner( 'start' );
 			// Start counter for posts iteration.
@@ -219,7 +219,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 				$class = ( 0 === $i ) ? 'active ' : '';
 				$output .= $this->get_img_container( 'start', $i );
 				$output .= $this->get_img( $post, $i );
-				if ( 'false' !== $this->attributes['image_title'] || 'false' !== $this->attributes['text'] ) {
+				if ( 'false' !== $this->args['image_title'] || 'false' !== $this->args['text'] ) {
 					$output .= $this->get_caption_container( 'start' );
 					$output .= $this->get_title( $post );
 					$output .= $this->get_excerpt( $post );
@@ -233,15 +233,15 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			// End inner.
 			$output .= $this->get_carousel_inner( 'end' );
 			// Try to obtain indicators after inner.
-			$output .= ( 'after-inner' === $this->attributes['indicators'] ) ? $this->get_indicators() : '' ;
+			$output .= ( 'after-inner' === $this->args['indicators'] ) ? $this->get_indicators() : '' ;
 			// Obtain links for carousel control.
-			$output .= ( 'false' !== $this->attributes['control'] ) ? $this->get_control() : '' ;
+			$output .= ( 'false' !== $this->args['control'] ) ? $this->get_control() : '' ;
 			// Try to obtain indicators after control.
-			$output .= ( 'after-control' === $this->attributes['indicators'] ) ? $this->get_indicators() : '' ;
+			$output .= ( 'after-control' === $this->args['indicators'] ) ? $this->get_indicators() : '' ;
 			// End carousel HTML.
 			$output .= $this->get_carousel_container( 'end' );
 
-			$output = apply_filters( 'ItalyStrap_carousel_output', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_output', $output, $this->args );
 
 			return $output;
 
@@ -259,7 +259,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			switch ( $position ) {
 				case 'start':
-					$output .= '<div id="' . $this->attributes['name'] . '" class="carousel slide ' . $this->attributes['containerclass'] . '" ' . $this->container_style . '>';
+					$output .= '<div id="' . $this->args['name'] . '" class="carousel slide ' . $this->args['containerclass'] . '" ' . $this->container_style . '>';
 					break;
 				case 'end':
 					$output .= '</div>';
@@ -269,7 +269,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 					break;
 			}
 
-			$output = apply_filters( 'ItalyStrap_carousel_container', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_container', $output, $this->args );
 
 			return $output;
 		}
@@ -296,7 +296,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 					break;
 			}
 
-			$output = apply_filters( 'ItalyStrap_carousel_inner', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_inner', $output, $this->args );
 
 			return $output;
 
@@ -314,7 +314,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			switch ( $position ) {
 				case 'start':
-					$output .= '<div class="carousel-caption ' . $this->attributes['captionclass'] . '" itemprop="caption">';
+					$output .= '<div class="carousel-caption ' . $this->args['captionclass'] . '" itemprop="caption">';
 					break;
 				case 'end':
 					$output .= '</div>';
@@ -324,7 +324,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 					break;
 			}
 
-			$output = apply_filters( 'ItalyStrap_carousel_caption_container', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_caption_container', $output, $this->args );
 
 			return $output;
 
@@ -344,7 +344,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			switch ( $position ) {
 				case 'start':
 					$class = ( 0 === $i ) ? 'active ' : '';
-					$output .= '<div class="' . $class . 'item carousel-item ' . $this->attributes['itemclass'] . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
+					$output .= '<div class="' . $class . 'item carousel-item ' . $this->args['itemclass'] . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
 					break;
 				case 'end':
 					$output .= '</div>';
@@ -354,7 +354,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 					break;
 			}
 
-			$output = apply_filters( 'ItalyStrap_carousel_img_container', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_img_container', $output, $this->args );
 
 			return $output;
 
@@ -400,7 +400,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$output .= $this->get_img_metadata( $post_thumbnail_id, $post, $img_attr, $schemaposition );
 
-			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $img_attr, $this->attributes, $post );
+			$output = apply_filters( 'ItalyStrap_carousel_img', $output, $img_attr, $this->args, $post );
 
 			return $output;
 		}
@@ -447,12 +447,12 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			$image_size = '';
 
 			if ( $detect->isTablet() && $responsive )
-				$image_size = $this->attributes['sizetablet'];
+				$image_size = $this->args['sizetablet'];
 
 			elseif ( $detect->isMobile() && $responsive )
-				$image_size = $this->attributes['sizephone'];
+				$image_size = $this->args['sizephone'];
 
-			else $image_size = $this->attributes['size'];
+			else $image_size = $this->args['size'];
 
 			return $image_size;
 		}
@@ -478,9 +478,9 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$output = '';
 
-			if ( 'false' !== $this->attributes['image_title'] ) :
+			if ( 'false' !== $this->args['image_title'] ) :
 
-				switch ( $this->attributes['link'] ) {
+				switch ( $this->args['link'] ) {
 
 				 	case 'file':
 				 		$post_title = '<a href="' . esc_url( $link_file ) . '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
@@ -494,11 +494,11 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 				}
 
-				$output .= '<'. esc_attr( $this->attributes['titletag'] ) .'>' . $post_title . '</' . esc_attr( $this->attributes['titletag'] ) . '>';
+				$output .= '<'. esc_attr( $this->args['titletag'] ) .'>' . $post_title . '</' . esc_attr( $this->args['titletag'] ) . '>';
 
 			endif;
 
-			$output = apply_filters( 'ItalyStrap_carousel_title', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_title', $output, $this->args );
 
 			return $output;
 
@@ -520,12 +520,12 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$output = '';
 
-			if ( 'false' !== $this->attributes['text'] )
-				$output .= ( 'false' !== $this->attributes['wpautop'] ) ? wpautop( esc_attr( $post['post_excerpt'] ) ) : esc_attr( $post['post_excerpt'] );
+			if ( 'false' !== $this->args['text'] )
+				$output .= ( 'false' !== $this->args['wpautop'] ) ? wpautop( esc_attr( $post['post_excerpt'] ) ) : esc_attr( $post['post_excerpt'] );
 
 			$output = '<div itemprop="description">' . $output . '</div>';
 
-			$output = apply_filters( 'ItalyStrap_carousel_excerpt', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_excerpt', $output, $this->args );
 
 			return $output;
 
@@ -549,14 +549,14 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			foreach ( $this->posts as $post ) {
 
 					$class = ( 0 === $i ) ? 'active' : '';
-					$output .= '<li data-target="#' . $this->attributes['name'] . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
+					$output .= '<li data-target="#' . $this->args['name'] . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
 					$i++;
 
 			}
 
 			$output .= '</ol>';
 
-			$output = apply_filters( 'ItalyStrap_carousel_indicators', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_indicators', $output, $this->args );
 
 			return $output;
 		}
@@ -573,11 +573,11 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			 * THe output of the controllers
 			 * @todo Dare la possibilità di scegliere l'icona o l'inserimento di un carattere
 			 */
-			$output = '<a class="carousel-control left" data-slide="prev" role="button" href="#' . $this->attributes['name'] . '" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>';
+			$output = '<a class="carousel-control left" data-slide="prev" role="button" href="#' . $this->args['name'] . '" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>';
 
-			$output .= '<a class="carousel-control right" data-slide="next" role="button" href="#' . $this->attributes['name'] . '" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>';
+			$output .= '<a class="carousel-control right" data-slide="next" role="button" href="#' . $this->args['name'] . '" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>';
 
-			$output = apply_filters( 'ItalyStrap_carousel_control', $output, $this->attributes );
+			$output = apply_filters( 'ItalyStrap_carousel_control', $output, $this->args );
 
 			return $output;
 
@@ -590,18 +590,18 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 */
 		function get_javascript() {
 
-			$pause = ( '1' === $this->attributes['pause'] ) ? ',pause:"' . $this->attributes['pause'] . '"' : '' ;
+			$pause = ( '1' === $this->args['pause'] ) ? ',pause:"' . $this->args['pause'] . '"' : '' ;
 
 			/**
 			 * LazyLoad for Bootstrap carousel
 			 * http://stackoverflow.com/questions/27675968/lazy-load-not-work-in-bootstrap-carousel
 			 * http://jsfiddle.net/51muqdLf/5/
 			 */
-			$lazyload = 'var cHeight = 0;$("#' . $this->attributes['name'] . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
+			$lazyload = 'var cHeight = 0;$("#' . $this->args['name'] . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
 
-			$output = 'jQuery(document).ready(function($){$(\'#' . $this->attributes['name'] . '\').carousel({interval:' . $this->attributes['interval'] . $pause .' });' . $lazyload . '});';
+			$output = 'jQuery(document).ready(function($){$(\'#' . $this->args['name'] . '\').carousel({interval:' . $this->args['interval'] . $pause .' });' . $lazyload . '});';
 
-			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->attributes, $lazyload );
+			$output = apply_filters( 'ItalyStrap_carousel_javascript', $output, $this->args, $lazyload );
 
 			return $output;
 
@@ -622,7 +622,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			if ( 'rand' === $orderby )
 				shuffle( $array );
 
-			$array = apply_filters( 'ItalyStrap_carousel_make_array', $array, $this->attributes );
+			$array = apply_filters( 'ItalyStrap_carousel_make_array', $array, $this->args );
 
 			return $array;
 
