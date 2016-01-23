@@ -25,6 +25,14 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 			$image_size_media = new ItalyStrapAdminMediaSettings;
 			$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
 
+			$get_category_list_array = $this->get_taxonomies_list_array( 'category' );
+
+			$get_post_tag_list_array = $this->get_taxonomies_list_array( 'post_tag' );
+
+			$get_post_types = get_post_types( array( 'public' => true ) );
+
+			$get_post_types = ( class_exists( 'WooCommerce' ) ) ? array_merge( $get_post_types, array( 'product' => 'product' ) ) : $get_post_types ;
+
 			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ) );
 
 			/**
@@ -44,6 +52,19 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 			 * Create Widget
 			 */
 			$this->create_widget( $args );
+		}
+
+		public function get_taxonomies_list_array( $tax ) {
+
+			$tax_arrays = get_terms( $tax );
+
+			foreach ( $tax_arrays as $tax_array ) {
+
+				$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
+
+			}
+
+			return $get_taxonomies_list_array;
 		}
 
 		/**
@@ -125,6 +146,8 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 
 			$out = '';
 
+			$query_posts = new Query_Posts( $instance );
+
 			// Check for transient. If none, then execute ItalyStrapCarousel.
 			// if ( false === ( $mediacarousel = get_transient( $this->id ) ) ) {
 
@@ -139,6 +162,8 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 
 			// $mediacarousel = new ItalyStrapCarousel( $instance );
 			// $out = $mediacarousel->__get( 'output' );
+			
+			$out = $query_posts->output();
 
 			return apply_filters( 'widget_text', $out );
 		}
