@@ -307,8 +307,8 @@ return array(
 	 * Custom CSS class for widget.
 	 */
 	'thumb_url'				=> array(
-				'name'		=> __( 'Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the class name.', 'ItalyStrap' ),
+				'name'		=> __( 'Load fall-back thumbnail (optional)', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter a fall-back thumbnail.', 'ItalyStrap' ),
 				'id'		=> 'thumb_url',
 				'type'		=> 'media_list',
 				'class'		=> 'widefat thumb_url',
@@ -316,7 +316,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'display',
 				 ),
 
 	/**
@@ -356,11 +356,11 @@ return array(
 				'name'		=> __( 'Show custom fields', 'ItalyStrap' ),
 				'desc'		=> __( 'Check if you want to Show custom fields (comma separated).', 'ItalyStrap' ),
 				'id'		=> 'custom_fields',
-				'type'		=> 'checkbox',
-				// 'class'		=> 'widefat custom_fields',
-				'default'	=> 0,
+				'type'		=> 'text',
+				'class'		=> 'widefat custom_fields',
+				'default'	=> '',
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -388,8 +388,8 @@ return array(
 				'id'		=> 'cats',
 				'type'		=> 'select',
 				'class'		=> 'widefat cats',
-				'default'	=> 'thumbnail',
-				'options'	=> $image_size_media_array,
+				'default'	=> '',
+				'options'	=> $get_category_list_array,
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
@@ -419,8 +419,8 @@ return array(
 				'id'		=> 'tags',
 				'type'		=> 'select',
 				'class'		=> 'widefat tags',
-				'default'	=> 'thumbnail',
-				'options'	=> $image_size_media_array,
+				'default'	=> '',
+				'options'	=> $get_post_tag_list_array,
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
@@ -430,13 +430,13 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'post_types'				=> array(
-				'name'		=> __( 'post_types', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the Tag.', 'ItalyStrap' ),
+				'name'		=> __( 'Post type', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the post type.', 'ItalyStrap' ),
 				'id'		=> 'post_types',
 				'type'		=> 'select',
 				'class'		=> 'widefat post_types',
-				'default'	=> 'thumbnail',
-				'options'	=> $image_size_media_array,
+				'default'	=> 'post',
+				'options'	=> $get_post_types,
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
@@ -453,7 +453,9 @@ return array(
 				'class'		=> 'widefat sticky_post',
 				'default'	=> 'show',
 				'options'	=> array(
-					'show'	=> __( 'Show all posts', 'ItalyStrap' ),
+						'show'	=> __( 'Show all posts', 'ItalyStrap' ),
+						'hide'	=> __( 'Hide Sticky Posts', 'ItalyStrap' ),
+						'only'	=> __( 'Show Only Sticky Posts', 'ItalyStrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
@@ -464,14 +466,19 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'orderby'					=> array(
-				'name'		=> __( 'Orderby', 'ItalyStrap' ),
-				'desc'		=> __( 'Select.', 'ItalyStrap' ),
+				'name'		=> __( 'Order by', 'ItalyStrap' ),
+				'desc'		=> __( 'How posts have to be ordered.', 'ItalyStrap' ),
 				'id'		=> 'orderby',
 				'type'		=> 'select',
 				'class'		=> 'widefat orderby',
 				'default'	=> 'date',
 				'options'	=> array(
-					'show'	=> __( 'Show all posts', 'ItalyStrap' ),
+						'date'			=> __( 'Published Date', 'ItalyStrap' ),
+						'title'			=> __( 'Title', 'ItalyStrap' ),
+						'comment_count'	=> __( 'Comment Count', 'ItalyStrap' ),
+						'rand'			=> __( 'Random', 'ItalyStrap' ),
+						'meta_value'	=> __( 'Custom Field', 'ItalyStrap' ),
+						'menu_order'	=> __( 'Menu Order', 'ItalyStrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
