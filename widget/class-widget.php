@@ -709,7 +709,7 @@ abstract class Widget extends WP_Widget {
 			'class'           => esc_attr( $key['class'] ),
 			'name'            => esc_attr( $key['_name'] ),
 			'id'              => esc_attr( $key['_id'] ),
-			'value'           => ( isset( $key['value'] ) ? $key['value'] : $key['default'] ),
+			'value'           => ( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
 			'desc'            => $this->create_field_description( $key['desc'] ),
 			'js_dependencies' => array(),
 		);
