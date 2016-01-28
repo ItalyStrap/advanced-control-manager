@@ -32,8 +32,8 @@ return array(
 	 * Custom CSS class for widget.
 	 */
 	'widget_class'				=> array(
-				'name'		=> __( 'Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the class name.', 'ItalyStrap' ),
+				'name'		=> __( 'Widget Class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the widget class name.', 'ItalyStrap' ),
 				'id'		=> 'widget_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat widget_class',
@@ -47,31 +47,29 @@ return array(
 	/**
 	 * Custom text or HTML markup.
 	 */
-	'before_posts'				=> array(
-				'name'		=> __( 'Before posts', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a custom text or HTML markup.', 'ItalyStrap' ),
-				'id'		=> 'before_posts',
-				'type'		=> 'textarea',
-				'class'		=> 'widefat before_posts',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+	// 'before_posts'				=> array(
+	// 			'name'		=> __( 'Before posts', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter a custom text or HTML markup.', 'ItalyStrap' ),
+	// 			'id'		=> 'before_posts',
+	// 			'type'		=> 'textarea',
+	// 			'class'		=> 'widefat before_posts',
+	// 			'default'	=> '',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			'section'	=> 'general',
+	// 			 ),
 	/**
 	 * Custom text or HTML markup.
 	 */
-	'after_posts'				=> array(
-				'name'		=> __( 'After posts', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a custom text or HTML markup.', 'ItalyStrap' ),
-				'id'		=> 'after_posts',
-				'type'		=> 'textarea',
-				'class'		=> 'widefat after_posts',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+	// 'after_posts'				=> array(
+	// 			'name'		=> __( 'After posts', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter a custom text or HTML markup.', 'ItalyStrap' ),
+	// 			'id'		=> 'after_posts',
+	// 			'type'		=> 'textarea',
+	// 			'class'		=> 'widefat after_posts',
+	// 			'default'	=> '',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			'section'	=> 'general',
+	// 			 ),
 
 	/**
 	 * Custom text or HTML markup.
@@ -297,7 +295,7 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat thumb_size',
 				'default'	=> 'thumbnail',
-				'options'	=> $image_size_media_array,
+				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'display',
@@ -386,10 +384,10 @@ return array(
 				'name'		=> __( 'Categories', 'ItalyStrap' ),
 				'desc'		=> __( 'Select the categorie.', 'ItalyStrap' ),
 				'id'		=> 'cats',
-				'type'		=> 'select',
+				'type'		=> 'multiple_select',
 				'class'		=> 'widefat cats',
 				'default'	=> '',
-				'options'	=> $get_category_list_array,
+				'options'	=> ( ( isset( $get_category_list_array ) ) ? $get_category_list_array : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
@@ -417,10 +415,10 @@ return array(
 				'name'		=> __( 'Tags', 'ItalyStrap' ),
 				'desc'		=> __( 'Select the Tag.', 'ItalyStrap' ),
 				'id'		=> 'tags',
-				'type'		=> 'select',
+				'type'		=> 'multiple_select',
 				'class'		=> 'widefat tags',
 				'default'	=> '',
-				'options'	=> $get_post_tag_list_array,
+				'options'	=> ( ( isset( $get_post_tag_list_array ) ) ? $get_post_tag_list_array : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
@@ -433,10 +431,10 @@ return array(
 				'name'		=> __( 'Post type', 'ItalyStrap' ),
 				'desc'		=> __( 'Select the post type.', 'ItalyStrap' ),
 				'id'		=> 'post_types',
-				'type'		=> 'select',
+				'type'		=> 'multiple_select',
 				'class'		=> 'widefat post_types',
 				'default'	=> 'post',
-				'options'	=> $get_post_types,
+				'options'	=> ( ( isset( $get_post_types ) ) ? $get_post_types : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',

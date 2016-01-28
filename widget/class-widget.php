@@ -109,6 +109,16 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function widget_title( $args, $instance ) {
 
+		/**
+		 * The code above is to testing in case I want to add link to widget title
+		 */
+		// $title = apply_filters( 'widget_title', empty( $this->args['title'] ) ? '' : $this->args['title'], $this->args, $this->id_base );
+
+		// if ( $title && $this->args['title_link'] )
+		// 	echo $before_title . apply_filters( 'italystrap_widget_title_link', '<a href="' . esc_html( $this->args['title_link'] ) . '">' . esc_attr( $title ) . '</a>', $this->args['title_link'], $title ) . $after_title;
+		// elseif ( $title && ! $this->args['title_link'] )
+		// 	echo $before_title . esc_attr( $title ) . $after_title;
+
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$title = apply_filters(
 			'widget_title',
@@ -867,6 +877,46 @@ abstract class Widget extends WP_Widget {
 	}
 
 	/**
+	 * Create the Field Multiple Select
+	 *
+	 * @access protected
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Select
+	 */
+	protected function create_field_multiple_select( $key, $out = '' ) {
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
+
+		if ( isset( $key['class'] ) )
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+
+		$out .= 'size="6" multiple> ';
+
+		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		foreach ( $key['options'] as $field => $option ) {
+
+			$out .= '<option value="' . esc_attr__( $field ) . '" ';
+
+			if ( $selected === $field )
+				$out .= ' selected="selected" ';
+
+			$out .= '> ' . esc_html( $option ) . '</option>';
+
+		}
+
+		$out .= ' </select> ';
+
+		if ( isset( $key['desc'] ) )
+			$out .= $this->create_field_description( $key['desc'] );
+
+		return $out;
+	}
+
+	/**
 	 * Create the Field Select with Options Group
 	 *
 	 * @access protected
@@ -1039,6 +1089,74 @@ abstract class Widget extends WP_Widget {
 			$out .= $this->create_field_description( $key['desc'] );
 
 		return $out;
+	}
+
+	/**
+	 * Create the Field Text
+	 *
+	 * @access protected
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Text
+	 */
+	protected function create_field_media_list( $key, $out = '' ) {
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<input type="text" ';
+
+		if ( isset( $key['class'] ) )
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+
+		if ( isset( $key['size'] ) )
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+
+		$out .= ' />';
+
+		if ( isset( $key['desc'] ) )
+			$out .= $this->create_field_description( $key['desc'] );
+
+		ob_start();
+
+		?>
+			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+			<hr>
+			<div class="media_carousel_sortable">
+				<ul id="sortable" class="carousel_images">
+				<?php if ( ! empty( $value ) ) : ?>
+					<?php
+					$images = explode( ',', $value );
+					foreach ( $images as $image ) :
+						$image_attributes = wp_get_attachment_image_src( $image );
+						if ( $image_attributes ) :
+					?>
+				
+						<li class="carousel-image ui-state-default">
+							<div>
+								<i class="dashicons dashicons-no"></i>
+								<img src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" data-id="<?php echo esc_attr( $image ); ?>">
+							</div>
+						</li>
+				
+					<?php
+						endif;
+					endforeach; ?>
+				<?php endif; ?>
+				</ul>
+			</div>
+			<span style="clear:both;"></span>
+			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+		<hr>
+		<?php
+
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		return $out . $output;
 	}
 
 	/**

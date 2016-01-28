@@ -304,7 +304,7 @@ module.exports = function(grunt) {
 					'!package.json',
 					'!README.md',
 					'!composer.lock',
-					'!vendor/mobiledetect/**'
+					// '!vendor/mobiledetect/**'
 					],
 				dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
 				filter: 'isFile',
@@ -322,7 +322,7 @@ module.exports = function(grunt) {
 					'!package.json',
 					'!README.md',
 					'!composer.lock',
-					'!vendor/mobiledetect/**'
+					// '!vendor/mobiledetect/**'
 					],
 				dest: 'E:/Dropbox/svn-wordpress/italystrap/tags/<%= pkg.version %>/',
 				filter: 'isFile',
@@ -346,7 +346,7 @@ module.exports = function(grunt) {
 					'!README.md',
 					'!composer.lock',
 					// 'vendor/mobiledetect/namespaced/Detection/**',
-					'vendor/mobiledetect/mobiledetectlib/Mobile_Detect.php',
+					// 'vendor/mobiledetect/mobiledetectlib/Mobile_Detect.php',
 					// '!vendor/mobiledetect/**',
 					// '!vendor/webdevstudios/**',
 					],

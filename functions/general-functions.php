@@ -29,12 +29,12 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 
 	$out = array();
 
-	foreach ($pairs[0] as $name => $default) {
+	foreach ( $pairs as $name => $default ) {
 
-		if ( array_key_exists($name, $atts) )
-			$out[$name] = $atts[$name];
+		if ( array_key_exists( $name, $atts ) )
+			$out[ $name ] = $atts[ $name ];
 		else
-			$out[$name] = $default['default_value'];
+			$out[ $name ] = $default['default'];
 
 	}
 
@@ -50,7 +50,7 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 	 * @param string $shortcode The shortcode name.
 	 */
 	if ( $shortcode ) {
-		$out = apply_filters( "shortcode_atts_{$shortcode}", $out, $pairs, $atts, $shortcode );
+		$out = apply_filters( "shortcode_atts_multidimensional_array_{$shortcode}", $out, $pairs, $atts, $shortcode );
 	}
 
 	return $out;

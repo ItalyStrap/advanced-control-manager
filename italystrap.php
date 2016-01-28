@@ -19,6 +19,7 @@ use \ItalyStrap\Core\Widget_Posts;
 use \ItalyStrap\Core\Widget_Media_Carousel;
 use \ItalyStrap\Core\Vcard_Widget;
 use \ItalyStrap\Core\ItalyStrapCarouselLoader;
+use \ItalyStrap\Core\Query_Posts;
 
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
@@ -65,6 +66,8 @@ require( ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php' );
  * Require Debug file
  */
 require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
+
+require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
 
 /**
  * Initialize class
@@ -265,3 +268,23 @@ function test_carousel_posts() {
 }
 // add_action( 'content_container_open', 'test_carousel_posts' );
 add_action( 'single', 'test_carousel_posts' );
+
+// Add Shortcode
+function query_posts_shortcode( $atts , $content = null ) {
+
+	// Attributes
+	// extract( shortcode_atts(
+	// 	array(
+	// 		'posts' => '5',
+	// 	), $atts )
+	// );
+
+	// Code
+// $output = '<ul>';
+$query_posts = new Query_Posts( $atts );
+$output = $query_posts->output();
+// $output = '</ul>';
+return $output;
+
+}
+add_shortcode( 'query_posts', 'query_posts_shortcode' );

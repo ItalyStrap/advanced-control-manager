@@ -7,9 +7,9 @@
 
 ?>
 
-<?php if ( $instance['before_posts'] ) : ?>
+<?php if ( isset( $this->args['before_posts'] ) ) : ?>
 	<div class="post-widget-before">
-		<?php echo wpautop( esc_attr( $instance['before_posts'] ) ); ?>
+		<?php echo wpautop( esc_attr( $this->args['before_posts'] ) ); ?>
 	</div>
 <?php endif; ?>
 
@@ -28,23 +28,23 @@
 			<article <?php post_class( $current_post ); ?>>
 
 				<?php
-				if ( current_theme_supports( 'post-thumbnails' ) && $instance['show_thumbnail'] && has_post_thumbnail() ) : ?>
+				if ( current_theme_supports( 'post-thumbnails' ) && $this->args['show_thumbnail'] && has_post_thumbnail() ) : ?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
-							<?php the_post_thumbnail( $instance['thumb_size'] ); ?>
+							<?php the_post_thumbnail( $this->args['thumb_size'] ); ?>
 						</a>
 					</figure>
-				<?php elseif ( $instance['show_thumbnail'] && $instance['thumb_url'] ) :?>
+				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_url'] ) :?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
-							<img src="<?php echo esc_html( $instance['thumb_url'] ); ?>">
+							<img src="<?php echo esc_html( $this->args['thumb_url'] ); ?>">
 						</a>
 					</figure>
 				<?php endif; ?>
 
 				<section class="entry-body">
 					<header class="entry-header">
-						<?php if ( get_the_title() && $instance['show_title'] ) : ?>
+						<?php if ( get_the_title() && $this->args['show_title'] ) : ?>
 						<h4 class="entry-title">
 							<a itemprop="url" href="<?php the_permalink(); ?>" rel="bookmark">
 								<span itemprop="name">
@@ -54,22 +54,22 @@
 						</h4>
 						<?php endif; ?>
 					
-						<?php if ( $instance['show_date'] || $instance['show_author'] || $instance['show_comments'] ) : ?>
+						<?php if ( $this->args['show_date'] || $this->args['show_author'] || $this->args['show_comments_number'] ) : ?>
 					
 						<div class="entry-meta">
 					
 							<?php
-							if ( $instance['show_date'] ) : ?>
-								<time class="published" datetime="<?php echo get_the_time( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_time( $instance['date_format'] ); ?></time>
+							if ( $this->args['show_date'] ) : ?>
+								<time class="published" datetime="<?php echo get_the_time( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_time( $this->args['date_format'] ); ?></time>
 							<?php
 							endif;
 
-							if ( $instance['show_date'] && $instance['show_author'] ) : ?>
+							if ( $this->args['show_date'] && $this->args['show_author'] ) : ?>
 							<span class="sep"><?php esc_attr_e( '|', 'ItalyStrap' ); ?></span>
 							<?php
 							endif; ?>
 					
-							<?php if ( $instance['show_author'] ) : ?>
+							<?php if ( $this->args['show_author'] ) : ?>
 								<span class="author vcard" itemprop="author">
 									<?php esc_attr_e( 'By', 'ItalyStrap' ); ?>
 									<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author" class="fn">
@@ -78,11 +78,11 @@
 								</span>
 							<?php endif; ?>
 					
-							<?php if ( $instance['show_author'] && $instance['show_comments'] ) : ?>
+							<?php if ( $this->args['show_author'] && $this->args['show_comments_number'] ) : ?>
 								<span class="sep"><?php esc_attr_e( '|', 'ItalyStrap' ); ?></span>
 							<?php endif; ?>
 					
-							<?php if ( $instance['show_comments'] ) : ?>
+							<?php if ( $this->args['show_comments_number'] ) : ?>
 								<a class="comments" href="<?php comments_link(); ?>">
 									<?php comments_number( __( 'No comments', 'ItalyStrap' ), __( 'One comment', 'ItalyStrap' ), __( '% comments', 'ItalyStrap' ) ); ?>
 								</a>
@@ -94,16 +94,16 @@
 					
 					</header>
 					
-					<?php if ( $instance['show_excerpt'] ) : ?>
+					<?php if ( $this->args['show_excerpt'] ) : ?>
 						<div class="entry-summary">
 							<p itemprop="text">
 								<?php echo get_the_excerpt(); ?>
-								<?php if ( $instance['show_readmore'] ) : ?>
-								<a href="<?php the_permalink(); ?>" class="more-link"><?php echo esc_attr( $instance['excerpt_readmore'] ); ?></a>
+								<?php if ( $this->args['show_readmore'] ) : ?>
+								<a href="<?php the_permalink(); ?>" class="more-link"><?php echo esc_attr( $this->args['excerpt_readmore'] ); ?></a>
 								<?php endif; ?>
 							</p>
 						</div>
-					<?php elseif ( $instance['show_content'] ) : ?>
+					<?php elseif ( $this->args['show_content'] ) : ?>
 						<div class="entry-content" itemprop="text">
 							<?php the_content() ?>
 						</div>
@@ -113,7 +113,7 @@
 					
 						<?php
 						$categories = get_the_term_list( $post->ID, 'category', '', ', ' );
-						if ( $instance['show_cats'] && $categories ) :
+						if ( $this->args['show_cats'] && $categories ) :
 							?>
 						<div class="entry-categories">
 							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'ItalyStrap' ); ?>:</strong>
@@ -123,7 +123,7 @@
 					
 					<?php
 					$tags = get_the_term_list( $post->ID, 'post_tag', '', ', ' );
-					if ( $instance['show_tags'] && $tags ) :
+					if ( $this->args['show_tags'] && $tags ) :
 						?>
 					<div class="entry-tags">
 						<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'ItalyStrap' ); ?>:</strong>
@@ -180,8 +180,8 @@
 
 </section>
 
-<?php if ( $instance['after_posts'] ) : ?>
+<?php if ( isset( $this->args['after_posts'] ) ) : ?>
 	<div class="post-widget-after">
-		<?php echo wpautop( esc_attr( $instance['after_posts'] ) ); ?>
+		<?php echo wpautop( esc_attr( $this->args['after_posts'] ) ); ?>
 	</div>
 <?php endif;

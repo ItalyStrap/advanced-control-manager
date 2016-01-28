@@ -33,7 +33,7 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 
 			$this->args = $this->get_attributes( $args );
 
-			var_dump( $args );
+			// var_dump( $args );
 
 		}
 
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 			/**
 			 * Define data by given attributes.
 			 */
-			$args = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ), $args, 'gallery' );
+			$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ), $args, 'query_posts' );
 
 			$args = apply_filters( 'italystrap_query_posts_args', $args );
 
@@ -58,26 +58,28 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 
 		public function output() {
 
-			foreach ( $this->args as $key => $value)
-				$$key = $value;
+			global $post;
+			$current_post_id = is_object( $post ) ? $post->ID : '';
+
+			// foreach ( $this->args as $key => $value)
+			// 	$$key = $value;
 
 			// var_dump( $this->args );
 
-			$class = $instance['class'];
-			$number = empty( $instance['number'] ) ? -1 : $instance['number'];
-			$types = empty( $instance['types'] ) ? 'any' : explode( ',', $instance['types'] );
-			$cats = empty( $instance['cats'] ) ? '' : explode( ',', $instance['cats'] );
-			$tags = empty( $instance['tags'] ) ? '' : explode( ',', $instance['tags'] );
-			$atcat = $instance['atcat'] ? true : false;
-			$thumb_size = $instance['thumb_size'];
-			$attag = $instance['attag'] ? true : false;
-			$excerpt_length = $instance['excerpt_length'];
-			$excerpt_readmore = $instance['excerpt_readmore'];
-			$sticky = $instance['sticky'];
-			$order = $instance['order'];
-			$orderby = $instance['orderby'];
-			$meta_key = $instance['meta_key'];
-			$custom_fields = $instance['custom_fields'];
+			$class = $this->args['widget_class'];
+			$post_types = empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] );
+			$cats = empty( $this->args['cats'] ) ? '' : explode( ',', $this->args['cats'] );
+			$tags = empty( $this->args['tags'] ) ? '' : explode( ',', $this->args['tags'] );
+			$atcat = $this->args['atcat'] ? true : false;
+			$thumb_size = $this->args['thumb_size'];
+			$attag = $this->args['attag'] ? true : false;
+			$excerpt_length = $this->args['excerpt_length'];
+			$excerpt_readmore = $this->args['excerpt_readmore'];
+			$sticky = $this->args['sticky_post'];
+			$order = $this->args['order'];
+			$orderby = $this->args['orderby'];
+			$meta_key = $this->args['meta_key'];
+			$custom_fields = $this->args['custom_fields'];
 
 			/**
 			 * Sticky posts.
@@ -146,32 +148,23 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 
 			// Excerpt length filter
 			$new_excerpt_length = create_function( '$length', 'return ' . $excerpt_length . ';' );
-			if ( $instance['excerpt_length'] > 0 ) add_filter( 'excerpt_length', $new_excerpt_length );
+			if ( $this->args['excerpt_length'] > 0 ) add_filter( 'excerpt_length', $new_excerpt_length );
 
-			if ( $class ) {
-				$before_widget = str_replace( 'class="', 'class="'. $class . ' ', $before_widget );
-			}
-
-			echo $before_widget;
-
-			$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
-
-			if ( $title && $instance['title_link'] )
-				echo $before_title . apply_filters( 'italystrap_widget_title_link', '<a href="' . esc_html( $instance['title_link'] ) . '">' . esc_attr( $title ) . '</a>', $instance['title_link'], $title ) . $after_title;
-			elseif ( $title && ! $instance['title_link'] )
-				echo $before_title . esc_attr( $title ) . $after_title;
+			// if ( $class ) {
+			// 	$before_widget = str_replace( 'class="', 'class="'. $class . ' ', $before_widget );
+			// }
 
 			/**
 			 * Arguments for WP_Query
 			 * @var array
 			 */
 			$args = array(
-				'posts_per_page'	=> $number,
+				'posts_per_page'	=> ( isset( $this->args['posts_number'] ) ? $this->args['posts_number'] : 10 ),
 				'order'				=> $order,
 				'orderby'			=> $orderby,
-				'category__in'		=> $cats,
-				'tag__in'			=> $tags,
-				'post_type'			=> $types,
+				// 'category__in'		=> $cats,
+				// 'tag__in'			=> $tags,
+				'post_type'			=> $post_types,
 				'no_found_rows'		=> true,
 				);
 
@@ -183,32 +176,42 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 				$args[ key( $sticky_query ) ] = reset( $sticky_query );
 			}
 
-			$args = apply_filters( 'italystrap_wp_query_args', $args, $instance, $this->id_base );
+			$args = apply_filters( 'italystrap_wp_query_args', $args );
 
 			$widget_post_query = new WP_Query( $args );
 
-			if ( 'custom' === $instance['template'] ) {
+			ob_start();
 
-				$custom_template_path = apply_filters( 'italystrap_custom_template_path',  '/templates/' . $instance['template_custom'] . '.php', $instance, $this->id_base );
+			if ( 'custom' === $this->args['template'] ) {
+
+				// $custom_template_path = apply_filters( 'italystrap_custom_template_path',  '/templates/' . $this->args['template_custom'] . '.php', $this->args, $this->id_base );
 
 				if ( locate_template( $custom_template_path ) ) {
 
-					include get_stylesheet_directory() . $custom_template_path;
+					// include get_stylesheet_directory() . $custom_template_path;
 
 				} else {
 
-					include 'templates/standard.php';
+					// include 'templates/standard.php';
 
 				}
-			} elseif ( 'standard' === $instance['template'] ) {
+			} elseif ( 'standard' === $this->args['template'] ) {
 
-				include 'templates/standard.php';
+				// include 'templates/standard.php';
+				include ITALYSTRAP_PLUGIN_PATH . '/widget/templates/standard.php';
 
 			} else {
 
-				include 'templates/legacy.php';
+				// include 'templates/legacy.php';
 
 			}
+
+			wp_reset_postdata();
+
+			$output = ob_get_contents();
+			ob_end_clean();
+
+			return $output;
 
 		}
 	}

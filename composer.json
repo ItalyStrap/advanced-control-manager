@@ -1,6 +1,7 @@
 {
 	"require": {
 		"php": ">=5.3.0",
+		"phpunit/phpunit": "5.1.*",
 		"mobiledetect/mobiledetectlib": "dev-master",
 		"webdevstudios/cmb2": "dev-master"
 	},

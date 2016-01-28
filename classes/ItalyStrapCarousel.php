@@ -216,6 +216,10 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			 */
 			foreach ( $this->posts as $post ) {
 
+				if ( ! is_array( $post ) ) {
+					continue;
+				}
+
 				$class = ( 0 === $i ) ? 'active ' : '';
 				$output .= $this->get_img_container( 'start', $i );
 				$output .= $this->get_img( $post, $i );
