@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Detection\\MobileDetect' => $vendorDir . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
     'ItalyStrapAdmin' => $baseDir . '/admin/ItalystrapAdmin.php',
     'ItalyStrapAdminGallerySettings' => $baseDir . '/admin/ItalyStrapAdminGallerySettings.php',
     'ItalyStrapAdminMediaSettings' => $baseDir . '/admin/ItalyStrapAdminMediaSettings.php',
@@ -15,13 +14,17 @@ return array(
     'ItalyStrapGlobalsCss' => $baseDir . '/classes/ItalyStrapGlobals.php',
     'ItalyStrapHTMLSitemaps' => $baseDir . '/classes/ItalyStrapHTMLSitemaps.php',
     'ItalyStrapLazyload' => $baseDir . '/classes/ItalyStrapLazyload.php',
+    'ItalyStrap\\Core\\Carousel_Posts' => $baseDir . '/classes/class-carousel-posts.php',
     'ItalyStrap\\Core\\Interface_Widget' => $baseDir . '/widget/interfaces/interface-widget.php',
     'ItalyStrap\\Core\\ItalyStrapCarousel' => $baseDir . '/classes/ItalyStrapCarousel.php',
     'ItalyStrap\\Core\\ItalyStrapCarouselLoader' => $baseDir . '/shortcode/class-shortcode-carousel.php',
-    'ItalyStrap\\Core\\MV_My_Recent_Posts_Widget' => $baseDir . '/widget/class-widget-text.php',
+    'ItalyStrap\\Core\\Query_Posts' => $baseDir . '/classes/class-query-posts.php',
     'ItalyStrap\\Core\\Vcard_Widget' => $baseDir . '/widget/class-widget-vcard.php',
     'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/class-widget.php',
+    'ItalyStrap\\Core\\Widget_Breadcrumbs' => $baseDir . '/widget/class-widget-breadcrumbs.php',
     'ItalyStrap\\Core\\Widget_Media_Carousel' => $baseDir . '/widget/class-widget-media-carousel.php',
     'ItalyStrap\\Core\\Widget_Posts' => $baseDir . '/widget/class-widget-posts.php',
+    'ItalyStrap\\Core\\Widget_Posts2' => $baseDir . '/widget/class-widget-posts2.php',
+    'ItalyStrap\\Core\\Widget_VCard' => $baseDir . '/widget/class-widget-vcard2.php',
     'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
 );

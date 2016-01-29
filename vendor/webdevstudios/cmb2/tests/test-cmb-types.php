@@ -337,10 +337,11 @@ class Test_CMB2_Types extends Test_CMB2 {
 
 	public function test_text_url_after_value_update() {
 
-		update_post_meta( $this->post_id, $this->text_type_field['id'], 'test value' );
+		$value = 'test value';
+		update_post_meta( $this->post_id, $this->text_type_field['id'], $value );
 
 		$this->assertHTMLstringsAreEqual(
-			'<input type="text" class="cmb2-text-url cmb2-text-medium regular-text" name="field_test_field" id="field_test_field" value="http://testvalue"/><p class="cmb2-metabox-description">This is a description</p>',
+			'<input type="text" class="cmb2-text-url cmb2-text-medium regular-text" name="field_test_field" id="field_test_field" value="' . esc_url_raw( $value ) . '"/><p class="cmb2-metabox-description">This is a description</p>',
 			$this->capture_render( array( $this->get_field_type_object( 'text_url' ), 'render' ) )
 		);
 
@@ -360,7 +361,7 @@ class Test_CMB2_Types extends Test_CMB2 {
 		$value = $field->format_timestamp( strtotime( 'today' ) );
 
 		$this->assertHTMLstringsAreEqual(
-			sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field" id="field_test_field" value="%s"/><span class="cmb2-metabox-description">This is a description</span>', $value ),
+			sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field" id="field_test_field" value="%s" data-datepicker=\'{"dateFormat":"mm&#39;\/&#39;dd&#39;\/&#39;yy"}\'/><span class="cmb2-metabox-description">This is a description</span>', $value ),
 			$this->capture_render( array( $type, 'render' ) )
 		);
 
@@ -381,7 +382,7 @@ class Test_CMB2_Types extends Test_CMB2 {
 
 
 		$this->assertHTMLstringsAreEqual(
-			sprintf( '<input type="text" class="cmb2-timepicker text-time" name="field_test_field" id="field_test_field" value="%s"/><span class="cmb2-metabox-description">This is a description</span>', $value ),
+			sprintf( '<input type="text" class="cmb2-timepicker text-time" name="field_test_field" id="field_test_field" value="%s" data-timepicker=\'{"timeFormat":"hh:mm TT"}\'/><span class="cmb2-metabox-description">This is a description</span>', $value ),
 			$this->capture_render( array( $type, 'render' ) )
 		);
 
@@ -490,7 +491,7 @@ class Test_CMB2_Types extends Test_CMB2 {
 		$formatted_val_to_update = $field->format_timestamp( $val_to_update );
 
 		$this->assertHTMLstringsAreEqual(
-			sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field" id="field_test_field" value="%s"/><span class="cmb2-metabox-description">This is a description</span>', $formatted_val_to_update ),
+			sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field" id="field_test_field" value="%s" data-datepicker=\'{"dateFormat":"mm&#39;\/&#39;dd&#39;\/&#39;yy"}\'/><span class="cmb2-metabox-description">This is a description</span>', $formatted_val_to_update ),
 			$this->capture_render( array( $this->get_field_type_object( $field ), 'render' ) )
 		);
 
@@ -512,7 +513,7 @@ class Test_CMB2_Types extends Test_CMB2 {
 		$time_val = $field->format_timestamp( $today_stamp, 'time_format' );
 
 		$this->assertHTMLstringsAreEqual(
-			sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field[date]" id="field_test_field_date" value="%s"/><input type="text" class="cmb2-timepicker text-time" name="field_test_field[time]" id="field_test_field_time" value="%s"/><span class="cmb2-metabox-description">This is a description</span>', $date_val, $time_val ),
+			sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field[date]" id="field_test_field_date" value="%s" data-datepicker=\'{"dateFormat":"mm&#39;\/&#39;dd&#39;\/&#39;yy"}\'/><input type="text" class="cmb2-timepicker text-time" name="field_test_field[time]" id="field_test_field_time" value="%s" data-timepicker=\'{"timeFormat":"hh:mm TT"}\'/><span class="cmb2-metabox-description">This is a description</span>', $date_val, $time_val ),
 			$this->capture_render( array( $this->get_field_type_object( $field ), 'render' ) )
 		);
 
@@ -546,7 +547,7 @@ class Test_CMB2_Types extends Test_CMB2 {
 			$zones = wp_timezone_choice( $tzstring );
 
 			$this->assertHTMLstringsAreEqual(
-				sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field[date]" id="field_test_field_date" value="%s"/><input type="text" class="cmb2-timepicker text-time" name="field_test_field[time]" id="field_test_field_time" value="%s"/><select class="cmb2_select cmb2-select-timezone" name="field_test_field[timezone]" id="field_test_field_timezone">%s</select><p class="cmb2-metabox-description">This is a description</p>', $date_val, $time_val, $zones ),
+				sprintf( '<input type="text" class="cmb2-text-small cmb2-datepicker" name="field_test_field[date]" id="field_test_field_date" value="%s" data-datepicker=\'{"dateFormat":"mm&#39;\/&#39;dd&#39;\/&#39;yy"}\'/><input type="text" class="cmb2-timepicker text-time" name="field_test_field[time]" id="field_test_field_time" value="%s" data-timepicker=\'{"timeFormat":"hh:mm TT"}\'/><select class="cmb2_select cmb2-select-timezone" name="field_test_field[timezone]" id="field_test_field_timezone">%s</select><p class="cmb2-metabox-description">This is a description</p>', $date_val, $time_val, $zones ),
 				$this->capture_render( array( $this->get_field_type_object( 'text_datetime_timestamp_timezone' ), 'render' ) )
 			);
 
@@ -857,6 +858,114 @@ class Test_CMB2_Types extends Test_CMB2 {
 		), Test_CMB2_JS::dependencies() );
 	}
 
+	public function test_save_group() {
+		$is_53 = version_compare( PHP_VERSION, '5.3' ) >= 0;
+
+		$cmb_group = new_cmb2_box( array(
+			'id'           => 'group_metabox',
+			'title'        => 'title',
+			'object_types' => array( 'page', ),
+		) );
+		$group_field_id = $cmb_group->add_field( array(
+			'id'   => 'group',
+			'type' => 'group',
+		) );
+		foreach ( array( 'text', 'textarea_small', 'file', ) as $type ) {
+			$cmb_group->add_group_field( $group_field_id, array(
+				'id'   => $type,
+				'type' => $type,
+			) );
+		}
+		if ( $is_53 ) {
+			$date_args = array(
+				'id' => 'text_datetime_timestamp_timezone',
+				'type' => 'text_datetime_timestamp_timezone',
+				'time_format' => 'H:i',
+				'date_format' => 'Y-m-d',
+				'repeatable' => true,
+			);
+			$cmb_group->add_group_field( $group_field_id, $date_args );
+		}
+
+		$to_save = array(
+			'group' => array(
+				array(
+					'text' => 'Entry Title',
+					'textarea_small' => 'Nullam id dolor id nibh ultricies vehicula ut id elit. ',
+					'file' => 'http://example.com/files/2015/07/IMG.jpg',
+					'file_id' => 518,
+					'text_datetime_timestamp_timezone' => array(
+						array(
+							'date' => '2015-11-20',
+							'time' => '17:00',
+							'timezone' => 'America/New_York',
+						),
+						array(
+							'date' => '2015-11-20',
+							'time' => '17:00',
+							'timezone' => 'America/Chicago',
+						),
+						array(
+							'date' => null,
+							'time' => null,
+							'timezone' => null,
+						),
+					),
+				),
+			),
+		);
+
+		if ( ! $is_53 ) {
+			unset( $to_save['group'][0]['text_datetime_timestamp_timezone'] );
+		} else {
+			$date_values = array();
+			foreach ( $to_save['group'][0]['text_datetime_timestamp_timezone'] as $key => $value ) {
+				if ( null === $value['date'] ) {
+					continue;
+				}
+
+				$tzstring = $value['timezone'];
+				$offset = cmb2_utils()->timezone_offset( $tzstring );
+
+				if ( 'UTC' === substr( $tzstring, 0, 3 ) ) {
+					$tzstring = timezone_name_from_abbr( '', $offset, 0 );
+					$tzstring = false !== $tzstring ? $tzstring : timezone_name_from_abbr( '', 0, 0 );
+				}
+
+				$full_format = $date_args['date_format'] . ' ' . $date_args['time_format'];
+				$full_date   = $value['date'] . ' ' . $value['time'];
+
+				$datetime = date_create_from_format( $full_format, $full_date );
+
+				if ( ! is_object( $datetime ) ) {
+					$date_values[] = '';
+				} else {
+					$timestamp = $datetime->setTimezone( new DateTimeZone( $tzstring ) )->getTimestamp();
+					$date_values[] = serialize( $datetime );
+				}
+			}
+		}
+
+		$values = cmb2_get_metabox( $cmb_group->cmb_id, $this->post_id, 'post' )->get_sanitized_values( $to_save );
+
+		$expected = array(
+			'group' => array(
+				array(
+					'text' => 'Entry Title',
+					'textarea_small' => 'Nullam id dolor id nibh ultricies vehicula ut id elit. ',
+					'file_id' => 518,
+					'file' => 'http://example.com/files/2015/07/IMG.jpg',
+				),
+			),
+		);
+
+		if ( $is_53 ) {
+			$expected['group'][0]['text_datetime_timestamp_timezone_utc'] = array( 1448056800, 1448060400 );
+			$expected['group'][0]['text_datetime_timestamp_timezone'] = $date_values;
+		}
+
+		$this->assertEquals( $expected, $values );
+	}
 
 	/**
 	 * Test_CMB2_Types helper methods

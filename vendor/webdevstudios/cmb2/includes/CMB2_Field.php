@@ -733,6 +733,16 @@ class CMB2_Field {
 	}
 
 	/**
+	 * Get timestamp from text date
+	 * @since  2.2.0
+	 * @param  string $value Date value
+	 * @return mixed         Unix timestamp representing the date.
+	 */
+	public function get_timestamp_from_value( $value ) {
+		return cmb2_utils()->get_timestamp_from_value( $value, $this->args( 'date_format' ) );
+	}
+
+	/**
 	 * Get field render callback and Render the field row
 	 * @since 1.0.0
 	 */
@@ -1048,6 +1058,17 @@ class CMB2_Field {
 			}
 
 		}
+
+		$args['has_supporting_data'] = in_array(
+			$args['type'],
+			array(
+				// See CMB2_Sanitize::_save_utc_value()
+				'file',
+				// CMB2_Sanitize::_save_file_id_value()/CMB2_Sanitize::_get_group_file_value_array()
+				'text_datetime_timestamp_timezone',
+			),
+			true
+		);
 
 		return $args;
 	}

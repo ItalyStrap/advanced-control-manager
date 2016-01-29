@@ -137,6 +137,7 @@ function yourprefix_register_demo_metabox() {
 		'desc' => __( 'field description (optional)', 'cmb2' ),
 		'id'   => $prefix . 'time',
 		'type' => 'text_time',
+		// 'time_format' => 'H:i', // Set to 24hr format
 	) );
 
 	$cmb_demo->add_field( array(
@@ -151,6 +152,7 @@ function yourprefix_register_demo_metabox() {
 		'desc' => __( 'field description (optional)', 'cmb2' ),
 		'id'   => $prefix . 'textdate',
 		'type' => 'text_date',
+		// 'date_format' => 'Y-m-d',
 	) );
 
 	$cmb_demo->add_field( array(
@@ -193,6 +195,11 @@ function yourprefix_register_demo_metabox() {
 		'id'      => $prefix . 'colorpicker',
 		'type'    => 'colorpicker',
 		'default' => '#ffffff',
+		// 'attributes' => array(
+		// 	'data-colorpicker' => json_encode( array(
+		// 		'palettes' => array( '#3dd0cc', '#ff834c', '#4fa2c0', '#0bc991', ),
+		// 	) ),
+		// ),
 	) );
 
 	$cmb_demo->add_field( array(
