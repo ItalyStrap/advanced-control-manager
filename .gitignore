@@ -22,3 +22,9 @@ lang/ItalyStrap.po
 composer.lock
 vendor/mobiledetect/mobiledetectlib
 vendor/composer/installed.json
+
+#Tests
+tests
+wp-tests-config.php
+test_italystrap.php
+phpunit.xml
