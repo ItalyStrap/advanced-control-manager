@@ -1188,6 +1188,7 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * Upload the Javascripts for the media uploader in widget config
+	 * @todo Sistemare gli script da caricare per i vari widget nel pannello admin
 	 *
 	 * @param string $hook The name of the page.
 	 */

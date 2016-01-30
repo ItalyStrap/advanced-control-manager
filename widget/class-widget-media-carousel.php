@@ -18,6 +18,8 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 		 */
 		function __construct() {
 
+			add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+
 			/**
 			 * Instance of list of image sizes
 			 * @var ItalyStrapAdminMediaSettings
