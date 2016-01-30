@@ -107,6 +107,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			/**
 			 * Define data by given attributes.
+			 * @todo Usare il file options-media-carousel.php
 			 */
 			$args = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ), $args, 'gallery' );
 
