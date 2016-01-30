@@ -114,8 +114,8 @@ return array(
 						'WholesaleStore'				=> __( 'Wholesale Store', 'ItalyStrap' ),
 						'Winery'						=> __( 'Winery', 'ItalyStrap' ),
 					),
-				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -129,6 +129,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -142,6 +143,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -155,6 +157,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -168,6 +171,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -181,6 +185,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -194,6 +199,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -207,6 +213,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -220,6 +227,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -233,6 +241,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -246,6 +255,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -259,6 +269,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -272,6 +283,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'email',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -285,6 +297,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -298,6 +311,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 	/**
@@ -311,6 +325,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 
@@ -325,6 +340,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 	/**
@@ -338,6 +354,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 	/**
@@ -351,6 +368,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 	/**
@@ -364,6 +382,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 	/**
@@ -377,6 +396,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'strip_tags|esc_url',
+				'section'	=> 'social',
 				 ),
 
 );
