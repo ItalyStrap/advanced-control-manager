@@ -5,15 +5,15 @@
   "author": "Enea Overclokk",
   "homepage": "http://www.overclokk.net/italystrap",
   "version": "1.3.3",
-  "license" : "GPLv2",
-  "repository" :
-    {
-      "type" : "git",
-      "url" : "https://github.com/overclokk/ItalyStrap.git"
-    },
+  "license": "GPLv2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/overclokk/ItalyStrap.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-composer": "^0.4.4",
+    "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-compass": "^1.0.4",
     "grunt-contrib-compress": "^0.14.0",
     "grunt-contrib-copy": "^0.8.2",
