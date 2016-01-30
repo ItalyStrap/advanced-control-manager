@@ -126,7 +126,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			$bool = false;
 
 			/* Validate for necessary data */
-			if ( isset( $this->args['ids'] )
+			if ( ! empty( $this->args['ids'] )
 				&& isset( $this->args['type'] )
 				&& 'carousel' === $this->args['type']
 			) $bool = true;
@@ -146,7 +146,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 
 			$post_type_ids = $this->make_array( $this->args['ids'], $this->args['orderby'] );
 
-			if ( is_array( $post_type_ids ) and ! empty( $post_type_ids ) )
+			if ( is_array( $post_type_ids ) and ! empty( $post_type_ids[0] ) )
 				foreach ( $post_type_ids as $post_type_id )
 					$posts[] = get_post( intval( $post_type_id ) , ARRAY_A );
 
