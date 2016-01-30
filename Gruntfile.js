@@ -356,6 +356,12 @@ module.exports = function(grunt) {
 			},
 		},
 
+		clean: { // https://github.com/gruntjs/grunt-contrib-clean
+			options: { force: true },
+			clean: ['../ItalyStrap']
+
+		},
+
 		sync: { // https://www.npmjs.com/package/grunt-sync
 			main: {
 				files: [{
@@ -420,6 +426,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-composer');
 
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	grunt.loadNpmTasks('grunt-version');
 	grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
