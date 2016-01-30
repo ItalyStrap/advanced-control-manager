@@ -25,6 +25,7 @@ return array(
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -42,8 +43,8 @@ return array(
 							'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
 							'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
 				 			),
-				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -63,8 +64,8 @@ return array(
 							'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
 							'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'Order',
 				 ),
 
 	/**
@@ -81,6 +82,7 @@ return array(
 				'default'	=> 'italystrap-media-carousel-' . rand(),
 				// 'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -95,6 +97,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'size',
 				 ),
 
 	/**
@@ -109,6 +112,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'size',
 				 ),
 
 	/**
@@ -128,8 +132,8 @@ return array(
 							'after-control'	=> __( 'After control', 'ItalyStrap' ),
 							'false'			=> __( 'False', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -143,6 +147,7 @@ return array(
 				'type'		=> 'checkbox',
 				'default'	=> 1,
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -178,6 +183,7 @@ return array(
 				'default'	=> 0,
 				'validate'	=> 'alpha_dash',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -196,8 +202,8 @@ return array(
 							'false'			=> __( 'none', 'ItalyStrap' ),
 							'hover'			=> __( 'hover (Default)', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -212,6 +218,7 @@ return array(
 				'default'	=> 'h4',
 				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -224,6 +231,7 @@ return array(
 				'type'		=> 'checkbox',
 				'default'	=> 1,
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -242,8 +250,8 @@ return array(
 							'none'			=> __( 'None (Default)', 'ItalyStrap' ),
 							'link'			=> __( 'Link', 'ItalyStrap' ),
 						),
-				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 
 	/**
@@ -256,6 +264,7 @@ return array(
 				'type'		=> 'checkbox',
 				'default'	=> 1,
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 	/**
 	 * Auto-format text. Default: true.
@@ -267,6 +276,7 @@ return array(
 				'type'		=> 'checkbox',
 				'default'	=> 1,
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
 				 ),
 	/**
 	 * Extra class for container.
@@ -279,6 +289,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'Class',
 				 ),
 
 	/**
@@ -292,6 +303,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'Class',
 				 ),
 
 	/**
@@ -305,6 +317,7 @@ return array(
 				'class'		=> 'widefat',
 				'validate'	=> 'alpha_numeric',
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'Class',
 				 ),
 
 	/**
@@ -320,9 +333,9 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat',
 				'default'	=> 'full',
-				'options'	=> $image_size_media_array,
-				'validate'	=> 'alpha_numeric',
+				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'size',
 				 ),
 
 	/**
@@ -336,6 +349,7 @@ return array(
 				'type'		=> 'checkbox',
 				'default'	=> 0,
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'size',
 				 ),
 
 	/**
@@ -351,9 +365,9 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat',
 				'default'	=> 'large',
-				'options'	=> $image_size_media_array,
-				'validate'	=> 'alpha_numeric',
+				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'size',
 				 ),
 
 	/**
@@ -369,9 +383,9 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat',
 				'default'	=> 'medium',
-				'options'	=> $image_size_media_array,
-				'validate'	=> 'alpha_numeric',
+				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
 				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'size',
 				 ),
 
 );
