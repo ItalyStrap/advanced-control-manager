@@ -65,7 +65,7 @@ require( ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php' );
 /**
  * Require Debug file
  */
-require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
+if ( is_admin() ) require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
 
 require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
 
@@ -216,7 +216,7 @@ function test_carousel_posts() {
 
 	$atts = array();
 
-	$atts['ids'] = '1045,2051,13,12,1177,16,1163';
+	// $atts['ids'] = '1045,2051,13,12,1177,16,1163';
 	$atts['type'] = 'carousel';
 	$atts['name'] = 'prova';
 	$atts['size'] = 'large';
