@@ -143,6 +143,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 					register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 					register_widget( 'ItalyStrap\Core\Widget_VCard' );
 					register_widget( 'ItalyStrap\Core\Widget_Posts2' );
+					add_filter( 'widget_title', 'html_widget_title_replace' );
 				});
 
 		}
@@ -211,6 +212,24 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
  */
 // $detect = new \Detection\MobileDetect;
 $detect = new Mobile_Detect;
+
+/**
+ * Function from HTML Widget Text plugins
+ * @author Jaimyn Mayer https://jabelone.com.au
+ */
+// add_filter( 'widget_title', 'html_widget_title_replace' ); //Uses the built in filter function.  The title of the widget is passed to the function.
+
+function html_widget_title_replace( $widget_title ) {
+
+	$tagopen = '['; //Our HTML opening tag replacement
+	$tagclose = ']'; //Our HTML closing tag replacement
+
+	$widget_title = str_replace( $tagopen, '<', $widget_title );
+	$widget_title = str_replace( $tagclose, '>', $widget_title );
+
+	return $widget_title;
+}
+
 
 function test_carousel_posts() {
 
