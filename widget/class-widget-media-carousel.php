@@ -37,9 +37,9 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 				// Widget Backend label.
 				'label'				=> __( 'ItalyStrap Media Carousel', 'ItalyStrap' ),
 				// Widget Backend Description.
-				'description'		=> __( 'Add a Carousel for your media files', 'ItalyStrap' ),
+				'description'		=> __( 'Add a image carousel for all your media files from any posts type (posts, pages, attachments and custom post type)', 'ItalyStrap' ),
 				'fields'			=> $fields,
-				'control_options'	=> array( 'width' => 340 ),
+				'control_options'	=> array( 'width' => 450 ),
 			 );
 
 			/**
