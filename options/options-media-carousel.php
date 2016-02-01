@@ -141,8 +141,8 @@ return array(
 	 * Accepted values: true, false. Default: true.
 	 */
 	'control'			=> array(
-				'name'		=> __( 'Output as control', 'ItalyStrap' ),
-				'desc'		=> __( 'Wraps posts with the <li> tag.', 'ItalyStrap' ),
+				'name'		=> __( 'Enable control', 'ItalyStrap' ),
+				'desc'		=> __( 'Enable or disable arrow right and left.', 'ItalyStrap' ),
 				'id'		=> 'control',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
