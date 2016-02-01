@@ -199,10 +199,12 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 */
 		public function get_output() {
 
+			$count = count( $this->posts );
+
 			// Initialize carousel HTML.
 			$output = $this->get_carousel_container( 'start' );
 			// Try to obtain indicators before inner.
-			$output .= ( 'before-inner' === $this->args['indicators'] ) ? $this->get_indicators() : '' ;
+			$output .= ( 'before-inner' === $this->args['indicators'] && $count > 1 ) ? $this->get_indicators() : '' ;
 			// Initialize inner.
 			$output .= $this->get_carousel_inner( 'start' );
 			// Start counter for posts iteration.
@@ -238,11 +240,11 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			// End inner.
 			$output .= $this->get_carousel_inner( 'end' );
 			// Try to obtain indicators after inner.
-			$output .= ( 'after-inner' === $this->args['indicators'] ) ? $this->get_indicators() : '' ;
+			$output .= ( 'after-inner' === $this->args['indicators'] && $count > 1 ) ? $this->get_indicators() : '' ;
 			// Obtain links for carousel control.
-			$output .= ( 'false' !== $this->args['control'] ) ? $this->get_control() : '' ;
+			$output .= ( 'false' !== $this->args['control'] && $count > 1 ) ? $this->get_control() : '' ;
 			// Try to obtain indicators after control.
-			$output .= ( 'after-control' === $this->args['indicators'] ) ? $this->get_indicators() : '' ;
+			$output .= ( 'after-control' === $this->args['indicators'] && $count > 1 ) ? $this->get_indicators() : '' ;
 			// End carousel HTML.
 			$output .= $this->get_carousel_container( 'end' );
 
@@ -622,6 +624,12 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		public function make_array( $string, $orderby = '' ) {
 
 			$array = explode( ',' , $string );
+
+			$count = count( $array );
+
+			if ( empty( $array[ $count - 1 ] ) ) {
+				unset( $array[ $count - 1 ] );
+			}
 
 			// Support for random order.
 			if ( 'rand' === $orderby )
