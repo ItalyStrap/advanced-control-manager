@@ -27,7 +27,7 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 		
 		/**
 		 * Constructor.
-		 * @param WP_Query $query The standard quesry of WordPress.
+		 * @param WP_Query $query The standard query of WordPress.
 		 */
 		function __construct( $args ) {
 
