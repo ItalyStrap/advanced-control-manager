@@ -141,7 +141,13 @@ jQuery(document).ready(function($) {
 			ul_container.append('<li class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></div></li>');
 
 			input_ids = images_container.find('.ids');
-			input_ids.val( input_ids.val() + attachment.id + ',' );
+			console.log(input_ids.val());
+
+			if ( '' === input_ids.val() ) {
+				input_ids.val( attachment.id );
+			} else{
+				input_ids.val( input_ids.val() + ',' + attachment.id );
+			}
 
 			// console.log( attachment );
 			// console.log( attachment.sizes );
