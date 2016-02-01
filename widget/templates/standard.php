@@ -45,13 +45,13 @@
 				<section class="entry-body">
 					<header class="entry-header">
 						<?php if ( get_the_title() && $this->args['show_title'] ) : ?>
-						<h4 class="entry-title">
+						<<?php echo esc_attr( $this->args['entry_title'] ); ?> class="entry-title">
 							<a itemprop="url" href="<?php the_permalink(); ?>" rel="bookmark">
 								<span itemprop="name">
 									<?php the_title(); ?>
 								</span>
 							</a>
-						</h4>
+						</<?php echo esc_attr( $this->args['entry_title'] ); ?>>
 						<?php endif; ?>
 					
 						<?php if ( $this->args['show_date'] || $this->args['show_author'] || $this->args['show_comments_number'] ) : ?>
