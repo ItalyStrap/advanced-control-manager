@@ -137,6 +137,22 @@ return array(
 				 ),
 
 	/**
+	 * Custom CSS class for widget.
+	 */
+	'entry_title'				=> array(
+				'name'		=> __( 'HTML tag for post title', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the heading tag for title (default is h4).', 'ItalyStrap' ),
+				'id'		=> 'entry_title',
+				'type'		=> 'text',
+				'class'		=> 'widefat entry_title',
+				'class-p'	=> 'entry_title',
+				'default'	=> 'h4',
+				// 'validate'	=> 'alpha_dash',
+				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
 	 * Custom text or HTML markup.
 	 */
 	'show_date'					=> array(
