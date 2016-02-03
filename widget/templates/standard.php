@@ -23,9 +23,12 @@
 
 			$widget_post_query->the_post();
 
-			$current_post = ( $post->ID === $current_post_id && is_single() ) ? 'active' : ''; ?>
+			$current_post = ( $post->ID === $current_post_id && is_single() ) ? ', active' : '';
+			$classes = 'post-number-' . $widget_post_query->current_post . $current_post;
 
-			<article <?php post_class( $current_post ); ?>>
+			?>
+
+			<article id="widget-post-<?php the_ID(); ?>"  <?php post_class( $classes ); ?>>
 
 				<?php
 				if ( current_theme_supports( 'post-thumbnails' ) && $this->args['show_thumbnail'] && has_post_thumbnail() ) : ?>
