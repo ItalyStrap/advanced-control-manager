@@ -109,9 +109,9 @@ jQuery(document).ready(function($) {
 
 		// If the media frame already exists, reopen it.
 		// if ( file_frame ) {
-		// 	console.log(file_frame);
-		// 	file_frame.open();
-		// 	return;
+		//		console.log(file_frame);
+		//		file_frame.open();
+		//		return;
 		// }
 
 		// Create the media frame.
@@ -141,7 +141,7 @@ jQuery(document).ready(function($) {
 			ul_container.append('<li class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></div></li>');
 
 			input_ids = images_container.find('.ids');
-			console.log(input_ids.val());
+			// console.log(input_ids.val());
 
 			if ( '' === input_ids.val() ) {
 				input_ids.val( attachment.id );
