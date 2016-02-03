@@ -167,7 +167,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			$container_style = '';
 
 			if ( $this->args['width'] )
-				$container_style = 'style="width:' . $this->args['width'] . ';"';
+				$container_style = 'style="width:' . $this->args['width'] . 'px;"';
 
 			$container_style = apply_filters( 'ItalyStrap_carousel_container_style', $container_style, $this->args );
 
@@ -185,7 +185,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 			$item_style = '';
 
 			if ( $this->args['height'] )
-				$item_style = 'style="height:' . $this->args['height'] . ';"' ;
+				$item_style = 'style="height:' . $this->args['height'] . 'px;"' ;
 
 			$item_style = apply_filters( 'ItalyStrap_carousel_item_style', $item_style, $this->attributtes );
 
