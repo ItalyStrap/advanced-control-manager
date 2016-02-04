@@ -9,9 +9,12 @@
 			"admin",
 			"classes",
 			"shortcode",
-			"widget"
+			"widget",
+			"deprecated"
 		],
-		"files": ["vendor/webdevstudios/cmb2/init.php"]
+		"files": [
+			"vendor/webdevstudios/cmb2/init.php"
+			]
 	},
 	"extra": {
 		"installer-paths": {
