@@ -266,6 +266,7 @@ return array(
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
+
 	/**
 	 * Auto-format text. Default: true.
 	 */
@@ -278,6 +279,20 @@ return array(
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
+
+	/**
+	 * Allow shortcode for text. Default: false.
+	 */
+	'do_shortcode'		=> array(
+				'name'		=> __( 'do_shortcode', 'ItalyStrap' ),
+				'desc'		=> __( 'Auto-format text. Default: false.', 'ItalyStrap' ),
+				'id'		=> 'do_shortcode',
+				'type'		=> 'checkbox',
+				'default'	=> 0,
+				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
 	/**
 	 * Extra class for container.
 	 */
