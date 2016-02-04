@@ -286,6 +286,7 @@ return array(
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
+
 	/**
 	 * Custom text or HTML markup.
 	 */
@@ -325,7 +326,7 @@ return array(
 				'desc'		=> __( 'Enter a fall-back thumbnail.', 'ItalyStrap' ),
 				'id'		=> 'thumb_url',
 				'type'		=> 'media_list',
-				'class'		=> 'widefat thumb_url',
+				'class'		=> 'widefat thumb_url ids',
 				'class-p'	=> 'thumb_url',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
