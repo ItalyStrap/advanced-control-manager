@@ -7,8 +7,6 @@
  * @since   1.1
  */
 
-use \ItalyStrap\Core\ItalyStrapCarousel;
-
 if ( ! class_exists( 'ItalyStrapCarouselLoader' ) ) {
 
 	/**
@@ -46,7 +44,7 @@ if ( ! class_exists( 'ItalyStrapCarouselLoader' ) ) {
 
 			$atts['image_title'] = ( isset( $atts['title'] ) ) ? $atts['title'] : null ;
 
-			$ItalyStrapCarousel = new \ItalyStrap\Core\ItalyStrapCarousel( $atts );
+			$ItalyStrapCarousel = new Carousel_Bootstrap( $atts );
 			return $ItalyStrapCarousel->__get( 'output' );
 
 		}
