@@ -34,7 +34,7 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 		if ( array_key_exists( $name, $atts ) )
 			$out[ $name ] = $atts[ $name ];
 		else
-			$out[ $name ] = $default['default'];
+			$out[ $name ] = ( ( ! empty( $default['default'] ) ) ? $default['default'] : '' );
 
 	}
 
@@ -54,5 +54,31 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 	}
 
 	return $out;
+
+}
+
+/**
+ * Read and return file content
+ * @link https://tommcfarlin.com/reading-files-with-php/
+ * @param  file $filename	The file for lazyloading
+ * @return string $content	Return the content of the file
+ */
+function get_file_content( $filename ) {
+
+	// Check to see if the file exists at the specified path
+	if ( ! file_exists( $filename ) )
+		throw new Exception( __( 'The file doesn\'t exist.', 'ItalyStrap' ) );
+
+	// Open the file for reading
+	$file_resource = fopen( $filename, 'r' );
+
+	/**
+	 * Read the entire contents of the file which is indicated by
+	 * the filesize argument
+	 */
+	$content = fread( $file_resource, filesize( $filename ) );
+	fclose( $file_resource );
+
+	return $content;
 
 }
