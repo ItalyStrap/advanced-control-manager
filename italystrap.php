@@ -19,7 +19,7 @@ use \ItalyStrap\Core\Widget_Posts;
 use \ItalyStrap\Core\Widget_Media_Carousel;
 use \ItalyStrap\Core\Vcard_Widget;
 use \ItalyStrap\Core\ItalyStrapCarouselLoader;
-use \ItalyStrap\Core\ItalyStrapCarousel;
+use \ItalyStrap\Core\Carousel_Bootstrap;
 use \ItalyStrap\Core\Query_Posts;
 
 /**
@@ -236,7 +236,7 @@ function test_carousel_posts() {
 
 	$atts = array();
 
-	// $atts['ids'] = '1045,2051,13,12,1177,16,1163';
+	$atts['ids'] = '1045,2051,13,12,1177,16,1163';
 	$atts['type'] = 'carousel';
 	$atts['name'] = 'prova';
 	$atts['size'] = 'large';
@@ -280,10 +280,10 @@ function test_carousel_posts() {
 	// 			'filter'	=> 'sanitize_text_field',
 	// 			 ),
 
-	// $carousel_posts = new \ItalyStrap\Core\ItalyStrapCarousel( $atts );
+	$carousel_posts = new \ItalyStrap\Core\Carousel_Bootstrap( $atts );
 	// var_dump( $carousel_posts->validate_data() );
-	// var_dump( $carousel_posts->__get( 'output' ) );
-	// echo $carousel_posts->__get( 'output' );
+	var_dump( $carousel_posts->__get( 'output' ) );
+	echo $carousel_posts->__get( 'output' );
 
 }
 // add_action( 'content_container_open', 'test_carousel_posts' );
@@ -308,3 +308,5 @@ return $output;
 
 }
 add_shortcode( 'query_posts', 'query_posts_shortcode' );
+
+// var_dump($scanned_directory = array_diff( scandir( ITALYSTRAP_PLUGIN_PATH . 'options' ), array('..', '.') ));
