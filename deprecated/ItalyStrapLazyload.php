@@ -14,6 +14,10 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 
 		private static $unveilpath = '';
 
+		public function __construct() {
+			_deprecated_function( __CLASS__, '2.0', 'ItalyStrap\\\Core\\\Lazy_Load_Image' );
+		}
+
 		static function init() {
 
 			if ( is_admin() )
@@ -91,7 +95,7 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 			 * R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
 			 * @var string
 			 */
-			$placeholder_image = apply_filters( 'ItalyStrapLazyload_placeholder_image', 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' );
+			$placeholder_image = apply_filters( 'ItalyStrapLazyload_placeholder_image', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' );
 
 			/**
 			 * This is a pretty simple regex, but it works
@@ -162,6 +166,8 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 	 */
 	function italystrap_get_apply_lazyload( $content ) {
 
+		_deprecated_function( __FUNCTION__, '2.0', 'ItalyStrap\\\Core\\\get_apply_lazyload' );
+
 		return ItalyStrapLazyload::add_image_placeholders( $content );
 
 	}
@@ -172,6 +178,8 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 	 * @return string          Text content processed
 	 */
 	function italystrap_apply_lazyload( $content ) {
+
+		_deprecated_function( __FUNCTION__, '2.0', 'ItalyStrap\\\Core\\\apply_lazyload' );
 
 		echo ItalyStrapLazyload::add_image_placeholders( $content );
 
