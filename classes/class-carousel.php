@@ -1,16 +1,15 @@
 <?php namespace ItalyStrap\Core;
 /**
-* ItalyStrap Carousel initially forked from Agnosia Bootstrap Carousel by AuSoft
-*
-* Display a Bootstrap Carousel based on selected images and their titles and
-* descriptions. You need to include the Bootstrap CSS and Javascript files on
-* your own; otherwise the class will not work.
-*
-*
-* @package ItalyStrap
-* @version 1.0
-* @since   2.0
-*/
+ * ItalyStrap Carousel initially forked from Agnosia Bootstrap Carousel by AuSoft
+ *
+ * Display a Bootstrap Carousel based on selected images and their titles and
+ * descriptions. You need to include the Bootstrap CSS and Javascript files on
+ * your own; otherwise the class will not work.
+ *
+ * @package ItalyStrap
+ * @version 1.0
+ * @since   2.0
+ */
 
 /**
  * The Carousel Bootsrap class
@@ -18,37 +17,43 @@
 abstract class Carousel {
 
 	/**
-	 * The attribute for Carousel
+	 * The attribute for Carousel.
+	 *
 	 * @var array
 	 */
 	public $args = array();
 
 	/**
 	 * Array of WordPress $post objects.
+	 *
 	 * @var array
 	 */
 	public $posts = array();
 
 	/**
 	 * The width of the container
+	 *
 	 * @var string
 	 */
 	public $container_style = '';
 
 	/**
 	 * The height of the item
+	 *
 	 * @var string
 	 */
 	public $item_style = '';
 
 	/**
 	 * The carousel output
+	 *
 	 * @var string
 	 */
 	public $output = '';
 
 	/**
 	 * Initialize the contstructor
+	 *
 	 * @param array $args The carousel attribute.
 	 */
 	function __construct( $args ) {
@@ -72,6 +77,7 @@ abstract class Carousel {
 
 	/**
 	 * Magic methods __get
+	 *
 	 * @param  string $property The $property argument is the name of the property being interacted with.
 	 * @return string           Return the $property argument.
 	 */
@@ -84,6 +90,7 @@ abstract class Carousel {
 
 	/**
 	 * Magic methods __set
+	 *
 	 * @param string $property The $property argument is the name of the property being interacted with.
 	 * @param mixed  $value    The __set() method's $value argument specifies the value the $name'ed property should be set to.
 	 */
@@ -105,6 +112,7 @@ abstract class Carousel {
 
 		/**
 		 * Define data by given attributes.
+		 *
 		 * @todo Usare il file options-media-carousel.php
 		 */
 		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ), $args, 'gallery' );
@@ -144,7 +152,7 @@ abstract class Carousel {
 
 		$posts = array();
 
-		$post_type_ids = $this->make_array( $this->args['ids'], $this->args['orderby'] );
+		$post_type_ids = (array) $this->make_array( $this->args['ids'], $this->args['orderby'] );
 
 		if ( is_array( $post_type_ids ) and ! empty( $post_type_ids[0] ) )
 			foreach ( $post_type_ids as $post_type_id )
@@ -394,6 +402,7 @@ abstract class Carousel {
 		 * [2] => altezza
 		 * [3] => boolean: true se $url è un'immagine ridimensionata,
 		 *        false se è l'originale.
+		 *
 		 * @var array
 		 */
 		$img_attr = wp_get_attachment_image_src( $post_thumbnail_id, $size_class );
@@ -414,7 +423,8 @@ abstract class Carousel {
 	}
 
 	/**
-	 * Get the image metadata (built for get the exif data)
+	 * Get the image metadata (built for get the exif data).
+	 *
 	 * @param  int   $id             ID.
 	 * @param  array $post           Array of post.
 	 * @param  array $img_attr       Attributes of image.
@@ -424,7 +434,8 @@ abstract class Carousel {
 	public function get_img_metadata( $id, array $post, array $img_attr, $schemaposition ) {
 
 		/**
-		 * Array for exifData informations
+		 * Array for exifData informations.
+		 *
 		 * @link https://wordpress.org/support/topic/retrieving-exif-data?replies=5
 		 * @var array
 		 */
@@ -433,6 +444,7 @@ abstract class Carousel {
 
 		/**
 		 * The metadata of the image.
+		 *
 		 * @var string
 		 */
 		$metadata = '<meta  itemprop="name" content="' . esc_attr( $post['post_title'] ) . '"/><meta  itemprop="width" content="' . absint( $img_attr[1] ) . '"/><meta  itemprop="height" content="' . absint( $img_attr[2] ) . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>';
@@ -446,6 +458,7 @@ abstract class Carousel {
 
 	/**
 	 * Get the image size attribute from user options and selecte wich to use on desktop, tablet or mobile.
+	 *
 	 * @return string The image size selected
 	 */
 	public function get_img_size_attr() {
@@ -522,6 +535,7 @@ abstract class Carousel {
 
 		/**
 		 * Da fare.
+		 *
 		 * @todo L'excerpt lo prende dal post se l'Id è quello di un post
 		 *       Valutare se farlo prendere dall'immagine come comportamento standard
 		 * @todo Testare meglio la funzionalità di checkbox, vecchie impostazioni
@@ -560,6 +574,7 @@ abstract class Carousel {
 
 		/**
 		 * Da fare.
+		 *
 		 * @todo fare il foreach solo sul numero degli ID validi nell'array degli ID
 		 */
 		foreach ( $this->posts as $post ) {
@@ -586,7 +601,8 @@ abstract class Carousel {
 	public function get_control() {
 
 		/**
-		 * THe output of the controllers
+		 * THe output of the controllers.
+		 *
 		 * @todo Dare la possibilità di scegliere l'icona o l'inserimento di un carattere
 		 */
 		$output = '<a class="carousel-control left" data-slide="prev" role="button" href="#' . $this->args['name'] . '" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>';

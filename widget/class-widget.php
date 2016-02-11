@@ -6,14 +6,16 @@
  * @since 1.4.0
  */
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
+if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+	die();
+}
 
 use \WP_Widget;
 
 /**
  * Core class used to implement some common method to widget.
  *
- * @since 1.4.0
+ * @since 2.0.0
  *
  * @see WP_Widget
  */
@@ -21,12 +23,14 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * Fields array of widget form
+	 *
 	 * @var array
 	 */
 	private $fields = array();
 
 	/**
 	 * Sections fields of widget forms
+	 *
 	 * @var array
 	 */
 	private $sections_keys = array();
@@ -148,6 +152,7 @@ abstract class Widget extends WP_Widget {
 
 		/**
 		 * Settings some defaults options.
+		 *
 		 * @var array
 		 */
 		$defaults = array(
@@ -160,6 +165,7 @@ abstract class Widget extends WP_Widget {
 
 		/**
 		 * Parse and merge args with defaults.
+		 *
 		 * @var array
 		 */
 		$args = wp_parse_args( (array) $args, (array) $defaults );
@@ -167,7 +173,7 @@ abstract class Widget extends WP_Widget {
 		/**
 		 * Convert $args['label'] spaces with dash '-'.
 		 */
-		$id_base    = sanitize_title( $args['label'] );
+		$id_base = sanitize_title( $args['label'] );
 
 		$name = $args['label'];
 
@@ -178,6 +184,7 @@ abstract class Widget extends WP_Widget {
 
 		/**
 		 * Check options.
+		 *
 		 * @var array
 		 */
 		$widget_options = array( 'description' => $args['description'] );
@@ -237,6 +244,7 @@ abstract class Widget extends WP_Widget {
 
 		/**
 		 * Creates the settings form.
+		 *
 		 * @var string
 		 */
 		$form = $this->render_form();
@@ -522,7 +530,6 @@ abstract class Widget extends WP_Widget {
 				$sections['general'][ $key['id'] ] = (array) $key;
 
 			}
-
 		}
 
 		return $sections;
@@ -537,7 +544,7 @@ abstract class Widget extends WP_Widget {
 
 	protected function create_sections_tabs_menu( array $sections ) {
 
-		$tabs = '<div class="upw-tabs">'; 
+		$tabs = '<div class="upw-tabs">';
 		$i = 0;
 
 		foreach ( $this->sections_keys as $key ) {
@@ -556,7 +563,7 @@ abstract class Widget extends WP_Widget {
 		$out = '';
 		$i = 0;
 
-		foreach ( $this->sections_keys as $key => $value) {
+		foreach ( $this->sections_keys as $key => $value ) {
 
 			$out .= '<div class="upw-tab' . ( ( 0 === $i ) ? '' : ' upw-hide' ) . ' upw-tab-' . $value . '">';
 
@@ -683,6 +690,7 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * Combines attributes into a string for a form element
+	 *
 	 * @since  1.1.0
 	 * @param  array $attrs        Attributes to concatenate.
 	 * @param  array $attr_exclude Attributes that should NOT be concatenated.
@@ -1129,16 +1137,27 @@ abstract class Widget extends WP_Widget {
 				<ul id="sortable" class="carousel_images">
 				<?php if ( ! empty( $value ) ) : ?>
 					<?php
-					$images = explode( ',', $value );
-					foreach ( $images as $image ) :
-						$image_attributes = wp_get_attachment_image_src( $image );
-						if ( $image_attributes ) :
+					$ids = explode( ',', $value );
+
+					foreach ( $ids as $id ) :
+
+						$attr = array(
+							'data-id'	=> $id,
+						);
+						$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
+
+						if ( '' === $output ) {
+							$id = (int) get_post_thumbnail_id( $id );
+							$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
+						}
+
+						if ( $output ) :
 					?>
 				
 						<li class="carousel-image ui-state-default">
 							<div>
 								<i class="dashicons dashicons-no"></i>
-								<img src="<?php echo esc_attr( $image_attributes[0] ); ?>" width="<?php echo esc_attr( $image_attributes[1] ); ?>" height="<?php echo esc_attr( $image_attributes[2] ); ?>" data-id="<?php echo esc_attr( $image ); ?>">
+								<?php echo $output; // XSS ok. ?>
 							</div>
 						</li>
 				
@@ -1188,6 +1207,7 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * Upload the Javascripts for the media uploader in widget config
+	 *
 	 * @todo Sistemare gli script da caricare per i vari widget nel pannello admin
 	 *
 	 * @param string $hook The name of the page.

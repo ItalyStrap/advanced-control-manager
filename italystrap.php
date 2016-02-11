@@ -22,11 +22,14 @@ use \ItalyStrap\Core\ItalyStrapCarouselLoader;
 use \ItalyStrap\Core\Carousel_Bootstrap;
 use \ItalyStrap\Core\Query_Posts;
 
+// use \ItalyStrap\Admin\Gallery_Settings;
+
 /**
  * This will make shure the plugin files can't be accessed within the web browser directly.
  */
-if ( ! defined( 'WPINC' ) )
+if ( ! defined( 'WPINC' ) ) {
 	die;
+}
 
 /**
  * Define some costant for internal use
@@ -100,11 +103,21 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 			if ( is_admin() ) {
 
 				new ItalyStrapAdmin;
+
 				new ItalyStrapAdminGallerySettings;
+				// new \ItalyStrap\Admin\Gallery_Settings;
+				// $gallery_settings = new Gallery_Settings;
+				// add_action( 'admin_init', array( $gallery_settings, 'admin_init' ) );
 
 				$image_size_media = new ItalyStrapAdminMediaSettings;
 				add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
 			}
+
+			/**
+			 * Add ID to post_type table
+			 */
+			require( 'hooks/simply-show-ids.php' );
+			add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
 
 			/**
 			 * Adjust priority to make sure this runs
@@ -144,6 +157,7 @@ if ( ! class_exists( 'ItalyStrapInit' ) ) {
 					register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 					register_widget( 'ItalyStrap\Core\Widget_VCard' );
 					register_widget( 'ItalyStrap\Core\Widget_Posts2' );
+					register_widget( 'ItalyStrap\Core\Widget_Image' );
 					add_filter( 'widget_title', 'html_widget_title_replace' );
 				});
 

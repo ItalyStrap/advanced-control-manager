@@ -25,7 +25,7 @@
 			// {"ids":false,"type":"","orderby":"","name":"italystrap-bootstrap-carousel","width":"","height":"","indicators":"before-inner","control":"true","interval":0,"pause":"hover","titletag":"h4","image_title":"true","link":"","text":"true","wpautop":"true","containerclass":"","itemclass":"","captionclass":"","size":"full","responsive":false,"sizetablet":"large","sizephone":"medium"}
 			// console.log(JSON.parse(gallery_fields));
 			// console.log(gallery_fields.length);
-			gallery_fields = JSON.parse( gallery_fields );
+			// gallery_fields = JSON.parse( gallery_fields );
 			// var key;
 			// for (var key in gallery_fields) {
 			//		console.log(key, gallery_fields[key]);

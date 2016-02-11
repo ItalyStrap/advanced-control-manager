@@ -9,12 +9,15 @@
 if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 
 	class ItalyStrapAdminMediaSettings {
-		
-		function __construct() {
+
+		/**
+		 * Init the constructor
+		 */
+		// function __construct() {
 
 			// add_filter( 'image_size_names_choose', array( $this, 'get_image_sizes' ), 999 );
 
-		}
+		// }
 
 		/**
 		 * Add list of all image size to administrators in the WordPress Media Library
@@ -25,8 +28,8 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 		 * @link http://codex.wordpress.org/Plugin_API/Filter_Reference/image_size_names_choose
 		 * @link http://www.deluxeblogtips.com/2011/06/list-registered-image-sizes.html
 		 * @link https://wordpress.org/support/topic/image_size_names_choose-not-working
-		 * 
-		 * @param  array $args Default WordPres image list ('thumbnail', 'medium', 'large')
+		 *
+		 * @param  array $args Default WordPres image list ('thumbnail', 'medium', 'large').
 		 * @return array       New list with custom and standard thumb
 		 */
 		function get_image_sizes( $args = array() ) {
@@ -35,12 +38,14 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 
 			/**
 			 * An array of each size value
+			 *
 			 * @var array
 			 */
 			$sizes = array();
 
 			/**
 			 * An array of name of each thumb, custom and standard
+			 *
 			 * @var array
 			 */
 			$get_intermediate_image_sizes = get_intermediate_image_sizes();
@@ -48,13 +53,13 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 			/**
 			 * Create the full array with sizes and crop info
 			 */
-			foreach( $get_intermediate_image_sizes as $_size ) {
+			foreach ( $get_intermediate_image_sizes as $_size ) {
 
 				/**
 				 * The name of each thumb
 				 * var $_size string
 				 */
-				if ( $_size && in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+				if ( $_size && in_array( $_size, array( 'thumbnail', 'medium', 'large' ), true ) ) {
 
 					/**
 					 * Get the size of each standard thumb
@@ -79,9 +84,11 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 				/**
 				 * Add thumb name to administrators in the WordPress Media Library
 				 */
-				if ( isset( $sizes[ $_size ] ) )
+				if ( isset( $sizes[ $_size ] ) ) {
+
 					$custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
 
+				}
 			}
 
 			return array_merge( $args, $custom );
