@@ -68,6 +68,10 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
+		if ( $this->get_cached_widget( $args ) ) {
+			return;
+		}
+
 		$output = '';
 
 		$output .= $args['before_widget'];
@@ -84,7 +88,7 @@ abstract class Widget extends WP_Widget {
 
 		$output .= $args['after_widget'];
 
-		echo apply_filters( 'widget_text', $output ); // XSS ok.
+		echo apply_filters( 'widget_text', $this->cache_widget( $args, $output ) ); // XSS ok.
 
 	}
 
@@ -228,6 +232,10 @@ abstract class Widget extends WP_Widget {
 		 *                                information on accepted arguments. Default empty array.
 		 */
 		parent::__construct( $id_base, $name, $widget_options, $control_options );
+
+		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 
 	}
 
@@ -1251,6 +1259,56 @@ abstract class Widget extends WP_Widget {
 			);
 
 		}
+
+	}
+
+	/**
+	 * Get cached widget.
+	 *
+	 * @param  array $args The argument of widget class.
+	 * @return bool true   If the widget is cached otherwise false
+	 */
+	public function get_cached_widget( $args ) {
+
+		$cache = wp_cache_get( apply_filters( 'italystrap_cached_widget_id', $this->id ), 'widget' );
+
+		if ( ! is_array( $cache ) ) {
+			$cache = array();
+		}
+
+		if ( ! isset( $args['widget_id'] ) ) {
+			$args['widget_id'] = null;
+		}
+
+		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ]; // XSS ok.
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Cache the widget.
+	 *
+	 * @param  array  $args     The argumento of widget class.
+	 * @param  string $content The content of the widget to display.
+	 * @return string          The content that was cached
+	 */
+	public function cache_widget( $args, $content ) {
+
+		wp_cache_set( apply_filters( 'italystrap_cached_widget_id', $this->id ), array( $args['widget_id'] => $content ), 'widget' );
+
+		return $content;
+
+	}
+
+	/**
+	 * Flush the cache.
+	 */
+	public function flush_widget_cache() {
+
+		wp_cache_delete( apply_filters( 'italystrap_cached_widget_id', $this->id ), 'widget' );
 
 	}
 }
