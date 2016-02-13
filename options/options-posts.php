@@ -45,6 +45,38 @@ return array(
 				 ),
 
 	/**
+	 * Custom CSS class for container.
+	 */
+	'container_class'			=> array(
+				'name'		=> __( 'Container Class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the container class name.', 'ItalyStrap' ),
+				'id'		=> 'container_class',
+				'type'		=> 'text',
+				'class'		=> 'widefat container_class',
+				'class-p'	=> 'container_class',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
+	 * Custom CSS class for the article html tag.
+	 */
+	'post_class'				=> array(
+				'name'		=> __( 'Post Class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the post class name.', 'ItalyStrap' ),
+				'id'		=> 'post_class',
+				'type'		=> 'text',
+				'class'		=> 'widefat post_class',
+				'class-p'	=> 'post_class',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'filter'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
 	 * Custom text or HTML markup.
 	 */
 	// 'before_posts'				=> array(

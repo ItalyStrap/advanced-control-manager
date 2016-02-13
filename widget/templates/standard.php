@@ -9,11 +9,11 @@
 
 <?php if ( isset( $this->args['before_posts'] ) ) : ?>
 	<div class="post-widget-before">
-		<?php echo wpautop( esc_attr( $this->args['before_posts'] ) ); ?>
+		<?php echo wpautop( esc_attr( $this->args['before_posts'] ) ); // XSS ok.?>
 	</div>
 <?php endif; ?>
 
-<section class="post-widget hfeed" itemscope itemtype="http://schema.org/CollectionPage">
+<section class="post-widget hfeed <?php echo esc_attr( $this->args['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
 
 	<?php
 
@@ -23,8 +23,16 @@
 
 			$widget_post_query->the_post();
 
-			$current_post = ( $post->ID === $current_post_id && is_single() ) ? ', active' : '';
-			$classes = 'post-number-' . $widget_post_query->current_post . $current_post;
+			/**
+			 * Ad "active" css class to current post
+			 *
+			 * @var string
+			 */
+			$current_post = ( $post->ID === $current_post_id && is_single() ) ? ' active' : '';
+
+			$post_class = ( ! empty( $this->args['post_class'] ) ) ? ' ' . $this->args['post_class'] : '' ;
+
+			$classes = 'post-number-' . $widget_post_query->current_post . $current_post . esc_attr( $post_class );
 
 			?>
 
@@ -185,6 +193,6 @@
 
 <?php if ( isset( $this->args['after_posts'] ) ) : ?>
 	<div class="post-widget-after">
-		<?php echo wpautop( esc_attr( $this->args['after_posts'] ) ); ?>
+		<?php echo wpautop( esc_attr( $this->args['after_posts'] ) ); // XSS ok. ?>
 	</div>
 <?php endif;
