@@ -470,6 +470,7 @@ module.exports = function(grunt) {
 	/**
 	 * PHPCS commands
 	 * phpcs E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/italystrap.php --standard=WordPress
+	 * phpcs E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --standard=WordPress
 	 * phpcbf E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --no-patch --standard=WordPress
 	 */
 
