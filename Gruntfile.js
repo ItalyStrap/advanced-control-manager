@@ -466,6 +466,12 @@ module.exports = function(grunt) {
 	 * Copiare dalla cartella composer dentro lib il file di interesse
 	 * Eventualmente copiarlo anche nel tema
 	 */
+	
+	/**
+	 * PHPCS commands
+	 * phpcs E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/italystrap.php --standard=WordPress
+	 * phpcbf E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --no-patch --standard=WordPress
+	 */
 
 	/**
 	 * My workflow
