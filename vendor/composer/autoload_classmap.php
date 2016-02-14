@@ -15,7 +15,7 @@ return array(
     'ItalyStrapLazyload' => $baseDir . '/deprecated/ItalyStrapLazyload.php',
     'ItalyStrap\\Core\\Carousel' => $baseDir . '/classes/class-carousel.php',
     'ItalyStrap\\Core\\Carousel_Bootstrap' => $baseDir . '/classes/class-carousel-bootstrap.php',
-    'ItalyStrap\\Core\\Fields' => $baseDir . '/classes/class-fields.php',
+    'ItalyStrap\\Core\\Fields' => $baseDir . '/admin/class-fields.php',
     'ItalyStrap\\Core\\Interface_Widget' => $baseDir . '/widget/interfaces/interface-widget.php',
     'ItalyStrap\\Core\\ItalyStrapCarousel' => $baseDir . '/deprecated/ItalyStrapCarousel.php',
     'ItalyStrap\\Core\\ItalyStrapCarouselLoader' => $baseDir . '/shortcode/class-shortcode-carousel.php',
