@@ -1,9 +1,9 @@
 <?php namespace ItalyStrap\Core;
 /**
- * Widget API: Widget class
+ * Fields API: Fields Class
  *
  * @package ItalyStrap
- * @since 1.4.0
+ * @since 2.0.0
  */
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
@@ -62,9 +62,9 @@ class Fields {
 			'js_dependencies' => array(),
 		);
 
-		if ( ! empty( $a['js_dependencies'] ) ) {
-			CMB2_JS::add_dependencies( $a['js_dependencies'] );
-		}
+		// if ( ! empty( $a['js_dependencies'] ) ) {
+		// 	CMB2_JS::add_dependencies( $a['js_dependencies'] );
+		// }
 
 		return sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc', 'js_dependencies' ) ), $a['desc'] );
 	}
@@ -72,12 +72,12 @@ class Fields {
 	/**
 	 * Create the Field Text
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	protected function create_field_text( $key, $out = '' ) {
+	public function create_field_text( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -98,18 +98,19 @@ class Fields {
 		if ( isset( $key['desc'] ) ) {
 			$out .= $this->create_field_description( $key['desc'] ); }
 
-		return $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( array(), $key );
+		return $out;
+		// return $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( array(), $key );
 	}
 
 	/**
 	 * Create the Field Textarea
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Textarea
 	 */
-	protected function create_field_textarea( $key, $out = '' ) {
+	public function create_field_textarea( $key, $out = '' ) {
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
 		$out .= '<textarea ';
@@ -138,12 +139,12 @@ class Fields {
 	/**
 	 * Create the Field Checkbox
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Checkbox
 	 */
-	protected function create_field_checkbox( $key, $out = '' ) {
+	public function create_field_checkbox( $key, $out = '' ) {
 
 		$out .= ' <input type="checkbox" ';
 
@@ -177,12 +178,12 @@ class Fields {
 	/**
 	 * Create the Field Select
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select
 	 */
-	protected function create_field_select( $key, $out = '' ) {
+	public function create_field_select( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -217,12 +218,12 @@ class Fields {
 	/**
 	 * Create the Field Multiple Select
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select
 	 */
-	protected function create_field_multiple_select( $key, $out = '' ) {
+	public function create_field_multiple_select( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -257,12 +258,12 @@ class Fields {
 	/**
 	 * Create the Field Select with Options Group
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select with Options Group
 	 */
-	protected function create_field_select_group( $key, $out = '' ) {
+	public function create_field_select_group( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -304,12 +305,12 @@ class Fields {
 	/**
 	 * Create the field number
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field number
 	 */
-	protected function create_field_number( $key, $out = '' ) {
+	public function create_field_number( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -336,12 +337,12 @@ class Fields {
 	/**
 	 * Create the field email
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field email
 	 */
-	protected function create_field_email( $key, $out = '' ) {
+	public function create_field_email( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -368,12 +369,12 @@ class Fields {
 	/**
 	 * Create the field url
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field url
 	 */
-	protected function create_field_url( $key, $out = '' ) {
+	public function create_field_url( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -400,12 +401,12 @@ class Fields {
 	/**
 	 * Create the field tel
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field tel
 	 */
-	protected function create_field_tel( $key, $out = '' ) {
+	public function create_field_tel( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -432,12 +433,12 @@ class Fields {
 	/**
 	 * Create the Field Text
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	protected function create_field_media_list( $key, $out = '' ) {
+	public function create_field_media_list( $key, $out = '' ) {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -511,11 +512,11 @@ class Fields {
 	/**
 	 * Create the field description
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  string $desc The description.
 	 * @return string       Return the description
 	 */
-	protected function create_field_description( $desc ) {
+	public function create_field_description( $desc ) {
 
 		return  '<br/><small class="description">' . esc_html( $desc ) . '</small>';
 
@@ -524,12 +525,12 @@ class Fields {
 	/**
 	 * Create the field label
 	 *
-	 * @access protected
+	 * @access public
 	 * @param  string $name The labels name.
 	 * @param  string $id   The labels ID.
 	 * @return string       Return the labels
 	 */
-	protected function create_field_label( $name = '', $id = '' ) {
+	public function create_field_label( $name = '', $id = '' ) {
 
 		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . ':</label>';
 
