@@ -20,17 +20,19 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 
 			/**
 			 * Instance of list of image sizes
+			 *
 			 * @var ItalyStrapAdminMediaSettings
 			 */
 			$image_size_media = new ItalyStrapAdminMediaSettings;
 			$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
 
-			$get_category_list_array = $this->get_taxonomies_list_array( 'category' );
+			$get_category_list_array = get_taxonomies_list_array( 'category' );
 
-			$get_post_tag_list_array = $this->get_taxonomies_list_array( 'post_tag' );
+			$get_post_tag_list_array = get_taxonomies_list_array( 'post_tag' );
 
 			/**
 			 * List of posts type
+			 *
 			 * @todo Aggiungere any all'array
 			 * @var array
 			 */
@@ -42,6 +44,7 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 
 			/**
 			 * Configure widget array.
+			 *
 			 * @var array
 			 */
 			$args = array(
@@ -57,27 +60,6 @@ if ( ! class_exists( 'Widget_Posts2' ) ) {
 			 * Create Widget
 			 */
 			$this->create_widget( $args );
-		}
-
-		public function get_taxonomies_list_array( $tax ) {
-
-			/**
-			 * Array of taxonomies
-			 * @todo Make object cache, see https://10up.github.io/Engineering-Best-Practices/php/#performance
-			 * @todo Add a default value
-			 * @var array
-			 */
-			$tax_arrays = get_terms( $tax );
-
-			$get_taxonomies_list_array = array();
-
-			foreach ( $tax_arrays as $tax_array ) {
-
-				$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
-
-			}
-
-			return $get_taxonomies_list_array;
 		}
 
 		/**

@@ -819,4 +819,52 @@ abstract class Widget extends WP_Widget {
 		wp_cache_delete( apply_filters( 'italystrap_cached_widget_id', $this->id ), 'widget' );
 
 	}
+
+	/**
+	 * Upload the Javascripts for the media uploader in widget config
+	 *
+	 * @todo Sistemare gli script da caricare per i vari widget nel pannello admin
+	 *
+	 * @param string $hook The name of the page.
+	 */
+	public function upload_scripts( $hook ) {
+
+		if ( 'widgets.php' !== $hook ) {
+			return;
+		}
+
+		if ( function_exists( 'wp_enqueue_media' ) ) {
+
+			wp_enqueue_media();
+
+		} else {
+
+			if ( ! wp_script_is( 'thickbox', 'enqueued' ) ) {
+
+				wp_enqueue_style( 'thickbox' );
+				wp_enqueue_script( 'thickbox' );
+
+			}
+
+			if ( ! wp_script_is( 'media-upload', 'enqueued' ) ) {
+				wp_enqueue_script( 'media-upload' ); }
+		}
+
+		wp_enqueue_script( 'jquery-ui-sortable' );
+
+		$js_file = ( WP_DEBUG ) ? 'admin/js/src/widget.js' : 'admin/js/widget.min.js';
+
+		if ( ! wp_script_is( 'italystrap-widget' ) ) {
+
+			wp_enqueue_style( 'italystrap-widget', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
+
+			wp_enqueue_script(
+				'italystrap-widget',
+				ITALYSTRAP_PLUGIN_URL . $js_file,
+				array( 'jquery', 'jquery-ui-sortable' )
+			);
+
+		}
+
+	}
 }

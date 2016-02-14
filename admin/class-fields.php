@@ -16,6 +16,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 class Fields {
 
 	// function __construct() {
+	// 	add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 	// }
 
 	/**

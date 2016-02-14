@@ -59,6 +59,7 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 
 /**
  * Read and return file content
+ *
  * @link https://tommcfarlin.com/reading-files-with-php/
  * @param  file $filename	The file for lazyloading
  * @return string $content	Return the content of the file
@@ -81,4 +82,32 @@ function get_file_content( $filename ) {
 
 	return $content;
 
+}
+
+/**
+ * Get an array with the taxonomies list
+ *
+ * @param  string $tax The name of taxonomy type
+ * @return array       Return an array with tax list
+ */
+function get_taxonomies_list_array( $tax ) {
+
+	/**
+	 * Array of taxonomies
+	 *
+	 * @todo Make object cache, see https://10up.github.io/Engineering-Best-Practices/php/#performance
+	 * @todo Add a default value
+	 * @var array
+	 */
+	$tax_arrays = get_terms( $tax );
+
+	$get_taxonomies_list_array = array();
+
+	foreach ( $tax_arrays as $tax_array ) {
+
+		$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
+
+	}
+
+	return $get_taxonomies_list_array;
 }

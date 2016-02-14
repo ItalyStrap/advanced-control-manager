@@ -78,7 +78,7 @@ class Vcard_Widget extends Widget {
 
 		$this->schema = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard-widget.php' );
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
 	}
 

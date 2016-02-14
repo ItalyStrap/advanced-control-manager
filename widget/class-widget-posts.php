@@ -40,7 +40,7 @@ class Widget_Posts extends Widget {
 
 		// add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_admin_scripts' ) );
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 		/**
 		 * Valutare se inserire uno stile predefinito.
 		 * if (apply_filters('italystrap_enqueue_styles', true) && !is_admin()) {
