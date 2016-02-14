@@ -117,17 +117,13 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function widget_title( $args, $instance ) {
 
+		$output = '';
+
 		/**
-		 * The code above is to testing in case I want to add link to widget title
+		 * This filter is documented in wp-includes/widgets/class-wp-widget-pages.php
+		 *
+		 * @var string
 		 */
-		// $title = apply_filters( 'widget_title', empty( $this->args['title'] ) ? '' : $this->args['title'], $this->args, $this->id_base );
-
-		// if ( $title && $this->args['title_link'] )
-		// 	echo $before_title . apply_filters( 'italystrap_widget_title_link', '<a href="' . esc_html( $this->args['title_link'] ) . '">' . esc_attr( $title ) . '</a>', $this->args['title_link'], $title ) . $after_title;
-		// elseif ( $title && ! $this->args['title_link'] )
-		// 	echo $before_title . esc_attr( $title ) . $after_title;
-
-		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$title = apply_filters(
 			'widget_title',
 			empty( $instance['title'] ) ? '' : $instance['title'],
@@ -138,10 +134,25 @@ abstract class Widget extends WP_Widget {
 		/**
 		 * Return the optional widget title with before_title and after_title
 		 */
-		if ( $title )
-			$title = $args['before_title'] . $title . $args['after_title']; // XSS ok.
+		if ( $title ) {
 
-		return $title;
+			$output = $args['before_title'];
+
+			if ( ! empty( $this->args['title_link'] ) ) {
+
+				$output .= '<a href="' . esc_html( $this->args['title_link'] ) . '">' . $title . '</a>';
+
+			} else {
+
+				$output .= $title;
+
+			}
+
+			$output .= $args['after_title'];
+
+		}
+
+		return $output;
 
 	}
 
@@ -291,10 +302,9 @@ abstract class Widget extends WP_Widget {
 				}
 			}
 
-			if ( isset( $key['filter'] ) )
+			if ( isset( $key['filter'] ) ) {
 				$instance[ $key['id'] ] = $this->filter( $key['filter'], $instance[ $key['id'] ] );
-			else $instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] );
-
+			} else { $instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] ); }
 		}
 
 		$this->flush_widget_cache();
@@ -346,12 +356,12 @@ abstract class Widget extends WP_Widget {
 	private function validate( $rules, $instance_value ) {
 		$rules = explode( '|', $rules );
 
-		if ( empty( $rules ) || count( $rules ) < 1 )
-			return true;
+		if ( empty( $rules ) || count( $rules ) < 1 ) {
+			return true; }
 
 		foreach ( $rules as $rule ) {
-			if ( false === $this->do_validation( $rule, $instance_value ) )
-			return false;
+			if ( false === $this->do_validation( $rule, $instance_value ) ) {
+				return false; }
 		}
 
 		return true;
@@ -369,11 +379,11 @@ abstract class Widget extends WP_Widget {
 	private function filter( $filters, $instance_value ) {
 		$filters = explode( '|', $filters );
 
-		if ( empty( $filters ) || count( $filters ) < 1 )
-			return $instance_value;
+		if ( empty( $filters ) || count( $filters ) < 1 ) {
+			return $instance_value; }
 
-		foreach ( $filters as $filter )
-			$instance_value = $this->do_filter( $filter, $instance_value );
+		foreach ( $filters as $filter ) {
+			$instance_value = $this->do_filter( $filter, $instance_value ); }
 
 		return $instance_value;
 	}
@@ -426,15 +436,15 @@ abstract class Widget extends WP_Widget {
 			return;
 
 			case 'natural_not_zero':
-				if ( ! preg_match( '/^[0-9]+$/', $instance_value ) ) return false;
-				if ( 0 === $instance_value ) return false;
+				if ( ! preg_match( '/^[0-9]+$/', $instance_value ) ) { return false; }
+				if ( 0 === $instance_value ) { return false; }
 				return true;
 			return;
 
 			default:
-				if ( method_exists( $this, $rule ) )
+				if ( method_exists( $this, $rule ) ) {
 					return $this->$rule( $instance_value );
-				else return false;
+				} else { return false; }
 			break;
 
 		}
@@ -524,13 +534,18 @@ abstract class Widget extends WP_Widget {
 			break;
 
 			default:
-				if ( method_exists( $this, $filter ) )
+				if ( method_exists( $this, $filter ) ) {
 					return $this->$filter( $instance_value );
-				else return $instance_value;
+				} else { return $instance_value; }
 			break;
 		}
 	}
 
+	/**
+	 * Create the section array for tab in widget panel
+	 *
+	 * @return array Return the array for section
+	 */
 	private function make_sections_array() {
 
 		$sections = array();
@@ -552,12 +567,24 @@ abstract class Widget extends WP_Widget {
 
 	}
 
+	/**
+	 * Get the sections array key
+	 *
+	 * @param  array $sections The sections array.
+	 * @return array           Return an array with sections key
+	 */
 	private function get_sections_keys( array $sections ) {
 
 		return array_keys( $sections );
 
 	}
 
+	/**
+	 * Create the sections tabs menu in widget panel
+	 *
+	 * @param  array $sections The sections array.
+	 * @return string          Return the HTML for tabs menu in widget panel
+	 */
 	protected function create_sections_tabs_menu( array $sections ) {
 
 		$tabs = '<div class="upw-tabs">';
@@ -574,6 +601,12 @@ abstract class Widget extends WP_Widget {
 
 	}
 
+	/**
+	 * Create the sections
+	 *
+	 * @param  array $sections The sections array.
+	 * @return string          Return the HTML with sections for widget panel
+	 */
 	protected function create_sections_tabs( array $sections ) {
 
 		$out = '';
@@ -598,6 +631,12 @@ abstract class Widget extends WP_Widget {
 
 	}
 
+	/**
+	 * Create the HTML form in widget panel
+	 *
+	 * @param  string $out The output variable. Default empy.
+	 * @return string      Return the HTML for form inputs in widget panel
+	 */
 	protected function render_form( $out = '' ) {
 
 		$sections = $this->make_sections_array();
@@ -660,8 +699,8 @@ abstract class Widget extends WP_Widget {
 	 */
 	protected function create_fields( $out = '' ) {
 
-		foreach ( $this->fields as $key )
-			$out .= $this->create_field( $key );
+		foreach ( $this->fields as $key ) {
+			$out .= $this->create_field( $key ); }
 
 		return $out;
 
@@ -680,16 +719,16 @@ abstract class Widget extends WP_Widget {
 		/* Set Defaults */
 		$key['default'] = isset( $key['default'] ) ? $key['default'] : '';
 
-		if ( isset( $this->instance[ $key['id'] ] ) )
+		if ( isset( $this->instance[ $key['id'] ] ) ) {
 			$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
-		else unset( $key['value'] );
+		} else { unset( $key['value'] ); }
 
 		/* Set field id and name  */
 		$key['_id'] = $this->get_field_id( $key['id'] );
 		$key['_name'] = $this->get_field_name( $key['id'] );
 
 		/* Set field type */
-		if ( ! isset( $key['type'] ) ) $key['type'] = 'text';
+		if ( ! isset( $key['type'] ) ) { $key['type'] = 'text'; }
 
 		/* Prefix method */
 		$field_method = 'create_field_' . str_replace( '-', '_', $key['type'] );
@@ -698,9 +737,9 @@ abstract class Widget extends WP_Widget {
 		$p_class = ( isset( $key['class-p'] ) ) ? ' class="' . $key['class-p'] . '"' : '';
 
 		/* Run method */
-		if ( method_exists( $this, $field_method ) )
+		if ( method_exists( $this, $field_method ) ) {
 			return '<p' . $p_class . '>' . $this->$field_method( $key ) . '</p>';
-		else return '<p' . $p_class . '>' . $this->create_field_text( $key ) . '</p>';
+		} else { return '<p' . $p_class . '>' . $this->create_field_text( $key ) . '</p>'; }
 
 	}
 
@@ -769,20 +808,20 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<input type="text" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( array(), $key );
 	}
@@ -800,14 +839,14 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<textarea ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
-		if ( isset( $key['rows'] ) )
-			$out .= 'rows="' . esc_attr( $key['rows'] ) . '" ';
+		if ( isset( $key['rows'] ) ) {
+			$out .= 'rows="' . esc_attr( $key['rows'] ) . '" '; }
 
-		if ( isset( $key['cols'] ) )
-			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" ';
+		if ( isset( $key['cols'] ) ) {
+			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
@@ -815,8 +854,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '</textarea>';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -833,13 +872,13 @@ abstract class Widget extends WP_Widget {
 
 		$out .= ' <input type="checkbox" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
 
-		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) )
-			$out .= ' checked="checked" ';
+		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
+			$out .= ' checked="checked" '; }
 
 		/**
 		 * Da vedere se utilizzabile per fare il controllo sulle checkbox.
@@ -854,8 +893,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] );
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -874,8 +913,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= '> ';
 
@@ -885,8 +924,8 @@ abstract class Widget extends WP_Widget {
 
 			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
-			if ( $selected === $field )
-				$out .= ' selected="selected" ';
+			if ( $selected === $field ) {
+				$out .= ' selected="selected" '; }
 
 			$out .= '> ' . esc_html( $option ) . '</option>';
 
@@ -894,8 +933,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= ' </select> ';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -914,8 +953,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= 'size="6" multiple> ';
 
@@ -925,8 +964,8 @@ abstract class Widget extends WP_Widget {
 
 			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
-			if ( $selected === $field )
-				$out .= ' selected="selected" ';
+			if ( $selected === $field ) {
+				$out .= ' selected="selected" '; }
 
 			$out .= '> ' . esc_html( $option ) . '</option>';
 
@@ -934,8 +973,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= ' </select> ';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -954,8 +993,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= '> ';
 
@@ -969,8 +1008,8 @@ abstract class Widget extends WP_Widget {
 
 				$out .= '<option value="' . esc_attr( $field ) . '" ';
 
-				if ( esc_attr( $selected ) === $field )
-					$out .= ' selected="selected" ';
+				if ( esc_attr( $selected ) === $field ) {
+					$out .= ' selected="selected" '; }
 
 				$out .= '> ' . esc_html( $option ) . '</option>';
 			}
@@ -981,8 +1020,8 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '</select>';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -1001,20 +1040,20 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<input type="number" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -1033,20 +1072,20 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<input type="email" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -1065,20 +1104,20 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<input type="url" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -1097,20 +1136,20 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<input type="tel" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -1129,20 +1168,20 @@ abstract class Widget extends WP_Widget {
 
 		$out .= '<input type="text" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		ob_start();
 
@@ -1247,9 +1286,8 @@ abstract class Widget extends WP_Widget {
 
 			}
 
-			if ( ! wp_script_is( 'media-upload', 'enqueued' ) )
-				wp_enqueue_script( 'media-upload' );
-
+			if ( ! wp_script_is( 'media-upload', 'enqueued' ) ) {
+				wp_enqueue_script( 'media-upload' ); }
 		}
 
 		wp_enqueue_script( 'jquery-ui-sortable' );
