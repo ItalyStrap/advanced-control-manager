@@ -83,20 +83,20 @@ class Fields {
 
 		$out .= '<input type="text" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( array(), $key );
 	}
@@ -114,14 +114,14 @@ class Fields {
 
 		$out .= '<textarea ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
-		if ( isset( $key['rows'] ) )
-			$out .= 'rows="' . esc_attr( $key['rows'] ) . '" ';
+		if ( isset( $key['rows'] ) ) {
+			$out .= 'rows="' . esc_attr( $key['rows'] ) . '" '; }
 
-		if ( isset( $key['cols'] ) )
-			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" ';
+		if ( isset( $key['cols'] ) ) {
+			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
@@ -129,8 +129,8 @@ class Fields {
 
 		$out .= '</textarea>';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -147,13 +147,13 @@ class Fields {
 
 		$out .= ' <input type="checkbox" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
 
-		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) )
-			$out .= ' checked="checked" ';
+		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
+			$out .= ' checked="checked" '; }
 
 		/**
 		 * Da vedere se utilizzabile per fare il controllo sulle checkbox.
@@ -168,8 +168,8 @@ class Fields {
 
 		$out .= $this->create_field_label( $key['name'], $key['_id'] );
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -188,8 +188,8 @@ class Fields {
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= '> ';
 
@@ -199,8 +199,8 @@ class Fields {
 
 			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
-			if ( $selected === $field )
-				$out .= ' selected="selected" ';
+			if ( $selected === $field ) {
+				$out .= ' selected="selected" '; }
 
 			$out .= '> ' . esc_html( $option ) . '</option>';
 
@@ -208,8 +208,8 @@ class Fields {
 
 		$out .= ' </select> ';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -228,8 +228,8 @@ class Fields {
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= 'size="6" multiple> ';
 
@@ -239,8 +239,8 @@ class Fields {
 
 			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
-			if ( $selected === $field )
-				$out .= ' selected="selected" ';
+			if ( $selected === $field ) {
+				$out .= ' selected="selected" '; }
 
 			$out .= '> ' . esc_html( $option ) . '</option>';
 
@@ -248,8 +248,8 @@ class Fields {
 
 		$out .= ' </select> ';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -268,8 +268,8 @@ class Fields {
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= '> ';
 
@@ -283,8 +283,8 @@ class Fields {
 
 				$out .= '<option value="' . esc_attr( $field ) . '" ';
 
-				if ( esc_attr( $selected ) === $field )
-					$out .= ' selected="selected" ';
+				if ( esc_attr( $selected ) === $field ) {
+					$out .= ' selected="selected" '; }
 
 				$out .= '> ' . esc_html( $option ) . '</option>';
 			}
@@ -295,8 +295,8 @@ class Fields {
 
 		$out .= '</select>';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -315,20 +315,20 @@ class Fields {
 
 		$out .= '<input type="number" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -347,20 +347,20 @@ class Fields {
 
 		$out .= '<input type="email" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -379,20 +379,20 @@ class Fields {
 
 		$out .= '<input type="url" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -411,20 +411,20 @@ class Fields {
 
 		$out .= '<input type="tel" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		return $out;
 	}
@@ -443,20 +443,20 @@ class Fields {
 
 		$out .= '<input type="text" ';
 
-		if ( isset( $key['class'] ) )
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
 
-		if ( isset( $key['size'] ) )
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" ';
+		if ( isset( $key['size'] ) ) {
+			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
 
 		$out .= ' />';
 
-		if ( isset( $key['desc'] ) )
-			$out .= $this->create_field_description( $key['desc'] );
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
 
 		ob_start();
 
@@ -532,6 +532,54 @@ class Fields {
 	protected function create_field_label( $name = '', $id = '' ) {
 
 		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . ':</label>';
+
+	}
+
+	/**
+	 * Upload the Javascripts for the media uploader in widget config
+	 *
+	 * @todo Sistemare gli script da caricare per i vari widget nel pannello admin
+	 *
+	 * @param string $hook The name of the page.
+	 */
+	public function upload_scripts( $hook ) {
+
+		if ( 'widgets.php' !== $hook ) {
+			return;
+		}
+
+		if ( function_exists( 'wp_enqueue_media' ) ) {
+
+			wp_enqueue_media();
+
+		} else {
+
+			if ( ! wp_script_is( 'thickbox', 'enqueued' ) ) {
+
+				wp_enqueue_style( 'thickbox' );
+				wp_enqueue_script( 'thickbox' );
+
+			}
+
+			if ( ! wp_script_is( 'media-upload', 'enqueued' ) ) {
+				wp_enqueue_script( 'media-upload' ); }
+		}
+
+		wp_enqueue_script( 'jquery-ui-sortable' );
+
+		$js_file = ( WP_DEBUG ) ? 'admin/js/src/widget.js' : 'admin/js/widget.min.js';
+
+		if ( ! wp_script_is( 'italystrap-widget' ) ) {
+
+			wp_enqueue_style( 'italystrap-widget', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
+
+			wp_enqueue_script(
+				'italystrap-widget',
+				ITALYSTRAP_PLUGIN_URL . $js_file,
+				array( 'jquery', 'jquery-ui-sortable' )
+			);
+
+		}
 
 	}
 }
