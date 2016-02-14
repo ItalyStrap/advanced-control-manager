@@ -297,6 +297,14 @@ abstract class Widget extends WP_Widget {
 
 		}
 
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+
+		if ( isset( $alloptions[ $this->id ] ) ) {
+			delete_option( $this->id );
+		}
+
 		return $this->after_validate_fields( $instance );
 	}
 
