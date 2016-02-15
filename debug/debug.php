@@ -30,11 +30,12 @@
  * shutdown (1) 
  */
 // add_action( 'shutdown', function(){
-	// var_dump($GLOBALS['wp_actions']);
-	// foreach( $GLOBALS['wp_actions'] as $action => $count )
-	// 	printf( '%s (%d) <br/>' . PHP_EOL, $action, $count );
+// 	var_dump($GLOBALS);
+// 	var_dump($GLOBALS['wp_filter']);
+// 	var_dump($GLOBALS['wp_actions']);
+// 	foreach( $GLOBALS['wp_actions'] as $action => $count )
+// 		printf( '%s (%d) <br/>' . PHP_EOL, $action, $count );
 // });
-
 
 /**
  * Sperimentale, aggingereattributo style con altezza minima per quando
@@ -60,3 +61,83 @@ function add_style_for_pre_tag_var_dump() {
 }
 add_action( 'admin_head', 'add_style_for_pre_tag_var_dump' );
 
+
+
+function test_carousel_posts() {
+
+	$atts = array();
+
+	$atts['ids'] = '1045,2051,13,12,1177,16,1163';
+	$atts['type'] = 'carousel';
+	$atts['name'] = 'prova';
+	$atts['size'] = 'large';
+
+	// $atts['ids'] = array(
+	// 	'id'	=> 'ids',
+	// 	'default'	=> '1777,1016,1011',
+	// 	);
+	// $atts['type'] = array(
+	// 	'id'		=> 'type',
+	// 	'default'	=> 'carousel',
+	// 	);
+
+	// 'ids'				=> array(
+	// 			'name'		=> __( 'Images ID', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter the image ID.', 'ItalyStrap' ),
+	// 			'id'		=> 'ids',
+	// 			'type'		=> 'media_list',
+	// 			'class'		=> 'widefat ids',
+	// 			'default'	=> false,
+	// 			// 'validate'	=> 'numeric_comma',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			 ),
+
+	// /**
+	//  * Type of gallery. If it's not "carousel", nothing will be done.
+	//  */
+	// 'type'				=> array(
+	// 			'name'		=> __( 'Type of gallery', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'ItalyStrap' ),
+	// 			'id'		=> 'type',
+	// 			'type'		=> 'select',
+	// 			'class'		=> 'widefat',
+	// 			'class-p'	=> 'hidden',
+	// 			'default'	=> 'carousel',
+	// 			'options'	=> array(
+	// 						'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
+	// 						'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
+	// 			 			),
+	// 			'validate'	=> 'alpha_numeric',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			 ),
+
+	$carousel_posts = new \ItalyStrap\Core\Carousel_Bootstrap( $atts );
+	// var_dump( $carousel_posts->validate_data() );
+	var_dump( $carousel_posts->__get( 'output' ) );
+	echo $carousel_posts->__get( 'output' );
+
+}
+// add_action( 'content_container_open', 'test_carousel_posts' );
+// add_action( 'single', 'test_carousel_posts' );
+
+// Add Shortcode
+function query_posts_shortcode( $atts , $content = null ) {
+
+	// Attributes
+	// extract( shortcode_atts(
+	// 	array(
+	// 		'posts' => '5',
+	// 	), $atts )
+	// );
+
+	// Code
+// $output = '<ul>';
+$query_posts = new Query_Posts( $atts );
+$output = $query_posts->output();
+// $output = '</ul>';
+return $output;
+
+}
+// add_shortcode( 'query_posts', 'query_posts_shortcode' );
+
+// var_dump($scanned_directory = array_diff( scandir( ITALYSTRAP_PLUGIN_PATH . 'options' ), array('..', '.') ));
