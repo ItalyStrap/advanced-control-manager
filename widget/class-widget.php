@@ -3,7 +3,7 @@
  * Widget API: Widget class
  *
  * @package ItalyStrap
- * @since 1.4.0
+ * @since 2.0.0
  */
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
@@ -61,6 +61,17 @@ abstract class Widget extends WP_Widget {
 	}
 
 	/**
+	 * Get the fields for widget
+	 * @param  array  $fields The options array with new fields
+	 * @return array          Return an array with all fields
+	 */
+	public function get_widget_fields( $fields = array() ) {
+
+		return array_merge( $this->title_field(), $fields );
+
+	}
+
+	/**
 	 * Echoes the widget content.
 	 *
 	 * Sub-classes should over-ride this function to generate their widget code.
@@ -108,7 +119,7 @@ abstract class Widget extends WP_Widget {
 	 *                        'before_widget', and 'after_widget'.
 	 * @param  array $instance The settings for the particular instance of the widget.
 	 */
-	public function widget_render( $args, $instance ) {}
+	abstract public function widget_render( $args, $instance );
 
 	/**
 	 * Dispay the optional title
@@ -229,7 +240,12 @@ abstract class Widget extends WP_Widget {
 		 */
 		$control_options = $args['control_options'];
 
-		$this->fields  = $args['fields'];
+		/**
+		 * With this filter you can change the default widget fields
+		 *
+		 * @var array
+		 */
+		$this->fields  = apply_filters( 'italystrap_widget_fields', $args['fields'], $id_base );
 
 		/**
 		 * Call WP_Widget to create the widget.
