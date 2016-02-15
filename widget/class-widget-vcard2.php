@@ -37,7 +37,7 @@ if ( ! class_exists( 'Widget_VCard' ) ) {
 	/**
 	 * Class
 	 */
-	class Widget_VCard extends Widget implements Interface_Widget {
+	class Widget_VCard extends Widget {
 
 		/**
 		 * Init the constructor

@@ -11,7 +11,7 @@ if ( ! class_exists( 'Widget_Breadcrumbs' ) ) {
 	/**
 	 * Class
 	 */
-	class Widget_Breadcrumbs extends Widget implements Interface_Widget {
+	class Widget_Breadcrumbs extends Widget {
 
 		/**
 		 * Init the constructor

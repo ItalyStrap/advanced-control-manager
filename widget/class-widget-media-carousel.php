@@ -11,7 +11,7 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 	/**
 	 * Class
 	 */
-	class Widget_Media_Carousel extends Widget implements Interface_Widget {
+	class Widget_Media_Carousel extends Widget {
 
 		/**
 		 * Init the constructor
