@@ -1,4 +1,4 @@
-<?php
+<?php namespace ItalyStrap\Core;
 /**
  * Array definition for Posts default options
  *
@@ -346,7 +346,7 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat thumb_size',
 				'default'	=> 'thumbnail',
-				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : null ),
+				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'display',
@@ -438,7 +438,7 @@ return array(
 				'type'		=> 'multiple_select',
 				'class'		=> 'widefat cats',
 				'default'	=> '',
-				'options'	=> ( ( isset( $get_category_list_array ) ) ? $get_category_list_array : null ),
+				'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
@@ -469,7 +469,7 @@ return array(
 				'type'		=> 'multiple_select',
 				'class'		=> 'widefat tags',
 				'default'	=> '',
-				'options'	=> ( ( isset( $get_post_tag_list_array ) ) ? $get_post_tag_list_array : null ),
+				'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
