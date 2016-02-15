@@ -77,7 +77,7 @@ if ( ! class_exists( 'Widget_VCard' ) ) {
 
 			ob_start();
 
-			require( ITALYSTRAP_PLUGIN_PATH . 'widget/templates/content-vcard.php' );
+			require( ITALYSTRAP_PLUGIN_PATH . 'templates/content-vcard.php' );
 
 			$out = ob_get_contents();
 			ob_end_clean();

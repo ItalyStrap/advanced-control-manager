@@ -198,7 +198,7 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 			} elseif ( 'standard' === $this->args['template'] ) {
 
 				// include 'templates/standard.php';
-				include ITALYSTRAP_PLUGIN_PATH . '/widget/templates/standard.php';
+				include ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
 
 			} else {
 
