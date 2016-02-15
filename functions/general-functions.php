@@ -6,6 +6,8 @@
  * @since   2.0.0
  */
 
+use \ItalyStrapAdminMediaSettings;
+
 /**
  * Combine user attributes with known attributes and fill in defaults when needed.
  *
@@ -110,4 +112,76 @@ function get_taxonomies_list_array( $tax ) {
 	}
 
 	return $get_taxonomies_list_array;
+}
+
+/**
+ * Get the size media registered
+ * @param  array  $custom_size Custom size
+ * @return array               Return the array with all media size plus custom size
+ */
+function get_image_size_array( $custom_size = array() ) {
+
+	/**
+	 * Instance of list of image sizes
+	 *
+	 * @var ItalyStrapAdminMediaSettings
+	 */
+	$image_size_media = new ItalyStrapAdminMediaSettings;
+
+	$image_size_media_array = (array) $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+
+	return $image_size_media_array;
+
+}
+
+/**
+ * Convert open square and closed square in < > and
+ * allow you to put some HTML tag in title, widget and post.
+ *
+ * Function from HTML Widget Text plugins
+ *
+ * @author Jaimyn Mayer https://jabelone.com.au
+ *
+ * @package ItalyStrap
+ * @since 2.0.0
+ * @param  string $title The title
+ * @return string        The title converted
+ */
+function render_html_in_title_output( $title ) {
+
+	$tagopen = '['; //Our HTML opening tag replacement
+	$tagclose = ']'; //Our HTML closing tag replacement
+
+	$title = str_replace( $tagopen, '<', $title );
+	$title = str_replace( $tagclose, '>', $title );
+
+	return $title;
+
+}
+
+/**
+ * Return the instance of Mobile Detect
+ * Use this function with apply_filter and then add_filter
+ * Example:
+ * Add this snippet where you want use the object
+ * $detect = '';
+ * $detect = apply_filters( 'mobile_detect', $detect );
+ *
+ * Then use add_filter to append object
+ * add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
+ *
+ * @see class-carousel.php for more information
+ * @param  null $mobile_detect An empty variable
+ * @return object              Instance of Mobiloe detect
+ */
+function new_mobile_detect( $mobile_detect ) {
+
+	$mobile_detect = new \Detection\MobileDetect;
+	/**
+	 * Istantiate Mobile_Detect class for responive use
+	 * @todo Passare l'istanza dentro la classe http://stackoverflow.com/a/10634148
+	 * @var obj
+	 */
+	return $mobile_detect;
+
 }
