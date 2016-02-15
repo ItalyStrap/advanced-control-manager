@@ -92,7 +92,7 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 
 			$out .= '</figure>';
 
-			return apply_filters( 'widget_text', $out );
+			return $out;
 		}
 	} // Class.
 }

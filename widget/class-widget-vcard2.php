@@ -82,7 +82,7 @@ if ( ! class_exists( 'Widget_VCard' ) ) {
 			$out = ob_get_contents();
 			ob_end_clean();
 
-			return apply_filters( 'widget_text', $out );
+			return $out;
 
 		}
 	} // class

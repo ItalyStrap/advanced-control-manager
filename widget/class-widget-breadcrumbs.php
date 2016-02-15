@@ -56,7 +56,7 @@ if ( ! class_exists( 'Widget_Breadcrumbs' ) ) {
 
 			// $out = '';
 
-			// return apply_filters( 'widget_text', $out );
+			// return $out;
 		}
 	} // class
 }

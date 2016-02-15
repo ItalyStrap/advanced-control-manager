@@ -58,9 +58,8 @@ if ( ! class_exists( 'Widget_Media_Carousel' ) ) {
 		public function widget_render( $args, $instance ) {
 
 			$mediacarousel = new Carousel_Bootstrap( $instance );
-			$out = $mediacarousel->__get( 'output' );
 
-			return apply_filters( 'widget_text', $out );
+			return $mediacarousel->__get( 'output' );
 		}
 
 		/**
