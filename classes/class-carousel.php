@@ -72,7 +72,7 @@ abstract class Carousel {
 		/**
 		 * Append javascript in static variable and print in front-end footer
 		 */
-		\ItalyStrapGlobals::set( $this->get_javascript() );
+		ItalyStrapGlobals::set( $this->get_javascript() );
 	}
 
 	/**
@@ -463,7 +463,9 @@ abstract class Carousel {
 	 */
 	public function get_img_size_attr() {
 
-		global $detect;
+		// global $detect;
+		$detect = '';
+		$detect = apply_filters( 'mobile_detect', $detect );
 
 		$image_size = '';
 
