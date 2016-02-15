@@ -36,6 +36,8 @@ class Vcard_Widget extends Widget {
 
 	private $schema = array();
 
+	public function widget_render( $args, $instance ) {}
+
 	function __construct() {
 
 		$widget_ops = array(
