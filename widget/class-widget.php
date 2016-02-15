@@ -794,14 +794,14 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function get_cached_widget( $args ) {
 
-		$cache = wp_cache_get( apply_filters( 'italystrap_cached_widget_id', $this->id ), 'widget' );
+		if ( ! isset( $args['widget_id'] ) ) {
+			$args['widget_id'] = null;
+		}
+
+		$cache = wp_cache_get( apply_filters( 'italystrap_cached_widget_id', $args['widget_id'] ), 'widget' );
 
 		if ( ! is_array( $cache ) ) {
 			$cache = array();
-		}
-
-		if ( ! isset( $args['widget_id'] ) ) {
-			$args['widget_id'] = null;
 		}
 
 		if ( isset( $cache[ $args['widget_id'] ] ) ) {
@@ -821,7 +821,11 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function cache_widget( $args, $content ) {
 
-		wp_cache_set( apply_filters( 'italystrap_cached_widget_id', $this->id ), array( $args['widget_id'] => $content ), 'widget' );
+		if ( ! isset( $args['widget_id'] ) ) {
+			$args['widget_id'] = null;
+		}
+
+		wp_cache_set( apply_filters( 'italystrap_cached_widget_id', $args['widget_id'] ), array( $args['widget_id'] => $content ), 'widget' );
 
 		return $content;
 
@@ -832,7 +836,11 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function flush_widget_cache() {
 
-		wp_cache_delete( apply_filters( 'italystrap_cached_widget_id', $this->id ), 'widget' );
+		if ( ! isset( $args['widget_id'] ) ) {
+			$args['widget_id'] = null;
+		}
+
+		wp_cache_delete( apply_filters( 'italystrap_cached_widget_id', $args['widget_id'] ), 'widget' );
 
 	}
 
