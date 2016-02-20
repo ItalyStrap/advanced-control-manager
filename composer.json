@@ -11,14 +11,14 @@
 			"shortcode",
 			"widget",
 			"deprecated"
-		],
-		"files": [
-			"vendor/webdevstudios/cmb2/init.php"
-			]
+		]
 	},
 	"extra": {
 		"installer-paths": {
 			"vendor/{$name}/": ["webdevstudios/cmb2"]
 		}
+	},
+	"require-dev": {
+		"lucatume/wp-browser": "^1.9"
 	}
 }
