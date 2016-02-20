@@ -141,3 +141,10 @@ return $output;
 // add_shortcode( 'query_posts', 'query_posts_shortcode' );
 
 // var_dump($scanned_directory = array_diff( scandir( ITALYSTRAP_PLUGIN_PATH . 'options' ), array('..', '.') ));
+
+// if ( ! function_exists( 'add_action' ) ) {
+// 	function add_action() {
+
+// 		return null;
+// 	}
+// }
