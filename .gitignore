@@ -20,11 +20,16 @@ lang/ItalyStrap.po
 
 #Composer
 composer.lock
+vendor
+!/vendor/mobiledetect
 vendor/mobiledetect/mobiledetectlib
 vendor/composer/installed.json
+
+codeception.yml
 
 #Tests
 tests
 wp-tests-config.php
 test_italystrap.php
 phpunit.xml
+tests/_output/*
