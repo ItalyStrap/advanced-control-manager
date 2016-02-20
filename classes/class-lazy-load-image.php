@@ -42,6 +42,11 @@ class Lazy_Load_Image {
 		add_filter( 'get_avatar', array( __CLASS__, 'add_image_placeholders' ), 11 );
 
 		/**
+		 * Filter for custom header image in Italystrap theme
+		 */
+		add_filter( 'italystrap_custom_header_image', array( __CLASS__, 'add_image_placeholders' ) );
+
+		/**
 		 * Path for unveil.js
 		 * @var string
 		 */
