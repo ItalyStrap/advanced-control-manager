@@ -27,16 +27,16 @@ use \ItalyStrapAdminMediaSettings;
  */
 function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shortcode = '' ) {
 
-	$atts = (array)$atts;
+	$atts = (array) $atts;
 
-	$out = array();
+	$array = array();
 
 	foreach ( $pairs as $name => $default ) {
 
 		if ( array_key_exists( $name, $atts ) )
-			$out[ $name ] = $atts[ $name ];
+			$array[ $name ] = $atts[ $name ];
 		else
-			$out[ $name ] = ( ( ! empty( $default['default'] ) ) ? $default['default'] : '' );
+			$array[ $name ] = ( ( ! empty( $default['default'] ) ) ? $default['default'] : '' );
 
 	}
 
@@ -46,16 +46,16 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 	 * If the third parameter of the shortcode_atts() function is present then this filter is available.
 	 * The third parameter, $shortcode, is the name of the shortcode.
 	 *
-	 * @param array  $out       The output array of shortcode attributes.
+	 * @param array  $array       The output array of shortcode attributes.
 	 * @param array  $pairs     The supported attributes and their defaults.
 	 * @param array  $atts      The user defined shortcode attributes.
 	 * @param string $shortcode The shortcode name.
 	 */
 	if ( $shortcode ) {
-		$out = apply_filters( "shortcode_atts_multidimensional_array_{$shortcode}", $out, $pairs, $atts, $shortcode );
+		$array = apply_filters( "shortcode_atts_multidimensional_array_{$shortcode}", $array, $pairs, $atts, $shortcode );
 	}
 
-	return $out;
+	return $array;
 
 }
 
@@ -63,7 +63,7 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
  * Read and return file content
  *
  * @link https://tommcfarlin.com/reading-files-with-php/
- * @param  file $filename	The file for lazyloading
+ * @param  file $filename	The file for lazyloading.
  * @return string $content	Return the content of the file
  */
 function get_file_content( $filename ) {
@@ -89,7 +89,7 @@ function get_file_content( $filename ) {
 /**
  * Get an array with the taxonomies list
  *
- * @param  string $tax The name of taxonomy type
+ * @param  string $tax The name of taxonomy type.
  * @return array       Return an array with tax list
  */
 function get_taxonomies_list_array( $tax ) {
@@ -116,7 +116,8 @@ function get_taxonomies_list_array( $tax ) {
 
 /**
  * Get the size media registered
- * @param  array  $custom_size Custom size
+ *
+ * @param  array $custom_size Custom size.
  * @return array               Return the array with all media size plus custom size
  */
 function get_image_size_array( $custom_size = array() ) {
