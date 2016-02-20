@@ -63,6 +63,11 @@ if ( ! defined( 'ITALYSTRAP_BASENAME' ) ) {
 require( ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php' );
 
 /**
+ * Load CMB2
+ */
+require( ITALYSTRAP_PLUGIN_PATH . 'vendor/webdevstudios/cmb2/init.php' );
+
+/**
  * Load general function before init
  */
 require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
