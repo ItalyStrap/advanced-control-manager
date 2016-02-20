@@ -52,7 +52,7 @@ class Init {
 		add_action( 'wp_print_footer_scripts', array( $this, 'print_inline_script_in_footer' ), 999 );
 
 		if ( isset( $this->options['lazyload'] ) && ! is_admin() ) {
-			ItalyStrapLazyload::init();
+			Lazy_Load_Image::init();
 		}
 
 		add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
