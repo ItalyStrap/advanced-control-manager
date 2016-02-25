@@ -105,9 +105,13 @@ function get_taxonomies_list_array( $tax ) {
 
 	$get_taxonomies_list_array = array();
 
-	foreach ( $tax_arrays as $tax_array ) {
+	if ( $tax_arrays && ! is_wp_error ( $tax_arrays ) ) {
 
-		$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
+		foreach ( $tax_arrays as $tax_array ) {
+
+			$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
+
+		}
 
 	}
 
