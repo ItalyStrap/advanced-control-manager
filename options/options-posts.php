@@ -310,8 +310,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'excerpt_readmore'			=> array(
-				'name'		=> __( 'Excerpt length', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert the numbers of words to display.', 'ItalyStrap' ),
+				'name'		=> __( 'Excerpt read more', 'ItalyStrap' ),
+				'desc'		=> __( 'Insert the custom "read more" words.', 'ItalyStrap' ),
 				'id'		=> 'excerpt_readmore',
 				'type'		=> 'text',
 				'class'		=> 'widefat excerpt_readmore',
@@ -357,7 +357,7 @@ return array(
 	 */
 	'thumb_url'				=> array(
 				'name'		=> __( 'Load fall-back thumbnail (optional)', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a fall-back thumbnail.', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter a fall-back thumbnail url.', 'ItalyStrap' ),
 				'id'		=> 'thumb_url',
 				'type'		=> 'media_list',
 				'class'		=> 'widefat thumb_url ids',
@@ -369,7 +369,7 @@ return array(
 				 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Show post categories.
 	 */
 	'show_cats'					=> array(
 				'name'		=> __( 'Show post categories', 'ItalyStrap' ),
@@ -384,7 +384,7 @@ return array(
 				 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Show post tags.
 	 */
 	'show_tags'					=> array(
 				'name'		=> __( 'Show post tags', 'ItalyStrap' ),
@@ -414,64 +414,68 @@ return array(
 				 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Show posts only from current category.
 	 */
-	'atcat'						=> array(
-				'name'		=> __( 'Show posts only from current category', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show posts only from current category.', 'ItalyStrap' ),
-				'id'		=> 'atcat',
-				'type'		=> 'checkbox',
-				// 'class'		=> 'widefat atcat',
-				'default'	=> 0,
-				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
-				'section'	=> 'filter',
-				 ),
+	// 'atcat'						=> array(
+	// 			'name'		=> __( 'Show posts only from current category', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Check if you want to Show posts only from current category.', 'ItalyStrap' ),
+	// 			'id'		=> 'atcat',
+	// 			'type'		=> 'checkbox',
+	// 			// 'class'		=> 'widefat atcat',
+	// 			'default'	=> 0,
+	// 			// 'validate'	=> 'numeric',
+	// 			'filter'	=> 'esc_attr',
+	// 			'section'	=> 'filter',
+	// 			 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Select Categories.
 	 */
 	'cats'						=> array(
-				'name'		=> __( 'Categories', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the categorie.', 'ItalyStrap' ),
+				'name'		=> __( 'Select Categories', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the categories. (Allow multiple select)', 'ItalyStrap' ),
 				'id'		=> 'cats',
-				'type'		=> 'multiple_select',
+				'type'		=> 'taxonomy_multiple_select',
 				'class'		=> 'widefat cats',
-				'default'	=> '',
-				'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
-				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
-				'section'	=> 'filter',
-				 ),
-
-	/**
-	 * Custom text or HTML markup.
-	 */
-	'attag'						=> array(
-				'name'		=> __( 'Show posts only from current tag', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show posts only from current tag.', 'ItalyStrap' ),
-				'id'		=> 'attag',
-				'type'		=> 'checkbox',
-				// 'class'		=> 'widefat attag',
+				'show_option_none' => __( 'No selection', 'ItalyStrap' ), // Default false, with tre write None
 				'default'	=> 0,
-				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'taxonomy'	=> 'category',
+				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
+				// 'validate'	=> 'numeric_comma',
+				'filter'	=> 'array_map',
 				'section'	=> 'filter',
 				 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Show posts only from current tag.
+	 */
+	// 'attag'						=> array(
+	// 			'name'		=> __( 'Show posts only from current tag', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Check if you want to Show posts only from current tag.', 'ItalyStrap' ),
+	// 			'id'		=> 'attag',
+	// 			'type'		=> 'checkbox',
+	// 			// 'class'		=> 'widefat attag',
+	// 			'default'	=> 0,
+	// 			// 'validate'	=> 'numeric',
+	// 			'filter'	=> 'esc_attr',
+	// 			'section'	=> 'filter',
+	// 			 ),
+
+	/**
+	 * Select Tags.
 	 */
 	'tags'						=> array(
-				'name'		=> __( 'Tags', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the Tag.', 'ItalyStrap' ),
+				'name'		=> __( 'Select Tags', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the Tag. (Allow multiple select)', 'ItalyStrap' ),
 				'id'		=> 'tags',
-				'type'		=> 'multiple_select',
+				'type'		=> 'taxonomy_multiple_select',
 				'class'		=> 'widefat tags',
-				'default'	=> '',
-				'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
+				'show_option_none' => __( 'No selection', 'ItalyStrap' ),
+				'default'	=> 'none',
+				'taxonomy'	=> 'post_tag',
+				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'filter'	=> 'array_map',
 				'section'	=> 'filter',
 				 ),
 

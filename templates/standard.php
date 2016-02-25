@@ -108,7 +108,11 @@
 					<?php if ( $this->args['show_excerpt'] ) : ?>
 						<div class="entry-summary">
 							<p itemprop="text">
-								<?php echo get_the_excerpt(); ?>
+								<?php
+
+								echo get_the_excerpt();
+								// echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
+								?>
 								<?php if ( $this->args['show_readmore'] ) : ?>
 								<a href="<?php the_permalink(); ?>" class="more-link"><?php echo esc_attr( $this->args['excerpt_readmore'] ); ?></a>
 								<?php endif; ?>
@@ -130,23 +134,34 @@
 							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'ItalyStrap' ); ?>:</strong>
 							<span class="entry-cats-list"><?php echo esc_attr( $categories ); ?></span>
 						</div>
-					<?php endif; ?>
+						<?php endif; ?>
 					
-					<?php
-					$tags = get_the_term_list( $post->ID, 'post_tag', '', ', ' );
-					if ( $this->args['show_tags'] && $tags ) :
+						<?php
+						$tags = get_the_term_list( $post->ID, 'post_tag', '', ', ' );
+						// var_dump($tags);
+						if ( $this->args['show_tags'] && $tags ) :
 						?>
-					<div class="entry-tags">
-						<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'ItalyStrap' ); ?>:</strong>
-						<span class="entry-tags-list" itemprop="keywords"><?php echo esc_attr( $tags ); ?></span>
-					</div>
-					<?php endif; ?>
+						<div class="entry-tags">
+							<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'ItalyStrap' ); ?>:</strong>
+							<span class="entry-tags-list" itemprop="keywords"><?php echo esc_attr( $tags ); ?></span>
+						</div>
+						<?php endif; ?>
 					
 						<?php
 
-						if ( $custom_fields ) :
+						// global $product;
+						// var_dump($product);
+						// var_dump($product->get_price_html() );
+						// var_dump($product->get_weight() );
+						// var_dump( $product->get_weight() . ' ' . esc_attr( get_option('woocommerce_weight_unit' ) ) );
 
-							$custom_field_name = explode( ',', $custom_fields ); ?>
+						// $_product = wc_get_product( $post->ID );
+
+						// var_dump($_product->get_regular_price());
+
+						if ( $this->args['custom_fields'] ) :
+
+							$custom_field_name = explode( ',', $this->args['custom_fields'] ); ?>
 
 							<div class="entry-custom-fields">
 								<?php
@@ -156,7 +171,7 @@
 									$custom_field_values = get_post_meta( $post->ID, $name, true );
 
 									if ( $custom_field_values ) : ?>
-										<div class="custom-field custom-field-<?php echo esc_attr( $name ); ?>">
+										<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
 											<?php
 											if ( ! is_array( $custom_field_values ) ) {
 												echo esc_attr( $custom_field_values );
@@ -174,9 +189,10 @@
 
 							</div>
 						<?php endif; ?>
+						<?php do_action( 'italystrap_widget_posts_content_footer', $post ); ?>
 					</footer>
 				</section>
-
+			<?php do_action( 'italystrap_widget_posts_content_article', $post ); ?>
 		</article>
 
 		<?php endwhile; ?>

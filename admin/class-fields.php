@@ -197,7 +197,12 @@ class Fields {
 
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		foreach ( $key['options'] as $field => $option ) {
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+		}
+
+		foreach ( (array) $key['options'] as $field => $option ) {
 
 			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
@@ -237,7 +242,12 @@ class Fields {
 
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		foreach ( $key['options'] as $field => $option ) {
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+		}
+
+		foreach ( (array) $key['options'] as $field => $option ) {
 
 			$out .= '<option value="' . esc_attr__( $field ) . '" ';
 
@@ -245,6 +255,54 @@ class Fields {
 				$out .= ' selected="selected" '; }
 
 			$out .= '> ' . esc_html( $option ) . '</option>';
+
+		}
+
+		$out .= ' </select> ';
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->create_field_description( $key['desc'] ); }
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Multiple Select
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Select
+	 */
+	public function create_field_taxonomy_multiple_select( $key, $out = '' ) {
+
+		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '[]" ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		$out .= 'size="6" multiple> ';
+
+		$selected = ! empty( $key['value'] ) ? $key['value'] : array();
+
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
+		}
+
+		$tax_arrays = get_terms( $key['taxonomy'] );
+
+		foreach ( (array) $tax_arrays as $tax_obj ) {
+
+			$out .= '<option value="' . esc_attr__( $tax_obj->term_id ) . '" ';
+
+			if ( in_array( $tax_obj->term_id, (array) $selected ) ) {
+				$out .= ' selected="selected" ';
+			}
+
+			$out .= '> ' . esc_html( $tax_obj->name ) . '</option>';
 
 		}
 
@@ -277,7 +335,12 @@ class Fields {
 
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		foreach ( $key['options'] as $group => $options ) {
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+		}
+
+		foreach ( (array) $key['options'] as $group => $options ) {
 
 			$out .= '<optgroup label="' . $group . '">';
 

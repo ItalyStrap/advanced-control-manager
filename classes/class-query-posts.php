@@ -56,128 +56,111 @@ if ( ! class_exists( 'Query_Posts' ) ) {
 
 		}
 
+		public function get_widget_args( $args ) {
+
+			return $args;
+		}
+
 		public function output() {
 
 			global $post;
+			/**
+			 * Get the current post id
+			 *
+			 * @var int
+			 */
 			$current_post_id = is_object( $post ) ? $post->ID : '';
-
-			// foreach ( $this->args as $key => $value)
-			// 	$$key = $value;
-
-			// var_dump( $this->args );
-
-			$class = $this->args['widget_class'];
-			$post_types = empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] );
-			$cats = empty( $this->args['cats'] ) ? '' : explode( ',', $this->args['cats'] );
-			$tags = empty( $this->args['tags'] ) ? '' : explode( ',', $this->args['tags'] );
-			$atcat = $this->args['atcat'] ? true : false;
-			$thumb_size = $this->args['thumb_size'];
-			$attag = $this->args['attag'] ? true : false;
-			$excerpt_length = $this->args['excerpt_length'];
-			$excerpt_readmore = $this->args['excerpt_readmore'];
-			$sticky = $this->args['sticky_post'];
-			$order = $this->args['order'];
-			$orderby = $this->args['orderby'];
-			$meta_key = $this->args['meta_key'];
-			$custom_fields = $this->args['custom_fields'];
-
-			/**
-			 * Sticky posts.
-			 */
-			if ( 'only' === $sticky ) {
-
-				$sticky_query = array( 'post__in' => get_option( 'sticky_posts' ) );
-
-			} elseif ( 'hide' === $sticky ) {
-
-				$sticky_query = array( 'post__not_in' => get_option( 'sticky_posts' ) );
-
-			} else {
-
-				$sticky_query = null;
-
-			}
-
-			/**
-			 * If $atcat true and in category
-			 */
-			if ( $atcat && is_category() ) {
-
-				$cats = get_query_var( 'cat' );
-
-			}
-
-			/**
-			 * If $atcat true and is single post
-			 */
-			if ( $atcat && is_single() ) {
-				$cats = '';
-				foreach ( get_the_category() as $catt ) {
-					$cats .= $catt->term_id.' ';
-				}
-				$cats = str_replace( ' ', ',', trim( $cats ) );
-			}
-
-			/**
-			 * If $attag true and in tag
-			 */
-			if ( $attag && is_tag() ) {
-				$tags = get_query_var( 'tag_id' );
-			}
-
-			/**
-			 * If $attag true and is single post
-			 */
-			if ( $attag && is_single() ) {
-				$tags = '';
-				$thetags = get_the_tags();
-				if ( $thetags ) {
-					foreach ( $thetags as $tagg ) {
-						$tags .= $tagg->term_id . ' ';
-					}
-				}
-				$tags = str_replace( ' ', ',', trim( $tags ) );
-			}
 
 			/**
 			 * Excerpt more filter
 			 * @var function
 			 */
-			$new_excerpt_more = create_function( '$more', 'return "...";' );
+			$new_excerpt_more = function ( $more ) {
+				return '...';
+			};
 			add_filter( 'excerpt_more', $new_excerpt_more );
 
-			// Excerpt length filter
-			$new_excerpt_length = create_function( '$length', 'return ' . $excerpt_length . ';' );
-			if ( $this->args['excerpt_length'] > 0 ) add_filter( 'excerpt_length', $new_excerpt_length );
+			/**
+			 * Excerpt length filter
+			 *
+			 * @var functions
+			 */
+			if ( $this->args['excerpt_length'] > 0 ) {
+				add_filter( 'excerpt_length', function ( $length ) {
+					return $this->args['excerpt_length'];
+				} );
+			}
 
-			// if ( $class ) {
-			// 	$before_widget = str_replace( 'class="', 'class="'. $class . ' ', $before_widget );
-			// }
+			/**
+			 * Variables for template
+			 */
+
+			// $class = $this->args['widget_class'];
+
+			// $cats = ( empty( $this->args['cats'] ) ) ? array() : $this->args['cats'];
+			// $tags = ( empty( $this->args['tags'] ) ) ? array() : $this->args['tags'];
+
+ // var_dump( empty( $this->args['cats'] ) );
+ // var_dump( empty( $this->args['cats'] ) || empty( $this->args['cats'][0] ) );
+ // var_dump( empty( $this->args['cats'][0] ) );
+
+ // var_dump($cats);
+ // var_dump(count($cats));
+ // var_dump($tags);
+			// $cats = array();
+			// $tags = array();
+				// 'category__in'		=> ( ( '1' === $this->args['atcat'] ) ? $cats : null ),
+				// 'tag__in'			=> ( ( '1' === $this->args['attag'] ) ? $tags : null ),
+
 
 			/**
 			 * Arguments for WP_Query
+			 *
 			 * @var array
 			 */
 			$args = array(
-				'posts_per_page'	=> ( isset( $this->args['posts_number'] ) ? $this->args['posts_number'] : 10 ),
-				'order'				=> $order,
-				'orderby'			=> $orderby,
+				'posts_per_page'	=> $this->args['posts_number'],
+				'order'				=> $this->args['order'],
+				'orderby'			=> $this->args['orderby'],
 				// 'category__in'		=> $cats,
 				// 'tag__in'			=> $tags,
-				'post_type'			=> $post_types,
+				'post_type'			=> ( empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] ) ),
 				'no_found_rows'		=> true,
+				'update_post_term_cache' => false,
+				'update_post_meta_cache' => false,
 				);
 
-			if ( 'meta_value' === $orderby ) {
-				$args['meta_key'] = $meta_key;
+			if ( ! empty( $this->args['cats'] ) ) {
+				$args['category__in'] = $this->args['cats'];
+				$args['update_post_term_cache'] = true;
+			} 
+
+			if ( ! empty( $this->args['tags'] ) ) {
+				$args['tag__in'] = $this->args['tags'];
+				$args['update_post_term_cache'] = true;
+			}
+			
+
+			if ( 'meta_value' === $this->args['orderby'] ) {
+				$args['meta_key'] = $this->args['meta_key'];
+			}
+
+			/**
+			 * Sticky posts.
+			 */
+			$sticky_query = null;
+			if ( 'only' === $this->args['sticky_post'] ) {
+				$sticky_query = array( 'post__in' => get_option( 'sticky_posts' ) );
+			} elseif ( 'hide' === $this->args['sticky_post'] ) {
+				$sticky_query = array( 'post__not_in' => get_option( 'sticky_posts' ) );
 			}
 
 			if ( ! empty( $sticky_query ) ) {
 				$args[ key( $sticky_query ) ] = reset( $sticky_query );
 			}
 
-			$args = apply_filters( 'italystrap_wp_query_args', $args );
-
+			$args = apply_filters( 'italystrap_widget_query_args', $args );
+var_dump($args);
 			$widget_post_query = new WP_Query( $args );
 
 			ob_start();

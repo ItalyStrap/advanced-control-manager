@@ -328,7 +328,9 @@ abstract class Widget extends WP_Widget {
 
 			if ( isset( $key['filter'] ) ) {
 				$instance[ $key['id'] ] = $this->filter( $key['filter'], $instance[ $key['id'] ] );
-			} else { $instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] ); }
+			} else {
+				$instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] );
+			}
 		}
 
 		$this->flush_widget_cache();
@@ -557,6 +559,15 @@ abstract class Widget extends WP_Widget {
 				return sanitize_user( $instance_value );
 			break;
 
+			case 'array_map':
+				$array = array_map( 'esc_attr', $instance_value );
+				// $count = count( $array );
+				// if ( 1 === $count ) {
+				// 	return array();
+				// }
+				return $array;
+			break;
+
 			default:
 				if ( method_exists( $this, $filter ) ) {
 					return $this->$filter( $instance_value );
@@ -570,11 +581,11 @@ abstract class Widget extends WP_Widget {
 	 *
 	 * @return array Return the array for section
 	 */
-	private function make_sections_array() {
+	private function make_sections_array( array $fields ) {
 
 		$sections = array();
 
-		foreach ( (array) $this->fields as $key ) {
+		foreach ( (array) $fields as $key ) {
 
 			if ( isset( $key['section'] ) && 'general' !== $key['section'] ) {
 
@@ -633,6 +644,8 @@ abstract class Widget extends WP_Widget {
 	 */
 	protected function create_sections_tabs( array $sections ) {
 
+		// $sections = apply_filters( 'italystrap_create_sections_tabs', $sections );
+
 		$out = '';
 		$i = 0;
 
@@ -663,15 +676,15 @@ abstract class Widget extends WP_Widget {
 	 */
 	protected function render_form( $out = '' ) {
 
-		$sections = $this->make_sections_array();
+		$fields = $this->before_create_fields( $this->fields );
+
+		$sections = $this->make_sections_array( $fields );
 
 		$this->sections_keys = $this->get_sections_keys( $sections );
 
-		$out = $this->before_create_fields( $out );
-
 		if ( count( $this->sections_keys ) <= 1 ) {
 
-			$out .= $this->create_fields();
+			$out .= $this->create_fields( $fields );
 
 		} else {
 
@@ -692,11 +705,11 @@ abstract class Widget extends WP_Widget {
 	 * Allows to modify code before creating the fields.
 	 *
 	 * @access protected
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Fields
+	 * @param  array $fields The fields array.
+	 * @return array         Return a fields array
 	 */
-	protected function before_create_fields( $out = '' ) {
-		return $out;
+	protected function before_create_fields( array $fields ) {
+		return apply_filters( 'italystrap_before_create_fields', $fields, $this->id_base );
 	}
 
 	/**
@@ -721,10 +734,11 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Fields
 	 */
-	protected function create_fields( $out = '' ) {
+	protected function create_fields( $fields, $out = '' ) {
 
-		foreach ( $this->fields as $key ) {
-			$out .= $this->create_field( $key ); }
+		foreach ( $fields as $key ) {
+			$out .= $this->create_field( $key );
+		}
 
 		return $out;
 
@@ -744,8 +758,16 @@ abstract class Widget extends WP_Widget {
 		$key['default'] = isset( $key['default'] ) ? $key['default'] : '';
 
 		if ( isset( $this->instance[ $key['id'] ] ) ) {
-			$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
-		} else { unset( $key['value'] ); }
+
+			if ( is_array( $this->instance[ $key['id'] ] ) ) {
+				$key['value'] = $this->instance[ $key['id'] ];
+			} else {
+				$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
+			}
+
+		} else {
+			unset( $key['value'] );
+		}
 
 		/* Set field id and name  */
 		$key['_id'] = $this->get_field_id( $key['id'] );

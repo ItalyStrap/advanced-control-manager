@@ -33,6 +33,7 @@ return array(
     'ItalyStrap\\Core\\Widget_Media_Carousel' => $baseDir . '/widget/class-widget-media-carousel.php',
     'ItalyStrap\\Core\\Widget_Posts' => $baseDir . '/widget/class-widget-posts.php',
     'ItalyStrap\\Core\\Widget_Posts2' => $baseDir . '/widget/class-widget-posts2.php',
+    'ItalyStrap\\Core\\Widget_Product' => $baseDir . '/widget/class-widget-product.php',
     'ItalyStrap\\Core\\Widget_VCard' => $baseDir . '/widget/class-widget-vcard2.php',
     'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
