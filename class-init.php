@@ -56,7 +56,6 @@ class Init {
 		}
 
 		add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
-		add_filter( 'the_title', 'ItalyStrap\Core\render_html_in_title_output' );
 
 		add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 
@@ -113,6 +112,7 @@ class Init {
 			register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 			register_widget( 'ItalyStrap\Core\Widget_VCard' );
 			register_widget( 'ItalyStrap\Core\Widget_Posts2' );
+			register_widget( 'ItalyStrap\Core\Widget_Product' );
 			register_widget( 'ItalyStrap\Core\Widget_Image' );
 		});
 
