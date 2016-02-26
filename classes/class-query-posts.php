@@ -12,191 +12,277 @@ use \WP_Query;
  * @version 1.0
  * @since   1.0
  */
-if ( ! class_exists( 'Query_Posts' ) ) {
+
+/**
+* 
+*/
+class Query_Posts {
 
 	/**
-	* 
-	*/
-	class Query_Posts {
+	 * WordPress query object.
+	 *
+	 * @var WP_Query
+	 */
+	private $query;
 
-		/**
-		 * WordPress query object.
-		 * @var object
-		 */
-		private $args;
-		
-		/**
-		 * Constructor.
-		 * @param WP_Query $query The standard query of WordPress.
-		 */
-		function __construct( $args ) {
+	/**
+	 * WordPress query object.
+	 *
+	 * @var object
+	 */
+	private $args;
 
-			$this->args = $this->get_attributes( $args );
+	/**
+	 * WordPress global $post
+	 *
+	 * @var object
+	 */
+	private $post;
 
-			// var_dump( $args );
+	/**
+	 * Set an array with post to be escluded from loop
+	 *
+	 * @var array
+	 */
+	private $posts_to_exclude = array();
 
+	/**
+	 * Declare this variable static and call it only one time
+	 *
+	 * @var array
+	 */
+	private static $sticky_posts;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param WP_Query $query The standard query of WordPress.
+	 */
+	function __construct( WP_Query $query ) {
+
+		$this->query = $query;
+
+		global $post;
+		$this->post = $post;
+
+		if ( ! isset( self::$sticky_posts ) ) {
+			self::$sticky_posts = get_option( 'sticky_posts' );
 		}
 
+	}
+
+	/**
+	 * Initialize the repository.
+	 *
+	 * @uses PHP 5.3
+	 *
+	 * @return self
+	 */
+	public static function init() {
+
+		return new self( new WP_Query() );
+	
+	}
+
+	/**
+	 * Get shortcode attributes.
+	 *
+	 * @param  array $args The carousel attribute.
+	 * @return array Mixed array of shortcode attributes.
+	 */
+	public function get_attributes( $args ) {
+
 		/**
-		 * Get shortcode attributes.
+		 * Define data by given attributes.
+		 */
+		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ), $args, 'query_posts' );
+
+		$args = apply_filters( 'italystrap_query_posts_args', $args );
+
+		return $args;
+
+	}
+
+	public function get_widget_args( $args ) {
+
+		$this->args = $this->get_attributes( $args );
+
+	}
+
+	public function get_shortcode_args( $args ) {
+
+		$this->args = $this->get_attributes( $args );
+
+	}
+
+	public function output() {
+
+		/**
+		 * Get the current post id
 		 *
-		 * @param  array $args The carousel attribute.
-		 * @return array Mixed array of shortcode attributes.
+		 * @var int
 		 */
-		public function get_attributes( $args ) {
+		$current_post_id = is_object( $this->post ) ? $this->post->ID : '';
 
-			/**
-			 * Define data by given attributes.
-			 */
-			$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ), $args, 'query_posts' );
+		if ( ! empty( $this->args['exclude_current_post'] ) ) {
+			$this->posts_to_exclude[] = (int) $current_post_id;
+		}
 
-			$args = apply_filters( 'italystrap_query_posts_args', $args );
+		/**
+		 * Excerpt more filter
+		 * @var function
+		 */
+		$new_excerpt_more = function ( $more ) {
+			return '...';
+		};
+		add_filter( 'excerpt_more', $new_excerpt_more );
 
-			return $args;
+		/**
+		 * Excerpt length filter
+		 *
+		 * @var functions
+		 */
+		if ( $this->args['excerpt_length'] > 0 ) {
+			add_filter( 'excerpt_length', function ( $length ) {
+				return $this->args['excerpt_length'];
+			} );
+		}
+
+		/**
+		 * Variables for template
+		 */
+
+		// $class = $this->args['widget_class'];
+var_dump($this->args['post_types']);
+		/**
+		 * Arguments for WP_Query
+		 *
+		 * @var array
+		 */
+		$args = array(
+			'posts_per_page'	=> $this->args['posts_number'] + count( $this->posts_to_exclude ),
+			'order'				=> $this->args['order'],
+			'orderby'			=> $this->args['orderby'],
+			// 'category__in'		=> $cats,
+			// 'tag__in'			=> $tags,
+			'post_type'			=> ( empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] ) ),
+			'no_found_rows'		=> true,
+			'update_post_term_cache' => false,
+			'update_post_meta_cache' => false,
+			);
+
+		if ( 'meta_value' === $this->args['orderby'] ) {
+			$args['meta_key'] = $this->args['meta_key'];
+		}
+
+		/**
+		 * Sticky posts.
+		 */
+		if ( 'only' === $this->args['sticky_post'] ) {
+
+			$args['post__in'] = self::$sticky_posts;
+
+		} elseif ( 'hide' === $this->args['sticky_post'] ) {
+
+			$args['ignore_sticky_posts'] = true;
+
+		} else {
+
+			$args['posts_per_page'] -= count( self::$sticky_posts );
 
 		}
 
-		public function get_widget_args( $args ) {
-
-			return $args;
+		/**
+		 * Show the posts with tags selected
+		 */
+		if ( ! empty( $this->args['tags'] ) ) {
+			$args['tag__in'] = $this->args['tags'];
+			$args['update_post_term_cache'] = true;
 		}
 
-		public function output() {
+		/**
+		 * Show related posts by tags
+		 * You can also select more tags to filter other than the tags assigned to post.
+		 */
+		if ( ! empty( $this->args['related_by_tags'] ) ) {
 
-			global $post;
-			/**
-			 * Get the current post id
-			 *
-			 * @var int
-			 */
-			$current_post_id = is_object( $post ) ? $post->ID : '';
+			$tags = wp_get_post_terms( $this->post->ID );
 
-			/**
-			 * Excerpt more filter
-			 * @var function
-			 */
-			$new_excerpt_more = function ( $more ) {
-				return '...';
-			};
-			add_filter( 'excerpt_more', $new_excerpt_more );
-
-			/**
-			 * Excerpt length filter
-			 *
-			 * @var functions
-			 */
-			if ( $this->args['excerpt_length'] > 0 ) {
-				add_filter( 'excerpt_length', function ( $length ) {
-					return $this->args['excerpt_length'];
-				} );
-			}
-
-			/**
-			 * Variables for template
-			 */
-
-			// $class = $this->args['widget_class'];
-
-			// $cats = ( empty( $this->args['cats'] ) ) ? array() : $this->args['cats'];
-			// $tags = ( empty( $this->args['tags'] ) ) ? array() : $this->args['tags'];
-
- // var_dump( empty( $this->args['cats'] ) );
- // var_dump( empty( $this->args['cats'] ) || empty( $this->args['cats'][0] ) );
- // var_dump( empty( $this->args['cats'][0] ) );
-
- // var_dump($cats);
- // var_dump(count($cats));
- // var_dump($tags);
-			// $cats = array();
-			// $tags = array();
-				// 'category__in'		=> ( ( '1' === $this->args['atcat'] ) ? $cats : null ),
-				// 'tag__in'			=> ( ( '1' === $this->args['attag'] ) ? $tags : null ),
-
-
-			/**
-			 * Arguments for WP_Query
-			 *
-			 * @var array
-			 */
-			$args = array(
-				'posts_per_page'	=> $this->args['posts_number'],
-				'order'				=> $this->args['order'],
-				'orderby'			=> $this->args['orderby'],
-				// 'category__in'		=> $cats,
-				// 'tag__in'			=> $tags,
-				'post_type'			=> ( empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] ) ),
-				'no_found_rows'		=> true,
-				'update_post_term_cache' => false,
-				'update_post_meta_cache' => false,
-				);
-
-			if ( ! empty( $this->args['cats'] ) ) {
-				$args['category__in'] = $this->args['cats'];
-				$args['update_post_term_cache'] = true;
-			} 
-
-			if ( ! empty( $this->args['tags'] ) ) {
-				$args['tag__in'] = $this->args['tags'];
-				$args['update_post_term_cache'] = true;
-			}
-			
-
-			if ( 'meta_value' === $this->args['orderby'] ) {
-				$args['meta_key'] = $this->args['meta_key'];
-			}
-
-			/**
-			 * Sticky posts.
-			 */
-			$sticky_query = null;
-			if ( 'only' === $this->args['sticky_post'] ) {
-				$sticky_query = array( 'post__in' => get_option( 'sticky_posts' ) );
-			} elseif ( 'hide' === $this->args['sticky_post'] ) {
-				$sticky_query = array( 'post__not_in' => get_option( 'sticky_posts' ) );
-			}
-
-			if ( ! empty( $sticky_query ) ) {
-				$args[ key( $sticky_query ) ] = reset( $sticky_query );
-			}
-
-			$args = apply_filters( 'italystrap_widget_query_args', $args );
-var_dump($args);
-			$widget_post_query = new WP_Query( $args );
-
-			ob_start();
-
-			if ( 'custom' === $this->args['template'] ) {
-
-				// $custom_template_path = apply_filters( 'italystrap_custom_template_path',  '/templates/' . $this->args['template_custom'] . '.php', $this->args, $this->id_base );
-
-				if ( locate_template( $custom_template_path ) ) {
-
-					// include get_stylesheet_directory() . $custom_template_path;
-
-				} else {
-
-					// include 'templates/standard.php';
-
+			if ( $tags ) {
+				$count = count( $tags );
+				for ( $i = 0; $i < $count; $i++ ) {
+					$first_tag[] = $tags[ $i ]->term_id;
 				}
-			} elseif ( 'standard' === $this->args['template'] ) {
+				$args['tag__in'] = array_merge( $first_tag, (array) $this->args['tags'] );
+				$args['tag__in'] = array_flip( array_flip( $args['tag__in'] ) );
+				$args['update_post_term_cache'] = true;
+			}
+		}
 
-				// include 'templates/standard.php';
-				include ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+		/**
+		 * Show the posts with cats selected
+		 */
+		if ( ! empty( $this->args['cats'] ) ) {
+			$args['category__in'] = $this->args['cats'];
+			$args['update_post_term_cache'] = true;
+		}
+
+		/**
+		 * Show related posts by cats
+		 * You can also select more cats to filter other than the cats assigned to post.
+		 */
+		if ( ! empty( $this->args['related_by_cats'] ) ) {
+
+			$cats = wp_get_post_terms( $this->post->ID, 'category' );
+
+			if ( $cats ) {
+				$count = count( $cats );
+				for ( $i = 0; $i < $count; $i++ ) {
+					$first_cat[] = $cats[ $i ]->term_id;
+				}
+				$args['category__in'] = array_merge( $first_cat, (array) $this->args['cats'] );
+				$args['category__in'] = array_flip( array_flip( $args['category__in'] ) );
+				$args['update_post_term_cache'] = true;
+			}
+		}
+
+		$args = apply_filters( 'italystrap_widget_query_args', $args );
+
+var_dump($args);
+		$this->query->query( $args );
+
+		ob_start();
+
+		if ( 'custom' === $this->args['template'] ) {
+
+			// $custom_template_path = apply_filters( 'italystrap_custom_template_path',  '/templates/' . $this->args['template_custom'] . '.php', $this->args, $this->id_base );
+
+			if ( locate_template( $custom_template_path ) ) {
+
+				// include get_stylesheet_directory() . $custom_template_path;
 
 			} else {
 
-				// include 'templates/legacy.php';
+				// include 'templates/standard.php';
 
 			}
+		} elseif ( 'standard' === $this->args['template'] ) {
 
-			wp_reset_postdata();
+			// include 'templates/standard.php';
+			include ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
 
-			$output = ob_get_contents();
-			ob_end_clean();
+		} else {
 
-			return $output;
+			// include 'templates/legacy.php';
 
 		}
-	}
 
+		wp_reset_postdata();
+
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		return $output;
+
+	}
 }

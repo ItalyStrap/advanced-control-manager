@@ -17,22 +17,26 @@
 
 	<?php
 
-	if ( $widget_post_query->have_posts() ) :
+	if ( $this->query->have_posts() ) :
 
-		while ( $widget_post_query->have_posts() ) :
+		while ( $this->query->have_posts() ) :
 
-			$widget_post_query->the_post();
+			$this->query->the_post();
+
+			if ( isset( $this->posts_to_exclude[0] ) && in_array( get_the_ID(), $this->posts_to_exclude ) ) {
+				continue;
+			}
 
 			/**
 			 * Ad "active" css class to current post
 			 *
 			 * @var string
 			 */
-			$current_post = ( $post->ID === $current_post_id && is_single() ) ? ' active' : '';
+			$current_post = ( $this->post->ID === $current_post_id && is_single() ) ? ' active' : '';
 
 			$post_class = ( ! empty( $this->args['post_class'] ) ) ? ' ' . $this->args['post_class'] : '' ;
 
-			$classes = 'post-number-' . $widget_post_query->current_post . $current_post . esc_attr( $post_class );
+			$classes = 'post-number-' . $this->query->current_post . $current_post . esc_attr( $post_class );
 
 			?>
 
@@ -127,7 +131,7 @@
 					<footer class="entry-footer">
 					
 						<?php
-						$categories = get_the_term_list( $post->ID, 'category', '', ', ' );
+						$categories = get_the_term_list( $this->post->ID, 'category', '', ', ' );
 						if ( $this->args['show_cats'] && $categories ) :
 							?>
 						<div class="entry-categories">
@@ -137,7 +141,7 @@
 						<?php endif; ?>
 					
 						<?php
-						$tags = get_the_term_list( $post->ID, 'post_tag', '', ', ' );
+						$tags = get_the_term_list( $this->post->ID, 'post_tag', '', ', ' );
 						// var_dump($tags);
 						if ( $this->args['show_tags'] && $tags ) :
 						?>
@@ -155,7 +159,7 @@
 						// var_dump($product->get_weight() );
 						// var_dump( $product->get_weight() . ' ' . esc_attr( get_option('woocommerce_weight_unit' ) ) );
 
-						// $_product = wc_get_product( $post->ID );
+						// $_product = wc_get_product( $this->post->ID );
 
 						// var_dump($_product->get_regular_price());
 
@@ -168,7 +172,7 @@
 								foreach ( $custom_field_name as $name ) :
 
 									$name = trim( $name );
-									$custom_field_values = get_post_meta( $post->ID, $name, true );
+									$custom_field_values = get_post_meta( $this->post->ID, $name, true );
 
 									if ( $custom_field_values ) : ?>
 										<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
@@ -189,10 +193,10 @@
 
 							</div>
 						<?php endif; ?>
-						<?php do_action( 'italystrap_widget_posts_content_footer', $post ); ?>
+						<?php do_action( 'italystrap_widget_posts_content_footer', $this->post ); ?>
 					</footer>
 				</section>
-			<?php do_action( 'italystrap_widget_posts_content_article', $post ); ?>
+			<?php do_action( 'italystrap_widget_posts_content_article', $this->post ); ?>
 		</article>
 
 		<?php endwhile; ?>

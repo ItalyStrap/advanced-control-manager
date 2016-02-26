@@ -26,9 +26,13 @@ class Widget_Product extends Widget {
 	 */
 	protected function before_create_fields( array $fields ) {
 
-		$fields['cats']['options'] = ( ( is_admin() ) ? get_taxonomies_list_array( 'product_cat' ) : null );
+		$fields['cats']['taxonomy'] = 'product_cat';
 
-		$fields['tags']['options'] = ( ( is_admin() ) ? get_taxonomies_list_array( 'product_tag' ) : null );
+		// $fields['cats']['options'] = ( ( is_admin() ) ? get_taxonomies_list_array( 'product_cat' ) : null );
+
+		$fields['tags']['taxonomy'] = 'product_tag';
+
+		// $fields['tags']['options'] = ( ( is_admin() ) ? get_taxonomies_list_array( 'product_tag' ) : null );
 
 		$fields['post_types'] = array(
 			'name'		=> __( 'Post type', 'ItalyStrap' ),
@@ -81,7 +85,9 @@ class Widget_Product extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$query_posts = new Query_Posts( $instance );
+		$query_posts = Query_Posts::init();
+
+		$query_posts->get_widget_args( $instance );
 
 		return $query_posts->output();
 	}

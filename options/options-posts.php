@@ -433,7 +433,7 @@ return array(
 	 */
 	'cats'						=> array(
 				'name'		=> __( 'Select Categories', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the categories. (Allow multiple select)', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the categories. (Use ctrl for multiple select)', 'ItalyStrap' ),
 				'id'		=> 'cats',
 				'type'		=> 'taxonomy_multiple_select',
 				'class'		=> 'widefat cats',
@@ -442,7 +442,7 @@ return array(
 				'taxonomy'	=> 'category',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'array_map',
+				'filter'	=> 'sanitize_array',
 				'section'	=> 'filter',
 				 ),
 
@@ -466,7 +466,7 @@ return array(
 	 */
 	'tags'						=> array(
 				'name'		=> __( 'Select Tags', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the Tag. (Allow multiple select)', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the Tag. (Use ctrl for multiple select)', 'ItalyStrap' ),
 				'id'		=> 'tags',
 				'type'		=> 'taxonomy_multiple_select',
 				'class'		=> 'widefat tags',
@@ -475,7 +475,52 @@ return array(
 				'taxonomy'	=> 'post_tag',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'array_map',
+				'filter'	=> 'sanitize_array',
+				'section'	=> 'filter',
+				 ),
+
+	/**
+	 * Show related posts by tags
+	 */
+	'related_by_tags'			=> array(
+				'name'		=> __( 'Show related posts by tags', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to Show related posts by tags.', 'ItalyStrap' ),
+				'id'		=> 'related_by_tags',
+				'type'		=> 'checkbox',
+				// 'class'		=> 'widefat related_by_tags',
+				'default'	=> 0,
+				// 'validate'	=> 'numeric',
+				'filter'	=> 'esc_attr',
+				'section'	=> 'filter',
+				 ),
+
+	/**
+	 * Show related posts by tags
+	 */
+	'related_by_cats'			=> array(
+				'name'		=> __( 'Show related posts by cats', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to Show related posts by cats.', 'ItalyStrap' ),
+				'id'		=> 'related_by_cats',
+				'type'		=> 'checkbox',
+				// 'class'		=> 'widefat related_by_cats',
+				'default'	=> 0,
+				// 'validate'	=> 'numeric',
+				'filter'	=> 'esc_attr',
+				'section'	=> 'filter',
+				 ),
+
+	/**
+	 * Esclude current post from loop
+	 */
+	'exclude_current_post'			=> array(
+				'name'		=> __( 'Esclude current post from loop', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to Esclude the current post from loop.', 'ItalyStrap' ),
+				'id'		=> 'exclude_current_post',
+				'type'		=> 'checkbox',
+				// 'class'		=> 'widefat exclude_current_post',
+				'default'	=> 0,
+				// 'validate'	=> 'numeric',
+				'filter'	=> 'esc_attr',
 				'section'	=> 'filter',
 				 ),
 

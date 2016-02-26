@@ -28,7 +28,7 @@ class Widget_Posts extends Widget {
 		 */
 		$get_post_types = get_post_types( array( 'public' => true ) );
 
-		$get_post_types = ( class_exists( 'WooCommerce' ) ) ? array_merge( $get_post_types, array( 'product' => 'product' ) ) : $get_post_types ;
+		// $get_post_types = ( class_exists( 'WooCommerce' ) ) ? array_merge( $get_post_types, array( 'product' => 'product' ) ) : $get_post_types ;
 
 		/**
 		 * Configure widget array.
@@ -60,7 +60,9 @@ class Widget_Posts extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$query_posts = new Query_Posts( $instance );
+		$query_posts = Query_Posts::init();
+
+		$query_posts->get_widget_args( $instance );
 
 		return $query_posts->output();
 	}

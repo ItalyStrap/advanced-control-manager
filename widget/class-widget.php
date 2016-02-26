@@ -559,12 +559,13 @@ abstract class Widget extends WP_Widget {
 				return sanitize_user( $instance_value );
 			break;
 
-			case 'array_map':
+			case 'sanitize_array':
 				$array = array_map( 'esc_attr', $instance_value );
-				// $count = count( $array );
-				// if ( 1 === $count ) {
-				// 	return array();
-				// }
+				$array = array_map( 'absint', $array );
+				$count = count( $array );
+				if ( 1 === $count && 0 === $array[0] ) {
+					return array();
+				}
 				return $array;
 			break;
 
