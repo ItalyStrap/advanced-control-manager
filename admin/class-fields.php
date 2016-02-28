@@ -89,7 +89,7 @@ class Fields {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
 
 		if ( isset( $key['size'] ) ) {
 			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
@@ -204,7 +204,7 @@ class Fields {
 
 		foreach ( (array) $key['options'] as $field => $option ) {
 
-			$out .= '<option value="' . esc_attr__( $field ) . '" ';
+			$out .= '<option value="' . esc_attr( $field ) . '" ';
 
 			if ( $selected === $field ) {
 				$out .= ' selected="selected" '; }
@@ -249,7 +249,7 @@ class Fields {
 
 		foreach ( (array) $key['options'] as $field => $option ) {
 
-			$out .= '<option value="' . esc_attr__( $field ) . '" ';
+			$out .= '<option value="' . esc_attr( $field ) . '" ';
 
 			if ( $selected === $field ) {
 				$out .= ' selected="selected" '; }
@@ -296,7 +296,7 @@ class Fields {
 
 		foreach ( (array) $tax_arrays as $tax_obj ) {
 
-			$out .= '<option value="' . esc_attr__( $tax_obj->term_id ) . '" ';
+			$out .= '<option value="' . esc_attr( $tax_obj->term_id ) . '" ';
 
 			if ( in_array( $tax_obj->term_id, (array) $selected ) ) {
 				$out .= ' selected="selected" ';
@@ -385,7 +385,7 @@ class Fields {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
 
 		if ( isset( $key['size'] ) ) {
 			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
@@ -417,7 +417,7 @@ class Fields {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
 
 		if ( isset( $key['size'] ) ) {
 			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
@@ -449,7 +449,7 @@ class Fields {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
 
 		if ( isset( $key['size'] ) ) {
 			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
@@ -481,7 +481,7 @@ class Fields {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
 
 		if ( isset( $key['size'] ) ) {
 			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
@@ -513,7 +513,7 @@ class Fields {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr__( $value ) . '" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
 
 		if ( isset( $key['size'] ) ) {
 			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
