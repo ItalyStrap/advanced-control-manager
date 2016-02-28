@@ -525,11 +525,26 @@ return array(
 				 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Show posts only from current user.
+	 */
+	'from_current_user'			=> array(
+				'name'		=> __( 'Show posts only from current user', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to Show posts only from current user.', 'ItalyStrap' ),
+				'id'		=> 'from_current_user',
+				'type'		=> 'checkbox',
+				// 'class'		=> 'widefat from_current_user',
+				'default'	=> 0,
+				// 'validate'	=> 'numeric',
+				'filter'	=> 'esc_attr',
+				'section'	=> 'filter',
+				 ),
+
+	/**
+	 * Select the post type.
 	 */
 	'post_types'				=> array(
 				'name'		=> __( 'Post type', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the post type.', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the post type to show.', 'ItalyStrap' ),
 				'id'		=> 'post_types',
 				'type'		=> 'multiple_select',
 				'class'		=> 'widefat post_types',
@@ -539,6 +554,22 @@ return array(
 				'filter'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
 				 ),
+
+	/**
+	 * Custom text or HTML markup.
+	 */
+	// 'users'				=> array(
+	// 			'name'		=> __( 'Select user', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Select the post type.', 'ItalyStrap' ),
+	// 			'id'		=> 'users',
+	// 			'type'		=> 'multiple_select',
+	// 			'class'		=> 'widefat users',
+	// 			'default'	=> 'post',
+	// 			'options'	=> ( ( is_admin() ) ? get_users() : null ),
+	// 			// 'validate'	=> 'numeric_comma',
+	// 			'filter'	=> 'sanitize_text_field',
+	// 			'section'	=> 'filter',
+	// 			 ),
 
 	/**
 	 * Custom text or HTML markup.
@@ -569,14 +600,23 @@ return array(
 				'id'		=> 'orderby',
 				'type'		=> 'select',
 				'class'		=> 'widefat orderby',
-				'default'	=> 'date',
+				'default'	=> 'none',
 				'options'	=> array(
-						'date'			=> __( 'Published Date', 'ItalyStrap' ),
-						'title'			=> __( 'Title', 'ItalyStrap' ),
-						'comment_count'	=> __( 'Comment Count', 'ItalyStrap' ),
-						'rand'			=> __( 'Random', 'ItalyStrap' ),
-						'meta_value'	=> __( 'Custom Field', 'ItalyStrap' ),
-						'menu_order'	=> __( 'Menu Order', 'ItalyStrap' ),
+						'none'			=> __( 'No order. (Default)', 'ItalyStrap' ),
+						'ID'			=> __( 'Order by post id.', 'ItalyStrap' ),
+						'author'		=> __( 'Order by author.', 'ItalyStrap' ),
+						'title'			=> __( 'Title.', 'ItalyStrap' ),
+						'name'			=> __( 'Order by post name (post slug).', 'ItalyStrap' ),
+						'type'			=> __( 'Order by post type (available since Version 4.0).', 'ItalyStrap' ),
+						'date'			=> __( 'Order by date', 'ItalyStrap' ),
+						'modified'			=> __( 'Order by last modified date.', 'ItalyStrap' ),
+						'parent'			=> __( 'Order by post/page parent id.', 'ItalyStrap' ),
+						'rand'			=> __( 'Random order.', 'ItalyStrap' ),
+						'comment_count'	=> __( 'Order by number of comments.', 'ItalyStrap' ),
+						'menu_order'	=> __( 'Order by Page Order.', 'ItalyStrap' ),
+						'meta_value'	=> __( 'Order by value in custom field ("meta_key=keyname" must also be present in the query)', 'ItalyStrap' ),
+						'meta_value_num'	=> __( 'Order by value in custom field ("meta_key=keyname" must also be present in the query)', 'ItalyStrap' ),
+						'post__in'		=> __( 'Preserve post ID order given in the post__in array.', 'ItalyStrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
 				'filter'	=> 'sanitize_text_field',

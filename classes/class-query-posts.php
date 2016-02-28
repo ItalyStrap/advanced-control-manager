@@ -153,7 +153,8 @@ class Query_Posts {
 		 */
 
 		// $class = $this->args['widget_class'];
-var_dump($this->args['post_types']);
+// var_dump($this->args['post_types']);
+// var_dump(get_users());
 		/**
 		 * Arguments for WP_Query
 		 *
@@ -246,8 +247,20 @@ var_dump($this->args['post_types']);
 			}
 		}
 
-		$args = apply_filters( 'italystrap_widget_query_args', $args );
+		/**
+		 * Show posts only from current user.
+		 */
+		if ( ! empty( $this->args['from_current_user'] ) ) {
 
+			$current_user = wp_get_current_user();
+
+			if ( isset( $current_user->ID ) ) {
+				$args['author'] = $current_user->ID;
+			}
+		}
+
+		$args = apply_filters( 'italystrap_widget_query_args', $args );
+var_dump(isset( $current_user->ID ));
 var_dump($args);
 		$this->query->query( $args );
 
