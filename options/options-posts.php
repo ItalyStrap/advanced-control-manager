@@ -572,11 +572,11 @@ return array(
 	// 			 ),
 
 	/**
-	 * Custom text or HTML markup.
+	 * Select if you want to show sticky posts or not.
 	 */
 	'sticky_post'				=> array(
-				'name'		=> __( 'sticky_post', 'ItalyStrap' ),
-				'desc'		=> __( 'Select Sticky posts.', 'ItalyStrap' ),
+				'name'		=> __( 'Sticky post', 'ItalyStrap' ),
+				'desc'		=> __( 'Select if you want to show sticky posts or not.', 'ItalyStrap' ),
 				'id'		=> 'sticky_post',
 				'type'		=> 'select',
 				'class'		=> 'widefat sticky_post',
@@ -642,8 +642,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'order'					=> array(
-				'name'		=> __( 'order', 'ItalyStrap' ),
-				'desc'		=> __( 'Select.', 'ItalyStrap' ),
+				'name'		=> __( 'Order', 'ItalyStrap' ),
+				'desc'		=> __( 'How posts have to be ordered.', 'ItalyStrap' ),
 				'id'		=> 'order',
 				'type'		=> 'select',
 				'class'		=> 'widefat order',

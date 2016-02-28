@@ -260,8 +260,8 @@ class Query_Posts {
 		}
 
 		$args = apply_filters( 'italystrap_widget_query_args', $args );
-var_dump(isset( $current_user->ID ));
-var_dump($args);
+
+// var_dump($args);
 		$this->query->query( $args );
 
 		ob_start();

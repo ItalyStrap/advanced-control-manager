@@ -473,6 +473,12 @@ module.exports = function(grunt) {
 	 * phpcs E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --standard=WordPress
 	 * phpcbf E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --no-patch --standard=WordPress
 	 */
+	
+	/**
+	 * Tests with codeception and wp-browser
+	 * $ vendor/bin/wpcept
+	 * $ vendor/bin/codecept run
+	 */
 
 	/**
 	 * My workflow

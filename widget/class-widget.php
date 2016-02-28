@@ -656,7 +656,7 @@ abstract class Widget extends WP_Widget {
 
 			foreach ( $sections[ $value ] as $key ) {
 
-				$out .= $this->create_field( $key );
+				$out .= $this->field_type( $key );
 
 			}
 
@@ -677,7 +677,7 @@ abstract class Widget extends WP_Widget {
 	 */
 	protected function render_form( $out = '' ) {
 
-		$fields = $this->before_create_fields( $this->fields );
+		$fields = $this->before_field_types( $this->fields );
 
 		$sections = $this->make_sections_array( $fields );
 
@@ -685,7 +685,7 @@ abstract class Widget extends WP_Widget {
 
 		if ( count( $this->sections_keys ) <= 1 ) {
 
-			$out .= $this->create_fields( $fields );
+			$out .= $this->field_types( $fields );
 
 		} else {
 
@@ -695,7 +695,7 @@ abstract class Widget extends WP_Widget {
 
 		}
 
-		$out = $this->after_create_fields( $out );
+		$out = $this->after_field_types( $out );
 
 		return $out;
 	}
@@ -709,8 +709,8 @@ abstract class Widget extends WP_Widget {
 	 * @param  array $fields The fields array.
 	 * @return array         Return a fields array
 	 */
-	protected function before_create_fields( array $fields ) {
-		return apply_filters( 'italystrap_before_create_fields', $fields, $this->id_base );
+	protected function before_field_types( array $fields ) {
+		return apply_filters( 'italystrap_before_field_types', $fields, $this->id_base );
 	}
 
 	/**
@@ -722,7 +722,7 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Fields
 	 */
-	protected function after_create_fields( $out = '' ) {
+	protected function after_field_types( $out = '' ) {
 		return $out;
 	}
 
@@ -735,10 +735,10 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Fields
 	 */
-	protected function create_fields( $fields, $out = '' ) {
+	protected function field_types( $fields, $out = '' ) {
 
 		foreach ( $fields as $key ) {
-			$out .= $this->create_field( $key );
+			$out .= $this->field_type( $key );
 		}
 
 		return $out;
@@ -753,7 +753,7 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Fields
 	 */
-	protected function create_field( array $key, $out = '' ) {
+	protected function field_type( array $key, $out = '' ) {
 
 		/* Set Defaults */
 		$key['default'] = isset( $key['default'] ) ? $key['default'] : '';
@@ -778,7 +778,7 @@ abstract class Widget extends WP_Widget {
 		if ( ! isset( $key['type'] ) ) { $key['type'] = 'text'; }
 
 		/* Prefix method */
-		$field_method = 'create_field_' . str_replace( '-', '_', $key['type'] );
+		$field_method = 'field_type_' . str_replace( '-', '_', $key['type'] );
 
 		/* Check for <p> Class */
 		$p_class = ( isset( $key['class-p'] ) ) ? ' class="' . $key['class-p'] . '"' : '';
@@ -791,7 +791,7 @@ abstract class Widget extends WP_Widget {
 		 * if ( method_exists( $this, $field_method ) ) {
 		 * 	return '<p' . $p_class . '>' . $this->$field_method( $key ) . '</p>';
 		 * } else {
-		 * return '<p' . $p_class . '>' . $this->create_field_text( $key ) . '</p>'; }
+		 * return '<p' . $p_class . '>' . $this->field_type_text( $key ) . '</p>'; }
 		 */
 
 		/**
@@ -803,7 +803,7 @@ abstract class Widget extends WP_Widget {
 
 		} else {
 
-			return '<p' . $p_class . '>' . $this->fields_type->create_field_text( $key ) . '</p>';
+			return '<p' . $p_class . '>' . $this->fields_type->field_type_text( $key ) . '</p>';
 			
 		}
 

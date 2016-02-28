@@ -15,10 +15,6 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
  */
 class Fields {
 
-	// function __construct() {
-	// 	add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
-	// }
-
 	/**
 	 * Combines attributes into a string for a form element
 	 *
@@ -53,15 +49,19 @@ class Fields {
 	 */
 	public function input( $attr = array(), $key = array() ) {
 
-		$a = array(
+		$a = wp_parse_args( $attr, array(
 			'type'            => 'text',
 			'class'           => esc_attr( $key['class'] ),
 			'name'            => esc_attr( $key['_name'] ),
 			'id'              => esc_attr( $key['_id'] ),
-			'value'           => ( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
-			'desc'            => $this->create_field_description( $key['desc'] ),
+			'value'           => esc_attr( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
+			'desc'            => $this->field_type_description( $key['desc'] ),
 			'js_dependencies' => array(),
-		);
+		) );
+
+		if ( isset( $key['size'] ) ) {
+			$a['size'] = esc_attr( $key['size'] );
+		}
 
 		// if ( ! empty( $a['js_dependencies'] ) ) {
 		// 	CMB2_JS::add_dependencies( $a['js_dependencies'] );
@@ -78,420 +78,11 @@ class Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	public function create_field_text( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<input type="text" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
-
-		if ( isset( $key['size'] ) ) {
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
-
-		$out .= ' />';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-		// return $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( array(), $key );
-	}
-
-	/**
-	 * Create the Field Textarea
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Field Textarea
-	 */
-	public function create_field_textarea( $key, $out = '' ) {
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<textarea ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		if ( isset( $key['rows'] ) ) {
-			$out .= 'rows="' . esc_attr( $key['rows'] ) . '" '; }
-
-		if ( isset( $key['cols'] ) ) {
-			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" '; }
-
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		$out .= 'id="'. esc_attr( $key['_id'] ) .'" name="' . esc_attr( $key['_name'] ) . '">'.esc_html( $value );
-
-		$out .= '</textarea>';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the Field Checkbox
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Field Checkbox
-	 */
-	public function create_field_checkbox( $key, $out = '' ) {
-
-		$out .= ' <input type="checkbox" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
-
-		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
-			$out .= ' checked="checked" '; }
-
-		/**
-		 * Da vedere se utilizzabile per fare il controllo sulle checkbox.
-		 * if ( isset( $key['value'] ) && 'true' === $key['value'] ) {
-		 * 	$key['value'] = true;
-		 * 	} else $key['value'] = false;
-		 *
-		 * $out .= checked( $key['value'], true );
-		 */
-
-		$out .= ' /> ';
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] );
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the Field Select
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Field Select
-	 */
-	public function create_field_select( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$out .= '> ';
-
-		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
-		}
-
-		foreach ( (array) $key['options'] as $field => $option ) {
-
-			$out .= '<option value="' . esc_attr( $field ) . '" ';
-
-			if ( $selected === $field ) {
-				$out .= ' selected="selected" '; }
-
-			$out .= '> ' . esc_html( $option ) . '</option>';
-
-		}
-
-		$out .= ' </select> ';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the Field Multiple Select
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Field Select
-	 */
-	public function create_field_multiple_select( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$out .= 'size="6" multiple> ';
-
-		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
-		}
-
-		foreach ( (array) $key['options'] as $field => $option ) {
-
-			$out .= '<option value="' . esc_attr( $field ) . '" ';
-
-			if ( $selected === $field ) {
-				$out .= ' selected="selected" '; }
-
-			$out .= '> ' . esc_html( $option ) . '</option>';
-
-		}
-
-		$out .= ' </select> ';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the Field Multiple Select
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Field Select
-	 */
-	public function create_field_taxonomy_multiple_select( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '[]" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$out .= 'size="6" multiple> ';
-
-		$selected = ! empty( $key['value'] ) ? $key['value'] : array();
-
-		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
-			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
-		}
-
-		$tax_arrays = get_terms( $key['taxonomy'] );
-
-		foreach ( (array) $tax_arrays as $tax_obj ) {
-
-			$out .= '<option value="' . esc_attr( $tax_obj->term_id ) . '" ';
-
-			if ( in_array( $tax_obj->term_id, (array) $selected ) ) {
-				$out .= ' selected="selected" ';
-			}
-
-			$out .= '> ' . esc_html( $tax_obj->name ) . '</option>';
-
-		}
-
-		$out .= ' </select> ';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the Field Select with Options Group
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Field Select with Options Group
-	 */
-	public function create_field_select_group( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$out .= '> ';
-
-		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
-		}
-
-		foreach ( (array) $key['options'] as $group => $options ) {
-
-			$out .= '<optgroup label="' . $group . '">';
-
-			foreach ( $options as $field => $option ) {
-
-				$out .= '<option value="' . esc_attr( $field ) . '" ';
-
-				if ( esc_attr( $selected ) === $field ) {
-					$out .= ' selected="selected" '; }
-
-				$out .= '> ' . esc_html( $option ) . '</option>';
-			}
-
-			$out .= '</optgroup>';
-
-		}
-
-		$out .= '</select>';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the field number
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML field number
-	 */
-	public function create_field_number( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<input type="number" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
-
-		if ( isset( $key['size'] ) ) {
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
-
-		$out .= ' />';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the field email
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML field email
-	 */
-	public function create_field_email( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<input type="email" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
-
-		if ( isset( $key['size'] ) ) {
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
-
-		$out .= ' />';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the field url
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML field url
-	 */
-	public function create_field_url( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<input type="url" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
-
-		if ( isset( $key['size'] ) ) {
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
-
-		$out .= ' />';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
-	}
-
-	/**
-	 * Create the field tel
-	 *
-	 * @access public
-	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML field tel
-	 */
-	public function create_field_tel( $key, $out = '' ) {
-
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
-
-		$out .= '<input type="tel" ';
-
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
-
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
-
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
-
-		if ( isset( $key['size'] ) ) {
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
-
-		$out .= ' />';
-
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
-
-		return $out;
+	public function field_type_text( $key, $out = '' ) {
+		
+		$attr = array();
+
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
 	}
 
 	/**
@@ -502,26 +93,99 @@ class Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	public function create_field_media_list( $key, $out = '' ) {
+	public function field_type_hidden( $key, $out = '' ) {
 
-		$out .= $this->create_field_label( $key['name'], $key['_id'] ) . '<br/>';
+		$attr = array(
+			'type'	=> 'hidden',
+			'desc'	=> '',
+			);
 
-		$out .= '<input type="text" ';
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+	}
 
-		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+	/**
+	 * Create the field number
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field number
+	 */
+	public function field_type_number( $key, $out = '' ) {
 
-		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+		$attr = array(
+			'type'	=> 'number',
+			);
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="' . esc_attr( $value ) . '" ';
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+	}
 
-		if ( isset( $key['size'] ) ) {
-			$out .= 'size="' . esc_attr( $key['size'] ) . '" '; }
+	/**
+	 * Create the field email
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field email
+	 */
+	public function field_type_email( $key, $out = '' ) {
 
-		$out .= ' />';
+		$attr = array(
+			'type'	=> 'email',
+			);
 
-		if ( isset( $key['desc'] ) ) {
-			$out .= $this->create_field_description( $key['desc'] ); }
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+	}
+
+	/**
+	 * Create the field url
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field url
+	 */
+	public function field_type_url( $key, $out = '' ) {
+
+		$attr = array(
+			'type'	=> 'url',
+			);
+
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+	}
+
+	/**
+	 * Create the field tel
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field tel
+	 */
+	public function field_type_tel( $key, $out = '' ) {
+
+		$attr = array(
+			'type'	=> 'tel',
+			);
+
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+	}
+
+	/**
+	 * Create the Field Text
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Text
+	 */
+	public function field_type_media_list( $key, $out = '' ) {
+
+		$attr = array(
+			'type'	=> 'text',
+			);
+
+		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
 
 		ob_start();
 
@@ -567,10 +231,273 @@ class Fields {
 		<hr>
 		<?php
 
-		$output = ob_get_contents();
+		$out .= ob_get_contents();
 		ob_end_clean();
 
-		return $out . $output;
+		return $out;
+	}
+
+	/**
+	 * Create the Field Textarea
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Textarea
+	 */
+	public function field_type_textarea( $key, $out = '' ) {
+		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<textarea ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		if ( isset( $key['rows'] ) ) {
+			$out .= 'rows="' . esc_attr( $key['rows'] ) . '" '; }
+
+		if ( isset( $key['cols'] ) ) {
+			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" '; }
+
+		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		$out .= 'id="'. esc_attr( $key['_id'] ) .'" name="' . esc_attr( $key['_name'] ) . '">' . esc_html( $value );
+
+		$out .= '</textarea>';
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->field_type_description( $key['desc'] ); }
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Checkbox
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Checkbox
+	 */
+	public function field_type_checkbox( $key, $out = '' ) {
+
+		$out .= ' <input type="checkbox" ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
+
+		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
+			$out .= ' checked="checked" '; }
+
+		/**
+		 * Da vedere se utilizzabile per fare il controllo sulle checkbox.
+		 * if ( isset( $key['value'] ) && 'true' === $key['value'] ) {
+		 * 	$key['value'] = true;
+		 * 	} else $key['value'] = false;
+		 *
+		 * $out .= checked( $key['value'], true );
+		 */
+
+		$out .= ' /> ';
+
+		$out .= $this->field_type_label( $key['name'], $key['_id'] );
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->field_type_description( $key['desc'] ); }
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Select
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Select
+	 */
+	public function field_type_select( $key, $out = '' ) {
+
+		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		$out .= '> ';
+
+		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+		}
+
+		foreach ( (array) $key['options'] as $field => $option ) {
+
+			$out .= '<option value="' . esc_attr( $field ) . '" ';
+
+			if ( $selected === $field ) {
+				$out .= ' selected="selected" '; }
+
+			$out .= '> ' . esc_html( $option ) . '</option>';
+
+		}
+
+		$out .= ' </select> ';
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->field_type_description( $key['desc'] ); }
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Multiple Select
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Select
+	 */
+	public function field_type_multiple_select( $key, $out = '' ) {
+
+		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		$out .= 'size="6" multiple> ';
+
+		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+		}
+
+		foreach ( (array) $key['options'] as $field => $option ) {
+
+			$out .= '<option value="' . esc_attr( $field ) . '" ';
+
+			if ( $selected === $field ) {
+				$out .= ' selected="selected" '; }
+
+			$out .= '> ' . esc_html( $option ) . '</option>';
+
+		}
+
+		$out .= ' </select> ';
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->field_type_description( $key['desc'] ); }
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Multiple Select
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Select
+	 */
+	public function field_type_taxonomy_multiple_select( $key, $out = '' ) {
+
+		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '[]" ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		$out .= 'size="6" multiple> ';
+
+		$selected = ! empty( $key['value'] ) ? $key['value'] : array();
+
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
+		}
+
+		$tax_arrays = get_terms( $key['taxonomy'] );
+
+		foreach ( (array) $tax_arrays as $tax_obj ) {
+
+			$out .= '<option value="' . esc_attr( $tax_obj->term_id ) . '" ';
+
+			if ( in_array( $tax_obj->term_id, (array) $selected ) ) {
+				$out .= ' selected="selected" ';
+			}
+
+			$out .= '> ' . esc_html( $tax_obj->name ) . '</option>';
+
+		}
+
+		$out .= ' </select> ';
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->field_type_description( $key['desc'] ); }
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Select with Options Group
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Select with Options Group
+	 */
+	public function field_type_select_group( $key, $out = '' ) {
+
+		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
+
+		if ( isset( $key['class'] ) ) {
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+
+		$out .= '> ';
+
+		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
+
+		if ( isset( $key['show_option_none'] ) ) {
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+		}
+
+		foreach ( (array) $key['options'] as $group => $options ) {
+
+			$out .= '<optgroup label="' . $group . '">';
+
+			foreach ( $options as $field => $option ) {
+
+				$out .= '<option value="' . esc_attr( $field ) . '" ';
+
+				if ( esc_attr( $selected ) === $field ) {
+					$out .= ' selected="selected" '; }
+
+				$out .= '> ' . esc_html( $option ) . '</option>';
+			}
+
+			$out .= '</optgroup>';
+
+		}
+
+		$out .= '</select>';
+
+		if ( isset( $key['desc'] ) ) {
+			$out .= $this->field_type_description( $key['desc'] ); }
+
+		return $out;
 	}
 
 	/**
@@ -580,7 +507,7 @@ class Fields {
 	 * @param  string $desc The description.
 	 * @return string       Return the description
 	 */
-	public function create_field_description( $desc ) {
+	public function field_type_description( $desc ) {
 
 		return  '<br/><small class="description">' . esc_html( $desc ) . '</small>';
 
@@ -594,7 +521,7 @@ class Fields {
 	 * @param  string $id   The labels ID.
 	 * @return string       Return the labels
 	 */
-	public function create_field_label( $name = '', $id = '' ) {
+	public function field_type_label( $name = '', $id = '' ) {
 
 		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . ':</label>';
 
