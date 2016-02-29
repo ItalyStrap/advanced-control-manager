@@ -1,6 +1,6 @@
 <?php namespace ItalyStrap\Core;
 /**
- * Sanitization API: Sanitization Class
+ * Validation API: Validation Class
  *
  * @package ItalyStrap
  * @since 2.0.0
@@ -11,132 +11,95 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 /**
- * Sanitization class
+ * Validation class
  */
-class Sanitization {
+class Validation {
 
 	/**
-	 * Filter the value of key
+	 * Validate the value of key
 	 *
 	 * @access private
-	 * @param  string $rules          Insert the filter name you want to use.
-	 *                                Use | to separate more filter.
-	 *
-	 * @param  string $instance_value The value you want to filter.
-	 * @return string                 Return the value filtered
+	 * @param  string $rules          Insert the rule name you want to use
+	 *                                for validation.
+	 *                                Use | to separate more rules.
+	 * @param  string $instance_value The value you want to validate.
+	 * @return bool                   Return true if valid and folse if it is not
 	 */
-	public function sanitize( $rules, $instance_value ) {
+	public function validate( $rules, $instance_value ) {
 		$rules = explode( '|', $rules );
 
 		if ( empty( $rules ) || count( $rules ) < 1 ) {
-			return $instance_value;
+			return true;
 		}
 
 		foreach ( $rules as $rule ) {
-			$instance_value = $this->do_filter( $rule, $instance_value );
+			if ( false === $this->do_validation( $rule, $instance_value ) ) {
+				return false;
+			}
 		}
 
-		return $instance_value;
+		return true;
 	}
 
 	/**
-	 * Filter the value of key
+	 * Validate the value of key
 	 *
 	 * @access private
-	 * @param  string $rule         The filter name you want to use.
-	 * @param  string $instance_value The value you want to filter.
-	 * @return string                 Return the value filtered
+	 * @param  string $rule           Insert the rule name you want to use for validation.
+	 * @param  string $instance_value The value you want to validate.
+	 * @return string                 Return the value validated
 	 */
-	public function do_filter( $rule, $instance_value = '' ) {
+	public function do_validation( $rule, $instance_value = '' ) {
 		switch ( $rule ) {
 
-			case 'strip_tags':
-				return strip_tags( $instance_value );
+			case 'ctype_alpha':
+				return ctype_alpha( $instance_value );
 			break;
 
-			case 'wp_strip_all_tags':
-				return wp_strip_all_tags( $instance_value );
+			case 'ctype_alnum':
+				return ctype_alnum( $instance_value );
 			break;
 
-			case 'esc_attr':
-				return esc_attr( $instance_value );
+			case 'alpha_dash':
+				return preg_match( '/^[a-z0-9-_]+$/', $instance_value );
 			break;
 
-			case 'esc_url':
-				return esc_url( $instance_value );
+			case 'numeric':
+				return ctype_digit( $instance_value );
 			break;
 
-			case 'esc_textarea':
-				return esc_textarea( $instance_value );
+			case 'integer':
+				return (bool) preg_match( '/^[\-+]?[0-9]+$/', $instance_value );
 			break;
 
-			case 'sanitize_email':
-				return sanitize_email( $instance_value );
+			case 'boolean':
+				return is_bool( $instance_value );
 			break;
 
-			case 'sanitize_file_name':
-				return sanitize_file_name( $instance_value );
+			case 'email':
+				return is_email( $instance_value );
 			break;
 
-			case 'sanitize_html_class':
-				return sanitize_html_class( $instance_value );
+			case 'decimal':
+				return (bool) preg_match( '/^[\-+]?[0-9]+\.[0-9]+$/', $instance_value );
 			break;
 
-			case 'sanitize_key':
-				return sanitize_key( $instance_value );
-			break;
+			case 'natural':
+				return (bool) preg_match( '/^[0-9]+$/', $instance_value );
+			return;
 
-			case 'sanitize_meta':
-				return sanitize_meta( $instance_value );
-			break;
-
-			case 'sanitize_mime_type':
-				return sanitize_mime_type( $instance_value );
-			break;
-
-			case 'sanitize_option':
-				return sanitize_option( $instance_value );
-			break;
-
-			case 'sanitize_sql_orderby':
-				return sanitize_sql_orderby( $instance_value );
-			break;
-
-			case 'sanitize_text_field':
-				return sanitize_text_field( $instance_value );
-			break;
-
-			case 'sanitize_title':
-				return sanitize_title( $instance_value );
-			break;
-
-			case 'sanitize_title_for_query':
-				return sanitize_title_for_query( $instance_value );
-			break;
-
-			case 'sanitize_title_with_dashes':
-				return sanitize_title_with_dashes( $instance_value );
-			break;
-
-			case 'sanitize_user':
-				return sanitize_user( $instance_value );
-			break;
-
-			case 'sanitize_array':
-				$array = array_map( 'esc_attr', $instance_value );
-				$array = array_map( 'absint', $array );
-				$count = count( $array );
-				if ( 1 === $count && 0 === $array[0] ) {
-					return array();
-				}
-				return $array;
-			break;
+			case 'natural_not_zero':
+				if ( ! preg_match( '/^[0-9]+$/', $instance_value ) ) { return false; }
+				if ( 0 === $instance_value ) { return false; }
+				return true;
+			return;
 
 			default:
 				if ( method_exists( $this, $rule ) ) {
 					return $this->$rule( $instance_value );
-				} else { return $instance_value; }
+				} else { return false; }
 			break;
+
 		}
 	}
 }
