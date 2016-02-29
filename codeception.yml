@@ -1,0 +1,57 @@
+actor: Tester
+paths:
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    helpers: tests/_support
+settings:
+    bootstrap: _bootstrap.php
+    colors: true
+    memory_limit: 1024M
+modules:
+    config:
+        Db:
+            dsn: 'mysql:host=localhost;dbname=test'
+            user: root
+            password: m1ch3l480
+            dump: tests/_data/dump.sql
+        WPBrowser:
+            url: 'http://192.168.1.10/italystrap/'
+            adminUsername: admin
+            adminPassword: password
+            adminUrl: /wp-admin
+        WPDb:
+            dsn: 'mysql:host=localhost;dbname=test'
+            user: root
+            password: m1ch3l480
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            url: 'http://192.168.1.10/italystrap/'
+            tablePrefix: wp_
+        WPLoader:
+            wpRootFolder: 'E:/xampp/htdocs/italystrap'
+            dbName: test
+            dbHost: localhost
+            dbUser: root
+            dbPassword: m1ch3l480
+            wpDebug: true
+            dbCharset: utf8
+            dbCollate: ''
+            tablePrefix: wp_
+            domain: 192.168.1.10/italystrap/
+            adminEmail: admin@wp.local
+            title: 'WP Tests'
+            phpBinary: php
+            language: ''
+            plugins: ["italystrap-extended/italystrap.php"]
+            activatePlugins: ["italystrap-extended/italystrap.php"]
+        WPWebDriver:
+            url: 'http://192.168.1.10/italystrap/'
+            browser: phantomjs
+            port: 4444
+            restart: true
+            wait: 2
+            adminUsername: adminUsername
+            adminPassword: adminPassword
+            adminUrl: /wp-admin

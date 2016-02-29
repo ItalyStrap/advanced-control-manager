@@ -25,10 +25,10 @@ vendor
 vendor/mobiledetect/mobiledetectlib
 vendor/composer/installed.json
 
-codeception.yml
+#codeception.yml
 
 #Tests
-tests
+#tests
 wp-tests-config.php
 test_italystrap.php
 phpunit.xml
