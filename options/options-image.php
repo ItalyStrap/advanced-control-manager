@@ -24,7 +24,7 @@ return array(
 				'class'		=> 'widefat ids',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -39,7 +39,7 @@ return array(
 				'class'		=> 'widefat image_title',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -54,7 +54,7 @@ return array(
 				'class'		=> 'widefat caption',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -70,7 +70,7 @@ return array(
 				'class'		=> 'widefat alt',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 	/**
@@ -84,7 +84,7 @@ return array(
 				'class'		=> 'widefat description',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -102,7 +102,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'full',
 				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -122,7 +122,7 @@ return array(
 					'alignleft'		=> 'left',
 					'alignright'	=> 'right',
 					),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -137,7 +137,7 @@ return array(
 				'class'		=> 'widefat image_css_class',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 

@@ -24,7 +24,7 @@ class Widget_Product extends Widget {
 	 * @param  array $fields The fields array.
 	 * @return array         Return a fields array
 	 */
-	protected function before_create_fields( array $fields ) {
+	protected function before_field_types( array $fields ) {
 
 		$fields['cats']['taxonomy'] = 'product_cat';
 

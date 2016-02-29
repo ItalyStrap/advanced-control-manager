@@ -24,7 +24,7 @@ return array(
 				'class'		=> 'widefat ids',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 

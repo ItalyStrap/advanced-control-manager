@@ -24,7 +24,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> false,
 				// 'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				 ),
 
 

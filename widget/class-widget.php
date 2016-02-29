@@ -55,7 +55,7 @@ abstract class Widget extends WP_Widget {
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'strip_tags|esc_attr',
+				'sanitize'	=> 'strip_tags|esc_attr',
 			),
 		);
 	}
@@ -316,18 +316,21 @@ abstract class Widget extends WP_Widget {
 
 		$this->before_update_fields();
 
+		$this->validation = new Validation;
+		$this->sanitization = new Sanitization;
+
 		foreach ( $this->fields as $key ) {
 
 			if ( isset( $key['validate'] ) ) {
 
-				if ( false === $this->validate( $key['validate'], $instance[ $key['id'] ] ) ) {
+				if ( false === $this->validation->validate( $key['validate'], $instance[ $key['id'] ] ) ) {
 
 					$instance[ $key['id'] ] = '';
 				}
 			}
 
-			if ( isset( $key['filter'] ) ) {
-				$instance[ $key['id'] ] = $this->filter( $key['filter'], $instance[ $key['id'] ] );
+			if ( isset( $key['sanitize'] ) ) {
+				$instance[ $key['id'] ] = $this->sanitization->sanitize( $key['sanitize'], $instance[ $key['id'] ] );
 			} else {
 				$instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] );
 			}
@@ -368,213 +371,6 @@ abstract class Widget extends WP_Widget {
 
 		return $instance;
 
-	}
-
-	/**
-	 * Validate the value of key
-	 *
-	 * @access private
-	 * @param  string $rules          Insert the rule name you want to use for validation.
-	 *                                Use | to separate more rules.
-	 * @param  string $instance_value The value you want to validate.
-	 * @return bool                   Return true if valid and folse if it is not
-	 */
-	private function validate( $rules, $instance_value ) {
-		$rules = explode( '|', $rules );
-
-		if ( empty( $rules ) || count( $rules ) < 1 ) {
-			return true; }
-
-		foreach ( $rules as $rule ) {
-			if ( false === $this->do_validation( $rule, $instance_value ) ) {
-				return false; }
-		}
-
-		return true;
-	}
-
-	/**
-	 * Filter the value of key
-	 *
-	 * @access private
-	 * @param  string $filters Insert the filter name you want to use.
-	 *                         Use | to separate more filter.
-	 * @param  string $instance_value The value you want to filter.
-	 * @return string                 Return the value filtered
-	 */
-	private function filter( $filters, $instance_value ) {
-		$filters = explode( '|', $filters );
-
-		if ( empty( $filters ) || count( $filters ) < 1 ) {
-			return $instance_value; }
-
-		foreach ( $filters as $filter ) {
-			$instance_value = $this->do_filter( $filter, $instance_value ); }
-
-		return $instance_value;
-	}
-
-	/**
-	 * Validate the value of key
-	 *
-	 * @access private
-	 * @param  string $rule           Insert the rule name you want to use for validation.
-	 * @param  string $instance_value The value you want to validate.
-	 * @return string                 Return the value validated
-	 */
-	private function do_validation( $rule, $instance_value = '' ) {
-		switch ( $rule ) {
-
-			case 'ctype_alpha':
-				return ctype_alpha( $instance_value );
-			break;
-
-			case 'ctype_alnum':
-				return ctype_alnum( $instance_value );
-			break;
-
-			case 'alpha_dash':
-				return preg_match( '/^[a-z0-9-_]+$/', $instance_value );
-			break;
-
-			case 'numeric':
-				return ctype_digit( $instance_value );
-			break;
-
-			case 'integer':
-				return (bool) preg_match( '/^[\-+]?[0-9]+$/', $instance_value );
-			break;
-
-			case 'boolean':
-				return is_bool( $instance_value );
-			break;
-
-			case 'email':
-				return is_email( $instance_value );
-			break;
-
-			case 'decimal':
-				return (bool) preg_match( '/^[\-+]?[0-9]+\.[0-9]+$/', $instance_value );
-			break;
-
-			case 'natural':
-				return (bool) preg_match( '/^[0-9]+$/', $instance_value );
-			return;
-
-			case 'natural_not_zero':
-				if ( ! preg_match( '/^[0-9]+$/', $instance_value ) ) { return false; }
-				if ( 0 === $instance_value ) { return false; }
-				return true;
-			return;
-
-			default:
-				if ( method_exists( $this, $rule ) ) {
-					return $this->$rule( $instance_value );
-				} else { return false; }
-			break;
-
-		}
-	}
-
-	/**
-	 * Filter the value of key
-	 *
-	 * @access private
-	 * @param  string $filter         The filter name you want to use.
-	 * @param  string $instance_value The value you want to filter.
-	 * @return string                 Return the value filtered
-	 */
-	private function do_filter( $filter, $instance_value = '' ) {
-		switch ( $filter ) {
-
-			case 'strip_tags':
-				return strip_tags( $instance_value );
-			break;
-
-			case 'wp_strip_all_tags':
-				return wp_strip_all_tags( $instance_value );
-			break;
-
-			case 'esc_attr':
-				return esc_attr( $instance_value );
-			break;
-
-			case 'esc_url':
-				return esc_url( $instance_value );
-			break;
-
-			case 'esc_textarea':
-				return esc_textarea( $instance_value );
-			break;
-
-			case 'sanitize_email':
-				return sanitize_email( $instance_value );
-			break;
-
-			case 'sanitize_file_name':
-				return sanitize_file_name( $instance_value );
-			break;
-
-			case 'sanitize_html_class':
-				return sanitize_html_class( $instance_value );
-			break;
-
-			case 'sanitize_key':
-				return sanitize_key( $instance_value );
-			break;
-
-			case 'sanitize_meta':
-				return sanitize_meta( $instance_value );
-			break;
-
-			case 'sanitize_mime_type':
-				return sanitize_mime_type( $instance_value );
-			break;
-
-			case 'sanitize_option':
-				return sanitize_option( $instance_value );
-			break;
-
-			case 'sanitize_sql_orderby':
-				return sanitize_sql_orderby( $instance_value );
-			break;
-
-			case 'sanitize_text_field':
-				return sanitize_text_field( $instance_value );
-			break;
-
-			case 'sanitize_title':
-				return sanitize_title( $instance_value );
-			break;
-
-			case 'sanitize_title_for_query':
-				return sanitize_title_for_query( $instance_value );
-			break;
-
-			case 'sanitize_title_with_dashes':
-				return sanitize_title_with_dashes( $instance_value );
-			break;
-
-			case 'sanitize_user':
-				return sanitize_user( $instance_value );
-			break;
-
-			case 'sanitize_array':
-				$array = array_map( 'esc_attr', $instance_value );
-				$array = array_map( 'absint', $array );
-				$count = count( $array );
-				if ( 1 === $count && 0 === $array[0] ) {
-					return array();
-				}
-				return $array;
-			break;
-
-			default:
-				if ( method_exists( $this, $filter ) ) {
-					return $this->$filter( $instance_value );
-				} else { return $instance_value; }
-			break;
-		}
 	}
 
 	/**
@@ -723,7 +519,7 @@ abstract class Widget extends WP_Widget {
 	 * @return string      Return the HTML Fields
 	 */
 	protected function after_field_types( $out = '' ) {
-		return $out;
+		return apply_filters( 'italystrap_after_field_types', $out, $this->id_base );
 	}
 
 	/**

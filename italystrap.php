@@ -83,3 +83,7 @@ require( ITALYSTRAP_PLUGIN_PATH . 'class-init.php' );
 if ( defined( 'ITALYSTRAP_DEV' ) ) {
 	require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
 }
+
+/**
+ * @todo Agganciare init all'azione plugin_loaded (forse plugin_loaded è troppo presto, valutare se usare init direttamente) che in questo modo sarà possibile eventualmente fare un remove_actions se necessario (normalmente con plugin premium)
+ */

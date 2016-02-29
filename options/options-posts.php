@@ -26,7 +26,7 @@ return array(
 				'class'		=> 'widefat title_link',
 				'default'	=> '',
 				'validate'	=> 'ctype_alpha',
-				'filter'	=> 'esc_url',
+				'sanitize'	=> 'esc_url',
 				'section'	=> 'general',
 				 ),
 
@@ -42,7 +42,7 @@ return array(
 				'class-p'	=> 'widget_class',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -58,7 +58,7 @@ return array(
 				'class-p'	=> 'container_class',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -74,7 +74,7 @@ return array(
 				'class-p'	=> 'post_class',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -88,7 +88,7 @@ return array(
 	// 			'type'		=> 'textarea',
 	// 			'class'		=> 'widefat before_posts',
 	// 			'default'	=> '',
-	// 			'filter'	=> 'sanitize_text_field',
+	// 			'sanitize'	=> 'sanitize_text_field',
 	// 			'section'	=> 'general',
 	// 			 ),
 	/**
@@ -101,7 +101,7 @@ return array(
 	// 			'type'		=> 'textarea',
 	// 			'class'		=> 'widefat after_posts',
 	// 			'default'	=> '',
-	// 			'filter'	=> 'sanitize_text_field',
+	// 			'sanitize'	=> 'sanitize_text_field',
 	// 			'section'	=> 'general',
 	// 			 ),
 
@@ -120,7 +120,7 @@ return array(
 							'custom'  => __( 'Custom template', 'ItalyStrap' ),
 				 			),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -136,7 +136,7 @@ return array(
 				'class-p'	=> 'template_custom',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_option',
+				'sanitize'	=> 'sanitize_option',
 				'section'	=> 'display',
 				 ),
 
@@ -151,7 +151,7 @@ return array(
 				'class'		=> 'widefat posts_number',
 				'default'	=> 5,
 				'validate'	=> 'numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -166,7 +166,7 @@ return array(
 				// 'class'		=> 'widefat show_title',
 				'default'	=> 1,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -182,7 +182,7 @@ return array(
 				'class-p'	=> 'entry_title',
 				'default'	=> 'h4',
 				// 'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -197,7 +197,7 @@ return array(
 				// 'class'		=> 'widefat show_date',
 				'default'	=> 1,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -212,7 +212,7 @@ return array(
 				'class'		=> 'widefat date_format',
 				'default'	=> get_option( 'date_format' ) . ' ' . get_option( 'time_format' ),
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -227,7 +227,7 @@ return array(
 				// 'class'		=> 'widefat show_author',
 				'default'	=> 1,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -242,7 +242,7 @@ return array(
 				// 'class'		=> 'widefat show_comments_number',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -257,7 +257,7 @@ return array(
 				// 'class'		=> 'widefat show_excerpt',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -272,7 +272,7 @@ return array(
 				'class'		=> 'widefat excerpt_length',
 				'default'	=> 10,
 				'validate'	=> 'numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -287,7 +287,7 @@ return array(
 				// 'class'		=> 'widefat show_content',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -302,7 +302,7 @@ return array(
 				// 'class'		=> 'widefat show_readmore',
 				'default'	=> 1,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -317,7 +317,7 @@ return array(
 				'class'		=> 'widefat excerpt_readmore',
 				'default'	=> __( 'Read more &rarr;', 'ItalyStrap' ),
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -332,7 +332,7 @@ return array(
 				// 'class'		=> 'widefat show_thumbnail',
 				'default'	=> 1,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -348,7 +348,7 @@ return array(
 				'default'	=> 'thumbnail',
 				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -364,7 +364,7 @@ return array(
 				'class-p'	=> 'thumb_url',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -379,7 +379,7 @@ return array(
 				// 'class'		=> 'widefat show_cats',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -394,7 +394,7 @@ return array(
 				// 'class'		=> 'widefat show_tags',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
+				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
 
@@ -409,7 +409,7 @@ return array(
 				'class'		=> 'widefat custom_fields',
 				'default'	=> '',
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
 				 ),
 
@@ -424,8 +424,8 @@ return array(
 	// 			// 'class'		=> 'widefat atcat',
 	// 			'default'	=> 0,
 	// 			// 'validate'	=> 'numeric',
-	// 			'filter'	=> 'esc_attr',
-	// 			'section'	=> 'filter',
+	// 			'sanitize'	=> 'esc_attr',
+	// 			'section'	=> 'sanitize',
 	// 			 ),
 
 	/**
@@ -442,8 +442,8 @@ return array(
 				'taxonomy'	=> 'category',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_array',
-				'section'	=> 'filter',
+				'sanitize'	=> 'sanitize_array',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -457,8 +457,8 @@ return array(
 	// 			// 'class'		=> 'widefat attag',
 	// 			'default'	=> 0,
 	// 			// 'validate'	=> 'numeric',
-	// 			'filter'	=> 'esc_attr',
-	// 			'section'	=> 'filter',
+	// 			'sanitize'	=> 'esc_attr',
+	// 			'section'	=> 'sanitize',
 	// 			 ),
 
 	/**
@@ -475,8 +475,8 @@ return array(
 				'taxonomy'	=> 'post_tag',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_array',
-				'section'	=> 'filter',
+				'sanitize'	=> 'sanitize_array',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -490,8 +490,8 @@ return array(
 				// 'class'		=> 'widefat related_by_tags',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
-				'section'	=> 'filter',
+				'sanitize'	=> 'esc_attr',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -505,8 +505,8 @@ return array(
 				// 'class'		=> 'widefat related_by_cats',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
-				'section'	=> 'filter',
+				'sanitize'	=> 'esc_attr',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -520,8 +520,8 @@ return array(
 				// 'class'		=> 'widefat exclude_current_post',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
-				'section'	=> 'filter',
+				'sanitize'	=> 'esc_attr',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -535,8 +535,8 @@ return array(
 				// 'class'		=> 'widefat from_current_user',
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
-				'filter'	=> 'esc_attr',
-				'section'	=> 'filter',
+				'sanitize'	=> 'esc_attr',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -551,8 +551,8 @@ return array(
 				'default'	=> 'post',
 				'options'	=> ( ( isset( $get_post_types ) ) ? $get_post_types : null ),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
-				'section'	=> 'filter',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -567,8 +567,8 @@ return array(
 	// 			'default'	=> 'post',
 	// 			'options'	=> ( ( is_admin() ) ? get_users() : null ),
 	// 			// 'validate'	=> 'numeric_comma',
-	// 			'filter'	=> 'sanitize_text_field',
-	// 			'section'	=> 'filter',
+	// 			'sanitize'	=> 'sanitize_text_field',
+	// 			'section'	=> 'sanitize',
 	// 			 ),
 
 	/**
@@ -587,8 +587,8 @@ return array(
 						'only'	=> __( 'Show Only Sticky Posts', 'ItalyStrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
-				'section'	=> 'filter',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'sanitize',
 				 ),
 
 	/**
@@ -619,7 +619,7 @@ return array(
 						'post__in'		=> __( 'Preserve post ID order given in the post__in array.', 'ItalyStrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'order',
 				 ),
 
@@ -634,7 +634,7 @@ return array(
 				'class'		=> 'widefat meta_key',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'order',
 				 ),
 
@@ -653,7 +653,7 @@ return array(
 					'ASC'	=> __( 'Ascending', 'ItalyStrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'order',
 				 ),
 

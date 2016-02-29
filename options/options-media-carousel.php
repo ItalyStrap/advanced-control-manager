@@ -24,7 +24,7 @@ return array(
 				'class'		=> 'widefat ids',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -43,7 +43,7 @@ return array(
 							'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
 							'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
 				 			),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -64,7 +64,7 @@ return array(
 							'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
 							'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
 						),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'Order',
 				 ),
 
@@ -81,7 +81,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'italystrap-media-carousel-' . rand(),
 				// 'validate'	=> 'alpha_numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -96,7 +96,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'size',
 				 ),
 
@@ -111,7 +111,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'size',
 				 ),
 
@@ -132,7 +132,7 @@ return array(
 							'after-control'	=> __( 'After control', 'ItalyStrap' ),
 							'false'			=> __( 'False', 'ItalyStrap' ),
 						),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -146,7 +146,7 @@ return array(
 				'id'		=> 'control',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -182,7 +182,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 0,
 				'validate'	=> 'alpha_dash',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -202,7 +202,7 @@ return array(
 							'false'			=> __( 'none', 'ItalyStrap' ),
 							'hover'			=> __( 'hover (Default)', 'ItalyStrap' ),
 						),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -217,7 +217,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'h4',
 				// 'validate'	=> 'esc_attr',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -230,7 +230,7 @@ return array(
 				'id'		=> 'image_title',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -250,7 +250,7 @@ return array(
 							'file'			=> __( 'File', 'ItalyStrap' ),
 							'link'			=> __( 'Link', 'ItalyStrap' ),
 						),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -263,7 +263,7 @@ return array(
 				'id'		=> 'text',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -276,7 +276,7 @@ return array(
 				'id'		=> 'wpautop',
 				'type'		=> 'checkbox',
 				'default'	=> 1,
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -289,7 +289,7 @@ return array(
 				'id'		=> 'do_shortcode',
 				'type'		=> 'checkbox',
 				'default'	=> 0,
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
 
@@ -304,7 +304,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				// 'validate'	=> 'alpha_numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'Class',
 				 ),
 
@@ -319,7 +319,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				// 'validate'	=> 'alpha_numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'Class',
 				 ),
 
@@ -334,7 +334,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> '',
 				// 'validate'	=> 'alpha_numeric',
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'Class',
 				 ),
 
@@ -352,7 +352,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'full',
 				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'size',
 				 ),
 
@@ -366,7 +366,7 @@ return array(
 				'id'		=> 'responsive',
 				'type'		=> 'checkbox',
 				'default'	=> 0,
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'size',
 				 ),
 
@@ -384,7 +384,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'large',
 				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'size',
 				 ),
 
@@ -402,7 +402,7 @@ return array(
 				'class'		=> 'widefat',
 				'default'	=> 'medium',
 				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'filter'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'size',
 				 ),
 

@@ -29,16 +29,10 @@ class Init {
 
 		$this->options = get_option( 'italystrap_settings' );
 
-		/**
-		 * Add ID to post_type table
-		 */
-		require( 'hooks/simply-show-ids.php' );
-		add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
-
-		/**
-		 * Adjust priority to make sure this runs
-		 */
-		add_action( 'init', array( $this, 'on_load' ), 100 );
+		// /**
+		//  * Adjust priority to make sure this runs
+		//  */
+		// add_action( 'init', array( $this, 'on_load' ), 100 );
 
 		/**
 		 * Print inline css in header
@@ -55,9 +49,7 @@ class Init {
 			Lazy_Load_Image::init();
 		}
 
-		add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
-
-		add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
+		// add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 
 	}
 
@@ -95,26 +87,23 @@ class Init {
 	 */
 	public function widgets_init() {
 
-		add_action( 'widgets_init', function() {
+		if ( isset( $this->options['vcardwidget'] ) ) {
+			register_widget( 'ItalyStrap\Core\Vcard_Widget' );
+		}
 
-			if ( isset( $this->options['vcardwidget'] ) ) {
-				register_widget( 'ItalyStrap\Core\Vcard_Widget' );
-			}
+		if ( isset( $this->options['post_widget'] ) ) {
+			register_widget( 'ItalyStrap\Core\Widget_Posts' );
+		}
 
-			if ( isset( $this->options['post_widget'] ) ) {
-				register_widget( 'ItalyStrap\Core\Widget_Posts' );
-			}
+		if ( isset( $this->options['media_widget'] ) ) {
+			register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
+		}
 
-			if ( isset( $this->options['media_widget'] ) ) {
-				register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
-			}
-
-			register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
-			register_widget( 'ItalyStrap\Core\Widget_VCard' );
-			register_widget( 'ItalyStrap\Core\Widget_Posts2' );
-			register_widget( 'ItalyStrap\Core\Widget_Product' );
-			register_widget( 'ItalyStrap\Core\Widget_Image' );
-		});
+		register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
+		register_widget( 'ItalyStrap\Core\Widget_VCard' );
+		register_widget( 'ItalyStrap\Core\Widget_Posts2' );
+		register_widget( 'ItalyStrap\Core\Widget_Product' );
+		register_widget( 'ItalyStrap\Core\Widget_Image' );
 
 	}
 
@@ -150,12 +139,28 @@ class Init {
  *
  * @var Init
  */
-$italystrap_init = new Init;
+$init = new Init;
+
+/**
+ * Adjust priority to make sure this runs
+ */
+add_action( 'init', array( $init, 'on_load' ), 100 );
 
 /**
  * Register widget
  */
-$italystrap_init->widgets_init();
+// $init->widgets_init();
+
+add_action( 'widgets_init', array( $init, 'widgets_init' ) );
+
+add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
+add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
+
+/**
+ * Add ID to post_type table
+ */
+require( 'hooks/simply-show-ids.php' );
+add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
 
 /**
  * Istantiate this class only if is admin
