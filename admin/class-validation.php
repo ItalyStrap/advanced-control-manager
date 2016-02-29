@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php namespace ItalyStrap\Admin;
 /**
  * Validation API: Validation Class
  *
@@ -17,6 +17,14 @@ class Validation {
 
 	/**
 	 * Validate the value of key
+	 *
+	 * @todo Aggiungere rule required
+	 *       Prendere spunto da questo articolo
+	 *       https://tommcfarlin.com/validation-and-sanitization-wordpress-settings-api
+	 *       In particolare la classe Address_Validator
+	 *       Se presente il parametro required inviare
+	 *       un errore che notifica il campo richiesto.
+	 *       Esempio: 'required|alpha_dash'
 	 *
 	 * @access private
 	 * @param  string $rules          Insert the rule name you want to use

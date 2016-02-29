@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php namespace ItalyStrap\Admin;
 /**
  * Sanitization API: Sanitization Class
  *

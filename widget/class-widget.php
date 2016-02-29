@@ -11,6 +11,8 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 use \WP_Widget;
+use ItalyStrap\Admin\Sanitization;
+use ItalyStrap\Admin\Validation;
 
 /**
  * Core class used to implement some common method to widget.
