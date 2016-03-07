@@ -14,7 +14,7 @@ use \WP_Query;
  */
 
 /**
-* 
+* Query Class for widget and shortcode
 */
 class Query_Posts {
 
@@ -81,7 +81,7 @@ class Query_Posts {
 	public static function init() {
 
 		return new self( new WP_Query() );
-	
+
 	}
 
 	/**
@@ -112,6 +112,38 @@ class Query_Posts {
 	public function get_shortcode_args( $args ) {
 
 		$this->args = $this->get_attributes( $args );
+
+	}
+
+	public function get_template_part() {
+
+		$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
+
+		if ( 'custom' === $this->args['template'] ) {
+
+			$custom_template_path = '/templates/' . $this->args['template_custom'] . '.php';
+
+			if ( locate_template( $custom_template_path ) ) {
+
+				$template_path = STYLESHEETPATH . $custom_template_path;
+
+			} else {
+
+				$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+
+			}
+
+		} elseif ( 'standard' === $this->args['template'] ) {
+
+			$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+
+		} else {
+
+			$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
+
+		}
+
+		return apply_filters( 'italystrap_query_posts_template_path', $template_path, $this->args );
 
 	}
 
@@ -164,16 +196,29 @@ class Query_Posts {
 			'posts_per_page'	=> $this->args['posts_number'] + count( $this->posts_to_exclude ),
 			'order'				=> $this->args['order'],
 			'orderby'			=> $this->args['orderby'],
-			// 'category__in'		=> $cats,
-			// 'tag__in'			=> $tags,
 			'post_type'			=> ( empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] ) ),
 			'no_found_rows'		=> true,
 			'update_post_term_cache' => false,
 			'update_post_meta_cache' => false,
 			);
 
-		if ( 'meta_value' === $this->args['orderby'] ) {
-			$args['meta_key'] = $this->args['meta_key'];
+		/**
+		 * Display per post/page ID
+		 */
+		if ( ! empty( $this->args['post_id'] ) ) {
+
+			$args['post__in'] = explode( ',', $this->args['post_id'] );
+
+			/**
+			 * This delete comma in case the input is like 1,2,
+			 */
+			$args['post__in'] = array_filter( $args['post__in'] );
+
+			/**
+			 * Convert string to integer
+			 */
+			$args['post__in'] = array_map( 'absint', $args['post__in'] );
+
 		}
 
 		/**
@@ -259,6 +304,10 @@ class Query_Posts {
 			}
 		}
 
+		if ( 'meta_value' === $this->args['orderby'] ) {
+			$args['meta_key'] = $this->args['meta_key'];
+		}
+
 		$args = apply_filters( 'italystrap_widget_query_args', $args );
 
 // var_dump($args);
@@ -266,29 +315,7 @@ class Query_Posts {
 
 		ob_start();
 
-		if ( 'custom' === $this->args['template'] ) {
-
-			// $custom_template_path = apply_filters( 'italystrap_custom_template_path',  '/templates/' . $this->args['template_custom'] . '.php', $this->args, $this->id_base );
-
-			if ( locate_template( $custom_template_path ) ) {
-
-				// include get_stylesheet_directory() . $custom_template_path;
-
-			} else {
-
-				// include 'templates/standard.php';
-
-			}
-		} elseif ( 'standard' === $this->args['template'] ) {
-
-			// include 'templates/standard.php';
-			include ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
-
-		} else {
-
-			// include 'templates/legacy.php';
-
-		}
+		include $this->get_template_part();
 
 		wp_reset_postdata();
 

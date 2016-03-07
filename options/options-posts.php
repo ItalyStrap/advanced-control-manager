@@ -106,6 +106,38 @@ return array(
 	// 			 ),
 
 	/**
+	 * Custom CSS class for widget.
+	 */
+	'entry_title'				=> array(
+				'name'		=> __( 'HTML tag for post title', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the heading tag for title (default is h4).', 'ItalyStrap' ),
+				'id'		=> 'entry_title',
+				'type'		=> 'text',
+				'class'		=> 'widefat entry_title',
+				'class-p'	=> 'entry_title',
+				'default'	=> 'h4',
+				// 'validate'	=> 'alpha_dash',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
+	 * Custom CSS.
+	 */
+	'custom_css'				=> array(
+				'name'		=> __( 'Custom CSS', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter your custom CSS.', 'ItalyStrap' ),
+				'id'		=> 'custom_css',
+				'type'		=> 'textarea',
+				'class'		=> 'widefat custom_css',
+				'class-p'	=> 'custom_css',
+				'default'	=> '',
+				// 'validate'	=> 'alpha_dash',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
 	 * Custom text or HTML markup.
 	 */
 	'template'			=> array(
@@ -168,22 +200,6 @@ return array(
 				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
-				 ),
-
-	/**
-	 * Custom CSS class for widget.
-	 */
-	'entry_title'				=> array(
-				'name'		=> __( 'HTML tag for post title', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the heading tag for title (default is h4).', 'ItalyStrap' ),
-				'id'		=> 'entry_title',
-				'type'		=> 'text',
-				'class'		=> 'widefat entry_title',
-				'class-p'	=> 'entry_title',
-				'default'	=> 'h4',
-				// 'validate'	=> 'alpha_dash',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
 				 ),
 
 	/**
@@ -425,7 +441,7 @@ return array(
 	// 			'default'	=> 0,
 	// 			// 'validate'	=> 'numeric',
 	// 			'sanitize'	=> 'esc_attr',
-	// 			'section'	=> 'sanitize',
+	// 			'section'	=> 'filter',
 	// 			 ),
 
 	/**
@@ -443,7 +459,7 @@ return array(
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_array',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -458,7 +474,7 @@ return array(
 	// 			'default'	=> 0,
 	// 			// 'validate'	=> 'numeric',
 	// 			'sanitize'	=> 'esc_attr',
-	// 			'section'	=> 'sanitize',
+	// 			'section'	=> 'filter',
 	// 			 ),
 
 	/**
@@ -476,7 +492,7 @@ return array(
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_array',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -491,7 +507,7 @@ return array(
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -506,7 +522,7 @@ return array(
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -521,7 +537,7 @@ return array(
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -536,7 +552,7 @@ return array(
 				'default'	=> 0,
 				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -552,7 +568,22 @@ return array(
 				'options'	=> ( ( isset( $get_post_types ) ) ? $get_post_types : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
+				 ),
+
+	/**
+	 * Select the post ID.
+	 */
+	'post_id'				=> array(
+				'name'		=> __( 'Post/Page Id', 'ItalyStrap' ),
+				'desc'		=> __( 'Insert post ID separated by comma.', 'ItalyStrap' ),
+				'id'		=> 'post_id',
+				'type'		=> 'text',
+				'class'		=> 'widefat post_id',
+				'default'	=> '',
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'filter',
 				 ),
 
 	/**
@@ -568,7 +599,7 @@ return array(
 	// 			'options'	=> ( ( is_admin() ) ? get_users() : null ),
 	// 			// 'validate'	=> 'numeric_comma',
 	// 			'sanitize'	=> 'sanitize_text_field',
-	// 			'section'	=> 'sanitize',
+	// 			'section'	=> 'filter',
 	// 			 ),
 
 	/**
@@ -588,7 +619,7 @@ return array(
 					),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'sanitize',
+				'section'	=> 'filter',
 				 ),
 
 	/**

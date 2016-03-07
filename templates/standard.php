@@ -23,7 +23,7 @@
 
 			$this->query->the_post();
 
-			if ( isset( $this->posts_to_exclude[0] ) && in_array( get_the_ID(), $this->posts_to_exclude ) ) {
+			if ( isset( $this->posts_to_exclude[0] ) && in_array( get_the_ID(), $this->posts_to_exclude, true ) ) {
 				continue;
 			}
 
@@ -142,7 +142,7 @@
 					
 						<?php
 						$tags = get_the_term_list( $this->post->ID, 'post_tag', '', ', ' );
-						// var_dump($tags);
+
 						if ( $this->args['show_tags'] && $tags ) :
 						?>
 						<div class="entry-tags">
@@ -165,25 +165,40 @@
 
 						if ( $this->args['custom_fields'] ) :
 
-							$custom_field_name = explode( ',', $this->args['custom_fields'] ); ?>
+							$custom_field_name = explode( ',', $this->args['custom_fields'] );
+
+							?>
 
 							<div class="entry-custom-fields">
 								<?php
 								foreach ( $custom_field_name as $name ) :
 
 									$name = trim( $name );
-									$custom_field_values = get_post_meta( $this->post->ID, $name, true );
+									$custom_field_values = get_post_meta( $this->query->post->ID, $name );
 
-									if ( $custom_field_values ) : ?>
+									if ( $custom_field_values ) :
+								?>
 										<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
 											<?php
+											/**
+											 * If is not an array echo custom field value
+											 */
 											if ( ! is_array( $custom_field_values ) ) {
+
 												echo esc_attr( $custom_field_values );
+
 											} else {
+
 												$last_value = end( $custom_field_values );
 												foreach ( $custom_field_values as $value ) {
+
 													echo esc_attr( $value );
-													if ( $value !== $last_value ) echo ', ';
+
+													if ( $value !== $last_value ) {
+
+														echo ', ';
+
+													}
 												}
 											}
 											?>
