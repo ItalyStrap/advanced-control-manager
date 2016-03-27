@@ -1,4 +1,12 @@
-<?php namespace ItalyStrap\Core;
+<?php
+/**
+ * Class for new vCard widget
+ *
+ * @package ItalyStrap
+ * @since 2.0.0
+ */
+
+namespace ItalyStrap\Core;
 
 use \ItalyStrapAdminMediaSettings;
 
@@ -48,6 +56,7 @@ if ( ! class_exists( 'Widget_VCard' ) ) {
 
 			/**
 			 * Configure widget array.
+			 *
 			 * @var array
 			 */
 			$args = array(
@@ -73,7 +82,9 @@ if ( ! class_exists( 'Widget_VCard' ) ) {
 		 * @param  array $instance The settings for the particular instance of the widget.
 		 */
 		public function widget_render( $args, $instance ) {
-			// var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
+			/**
+			 * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
+			 */
 
 			ob_start();
 
@@ -85,5 +96,5 @@ if ( ! class_exists( 'Widget_VCard' ) ) {
 			return $out;
 
 		}
-	} // class
+	} // Class.
 }
