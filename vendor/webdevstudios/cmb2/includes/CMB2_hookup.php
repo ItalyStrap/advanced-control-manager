@@ -77,10 +77,6 @@ class CMB2_hookup {
 	}
 
 	public function universal_hooks() {
-		// Handle oembed Ajax
-		$this->once( 'wp_ajax_cmb2_oembed_handler', array( cmb2_ajax(), 'oembed_handler' ) );
-		$this->once( 'wp_ajax_nopriv_cmb2_oembed_handler', array( cmb2_ajax(), 'oembed_handler' ) );
-
 		foreach ( get_class_methods( 'CMB2_Show_Filters' ) as $filter ) {
 			add_filter( 'cmb2_show_on', array( 'CMB2_Show_Filters', $filter ), 10, 3 );
 		}
@@ -427,7 +423,7 @@ class CMB2_hookup {
 
 	/**
 	 * Save data from term fields
-	 * @since  1.0.x
+	 * @since  2.2.0
 	 * @param  int    $term_id  Term ID
 	 * @param  int    $tt_id    Term Taxonomy ID
 	 * @param  string $taxonomy Taxonomy
@@ -444,7 +440,7 @@ class CMB2_hookup {
 
 	/**
 	 * Delete term meta when a term is deleted.
-	 * @since  1.0.x
+	 * @since  2.2.0
 	 * @param  int    $term_id  Term ID
 	 * @param  int    $tt_id    Term Taxonomy ID
 	 * @param  string $taxonomy Taxonomy
@@ -487,8 +483,6 @@ class CMB2_hookup {
 	 * @return bool             Whether taxonomy is editable.
 	 */
 	public function taxonomy_can_save( $taxonomy ) {
-		$taxonomy = $taxonomy ? $taxonomy : $tt_id;
-
 		if ( empty( $this->taxonomies ) || ! in_array( $taxonomy, $this->taxonomies ) ) {
 			return false;
 		}

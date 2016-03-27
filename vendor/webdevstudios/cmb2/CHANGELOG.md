@@ -4,14 +4,30 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased][unreleased]
 
 ### Enhancements
+* Implement CMB2_Ajax as a singleton. Props [jrfnl](https://github.com/jrfnl) ([#602](https://github.com/WebDevStudios/CMB2/pull/602)).
 
+### Bug Fixes
+* Fix issue with 'default' callback not being applied in all instances. Introduced new `CMB2_Field::get_default()` method, and `'default_cb'` field parameter. Using the `'default'` field parameter with a callback will be deprecated in the next few releases. ([#572](https://github.com/WebDevStudios/CMB2/issues/572)).
+
+## 2.2.1 - 2016-02-29
+
+### Bug Fixes
+
+* Fixes back-compatibility issue which could allow multiple CMB2 instances to load (causing fatal errors). ([#520](https://github.com/WebDevStudios/CMB2/pull/520))
+
+## 2.2.0 - 2016-02-27
+
+### Enhancements
+
+* Term Meta! As of WordPress 4.4, [WordPress will have the ability to use term metadata](https://make.wordpress.org/core/2015/10/23/4-4-taxonomy-roundup/). CMB2 will work with term meta out of the box. To do so, see the example cmb registration in the `yourprefix_register_taxonomy_metabox` function in [example-functions.php](https://github.com/WebDevStudios/CMB2/blob/master/example-functions.php).
 * New hooks which hook in after save field action: `'cmb2_save_field'` and `"cmb2_save_field_{$field_id}"`. Props [wpsmith](https://github.com/wpsmith) ([#475](https://github.com/WebDevStudios/CMB2/pull/475)).
 * The "cmb2_sanitize_{$field_type}" hook now runs for every field type (not just custom types) so you can override the sanitization for all field types via a filter.
-* Term Meta! As of WordPress 4.4, [WordPress will have the ability to use term metadata](https://make.wordpress.org/core/2015/10/23/4-4-taxonomy-roundup/). CMB2 will work with term meta out of the box. To do so, see the example cmb registration in the `yourprefix_register_taxonomy_metabox` function in [example-functions.php](https://github.com/WebDevStudios/CMB2/blob/master/example-functions.php).
 * `CMB2::show_form()` is now composed of 3 smaller methods, `CMB2::render_form_open()`, `CMB2::render_field()`, `CMB2::render_form_close()` ([#506](https://github.com/WebDevStudios/CMB2/pull/506)).
 * RTL Style generated. Props [@devinsays](https://github.com/devinsays) ([#510](https://github.com/WebDevStudios/CMB2/pull/510)).
 * Properly scope date/time-pickers styling by adding a class to only cmb2 picker instances. ([#527](https://github.com/WebDevStudios/CMB2/pull/527))
 * Allow per-field overrides for the date/time/color picker options (wiki documentation: [Modify Field Date, Time, or Color Picker options](https://github.com/WebDevStudios/CMB2/wiki/Tips-&-Tricks#modify-field-date-time-or-color-picker-options))
+* Fix some inline documentation issues. Props [@jrfnl](https://github.com/jrfnl) ([#579](https://github.com/WebDevStudios/CMB2/pull/579)).
+* Include `.gitattributes` file for excluding development resources when using Composer. Props [@benoitchantre](https://github.com/benoitchantre) ([#575](https://github.com/WebDevStudios/CMB2/pull/575), [#53](https://github.com/WebDevStudios/CMB2/pull/53)).
 
 ### Bug Fixes
 
@@ -20,6 +36,8 @@ All notable changes to this project will be documented in this file.
 * `'show_option_none'` field parameter now works on taxonomy fields when explicitly setting to false.
 * Fix so the date/time-picker javascript respects the `'date_format'` and `'time_format'` field parameters. Props [@yivi](https://github.com/yivi) ([#39](https://github.com/WebDevStudios/CMB2/pull/39), [#282](https://github.com/WebDevStudios/CMB2/pull/282), [#300](https://github.com/WebDevStudios/CMB2/pull/300), [#318](https://github.com/WebDevStudios/CMB2/pull/318), [#330](https://github.com/WebDevStudios/CMB2/pull/330), [#446](https://github.com/WebDevStudios/CMB2/pull/446), [#498](https://github.com/WebDevStudios/CMB2/pull/498)).
 * Fix a sometimes-broken unit test. Props [JPry](https://github.com/JPry) ([#539](https://github.com/WebDevStudios/CMB2/pull/539)).
+* Fix issue with oembed fields not working correctly on options pages. ([#542](https://github.com/WebDevStudios/CMB2/pull/542)).
+* Fix issue with repeatable field <button> elements stealing focus from "submit" button.
 
 ## 2.1.2 - 2015-10-01
 

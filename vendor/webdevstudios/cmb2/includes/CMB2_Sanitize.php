@@ -68,6 +68,7 @@ class CMB2_Sanitize {
 		switch ( $this->field->type() ) {
 			case 'wysiwyg':
 			case 'textarea_small':
+			case 'oembed':
 				$sanitized_value = $this->textarea();
 				break;
 			case 'taxonomy_select':
@@ -84,7 +85,6 @@ class CMB2_Sanitize {
 			case 'multicheck':
 			case 'multicheck_inline':
 			case 'file_list':
-			case 'oembed':
 			case 'group':
 				// no filtering
 				$sanitized_value = $this->value;
@@ -92,7 +92,7 @@ class CMB2_Sanitize {
 			default:
 				// Handle repeatable fields array
 				// We'll fallback to 'sanitize_text_field'
-				$sanitized_value = is_array( $this->value ) ? array_map( 'sanitize_text_field', $this->value ) : call_user_func( 'sanitize_text_field', $this->value );
+				$sanitized_value = is_array( $this->value ) ? array_map( 'sanitize_text_field', $this->value ) : sanitize_text_field( $this->value );
 				break;
 		}
 
@@ -118,10 +118,10 @@ class CMB2_Sanitize {
 		// for repeatable
 		if ( is_array( $this->value ) ) {
 			foreach ( $this->value as $key => $val ) {
-				$this->value[ $key ] = $val ? esc_url_raw( $val, $protocols ) : $this->field->args( 'default' );
+				$this->value[ $key ] = $val ? esc_url_raw( $val, $protocols ) : $this->field->get_default();
 			}
 		} else {
-			$this->value = $this->value ? esc_url_raw( $this->value, $protocols ) : $this->field->args( 'default' );
+			$this->value = $this->value ? esc_url_raw( $this->value, $protocols ) : $this->field->get_default();
 		}
 
 		return $this->value;
@@ -227,7 +227,7 @@ class CMB2_Sanitize {
 	}
 
 	/**
-	 * Datetime to imestamp with timezone
+	 * Datetime to timestamp with timezone
 	 * @since  1.0.1
 	 * @return string       Timestring
 	 */
@@ -404,7 +404,7 @@ class CMB2_Sanitize {
 	}
 
 	/**
-	 * Returns a new, supporting CMB2_Field object based on a new field id.
+	 * Returns a new, supporting, CMB2_Field object based on a new field id.
 	 * @since  2.2.0
 	 */
 	public function _new_supporting_field( $new_field_id ) {

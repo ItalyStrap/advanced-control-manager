@@ -6,7 +6,7 @@ paths:
     helpers: tests/_support
 settings:
     bootstrap: _bootstrap.php
-    colors: true
+    colors: false
     memory_limit: 1024M
 modules:
     config:
@@ -52,6 +52,6 @@ modules:
             port: 4444
             restart: true
             wait: 2
-            adminUsername: adminUsername
-            adminPassword: adminPassword
+            adminUsername: admin
+            adminPassword: password
             adminUrl: /wp-admin
