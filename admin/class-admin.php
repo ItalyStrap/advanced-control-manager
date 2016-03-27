@@ -61,6 +61,13 @@ class Admin implements I_Admin{
 	protected $options = array();
 
 	/**
+	 * The option name
+	 *
+	 * @var string
+	 */
+	private $option_name;
+
+	/**
 	 * The type of fields to create
 	 *
 	 * @var object
@@ -80,6 +87,8 @@ class Admin implements I_Admin{
 		}
 
 		$this->settings = (array) require( '/settings/settings-admin-page.php' );
+
+		$this->option_name = 'italystrap_settings';
 
 		$this->options = $options;
 
@@ -308,8 +317,8 @@ class Admin implements I_Admin{
 	public function settings_init() {
 
 		// If the theme options don't exist, create them.
-		if ( false === get_option( 'italystrap_settings' ) ) {
-			add_option( 'italystrap_settings' );
+		if ( false === get_option( $this->option_name ) ) {
+			add_option( $this->option_name );
 		}
 
 		foreach ( $this->settings as $key => $setting ) {
@@ -333,7 +342,7 @@ class Admin implements I_Admin{
 
 		register_setting(
 			'italystrap_options_group',
-			'italystrap_settings',
+			$this->option_name,
 			array( $this, 'sanitization' )
 		);
 
@@ -444,28 +453,35 @@ class Admin implements I_Admin{
 	}
 
 	/**
-	 * Textarea for custom CSS
+	 * Get the field type
 	 *
-	 * @param array $args Array with input arguments.
+	 * @param  array $args Array with arguments.
 	 */
-	public function option_custom_css( $args ) {
+	public function get_field_type( $args ) {
 
-		$args['value'] = ( isset( $this->options['custom_css'] ) ) ? $this->options['custom_css'] : '' ;
+		/**
+		 * Prefix method
+		 *
+		 * @var string
+		 */
+		$field_method = 'field_type_' . str_replace( '-', '_', $args['type'] );
 
-		echo $this->fields_type->field_type_textarea( $args, $out = '' ); // XSS ok.
+		$args['value'] = ( isset( $this->options[ $args['id'] ] ) ) ? $this->options[ $args['id'] ] : '' ;
 
-	}
+		/* Set field id and name  */
+		$args['_id'] = $args['_name'] = $this->option_name . '[' . $args['id'] . ']';
 
-	/**
-	 * Textarea for custom JavaScript
-	 *
-	 * @param array $args Array with input arguments.
-	 */
-	public function option_custom_js( $args ) {
+		/**
+		 * Run method
+		 */
+		if ( method_exists( $this->fields_type, $field_method ) ) {
 
-		$args['value'] = ( isset( $this->options['custom_js'] ) ) ? $this->options['custom_js'] : '' ;
+			echo $this->fields_type->$field_method( $args ); // XSS ok.
 
-		echo $this->fields_type->field_type_textarea( $args, $out = '' ); // XSS ok.
+		} else {
 
+			echo $this->fields_type->field_type_text( $args ); // XSS ok.
+
+		}
 	}
 }
