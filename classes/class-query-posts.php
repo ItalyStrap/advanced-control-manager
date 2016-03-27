@@ -1,21 +1,18 @@
-<?php namespace ItalyStrap\Core;
-use \WP_Query;
+<?php
 /**
- *
- * Display a Bootstrap Carousel based on selected images and their titles and
- * descriptions. You need to include the Bootstrap CSS and Javascript files on
- * your own; otherwise the class will not work.
- *
- * @todo https://codex.wordpress.org/it:Shortcode_Gallery Aggiungere parametri mancanti
+ * This class is for elaborate te arguments from widget or shortcode and then return an HTML for display the posts/page result.
  *
  * @package Query_Posts
  * @version 1.0
- * @since   1.0
+ * @since   2.0
  */
 
+namespace ItalyStrap\Core;
+use \WP_Query;
+
 /**
-* Query Class for widget and shortcode
-*/
+ * Query Class for widget and shortcode
+ */
 class Query_Posts {
 
 	/**
@@ -85,6 +82,15 @@ class Query_Posts {
 	}
 
 	/**
+	 * Get the global post
+	 *
+	 * @return object Return the global objesct post
+	 */
+	public function get_global_post() {
+		return $this->post;
+	}
+
+	/**
 	 * Get shortcode attributes.
 	 *
 	 * @param  array $args The carousel attribute.
@@ -103,18 +109,33 @@ class Query_Posts {
 
 	}
 
+	/**
+	 * Get arguments from widget attributes
+	 *
+	 * @param  array $args Arguments from widget.
+	 */
 	public function get_widget_args( $args ) {
 
 		$this->args = $this->get_attributes( $args );
 
 	}
 
+	/**
+	 * Get arguments from shortcode attributes
+	 *
+	 * @param  array $args Arguments from shortcode.
+	 */
 	public function get_shortcode_args( $args ) {
 
 		$this->args = $this->get_attributes( $args );
 
 	}
 
+	/**
+	 * Get the correct path for template parts
+	 *
+	 * @return string Return the path
+	 */
 	public function get_template_part() {
 
 		$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
@@ -132,7 +153,6 @@ class Query_Posts {
 				$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
 
 			}
-
 		} elseif ( 'standard' === $this->args['template'] ) {
 
 			$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
@@ -147,6 +167,11 @@ class Query_Posts {
 
 	}
 
+	/**
+	 * Output the query result
+	 *
+	 * @return string The HTML result
+	 */
 	public function output() {
 
 		/**
@@ -162,6 +187,7 @@ class Query_Posts {
 
 		/**
 		 * Excerpt more filter
+		 *
 		 * @var function
 		 */
 		$new_excerpt_more = function ( $more ) {
@@ -181,12 +207,11 @@ class Query_Posts {
 		}
 
 		/**
-		 * Variables for template
+		 * $class = $this->args['widget_class'];
+		 * var_dump($this->args['post_types']);
+		 * var_dump(get_users());
 		 */
 
-		// $class = $this->args['widget_class'];
-// var_dump($this->args['post_types']);
-// var_dump(get_users());
 		/**
 		 * Arguments for WP_Query
 		 *
@@ -210,12 +235,12 @@ class Query_Posts {
 			$args['post__in'] = explode( ',', $this->args['post_id'] );
 
 			/**
-			 * This delete comma in case the input is like 1,2,
+			 * This delete last comma in case the input is like 1,2,
 			 */
 			$args['post__in'] = array_filter( $args['post__in'] );
 
 			/**
-			 * Convert string to integer
+			 * Convert array value from string to integer
 			 */
 			$args['post__in'] = array_map( 'absint', $args['post__in'] );
 
@@ -291,7 +316,7 @@ class Query_Posts {
 				$args['update_post_term_cache'] = true;
 			}
 		}
-
+// var_dump($this->args['from_current_user']);
 		/**
 		 * Show posts only from current user.
 		 */
@@ -310,7 +335,6 @@ class Query_Posts {
 
 		$args = apply_filters( 'italystrap_widget_query_args', $args );
 
-// var_dump($args);
 		$this->query->query( $args );
 
 		ob_start();
