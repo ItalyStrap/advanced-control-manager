@@ -131,7 +131,7 @@
 					<footer class="entry-footer">
 					
 						<?php
-						$categories = get_the_term_list( $this->post->ID, 'category', '', ', ' );
+						$categories = get_the_term_list( $this->query->post->ID, 'category', '', ', ' );
 						if ( $this->args['show_cats'] && $categories ) :
 							?>
 						<div class="entry-categories">
@@ -141,7 +141,7 @@
 						<?php endif; ?>
 					
 						<?php
-						$tags = get_the_term_list( $this->post->ID, 'post_tag', '', ', ' );
+						$tags = get_the_term_list( $this->query->post->ID, 'post_tag', '', ', ' );
 
 						if ( $this->args['show_tags'] && $tags ) :
 						?>
@@ -159,7 +159,7 @@
 						// var_dump($product->get_weight() );
 						// var_dump( $product->get_weight() . ' ' . esc_attr( get_option('woocommerce_weight_unit' ) ) );
 
-						// $_product = wc_get_product( $this->post->ID );
+						// $_product = wc_get_product( $this->query->post->ID );
 
 						// var_dump($_product->get_regular_price());
 
@@ -208,10 +208,10 @@
 
 							</div>
 						<?php endif; ?>
-						<?php do_action( 'italystrap_widget_posts_content_footer', $this->post ); ?>
+						<?php do_action( 'italystrap_widget_posts_content_footer', $this->query ); ?>
 					</footer>
 				</section>
-			<?php do_action( 'italystrap_widget_posts_content_article', $this->post ); ?>
+			<?php do_action( 'italystrap_widget_posts_content_article', $this->query ); ?>
 		</article>
 
 		<?php endwhile; ?>

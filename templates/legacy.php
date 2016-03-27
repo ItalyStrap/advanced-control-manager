@@ -4,6 +4,7 @@
  *
  * @version     2.0.0
  */
+return;
 ?>
 
 <?php if ($instance['before_posts']) : ?>
