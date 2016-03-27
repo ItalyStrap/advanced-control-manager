@@ -11,6 +11,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 use \WP_Widget;
+use ItalyStrap\Admin\Fields;
 use ItalyStrap\Admin\Sanitization;
 use ItalyStrap\Admin\Validation;
 
@@ -315,7 +316,7 @@ abstract class Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		$instance = $new_instance;
-
+// var_dump($instance);
 		$this->before_update_fields();
 
 		$this->validation = new Validation;
@@ -323,6 +324,13 @@ abstract class Widget extends WP_Widget {
 
 		foreach ( $this->fields as $key ) {
 
+			if ( ! isset( $instance[ $key['id'] ] ) ) {
+				$instance[ $key['id'] ] = '';
+			}
+
+			/**
+			 * Validate fields if $key['validate'] is set
+			 */
 			if ( isset( $key['validate'] ) ) {
 
 				if ( false === $this->validation->validate( $key['validate'], $instance[ $key['id'] ] ) ) {
@@ -370,7 +378,7 @@ abstract class Widget extends WP_Widget {
 	 * @return string           Return the $instance of widget
 	 */
 	public function after_validate_fields( $instance ) {
-
+// var_dump($instance);die();
 		return $instance;
 
 	}
@@ -554,18 +562,25 @@ abstract class Widget extends WP_Widget {
 	protected function field_type( array $key, $out = '' ) {
 
 		/* Set Defaults */
-		$key['default'] = isset( $key['default'] ) ? $key['default'] : '';
-
+		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
+// var_dump( $key['default'] );
+// var_dump( $key['value'] );
+// var_dump( $this->instance[ $key['id'] ] );
 		if ( isset( $this->instance[ $key['id'] ] ) ) {
-
+// var_dump($this->instance[ $key['id'] ]);
 			if ( is_array( $this->instance[ $key['id'] ] ) ) {
 				$key['value'] = $this->instance[ $key['id'] ];
+				// var_dump($key['value']);
 			} else {
 				$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
 			}
 
 		} else {
-			unset( $key['value'] );
+			// var_dump( $key );
+			// var_dump( $key['id'] );
+			// var_dump( $key['value'] );
+			// unset( $key['value'] );
+			// var_dump( $key['value'] );
 		}
 
 		/* Set field id and name  */

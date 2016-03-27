@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php namespace ItalyStrap\Admin;
 /**
  * Fields API: Fields Class
  *
@@ -13,7 +13,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 /**
  * Class for make field type
  */
-class Fields {
+class Fields implements I_Fields{
 
 	/**
 	 * Combines attributes into a string for a form element
@@ -51,7 +51,7 @@ class Fields {
 
 		$a = wp_parse_args( $attr, array(
 			'type'            => 'text',
-			'class'           => esc_attr( $key['class'] ),
+			'class'           => esc_attr( isset( $key['class'] ) ? $key['class'] : '' ),
 			'name'            => esc_attr( $key['_name'] ),
 			'id'              => esc_attr( $key['_id'] ),
 			'value'           => esc_attr( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
@@ -79,7 +79,7 @@ class Fields {
 	 * @return string      Return the HTML Field Text
 	 */
 	public function field_type_text( $key, $out = '' ) {
-		
+
 		$attr = array();
 
 		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
@@ -259,6 +259,10 @@ class Fields {
 		if ( isset( $key['cols'] ) ) {
 			$out .= 'cols="' . esc_attr( $key['cols'] ) . '" '; }
 
+		if ( isset( $key['placeholder'] ) ) {
+			$out .= 'placeholder="' . esc_attr( $key['placeholder'] ) . '" ';
+		}
+
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		$out .= 'id="'. esc_attr( $key['_id'] ) .'" name="' . esc_attr( $key['_name'] ) . '">' . esc_html( $value );
@@ -280,7 +284,9 @@ class Fields {
 	 * @return string      Return the HTML Field Checkbox
 	 */
 	public function field_type_checkbox( $key, $out = '' ) {
-
+// var_dump($key);
+// var_dump($key['id']);
+// var_dump($key['value']);
 		$out .= ' <input type="checkbox" ';
 
 		if ( isset( $key['class'] ) ) {
@@ -301,7 +307,7 @@ class Fields {
 		 */
 
 		$out .= ' /> ';
-
+// var_dump($out);
 		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		if ( isset( $key['desc'] ) ) {

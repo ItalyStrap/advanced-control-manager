@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Init API: Init Class
  *
  * @package ItalyStrap
  * @since 2.0.0
  */
+
+namespace ItalyStrap\Core;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -27,30 +29,22 @@ class Init {
 	 */
 	public function __construct() {
 
-		$this->options = get_option( 'italystrap_settings' );
-
-		// /**
-		//  * Adjust priority to make sure this runs
-		//  */
-		// add_action( 'init', array( $this, 'on_load' ), 100 );
+		$this->options = (array) get_option( 'italystrap_settings' );
 
 		/**
-		 * Print inline css in header
+		 * Test
+		 * add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 		 */
-		add_action( 'wp_head', array( $this, 'print_inline_css_in_header' ), 999 );
+	}
 
-		/**
-		 * Print inline script in footer
-		 * Load after all and before shotdown hook
-		 */
-		add_action( 'wp_print_footer_scripts', array( $this, 'print_inline_script_in_footer' ), 999 );
-
-		if ( isset( $this->options['lazyload'] ) && ! is_admin() ) {
-			Lazy_Load_Image::init();
-		}
-
-		// add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
-
+	/**
+	 * Get Options
+	 *
+	 * @since 2.0.0
+	 * @return array        Get options
+	 */
+	public function get_options() {
+		return $this->options;
 	}
 
 	/**
@@ -140,6 +134,7 @@ class Init {
  * @var Init
  */
 $init = new Init;
+$get_options = $init->get_options();
 
 /**
  * Adjust priority to make sure this runs
@@ -147,10 +142,15 @@ $init = new Init;
 add_action( 'init', array( $init, 'on_load' ), 100 );
 
 /**
+ * Attivate LazyLoad
+ */
+if ( isset( $get_options['lazyload'] ) && ! is_admin() ) {
+	Lazy_Load_Image::init();
+}
+
+/**
  * Register widget
  */
-// $init->widgets_init();
-
 add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 
 add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
@@ -163,11 +163,48 @@ require( 'hooks/simply-show-ids.php' );
 add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
 
 /**
+ * Get metaboxex value
+ */
+$post_meta = new Post_Meta;
+add_action( 'wp', array( $post_meta, 'add_post_type_custom_script' ) );
+add_filter( 'body_class', array( $post_meta, 'body_class' ) );
+add_filter( 'post_class', array( $post_meta, 'body_class' ) );
+
+
+/**
+ * Set JavaScript from admin option Script
+ */
+ItalyStrapGlobals::set( $get_options['custom_js'] );
+
+
+/**
+ * Set CSS from admin option Script
+ */
+ItalyStrapGlobalsCss::set( $get_options['custom_css'] );
+
+/**
+ * Print inline css in header
+ */
+add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999 );
+
+/**
+ * Print inline script in footer
+ * Load after all and before shotdown hook
+ */
+add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );
+
+/**
  * Istantiate this class only if is admin
  */
 if ( is_admin() ) {
 
-	new \ItalyStrapAdmin;
+	/**
+	 * Instantiate Admin Class
+	 *
+	 * @var object
+	 */
+	$admin = new \ItalyStrap\Admin\Admin( $get_options, new \ItalyStrap\Admin\Fields );
+	$admin->init();
 
 	new \ItalyStrapAdminGallerySettings;
 
@@ -181,4 +218,7 @@ if ( is_admin() ) {
 
 	$image_size_media = new \ItalyStrapAdminMediaSettings;
 	add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
+
+	$register_metabox = new \ItalyStrap\Admin\Register_Metaboxes;
+	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_script_settings' ) );
 }

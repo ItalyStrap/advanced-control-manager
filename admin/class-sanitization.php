@@ -95,6 +95,10 @@ class Sanitization {
 			break;
 
 			case 'sanitize_option':
+				/**
+				 * sanitize_option ha bisogno di 2 valori
+				 * eseguire test
+				 */
 				return sanitize_option( $instance_value );
 			break;
 
