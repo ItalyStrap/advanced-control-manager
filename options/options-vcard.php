@@ -5,7 +5,9 @@
  * @package ItalyStrap
  */
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
+if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+	die();
+}
 
 /**
  * Definition array() with all the options connected to the
@@ -119,6 +121,21 @@ return array(
 				 ),
 
 	/**
+	 * CSS class for the container of this widget.
+	 */
+	'container_class'			=> array(
+				'name'		=> __( 'Container CSS class', 'ItalyStrap' ),
+				'desc'		=> __( 'CSS class for the container of this widget.', 'ItalyStrap' ),
+				'id'		=> 'container_class',
+				'type'		=> 'text',
+				'class'		=> 'widefat container_class',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
 	 * Your company name.
 	 */
 	'company_name'			=> array(
@@ -130,7 +147,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -145,7 +162,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -160,7 +177,7 @@ return array(
 				'default'	=> 0,
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'strip_tags|esc_url',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -175,7 +192,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -190,7 +207,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -205,7 +222,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -220,7 +237,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -235,7 +252,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -250,7 +267,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -265,7 +282,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -280,7 +297,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -295,7 +312,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'email',
 				'sanitize'	=> 'is_email',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
@@ -310,7 +327,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'numeric',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'info',
 				 ),
 
 	/**
