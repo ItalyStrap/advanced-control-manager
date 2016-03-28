@@ -114,7 +114,7 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'italystrap_pluginPage_section2',
 				'args'		=> array(
-						'name'			=> __( 'Custom script', 'italystrap' ),
+						'name'			=> __( 'Activate', 'italystrap' ),
 						'desc'			=> __( 'If you don\'t activate it the CSS and JS will not work.', 'italystrap' ),
 						'id'			=> 'activate_custom_script',
 						'type'			=> 'checkbox',

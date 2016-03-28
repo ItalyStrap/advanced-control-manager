@@ -369,7 +369,13 @@ class Admin implements I_Admin{
 	 */
 	public function widget_section( $args ) {
 
-		esc_attr_e( 'This section description for widget', 'italystrap' );
+		$section = isset( $args['callback'][1] ) ? $args['callback'][1] : '';
+
+		$section = str_replace( '_', ' ', $section );
+
+		$text = esc_attr__( 'This is the %s', 'italystrap' );
+
+		echo sprintf( $text, $section ); // XSS ok.
 	}
 
 	/**
