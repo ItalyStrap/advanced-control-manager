@@ -76,26 +76,47 @@ class Widget_Product extends Widget {
 	}
 
 	/**
-	 * Function description
+	 * Parse the query argument before put it in the WP_Query
 	 *
 	 * @param  array $args Query arguments
 	 * @return array       New Query arguments
 	 */
 	public function parse_query_arguments( $args ) {
-	
-		// var_dump( $args );
-		// var_dump( $args['tag__in'] );
 
-		$terms = isset( $args['tag__in'] ) ? $args['tag__in'] : array();
+		if ( ! isset( $args['tag__in'] ) && ! isset( $args['category__in'] ) ) {
+			return $args;
+		}
 
-		$args['tax_query'] = array(
+		if ( isset( $args['tag__in'] ) && ! isset( $args['category__in'] ) ) {
+			$args['tax_query'] = array(
 				array(
 					'taxonomy'	=> 'product_tag',
-					'terms' 	=> $terms,
-				)
+					'terms' 	=> $args['tag__in'],
+				),
 			);
+		} elseif ( ! isset( $args['tag__in'] ) && isset( $args['category__in'] ) ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy'	=> 'product_cat',
+					'terms' 	=> $args['category__in'],
+				),
+			);
+		} else {
+			$args['tax_query'] = array(
+				'relation' => 'AND',
+				array(
+					'taxonomy'	=> 'product_tag',
+					'terms' 	=> $args['tag__in'],
+				),
+				array(
+					'taxonomy'	=> 'product_cat',
+					'terms' 	=> $args['category__in'],
+				),
+			);
+		}
 
-		var_dump( $args );
+		unset( $args['tag__in'] );
+		unset( $args['category__in'] );
 
 		return $args;
 	
