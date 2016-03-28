@@ -76,6 +76,32 @@ class Widget_Product extends Widget {
 	}
 
 	/**
+	 * Function description
+	 *
+	 * @param  array $args Query arguments
+	 * @return array       New Query arguments
+	 */
+	public function parse_query_arguments( $args ) {
+	
+		// var_dump( $args );
+		// var_dump( $args['tag__in'] );
+
+		$terms = isset( $args['tag__in'] ) ? $args['tag__in'] : array();
+
+		$args['tax_query'] = array(
+				array(
+					'taxonomy'	=> 'product_tag',
+					'terms' 	=> $terms,
+				)
+			);
+
+		var_dump( $args );
+
+		return $args;
+	
+	}
+
+	/**
 	 * Dispay the widget content
 	 *
 	 * @param  array $args     Display arguments including 'before_title', 'after_title',
@@ -88,6 +114,8 @@ class Widget_Product extends Widget {
 		$query_posts = Query_Posts::init();
 
 		$query_posts->get_widget_args( $instance );
+
+		add_filter( 'italystrap_widget_query_args', array( $this, 'parse_query_arguments' ) );
 
 		return $query_posts->output();
 	}

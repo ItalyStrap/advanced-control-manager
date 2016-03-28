@@ -13,7 +13,7 @@ use \WP_Query;
 /**
  * Query Class for widget and shortcode
  */
-class Query_Posts extends Query {
+class Query_Product extends Query {
 
 	/**
 	 * Constructor.
@@ -123,6 +123,16 @@ class Query_Posts extends Query {
 			'no_found_rows'				=> true,
 			'update_post_term_cache'	=> false,
 			'update_post_meta_cache'	=> false,
+			// 'product_tag'				=> 'tag',
+			// 'product_cat'				=> 'tag',
+			'tax_query' 			=> array(
+				array(
+					'taxonomy' 		=> 'product_tag',
+					'terms' 	=> array( '226' ),
+					// 'field' 	=> 'slug',
+					// 'operator' 	=> 'IN'
+				)
+			),
 		);
 
 		/**
@@ -232,7 +242,7 @@ class Query_Posts extends Query {
 		}
 
 		$args = apply_filters( 'italystrap_widget_query_args', $args );
-
+var_dump( $args );
 		$this->query->query( $args );
 
 		ob_start();

@@ -31,4 +31,3 @@ interface I_Admin {
 	 */
 	public function sanitization( $input );
 }
-
