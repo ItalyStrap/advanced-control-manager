@@ -89,7 +89,7 @@ class Init {
 			register_widget( 'ItalyStrap\Core\Widget_Posts' );
 		}
 
-		if ( isset( $this->options['media_widget'] ) ) {
+		if ( isset( $this->options['media_carousel_widget'] ) ) {
 			register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
 		}
 

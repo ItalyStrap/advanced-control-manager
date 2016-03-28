@@ -65,9 +65,11 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 
 			$image_css_class = ( isset( $instance['image_css_class'] ) ) ? esc_attr( $instance['image_css_class'] ) : '';
 
+			$container_css_class = isset( $instance['container_css_class'] ) ? esc_attr( $instance['container_css_class'] ) : '';
+
 			$out = '';
 
-			$out = '<figure class="null">';
+			$out = '<figure class="widget-figure-media ' . $container_css_class . '">';
 
 			$attr = array(
 			'class'		=> "attachment-$size_class size-$size_class $align $image_css_class",
@@ -82,9 +84,9 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 				$attr['alt'] = esc_attr( $instance['alt'] );
 			}
 
-			$out .= wp_get_attachment_image( $instance['ids'] , $size_class, false, $attr );
+			$out .= wp_get_attachment_image( $instance['id'] , $size_class, false, $attr );
 
-			if ( isset( $instance['caption'] ) ) {
+			if ( ! empty( $instance['caption'] ) ) {
 
 				$out .= '<figcaption class="fig-null">' . esc_attr( $instance['caption'] ) . '</figcaption>';
 

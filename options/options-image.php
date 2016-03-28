@@ -1,11 +1,13 @@
 <?php
 /**
- * Array definition for Posts default options
+ * Array definition for Image widget and shortcode
  *
  * @package ItalyStrap
  */
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
+if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+	die();
+}
 
 /**
  * Definition array() with all the options connected to the
@@ -16,10 +18,10 @@ return array(
 	/**
 	 * Ids for the images to use.
 	 */
-	'ids'				=> array(
+	'id'				=> array(
 				'name'		=> __( 'Images ID', 'ItalyStrap' ),
 				'desc'		=> __( 'Enter the media or post type ID.', 'ItalyStrap' ),
-				'id'		=> 'ids',
+				'id'		=> 'id',
 				'type'		=> 'media_list',
 				'class'		=> 'widefat ids',
 				'default'	=> false,
@@ -92,6 +94,7 @@ return array(
 	 * Size for image attachment. Accepted values: thumbnail, medium,
 	 * large, full or own custom name added in add_image_size function.
 	 * Default: full.
+	 *
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
@@ -107,10 +110,10 @@ return array(
 				 ),
 
 	/**
-	 * 
+	 * Alignment for image
 	 */
 	'alignment'				=> array(
-				'name'		=> __( 'Size for images', 'ItalyStrap' ),
+				'name'		=> __( 'Alignment', 'ItalyStrap' ),
 				'desc'		=> __( '', 'ItalyStrap' ),
 				'id'		=> 'alignment',
 				'type'		=> 'select',
@@ -129,6 +132,21 @@ return array(
 	/**
 	 * Ids for the images to use.
 	 */
+	'container_css_class'		=> array(
+				'name'		=> __( 'Container CSS class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the image css class (optional).', 'ItalyStrap' ),
+				'id'		=> 'container_css_class',
+				'type'		=> 'text',
+				'class'		=> 'widefat container_css_class',
+				'default'	=> '',
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'style',
+				 ),
+
+	/**
+	 * Ids for the images to use.
+	 */
 	'image_css_class'		=> array(
 				'name'		=> __( 'Image CSS class', 'ItalyStrap' ),
 				'desc'		=> __( 'Enter the image css class (optional).', 'ItalyStrap' ),
@@ -138,7 +156,7 @@ return array(
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
+				'section'	=> 'style',
 				 ),
 
 );

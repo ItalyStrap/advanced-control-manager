@@ -187,6 +187,8 @@ class Fields implements I_Fields{
 
 		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
 
+		$value = isset( $key['value'] ) ? esc_attr( $key['value'] ) : '';
+
 		ob_start();
 
 		?>
