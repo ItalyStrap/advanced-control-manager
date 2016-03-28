@@ -157,12 +157,6 @@ add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
 add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 
 /**
- * Add ID to post_type table
- */
-require( 'hooks/simply-show-ids.php' );
-add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
-
-/**
  * Get metaboxex value
  */
 $post_meta = new Post_Meta;
@@ -185,7 +179,7 @@ ItalyStrapGlobalsCss::set( $get_options['custom_css'] );
 /**
  * Print inline css in header
  */
-add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999 );
+add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
 
 /**
  * Print inline script in footer
@@ -197,6 +191,14 @@ add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_foo
  * Istantiate this class only if is admin
  */
 if ( is_admin() ) {
+
+	/**
+	 * Add ID to post_type table
+	 */
+	if ( isset( $get_options['show-ids'] ) ) {
+		require( 'hooks/simply-show-ids.php' );
+		add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
+	}
 
 	/**
 	 * Instantiate Admin Class

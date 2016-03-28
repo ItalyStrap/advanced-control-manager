@@ -17,6 +17,35 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 
 return array(
 	/**
+	 * This is the Lazy Load configuration
+	 */
+	'general'	=> array(
+		'tab_title'			=> __( 'General', 'italystrap' ),
+		'id'				=> 'italystrap_general_section',
+		'title'				=> __( 'ItalyStrap options page for general', 'italystrap' ),
+		'callback'			=> 'general_section',
+		'page'				=> 'italystrap_options_group',
+		'settings_fields'	=> array(
+			array(
+				'id'		=> 'show-ids',
+				'title'		=> __( 'Show IDs', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'italystrap_general_section',
+				'args'		=> array(
+						'name'			=> __( 'Show IDs', 'italystrap' ),
+						'desc'			=> __( 'Show IDs on table in post type edit screen', 'italystrap' ),
+						'id'			=> 'show-ids',
+						'type'			=> 'checkbox',
+						'class'			=> 'show-ids',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+		),
+	),
+	/**
 	 * This is the Widget configuration
 	 */
 	'widget'	=> array(

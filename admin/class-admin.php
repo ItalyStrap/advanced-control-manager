@@ -86,7 +86,7 @@ class Admin implements I_Admin{
 			$this->page = esc_attr( wp_unslash( $_GET['page'] ) ); // Input var okay.
 		}
 
-		$this->settings = (array) require( '/settings/settings-admin-page.php' );
+		$this->settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );
 
 		$this->option_name = 'italystrap_settings';
 
@@ -363,12 +363,13 @@ class Admin implements I_Admin{
 	}
 
 	/**
-	 * Setting for section
+	 * Render section CB
 	 *
-	 * @param array $args The arguments for section callback.
+	 * @param  array $args The arguments for section CB
+	 * @return string        [description]
 	 */
-	public function widget_section( $args ) {
-
+	public function render_section_cb( $args ) {
+	
 		$section = isset( $args['callback'][1] ) ? $args['callback'][1] : '';
 
 		$section = str_replace( '_', ' ', $section );
@@ -376,6 +377,27 @@ class Admin implements I_Admin{
 		$text = esc_attr__( 'This is the %s', 'italystrap' );
 
 		echo sprintf( $text, $section ); // XSS ok.
+	
+	}
+
+	/**
+	 * Setting for section
+	 *
+	 * @param array $args The arguments for section callback.
+	 */
+	public function general_section( $args ) {
+
+		$this->render_section_cb( $args );
+	}
+
+	/**
+	 * Setting for section
+	 *
+	 * @param array $args The arguments for section callback.
+	 */
+	public function widget_section( $args ) {
+
+		$this->render_section_cb( $args );
 	}
 
 	/**
