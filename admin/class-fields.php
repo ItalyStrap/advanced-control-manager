@@ -13,62 +13,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 /**
  * Class for make field type
  */
-class Fields implements I_Fields{
-
-	/**
-	 * Combines attributes into a string for a form element
-	 *
-	 * @since  1.1.0
-	 * @param  array $attrs        Attributes to concatenate.
-	 * @param  array $attr_exclude Attributes that should NOT be concatenated.
-	 * @return string               String of attributes for form element
-	 */
-	public function concat_attrs( $attrs, $attr_exclude = array() ) {
-		$attributes = '';
-		foreach ( $attrs as $attr => $val ) {
-			$excluded = in_array( $attr, (array) $attr_exclude, true );
-			$empty    = false === $val && 'value' !== $attr;
-			if ( ! $excluded && ! $empty ) {
-				// If data attribute, use single quote wraps, else double.
-				$quotes = stripos( $attr, 'data-' ) !== false ? "'" : '"';
-				$attributes .= sprintf( ' %1$s=%3$s%2$s%3$s', $attr, $val, $quotes );
-			}
-		}
-		return $attributes;
-	}
-
-	/**
-	 * Handles outputting an 'input' element
-	 *
-	 * @link http://html5doctor.com/html5-forms-input-types/
-	 *
-	 * @since  2.0.0
-	 * @param  array $attr Override arguments.
-	 * @param  array $key Override arguments.
-	 * @return string     Form input element
-	 */
-	public function input( $attr = array(), $key = array() ) {
-
-		$a = wp_parse_args( $attr, array(
-			'type'            => 'text',
-			'class'           => esc_attr( isset( $key['class'] ) ? $key['class'] : '' ),
-			'name'            => esc_attr( $key['_name'] ),
-			'id'              => esc_attr( $key['_id'] ),
-			'value'           => esc_attr( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
-			'desc'            => $this->field_type_description( $key['desc'] ),
-			'js_dependencies' => array(),
-		) );
-
-		if ( isset( $key['size'] ) ) {
-			$a['size'] = esc_attr( $key['size'] );
-		}
-
-		// if ( ! empty( $a['js_dependencies'] ) ) {
-		// 	CMB2_JS::add_dependencies( $a['js_dependencies'] );
-		// }
-
-		return sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc', 'js_dependencies' ) ), $a['desc'] );
-	}
+class Fields extends A_Fields {
 
 	/**
 	 * Create the Field Text
@@ -172,7 +117,75 @@ class Fields implements I_Fields{
 	}
 
 	/**
-	 * Create the Field Text
+	 * Create the Field Media
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Text
+	 */
+	public function field_type_media( $key, $out = '' ) {
+
+		$attr = array(
+			'type'	=> 'text',
+			);
+
+		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+
+		$value = isset( $key['value'] ) ? esc_attr( $key['value'] ) : '';
+
+		ob_start();
+
+		?>
+			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+			<hr>
+			<div class="media_carousel_sortable">
+				<ul id="sortable" class="carousel_images">
+				<?php if ( ! empty( $value ) ) : ?>
+					<?php
+					$ids = explode( ',', $value );
+
+					foreach ( $ids as $id ) :
+
+						$attr = array(
+							'data-id'	=> $id,
+						);
+						$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
+
+						if ( '' === $output ) {
+							$id = (int) get_post_thumbnail_id( $id );
+							$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
+						}
+
+						if ( $output ) :
+					?>
+				
+						<li class="carousel-image ui-state-default">
+							<div>
+								<i class="dashicons dashicons-no"></i>
+								<?php echo $output; // XSS ok. ?>
+							</div>
+						</li>
+				
+					<?php
+						endif;
+					endforeach; ?>
+				<?php endif; ?>
+				</ul>
+			</div>
+			<span style="clear:both;"></span>
+			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+		<hr>
+		<?php
+
+		$out .= ob_get_contents();
+		ob_end_clean();
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Media List
 	 *
 	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.

@@ -22,7 +22,7 @@ return array(
 				'name'		=> __( 'Images ID', 'ItalyStrap' ),
 				'desc'		=> __( 'Enter the media or post type ID.', 'ItalyStrap' ),
 				'id'		=> 'id',
-				'type'		=> 'media_list',
+				'type'		=> 'media',
 				'class'		=> 'widefat ids',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
