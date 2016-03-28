@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Widget API: Widget_Posts class
  *
  * @package ItalyStrap
  * @since 2.0.0
  */
+
+namespace ItalyStrap\Core;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -28,8 +30,6 @@ class Widget_Posts extends Widget {
 		 */
 		$get_post_types = get_post_types( array( 'public' => true ) );
 
-		// $get_post_types = ( class_exists( 'WooCommerce' ) ) ? array_merge( $get_post_types, array( 'product' => 'product' ) ) : $get_post_types ;
-
 		/**
 		 * Configure widget array.
 		 *
@@ -42,6 +42,7 @@ class Widget_Posts extends Widget {
 			'description'		=> __( 'Displays list of posts with an array of options', 'ItalyStrap' ),
 			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
+			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 		 );
 
 		/**

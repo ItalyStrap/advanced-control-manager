@@ -188,6 +188,10 @@ abstract class Widget extends WP_Widget {
 		/**
 		 * Settings some defaults options.
 		 *
+		 * New feauture added from WP 4.5 to add selective refresh on widget, see the link fro more information.
+		 *
+		 * @see https://make.wordpress.org/core/2016/03/22/implementing-selective-refresh-support-for-widgets/
+		 *
 		 * @var array
 		 */
 		$defaults = array(
@@ -617,7 +621,7 @@ abstract class Widget extends WP_Widget {
 		} else {
 
 			return '<p' . $p_class . '>' . $this->fields_type->field_type_text( $key ) . '</p>';
-			
+
 		}
 
 	}
