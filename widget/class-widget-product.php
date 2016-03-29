@@ -136,8 +136,6 @@ class Widget_Product extends Widget {
 
 		$query_posts->get_widget_args( $instance );
 
-		// var_dump( $this );
-
 		add_filter( "italystrap_{$this->id_base}_query_arg", array( $this, 'parse_query_arguments' ) );
 
 		return $query_posts->output();
