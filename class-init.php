@@ -200,12 +200,14 @@ if ( is_admin() ) {
 		add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
 	}
 
+	$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );
+
 	/**
 	 * Instantiate Admin Class
 	 *
 	 * @var object
 	 */
-	$admin = new \ItalyStrap\Admin\Admin( $get_options, new \ItalyStrap\Admin\Fields );
+	$admin = new \ItalyStrap\Admin\Admin( $get_options, new \ItalyStrap\Admin\Fields, $admin_settings );
 	$admin->init();
 
 	new \ItalyStrapAdminGallerySettings;

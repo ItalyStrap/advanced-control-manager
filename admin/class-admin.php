@@ -80,13 +80,13 @@ class Admin implements I_Admin{
 	 * @param array  $options     Get the plugin options.
 	 * @param object $fields_type The Fields object.
 	 */
-	public function __construct( array $options = array(), I_Fields $fields_type ) {
+	public function __construct( array $options = array(), I_Fields $fields_type, array $settings ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
 			$this->page = esc_attr( wp_unslash( $_GET['page'] ) ); // Input var okay.
 		}
 
-		$this->settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );
+		$this->settings = $settings;
 
 		$this->option_name = 'italystrap_settings';
 
@@ -396,6 +396,16 @@ class Admin implements I_Admin{
 	 * @param array $args The arguments for section callback.
 	 */
 	public function widget_section( $args ) {
+
+		$this->render_section_cb( $args );
+	}
+
+	/**
+	 * Setting for section
+	 *
+	 * @param array $args The arguments for section callback.
+	 */
+	public function shortcode_section( $args ) {
 
 		$this->render_section_cb( $args );
 	}

@@ -126,6 +126,35 @@ return array(
 		),
 	),
 	/**
+	 * This is the Lazy Load configuration
+	 */
+	'shortcode'	=> array(
+		'tab_title'			=> __( 'Shortcode', 'italystrap' ),
+		'id'				=> 'italystrap_shortcode_section',
+		'title'				=> __( 'ItalyStrap options page for shortcode', 'italystrap' ),
+		'callback'			=> 'shortcode_section',
+		'page'				=> 'italystrap_options_group',
+		'settings_fields'	=> array(
+			array(
+				'id'		=> 'activate-shortcode',
+				'title'		=> __( 'Shortcode', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'italystrap_shortcode_section',
+				'args'		=> array(
+						'name'			=> __( 'Shortcode', 'italystrap' ),
+						'desc'			=> __( 'Activate a shortcode for', 'italystrap' ),
+						'id'			=> 'activate-shortcode',
+						'type'			=> 'checkbox',
+						'class'			=> 'activate-shortcode',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+		),
+	),
+	/**
 	 * This is the Script configuration
 	 */
 	'script'	=> array(
