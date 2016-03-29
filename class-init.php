@@ -201,7 +201,9 @@ if ( is_admin() ) {
 	}
 
 	$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );
-
+// var_dump( $get_options );
+// var_dump( $admin_settings['general']['settings_fields'][0] );
+	// get_admin_default_settings( $admin_settings );
 	/**
 	 * Instantiate Admin Class
 	 *

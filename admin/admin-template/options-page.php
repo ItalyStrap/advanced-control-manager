@@ -36,7 +36,7 @@
 					</span>
 				</h3>
 				<div class="inside">
-					<a itemprop="url" rel="home" title="Overclokk.net" href="http://www.overclokk.net/" class="navbar-brand"><img width="100px" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" pagespeed_url_hash="3136952609" class="logo" itemprop="image" heght="100px" data-src="http://www.overclokk.net/wp-content/themes/ItalyStrap-child/img/overclokk-new-logo-2014.svg" src="http://www.overclokk.net/wp-content/themes/ItalyStrap-child/img/overclokk-new-logo-2014.svg" alt="Logo overclokk" style="opacity: 1;"><meta content="http://www.overclokk.net/wp-content/themes/ItalyStrap-child/img/overclokk-new-logo-2014.svg" itemprop="image"><noscript>&lt;img alt="Logo overclokk" src="http://www.overclokk.net/wp-content/themes/ItalyStrap-child/img/overclokk-new-logo-2014.svg" width="100px" heght="100px" itemprop="image" class="logo" pagespeed_url_hash="611970392"&gt;</noscript></a>
+					<a itemprop="url" rel="home" title="Overclokk.net" href="http://www.overclokk.net/" class="navbar-brand"><img width="100px" class="logo" itemprop="image" heght="100px" data-src="http://www.overclokk.net/wp-content/themes/ItalyStrap-child/img/overclokk-new-logo-2014.svg" src="http://www.overclokk.net/wp-content/themes/ItalyStrap-child/img/overclokk-new-logo-2014.svg" alt="Logo overclokk"></a>
 				</div>
 			</div>
 		</div>

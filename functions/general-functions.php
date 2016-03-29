@@ -60,6 +60,28 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 }
 
 /**
+ * Get admin settings default value in an array
+ *
+ * @param  array $settings The array with settings
+ * @return array           The new array with default options
+ */
+function get_admin_default_settings( array $settings ) {
+
+	foreach ( (array) $settings as $key => $value ) {
+		foreach ( $value['settings_fields'] as $key2 => $field ) {
+			// var_dump( $field['id'] );
+			// var_dump( $field['args'] );
+			var_dump( $field['args']['default'] );
+			// foreach ( $field['args'] as $key3 => $arg ) {
+			// 	var_dump( $arg );
+			// }
+		}
+		// var_dump( $value['settings_fields'] );
+	}
+
+}
+
+/**
  * Read and return file content
  *
  * @link https://tommcfarlin.com/reading-files-with-php/
