@@ -159,4 +159,34 @@ return array(
 				'section'	=> 'style',
 				 ),
 
+	/**
+	 * Ids for the images to use.
+	 */
+	'link'		=> array(
+				'name'		=> __( 'Link URL', 'ItalyStrap' ),
+				'desc'		=> __( 'When you click on image.', 'ItalyStrap' ),
+				'id'		=> 'link',
+				'type'		=> 'text',
+				'class'		=> 'widefat link',
+				'default'	=> '',
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
+	 * Ids for the images to use.
+	 */
+	'link_target_blank'		=> array(
+				'name'		=> __( 'Open in a new windows', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to open in a new tab/windows.', 'ItalyStrap' ),
+				'id'		=> 'link_target_blank',
+				'type'		=> 'checkbox',
+				'class'		=> 'link_target_blank',
+				'default'	=> '',
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
 );

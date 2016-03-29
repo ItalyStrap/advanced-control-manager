@@ -71,6 +71,10 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 
 			$out = '<figure class="widget-figure-media ' . $container_css_class . '">';
 
+			if ( ! empty( $instance['link'] ) ) {
+				$out .= '<a href="' . esc_attr( $instance['link'] ) . '">';
+			}
+
 			$attr = array(
 			'class'		=> "attachment-$size_class size-$size_class $align $image_css_class",
 			'itemprop'	=> 'image',
@@ -85,6 +89,10 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 			}
 
 			$out .= wp_get_attachment_image( $instance['id'] , $size_class, false, $attr );
+
+			if ( ! empty( $instance['link'] ) ) {
+				$out .= '</a>';
+			}
 
 			if ( ! empty( $instance['caption'] ) ) {
 
