@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * General functions for the plugin
  *
  * @package ItalyStrap
  * @since   2.0.0
  */
+
+namespace ItalyStrap\Core;
 
 use \ItalyStrapAdminMediaSettings;
 
@@ -22,7 +24,7 @@ use \ItalyStrapAdminMediaSettings;
  *
  * @param array  $pairs     Entire list of supported attributes and their defaults.
  * @param array  $atts      User defined attributes in shortcode tag.
- * @param string $shortcode Optional. The name of the shortcode, provided for context to enable filtering
+ * @param string $shortcode Optional. The name of the shortcode, provided for context to enable filtering.
  * @return array Combined and filtered attribute list.
  */
 function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shortcode = '' ) {
@@ -33,11 +35,9 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 
 	foreach ( $pairs as $name => $default ) {
 
-		if ( array_key_exists( $name, $atts ) )
-			$array[ $name ] = $atts[ $name ];
-		else
-			$array[ $name ] = ( ( ! empty( $default['default'] ) ) ? $default['default'] : '' );
-
+		if ( array_key_exists( $name, $atts ) ) {
+			$array[ $name ] = $atts[ $name ]; } else {
+			$array[ $name ] = ( ( ! empty( $default['default'] ) ) ? $default['default'] : '' ); }
 	}
 
 	/**
@@ -63,16 +63,20 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
  * Read and return file content
  *
  * @link https://tommcfarlin.com/reading-files-with-php/
+ *
  * @param  file $filename	The file for lazyloading.
+ *
+ * @throws Exception If the file doesn't exist.
+ *
  * @return string $content	Return the content of the file
  */
 function get_file_content( $filename ) {
 
-	// Check to see if the file exists at the specified path
-	if ( ! file_exists( $filename ) )
-		throw new Exception( __( 'The file doesn\'t exist.', 'ItalyStrap' ) );
+	// Check to see if the file exists at the specified path.
+	if ( ! file_exists( $filename ) ) {
+		throw new Exception( __( 'The file doesn\'t exist.', 'ItalyStrap' ) ); }
 
-	// Open the file for reading
+	// Open the file for reading.
 	$file_resource = fopen( $filename, 'r' );
 
 	/**
@@ -105,14 +109,13 @@ function get_taxonomies_list_array( $tax ) {
 
 	$get_taxonomies_list_array = array();
 
-	if ( $tax_arrays && ! is_wp_error ( $tax_arrays ) ) {
+	if ( $tax_arrays && ! is_wp_error( $tax_arrays ) ) {
 
 		foreach ( $tax_arrays as $tax_array ) {
 
 			$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
 
 		}
-
 	}
 
 	return $get_taxonomies_list_array;
@@ -149,13 +152,13 @@ function get_image_size_array( $custom_size = array() ) {
  *
  * @package ItalyStrap
  * @since 2.0.0
- * @param  string $title The title
+ * @param  string $title The title.
  * @return string        The title converted
  */
 function render_html_in_title_output( $title ) {
 
-	$tagopen = '['; //Our HTML opening tag replacement
-	$tagclose = ']'; //Our HTML closing tag replacement
+	$tagopen = '['; // Our HTML opening tag replacement.
+	$tagclose = ']'; // Our HTML closing tag replacement.
 
 	$title = str_replace( $tagopen, '<', $title );
 	$title = str_replace( $tagclose, '>', $title );
@@ -176,7 +179,7 @@ function render_html_in_title_output( $title ) {
  * add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
  *
  * @see class-carousel.php for more information
- * @param  null $mobile_detect An empty variable
+ * @param  null $mobile_detect An empty variable.
  * @return object              Instance of Mobiloe detect
  */
 function new_mobile_detect( $mobile_detect ) {
@@ -184,6 +187,7 @@ function new_mobile_detect( $mobile_detect ) {
 	$mobile_detect = new \Detection\MobileDetect;
 	/**
 	 * Istantiate Mobile_Detect class for responive use
+	 *
 	 * @todo Passare l'istanza dentro la classe http://stackoverflow.com/a/10634148
 	 * @var obj
 	 */
