@@ -28,9 +28,9 @@ class Init {
 	 * Fire the construct
 	 */
 	public function __construct() {
-
+		// delete_option( 'italystrap_settings' );
 		$this->options = (array) get_option( 'italystrap_settings' );
-
+		// var_dump( $this->options );
 		/**
 		 * Test
 		 * add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
@@ -56,9 +56,15 @@ class Init {
 		 * Load po file
 		 */
 		load_plugin_textdomain( 'ItalyStrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
+	}
 
+	/**
+	 * Add type Carousel to built-in gallery shortcode
+	 */
+	public function add_carousel_to_gallery_shortcode() {
+	
 		/**
-		 * Istantiate ItalyStrapCarouselLoader only if [gallery] shortcode exist
+		 * Istantiate Shortcode_Carousel only if [gallery] shortcode exist
 		 *
 		 * @link http://wordpress.stackexchange.com/questions/103549/wp-deregister-register-and-enqueue-dequeue
 		 */
@@ -70,9 +76,12 @@ class Init {
 		}
 
 		if ( ! $gallery ) {
-			new \ItalyStrap\Core\ItalyStrapCarouselLoader();
+			$shortcode_carousel = new \ItalyStrap\Core\Shortcode_Carousel();
+			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 4 );
+			add_filter( 'jetpack_gallery_types', array( $shortcode_carousel, 'gallery_types' ) );
+			// add_filter( 'ItalyStrap_gallery_types', array( $shortcode_carousel, 'gallery_types' ), 999 );
 		}
-
+	
 	}
 
 	/**
@@ -141,6 +150,10 @@ $get_options = $init->get_options();
  */
 add_action( 'init', array( $init, 'on_load' ), 100 );
 
+if ( isset( $get_options['media_carousel_shortcode'] ) ) {
+	$init->add_carousel_to_gallery_shortcode();
+}
+
 /**
  * Attivate LazyLoad
  */
@@ -168,13 +181,13 @@ add_filter( 'post_class', array( $post_meta, 'body_class' ) );
 /**
  * Set JavaScript from admin option Script
  */
-ItalyStrapGlobals::set( $get_options['custom_js'] );
+ItalyStrapGlobals::set( isset( $get_options['custom_js'] ) ? $get_options['custom_js'] : '' );
 
 
 /**
  * Set CSS from admin option Script
  */
-ItalyStrapGlobalsCss::set( $get_options['custom_css'] );
+ItalyStrapGlobalsCss::set( isset( $get_options['custom_css'] ) ? $get_options['custom_css'] : '' );
 
 /**
  * Print inline css in header

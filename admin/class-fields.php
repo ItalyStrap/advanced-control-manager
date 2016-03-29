@@ -308,7 +308,7 @@ class Fields extends A_Fields {
 			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
-
+// var_dump( $key['value'] );
 		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
 			$out .= ' checked="checked" '; }
 
