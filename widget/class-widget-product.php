@@ -103,7 +103,7 @@ class Widget_Product extends Widget {
 			);
 		} else {
 			$args['tax_query'] = array(
-				'relation' => 'AND',
+				'relation'	=> 'AND',
 				array(
 					'taxonomy'	=> 'product_tag',
 					'terms' 	=> $args['tag__in'],
@@ -132,11 +132,13 @@ class Widget_Product extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$query_posts = Query_Posts::init();
+		$query_posts = Query_Posts::init( $this->id_base );
 
 		$query_posts->get_widget_args( $instance );
 
-		add_filter( 'italystrap_widget_query_args', array( $this, 'parse_query_arguments' ) );
+		// var_dump( $this );
+
+		add_filter( "italystrap_{$this->id_base}_query_arg", array( $this, 'parse_query_arguments' ) );
 
 		return $query_posts->output();
 	}

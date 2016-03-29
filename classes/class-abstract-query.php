@@ -55,11 +55,18 @@ abstract class Query implements I_Query {
 	protected static $sticky_posts;
 
 	/**
+	 * The context of this instance works
+	 *
+	 * @var string
+	 */
+	protected $context;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param WP_Query $query The standard query of WordPress.
 	 */
-	function __construct( WP_Query $query ) {
+	function __construct( WP_Query $query, $context = null ) {
 
 		$this->query = $query;
 
@@ -70,6 +77,16 @@ abstract class Query implements I_Query {
 			self::$sticky_posts = get_option( 'sticky_posts' );
 		}
 
+		if ( ! isset( $context ) ) {
+			$context = 'main';
+		}
+
+		if ( ! is_string( $context ) ) {
+			throw new InvalidArgumentException( __( 'Context name must be a string', 'italystrap' ) );
+		}
+
+		$this->context = $context;
+
 	}
 
 	/**
@@ -79,9 +96,9 @@ abstract class Query implements I_Query {
 	 *
 	 * @return self
 	 */
-	public static function init() {
+	public static function init( $context = null ) {
 
-		return new self( new WP_Query() );
+		return new self( new WP_Query(), $context );
 
 	}
 

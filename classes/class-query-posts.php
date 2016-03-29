@@ -40,9 +40,9 @@ class Query_Posts extends Query {
 	 *
 	 * @return self
 	 */
-	public static function init() {
+	public static function init( $context = null ) {
 
-		return new self( new WP_Query() );
+		return new self( new WP_Query(), $context );
 
 	}
 
@@ -214,7 +214,7 @@ class Query_Posts extends Query {
 				$args['update_post_term_cache'] = true;
 			}
 		}
-// var_dump($this->args['from_current_user']);
+
 		/**
 		 * Show posts only from current user.
 		 */
@@ -231,7 +231,7 @@ class Query_Posts extends Query {
 			$args['meta_key'] = $this->args['meta_key'];
 		}
 
-		$args = apply_filters( 'italystrap_widget_query_args', $args );
+		$args = apply_filters( "italystrap_{$this->context}_query_arg", $args );
 
 		$this->query->query( $args );
 
