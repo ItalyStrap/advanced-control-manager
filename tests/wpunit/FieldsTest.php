@@ -1,5 +1,4 @@
-<?php namespace ItalyStrap\Core;
-// use ItalyStrap\Core\Fields;
+<?php
 
 class FieldsTest extends \Codeception\TestCase\WPTestCase {
 
@@ -7,13 +6,24 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 	private $fields_type;
 	private $widget;
 
+	private $dom;
+
+	/**
+	 * Html attribute
+	 *
+	 * @var array
+	 */
+	private $attr = array();
+
 	public function setUp() {
 		// before
 		parent::setUp();
 
 		$this->fields_array = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' );
 
-		$this->fields_type = new Fields;
+		$this->fields_type = new \ItalyStrap\Admin\Fields;
+
+		$this->dom = new \DOMDocument();
 
 		$this->test_type_text = array(
 				'name'      => __( 'Widget Class', 'ItalyStrap' ),
@@ -30,6 +40,14 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 		$this->test_type_text['_id'] = $this->test_type_text['id'];
 		$this->test_type_text['_name'] = $this->test_type_text['id'];
 
+		$this->attr = array(
+			'type'            => 'text',
+			'class'           => esc_attr( $this->test_type_textkey['class'] ),
+			'name'            => esc_attr( $this->test_type_textkey['_name'] ),
+			'id'              => esc_attr( $this->test_type_textkey['_id'] ),
+			'value'           => ( isset( $this->test_type_textkey['value'] ) ? $this->test_type_textkey['value'] : ( isset( $this->test_type_textkey['default'] ) ? $this->test_type_textkey['default'] : '' ) ),
+		);
+
 		// your set up methods here
 	}
 
@@ -45,39 +63,128 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
      * it should be instantiatable
      */
     public function it_should_be_instantiatable() {
-        $this->assertInstanceOf( 'ItalyStrap\Core\Fields', $this->fields_type );
+        $this->assertInstanceOf( 'ItalyStrap\Admin\Fields', $this->fields_type );
     }
 
-	public function test_field_array_is_set() {
+    /**
+     * @test
+     * it_should_be_instance_of_I_Fields
+     */
+    public function it_should_be_instance_of_I_Fields() {
+        $this->assertInstanceOf( 'ItalyStrap\Admin\I_Fields', $this->fields_type );
+    }
+
+    /**
+     * @test
+     * it_should_be_an_object
+     */
+    public function it_should_be_an_object() {
+        $this->assertTrue( is_object( $this->fields_type ) );
+    }
+
+    /**
+     * @test
+     * it_should_be_field_type_set
+     */
+    public function it_should_be_field_type_set() {
+        $this->assertTrue( isset( $this->fields_type ) );
+    }
+
+    /**
+     * @test
+     * it_should_be_field_array_settings_set
+     */
+	public function it_should_be_field_array_settings_set() {
 		$this->assertTrue( isset( $this->fields_array ) );
 	}
 
-	public function test_field_type_is_set_and_is_object() {
-		$this->assertTrue( isset( $this->fields_type ) );
-		$this->assertTrue( is_object( $this->fields_type ) );
-	}
-
-	public function test_field_type_is_set() {
-		$this->assertTrue( isset( $this->fields_type ) );
-	}
-
-	public function test_type_text() {
-
-		$a = array(
-			'type'            => 'text',
-			'class'           => esc_attr( $this->test_type_textkey['class'] ),
-			'name'            => esc_attr( $this->test_type_textkey['_name'] ),
-			'id'              => esc_attr( $this->test_type_textkey['_id'] ),
-			'value'           => ( isset( $this->test_type_textkey['value'] ) ? $this->test_type_textkey['value'] : ( isset( $this->test_type_textkey['default'] ) ? $this->test_type_textkey['default'] : '' ) ),
-		);
+    /**
+     * @test
+     * it_should_be_the_output_a_string
+     */
+	public function it_should_be_the_output_a_string() {
 
 		$out = $this->fields_type->field_type_text( $this->test_type_text );
-
 		$this->assertTrue( is_string( $out ) );
-		foreach ( $a as $key => $value ) {
+	}
+
+    /**
+     * @test
+     * it_should_be_have_html_attr
+     */
+	public function it_should_be_have_html_attr() {
+		$out = $this->fields_type->field_type_text( $this->test_type_text );
+		foreach ( $this->attr as $key => $value ) {
 			$this->assertTrue( false !== strpos( $out, $key ) );
-			// $this->assertTrue( false !== strpos( $out, $value ) );
 		}
+	}
+
+    /**
+     * Get fields_type output
+     */
+    public function get_fields_type_output( $type = 'text' ) {
+
+    	$fields_type = 'field_type_' . $type;
+    
+		$out = $this->fields_type->$fields_type( $this->test_type_text );
+
+		$this->dom->loadHTML( $out );
+
+		return $this->dom->getElementById('widget_class');
+    
+    }
+
+	public function attr_type() {
+		return [
+			[ 'type', true ],
+			[ 'class', true ],
+			[ 'name', true ],
+			[ 'id', true ],
+			// [ 'value', true ],
+		];
+	}
+
+	/**
+	 * @test
+	 * it_should_be_have_html_attr_type_o
+	 * @dataProvider  attr_type
+	 */
+	public function it_should_be_have_html_attr_type_o( $attr_type, $expected ) {
+
+		$element = $this->get_fields_type_output( 'text' );
+
+		$this->assertNotEmpty( $element->getAttribute( $attr_type ) );
+
+
+		// $sut = new Minimum_Requirements( $attr_type, '4.3', 'Some plugin' );
+
+		// $out = $sut->is_compatible_php();
+
+		// $this->assertEquals( $expected, $out );
+	}
+
+    /**
+     * @test
+     * it_should_be_have_html_attr_type
+     */
+	public function it_should_be_have_html_attr_type() {
+
+		$element = $this->get_fields_type_output( 'text' );
+
+		$this->assertNotEmpty( $element->getAttribute('value') );
+
+	}
+
+    /**
+     * @test
+     * it_should_be_have_html_attr_name
+     */
+	public function it_should_be_have_html_attr_name() {
+
+		$element = $this->get_fields_type_output( 'text' );
+
+		$this->assertNotEmpty( $element->getAttribute('name') );
+
 	}
 
 }
