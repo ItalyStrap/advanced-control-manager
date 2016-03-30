@@ -183,7 +183,6 @@ add_filter( 'post_class', array( $post_meta, 'body_class' ) );
  */
 ItalyStrapGlobals::set( isset( $get_options['custom_js'] ) ? $get_options['custom_js'] : '' );
 
-
 /**
  * Set CSS from admin option Script
  */

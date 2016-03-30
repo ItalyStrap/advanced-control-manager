@@ -23,7 +23,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	public function field_type_text( $key, $out = '' ) {
+	public function field_type_text( array $key, $out = '' ) {
 
 		$attr = array();
 
@@ -38,7 +38,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	public function field_type_hidden( $key, $out = '' ) {
+	public function field_type_hidden( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'hidden',
@@ -56,7 +56,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field number
 	 */
-	public function field_type_number( $key, $out = '' ) {
+	public function field_type_number( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'number',
@@ -73,7 +73,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field email
 	 */
-	public function field_type_email( $key, $out = '' ) {
+	public function field_type_email( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'email',
@@ -90,7 +90,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field url
 	 */
-	public function field_type_url( $key, $out = '' ) {
+	public function field_type_url( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'url',
@@ -107,7 +107,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML field tel
 	 */
-	public function field_type_tel( $key, $out = '' ) {
+	public function field_type_tel( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'tel',
@@ -124,7 +124,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	public function field_type_media( $key, $out = '' ) {
+	public function field_type_media( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'text',
@@ -192,7 +192,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Text
 	 */
-	public function field_type_media_list( $key, $out = '' ) {
+	public function field_type_media_list( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'text',
@@ -260,7 +260,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Textarea
 	 */
-	public function field_type_textarea( $key, $out = '' ) {
+	public function field_type_textarea( array $key, $out = '' ) {
 		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
 
 		$out .= '<textarea ';
@@ -298,7 +298,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Checkbox
 	 */
-	public function field_type_checkbox( $key, $out = '' ) {
+	public function field_type_checkbox( array $key, $out = '' ) {
 // var_dump($key);
 // var_dump($key['id']);
 // var_dump($key['value']);
@@ -339,7 +339,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select
 	 */
-	public function field_type_select( $key, $out = '' ) {
+	public function field_type_select( array $key, $out = '' ) {
 
 		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -384,7 +384,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select
 	 */
-	public function field_type_multiple_select( $key, $out = '' ) {
+	public function field_type_multiple_select( array $key, $out = '' ) {
 
 		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -429,7 +429,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select
 	 */
-	public function field_type_taxonomy_multiple_select( $key, $out = '' ) {
+	public function field_type_taxonomy_multiple_select( array $key, $out = '' ) {
 
 		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
 
@@ -477,7 +477,7 @@ class Fields extends A_Fields {
 	 * @param  string $out The HTML form output.
 	 * @return string      Return the HTML Field Select with Options Group
 	 */
-	public function field_type_select_group( $key, $out = '' ) {
+	public function field_type_select_group( array $key, $out = '' ) {
 
 		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
 
