@@ -105,8 +105,14 @@ class Init {
 		register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 		register_widget( 'ItalyStrap\Core\Widget_VCard' );
 		register_widget( 'ItalyStrap\Core\Widget_Posts2' );
-		register_widget( 'ItalyStrap\Core\Widget_Product' );
-		register_widget( 'ItalyStrap\Core\Widget_Image' );
+
+		if ( isset( $this->options['widget_product'] ) ) {
+			register_widget( 'ItalyStrap\Core\Widget_Product' );
+		}
+
+		if ( isset( $this->options['widget_image'] ) ) {
+			register_widget( 'ItalyStrap\Core\Widget_Image' );
+		}
 
 	}
 
