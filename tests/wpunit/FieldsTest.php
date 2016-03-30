@@ -29,22 +29,72 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 				'name'      => __( 'Widget Class', 'ItalyStrap' ),
 				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
 				'id'        => 'widget_class',
+				'_id'       => 'widget_class',
+				'_name'     => 'widget_class',
 				'type'      => 'text',
 				'class'     => 'widefat widget_class',
-				'class-p'   => 'widget_class',
-				'default'   => '',
-				'validate'  => 'alpha_dash',
-				'filter'    => 'sanitize_text_field',
-				'section'   => 'general',
+				'placeholder'     => 'widefat widget_class',
+				'default'   => true,
+				'value'   	=> 'general',
+				'size'		=> '',
 				 );
-		$this->test_type_text['_id'] = $this->test_type_text['id'];
-		$this->test_type_text['_name'] = $this->test_type_text['id'];
+
+		$this->test_type_hidden = array(
+				'name'      => __( 'Widget Class', 'ItalyStrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'id'        => 'widget_class',
+				'_id'       => 'widget_class',
+				'_name'     => 'widget_class',
+				'type'      => 'hidden',
+				'class'     => 'widefat widget_class',
+				'placeholder'     => 'widefat widget_class',
+				'default'   => true,
+				'value'   	=> 'general',
+				'size'		=> '',
+				 );
+
+		$this->test_type_textarea = array(
+				'name'      => __( 'Widget Class', 'ItalyStrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'id'        => 'widget_class',
+				'_id'       => 'widget_class',
+				'_name'     => 'widget_class',
+				'class'     => 'widefat widget_class',
+				'placeholder'     => 'widefat widget_class',
+				'default'   => true,
+				// 'value'   	=> 'Some_value',
+				 );
+
+		$this->test_type_checkbox = array(
+				'name'      => __( 'Widget Class', 'ItalyStrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'id'        => 'widget_class',
+				'_id'       => 'widget_class',
+				'_name'     => 'widget_class',
+				'type'      => 'checkbox',
+				'class'     => 'widefat widget_class',
+				// 'default'   => '',
+				'value'   	=> '1',
+				 );
+
+		$this->test_type_select = array(
+				'name'      => __( 'Widget Class', 'ItalyStrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'id'        => 'widget_class',
+				'_id'       => 'widget_class',
+				'_name'     => 'widget_class',
+				'type'      => 'text',
+				'class'     => 'widefat widget_class',
+				'default'   => true,
+				'option'   => array( 'key' => 'val' ),
+				'value'   	=> 'Some value',
+				 );
 
 		$this->attr = array(
 			'type'            => 'text',
-			'class'           => esc_attr( $this->test_type_textkey['class'] ),
-			'name'            => esc_attr( $this->test_type_textkey['_name'] ),
-			'id'              => esc_attr( $this->test_type_textkey['_id'] ),
+			'class'           => $this->test_type_textkey['class'],
+			'name'            => $this->test_type_textkey['_name'],
+			'id'              => $this->test_type_textkey['_id'],
 			'value'           => ( isset( $this->test_type_textkey['value'] ) ? $this->test_type_textkey['value'] : ( isset( $this->test_type_textkey['default'] ) ? $this->test_type_textkey['default'] : '' ) ),
 		);
 
@@ -99,6 +149,65 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 	}
 
     /**
+     * Get fields_type output
+     */
+    public function get_fields_input_output( $type = 'text', $tag = 'input' ) {
+
+    	$fields_type = $tag;
+    
+		$out = $this->fields_type->$fields_type( array(), array( '_name' => true, '_id' => 'widget_class', 'default' => true, 'placeholder' => true, 'size' => true, 'desc' => true ) );
+
+		$this->dom->loadHTML( $out );
+
+		return $this->dom->getElementById('widget_class');
+    
+    }
+
+	public function input_types_and_attributes_provider() {
+		return [
+            [ 'text', 'type' ],
+            [ 'text', 'class' ],
+            [ 'text', 'name' ],
+            [ 'text', 'id' ],
+            [ 'text', 'value' ],
+            [ 'text', 'placeholder' ],
+            [ 'text', 'size' ],
+            [ 'textarea', 'class' ],
+            [ 'textarea', 'name' ],
+            [ 'textarea', 'id' ],
+            // [ 'textarea', 'cols' ], // Verificare perché non funziona, is empty
+            // [ 'textarea', 'rows' ], // Verificare perché non funziona, is empty
+            [ 'textarea', 'value' ],
+            [ 'textarea', 'placeholder' ],
+		];
+	}
+
+	/**
+	 * @test
+	 * input should have proper attributes
+	 * @dataProvider  input_types_and_attributes_provider
+	 */
+	public function input_should_have_proper_attributes( $type, $attr ) {
+
+		$element = $this->get_fields_input_output( $type );
+
+		$this->assertNotEmpty( $element->getAttribute( $attr ), "Attribute $attr is empty for type $type" );
+
+	}
+
+    /**
+     * @test
+     * it_should_be_have_html_attr_input
+     * Method input from abstract class
+     */
+	public function it_should_be_have_html_attr_input() {
+		$out = $this->fields_type->input( array(), $this->test_type_text );
+		foreach ( $this->attr as $key => $value ) {
+			$this->assertTrue( false !== strpos( $out, $key ) );
+		}
+	}
+
+    /**
      * @test
      * it_should_be_the_output_a_string
      */
@@ -125,8 +234,10 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
     public function get_fields_type_output( $type = 'text' ) {
 
     	$fields_type = 'field_type_' . $type;
+
+    	$test_type = 'test_type_' . $type;
     
-		$out = $this->fields_type->$fields_type( $this->test_type_text );
+		$out = $this->fields_type->$fields_type( $this->$test_type );
 
 		$this->dom->loadHTML( $out );
 
@@ -141,6 +252,29 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
             [ 'text', 'name' ],
             [ 'text', 'id' ],
             [ 'text', 'value' ],
+            [ 'text', 'placeholder' ],
+            [ 'hidden', 'type' ],
+            [ 'hidden', 'class' ],
+            [ 'hidden', 'name' ],
+            [ 'hidden', 'id' ],
+            [ 'hidden', 'value' ],
+            [ 'hidden', 'placeholder' ],
+            [ 'textarea', 'class' ],
+            [ 'textarea', 'name' ],
+            [ 'textarea', 'id' ],
+            // [ 'textarea', 'value' ],
+            [ 'textarea', 'placeholder' ],
+            [ 'checkbox', 'type' ],
+            [ 'checkbox', 'class' ],
+            [ 'checkbox', 'name' ],
+            [ 'checkbox', 'id' ],
+            [ 'checkbox', 'value' ],
+            [ 'checkbox', 'checked' ], // da testare: se non checked, value int e string e default int e string
+            [ 'select', 'class' ],
+            [ 'select', 'name' ],
+            [ 'select', 'id' ],
+            // [ 'select', 'option' ],
+            // [ 'select', 'value' ],
 		];
 	}
 

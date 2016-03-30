@@ -352,6 +352,10 @@ class Fields extends A_Fields {
 
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
+		if ( ! isset( $key['options'] ) ) {
+			$key['options'] = array();
+		}
+
 		if ( isset( $key['show_option_none'] ) ) {
 			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
 			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );

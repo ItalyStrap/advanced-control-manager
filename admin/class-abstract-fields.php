@@ -50,20 +50,24 @@ abstract class A_Fields implements I_Fields {
 	 *
 	 * @return string     Form input element
 	 */
-	public function input( $attr = array(), $key = array() ) {
+	public function input( array $attr = array(), array $key = array() ) {
 
 		$a = wp_parse_args( $attr, array(
-			'type'            => 'text',
-			'class'           => esc_attr( isset( $key['class'] ) ? $key['class'] : '' ),
-			'name'            => esc_attr( $key['_name'] ),
-			'id'              => esc_attr( $key['_id'] ),
-			'value'           => esc_attr( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
-			'desc'            => $this->field_type_description( $key['desc'] ),
-			'js_dependencies' => array(),
+			'type'				=> 'text',
+			'class'				=> esc_attr( isset( $key['class'] ) ? $key['class'] : 'none' ),
+			'name'				=> esc_attr( $key['_name'] ),
+			'id'				=> esc_attr( $key['_id'] ),
+			'value'				=> isset( $key['value'] ) ? esc_attr( $key['value'] ) : ( isset( $key['default'] ) ? esc_attr( $key['default'] ) : '' ),
+			'desc'				=> $this->field_type_description( $key['desc'] ),
+			'js_dependencies'	=> array(),
 		) );
 
 		if ( isset( $key['size'] ) ) {
 			$a['size'] = esc_attr( $key['size'] );
+		}
+
+		if ( isset( $key['placeholder'] ) ) {
+			$a['placeholder'] = esc_attr( $key['placeholder'] );
 		}
 
 		// if ( ! empty( $a['js_dependencies'] ) ) {
@@ -82,13 +86,13 @@ abstract class A_Fields implements I_Fields {
 	 *
 	 * @return string      Form textarea element
 	 */
-	public function textarea( $attr = array(), $key = array() ) {
+	public function textarea( array $attr = array(), array $key = array() ) {
 		$a = wp_parse_args( $attr, array(
 			'class' => esc_attr( isset( $key['class'] ) ? $key['class'] : '' ),
 			'name'  => esc_attr( $key['_name'] ),
 			'id'    => esc_attr( $key['_id'] ),
-			'cols'  => 60,
-			'rows'  => 10,
+			'cols'  => '60',
+			'rows'  => '10',
 			'value' => esc_attr( isset( $key['value'] ) ? $key['value'] : ( isset( $key['default'] ) ? $key['default'] : '' ) ),
 			'desc'  => $this->field_type_description( $key['desc'] ),
 		) );

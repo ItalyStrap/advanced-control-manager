@@ -24,5 +24,5 @@ interface I_Fields {
 	 * @param  array $key Override arguments.
 	 * @return string     Form input element
 	 */
-	public function input( $attr = array(), $key = array() );
+	public function input( array $attr = array(), array $key = array() );
 }
