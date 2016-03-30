@@ -14,6 +14,7 @@ return array(
     'ItalyStrapAdminMediaSettings' => $baseDir . '/admin/ItalyStrapAdminMediaSettings.php',
     'ItalyStrapBreadcrumbs' => $baseDir . '/classes/ItalyStrapBreadcrumbs.php',
     'ItalyStrapLazyload' => $baseDir . '/deprecated/ItalyStrapLazyload.php',
+    'ItalyStrap\\Admin\\A_Admin' => $baseDir . '/admin/class-abstract-admin.php',
     'ItalyStrap\\Admin\\A_Fields' => $baseDir . '/admin/class-abstract-fields.php',
     'ItalyStrap\\Admin\\Admin' => $baseDir . '/admin/class-admin.php',
     'ItalyStrap\\Admin\\Fields' => $baseDir . '/admin/class-fields.php',

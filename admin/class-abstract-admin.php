@@ -1,13 +1,13 @@
 <?php
 /**
- * Class for admin panel
+ * Abstract class for admin panel
  *
  * This class add some functions for use in admin panel
  *
  * @link http://codex.wordpress.org/Adding_Administration_Menus
  * @link http://code.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options--wp-24902
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @package ItalyStrap
  */
@@ -21,7 +21,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 /**
  * Class for admin area
  */
-class Admin extends A_Admin{
+class A_Admin implements I_Admin{
 
 	/**
 	 * Definition of variables containing the configuration
