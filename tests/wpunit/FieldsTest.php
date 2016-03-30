@@ -134,56 +134,26 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
     
     }
 
-	public function attr_type() {
+	public function types_and_attributes_provider() {
 		return [
-			[ 'type', true ],
-			[ 'class', true ],
-			[ 'name', true ],
-			[ 'id', true ],
-			// [ 'value', true ],
+            [ 'text', 'type' ],
+            [ 'text', 'class' ],
+            [ 'text', 'name' ],
+            [ 'text', 'id' ],
+            [ 'text', 'value' ],
 		];
 	}
 
 	/**
 	 * @test
-	 * it_should_be_have_html_attr_type_o
-	 * @dataProvider  attr_type
+	 * it should have proper attributes
+	 * @dataProvider  types_and_attributes_provider
 	 */
-	public function it_should_be_have_html_attr_type_o( $attr_type, $expected ) {
+	public function it_should_have_proper_attributes( $type, $attr ) {
 
-		$element = $this->get_fields_type_output( 'text' );
+		$element = $this->get_fields_type_output( $type );
 
-		$this->assertNotEmpty( $element->getAttribute( $attr_type ) );
-
-
-		// $sut = new Minimum_Requirements( $attr_type, '4.3', 'Some plugin' );
-
-		// $out = $sut->is_compatible_php();
-
-		// $this->assertEquals( $expected, $out );
-	}
-
-    /**
-     * @test
-     * it_should_be_have_html_attr_type
-     */
-	public function it_should_be_have_html_attr_type() {
-
-		$element = $this->get_fields_type_output( 'text' );
-
-		$this->assertNotEmpty( $element->getAttribute('value') );
-
-	}
-
-    /**
-     * @test
-     * it_should_be_have_html_attr_name
-     */
-	public function it_should_be_have_html_attr_name() {
-
-		$element = $this->get_fields_type_output( 'text' );
-
-		$this->assertNotEmpty( $element->getAttribute('name') );
+		$this->assertNotEmpty( $element->getAttribute( $attr ), "Attribute $attr is empty for type $type" );
 
 	}
 
