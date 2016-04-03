@@ -29,7 +29,7 @@ class A_Admin implements I_Admin{
 	 *
 	 * @var string
 	 */
-	protected $capability      = 'manage_options';
+	protected $capability = 'manage_options';
 
 	/**
 	 * Get the current admin page
@@ -37,21 +37,21 @@ class A_Admin implements I_Admin{
 	 *
 	 * @var string
 	 */
-	private $page;
+	protected $page;
 
 	/**
 	 * Settings for plugin admin page
 	 *
 	 * @var array
 	 */
-	private $settings = array();
+	protected $settings = array();
 
 	/**
 	 * The plugin name
 	 *
 	 * @var string
 	 */
-	private $plugin_slug;
+	protected $plugin_slug;
 
 	/**
 	 * The plugin options
@@ -65,14 +65,14 @@ class A_Admin implements I_Admin{
 	 *
 	 * @var string
 	 */
-	private $option_name;
+	protected $option_name;
 
 	/**
 	 * The type of fields to create
 	 *
 	 * @var object
 	 */
-	private $fields_type;
+	protected $fields_type;
 
 	/**
 	 * Initialize Class
@@ -205,37 +205,6 @@ class A_Admin implements I_Admin{
 		);
 
 	}
-
-
-	/**
-	 * The documentation call back
-	 */
-	public function documentation() {
-
-		if ( ! current_user_can( $this->capability ) ) {
-			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) ); }
-
-		/**
-		 * Require documentation-page.php
-		 */
-		require_once( ITALYSTRAP_PLUGIN_PATH . 'admin/admin-template/documentation-page.php' );
-
-	}//end documentation()
-
-	/**
-	 * The options call back
-	 */
-	public function options() {
-
-		if ( ! current_user_can( $this->capability ) ) {
-			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) ); }
-
-		/**
-		 * Require options-page.php
-		 */
-		require_once( ITALYSTRAP_PLUGIN_PATH . 'admin/admin-template/options-page.php' );
-
-	}//end options()
 
 	/**
 	 * Add link in plugin activation panel
@@ -424,70 +393,6 @@ class A_Admin implements I_Admin{
 	public function lazyload_section() {
 
 		esc_attr_e( 'This section description for LazyLoad', 'italystrap' );
-	}
-
-	/**
-	 * Option for Image Lazy Load
-	 *
-	 * @param  array $args Arguments for this options.
-	 */
-	public function option_lazyload( $args ) {
-
-	?>
-
-		<input type='checkbox' name='italystrap_settings[lazyload]' <?php checked( isset( $this->options['lazyload'] ), 1 ); ?> value='1'>
-		<label for="italystrap_settings[lazyload]"><?php esc_attr_e( 'Activate LazyLoad for images', 'italystrap' ); ?></label>
-
-	<?php
-
-	}
-
-	/**
-	 * Option for vCard Widget
-	 *
-	 * @param  array $args Arguments for this options.
-	 */
-	public function option_vcardwidget( $args ) {
-
-	?>
-
-		<input type='checkbox' name='italystrap_settings[vcardwidget]' <?php checked( isset( $this->options['vcardwidget'] ), 1 ); ?> value='1'>
-		<label for="italystrap_settings[vcardwidget]"><?php esc_attr_e( 'Activate Vcard Widget for your local business (Experimental)', 'italystrap' ); ?></label>
-
-	<?php
-
-	}
-
-	/**
-	 * Option for Post Widget
-	 *
-	 * @param  array $args Arguments for this options.
-	 */
-	public function option_post_widget( $args ) {
-
-	?>
-
-		<input type='checkbox' name='italystrap_settings[post_widget]' <?php checked( isset( $this->options['post_widget'] ), 1 ); ?> value='1'>
-		<label for="italystrap_settings[post_widget]"><?php esc_attr_e( 'Activate Post Widget for Custom posts loop', 'italystrap' ); ?></label>
-
-	<?php
-
-	}
-
-	/**
-	 * Option for Media Widget
-	 *
-	 * @param  array $args Arguments for this options.
-	 */
-	public function option_media_widget( $args ) {
-
-	?>
-
-		<input type='checkbox' name='italystrap_settings[media_widget]' <?php checked( isset( $this->options['media_widget'] ), 1 ); ?> value='1'>
-		<label for="italystrap_settings[media_widget]"><?php esc_attr_e( 'Activate Bootstrap Carousel Media Widget', 'italystrap' ); ?></label>
-
-	<?php
-
 	}
 
 	/**

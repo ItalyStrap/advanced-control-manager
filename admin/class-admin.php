@@ -24,57 +24,6 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 class Admin extends A_Admin{
 
 	/**
-	 * Definition of variables containing the configuration
-	 * to be applied to the various function calls wordpress
-	 *
-	 * @var string
-	 */
-	protected $capability      = 'manage_options';
-
-	/**
-	 * Get the current admin page
-	 * This is only for loading ItalyStrap custom script in his settings pages
-	 *
-	 * @var string
-	 */
-	private $page;
-
-	/**
-	 * Settings for plugin admin page
-	 *
-	 * @var array
-	 */
-	private $settings = array();
-
-	/**
-	 * The plugin name
-	 *
-	 * @var string
-	 */
-	private $plugin_slug;
-
-	/**
-	 * The plugin options
-	 *
-	 * @var array
-	 */
-	protected $options = array();
-
-	/**
-	 * The option name
-	 *
-	 * @var string
-	 */
-	private $option_name;
-
-	/**
-	 * The type of fields to create
-	 *
-	 * @var object
-	 */
-	private $fields_type;
-
-	/**
 	 * Initialize Class
 	 *
 	 * @param array  $options     Get the plugin options.
@@ -254,62 +203,22 @@ class Admin extends A_Admin{
 	}//end plugin_action_links()
 
 	/**
-	 * Prints out all settings sections added to a particular settings page
-	 *
-	 * Part of the Settings API. Use this in a settings page callback function
-	 * to output all the sections and fields that were added to that $page with
-	 * add_settings_section() and add_settings_field()
-	 *
-	 * @global $wp_settings_sections Storage array of all settings sections added to admin pages
-	 * @global $wp_settings_fields Storage array of settings fields and info about their pages/sections
-	 * @since 2.7.0
-	 *
-	 * @param string $page The slug name of the page whose settings sections you want to output.
-	 */
-	public function do_settings_sections( $page ) {
-		global $wp_settings_sections, $wp_settings_fields;
-
-		if ( ! isset( $wp_settings_sections[ $page ] ) ) {
-			return; }
-
-		$count = 1;
-
-		foreach ( (array) $wp_settings_sections[ $page ] as $section ) {
-			echo '<div id="tabs-' . $count . '" class="wrap">'; // XSS ok.
-			if ( $section['title'] ) {
-				echo "<h2>{$section['title']}</h2>\n"; // XSS ok.
-			}
-
-			if ( $section['callback'] ) {
-				call_user_func( $section['callback'], $section ); }
-
-			if ( ! isset( $wp_settings_fields ) || ! isset( $wp_settings_fields[ $page ] ) || ! isset( $wp_settings_fields[ $page ][ $section['id'] ] ) ) {
-				continue; }
-			echo '<table class="form-table">';
-			do_settings_fields( $page, $section['id'] );
-			echo '</table>';
-			echo '</div>';
-			$count++;
-		}
-	}
-
-	/**
 	 * Create the nav tabs for section in admin plugin area
 	 */
-	public function create_nav_tab() {
+	// public function create_nav_tab() {
 
-		$count = 1;
+	// 	$count = 1;
 
-		$out = '<ul>';
+	// 	$out = '<ul>';
 
-		foreach ( $this->settings as $key => $value ) {
-			$out .= '<li><a href="#tabs-' . $count . '">' . $value['tab_title'] . '</a></li>';
-			$count++;
-		}
+	// 	foreach ( $this->settings as $key => $value ) {
+	// 		$out .= '<li><a href="#tabs-' . $count . '">' . $value['tab_title'] . '</a></li>';
+	// 		$count++;
+	// 	}
 
-		$out .= '</ul>';
-		echo $out; // XSS ok.
-	}
+	// 	$out .= '</ul>';
+	// 	echo $out; // XSS ok.
+	// }
 
 	/**
 	 * Init settings for admin area
@@ -488,38 +397,5 @@ class Admin extends A_Admin{
 
 	<?php
 
-	}
-
-	/**
-	 * Get the field type
-	 *
-	 * @param  array $args Array with arguments.
-	 */
-	public function get_field_type( $args ) {
-
-		/**
-		 * Prefix method
-		 *
-		 * @var string
-		 */
-		$field_method = 'field_type_' . str_replace( '-', '_', $args['type'] );
-
-		$args['value'] = ( isset( $this->options[ $args['id'] ] ) ) ? $this->options[ $args['id'] ] : '' ;
-
-		/* Set field id and name  */
-		$args['_id'] = $args['_name'] = $this->option_name . '[' . $args['id'] . ']';
-
-		/**
-		 * Run method
-		 */
-		if ( method_exists( $this->fields_type, $field_method ) ) {
-
-			echo $this->fields_type->$field_method( $args ); // XSS ok.
-
-		} else {
-
-			echo $this->fields_type->field_type_text( $args ); // XSS ok.
-
-		}
 	}
 }
