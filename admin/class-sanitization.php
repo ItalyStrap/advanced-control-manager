@@ -42,105 +42,71 @@ class Sanitization {
 	/**
 	 * Filter the value of key
 	 *
+	 * List of functions for sanitizing data:
+	 * strip_tags
+	 * wp_strip_all_tags
+	 * esc_attr
+	 * esc_url
+	 * esc_textarea
+	 * sanitize_email
+	 * sanitize_file_name
+	 * sanitize_html_class
+	 * sanitize_key
+	 * sanitize_meta
+	 * sanitize_mime_type
+	 * sanitize_sql_orderby
+	 * sanitize_text_field
+	 * sanitize_title
+	 * sanitize_title_for_query
+	 * sanitize_title_with_dashes
+	 * sanitize_user
+	 * sanitize_option // sanitize_option ha bisogno di 2 valori eseguire test
+	 *
 	 * @access private
 	 * @param  string $rule         The filter name you want to use.
 	 * @param  string $instance_value The value you want to filter.
 	 * @return string                 Return the value filtered
 	 */
-	public function do_filter( $rule, $instance_value = '' ) {
-		switch ( $rule ) {
+	private function do_filter( $rule, $instance_value = '' ) {
 
-			case 'strip_tags':
-				return strip_tags( $instance_value );
-			break;
-
-			case 'wp_strip_all_tags':
-				return wp_strip_all_tags( $instance_value );
-			break;
-
-			case 'esc_attr':
-				return esc_attr( $instance_value );
-			break;
-
-			case 'esc_url':
-				return esc_url( $instance_value );
-			break;
-
-			case 'esc_textarea':
-				return esc_textarea( $instance_value );
-			break;
-
-			case 'sanitize_email':
-				return sanitize_email( $instance_value );
-			break;
-
-			case 'sanitize_file_name':
-				return sanitize_file_name( $instance_value );
-			break;
-
-			case 'sanitize_html_class':
-				return sanitize_html_class( $instance_value );
-			break;
-
-			case 'sanitize_key':
-				return sanitize_key( $instance_value );
-			break;
-
-			case 'sanitize_meta':
-				return sanitize_meta( $instance_value );
-			break;
-
-			case 'sanitize_mime_type':
-				return sanitize_mime_type( $instance_value );
-			break;
-
-			case 'sanitize_option':
-				/**
-				 * sanitize_option ha bisogno di 2 valori
-				 * eseguire test
-				 */
-				return sanitize_option( $instance_value );
-			break;
-
-			case 'sanitize_sql_orderby':
-				return sanitize_sql_orderby( $instance_value );
-			break;
-
-			case 'sanitize_text_field':
-				return sanitize_text_field( $instance_value );
-			break;
-
-			case 'sanitize_title':
-				return sanitize_title( $instance_value );
-			break;
-
-			case 'sanitize_title_for_query':
-				return sanitize_title_for_query( $instance_value );
-			break;
-
-			case 'sanitize_title_with_dashes':
-				return sanitize_title_with_dashes( $instance_value );
-			break;
-
-			case 'sanitize_user':
-				return sanitize_user( $instance_value );
-			break;
-
-			case 'sanitize_array':
-				$array = array_map( 'esc_attr', $instance_value );
-				$array = array_map( 'absint', $array );
-				$count = count( $array );
-				if ( 1 === $count && 0 === $array[0] ) {
-					return array();
-				}
-				return $array;
-			break;
-
-			default:
-				if ( method_exists( $this, $rule ) ) {
-					return $this->$rule( $instance_value );
-				} else { return $instance_value; }
-			break;
+		if ( method_exists( $this, $rule ) ) {
+			return $this->$rule( $instance_value );
+		} elseif ( function_exists( $rule ) ) {
+			return call_user_func( $rule, $instance_value );
+		} else {
+			return sanitize_text_field( $instance_value );
 		}
+
+		// switch ( $rule ) {
+
+		// 	case 'sanitize_array':
+		// 		$array = array_map( 'esc_attr', $instance_value );
+		// 		$array = array_map( 'absint', $array );
+		// 		$count = count( $array );
+		// 		if ( 1 === $count && 0 === $array[0] ) {
+		// 			return array();
+		// 		}
+		// 		return $array;
+		// 	break;
+		// }
+
+	}
+
+	/**
+	 * Sanitize array (this is an alpha method, do not use it)
+	 *
+	 * @param  array $instance_value The value to sanitize
+	 * @return array                 The sanitized array
+	 */
+	public function sanitize_array( array $instance_value ) {
+	
+		$array = array_map( 'esc_attr', $instance_value );
+		$array = array_map( 'absint', $array );
+		$count = count( $array );
+		if ( 1 === $count && 0 === $array[0] ) {
+			return array();
+		}
+		return $array;
+	
 	}
 }
