@@ -29,4 +29,5 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Codeception\\Extension\\' => array($vendorDir . '/codeception/codeception/ext'),
     'Codeception\\' => array($vendorDir . '/codeception/codeception/src/Codeception', $vendorDir . '/lucatume/wp-browser/src/Codeception'),
+    'Auryn\\' => array($vendorDir . '/rdlowrey/auryn/lib'),
 );
