@@ -21,7 +21,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 /**
  * Class for admin area
  */
-class A_Admin implements I_Admin{
+abstract class A_Admin implements I_Admin{
 
 	/**
 	 * Definition of variables containing the configuration
