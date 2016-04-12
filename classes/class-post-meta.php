@@ -85,9 +85,11 @@ class Post_Meta {
 
 		if ( $wpautop ) {
 			$content = wpautop( $content );
-		} elseif ( $kses ) {
+		}
+		if ( $kses ) {
 			$content = wp_kses_post( $content );
-		} elseif ( $do_shortcode ) {
+		}
+		if ( $do_shortcode ) {
 			$content = do_shortcode( $content );
 		}
 
