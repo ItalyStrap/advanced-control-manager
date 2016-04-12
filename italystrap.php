@@ -78,6 +78,16 @@ require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
 require( ITALYSTRAP_PLUGIN_PATH . 'class-init.php' );
 
 /**
+ * Init the plugin
+ */
+require( ITALYSTRAP_PLUGIN_PATH . 'init.php' );
+
+/**
+ * Init the plugin
+ */
+require( ITALYSTRAP_PLUGIN_PATH . 'admin-init.php' );
+
+/**
  * Require Debug file, this file is only for internal development
  */
 if ( defined( 'ITALYSTRAP_DEV' ) ) {

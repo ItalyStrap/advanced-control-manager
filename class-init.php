@@ -74,7 +74,7 @@ class Init {
 		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) ) {
 			$gallery = true; // A http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
 		}
-
+// d($gallery);
 		if ( ! $gallery ) {
 			$shortcode_carousel = new \ItalyStrap\Core\Shortcode_Carousel();
 			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 4 );
@@ -204,45 +204,3 @@ add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
  * Load after all and before shotdown hook
  */
 add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );
-
-/**
- * Istantiate this class only if is admin
- */
-if ( is_admin() ) {
-
-	/**
-	 * Add ID to post_type table
-	 */
-	if ( isset( $get_options['show-ids'] ) ) {
-		require( 'hooks/simply-show-ids.php' );
-		add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
-	}
-
-	$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );
-// var_dump( $get_options );
-// var_dump( $admin_settings['general']['settings_fields'][0] );
-	// get_admin_default_settings( $admin_settings );
-	/**
-	 * Instantiate Admin Class
-	 *
-	 * @var object
-	 */
-	$admin = new \ItalyStrap\Admin\Admin( $get_options, new \ItalyStrap\Admin\Fields, $admin_settings );
-	$admin->init();
-
-	new \ItalyStrapAdminGallerySettings;
-
-	/**
-	 * Da testare
-	 *
-	 * Example: new \ItalyStrap\Admin\Gallery_Settings;
-	 * $gallery_settings = new Gallery_Settings;
-	 * add_action( 'admin_init', array( $gallery_settings, 'admin_init' ) );
-	 */
-
-	$image_size_media = new \ItalyStrapAdminMediaSettings;
-	add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
-
-	$register_metabox = new \ItalyStrap\Admin\Register_Metaboxes;
-	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_script_settings' ) );
-}
