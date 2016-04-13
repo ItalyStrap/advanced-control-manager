@@ -40,7 +40,7 @@ return array(
     'ItalyStrap\\Core\\Shortcode_Carousel' => $baseDir . '/shortcode/class-shortcode-carousel.php',
     'ItalyStrap\\Core\\Sitemaps_HTML' => $baseDir . '/classes/class-sitemaps-html.php',
     'ItalyStrap\\Core\\Vcard_Widget' => $baseDir . '/widget/class-widget-vcard.php',
-    'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/class-widget.php',
+    'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/class-abstract-widget.php',
     'ItalyStrap\\Core\\Widget_Breadcrumbs' => $baseDir . '/widget/class-widget-breadcrumbs.php',
     'ItalyStrap\\Core\\Widget_Image' => $baseDir . '/widget/class-widget-image.php',
     'ItalyStrap\\Core\\Widget_Media_Carousel' => $baseDir . '/widget/class-widget-media-carousel.php',
