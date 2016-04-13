@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * ItalyStrap Carousel initially forked from Agnosia Bootstrap Carousel by AuSoft
  *
@@ -10,6 +10,8 @@
  * @version 1.0
  * @since   2.0
  */
+
+namespace ItalyStrap\Core;
 
 /**
  * The Carousel Bootsrap class
@@ -464,18 +466,34 @@ abstract class Carousel {
 	 */
 	public function get_img_size_attr() {
 
-		// global $detect;
-		$detect = '';
-		$detect = apply_filters( 'mobile_detect', $detect );
+		/**
+		 * This filter is added in init.php
+		 *
+		 * @var Detection\MobileDetect
+		 */
+		$detect = apply_filters( 'mobile_detect', null );
 
-		$image_size = '';
+		/**
+		 * Set the initial image size
+		 *
+		 * @var string
+		 */
+		$image_size = $this->args['size'];
 
-		if ( $detect->isTablet() && $responsive ) {
-			$image_size = $this->args['sizetablet']; } elseif ( $detect->isMobile() && $responsive ) {
-			$image_size = $this->args['sizephone'];
-			} else { $image_size = $this->args['size']; }
-
+		if ( ! ( $detect instanceof \Detection\MobileDetect ) ) {
 			return $image_size;
+		}
+
+		if ( $detect->isTablet() && $this->args['responsive'] ) {
+
+			return $image_size = $this->args['sizetablet'];
+
+		} elseif ( $detect->isMobile() && $this->args['responsive'] ) {
+
+			return $image_size = $this->args['sizephone'];
+
+		}
+
 	}
 
 	/**
