@@ -35,6 +35,18 @@ $options = (array) get_option( 'italystrap_settings' );
 $injector->defineParam( 'options', $options );
 
 /**
+ * Instantiate Init Class
+ *
+ * @var Init
+ */
+$init = $injector->make( 'ItalyStrap\Core\Init' );
+
+/**
+ * Register widget
+ */
+add_action( 'widgets_init', array( $init, 'widgets_init' ) );
+
+/**
  * Istantiate this class only if is admin
  */
 
