@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Widget API: Widget class
  *
  * @package ItalyStrap
  * @since 2.0.0
  */
+
+namespace ItalyStrap\Core;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -26,6 +28,7 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * The type of fields to create
+	 *
 	 * @var object
 	 */
 	private $fields_type;
@@ -65,7 +68,8 @@ abstract class Widget extends WP_Widget {
 
 	/**
 	 * Get the fields for widget
-	 * @param  array  $fields The options array with new fields
+	 *
+	 * @param  array $fields The options array with new fields.
 	 * @return array          Return an array with all fields
 	 */
 	public function get_widget_fields( $fields = array() ) {
@@ -320,7 +324,7 @@ abstract class Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		$instance = $new_instance;
-// var_dump($instance);
+		// var_dump($instance);
 		$this->before_update_fields();
 
 		$this->validation = new Validation;
@@ -382,7 +386,7 @@ abstract class Widget extends WP_Widget {
 	 * @return string           Return the $instance of widget
 	 */
 	public function after_validate_fields( $instance ) {
-// var_dump($instance);die();
+		// var_dump($instance);die();
 		return $instance;
 
 	}
@@ -390,6 +394,7 @@ abstract class Widget extends WP_Widget {
 	/**
 	 * Create the section array for tab in widget panel
 	 *
+	 * @param  array $fields The fields array.
 	 * @return array Return the array for section
 	 */
 	private function make_sections_array( array $fields ) {
@@ -456,7 +461,6 @@ abstract class Widget extends WP_Widget {
 	protected function create_sections_tabs( array $sections ) {
 
 		// $sections = apply_filters( 'italystrap_create_sections_tabs', $sections );
-
 		$out = '';
 		$i = 0;
 
@@ -542,10 +546,11 @@ abstract class Widget extends WP_Widget {
 	 * Creates each field defined.
 	 *
 	 * @access protected
-	 * @param  string $out The HTML form output.
-	 * @return string      Return the HTML Fields
+	 * @param  array  $fields The fields array.
+	 * @param  string $out    The HTML form output.
+	 * @return string         Return the HTML Fields
 	 */
-	protected function field_types( $fields, $out = '' ) {
+	protected function field_types( array $fields, $out = '' ) {
 
 		foreach ( $fields as $key ) {
 			$out .= $this->field_type( $key );
@@ -567,18 +572,17 @@ abstract class Widget extends WP_Widget {
 
 		/* Set Defaults */
 		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
-// var_dump( $key['default'] );
-// var_dump( $key['value'] );
-// var_dump( $this->instance[ $key['id'] ] );
+		// var_dump( $key['default'] );
+		// var_dump( $key['value'] );
+		// var_dump( $this->instance[ $key['id'] ] );
 		if ( isset( $this->instance[ $key['id'] ] ) ) {
-// var_dump($this->instance[ $key['id'] ]);
+			// var_dump($this->instance[ $key['id'] ]);
 			if ( is_array( $this->instance[ $key['id'] ] ) ) {
 				$key['value'] = $this->instance[ $key['id'] ];
 				// var_dump($key['value']);
 			} else {
 				$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
 			}
-
 		} else {
 			// var_dump( $key );
 			// var_dump( $key['id'] );
@@ -601,9 +605,8 @@ abstract class Widget extends WP_Widget {
 		$p_class = ( isset( $key['class-p'] ) ) ? ' class="' . $key['class-p'] . '"' : '';
 
 		// $this->fields_type
-		// 
+		//
 		// var_dump( $this->fields_type->$field_method( $key ) );
-
 		/**
 		 * if ( method_exists( $this, $field_method ) ) {
 		 * 	return '<p' . $p_class . '>' . $this->$field_method( $key ) . '</p>';
