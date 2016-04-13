@@ -83,8 +83,8 @@ abstract class Carousel {
 	 */
 	public function __get( $property ) {
 
-		if ( property_exists( $this, $property ) )
-			return $this->$property;
+		if ( property_exists( $this, $property ) ) {
+			return $this->$property; }
 
 	}
 
@@ -96,8 +96,8 @@ abstract class Carousel {
 	 */
 	public function __set( $property, $value ) {
 
-		if ( property_exists( $this, $property ) )
-			$this->$property = $value;
+		if ( property_exists( $this, $property ) ) {
+			$this->$property = $value; }
 
 		return $this;
 	}
@@ -117,7 +117,6 @@ abstract class Carousel {
 		 */
 		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ), $args, 'gallery' );
 		// $args = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ), $args, 'gallery' );
-
 		$args = apply_filters( 'italystrap_carousel_attributes', $args );
 
 		return $args;
@@ -137,7 +136,7 @@ abstract class Carousel {
 		if ( ! empty( $this->args['ids'] )
 			&& isset( $this->args['type'] )
 			&& 'carousel' === $this->args['type']
-		) $bool = true;
+		) { $bool = true; }
 
 		return $bool;
 
@@ -154,9 +153,10 @@ abstract class Carousel {
 
 		$post_type_ids = (array) $this->make_array( $this->args['ids'], $this->args['orderby'] );
 
-		if ( is_array( $post_type_ids ) and ! empty( $post_type_ids[0] ) )
-			foreach ( $post_type_ids as $post_type_id )
-				$posts[] = get_post( intval( $post_type_id ) , ARRAY_A );
+		if ( is_array( $post_type_ids ) and ! empty( $post_type_ids[0] ) ) {
+			foreach ( $post_type_ids as $post_type_id ) {
+				$posts[] = get_post( intval( $post_type_id ) , ARRAY_A ); }
+		}
 
 		$posts = apply_filters( 'italystrap_carousel_posts', $posts, $this->args );
 
@@ -173,8 +173,8 @@ abstract class Carousel {
 
 		$container_style = '';
 
-		if ( $this->args['width'] )
-			$container_style = 'style="width:' . $this->args['width'] . 'px;"';
+		if ( $this->args['width'] ) {
+			$container_style = 'style="width:' . $this->args['width'] . 'px;"'; }
 
 		$container_style = apply_filters( 'italystrap_carousel_container_style', $container_style, $this->args );
 
@@ -191,8 +191,8 @@ abstract class Carousel {
 
 		$item_style = '';
 
-		if ( $this->args['height'] )
-			$item_style = 'style="height:' . $this->args['height'] . 'px;"' ;
+		if ( $this->args['height'] ) {
+			$item_style = 'style="height:' . $this->args['height'] . 'px;"' ; }
 
 		$item_style = apply_filters( 'italystrap_carousel_item_style', $item_style, $this->attributtes );
 
@@ -449,9 +449,10 @@ abstract class Carousel {
 		 */
 		$metadata = '<meta  itemprop="name" content="' . esc_attr( $post['post_title'] ) . '"/><meta  itemprop="width" content="' . absint( $img_attr[1] ) . '"/><meta  itemprop="height" content="' . absint( $img_attr[2] ) . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>';
 
-		foreach ( $imgmeta as $key => $value )
-			if ( ! empty( $value ) )
-				$metadata .= '<meta  itemprop="exifData" content="' . esc_attr( $key ) . ': ' . esc_attr( $value ) . '"/>';
+		foreach ( $imgmeta as $key => $value ) {
+			if ( ! empty( $value ) ) {
+				$metadata .= '<meta  itemprop="exifData" content="' . esc_attr( $key ) . ': ' . esc_attr( $value ) . '"/>'; }
+		}
 
 		return $metadata;
 	}
@@ -469,15 +470,12 @@ abstract class Carousel {
 
 		$image_size = '';
 
-		if ( $detect->isTablet() && $responsive )
-			$image_size = $this->args['sizetablet'];
-
-		elseif ( $detect->isMobile() && $responsive )
+		if ( $detect->isTablet() && $responsive ) {
+			$image_size = $this->args['sizetablet']; } elseif ( $detect->isMobile() && $responsive ) {
 			$image_size = $this->args['sizephone'];
+			} else { $image_size = $this->args['size']; }
 
-		else $image_size = $this->args['size'];
-
-		return $image_size;
+			return $image_size;
 	}
 
 	/**
@@ -659,8 +657,8 @@ abstract class Carousel {
 		}
 
 		// Support for random order.
-		if ( 'rand' === $orderby )
-			shuffle( $array );
+		if ( 'rand' === $orderby ) {
+			shuffle( $array ); }
 
 		$array = apply_filters( 'italystrap_carousel_make_array', $array, $this->args );
 
