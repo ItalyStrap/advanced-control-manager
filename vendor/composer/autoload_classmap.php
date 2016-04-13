@@ -25,7 +25,7 @@ return array(
     'ItalyStrap\\Admin\\Sanitization' => $baseDir . '/admin/class-sanitization.php',
     'ItalyStrap\\Admin\\Security_Input' => $baseDir . '/admin/class-security-input.php',
     'ItalyStrap\\Admin\\Validation' => $baseDir . '/admin/class-validation.php',
-    'ItalyStrap\\Core\\Carousel' => $baseDir . '/classes/class-carousel.php',
+    'ItalyStrap\\Core\\Carousel' => $baseDir . '/classes/class-abstract-carousel.php',
     'ItalyStrap\\Core\\Carousel_Bootstrap' => $baseDir . '/classes/class-carousel-bootstrap.php',
     'ItalyStrap\\Core\\I_Query' => $baseDir . '/classes/i-query.php',
     'ItalyStrap\\Core\\ItalyStrapCarousel' => $baseDir . '/deprecated/ItalyStrapCarousel.php',

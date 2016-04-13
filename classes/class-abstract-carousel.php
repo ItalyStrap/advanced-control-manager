@@ -6,9 +6,12 @@
  * descriptions. You need to include the Bootstrap CSS and Javascript files on
  * your own; otherwise the class will not work.
  *
- * @package ItalyStrap
+ * @link www.italystrap.com
+ * @since 2.0.0
+ *
  * @version 1.0
- * @since   2.0
+ *
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Core;
