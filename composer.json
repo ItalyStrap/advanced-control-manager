@@ -1,6 +1,6 @@
 {
     "name": "overclokk/italystrap-extended",
-    "description": "Store locator for I-Clip site",
+    "description": "Make your site more powerfull",
 	"require": {
 		"php": "^7",
 		"mobiledetect/mobiledetectlib": "dev-master",

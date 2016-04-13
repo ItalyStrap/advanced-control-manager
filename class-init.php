@@ -27,14 +27,11 @@ class Init {
 	/**
 	 * Fire the construct
 	 */
-	public function __construct() {
+	public function __construct( array $options = array() ) {
 		// delete_option( 'italystrap_settings' );
-		$this->options = (array) get_option( 'italystrap_settings' );
+		$this->options = $options;
+		// $this->options = (array) get_option( 'italystrap_settings' );
 		// var_dump( $this->options );
-		/**
-		 * Test
-		 * add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
-		 */
 	}
 
 	/**
@@ -142,65 +139,3 @@ class Init {
 		} else { echo ''; }
 	}
 } // End Init
-
-/**
- * New instance of Italystrap Init
- *
- * @var Init
- */
-$init = new Init;
-$get_options = $init->get_options();
-
-/**
- * Adjust priority to make sure this runs
- */
-add_action( 'init', array( $init, 'on_load' ), 100 );
-
-if ( isset( $get_options['media_carousel_shortcode'] ) ) {
-	$init->add_carousel_to_gallery_shortcode();
-}
-
-/**
- * Attivate LazyLoad
- */
-if ( isset( $get_options['lazyload'] ) && ! is_admin() ) {
-	Lazy_Load_Image::init();
-}
-
-/**
- * Register widget
- */
-add_action( 'widgets_init', array( $init, 'widgets_init' ) );
-
-add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
-add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
-
-/**
- * Get metaboxex value
- */
-$post_meta = new Post_Meta;
-add_action( 'wp', array( $post_meta, 'add_post_type_custom_script' ) );
-add_filter( 'body_class', array( $post_meta, 'body_class' ) );
-add_filter( 'post_class', array( $post_meta, 'body_class' ) );
-
-
-/**
- * Set JavaScript from admin option Script
- */
-ItalyStrapGlobals::set( isset( $get_options['custom_js'] ) ? $get_options['custom_js'] : '' );
-
-/**
- * Set CSS from admin option Script
- */
-ItalyStrapGlobalsCss::set( isset( $get_options['custom_css'] ) ? $get_options['custom_css'] : '' );
-
-/**
- * Print inline css in header
- */
-add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
-
-/**
- * Print inline script in footer
- * Load after all and before shotdown hook
- */
-add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );

@@ -10,7 +10,6 @@
  * @package ItalyStrap
  */
 
-
 namespace ItalyStrap\Admin;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
@@ -82,6 +81,7 @@ $admin->init();
  * @var ItalyStrapAdminGallerySettings
  */
 $gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
+
 /**
  * Da testare
  *
