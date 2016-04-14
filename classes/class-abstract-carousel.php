@@ -134,14 +134,20 @@ abstract class Carousel {
 	 * @return boolean
 	 */
 	public function validate_data() {
-		// Initialize boolean.
+		/**
+		 * Initialize boolean
+		 *
+		 * @var bool
+		 */
 		$bool = false;
 
-		/* Validate for necessary data */
-		if ( ! empty( $this->args['ids'] )
-			&& isset( $this->args['type'] )
-			&& 'carousel' === $this->args['type']
-		) { $bool = true; }
+		/**
+		 * Validate for necessary data
+		 */
+		if ( ! empty( $this->args['ids'] ) && isset( $this->args['type'] ) && 'carousel' === $this->args['type']
+		) {
+			$bool = true;
+		}
 
 		return $bool;
 
@@ -179,7 +185,7 @@ abstract class Carousel {
 		$container_style = '';
 
 		if ( $this->args['width'] ) {
-			$container_style = 'style="width:' . $this->args['width'] . 'px;"'; }
+			$container_style = 'style="width:' . esc_attr( $this->args['width'] ) . 'px;"'; }
 
 		$container_style = apply_filters( 'italystrap_carousel_container_style', $container_style, $this->args );
 
@@ -197,7 +203,7 @@ abstract class Carousel {
 		$item_style = '';
 
 		if ( $this->args['height'] ) {
-			$item_style = 'style="height:' . $this->args['height'] . 'px;"' ; }
+			$item_style = 'style="height:' . esc_attr( $this->args['height'] ) . 'px;"' ; }
 
 		$item_style = apply_filters( 'italystrap_carousel_item_style', $item_style, $this->attributtes );
 
@@ -278,7 +284,7 @@ abstract class Carousel {
 
 		switch ( $position ) {
 			case 'start':
-				$output .= '<div id="' . $this->args['name'] . '" class="carousel slide ' . $this->args['containerclass'] . '" ' . $this->container_style . '>';
+				$output .= '<div id="' . esc_attr( $this->args['name'] ) . '" class="carousel slide ' . esc_attr( $this->args['containerclass'] ) . '" ' . $this->container_style . '>';
 				break;
 			case 'end':
 				$output .= '</div>';
@@ -333,7 +339,7 @@ abstract class Carousel {
 
 		switch ( $position ) {
 			case 'start':
-				$output .= '<div class="carousel-caption ' . $this->args['captionclass'] . '" itemprop="caption">';
+				$output .= '<div class="carousel-caption ' . esc_attr( $this->args['captionclass'] ) . '" itemprop="caption">';
 				$output = apply_filters( 'italystrap_carousel_caption_container_start', $output );
 				break;
 			case 'end':
@@ -365,7 +371,7 @@ abstract class Carousel {
 		switch ( $position ) {
 			case 'start':
 				$class = ( 0 === $i ) ? 'active ' : '';
-				$output .= '<div class="' . $class . 'item carousel-item ' . $this->args['itemclass'] . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
+				$output .= '<div class="' . $class . 'item carousel-item ' . esc_attr( $this->args['itemclass'] ) . '" data-slide-no="' . $i . '" ' . $this->item_style . ' itemprop="image" itemscope itemtype="http://schema.org/ImageObject">';
 				break;
 			case 'end':
 				$output .= '</div>';
@@ -489,13 +495,15 @@ abstract class Carousel {
 
 		if ( $detect->isTablet() && $this->args['responsive'] ) {
 
-			return $image_size = $this->args['sizetablet'];
+			$image_size = $this->args['sizetablet'];
 
 		} elseif ( $detect->isMobile() && $this->args['responsive'] ) {
 
-			return $image_size = $this->args['sizephone'];
+			$image_size = $this->args['sizephone'];
 
 		}
+
+		return esc_attr( $image_size );
 
 	}
 
@@ -601,7 +609,7 @@ abstract class Carousel {
 		foreach ( $this->posts as $post ) {
 
 				$class = ( 0 === $i ) ? 'active' : '';
-				$output .= '<li data-target="#' . $this->args['name'] . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
+				$output .= '<li data-target="#' . esc_attr( $this->args['name'] ) . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
 				$i++;
 
 		}
@@ -626,9 +634,9 @@ abstract class Carousel {
 		 *
 		 * @todo Dare la possibilità di scegliere l'icona o l'inserimento di un carattere
 		 */
-		$output = '<a class="carousel-control left" data-slide="prev" role="button" href="#' . $this->args['name'] . '" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>';
+		$output = '<a class="carousel-control left" data-slide="prev" role="button" href="#' . esc_attr( $this->args['name'] ) . '" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>';
 
-		$output .= '<a class="carousel-control right" data-slide="next" role="button" href="#' . $this->args['name'] . '" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>';
+		$output .= '<a class="carousel-control right" data-slide="next" role="button" href="#' . esc_attr( $this->args['name'] ) . '" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>';
 
 		$output = apply_filters( 'italystrap_carousel_control', $output, $this->args );
 
@@ -643,16 +651,16 @@ abstract class Carousel {
 	 */
 	function get_javascript() {
 
-		$pause = ( '1' === $this->args['pause'] ) ? ',pause:"' . $this->args['pause'] . '"' : '' ;
+		$pause = ( '1' === $this->args['pause'] ) ? ',pause:"' . esc_js( $this->args['pause'] ) . '"' : '' ;
 
 		/**
 		 * LazyLoad for Bootstrap carousel
 		 * http://stackoverflow.com/questions/27675968/lazy-load-not-work-in-bootstrap-carousel
 		 * http://jsfiddle.net/51muqdLf/5/
 		 */
-		$lazyload = 'var cHeight = 0;$("#' . $this->args['name'] . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
+		$lazyload = 'var cHeight = 0;$("#' . esc_js( $this->args['name'] ) . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
 
-		$output = 'jQuery(document).ready(function($){$(\'#' . $this->args['name'] . '\').carousel({interval:' . $this->args['interval'] . $pause .' });' . $lazyload . '});';
+		$output = 'jQuery(document).ready(function($){$("#' . esc_js( $this->args['name'] ) . '").carousel({interval:' . absint( $this->args['interval'] ) . $pause .' });' . $lazyload . '});';
 
 		$output = apply_filters( 'italystrap_carousel_javascript', $output, $this->args, $lazyload );
 
