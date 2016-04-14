@@ -48,6 +48,7 @@ return array(
     'ItalyStrap\\Core\\Widget_Posts2' => $baseDir . '/widget/class-widget-posts2.php',
     'ItalyStrap\\Core\\Widget_Product' => $baseDir . '/widget/class-widget-product.php',
     'ItalyStrap\\Core\\Widget_VCard' => $baseDir . '/widget/class-widget-vcard2.php',
+    'ItalyStrap\\Core\\Widgets_Register' => $baseDir . '/widget/class-widget-register.php',
     'Italy_Cookie_Choices' => $baseDir . '/classes/italy-cookie-choices.php',
     'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',

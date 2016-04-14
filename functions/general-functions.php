@@ -216,3 +216,9 @@ function new_mobile_detect( $mobile_detect ) {
 	return $mobile_detect;
 
 }
+
+function register_widget( $widget ) {
+	global $wp_widget_factory;
+
+	$wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
+}

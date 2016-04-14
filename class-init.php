@@ -88,27 +88,29 @@ class Init {
 	public function widgets_init() {
 
 		if ( isset( $this->options['vcardwidget'] ) ) {
-			register_widget( 'ItalyStrap\Core\Vcard_Widget' );
+			\register_widget( 'ItalyStrap\Core\Vcard_Widget' );
 		}
 
 		if ( isset( $this->options['post_widget'] ) ) {
-			register_widget( 'ItalyStrap\Core\Widget_Posts' );
+			\register_widget( 'ItalyStrap\Core\Widget_Posts' );
 		}
 
 		if ( isset( $this->options['media_carousel_widget'] ) ) {
-			register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
+			\register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
 		}
 
-		register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
-		register_widget( 'ItalyStrap\Core\Widget_VCard' );
-		register_widget( 'ItalyStrap\Core\Widget_Posts2' );
+		\register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
+		\register_widget( 'ItalyStrap\Core\Widget_VCard' );
+		\register_widget( 'ItalyStrap\Core\Widget_Posts2' );
 
 		if ( isset( $this->options['widget_product'] ) ) {
-			register_widget( 'ItalyStrap\Core\Widget_Product' );
+			$widget_product = new Widget_Product;
+			// register_widget( 'ItalyStrap\Core\Widget_Product' );
+			register_widget( $widget_product );
 		}
 
 		if ( isset( $this->options['widget_image'] ) ) {
-			register_widget( 'ItalyStrap\Core\Widget_Image' );
+			\register_widget( 'ItalyStrap\Core\Widget_Image' );
 		}
 
 	}
@@ -121,10 +123,14 @@ class Init {
 	 */
 	public function print_inline_script_in_footer() {
 
-		$scipt = ItalyStrapGlobals::get();
+		$script = ItalyStrapGlobals::get();
 
-		if ( $scipt ) { echo '<script type="text/javascript">/*<![CDATA[*/' . esc_js( $scipt ) . '/*]]>*/</script>';
-		} else { echo ''; }
+		if ( ! $script ) {
+			return;
+		}
+
+		// echo '<script type="text/javascript">/*<![CDATA[*/' . json_encode( $script ) . '/*]]>*/</script>';
+		echo '<script type="text/javascript">/*<![CDATA[*/' . $script . '/*]]>*/</script>';
 
 	}
 
