@@ -538,6 +538,10 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['jshint', 'csslint']);
 	grunt.registerTask('build', ['uglify', 'less', 'compass']);
 
+	grunt.registerTask('php', 'A sample task that logs stuff.', function() {
+		return null;
+	});
+
 	grunt.event.on('watch', function(action, filepath) {
 		grunt.log.writeln(filepath + ' has ' + action);
 	});
