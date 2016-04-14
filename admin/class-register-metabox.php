@@ -80,14 +80,15 @@ class Register_Metaboxes {
 			)
 		);
 
-		$cmb->add_field(
-			array(
-				'name'		=> __( 'Custom JavaScript', 'italystrap' ),
-				'desc'		=> __( 'This code will be included verbatim in script tag before </body> tag of your page or post', 'italystrap' ),
-				'id'		=> $this->_prefix . '_custom_js_settings',
-				'type'		=> 'textarea_code',
-			)
-		);
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'		=> __( 'Custom JavaScript', 'italystrap' ),
+		// 		'desc'		=> __( 'This code will be included verbatim in script tag before </body> tag of your page or post', 'italystrap' ),
+		// 		'id'		=> $this->_prefix . '_custom_js_settings',
+		// 		'type'		=> 'textarea_code',
+		// 		'escape_cb'	=> 'esc_textarea',
+		// 	)
+		// );
 
 		$cmb->add_field(
 			array(
