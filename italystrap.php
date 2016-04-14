@@ -95,5 +95,12 @@ if ( defined( 'ITALYSTRAP_DEV' ) ) {
 }
 
 /**
+ * Fires once ItalyStrap have loaded.
+ *
+ * @since 2.0.0
+ */
+do_action( 'italystrap_plugin_loaded' );
+
+/**
  * @todo Agganciare init all'azione plugin_loaded (forse plugin_loaded è troppo presto, valutare se usare init direttamente) che in questo modo sarà possibile eventualmente fare un remove_actions se necessario (normalmente con plugin premium)
  */
