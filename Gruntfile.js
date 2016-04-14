@@ -3,7 +3,9 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		uglify: { // npm install grunt-contrib-uglify --save-dev
+		uglify: {
+			// https://github.com/gruntjs/grunt-contrib-uglify 
+			// npm install grunt-contrib-uglify --save-dev
 			// dist: {
 			//     files: {
 			//         'js/home.min.js': [
