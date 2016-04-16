@@ -6,27 +6,11 @@ module.exports = function(grunt) {
 		uglify: {
 			// https://github.com/gruntjs/grunt-contrib-uglify 
 			// npm install grunt-contrib-uglify --save-dev
-			// dist: {
-			//     files: {
-			//         'js/home.min.js': [
-			//             'js/src/bootstrapJS/transition.js',
-			//             // 'js/src/bootstrapJS/alert.js',
-			//             // 'js/src/bootstrapJS/button.js',
-			//             'js/src/bootstrapJS/carousel.js',
-			//             'js/src/bootstrapJS/collapse.js',
-			//             'js/src/bootstrapJS/dropdown.js',
-			//             // 'js/src/bootstrapJS/modal.js',
-			//             // 'js/src/bootstrapJS/tooltip.js',
-			//             // 'js/src/bootstrapJS/popover.js',
-			//             // 'js/src/bootstrapJS/scrollspy.js',
-			//             // 'js/src/bootstrapJS/tab.js',
-			//             // 'js/src/bootstrapJS/affix.js',
-			//             'js/src/home.js' // <- Modify this
-			//         ],                  
-			//     }
-			// },
 			admin: {
 				files: {
+					'admin/js/admin.min.js': [
+						'admin/js/src/admin.js'
+						],
 					'admin/js/gallery-settings.min.js': [
 						'admin/js/src/gallery-settings.js'
 						],
