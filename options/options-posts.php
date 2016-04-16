@@ -373,9 +373,9 @@ return array(
 	 */
 	'thumb_url'				=> array(
 				'name'		=> __( 'Load fall-back thumbnail (optional)', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a fall-back thumbnail url.', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter a fall-back thumbnail ID.', 'ItalyStrap' ),
 				'id'		=> 'thumb_url',
-				'type'		=> 'media_list',
+				'type'		=> 'media',
 				'class'		=> 'widefat thumb_url ids',
 				'class-p'	=> 'thumb_url',
 				'default'	=> '',
@@ -458,7 +458,7 @@ return array(
 				'taxonomy'	=> 'category',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_array',
+				'sanitize'	=> 'sanitize_taxonomy_multiple_select',
 				'section'	=> 'filter',
 				 ),
 
@@ -491,7 +491,7 @@ return array(
 				'taxonomy'	=> 'post_tag',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_array',
+				'sanitize'	=> 'sanitize_taxonomy_multiple_select',
 				'section'	=> 'filter',
 				 ),
 

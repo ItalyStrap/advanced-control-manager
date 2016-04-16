@@ -77,30 +77,21 @@ class Sanitization {
 			return sanitize_text_field( $instance_value );
 		}
 
-		// switch ( $rule ) {
-
-		// 	case 'sanitize_array':
-		// 		$array = array_map( 'esc_attr', $instance_value );
-		// 		$array = array_map( 'absint', $array );
-		// 		$count = count( $array );
-		// 		if ( 1 === $count && 0 === $array[0] ) {
-		// 			return array();
-		// 		}
-		// 		return $array;
-		// 	break;
-		// }
-
 	}
 
 	/**
-	 * Sanitize array (this is an alpha method, do not use it)
+	 * Sanitize taxonomy_multiple_select and return an array with taxonomies ID
 	 *
-	 * @param  array $instance_value The value to sanitize
-	 * @return array                 The sanitized array
+	 * @param  array|string $instance_value The value to sanitize
+	 * @return array                        The sanitized array
 	 */
-	public function sanitize_array( array $instance_value ) {
-	
-		$array = array_map( 'esc_attr', $instance_value );
+	public function sanitize_taxonomy_multiple_select( $instance_value ) {
+
+		if ( ! $instance_value ) {
+			return $instance_value;
+		}
+
+		$array = array_map( 'esc_attr', (array) $instance_value );
 		$array = array_map( 'absint', $array );
 		$count = count( $array );
 		if ( 1 === $count && 0 === $array[0] ) {
