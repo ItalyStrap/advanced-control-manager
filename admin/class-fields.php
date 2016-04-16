@@ -118,6 +118,7 @@ class Fields extends A_Fields {
 
 	/**
 	 * Create the Field Media
+	 * This field add a single image
 	 *
 	 * @access public
 	 * @param  array  $key The key of field's array to create the HTML field.
@@ -137,40 +138,14 @@ class Fields extends A_Fields {
 		ob_start();
 
 		?>
-			<h5><?php esc_attr_e( 'Add fall-back image', 'ItalyStrap' ); ?></h5>
+			<h5><?php echo $key['desc']; ?></h5>
 			<hr>
 			<div class="media_carousel_sortable">
-				<ul id="sortable" class="carousel_images" style="text-align:center">
-				<?php if ( ! empty( $value ) ) : ?>
-					<?php
-					$ids = explode( ',', $value );
-
-					foreach ( $ids as $id ) :
-
-						$attr = array(
-							'data-id'	=> $id,
-						);
-						$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
-
-						if ( '' === $output ) {
-							$id = (int) get_post_thumbnail_id( $id );
-							$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
-						}
-
-						if ( $output ) :
-					?>
-				
-						<li id="carousel-image" class="carousel-image ui-state-default">
-							<div>
-								<i class="dashicons dashicons-no"></i>
-								<?php echo $output; // XSS ok. ?>
-							</div>
-						</li>
-				
-					<?php
-						endif;
-					endforeach; ?>
-				<?php endif; ?>
+				<ul class="carousel_images" style="text-align:center">
+				<?php
+				if ( ! empty( $value ) ) {
+					$this->get_el_media_field( absint( $value ) );
+				} ?>
 				</ul>
 			</div>
 			<span style="clear:both;"></span>
@@ -193,6 +168,53 @@ class Fields extends A_Fields {
 	 * @return string      Return the HTML Field Text
 	 */
 	public function field_type_media_list( array $key, $out = '' ) {
+
+		$attr = array(
+			'type'	=> 'text',
+			);
+
+		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+
+		$value = isset( $key['value'] ) ? esc_attr( $key['value'] ) : '';
+
+		ob_start();
+
+		?>
+			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+			<hr>
+			<div class="media_carousel_sortable">
+				<ul id="sortable" class="carousel_images">
+				<?php if ( ! empty( $value ) ) : ?>
+					<?php
+					$ids = explode( ',', $value );
+
+					foreach ( $ids as $id ) :
+						$this->get_el_media_field( $id );
+					endforeach; ?>
+				<?php endif; ?>
+				</ul>
+			</div>
+			<span style="clear:both;"></span>
+			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+		<hr>
+		<?php
+
+		$out .= ob_get_contents();
+		ob_end_clean();
+
+		return $out;
+	}
+
+	/**
+	 * Create the Field Media List OLD
+	 * Tenere solo nel caso ci siano problemi con le altre due
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Text
+	 */
+	public function field_type_media_list_old( array $key, $out = '' ) {
 
 		$attr = array(
 			'type'	=> 'text',

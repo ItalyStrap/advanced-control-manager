@@ -19,11 +19,12 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'id'				=> array(
-				'name'		=> __( 'Images ID', 'ItalyStrap' ),
+				'name'		=> __( 'Enter Images ID', 'ItalyStrap' ),
 				'desc'		=> __( 'Enter the media or post type ID.', 'ItalyStrap' ),
 				'id'		=> 'id',
 				'type'		=> 'media',
 				'class'		=> 'widefat ids',
+				// 'class-p'	=> 'hidden',
 				'default'	=> false,
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',

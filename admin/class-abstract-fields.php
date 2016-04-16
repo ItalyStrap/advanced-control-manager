@@ -98,4 +98,28 @@ abstract class A_Fields implements I_Fields {
 		) );
 		return sprintf( '<textarea%s>%s</textarea>%s', $this->concat_attrs( $a, array( 'desc', 'value' ) ), $a['value'], $a['desc'] );
 	}
+
+	/**
+	 * Get element with image for media fields
+	 *
+	 * @param  int $id The ID of the image.
+	 * @param  string $text The text.
+	 * @return string        The HTML of the element with image
+	 */
+	public function get_el_media_field( $id ) {
+	
+		$attr = array(
+			'data-id'	=> $id,
+		);
+		$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
+
+		if ( '' === $output ) {
+			$id = (int) get_post_thumbnail_id( $id );
+			$output = wp_get_attachment_image( $id , 'thumbnail', false, $attr );
+		}
+
+		if ( $output ) {
+			echo '<li class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i>' . $output . '</div></li>';// XSS ok.
+		}
+	}
 }

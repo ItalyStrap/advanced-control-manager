@@ -372,12 +372,12 @@ return array(
 	 * Custom CSS class for widget.
 	 */
 	'thumb_url'				=> array(
-				'name'		=> __( 'Load fall-back thumbnail (optional)', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a fall-back thumbnail ID.', 'ItalyStrap' ),
+				'name'		=> __( 'Enter ID of a fall-back thumbnail (optional)', 'ItalyStrap' ),
+				'desc'		=> __( 'Add a fall-back thumbnail in case no one is found.', 'ItalyStrap' ),
 				'id'		=> 'thumb_url',
 				'type'		=> 'media',
 				'class'		=> 'widefat thumb_url ids',
-				'class-p'	=> 'thumb_url',
+				'class-p'	=> 'hidden',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
