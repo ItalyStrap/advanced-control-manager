@@ -23,6 +23,7 @@
     "grunt-contrib-uglify": "^0.10.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-copy-part-of-file": "^0.1.2",
+    "grunt-exec": "^0.4.6",
     "grunt-git": "^0.3.5",
     "grunt-github-releaser": "^0.1.18",
     "grunt-phpcbf": "^0.1.0",

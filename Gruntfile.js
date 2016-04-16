@@ -382,6 +382,13 @@ module.exports = function(grunt) {
 			}
 		},
 
+		exec: { // https://github.com/jharding/grunt-exec
+				// https://github.com/a6software/Helpful/blob/master/grunt_automated_testing_config/Gruntfile.js
+			run_only_unit_tests: {
+				cmd: 'php vendor/codeception/codeception/codecept run'
+			}
+		},
+
 		watch: { // https://github.com/gruntjs/grunt-contrib-watch
 			compass: {
 				files: ['admin/css/src/sass/*.{scss,sass}'],
@@ -439,6 +446,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-prompt');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-github-releaser');
+	grunt.loadNpmTasks('grunt-exec');
 
 	/**
 	 * Controllare gli aggiornamenti
