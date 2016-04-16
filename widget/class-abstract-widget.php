@@ -324,7 +324,7 @@ abstract class Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		$instance = $new_instance;
-		// var_dump($instance);
+
 		$this->before_update_fields();
 
 		$this->validation = new Validation;
@@ -386,7 +386,7 @@ abstract class Widget extends WP_Widget {
 	 * @return string           Return the $instance of widget
 	 */
 	public function after_validate_fields( $instance ) {
-		// var_dump($instance);die();
+
 		return $instance;
 
 	}
