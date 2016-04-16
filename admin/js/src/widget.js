@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
 	$('#widgets-right').on('click', '.upw-tab-item', function(event) {
 		event.preventDefault();
 		var widget = $(this).parents('.widget');
-		console.log(widget);
+		// console.log(widget);
 		widget.find('.upw-tab-item').removeClass('active');
 		$(this).addClass('active');
 		widget.find('.upw-tab').addClass('upw-hide');
@@ -97,7 +97,7 @@ jQuery(document).ready(function($) {
 		/**
 		 * Update the input ids
 		 */
-		_update_input_ids ( ul_container, input_ids );
+		_update_input_ids( ul_container, input_ids );
 
 	});
 
@@ -171,6 +171,88 @@ jQuery(document).ready(function($) {
 		// Finally, open the modal
 		file_frame.open();
 	});
+
+	/***************************************
+	 * ItalyStrap widget with only one image
+	 ***************************************/
+
+	$(document).on('click', '.upload_single_image_button', function( event ){
+
+		event.preventDefault();
+
+		var images_container = $(this).offsetParent();
+
+		// If the media frame already exists, reopen it.
+		// if ( file_frame ) {
+		//		console.log(file_frame);
+		//		file_frame.open();
+		//		return;
+		// }
+
+		// Create the media frame.
+		file_frame = wp.media.frames.file_frame = wp.media({
+			// frame: 'post',
+			// frame: 'image',
+			// state: 'gallery',
+			library: {
+					type: 'image'
+			},
+			title: jQuery( this ).data( 'uploader_title' ),
+			button: {
+				text: jQuery( this ).data( 'uploader_button_text' ),
+			},
+			multiple: false  // Set to true to allow multiple files to be selected
+		});
+		// console.log(jQuery( this ).data());
+		// console.log(jQuery( this ).data( 'uploader_button_text' ));
+
+		// When an image is selected, run a callback.
+		file_frame.on( 'select', function() {
+			// We set multiple to false so only get one image from the uploader
+			var attachment = file_frame.state().get('selection').first().toJSON();
+// console.log(attachment);
+// console.log(attachment.uploadedTo);
+			/**
+			 * Image URL
+			 * @type {string}
+			 */
+			var url = attachment.sizes.thumbnail.url ? attachment.sizes.thumbnail.url : attachment.url ;
+
+			var ul_container = null;
+			var input_ids = null;
+
+			ul_container = images_container.find('.carousel_images');
+			ul_container.empty();
+			ul_container.append('<li id="carousel-image" class="carousel-image ui-state-default"><div><i class="dashicons dashicons-no"></i><img src="' + url + '" width="150px" height="150px" data-id="' + attachment.id + '" /></div></li>');
+
+			input_ids = images_container.find('.ids');
+			// console.log(input_ids.val());
+			input_ids.val( attachment.id );
+			// if ( '' === input_ids.val() ) {
+			// 	input_ids.val( attachment.id );
+			// } 
+			// else{
+			// 	input_ids.val( input_ids.val() + ',' + attachment.id );
+			// }
+
+			// console.log( attachment );
+			// console.log( attachment.sizes );
+			// console.log( attachment.sizes.thumbnail );
+			// console.log( attachment.sizes.thumbnail.url );
+
+			// Do something with attachment.id and/or attachment.url here
+			ul_container = null;
+			input_ids = null;
+		});
+
+		// Finally, open the modal
+		file_frame.open();
+	});
+
+
+
+
+
 
 	$(document).on('click', '.upload_carousel_single_image_button', function( event ){
 

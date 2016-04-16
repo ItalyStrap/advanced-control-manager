@@ -137,10 +137,10 @@ class Fields extends A_Fields {
 		ob_start();
 
 		?>
-			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+			<h5><?php esc_attr_e( 'Add fall-back image', 'ItalyStrap' ); ?></h5>
 			<hr>
 			<div class="media_carousel_sortable">
-				<ul id="sortable" class="carousel_images">
+				<ul id="sortable" class="carousel_images" style="text-align:center">
 				<?php if ( ! empty( $value ) ) : ?>
 					<?php
 					$ids = explode( ',', $value );
@@ -160,7 +160,7 @@ class Fields extends A_Fields {
 						if ( $output ) :
 					?>
 				
-						<li class="carousel-image ui-state-default">
+						<li id="carousel-image" class="carousel-image ui-state-default">
 							<div>
 								<i class="dashicons dashicons-no"></i>
 								<?php echo $output; // XSS ok. ?>
@@ -174,7 +174,7 @@ class Fields extends A_Fields {
 				</ul>
 			</div>
 			<span style="clear:both;"></span>
-			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+			<input class="upload_single_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add image', 'ItalyStrap' ); ?>" />
 		<hr>
 		<?php
 
