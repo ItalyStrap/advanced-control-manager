@@ -52,7 +52,13 @@
 				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_url'] ) :?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
-							<img src="<?php echo esc_html( $this->args['thumb_url'] ); ?>">
+							<?php 
+							$attr = array(
+								'itemprop'	=> 'image',
+							);
+							$the_post_thumbnail = wp_get_attachment_image( $this->args['thumb_url'] , $this->args['thumb_size'], false, $attr );
+							echo apply_filters( 'italystrap_widget_the_post_thumbnail', $the_post_thumbnail );
+							?>
 						</a>
 					</figure>
 				<?php endif; ?>
