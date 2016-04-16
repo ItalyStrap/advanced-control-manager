@@ -510,15 +510,11 @@ class Test_CMB2_Core extends Test_CMB2 {
 		$cmb->update_field_property( 'group_field', 'after_group', 'after_group output' );
 
 		$fields = $cmb->prop( 'fields' );
-		$field = new CMB2_Field( array(
-			'field_args'  => $fields['group_field'],
-			'object_type' => $cmb->object_type(),
-			'object_id'   => $cmb->object_id(),
-		) );
+		$field = $this->invokeMethod( $cmb, 'get_new_field', $fields['group_field'] );
 
 		$expected_group_render = '
 		before_group output
-		<div class="cmb-row cmb-repeat-group-wrap">
+		<div class="cmb-row cmb-repeat-group-wrap cmb-type-group cmb2-id-group-field cmb-repeat">
 			<div class="cmb-td">
 				<div id="group_field_repeat" class="cmb-nested cmb-field-list cmb-repeatable-group non-sortable repeatable" style="width:100%;">
 					<div class="cmb-row cmb-group-description">
@@ -598,7 +594,7 @@ class Test_CMB2_Core extends Test_CMB2 {
 		$field = $cmb->get_field( 'group_field2' );
 
 		$expected_group_render = '
-		<div class="cmb-row cmb-repeat-group-wrap">
+		<div class="cmb-row cmb-repeat-group-wrap cmb-type-group cmb2-id-group-field2">
 			<div class="cmb-td">
 				<div id="group_field2_repeat" class="cmb-nested cmb-field-list cmb-repeatable-group non-sortable non-repeatable" style="width:100%;">
 					<div class="cmb-row">

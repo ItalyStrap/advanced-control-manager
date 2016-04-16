@@ -138,6 +138,29 @@ abstract class Test_CMB2 extends WP_UnitTestCase {
 		return $compare;
 	}
 
+	/**
+	 * Call protected/private method of a class.
+	 *
+	 * @param object $object     Instantiated object that we will run method on.
+	 * @param string $methodName Method name to call
+	 *
+	 * @return mixed Method return.
+	 */
+	public function invokeMethod( $object, $methodName ) {
+		if ( version_compare(phpversion(), '5.3', '<' ) ) {
+			$this->markTestSkipped( 'PHP version does not support ReflectionClass::setAccessible()' );
+		}
+
+		$args = func_get_args();
+		unset( $args[0], $args[1] );
+
+		$reflection = new ReflectionClass( get_class( $object ) );
+		$method = $reflection->getMethod( $methodName );
+		$method->setAccessible( true );
+
+		return $method->invokeArgs( $object, $args );
+	}
+
 	public function assertHTMLstringsAreEqual( $expected_string, $string_to_test ) {
 		$expected_string = $this->normalize_string( $expected_string );
 		$string_to_test = $this->normalize_string( $string_to_test );

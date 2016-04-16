@@ -87,6 +87,13 @@ class CMB2_Field {
 	public $data_to_save = array();
 
 	/**
+	 * Current field's CMB2 instance ID
+	 * @var   string
+	 * @since 2.2.2
+	 */
+	public $cmb_id = '';
+
+	/**
 	 * Constructs our field object
 	 * @since 1.1.0
 	 * @param array $args Field arguments
@@ -97,9 +104,14 @@ class CMB2_Field {
 			$this->group       = $args['group_field'];
 			$this->object_id   = $this->group->object_id;
 			$this->object_type = $this->group->object_type;
+			$this->cmb_id      = $this->group->cmb_id;
 		} else {
 			$this->object_id   = isset( $args['object_id'] ) && '_' !== $args['object_id'] ? $args['object_id'] : 0;
 			$this->object_type = isset( $args['object_type'] ) ? $args['object_type'] : 'post';
+
+			if ( isset( $args['cmb_id'] ) ) {
+				$this->cmb_id = $args['cmb_id'];
+			}
 		}
 
 		$this->args = $this->_set_field_defaults( $args['field_args'] );
@@ -1097,6 +1109,49 @@ class CMB2_Field {
 		);
 
 		return $args;
+	}
+
+	/**
+	 * Returns a cloned version of this field object with, but with
+	 * modified/overridden field arguments.
+	 *
+	 * @since  2.2.2
+	 * @param  array  $field_args Array of field arguments, or entire array of
+	 *                            arguments for CMB2_Field
+	 *
+	 * @return CMB2_Field         The new CMB2_Field instance.
+	 */
+	public function get_field_clone( $field_args ) {
+		$args = array(
+			'field_args'  => array(),
+			'group_field' => $this->group,
+			'object_id'   => $this->object_id,
+			'object_type' => $this->object_type,
+			'cmb_id'      => $this->cmb_id,
+		);
+
+		if ( isset( $field_args['field_args'] ) ) {
+			$args = wp_parse_args( $field_args, $args );
+		} else {
+			$args['field_args'] = wp_parse_args( $field_args, $this->args );
+		}
+
+		return new CMB2_Field( $args );
+	}
+
+	/**
+	 * Returns the CMB2 instance this field is registered to.
+	 *
+	 * @since  2.2.2
+	 *
+	 * @return CMB2|WP_Error If new CMB2_Field is called without cmb_id arg, returns error.
+	 */
+	public function get_cmb() {
+		if ( ! $this->cmb_id ) {
+			return new WP_Error( 'no_cmb_id', __( 'Sorry, this field does not have a cmb_id specified.', 'cmb2' ) );
+		}
+
+		return cmb2_get_metabox( $this->cmb_id, $this->object_id, $this->object_type );
 	}
 
 }
