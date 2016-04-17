@@ -43,6 +43,23 @@ return array(
 						'sanitize'		=> 'sanitize_text_field',
 				),
 			),
+			array(
+				'id'		=> 'kill-emojis',
+				'title'		=> __( 'Kill the Emojis', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'italystrap_general_section',
+				'args'		=> array(
+						'name'			=> __( 'Kill the Emojis', 'italystrap' ),
+						'desc'			=> __( 'If you don\'t youse it kill it.', 'italystrap' ),
+						'id'			=> 'kill-emojis',
+						'type'			=> 'checkbox',
+						'class'			=> 'kill-emojis',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
 		),
 	),
 	/**

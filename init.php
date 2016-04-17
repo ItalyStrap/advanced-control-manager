@@ -29,6 +29,10 @@ $injector = new \Auryn\Injector;
  */
 $options = (array) get_option( 'italystrap_settings' );
 
+if ( isset( $options['kill-emojis'] ) ) {
+	add_action( 'init', 'ItalyStrap\Core\kill_emojis' );
+}
+
 /**
  * Define options parmeter
  */
