@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Admin;
+<?php
 /**
  * Add ID column to post_type admin table
  *
  * @package ItalyStrap
  * @since   2.0.0
  */
+
+namespace ItalyStrap\Admin;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();

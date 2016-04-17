@@ -59,6 +59,23 @@ if ( isset( $options['show-ids'] ) ) {
 }
 
 /**
+ * Add thumb to post_type table
+ * @todo  maybe add, remove & customize admin table?
+ * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/manage_$post_type_posts_columns
+ */
+if ( isset( $options['show-thumb'] ) ) {
+	if ( isset( $_GET['post_type'] ) && 'product' === $_GET['post_type'] ) {
+		return;
+	}
+	require( 'hooks/simply-show-thumb.php' );
+	add_filter( 'manage_posts_columns', 'Italystrap\Admin\posts_columns', 5);
+	add_action( 'manage_posts_custom_column', 'Italystrap\Admin\posts_custom_columns', 5, 2);
+	add_filter( 'manage_pages_columns', 'Italystrap\Admin\posts_columns', 5);
+	add_action( 'manage_pages_custom_column', 'Italystrap\Admin\posts_custom_columns', 5, 2);
+	add_action( 'admin_head-edit.php', 'Italystrap\Admin\posts_columns_style' );
+}
+
+/**
  * Define admin settings parmeter
  */
 $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );

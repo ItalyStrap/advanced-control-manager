@@ -44,6 +44,23 @@ return array(
 				),
 			),
 			array(
+				'id'		=> 'show-thumb',
+				'title'		=> __( 'Show Thumb', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'italystrap_general_section',
+				'args'		=> array(
+						'name'			=> __( 'Show Thumb', 'italystrap' ),
+						'desc'			=> __( 'Show Thumb on table in post type edit screen', 'italystrap' ),
+						'id'			=> 'show-thumb',
+						'type'			=> 'checkbox',
+						'class'			=> 'show-thumb',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+			array(
 				'id'		=> 'kill-emojis',
 				'title'		=> __( 'Kill the Emojis', 'italystrap' ),
 				'callback'	=> 'get_field_type',
