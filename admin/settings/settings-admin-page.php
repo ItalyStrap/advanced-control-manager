@@ -51,7 +51,7 @@ return array(
 				'section'	=> 'italystrap_general_section',
 				'args'		=> array(
 						'name'			=> __( 'Kill the Emojis', 'italystrap' ),
-						'desc'			=> __( 'If you don\'t youse it kill it.', 'italystrap' ),
+						'desc'			=> __( 'If you don\'t use it kill it.', 'italystrap' ),
 						'id'			=> 'kill-emojis',
 						'type'			=> 'checkbox',
 						'class'			=> 'kill-emojis',
