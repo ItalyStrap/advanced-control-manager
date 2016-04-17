@@ -29,15 +29,17 @@ $injector = new \Auryn\Injector;
  */
 $options = (array) get_option( 'italystrap_settings' );
 
-if ( isset( $options['kill-emojis'] ) ) {
-	add_action( 'init', 'ItalyStrap\Core\kill_emojis' );
-}
-
 /**
  * Define options parmeter
  */
 $injector->defineParam( 'options', $options );
 
+/**
+ * Option for killing the emojis
+ */
+if ( isset( $options['kill-emojis'] ) ) {
+	add_action( 'init', 'ItalyStrap\Core\kill_emojis' );
+}
 
 /**
  * Instantiate Init Class
@@ -58,8 +60,15 @@ if ( isset( $options['media_carousel_shortcode'] ) ) {
 /**
  * Attivate LazyLoad
  */
-if ( isset( $options['lazyload'] ) && ! is_admin() ) {
-	Lazy_Load_Image::init();
+if ( isset( $options['lazyload'] ) ) {
+	/**
+	 * Instantiate Post_Meta Class
+	 *
+	 * @var Post_Meta
+	 */
+	$lazy_load_image = $injector->make( 'ItalyStrap\Core\Lazy_Load_Image' );
+	$lazy_load_image::init();
+	// Lazy_Load_Image::init();
 }
 
 /**

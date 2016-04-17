@@ -13,6 +13,25 @@ class Lazy_Load_Image {
 
 	private static $unveilpath = '';
 
+	/**
+	 * The options of the plugin
+	 *
+	 * @var array
+	 */
+	private static $options;
+
+	/**
+	 * Init constructor
+	 *
+	 * @param  array $options The plugin options
+	 * @return string        [description]
+	 */
+	public function __construct( array $options ) {
+	
+		self::$options = $options;
+	
+	}
+
 	static function init() {
 
 		if ( is_admin() )
@@ -88,14 +107,22 @@ class Lazy_Load_Image {
 		 * Gif link
 		 * @link http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/
 		 * Gif nera
-		 * R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
+		 * data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
 		 * Gif grigia
-		 * R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
+		 * data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
 		 * Gif trasparente
-		 * R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
+		 * data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
 		 * @var string
 		 */
-		$placeholder_image = apply_filters( 'italystrap_lazy_load_placeholder_image', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' );
+		$placeholder_image_default = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+		if ( isset( self::$options['lazyload-custom-placeholder'] ) ) {
+			$placeholder_image = self::$options['lazyload-custom-placeholder'];
+		} else {
+			$placeholder_image = $placeholder_image_default;
+		}
+
+		$placeholder_image = apply_filters( 'italystrap_lazy_load_placeholder_image', $placeholder_image );
 
 		/**
 		 * This is a pretty simple regex, but it works
