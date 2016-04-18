@@ -104,6 +104,26 @@ module.exports = function(grunt) {
 			},
 		},
 
+		bump: { // https://github.com/vojtajina/grunt-bump
+			options: {
+				files: ['package.json'],
+				updateConfigs: [],
+				commit: true,
+				commitMessage: 'Release v%VERSION%',
+				commitFiles: ['package.json'],
+				createTag: true,
+				tagName: 'v%VERSION%',
+				tagMessage: 'Version %VERSION%',
+				push: true,
+				pushTo: 'upstream',
+				gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
+				globalReplace: false,
+				prereleaseName: false,
+				metadata: '',
+				regExp: false
+			}
+		},
+
 		gitcheckout: {
 			devtomaster: { // Mi sposto da Dev a master
 				options: {
@@ -423,6 +443,8 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+
+	grunt.loadNpmTasks('grunt-bump');
 
 	grunt.loadNpmTasks('grunt-version');
 	grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
