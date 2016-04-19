@@ -27,6 +27,7 @@ return array(
     'ItalyStrap\\Admin\\Validation' => $baseDir . '/admin/class-validation.php',
     'ItalyStrap\\Core\\Carousel' => $baseDir . '/classes/class-abstract-carousel.php',
     'ItalyStrap\\Core\\Carousel_Bootstrap' => $baseDir . '/classes/class-carousel-bootstrap.php',
+    'ItalyStrap\\Core\\Generate_Script' => $baseDir . '/classes/class-generate-script.php',
     'ItalyStrap\\Core\\I_Query' => $baseDir . '/classes/i-query.php',
     'ItalyStrap\\Core\\ItalyStrapCarousel' => $baseDir . '/deprecated/ItalyStrapCarousel.php',
     'ItalyStrap\\Core\\ItalyStrapGlobals' => $baseDir . '/classes/ItalyStrapGlobals.php',
