@@ -1,3 +1,30 @@
+var index_php_text = [
+	'<?php',
+	'/**',
+	' * May the force be with you.',
+	' *',
+	' * @package ItalyStrap',
+	' */',
+	'\n',
+].join("\n");
+
+var traverseFileSystem = function ( fs, currentPath) {
+	console.log(currentPath);
+	var files = fs.readdirSync(currentPath);
+	for (var i in files) {
+		var currentFile = currentPath + '/' + files[i];
+		var stats = fs.statSync(currentFile);
+		if (stats.isFile()) {
+			console.log(currentFile);
+		}
+		else if (stats.isDirectory()) {
+			traverseFileSystem(currentFile);
+		}
+	}
+};
+
+var path = require("path");
+
 module.exports = function(grunt) {
 	'use strict';
 
@@ -393,6 +420,44 @@ module.exports = function(grunt) {
 			}
 		},
 
+		"file-creator": {
+			"basic": {
+				"test/index.php": function(fs, fd, done) {
+					console.log(fs.readdirSync('./'));
+					// traverseFileSystem( fs, './' );
+					// console.log(fs);
+					fs.readdir( './', function (err, files) {
+						if ( ! err ) {
+							// console.log( 'no error ' + files );
+							// console.log( path );
+							// files.forEach(function(path) {
+								// console.log( path );
+								// actionOnFile(null, path);
+							// })
+
+							files.map(function (file) {
+								return path.join('./', file);
+							}).filter(function (file) {
+								return fs.statSync(file).isDirectory();
+							}).forEach(function (file) {
+								console.log(index_php_text);
+								fs.writeFile(file + '/index.php', index_php_text);
+								// fs.writeSync(fd, index_php_text);
+								// console.log("%s (%s)", file, path.extname(file));
+		    				});
+		    				fs.writeSync(fd, index_php_text);
+						} else {
+							console.log( 'error ' + err );
+							throw err;
+						}
+					});
+					// console.log(done);
+					// fs.writeSync(fd, index_php_text);
+					done();
+				}
+			}
+		},
+
 		watch: { // https://github.com/gruntjs/grunt-contrib-watch
 			compass: {
 				files: ['admin/css/src/sass/*.{scss,sass}'],
@@ -435,6 +500,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-phpcbf');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-sync');
+
+	grunt.loadNpmTasks('grunt-file-creator');
 
 	/**
 	 * https://www.npmjs.com/package/grunt-composer
