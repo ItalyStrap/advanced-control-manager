@@ -33,3 +33,6 @@ wp-tests-config.php
 test_italystrap.php
 phpunit.xml
 tests/_output/*
+
+#todo.md
+**/todo.md
