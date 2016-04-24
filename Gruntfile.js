@@ -1,3 +1,4 @@
+var fs = require('fs');
 var index_php_text = [
 	'<?php',
 	'/**',
@@ -8,17 +9,30 @@ var index_php_text = [
 	'\n',
 ].join("\n");
 
-var traverseFileSystem = function ( fs, currentPath) {
-	console.log(currentPath);
-	var files = fs.readdirSync(currentPath);
-	for (var i in files) {
-		var currentFile = currentPath + '/' + files[i];
-		var stats = fs.statSync(currentFile);
-		if (stats.isFile()) {
-			console.log(currentFile);
+var traverseFileSystem = function ( currentPath, fileName ) {
+	var files = fs.readdirSync( currentPath );
+	for ( var i in files ) {
+		if ( files[i].search( /vendor|test|node_module/i ) > -1 ) {
+			continue;
 		}
-		else if (stats.isDirectory()) {
-			traverseFileSystem(currentFile);
+		// if ( files[i].search( /\.[a-zA-Z]+/ig ) > -1 ) {
+		// 	continue;
+		// }
+		// console.log(files[i]);
+		var currentFile = currentPath + '/' + files[i];
+		var stats = fs.statSync( currentFile );
+		// console.log(stats.isDirectory());
+		if ( stats.isDirectory() ) {
+			traverseFileSystem( currentFile, fileName );
+			fs.writeFile( currentPath + fileName, 'Hello Node.js', function ( err ) {
+				if ( err ) {
+					console.log( err );
+					throw err;
+				}
+				console.log( 'It\'s saved!' );
+				console.log( data );
+			});
+			// traverseFileSystem( currentFile, fileName );
 		}
 	}
 };
@@ -622,6 +636,11 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['uglify', 'less', 'compass']);
 
 	grunt.registerTask('php', 'A sample task that logs stuff.', function() {
+		return null;
+	});
+
+	grunt.registerTask('files', 'A sample task that logs stuff.', function() {
+		traverseFileSystem( './', '/index.php' );
 		return null;
 	});
 
