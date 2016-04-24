@@ -95,11 +95,48 @@ if ( defined( 'ITALYSTRAP_DEV' ) ) {
 }
 
 /**
- * Fires once ItalyStrap have loaded.
+ * Fires once ItalyStrap plugin has loaded.
  *
  * @since 2.0.0
  */
 do_action( 'italystrap_plugin_loaded' );
+
+/**
+ * This filter is used to load your php file right after ItalyStrap plugin is loaded.
+ * The purpose is to have al code in the same scope without using global
+ * with variables provided from this plugin.
+ *
+ * Usage example:
+ *
+ * 1 - First of all you have to have the file/files with some code
+ *     that extending this plugins functionality in your plugin path.
+ * 2 - Than you have to activate your plugin.
+ * 3 - And then see the below example.
+ *
+ * add_filter( 'italystrap_require_plugin_files_path', 'add_your_files_path' );
+ *
+ * function add_your_files_path( array $arg ) {
+ *     return array_merge(
+ *                  $arg,
+ *                  array( plugin_dir_path( __FILE__ ) . 'my-dir/my-file.php' )
+ *     );
+ * }
+ * Important:
+ * Remeber that the file you want to load just after ItalyStrap plugin
+ * has not to be required/included from your plugin because
+ * you will get an error 'You can't redeclare...'.
+ *
+ * @since 2.0.0
+ *
+ * @var array
+ */
+$plugin_files_path = apply_filters( 'italystrap_require_plugin_files_path', array() );
+
+if ( ! empty( $plugin_files_path ) ) {
+	foreach ( $plugin_files_path as $key => $plugin_file_path ) {
+		require( $plugin_file_path );
+	}
+}
 
 /**
  * @todo Agganciare init all'azione plugin_loaded (forse plugin_loaded è troppo presto, valutare se usare init direttamente) che in questo modo sarà possibile eventualmente fare un remove_actions se necessario (normalmente con plugin premium)
