@@ -210,21 +210,65 @@ class CMB2_Utils {
 	 * @return string      Converted URL.
 	 */
 	public static function get_url_from_dir( $dir ) {
-		if ( 'WIN' === strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
-			// Windows
-			$content_dir = str_replace( '/', DIRECTORY_SEPARATOR, WP_CONTENT_DIR );
-			$content_url = str_replace( $content_dir, WP_CONTENT_URL, $dir );
-			$url = str_replace( DIRECTORY_SEPARATOR, '/', $content_url );
+		$dir = self::normalize_path( $dir );
 
-		} else {
-			$url = str_replace(
-				array( WP_CONTENT_DIR, WP_PLUGIN_DIR ),
-				array( WP_CONTENT_URL, WP_PLUGIN_URL ),
-				$dir
-			);
+		// Let's test if We are in the plugins or mu-plugins dir.
+		$test_dir = trailingslashit( $dir ) . 'unneeded.php';
+		if (
+			0 === strpos( $test_dir, self::normalize_path( WPMU_PLUGIN_DIR ) )
+			|| 0 === strpos( $test_dir, self::normalize_path( WP_PLUGIN_DIR ) )
+		) {
+			// Ok, then use plugins_url, as it is more reliable.
+			return trailingslashit( plugins_url( '', $test_dir ) );
 		}
 
+		// Ok, now let's test if we are in the theme dir.
+		$theme_root = get_theme_root();
+		if ( 0 === strpos( $dir, $theme_root ) ) {
+			// Ok, then use get_theme_root_uri.
+			return set_url_scheme( trailingslashit( str_replace( $theme_root, get_theme_root_uri(), $dir ) ) );
+		}
+
+		// Check to see if it's anywhere in the root directory
+
+		$site_dir = ABSPATH;
+		$site_url = trailingslashit( is_multisite() ? network_site_url() : site_url() );
+
+		$url = str_replace(
+			array( $site_dir, WP_PLUGIN_DIR ),
+			array( $site_url, WP_PLUGIN_URL ),
+			$dir
+		);
+
 		return set_url_scheme( $url );
+	}
+
+	/**
+	 * `wp_normalize_path` wrapper for back-compat. Normalize a filesystem path.
+	 *
+	 * On windows systems, replaces backslashes with forward slashes
+	 * and forces upper-case drive letters.
+	 * Allows for two leading slashes for Windows network shares, but
+	 * ensures that all other duplicate slashes are reduced to a single.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @param string $path Path to normalize.
+	 * @return string Normalized path.
+	 */
+	protected static function normalize_path( $path ) {
+		if ( function_exists( 'wp_normalize_path' ) ) {
+			return wp_normalize_path( $path );
+		}
+
+		// Replace newer WP's version of wp_normalize_path.
+		$path = str_replace( '\\', '/', $path );
+		$path = preg_replace( '|(?<=.)/+|', '/', $path );
+		if ( ':' === substr( $path, 1, 1 ) ) {
+			$path = ucfirst( $path );
+		}
+
+		return $path;
 	}
 
 	/**

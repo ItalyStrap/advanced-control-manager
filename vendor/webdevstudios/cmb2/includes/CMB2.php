@@ -204,8 +204,48 @@ class CMB2 {
 		 */
 		do_action( "cmb2_before_{$object_type}_form_{$this->cmb_id}", $object_id, $this );
 
-		echo '<div class="cmb2-wrap form-table"><div id="cmb2-metabox-', sanitize_html_class( $this->cmb_id ), '" class="cmb2-metabox cmb-field-list">';
+		echo '<div class="', $this->box_classes(), '"><div id="cmb2-metabox-', sanitize_html_class( $this->cmb_id ), '" class="cmb2-metabox cmb-field-list">';
 
+	}
+
+	/**
+	 * Defines the classes for the CMB2 form/wrap.
+	 *
+	 * @since  2.0.0
+	 * @return string Space concatenated list of classes
+	 */
+	public function box_classes() {
+
+		$classes = array( 'cmb2-wrap', 'form-table' );
+
+		$cb = $this->prop( 'classes_cb' );
+
+		// Use the callback to fetch classes.
+		if ( is_callable( $cb ) && ( $added_classes = call_user_func( $cb, $this ) ) ) {
+			$added_classes = is_array( $added_classes ) ? $added_classes : array( $added_classes );
+			$classes = array_merge( $classes, $added_classes );
+		}
+
+		if ( $added_classes = $this->prop( 'classes' ) ) {
+			$added_classes = is_array( $added_classes ) ? $added_classes : array( $added_classes );
+			$classes = array_merge( $classes, $added_classes );
+		}
+
+		/**
+		 * Globally filter box wrap classes
+		 *
+		 * @since 2.2.2
+		 *
+		 * @param string $classes Array of classes for the cmb2-wrap.
+		 * @param CMB2   $cmb     This CMB2 object.
+		 */
+		$classes = apply_filters( 'cmb2_wrap_classes', $classes, $this );
+
+		// Clean up.
+		$classes = array_map( 'strip_tags', array_filter( $classes ) );
+
+		// Make a string.
+		return implode( ' ', $classes );
 	}
 
 	/**
@@ -314,7 +354,7 @@ class CMB2 {
 
 		$field_group->peform_param_callback( 'before_group' );
 
-		echo '<div class="cmb-row cmb-repeat-group-wrap ', $field_group->row_classes(), '"><div class="cmb-td"><div id="', $field_group->id(), '_repeat" class="cmb-nested cmb-field-list cmb-repeatable-group', $sortable, $repeat_class, '" style="width:100%;">';
+		echo '<div class="cmb-row cmb-repeat-group-wrap ', $field_group->row_classes(), '" data-fieldtype="group"><div class="cmb-td"><div id="', $field_group->id(), '_repeat" class="cmb-nested cmb-field-list cmb-repeatable-group', $sortable, $repeat_class, '" style="width:100%;">';
 
 		if ( $desc || $label ) {
 			$class = $desc ? ' cmb-group-description' : '';
@@ -485,6 +525,81 @@ class CMB2 {
 			cmb2_options( $object_id )->set();
 		}
 
+		$this->after_save();
+	}
+
+	/**
+	 * Process and save form fields
+	 * @since  2.0.0
+	 */
+	public function process_fields() {
+
+		$this->pre_process();
+
+		// Remove the show_on properties so saving works
+		$this->prop( 'show_on', array() );
+
+		// save field ids of those that are updated
+		$this->updated = array();
+
+		foreach ( $this->prop( 'fields' ) as $field_args ) {
+			$this->process_field( $field_args );
+		}
+	}
+
+	/**
+	 * Process and save a field
+	 * @since  2.0.0
+	 * @param  array  $field_args Array of field arguments
+	 */
+	public function process_field( $field_args ) {
+
+		switch ( $field_args['type'] ) {
+
+			case 'group':
+				if ( $this->save_group( $field_args ) ) {
+					$this->updated[] = $field_args['id'];
+				}
+
+				break;
+
+			case 'title':
+				// Don't process title fields
+				break;
+
+			default:
+
+				$field = $this->get_new_field( $field_args );
+
+				if ( $field->save_field_from_data( $this->data_to_save ) ) {
+					$this->updated[] = $field->id();
+				}
+
+				break;
+		}
+
+	}
+
+	public function pre_process() {
+		/**
+		 * Fires before fields have been processed/saved.
+		 *
+		 * The dynamic portion of the hook name, $this->cmb_id, is the meta_box id.
+		 *
+		 * The dynamic portion of the hook name, $object_type, refers to the metabox/form's object type
+		 * 	Usually `post` (this applies to all post-types).
+		 *  	Could also be `comment`, `user` or `options-page`.
+		 *
+		 * @param array $cmb       This CMB2 object
+		 * @param int   $object_id The ID of the current object
+		 */
+		do_action( "cmb2_{$this->object_type()}_process_fields_{$this->cmb_id}", $this, $this->object_id() );
+	}
+
+	public function after_save() {
+		$object_type = $this->object_type();
+		$object_id   = $this->object_id();
+
 		/**
 		 * Fires after all fields have been saved.
 		 *
@@ -515,85 +630,40 @@ class CMB2 {
 		 * @param array  $cmb         This CMB2 object
 		 */
 		do_action( "cmb2_save_{$object_type}_fields_{$this->cmb_id}", $object_id, $this->updated, $this );
-
-	}
-
-	/**
-	 * Process and save form fields
-	 * @since  2.0.0
-	 */
-	public function process_fields() {
-
-		/**
-		 * Fires before fields have been processed/saved.
-		 *
-		 * The dynamic portion of the hook name, $this->cmb_id, is the meta_box id.
-		 *
-		 * The dynamic portion of the hook name, $object_type, refers to the metabox/form's object type
-		 * 	Usually `post` (this applies to all post-types).
-		 *  	Could also be `comment`, `user` or `options-page`.
-		 *
-		 * @param array $cmb       This CMB2 object
-		 * @param int   $object_id The ID of the current object
-		 */
-		do_action( "cmb2_{$this->object_type()}_process_fields_{$this->cmb_id}", $this, $this->object_id() );
-
-		// Remove the show_on properties so saving works
-		$this->prop( 'show_on', array() );
-
-		// save field ids of those that are updated
-		$this->updated = array();
-
-		foreach ( $this->prop( 'fields' ) as $field_args ) {
-			$this->process_field( $field_args );
-		}
-	}
-
-	/**
-	 * Process and save a field
-	 * @since  2.0.0
-	 * @param  array  $field_args Array of field arguments
-	 */
-	public function process_field( $field_args ) {
-
-		switch ( $field_args['type'] ) {
-
-			case 'group':
-				$this->save_group( $field_args );
-				break;
-
-			case 'title':
-				// Don't process title fields
-				break;
-
-			default:
-
-				$field = $this->get_new_field( $field_args );
-
-				if ( $field->save_field_from_data( $this->data_to_save ) ) {
-					$this->updated[] = $field->id();
-				}
-
-				break;
-		}
-
 	}
 
 	/**
 	 * Save a repeatable group
+	 * @since  1.x.x
+	 * @param  array  $args Field arguments array
+	 * @return mixed        Return of CMB2_Field::update_data()
 	 */
 	public function save_group( $args ) {
-
-		if ( ! isset( $args['id'], $args['fields'], $this->data_to_save[ $args['id'] ] ) || ! is_array( $args['fields'] ) ) {
+		if ( ! isset( $args['id'], $args['fields'] ) || ! is_array( $args['fields'] ) ) {
 			return;
 		}
 
-		$field_group        = $this->get_new_field( $args );
-		$base_id            = $field_group->id();
-		$old                = $field_group->get_data();
+		return $this->save_group_field( $this->get_new_field( $args ) );
+	}
+
+	/**
+	 * Save a repeatable group
+	 * @since  1.x.x
+	 * @param  array $field_group CMB2_Field group field object
+	 * @return mixed              Return of CMB2_Field::update_data()
+	 */
+	public function save_group_field( $field_group ) {
+		$base_id = $field_group->id();
+
+		if ( ! isset( $this->data_to_save[ $base_id ] ) ) {
+			return;
+		}
+
+		$old        = $field_group->get_data();
 		// Check if group field has sanitization_cb
-		$group_vals         = $field_group->sanitization_cb( $this->data_to_save[ $base_id ] );
-		$saved              = array();
+		$group_vals = $field_group->sanitization_cb( $this->data_to_save[ $base_id ] );
+		$saved      = array();
+
 		$field_group->index = 0;
 		$field_group->data_to_save = $this->data_to_save;
 
@@ -650,7 +720,7 @@ class CMB2 {
 		}
 		$saved = array_filter( $saved );
 
-		$field_group->update_data( $saved, true );
+		return $field_group->update_data( $saved, true );
 	}
 
 	/**
@@ -705,7 +775,6 @@ class CMB2 {
 	 * @return string Object type
 	 */
 	public function mb_object_type() {
-
 		if ( null !== $this->mb_object_type ) {
 			return $this->mb_object_type;
 		}
@@ -715,27 +784,32 @@ class CMB2 {
 			return $this->mb_object_type;
 		}
 
-		if ( ! $this->prop( 'object_types' ) ) {
+		$registered_types = $this->prop( 'object_types' );
+
+		if ( ! $registered_types ) {
 			$this->mb_object_type = 'post';
 			return $this->mb_object_type;
 		}
 
 		$type = false;
+
 		// check if 'object_types' is a string
-		if ( is_string( $this->prop( 'object_types' ) ) ) {
-			$type = $this->prop( 'object_types' );
-		}
-		// if it's an array of one, extract it
-		elseif ( is_array( $this->prop( 'object_types' ) ) && 1 === count( $this->prop( 'object_types' ) ) ) {
-			$cpts = $this->prop( 'object_types' );
-			$type = is_string( end( $cpts ) )
-				? end( $cpts )
-				: false;
+		if ( is_string( $registered_types ) ) {
+			$type = $registered_types;
 		}
 
-		if ( ! $type ) {
-			$this->mb_object_type = 'post';
-			return $this->mb_object_type;
+		// if it's an array of one, extract it
+		elseif ( is_array( $registered_types ) && 1 === count( $registered_types ) ) {
+			$last = end( $registered_types );
+			if ( is_string( $last ) ) {
+				$type = $last;
+			}
+		} elseif ( is_array( $registered_types ) ) {
+			$page_type = $this->current_object_type();
+
+			if ( in_array( $page_type, $registered_types, true ) ) {
+				$type = $page_type;
+			}
 		}
 
 		// Get our object type
@@ -779,22 +853,46 @@ class CMB2 {
 			return $this->object_type;
 		}
 
-		global $pagenow;
-
-		if ( in_array( $pagenow, array( 'user-edit.php', 'profile.php', 'user-new.php' ), true ) ) {
-			$this->object_type = 'user';
-
-		} elseif ( in_array( $pagenow, array( 'edit-comments.php', 'comment.php' ), true ) ) {
-			$this->object_type = 'comment';
-
-		} elseif ( 'edit-tags.php' == $pagenow ) {
-			$this->object_type = 'term';
-
-		} else {
-			$this->object_type = 'post';
-		}
+		$this->object_type = $this->current_object_type();
 
 		return $this->object_type;
+	}
+
+	/**
+	 * Get the object type for the current page, based on the $pagenow global.
+	 * @since  2.2.2
+	 * @return string  Page object type name.
+	 */
+	public function current_object_type() {
+		global $pagenow;
+		$type = 'post';
+
+		if ( in_array( $pagenow, array( 'user-edit.php', 'profile.php', 'user-new.php' ), true ) ) {
+			$type = 'user';
+		}
+
+		if ( in_array( $pagenow, array( 'edit-comments.php', 'comment.php' ), true ) ) {
+			$type = 'comment';
+		}
+
+		if ( in_array( $pagenow, array( 'edit-tags.php', 'term.php' ), true ) ) {
+			$type = 'term';
+		}
+
+		return $type;
+	}
+
+	/**
+	 * Set metabox property.
+	 * @since  2.2.0
+	 * @param  string $property Metabox config property to retrieve
+	 * @param  mixed  $value    Value to set if no value found
+	 * @return mixed            Metabox config property value or false
+	 */
+	public function set_prop( $property, $value ) {
+		$this->meta_box[ $property ] = $value;
+
+		return $this->prop( $property );
 	}
 
 	/**
