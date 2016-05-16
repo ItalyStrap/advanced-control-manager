@@ -21,9 +21,10 @@ return array(
 	 */
 	'general'	=> array(
 		'tab_title'			=> __( 'General', 'italystrap' ),
-		'id'				=> 'italystrap_general_section',
+		'id'				=> 'general',
 		'title'				=> __( 'ItalyStrap options page for general', 'italystrap' ),
-		'callback'			=> 'general_section',
+		'callback'			=> 'render_section_cb',
+		'desc'				=> __( 'General setting for ItalyStrap plugin', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -31,7 +32,7 @@ return array(
 				'title'		=> __( 'Show IDs', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_general_section',
+				'section'	=> 'general',
 				'args'		=> array(
 						'name'			=> __( 'Show IDs', 'italystrap' ),
 						'desc'			=> __( 'Show IDs on table in post type edit screen', 'italystrap' ),
@@ -48,7 +49,7 @@ return array(
 				'title'		=> __( 'Show Thumb', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_general_section',
+				'section'	=> 'general',
 				'args'		=> array(
 						'name'			=> __( 'Show Thumb', 'italystrap' ),
 						'desc'			=> __( 'Show Thumb on table in post type edit screen', 'italystrap' ),
@@ -65,7 +66,7 @@ return array(
 				'title'		=> __( 'Kill the Emojis', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_general_section',
+				'section'	=> 'general',
 				'args'		=> array(
 						'name'			=> __( 'Kill the Emojis', 'italystrap' ),
 						'desc'			=> __( 'If you don\'t use it kill it.', 'italystrap' ),
@@ -84,9 +85,10 @@ return array(
 	 */
 	'widget'	=> array(
 		'tab_title'			=> __( 'Widget', 'italystrap' ),
-		'id'				=> 'italystrap_pluginPage_section',
+		'id'				=> 'widget',
 		'title'				=> __( 'ItalyStrap options page for widget', 'italystrap' ),
-		'callback'			=> 'widget_section',
+		'callback'			=> 'render_section_cb',
+		'desc'				=> __( 'Select the widgets you want to use.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -94,7 +96,7 @@ return array(
 				'title'		=> __( 'vCard Widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section',
+				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'vCard Widget for Local Business', 'italystrap' ),
 						'desc'			=> __( 'Activate a widget for vCard Local Business with schema.org murkup', 'italystrap' ),
@@ -111,7 +113,7 @@ return array(
 				'title'		=> __( 'Posts Widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section',
+				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Posts Widget for Custom Loop', 'italystrap' ),
 						'desc'			=> __( 'Activate posts widget and displays list of posts with an array of options', 'italystrap' ),
@@ -128,7 +130,7 @@ return array(
 				'title'		=> __( 'Product Widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section',
+				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Product Widget for Custom Loop', 'italystrap' ),
 						'desc'			=> __( 'Activate product widget and displays list of product with an array of options', 'italystrap' ),
@@ -145,7 +147,7 @@ return array(
 				'title'		=> __( 'Image Widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section',
+				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Image Widget', 'italystrap' ),
 						'desc'			=> __( 'Activate image widget and displays an image from media with an array of options', 'italystrap' ),
@@ -162,7 +164,7 @@ return array(
 				'title'		=> __( 'Carousel Widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section',
+				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Widget for Media Carousel', 'italystrap' ),
 						'desc'			=> __( 'this will activate a Bootstrap media Carousel with a ton of options, Make shure you have a Twitter Bootstrap CSS in your site', 'italystrap' ),
@@ -181,9 +183,10 @@ return array(
 	 */
 	'shortcode'	=> array(
 		'tab_title'			=> __( 'Shortcode', 'italystrap' ),
-		'id'				=> 'italystrap_shortcode_section',
+		'id'				=> 'shortcode',
 		'title'				=> __( 'ItalyStrap options page for shortcode', 'italystrap' ),
-		'callback'			=> 'shortcode_section',
+		'callback'			=> 'render_section_cb',
+		'desc'				=> __( 'Select the shortcodes you want to use.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -191,7 +194,7 @@ return array(
 				'title'		=> __( 'Carousel Shortcode', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_shortcode_section',
+				'section'	=> 'shortcode',
 				'args'		=> array(
 						'name'			=> __( 'Shortcode for Media Carousel', 'italystrap' ),
 						'desc'			=> __( 'This will activate a Bootstrap media Carousel inside built-in WordPress gallery shortcode with a ton of options, Make shure you have a Twitter Bootstrap CSS in your site', 'italystrap' ),
@@ -210,10 +213,10 @@ return array(
 	 */
 	'css'	=> array(
 		'tab_title'			=> __( 'CSS', 'italystrap' ),
-		'id'				=> 'italystrap_css_section',
+		'id'				=> 'css',
 		'title'				=> __( 'ItalyStrap options page for CSS', 'italystrap' ),
-		'description'		=> __( 'CSS Description', 'italystrap' ),
-		'callback'			=> 'script_section',
+		'callback'			=> 'render_section_cb',
+		'desc'				=> __( 'Some functionality for custom CSS. Code entered here will be included in every page of the front-end of your site.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -221,7 +224,7 @@ return array(
 				'title'		=> __( 'Activate Custom CSS', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_css_section',
+				'section'	=> 'css',
 				'args'		=> array(
 						'name'			=> __( 'Custom CSS', 'italystrap' ),
 						'desc'			=> __( 'Activate Custom CSS functionality', 'italystrap' ),
@@ -238,7 +241,7 @@ return array(
 				'title'			=> __( 'Custom CSS', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'italystrap_css_section',
+				'section'		=> 'css',
 				'args'			=> array(
 						'_name'			=> 'italystrap_settings[custom_css]',
 						'_id'			=> 'italystrap_settings[custom_css]',
@@ -260,7 +263,7 @@ return array(
 				'title'			=> __( 'Body Class', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'italystrap_css_section',
+				'section'		=> 'css',
 				'args'			=> array(
 						'name'			=> __( 'Body Class', 'italystrap' ),
 						'desc'			=> __( 'This will add a CSS class to body_class filter', 'italystrap' ),
@@ -278,7 +281,7 @@ return array(
 				'title'			=> __( 'Post Class', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'italystrap_css_section',
+				'section'		=> 'css',
 				'args'			=> array(
 						'name'			=> __( 'Post Class', 'italystrap' ),
 						'desc'			=> __( 'This will add a CSS class to post_class filter', 'italystrap' ),
@@ -298,10 +301,10 @@ return array(
 	 */
 	'js'	=> array(
 		'tab_title'			=> __( 'JS', 'italystrap' ),
-		'id'				=> 'italystrap_js_section',
+		'id'				=> 'js',
 		'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
-		'description'		=> __( 'Script Description', 'italystrap' ),
-		'callback'			=> 'script_section',
+		'desc'				=> __( 'Some functionality for JS', 'italystrap' ),
+		'callback'			=> 'render_section_cb',
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -309,7 +312,7 @@ return array(
 				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_js_section',
+				'section'	=> 'js',
 				'args'		=> array(
 						'name'			=> __( 'Analytics ID', 'italystrap' ),
 						'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
@@ -328,9 +331,10 @@ return array(
 	 */
 	'lazyload'	=> array(
 		'tab_title'			=> __( 'LazyLoad', 'italystrap' ),
-		'id'				=> 'italystrap_lazyload_section',
+		'id'				=> 'lazyload',
 		'title'				=> __( 'ItalyStrap options page for lazyload', 'italystrap' ),
-		'callback'			=> 'lazyload_section',
+		'callback'			=> 'render_section_cb',
+		'desc'				=> __( 'Load your image later.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -338,7 +342,7 @@ return array(
 				'title'		=> __( 'LazyLoad', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_lazyload_section',
+				'section'	=> 'lazyload',
 				'args'		=> array(
 						'name'			=> __( 'LazyLoad', 'italystrap' ),
 						'desc'			=> __( 'Activate LazyLoad for images', 'italystrap' ),
@@ -355,7 +359,7 @@ return array(
 				'title'			=> __( 'Custom Placeholder', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_lazyload_section',
+				'section'	=> 'lazyload',
 				'args'			=> array(
 						'name'			=> __( 'Custom Placeholder', 'italystrap' ),
 						'desc'			=> __( 'Insert here your custom placeholder for lazyload image, this is the src attribute of the img tag, example: http://www.mysite.tld/wp-content/upload/media/my-placeholder.gif', 'italystrap' ),
