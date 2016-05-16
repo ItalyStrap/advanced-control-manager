@@ -9,6 +9,14 @@ var index_php_text = [
 	'\n',
 ].join("\n");
 
+/**
+ * @link https://github.com/fshost/node-dir
+ * http://stackoverflow.com/questions/7041638/walking-a-directory-with-node-js
+ * https://docs.nodejitsu.com/articles/file-system/how-to-write-files-in-nodejs
+ * http://nodeexamples.com/2012/09/28/getting-a-directory-listing-using-the-fs-module-in-node-js/
+ * http://www.monitis.com/blog/2011/07/09/6-node-js-recipes-working-with-the-file-system
+ * 
+ */
 var traverseFileSystem = function ( currentPath, fileName ) {
 	var files = fs.readdirSync( currentPath );
 	for ( var i in files ) {
