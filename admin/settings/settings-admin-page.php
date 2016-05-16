@@ -147,7 +147,7 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'italystrap_pluginPage_section',
 				'args'		=> array(
-						'name'			=> __( 'Image Widget for Custom Loop', 'italystrap' ),
+						'name'			=> __( 'Image Widget', 'italystrap' ),
 						'desc'			=> __( 'Activate image widget and displays an image from media with an array of options', 'italystrap' ),
 						'id'			=> 'widget_image',
 						'type'			=> 'checkbox',
@@ -206,39 +206,22 @@ return array(
 		),
 	),
 	/**
-	 * This is the Script configuration
+	 * This is the CSS configuration
 	 */
-	'script'	=> array(
-		'tab_title'			=> __( 'Script', 'italystrap' ),
-		'id'				=> 'italystrap_pluginPage_section2',
-		'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
-		'description'		=> __( 'Script Description', 'italystrap' ),
+	'css'	=> array(
+		'tab_title'			=> __( 'CSS', 'italystrap' ),
+		'id'				=> 'italystrap_css_section',
+		'title'				=> __( 'ItalyStrap options page for CSS', 'italystrap' ),
+		'description'		=> __( 'CSS Description', 'italystrap' ),
 		'callback'			=> 'script_section',
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
-			array(
-				'id'		=> 'activate_custom_script',
-				'title'		=> __( 'Activate Custom script', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section2',
-				'args'		=> array(
-						'name'			=> __( 'Activate', 'italystrap' ),
-						'desc'			=> __( 'If you don\'t activate it the CSS and JS will not work.', 'italystrap' ),
-						'id'			=> 'activate_custom_script',
-						'type'			=> 'checkbox',
-						'class'			=> 'activate_custom_script',
-						'default'		=> '',
-						// 'validate'	=> 'ctype_alpha',
-						'sanitize'		=> 'sanitize_text_field',
-				),
-			),
 			array(
 				'id'		=> 'activate_custom_css',
 				'title'		=> __( 'Activate Custom CSS', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'italystrap_pluginPage_section2',
+				'section'	=> 'italystrap_css_section',
 				'args'		=> array(
 						'name'			=> __( 'Custom CSS', 'italystrap' ),
 						'desc'			=> __( 'Activate Custom CSS functionality', 'italystrap' ),
@@ -255,7 +238,7 @@ return array(
 				'title'			=> __( 'Custom CSS', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'italystrap_pluginPage_section2',
+				'section'		=> 'italystrap_css_section',
 				'args'			=> array(
 						'_name'			=> 'italystrap_settings[custom_css]',
 						'_id'			=> 'italystrap_settings[custom_css]',
@@ -272,34 +255,12 @@ return array(
 						'sanitize'		=> 'sanitize_text_field',
 				),
 			),
-			// array(
-			// 	'id'			=> 'custom_js',
-			// 	'title'			=> __( 'Custom JavaScript', 'italystrap' ),
-			// 	'callback'		=> 'get_field_type',
-			// 	'page'			=> 'italystrap_options_group',
-			// 	'section'		=> 'italystrap_pluginPage_section2',
-			// 	'args'			=> array(
-			// 			'_name'			=> 'italystrap_settings[custom_js]',
-			// 			'_id'			=> 'italystrap_settings[custom_js]',
-			// 			'name'			=> __( 'Custom JavaScript', 'italystrap' ),
-			// 			'desc'			=> __( 'Enter your custom JavaScript, this styles will be included verbatim in <script> tags before the </body> element of your html. The code will appear before script that were registered individually and after your script enqueued with the WordPress API.', 'italystrap' ),
-			// 			'id'			=> 'custom_js',
-			// 			'type'			=> 'textarea',
-			// 			'class'			=> 'custom_js',
-			// 			'rows'			=> 5,
-			// 			'cols'			=> 70,
-			// 			'placeholder'	=> '',
-			// 			'default'		=> '',
-			// 			'validate'		=> 'ctype_alpha',
-			// 			'sanitize'		=> 'sanitize_text_field',
-			// 	),
-			// ),
 			array(
 				'id'			=> 'body_class',
 				'title'			=> __( 'Body Class', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'italystrap_pluginPage_section2',
+				'section'		=> 'italystrap_css_section',
 				'args'			=> array(
 						'name'			=> __( 'Body Class', 'italystrap' ),
 						'desc'			=> __( 'This will add a CSS class to body_class filter', 'italystrap' ),
@@ -317,7 +278,7 @@ return array(
 				'title'			=> __( 'Post Class', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'italystrap_pluginPage_section2',
+				'section'		=> 'italystrap_css_section',
 				'args'			=> array(
 						'name'			=> __( 'Post Class', 'italystrap' ),
 						'desc'			=> __( 'This will add a CSS class to post_class filter', 'italystrap' ),
@@ -327,6 +288,36 @@ return array(
 						'placeholder'	=> '',
 						'default'		=> '',
 						'validate'		=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+		),
+	),
+	/**
+	 * This is the Script configuration
+	 */
+	'js'	=> array(
+		'tab_title'			=> __( 'JS', 'italystrap' ),
+		'id'				=> 'italystrap_js_section',
+		'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
+		'description'		=> __( 'Script Description', 'italystrap' ),
+		'callback'			=> 'script_section',
+		'page'				=> 'italystrap_options_group',
+		'settings_fields'	=> array(
+			array(
+				'id'		=> 'google_analytics_id',
+				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'italystrap_js_section',
+				'args'		=> array(
+						'name'			=> __( 'Analytics ID', 'italystrap' ),
+						'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
+						'id'			=> 'google_analytics_id',
+						'type'			=> 'text',
+						'class'			=> 'google_analytics_id',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
 			),
@@ -345,10 +336,19 @@ return array(
 			array(
 				'id'		=> 'lazyload',
 				'title'		=> __( 'LazyLoad', 'italystrap' ),
-				'callback'	=> 'option_lazyload',
+				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'italystrap_lazyload_section',
-				'args'		=> null,
+				'args'		=> array(
+						'name'			=> __( 'LazyLoad', 'italystrap' ),
+						'desc'			=> __( 'Activate LazyLoad for images', 'italystrap' ),
+						'id'			=> 'lazyload',
+						'type'			=> 'checkbox',
+						'class'			=> 'lazyload',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
 			),
 			array(
 				'id'			=> 'lazyload-custom-placeholder',

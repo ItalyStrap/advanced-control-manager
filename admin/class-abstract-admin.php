@@ -14,7 +14,7 @@
 
 namespace ItalyStrap\Admin;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
@@ -32,12 +32,11 @@ abstract class A_Admin implements I_Admin{
 	protected $capability = 'manage_options';
 
 	/**
-	 * Get the current admin page
-	 * This is only for loading ItalyStrap custom script in his settings pages
+	 * Get the current admin page name
 	 *
 	 * @var string
 	 */
-	protected $page;
+	protected $pagenow;
 
 	/**
 	 * Settings for plugin admin page
@@ -61,13 +60,6 @@ abstract class A_Admin implements I_Admin{
 	protected $options = array();
 
 	/**
-	 * The option name
-	 *
-	 * @var string
-	 */
-	protected $option_name;
-
-	/**
 	 * The type of fields to create
 	 *
 	 * @var object
@@ -75,134 +67,109 @@ abstract class A_Admin implements I_Admin{
 	protected $fields_type;
 
 	/**
+	 * 	The array with all sub pages if exist
+	 *
+	 * @var array
+	 */
+	protected $submenus = array();
+
+	/**
 	 * Initialize Class
 	 *
 	 * @param array  $options     Get the plugin options.
 	 * @param object $fields_type The Fields object.
 	 */
-	public function __construct( array $options = array(), I_Fields $fields_type, array $settings ) {
+	/**
+	 * Initialize Class
+	 *
+	 * @param array    $options     Get the plugin options.
+	 * @param array    $settings    [description].
+	 * @param array    $args        [description].
+	 * @param I_Fields $fields_type The Fields object.
+	 */
+	public function __construct( array $options = array(), array $settings, array $args, I_Fields $fields_type ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
-			$this->page = esc_attr( wp_unslash( $_GET['page'] ) ); // Input var okay.
+			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.
 		}
 
 		$this->settings = $settings;
 
-		$this->option_name = 'italystrap_settings';
-
 		$this->options = $options;
+
+		$this->args = $args;
 
 		$this->fields_type = $fields_type;
 
 	}
 
 	/**
-	 * Initialize admin area with those hooks
-	 */
-	public function init() {
-
-		/**
-		 * Add Admin menù page
-		 */
-		add_action( 'admin_menu', array( $this, 'add_menu_page' ) );
-
-		/**
-		 * Add Admin sub menù page
-		 */
-		add_action( 'admin_menu', array( $this, 'add_sub_menu_page' ) );
-
-		add_action( 'admin_init', array( $this, 'settings_init' ) );
-
-		/**
-		 * Load script for ItalyStrap\Admin
-		 */
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_style_script' ) );
-
-		/**
-		 * Add link in plugin activation panel
-		 */
-		add_filter( 'plugin_action_links_' . ITALYSTRAP_BASENAME, array( $this, 'plugin_action_links' ) );
-
-	}
-
-	/**
-	 * Add style for ItalyStrap admin page
+	 * Enqueue Style and Script
 	 *
 	 * @param  string $hook The admin page name (admin.php - tools.php ecc).
 	 * @link https://codex.wordpress.org/Plugin_API/Action_Reference/admin_enqueue_scripts
 	 */
-	public function enqueue_admin_style_script( $hook ) {
-
-		if ( 'italystrap-options' === $this->page ) {
-
-			wp_enqueue_script( 'admin', plugins_url( 'js/src/admin.js', __FILE__ ), array( 'jquery-ui-tabs' ) );
-			wp_enqueue_style( 'admin', plugins_url( 'css/admin.min.css', __FILE__ ) );
-		}
-
-		if ( 'italystrap-dashboard' === $this->page || 'italystrap-documentation' === $this->page ) {
-
-			wp_enqueue_style( 'bootstrap', plugins_url( 'css/bootstrap.min.css', __FILE__ ) );
-			wp_enqueue_style( 'style', plugins_url( 'css/style.css', __FILE__ ) );
-			wp_register_style( 'openSans', 'http://fonts.googleapis.com/css?family=Open+Sans:400,300' );
-			wp_enqueue_style( 'openSans' );
-		}
-	}
+	abstract public function enqueue_admin_style_script( $hook );
 
 	/**
-	 * Add page for ItalyStrap admin page
+	 * Add plugin primary page in admin panel
 	 */
 	public function add_menu_page() {
 
+		if ( ! $this->args['menu_page'] ) {
+			return;
+		}
+
 		add_menu_page(
-			__( 'ItalyStrap Dashboard', 'italystrap' ),
-			'italystrap',
-			$this->capability,
-			'italystrap-dashboard',
-			array( $this, 'dashboard' ),
-			'dashicons-performance',
-			null,
-			null
+			$this->args['menu_page']['page_title'],
+			$this->args['menu_page']['menu_title'],
+			$this->capability, // $this->args['menu_page']['capability'],
+			$this->args['menu_page']['menu_slug'],
+			array( $this, 'get_admin_view' ),
+			$this->args['menu_page']['icon_url'],
+			$this->args['menu_page']['position']
 		);
 	}
 
-	/**
-	 *	The dashboard callback
-	 */
-	public function dashboard() {
-
-		if ( ! current_user_can( $this->capability ) ) {
-			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) ); }
-
-		/**
-		 * Require dashboard-page.php
-		 */
-		require_once( ITALYSTRAP_PLUGIN_PATH . 'admin/admin-template/dashboard-page.php' );
-
-	}
-
 
 	/**
-	 * Add sub menù page for ItalyStrap admin page
+	 * Add sub menù pages for plugin's admin page
 	 */
 	public function add_sub_menu_page() {
 
-		add_submenu_page(
-			'italystrap-dashboard',
-			__( 'Documentation', 'italystrap' ),
-			__( 'Documentation', 'italystrap' ),
-			$this->capability,
-			'italystrap-documentation',
-			array( $this, 'documentation' )
-		);
+		if ( ! $this->args['submenu_pages'] ) {
+			return;
+		}
 
-		add_submenu_page(
-			'italystrap-dashboard',
-			__( 'Options', 'italystrap' ),
-			__( 'Options', 'italystrap' ),
-			$this->capability,
-			'italystrap-options',
-			array( $this, 'options' )
-		);
+		foreach ( (array) $this->args['submenu_pages'] as $submenu ) {
+
+			add_submenu_page(
+				$submenu['parent_slug'],
+				$submenu['page_title'],
+				$submenu['menu_title'],
+				$this->capability, // $submenu['capability'],
+				$submenu['menu_slug'],
+				// $submenu['function_cb']
+				array( $this, 'get_admin_view' )
+			);
+
+		}
+
+	}
+
+	/**
+	 * The add_submenu_page callback
+	 */
+	public function get_admin_view() {
+
+		if ( ! current_user_can( $this->capability ) ) {
+			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) );
+		}
+
+		/**
+		 * Require settings-page.php
+		 */
+		require( $this->args['admin_view_path'] . $this->pagenow . '.php' );
 
 	}
 
@@ -215,12 +182,20 @@ abstract class A_Admin implements I_Admin{
 	 */
 	public function plugin_action_links( $links ) {
 
-			array_unshift( $links, '<a href="admin.php?page=italystrap-documentation">' . __( 'Documentation','italystrap' ) . '</a>' );
+		if ( ! ( $this->args['plugin_action_links'] ) ) {
+			return $links;
+		}
 
-			array_unshift( $links, '<a href="http://www.italystrap.it" target="_blank">ItalyStrap</a>' );
+		if ( ! is_array( $this->args['plugin_action_links'] ) ) {
+			return $links;
+		}
+
+		foreach ( $this->args['plugin_action_links'] as $link ) {
+			array_unshift( $links, $link );
+		}
 
 		return $links;
-	}//end plugin_action_links()
+	}
 
 	/**
 	 * Prints out all settings sections added to a particular settings page
@@ -281,14 +256,23 @@ abstract class A_Admin implements I_Admin{
 	}
 
 	/**
+	 * Add option
+	 */
+	public function add_option() {
+
+		if ( false === get_option( $this->args['options_name'] ) ) {
+			add_option( $this->args['options_name'] );
+		}
+
+	}
+
+	/**
 	 * Init settings for admin area
 	 */
 	public function settings_init() {
 
 		// If the theme options don't exist, create them.
-		if ( false === get_option( $this->option_name ) ) {
-			add_option( $this->option_name );
-		}
+		$this->add_option();
 
 		foreach ( $this->settings as $key => $setting ) {
 			add_settings_section(
@@ -310,8 +294,8 @@ abstract class A_Admin implements I_Admin{
 		}
 
 		register_setting(
-			'italystrap_options_group',
-			$this->option_name,
+			$this->args['options_group'],
+			$this->args['options_name'],
 			array( $this, 'sanitization' )
 		);
 
@@ -334,11 +318,10 @@ abstract class A_Admin implements I_Admin{
 	/**
 	 * Render section CB
 	 *
-	 * @param  array $args The arguments for section CB
-	 * @return string        [description]
+	 * @param  array $args The arguments for section CB.
 	 */
-	public function render_section_cb( $args ) {
-	
+	public function render_section_cb( $args, $text = '' ) {
+var_dump( $args['callback'] );
 		$section = isset( $args['callback'][1] ) ? $args['callback'][1] : '';
 
 		$section = str_replace( '_', ' ', $section );
@@ -346,53 +329,7 @@ abstract class A_Admin implements I_Admin{
 		$text = esc_attr__( 'This is the %s', 'italystrap' );
 
 		echo sprintf( $text, $section ); // XSS ok.
-	
-	}
 
-	/**
-	 * Setting for section
-	 *
-	 * @param array $args The arguments for section callback.
-	 */
-	public function general_section( $args ) {
-
-		$this->render_section_cb( $args );
-	}
-
-	/**
-	 * Setting for section
-	 *
-	 * @param array $args The arguments for section callback.
-	 */
-	public function widget_section( $args ) {
-
-		$this->render_section_cb( $args );
-	}
-
-	/**
-	 * Setting for section
-	 *
-	 * @param array $args The arguments for section callback.
-	 */
-	public function shortcode_section( $args ) {
-
-		$this->render_section_cb( $args );
-	}
-
-	/**
-	 * Setting for section
-	 */
-	public function script_section() {
-
-		esc_attr_e( 'Code entered here will be included in every page of the front-end of your site.', 'italystrap' );
-	}
-
-	/**
-	 * Setting for section
-	 */
-	public function lazyload_section() {
-
-		esc_attr_e( 'This section description for LazyLoad', 'italystrap' );
 	}
 
 	/**
@@ -412,7 +349,7 @@ abstract class A_Admin implements I_Admin{
 		$args['value'] = ( isset( $this->options[ $args['id'] ] ) ) ? $this->options[ $args['id'] ] : '' ;
 
 		/* Set field id and name  */
-		$args['_id'] = $args['_name'] = $this->option_name . '[' . $args['id'] . ']';
+		$args['_id'] = $args['_name'] = $this->args['options_name'] . '[' . $args['id'] . ']';
 
 		/**
 		 * Run method
