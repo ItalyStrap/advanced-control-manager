@@ -69,7 +69,9 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 
 			$out = '';
 
-			$out = '<figure class="widget-figure-media ' . $container_css_class . '">';
+			if ( ! empty( $instance['add_figure_container'] ) ) {
+				$out = '<figure class="widget-figure-media ' . $container_css_class . '">';
+			}
 
 			if ( ! empty( $instance['link'] ) ) {
 				$out .= '<a href="' . esc_attr( $instance['link'] ) . '">';
@@ -94,13 +96,16 @@ if ( ! class_exists( 'Widget_Image' ) ) {
 				$out .= '</a>';
 			}
 
-			if ( ! empty( $instance['caption'] ) ) {
+			if ( ! empty( $instance['add_figure_container'] ) ) {
 
-				$out .= '<figcaption class="fig-null">' . esc_attr( $instance['caption'] ) . '</figcaption>';
+				if ( ! empty( $instance['caption'] ) ) {
 
+					$out .= '<figcaption class="fig-null">' . esc_attr( $instance['caption'] ) . '</figcaption>';
+
+				}
+
+				$out .= '</figure>';
 			}
-
-			$out .= '</figure>';
 
 			return $out;
 		}

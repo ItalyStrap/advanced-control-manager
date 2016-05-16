@@ -133,6 +133,21 @@ return array(
 	/**
 	 * Ids for the images to use.
 	 */
+	'add_figure_container'		=> array(
+				'name'		=> esc_html__( 'Add container <figure>', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to add <figure> tag for img container.', 'ItalyStrap' ),
+				'id'		=> 'add_figure_container',
+				'type'		=> 'checkbox',
+				'class'		=> 'add_figure_container',
+				'default'	=> 1,
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'style',
+				 ),
+
+	/**
+	 * Ids for the images to use.
+	 */
 	'container_css_class'		=> array(
 				'name'		=> __( 'Container CSS class', 'ItalyStrap' ),
 				'desc'		=> __( 'Enter the image css class (optional).', 'ItalyStrap' ),
