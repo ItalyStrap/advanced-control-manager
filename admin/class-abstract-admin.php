@@ -182,7 +182,7 @@ abstract class A_Admin implements I_Admin{
 	 */
 	public function plugin_action_links( $links ) {
 
-		if ( ! ( $this->args['plugin_action_links'] ) ) {
+		if ( ! isset( $this->args['plugin_action_links'] ) ) {
 			return $links;
 		}
 
