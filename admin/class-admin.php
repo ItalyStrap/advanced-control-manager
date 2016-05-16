@@ -29,11 +29,11 @@ class Admin extends A_Admin{
 	 * @param array  $options     Get the plugin options.
 	 * @param object $fields_type The Fields object.
 	 */
-	public function __construct( array $options = array(), array $settings, array $args, I_Fields $fields_type ) {
+	// public function __construct( array $options = array(), array $settings, array $args, I_Fields $fields_type ) {
 
-		parent::__construct( $options, $settings, $args, $fields_type );
+	// 	parent::__construct( $options, $settings, $args, $fields_type );
 
-	}
+	// }
 
 	/**
 	 * Initialize admin area with those hooks
