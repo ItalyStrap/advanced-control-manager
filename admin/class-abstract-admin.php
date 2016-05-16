@@ -320,23 +320,6 @@ abstract class A_Admin implements I_Admin{
 	 *
 	 * @param  array $args The arguments for section CB.
 	 */
-	// public function render_section_cb( $args ) {
-
-	// 	$section = isset( $args['callback'][1] ) ? $args['callback'][1] : '';
-
-	// 	$section = str_replace( '_', ' ', $section );
-
-	// 	$text = esc_attr__( 'This is the %s', 'italystrap' );
-
-	// 	echo sprintf( $text, $section ); // XSS ok.
-
-	// }
-
-	/**
-	 * Render section CB
-	 *
-	 * @param  array $args The arguments for section CB.
-	 */
 	public function render_section_cb( $args ) {
 
 		echo isset( $args['callback'][0]->settings[ $args['id'] ]['desc'] ) ? $args['callback'][0]->settings[ $args['id'] ]['desc'] : ''; // XSS ok.
