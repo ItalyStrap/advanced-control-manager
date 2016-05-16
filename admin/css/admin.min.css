@@ -48,3 +48,8 @@
 #dashboard_right_now a.demo-count:before {
 	content: "\f115";
 }
+
+#poststuff h2{
+	font-size: 22px;
+	padding-left: 0;
+}
