@@ -321,7 +321,7 @@ abstract class A_Admin implements I_Admin{
 	 * @param  array $args The arguments for section CB.
 	 */
 	public function render_section_cb( $args, $text = '' ) {
-var_dump( $args['callback'] );
+d( $args['callback'] );
 		$section = isset( $args['callback'][1] ) ? $args['callback'][1] : '';
 
 		$section = str_replace( '_', ' ', $section );
