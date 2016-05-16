@@ -12,6 +12,10 @@
 
 namespace ItalyStrap\Admin;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
 interface I_Admin {
 
 	/**
