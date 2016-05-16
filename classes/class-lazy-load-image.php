@@ -46,10 +46,15 @@ class Lazy_Load_Image {
 		add_filter( 'post_gallery', array( __CLASS__, 'add_image_placeholders' ), 9 );
 
 		/**
-		 * Experimental
-		 * Da testare ed eventualmente mettere sotto opzione attivabile
+		 * Option for killing the emojis
 		 */
-		add_filter( 'widget_text', array( __CLASS__, 'add_image_placeholders' ), 11 );
+		if ( isset( $options['lazyload_widget_text'] ) ) {
+			/**
+			 * Experimental
+			 * Da testare ed eventualmente mettere sotto opzione attivabile
+			 */
+			add_filter( 'widget_text', array( __CLASS__, 'add_image_placeholders' ), 11 );
+		}
 
 		/**
 		 * Run this later, so other content filters have run,
