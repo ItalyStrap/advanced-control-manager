@@ -24,22 +24,22 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
  * @todo A quick WordPress template tag to create Google Analytics Event Tracking on links. Built on behalf of CFO Publishing.
  * @link https://gist.github.com/AramZS/8930496
  */
-class Generate_Script {
+class Generate_Analytics {
 
 	/**
-	 * [$var description]
+	 * Plugin options settings.
 	 *
-	 * @var null
+	 * @var array
 	 */
-	private $var = null;
+	private $options = null;
 
 	/**
-	 * [__construct description]
+	 * Init the constructor.
 	 *
-	 * @param [type] $argument [description].
+	 * @param array $argument Plugin options settings.
 	 */
-	function __construct( $argument = null ) {
-		// Code...
+	function __construct( array $options = array() ) {
+		$this->options = $options;
 	}
 
 	/**
@@ -86,5 +86,29 @@ class Generate_Script {
 		);
 
 		echo $s; // XSS ok.
+	}
+
+	/**
+	 * Add HTML5 Boilerplate code for google analytics
+	 * Insert your ID in Option Theme admin panel
+	 * Print code only if value exist
+	 *
+	 * @return string Return google analytics code
+	 */
+	public function render_analytics() {
+
+		if ( is_preview() && is_admin() ) {
+			return;
+		}
+
+		if ( empty( $this->options['google_analytics_id'] ) ) {
+			return;
+		}
+
+		$analytics = $this->options['google_analytics_id'];
+
+	?>
+<!-- Google Analytics from HTML5 Boilerplate  -->
+<script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='https://www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','<?php echo esc_attr( $this->options['google_analytics_id'] ); ?>','auto');ga('send','pageview');ga('set', 'anonymizeIp', true);</script><?php // XSS ok.
 	}
 }
