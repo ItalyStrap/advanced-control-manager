@@ -133,7 +133,7 @@ do_action( 'italystrap_plugin_loaded' );
 $plugin_files_path = apply_filters( 'italystrap_require_plugin_files_path', array() );
 
 if ( ! empty( $plugin_files_path ) ) {
-	foreach ( $plugin_files_path as $key => $plugin_file_path ) {
+	foreach ( (array) $plugin_files_path as $key => $plugin_file_path ) {
 		require( $plugin_file_path );
 	}
 }
