@@ -77,7 +77,7 @@ if ( isset( $options['lazyload'] ) ) {
 add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 
 /**
- * This filter render HTML in widget title parsing []
+ * This filter render HTML in widget title parsing {{}}
  */
 add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
 
@@ -99,6 +99,7 @@ add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
  * @var Post_Meta
  */
 $post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
+
 /**
  * Get metaboxex value
  */
@@ -106,6 +107,13 @@ add_action( 'wp', array( $post_meta, 'add_post_type_custom_script' ) );
 add_filter( 'body_class', array( $post_meta, 'body_class' ) );
 add_filter( 'post_class', array( $post_meta, 'body_class' ) );
 
+/**
+ * [$generate_analytics description]
+ *
+ * @var Web_Font_loading
+ */
+$web_font_loading = $injector->make( 'ItalyStrap\Core\Web_Font_loading' );
+add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
 
 /**
  * Set JavaScript from admin option Script
@@ -121,6 +129,15 @@ ItalyStrapGlobalsCss::set( isset( $options['custom_css'] ) ? $options['custom_cs
  * Print inline css in header
  */
 add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
+
+/**
+ * [$generate_analytics description]
+ *
+ * @var Generate_Analytics
+ */
+$generate_analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
+
+add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999 );
 
 /**
  * Print inline script in footer

@@ -109,6 +109,6 @@ class Generate_Analytics {
 
 	?>
 <!-- Google Analytics from HTML5 Boilerplate  -->
-<script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='https://www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','<?php echo esc_attr( $this->options['google_analytics_id'] ); ?>','auto');ga('send','pageview');ga('set', 'anonymizeIp', true);</script><?php // XSS ok.
+<script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='https://www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create','<?php echo esc_js( $this->options['google_analytics_id'] ); ?>','auto');ga('send','pageview');ga('set', 'anonymizeIp', true);</script><?php // XSS ok.
 	}
 }
