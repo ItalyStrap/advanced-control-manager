@@ -179,8 +179,8 @@ function get_image_size_array( $custom_size = array() ) {
  */
 function render_html_in_title_output( $title ) {
 
-	$tagopen = '['; // Our HTML opening tag replacement.
-	$tagclose = ']'; // Our HTML closing tag replacement.
+	$tagopen = '{{'; // Our HTML opening tag replacement.
+	$tagclose = '}}'; // Our HTML closing tag replacement.
 
 	$title = str_replace( $tagopen, '<', $title );
 	$title = str_replace( $tagclose, '>', $title );
@@ -257,8 +257,29 @@ function kill_emojis_tinymce( $plugins ) {
 	}
 }
 
+/**
+ * Register widget
+ * Test function from LucaTume
+ * @todo Make some test.
+ *
+ * @param  object $widget [description].
+ */
 function register_widget( $widget ) {
 	global $wp_widget_factory;
 
 	$wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
 }
+
+/**
+ * Cambio il testo per il link al post successivo
+ *
+ * @param  array $args Argomenti per le funzioni di paginazione.
+ * @return array       Array aggiornato
+ */
+// function change_next_article_link( $args ) {
+
+// 	$args['previous_link'] = '<i class="glyphicon glyphicon-arrow-left"></i> Precedente</li>';
+// 	$args['next_link'] = 'Successivo <i class="glyphicon glyphicon-arrow-right"></i></li></ul>';
+// 	return $args;
+// }
+// add_filter( 'italystrap_previous_next_post_link_args', __NAMESPACE__ . '\change_next_article_link' );
