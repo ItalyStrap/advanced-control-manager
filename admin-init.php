@@ -32,7 +32,7 @@ $args = array(
 		),
 	'menu_page'				=> array(
 			'page_title'		=> __( 'ItalyStrap Dashboard', 'italystrap' ),
-			'menu_title'		=> 'italystrap',
+			'menu_title'		=> 'ItalyStrap',
 			// 'capability'		=> $this->capability,
 			'menu_slug'			=> 'italystrap-dashboard',
 			// 'function'		=> array( $this, 'get_admin_view' ),
@@ -181,3 +181,48 @@ add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_size
  */
 $register_metabox = $injector->make( 'ItalyStrap\Admin\Register_Metaboxes' );
 add_action( 'cmb2_admin_init', array( $register_metabox, 'register_script_settings' ) );
+
+/**
+ * The array with all plugin options
+ */
+$options_arr[] = $options;
+$options_arr[] = array();
+$injector->defineParam( 'options_arr', $options_arr );
+
+$imp_exp_args = array(
+	'name_action'	=> 'italystrap_action',
+	'export_nonce'	=> 'italystrap_export_nonce',
+	'import_nonce'	=> 'italystrap_import_nonce',
+	'filename'		=> 'italystrap-plugin-settings-export-',
+	'import_file'	=> 'italystrap_import_file',
+	);
+$injector->defineParam( 'imp_exp_args', $imp_exp_args );
+
+/**
+ * Import Export functionality
+ *
+ * @var Import_Export
+ */
+$import_export = $injector->make( 'ItalyStrap\Admin\Import_Export' );
+add_action( 'admin_init', array( $import_export, 'export' ) );
+add_action( 'admin_init', array( $import_export, 'import' ) );
+
+/**
+ * Widget Logic Functionality for admin
+ *
+ * @var Widget_Logic_Admin
+ */
+$widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic_Admin' );
+
+/**
+ * Widget changes submitted by ajax method.
+ */
+add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
+/**
+ * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
+ */
+add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
+/**
+ * Add Widget Logic specific options on the widget admin page.
+ */
+add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
