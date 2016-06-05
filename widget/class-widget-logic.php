@@ -59,7 +59,7 @@ class Widget_Logic {
 			/**
 			 * Redirect the widget callback so the output can be buffered and filtered.
 			 */
-			add_filter( 'dynamic_sidebar_params', array( $this, 'widget_logic_widget_display_callback' ), 10 );
+			add_filter( 'dynamic_sidebar_params', array( $this, 'widget_display_callback' ), 10 );
 		}
 	}
 
@@ -130,7 +130,7 @@ class Widget_Logic {
 				if ( stristr( $wl_value, 'return' ) === false ) {
 					$wl_value = 'return (' . $wl_value . ');';
 				}
-
+				// d( $wl_value );
 				if ( ! eval( $wl_value ) ) {
 					unset( $sidebars_widgets[ $widget_area ][ $pos ] );
 				}
@@ -148,12 +148,12 @@ class Widget_Logic {
 	 *
 	 * @return [type]         [description]
 	 */
-	function widget_logic_widget_display_callback( $params ) {
+	function widget_display_callback( $params ) {
 
 		global $wp_registered_widgets;
 		$id = $params[0]['widget_id'];
 		$wp_registered_widgets[ $id ]['callback_wl_redirect'] = $wp_registered_widgets[ $id ]['callback'];
-		$wp_registered_widgets[ $id ]['callback'] = array( $this, 'widget_logic_redirected_callback' );
+		$wp_registered_widgets[ $id ]['callback'] = array( $this, 'redirected_callback' );
 
 		return $params;
 	}
@@ -162,7 +162,7 @@ class Widget_Logic {
 	/**
 	 * The redirection comes here
 	 */
-	function widget_logic_redirected_callback() {
+	function redirected_callback() {
 		global $wp_registered_widgets, $wp_reset_query_is_done;
 
 		/**
