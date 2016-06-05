@@ -150,7 +150,7 @@ add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_foo
  *
  * @var Widget_Logic_Admin
  */
-$widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
+// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
 
 /**
  * Widget changes submitted by ajax method.
