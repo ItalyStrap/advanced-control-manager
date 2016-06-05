@@ -21,11 +21,11 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 class Web_Font_loading {
 
 	/**
-	 * [$var description]
+	 * Google API Link
 	 *
-	 * @var null
+	 * @var string
 	 */
-	private $var = null;
+	private $google_api = null;
 
 	/**
 	 * [__construct description]
@@ -33,7 +33,64 @@ class Web_Font_loading {
 	 * @param [type] $argument [description].
 	 */
 	function __construct( $argument = null ) {
-		// Code...
+
+		$this->google_api = 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyAukcQy3eDah9zhEKEwdBKnMbB1egGVpuM';
+
+		$this->fonts = $this->get_remote_fonts();
+
+	}
+
+	/**
+	 * Get the google fonts from the API or in the cache
+	 *
+	 * @return String
+	 */
+	public function get_remote_fonts() {
+
+		// delete_transient( 'italystrap_google_fonts' );
+
+		if ( false === ( $fonts = get_transient( 'italystrap_google_fonts' ) ) ) {
+
+			$font_content = wp_remote_get( $this->google_api, array( 'sslverify' => false ) );
+
+			$fonts = wp_remote_retrieve_body( $font_content );
+
+			$fonts = json_decode( $fonts );
+
+			set_transient( 'italystrap_google_fonts', $fonts, MONTH_IN_SECONDS );
+
+		}
+
+		return $fonts->items;
+
+	}
+
+	/**
+	 * prepare_fonts
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function prepare_fonts() {
+	
+		$get_theme_mods = get_theme_mods();
+
+		$template_part = array(
+			'body',
+			'heading'
+		);
+
+		foreach ( $template_part as $key => $part ) {
+
+			$fonts[ $key ]['family'] = $this->fonts[ $get_theme_mods[ $part . '_font_family'] ]->family;
+
+			$fonts[ $key ]['variants'] = in_array( $get_theme_mods[ $part . '_font_variants'], $this->fonts[ $get_theme_mods[ $part . '_font_family'] ]->variants, true ) && 'regular' !== $get_theme_mods[ $part . '_font_variants'] ? $get_theme_mods[ $part . '_font_variants'] : '400';
+
+			$fonts[ $key ]['subsets'] = in_array( $get_theme_mods[ $part . '_font_subsets'], $this->fonts[ $get_theme_mods[ $part . '_font_family'] ]->subsets, true ) ? $get_theme_mods[ $part . '_font_subsets'] : '';
+		}
+
+		return apply_filters( 'italystrap-fonts-before-loading', $fonts, $this );
+	
 	}
 
 	/**
@@ -41,73 +98,7 @@ class Web_Font_loading {
 	 */
 	function lazy_load_fonts() {
 
-		$fonts = array(
-			array(
-			'family'	=> 'Open Sans',
-			'variants'	=> array(
-				'300',
-				'300italic',
-				'regular',
-				'italic',
-				'600',
-				'600italic',
-				'700',
-				'700italic',
-				'800',
-				'800italic'
-				),
-			'subsets'	=> array(
-				'latin-ext',
-				'greek',
-				'greek-ext',
-				'latin',
-				'vietnamese',
-				'cyrillic',
-				'cyrillic-ext'
-				),
-			),
-			array(
-			'family'	=> 'Open Sans Condensed',
-			'variants'	=> array(
-				'300',
-				'300italic',
-				'regular',
-				'italic',
-				'600',
-				'600italic',
-				'700',
-				'700italic',
-				'800',
-				'800italic'
-				),
-			'subsets'	=> array(
-				'latin-ext',
-				'greek',
-				'greek-ext',
-				'latin',
-				'vietnamese',
-				'cyrillic',
-				'cyrillic-ext'
-				),
-			),
-			// array(
-			// 'family'	=> 'Anton',
-			// 'variants'	=> array(
-			// 	'regular',
-			// 	),
-			// 'subsets'	=> array(
-			// 	'latin-ext',
-			// 	'greek',
-			// 	'greek-ext',
-			// 	'latin',
-			// 	'vietnamese',
-			// 	'cyrillic',
-			// 	'cyrillic-ext'
-			// 	),
-			// ),
-		);
-
-		$fonts = apply_filters( 'italystrap-fonts-before-loading', $fonts, $this );
+		$fonts = $this->prepare_fonts();
 
 		$font_to_load = '';
 		$check = '';
@@ -122,15 +113,21 @@ class Web_Font_loading {
 
 			$comma = ( $count_fonts >= $i ) ? ',' : '' ;
 
-			$font_to_load .= $range[ $key + 1 ] . '=new a.FontFaceObserver("' . $font['family'] . '",{weight:' . $font['variants'][0] . '})' . $comma;
+			$weight =  strpos( $font['variants'], 'italic' ) ? '' : ',{weight:' . absint( $font['variants'] ) . '}';
+
+			$font_to_load .= $range[ $key + 1 ] . '=new a.FontFaceObserver("' . esc_attr( $font['family'] ) . '"' . $weight . ')' . $comma;
 			$check = $range[ $key + 1 ] . '.check()' . $comma;
 
 			$font['family'] = str_replace( ' ', '+', $font['family'] );
 
-			$web_font_config['google']['families'][] = $font['family'] . ':' . $font['variants'][0] . ':' . $font['subsets'][3];
+			$web_font_config['google']['families'][] = esc_attr( $font['family'] ) . ':' . absint( $font['variants'] ) . ':' . esc_attr( $font['subsets'] );
 
 			$i++;
 		}
+
+		$css = '.fonts-loaded body{font-family: "' . esc_attr( $fonts[0]['family'] ) . '";}.fonts-loaded h1,.fonts-loaded h2,.fonts-loaded h3,.fonts-loaded h4,.fonts-loaded h5,.fonts-loaded h6 {font-family: "' . esc_attr( $fonts[1]['family'] ) . '";}';
+
+		echo '<style>' . $css . '</style>';
 
 		/**
 		 * In caso di server password
