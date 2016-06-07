@@ -29,13 +29,13 @@ return array(
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'show-ids',
-				'title'		=> __( 'Show IDs', 'italystrap' ),
+				'title'		=> __( 'Show post_type IDs', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'general',
 				'args'		=> array(
-						'name'			=> __( 'Show IDs', 'italystrap' ),
-						'desc'			=> __( 'Show IDs on table in post type edit screen', 'italystrap' ),
+						'name'			=> __( 'Show post_type IDs', 'italystrap' ),
+						'desc'			=> __( 'Show post_type IDs on table in post type edit screen', 'italystrap' ),
 						'id'			=> 'show-ids',
 						'type'			=> 'checkbox',
 						'class'			=> 'show-ids',
@@ -46,13 +46,13 @@ return array(
 			),
 			array(
 				'id'		=> 'show-thumb',
-				'title'		=> __( 'Show Thumb', 'italystrap' ),
+				'title'		=> __( 'Show post_type Thumb', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'general',
 				'args'		=> array(
-						'name'			=> __( 'Show Thumb', 'italystrap' ),
-						'desc'			=> __( 'Show Thumb on table in post type edit screen', 'italystrap' ),
+						'name'			=> __( 'Show post_type Thumb', 'italystrap' ),
+						'desc'			=> __( 'Show post_type Thumb on table in post type edit screen', 'italystrap' ),
 						'id'			=> 'show-thumb',
 						'type'			=> 'checkbox',
 						'class'			=> 'show-thumb',
@@ -216,7 +216,7 @@ return array(
 		'id'				=> 'css',
 		'title'				=> __( 'ItalyStrap options page for CSS', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
-		'desc'				=> __( 'Some functionality for custom CSS. Code entered here will be included in every page of the front-end of your site.', 'italystrap' ),
+		'desc'				=> __( 'This is the tab for changing the style of your site. Code entered here will be included in every page of the front-end of your site.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -266,7 +266,7 @@ return array(
 				'section'		=> 'css',
 				'args'			=> array(
 						'name'			=> __( 'Body Class', 'italystrap' ),
-						'desc'			=> __( 'This will add a CSS class to body_class filter', 'italystrap' ),
+						'desc'			=> __( 'This will add a CSS class to body_class filter in every page.', 'italystrap' ),
 						'id'			=> 'body_class',
 						'type'			=> 'text',
 						'class'			=> 'body_class',
@@ -284,7 +284,7 @@ return array(
 				'section'		=> 'css',
 				'args'			=> array(
 						'name'			=> __( 'Post Class', 'italystrap' ),
-						'desc'			=> __( 'This will add a CSS class to post_class filter', 'italystrap' ),
+						'desc'			=> __( 'This will add a CSS class to post_class filter in every page.', 'italystrap' ),
 						'id'			=> 'post_class',
 						'type'			=> 'text',
 						'class'			=> 'post_class',
