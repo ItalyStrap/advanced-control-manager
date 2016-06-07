@@ -26,6 +26,7 @@ return array(
     'ItalyStrap\\Admin\\Sanitization' => $baseDir . '/admin/class-sanitization.php',
     'ItalyStrap\\Admin\\Security_Input' => $baseDir . '/admin/class-security-input.php',
     'ItalyStrap\\Admin\\Validation' => $baseDir . '/admin/class-validation.php',
+    'ItalyStrap\\Core\\A_Post_Meta' => $baseDir . '/classes/class-abstract-post-meta.php',
     'ItalyStrap\\Core\\Carousel' => $baseDir . '/classes/class-abstract-carousel.php',
     'ItalyStrap\\Core\\Carousel_Bootstrap' => $baseDir . '/classes/class-carousel-bootstrap.php',
     'ItalyStrap\\Core\\Generate_Analytics' => $baseDir . '/classes/class-generate-analytics.php',

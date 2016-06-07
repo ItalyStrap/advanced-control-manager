@@ -103,9 +103,9 @@ $post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
 /**
  * Get metaboxex value
  */
-add_action( 'wp', array( $post_meta, 'add_post_type_custom_script' ) );
+add_action( 'wp', array( $post_meta, 'add_post_type_custom_css' ) );
 add_filter( 'body_class', array( $post_meta, 'body_class' ) );
-add_filter( 'post_class', array( $post_meta, 'body_class' ) );
+add_filter( 'post_class', array( $post_meta, 'post_class' ) );
 
 /**
  * [$generate_analytics description]
@@ -114,11 +114,6 @@ add_filter( 'post_class', array( $post_meta, 'body_class' ) );
  */
 $web_font_loading = $injector->make( 'ItalyStrap\Core\Web_Font_loading' );
 add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
-
-/**
- * Set JavaScript from admin option Script
- */
-ItalyStrapGlobals::set( isset( $options['custom_js'] ) ? $options['custom_js'] : '' );
 
 /**
  * Set CSS from admin option Script

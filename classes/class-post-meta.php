@@ -11,29 +11,21 @@
 
 namespace ItalyStrap\Core;
 
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
 /**
  * The Post Meta Class
  */
-class Post_Meta {
-
-	/**
-	 * CMB prefix
-	 *
-	 * @var string
-	 */
-	private $prefix;
-
-	/**
-	 * CMB _prefix
-	 *
-	 * @var string
-	 */
-	private $_prefix;
+class Post_Meta extends A_Post_Meta {
 
 	/**
 	 * Init the constructor
+	 *
+	 * @param array $options The plugin options
 	 */
-	function __construct() {
+	function __construct( array $options = array() ) {
 
 		/**
 		 * Start with an underscore to hide fields from custom fields list
@@ -44,69 +36,21 @@ class Post_Meta {
 
 		$this->_prefix = '_' . $this->prefix;
 
-	}
+		$this->options = $options;
 
-	/**
-	 * Riceve il valore della metabox top o middle
-	 * Se in pagina usa get_post_meta invece se in categoria usa get_term_meta
-	 *
-	 * @param  int     $post_id ID del post o della categoria.
-	 * @param  string  $key     ID della metabox.
-	 * @param  boolean $single  Se ritornare un array o un valore.
-	 * @param  boolean $is_cat  Boleano per detterminare se la funzione è richiamata in categoria o meno.
-	 * @return string      Contenuto della metabox
-	 */
-	public function get_metabox( $post_id, $key = '', $single = false, $is_cat = false ) {
-
-		$content = '';
-
-		if ( function_exists( 'get_term_meta' ) && $is_cat ) {
-			$content = get_term_meta( $post_id, $key, $single );
-		} else {
-			$content = get_post_meta( $post_id, $key, $single );
-		}
-		return $content;
+		parent::__construct( $options );
 
 	}
 
 	/**
-	 * Uso questa funzione per fare l'escape,
-	 * stampare shortcode e inserire i paragrafi
-	 * per la funzione controzzi_get_the_metabox_page_content()
-	 *
-	 * @param  string $content Contenuto della meta.
-	 * @param  bool   $wpautop      Use wpautop.
-	 * @param  bool   $kses         Use wp_kses_post.
-	 * @param  bool   $do_shortcode Use do_shortcode.
-	 *
-	 * @return string          Ritorna il contenuto formattato e pulito.
+	 * Take the custom css from WP Editor and
+	 * add it to the ItalyStrapGlobalsCss::set( $style ).
 	 */
-	public function escape_metabox( $content = '', $wpautop = true, $kses = true, $do_shortcode = true ) {
-
-		if ( $wpautop ) {
-			$content = wpautop( $content );
-		}
-		if ( $kses ) {
-			$content = wp_kses_post( $content );
-		}
-		if ( $do_shortcode ) {
-			$content = do_shortcode( $content );
-		}
-
-		return $content;
-
-	}
-
-	/**
-	 * Add custom script to the global style or script
-	 */
-	public function add_post_type_custom_script() {
+	public function add_post_type_custom_css() {
 
 		$style = $this->get_metabox( get_the_id(), $this->_prefix . '_custom_css_settings', true );
-		$js = $this->get_metabox( get_the_id(), $this->_prefix . '_custom_js_settings', true );
 
 		ItalyStrapGlobalsCss::set( $style );
-		ItalyStrapGlobals::set( $js );
 
 	}
 
@@ -118,15 +62,22 @@ class Post_Meta {
 	 *
 	 * @return array               The new array
 	 */
-	public function get_classes( $filter_name, array $classes ) {
+	public function get_class( $filter_name, array $classes ) {
 
-		$class_name = $this->get_metabox( get_the_id(), $this->_prefix . '_custom_' . $filter_name .'_settings', true );
+		$class_name = '';
 
-		$class_name = explode( ' ', $class_name );
+		if ( isset( $this->options[ $filter_name ] ) ) {
+			$class_name = $this->options[ $filter_name ] . ',';
+		}
+
+		$class_name .= $this->get_metabox( get_the_id(), $this->_prefix . '_custom_' . $filter_name .'_settings', true );
+
+		$class_name = array_filter( explode( ',', $class_name ) );
 
 		foreach ( $class_name as $key => $value ) {
 			$classes[] = $value;
 		}
+
 		return $classes;
 
 	}
@@ -139,7 +90,7 @@ class Post_Meta {
 	 * @return array          The new array
 	 */
 	function body_class( $classes ) {
-		return $this->get_classes( 'body_classes', $classes );
+		return $this->get_class( 'body_class', $classes );
 	}
 
 	/**
@@ -150,6 +101,6 @@ class Post_Meta {
 	 * @return array          The new array
 	 */
 	function post_class( $classes ) {
-		return $this->get_classes( 'post_classes', $classes );
+		return $this->get_class( 'post_class', $classes );
 	}
 }

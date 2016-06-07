@@ -36,9 +36,18 @@ class Register_Metaboxes {
 	private $_prefix;
 
 	/**
-	 * Init the constructor
+	 * The plugin options
+	 *
+	 * @var array
 	 */
-	function __construct() {
+	private $options = array();
+
+	/**
+	 * Init the constructor
+	 *
+	 * @param array $options The plugin options
+	 */
+	function __construct( array $options = array() ) {
 
 		/**
 		 * Start with an underscore to hide fields from custom fields list
@@ -66,45 +75,38 @@ class Register_Metaboxes {
 				'id'            => $this->prefix . '-script-settings-metabox',
 				'title'         => __( 'CSS and JavaScript settings', 'italystrap' ),
 				'object_types'  => $script_settings_metabox_object_types,
-				'context'    => 'normal',
-				'priority'   => 'high',
+				'context'    	=> 'normal',
+				'priority'   	=> 'high',
 			)
 		);
 
 		$cmb->add_field(
 			array(
-				'name'		=> __( 'Custom CSS', 'italystrap' ),
-				'desc'		=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
-				'id'		=> $this->_prefix . '_custom_css_settings',
-				'type'		=> 'textarea_code',
-			)
-		);
-
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'		=> __( 'Custom JavaScript', 'italystrap' ),
-		// 		'desc'		=> __( 'This code will be included verbatim in script tag before </body> tag of your page or post', 'italystrap' ),
-		// 		'id'		=> $this->_prefix . '_custom_js_settings',
-		// 		'type'		=> 'textarea_code',
-		// 		'escape_cb'	=> 'esc_textarea',
-		// 	)
-		// );
-
-		$cmb->add_field(
-			array(
-				'name'		=> __( 'Body Classes', 'italystrap' ),
-				'desc'		=> __( 'These space separated class names will be added to the body_class() function (provided your theme uses these functions).', 'italystrap' ),
-				'id'		=> $this->_prefix . '_custom_body_classes_settings',
-				'type'		=> 'text',
+				'name'			=> __( 'Custom CSS', 'italystrap' ),
+				'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
+				'id'			=> $this->_prefix . '_custom_css_settings',
+				'type'			=> 'textarea_code',
+				'attributes'	=> array( 'placeholder' => 'body{background-color:#f2f2f2}' ),
 			)
 		);
 
 		$cmb->add_field(
 			array(
-				'name'		=> __( 'Post Classes', 'italystrap' ),
-				'desc'		=> __( 'These space separated class names will be added to the post_class() function (provided your theme uses these functions).', 'italystrap' ),
-				'id'		=> $this->_prefix . '_custom_post_classes_settings',
-				'type'		=> 'text',
+				'name'			=> __( 'Body Classes', 'italystrap' ),
+				'desc'			=> __( 'These class names will be added to the body_class() function (provided your theme uses these functions), separate each one by comma.', 'italystrap' ),
+				'id'			=> $this->_prefix . '_custom_body_class_settings',
+				'type'			=> 'text',
+				'attributes'	=> array( 'placeholder' => 'class1,class2,class3,otherclass' ),
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'			=> __( 'Post Classes', 'italystrap' ),
+				'desc'			=> __( 'These class names will be added to the post_class() function (provided your theme uses these functions), separate each one by comma.', 'italystrap' ),
+				'id'			=> $this->_prefix . '_custom_post_class_settings',
+				'type'			=> 'text',
+				'attributes'	=> array( 'placeholder' => 'class1,class2,class3,otherclass' ),
 			)
 		);
 
