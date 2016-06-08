@@ -78,6 +78,23 @@ return array(
 						'sanitize'		=> 'sanitize_text_field',
 				),
 			),
+			array(
+				'id'		=> 'google_api_key',
+				'title'		=> __( 'Google API Key', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'general',
+				'args'		=> array(
+						'name'			=> __( 'Google API Key', 'italystrap' ),
+						'desc'			=> __( 'Insert here the google API key.', 'italystrap' ),
+						'id'			=> 'google_api_key',
+						'type'			=> 'text',
+						'class'			=> 'google_api_key',
+						'default'		=> '',
+						'validate'		=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
 		),
 	),
 	/**

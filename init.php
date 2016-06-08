@@ -20,20 +20,6 @@ if ( is_admin() ) {
 	return;
 }
 
-$injector = new \Auryn\Injector;
-
-/**
- * Get the plugin options
- *
- * @var array
- */
-$options = (array) get_option( 'italystrap_settings' );
-
-/**
- * Define options parmeter
- */
-$injector->defineParam( 'options', $options );
-
 /**
  * Option for killing the emojis
  */
@@ -56,6 +42,14 @@ add_action( 'init', array( $init, 'on_load' ), 100 );
 if ( isset( $options['media_carousel_shortcode'] ) ) {
 	$init->add_carousel_to_gallery_shortcode();
 }
+
+/**
+ * Instantiate Init Class
+ *
+ * @var Init
+ */
+// $customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
+// add_action( 'customize_register', array( $customizer_manager, 'register_init' ), 11 );
 
 /**
  * Attivate LazyLoad

@@ -73,6 +73,38 @@ require( ITALYSTRAP_PLUGIN_PATH . 'vendor/webdevstudios/cmb2/init.php' );
 require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
 
 /**
+ * Initialize the IOC
+ *
+ * @var Auryn\Injector
+ */
+$injector = new \Auryn\Injector;
+
+$args = require( ITALYSTRAP_PLUGIN_PATH . 'admin/settings/settings-general-plugin.php' );
+
+$injector->defineParam( 'args', $args );
+
+/**
+ * Get the plugin options
+ *
+ * @var array
+ */
+$options = (array) get_option( $args['options_name'] );
+
+/**
+ * Define options parmeter
+ */
+$injector->defineParam( 'options', $options );
+
+/**
+ * Instantiate Customizer_Manager Class
+ * Questa deve essere eseguita sia in admin che in front-end
+ *
+ * @var Customizer_Manager
+ */
+$customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
+add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
+
+/**
  * Init the plugin
  */
 require( ITALYSTRAP_PLUGIN_PATH . 'class-init.php' );
@@ -136,6 +168,12 @@ if ( ! empty( $plugin_files_path ) ) {
 	foreach ( (array) $plugin_files_path as $key => $plugin_file_path ) {
 		require( $plugin_file_path );
 	}
+	/**
+	 * Fires once ItalyStrap Child plugin has loaded.
+	 *
+	 * @since 2.0.0
+	 */
+	do_action( 'italystrap_child_plugin_loaded' );
 }
 
 /**

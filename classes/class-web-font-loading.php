@@ -21,11 +21,18 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 class Web_Font_loading {
 
 	/**
-	 * Google API Link
+	 * Google API font URL
 	 *
 	 * @var string
 	 */
-	private $google_api = null;
+	private $google_api_url = '';
+
+	/**
+	 * Google API Key
+	 *
+	 * @var string
+	 */
+	private $google_api_key = '';
 
 	/**
 	 * Init the class.
@@ -34,9 +41,13 @@ class Web_Font_loading {
 	 */
 	function __construct( array $options = array() ) {
 
-		$this->google_api = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAukcQy3eDah9zhEKEwdBKnMbB1egGVpuM';
+		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
+
+		$this->google_api_key = isset( $options['google_api_key'] ) ? '?key=' . esc_attr( $options['google_api_key'] ) : '';
 
 		$this->fonts = $this->get_remote_fonts();
+
+		// d( get_theme_mods() );
 
 	}
 
@@ -51,7 +62,7 @@ class Web_Font_loading {
 
 		if ( false === ( $fonts = get_transient( 'italystrap_google_fonts' ) ) ) {
 
-			$font_content = wp_remote_get( $this->google_api, array( 'sslverify' => false ) );
+			$font_content = wp_remote_get( $this->google_api_url . $this->google_api_key, array( 'sslverify' => false ) );
 
 			$fonts = wp_remote_retrieve_body( $font_content );
 
@@ -73,21 +84,59 @@ class Web_Font_loading {
 	public function prepare_fonts() {
 
 		$get_theme_mods = get_theme_mods();
-
+		// d( $get_theme_mods );
+		// d( $get_theme_mods['body_font_family'] );
+		// d( $get_theme_mods['body_font_variants'] );
+		// d( $get_theme_mods['body_font_subsets'] );
+		// d( $get_theme_mods['heading_font_family'] );
+		// d( $get_theme_mods['heading_font_variants'] );
+		// d( $get_theme_mods['heading_font_subsets'] );
 		$template_part = array(
 			'body',
 			'heading'
 		);
 
+		// d( $this->fonts );
+
 		foreach ( $template_part as $key => $part ) {
 
-			$fonts[ $key ]['family'] = $this->fonts[ $get_theme_mods[ $part . '_font_family' ] ]->family;
+			/**
+			 * The array position of the font
+			 *
+			 * @var int The position of the font because it is an array.
+			 */
+			$position = (int) $get_theme_mods[ $part . '_font_family' ];
 
-			$fonts[ $key ]['variants'] = in_array( $get_theme_mods[ $part . '_font_variants' ], $this->fonts[ $get_theme_mods[ $part . '_font_family'] ]->variants, true ) && 'regular' !== $get_theme_mods[ $part . '_font_variants'] ? $get_theme_mods[ $part . '_font_variants'] : '400';
+			/**
+			 * Get the font family from $position
+			 *
+			 * @var string The font family name.
+			 */
+			$fonts[ $key ]['family'] = $this->fonts[ $position ]->family;
 
-			$fonts[ $key ]['subsets'] = in_array( $get_theme_mods[ $part . '_font_subsets' ], $this->fonts[ $get_theme_mods[ $part . '_font_family'] ]->subsets, true ) ? $get_theme_mods[ $part . '_font_subsets'] : '';
+			// d( $fonts[ $key ]['family'] );
+			// d( $get_theme_mods[ $part . '_font_family' ] );
+			// d( $this->fonts[ $get_theme_mods[ $part . '_font_family'] ]->variants );
+
+			$fonts[ $key ]['variants'] = in_array(
+				explode( ',', $get_theme_mods[ $part . '_font_variants' ] ),
+				$this->fonts[ $position ]->variants,
+				true
+				)
+				&& 'regular' !== $get_theme_mods[ $part . '_font_variants'] ? $get_theme_mods[ $part . '_font_variants'] : '400';
+
+			d( $fonts[ $key ]['variants'] );
+			// d( $get_theme_mods[ $part . '_font_variants' ] );
+			// d( explode( ',', $get_theme_mods[ $part . '_font_variants' ] ) );
+			// d( $this->fonts[ $position ]->variants );
+
+			$fonts[ $key ]['subsets'] = in_array(
+				$get_theme_mods[ $part . '_font_subsets' ],
+				$this->fonts[ $position ]->subsets,
+				true
+				) ? $get_theme_mods[ $part . '_font_subsets'] : '';
 		}
-
+		d( $fonts );
 		return apply_filters( 'italystrap-fonts-before-loading', $fonts, $this );
 
 	}
