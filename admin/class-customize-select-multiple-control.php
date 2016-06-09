@@ -110,7 +110,7 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control {
 
 ?>
 <label>
-	<span class="customize-category-select-control"><?php echo esc_html( $this->label ); ?></span>
+	<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
 	<?php if ( ! empty( $this->description ) ) : ?>
 		<span class="description customize-control-description"><?php echo $this->description; // XSS ok. ?></span>

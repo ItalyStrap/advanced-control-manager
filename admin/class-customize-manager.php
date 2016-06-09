@@ -108,19 +108,15 @@ class Customizer_Manager {
 	 * @since ItalyStrap 2.0.0
 	 */
 	public function register( WP_Customize_Manager $wp_customize ) {
-// d( get_theme_mods() );
-// remove_theme_mod( 'body' );
-// remove_theme_mod( 'body_font' );
-// remove_theme_mod( 'heading' );
-// d( get_theme_mods() );
+
 		/**
 		 * Define a new section for typography
 		 */
 		$wp_customize->add_section(
-			'typography',
+			'fonts',
 			array(
-				'title'				=> __( 'Typography', 'italystrap' ),
-				'description'		=> __( 'Chose typography style', 'italystrap' ),
+				'title'				=> __( 'Fonts', 'italystrap' ),
+				'description'		=> __( 'Select the font family you want to use, then you have to add some CSS to your style.css or in the options of this plugin.', 'italystrap' ),
 				// 'panel' => $this->panel, // Not typically needed.
 				'priority'			=> 160,
 				'capability'		=> $this->capability,
@@ -131,7 +127,7 @@ class Customizer_Manager {
 		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'body_font_family',
+			'first_font_family',
 			array(
 				'default'			=> '',
 				'type'				=> 'theme_mod',
@@ -144,12 +140,12 @@ class Customizer_Manager {
 		$wp_customize->add_control(
 			new Customize_Select_Web_Fonts_Control(
 				$wp_customize,
-				'body_font_family',
+				'first_font_family',
 				array(
-					'label'			=> __( 'Body font family', 'italystrap' ),
-					'description'	=> __( 'Typography in all body', 'italystrap' ),
-					'section'		=> 'typography',
-					'settings'		=> 'body_font_family',
+					'label'			=> __( 'The first font family', 'italystrap' ),
+					'description'	=> __( 'Select the first font family with weight and subsets', 'italystrap' ),
+					'section'		=> 'fonts',
+					'settings'		=> 'first_font_family',
 					'priority'		=> 10,
 					'default'		=> '',
 					'choices'		=> $this->fonts,
@@ -161,7 +157,7 @@ class Customizer_Manager {
 		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'body_font_variants',
+			'first_font_variants',
 			array(
 				'default'			=> '',
 				'type'				=> 'theme_mod',
@@ -174,12 +170,12 @@ class Customizer_Manager {
 		$wp_customize->add_control(
 			new Customize_Select_Multiple_Control(
 				$wp_customize,
-				'body_font_variants',
+				'first_font_variants',
 				array(
-					'label'			=> __( 'Body font family variants', 'italystrap' ),
-					'description'	=> __( 'Chose the weight of the font', 'italystrap' ),
-					'section'		=> 'typography',
-					'settings'		=> 'body_font_variants',
+					'label'			=> __( 'Weight of the first font family', 'italystrap' ),
+					'description'	=> __( 'Chose the weight of the font family, multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'section'		=> 'fonts',
+					'settings'		=> 'first_font_variants',
 					'priority'		=> 10,
 					'default'		=> 'regular',
 					'choices'		=> $this->variants,
@@ -191,7 +187,7 @@ class Customizer_Manager {
 		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'body_font_subsets',
+			'first_font_subsets',
 			array(
 				'default'			=> '',
 				'type'				=> 'theme_mod',
@@ -204,12 +200,12 @@ class Customizer_Manager {
 		$wp_customize->add_control(
 			new Customize_Select_Multiple_Control(
 				$wp_customize,
-				'body_font_subsets',
+				'first_font_subsets',
 				array(
-					'label'			=> __( 'Body font family subset', 'italystrap' ),
-					'description'	=> __( 'Chose ', 'italystrap' ),
-					'section'		=> 'typography',
-					'settings'		=> 'body_font_subsets',
+					'label'			=> __( 'Subsets of the first font family', 'italystrap' ),
+					'description'	=> __( 'Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'section'		=> 'fonts',
+					'settings'		=> 'first_font_subsets',
 					'priority'		=> 10,
 					'default'		=> 'latin',
 					'choices'		=> $this->subsets,
@@ -221,7 +217,7 @@ class Customizer_Manager {
 		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'heading_font_family',
+			'second_font_family',
 			array(
 				'default'			=> '',
 				'type'				=> 'theme_mod',
@@ -234,12 +230,12 @@ class Customizer_Manager {
 		$wp_customize->add_control(
 			new Customize_Select_Web_Fonts_Control(
 				$wp_customize,
-				'heading_font_family',
+				'second_font_family',
 				array(
-					'label'			=> __( 'Headings font family', 'italystrap' ),
-					'description'	=> __( 'H1, H2, H3, H4, H5, H6', 'italystrap' ),
-					'section'		=> 'typography',
-					'settings'		=> 'heading_font_family',
+					'label'			=> __( 'The Second font family', 'italystrap' ),
+					'description'	=> __( 'Select the second font family with weight and subsets', 'italystrap' ),
+					'section'		=> 'fonts',
+					'settings'		=> 'second_font_family',
 					'priority'		=> 10,
 					'default'		=> '',
 					'choices'		=> $this->fonts,
@@ -251,7 +247,7 @@ class Customizer_Manager {
 		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'heading_font_variants',
+			'second_font_variants',
 			array(
 				'default'			=> '',
 				'type'				=> 'theme_mod',
@@ -264,12 +260,12 @@ class Customizer_Manager {
 		$wp_customize->add_control(
 			new Customize_Select_Multiple_Control(
 				$wp_customize,
-				'heading_font_variants',
+				'second_font_variants',
 				array(
-					'label'			=> __( 'Headings font family variants', 'italystrap' ),
-					'description'	=> __( 'Chose the weight of the font', 'italystrap' ),
-					'section'		=> 'typography',
-					'settings'		=> 'heading_font_variants',
+					'label'			=> __( 'Weight of the second font family', 'italystrap' ),
+					'description'	=> __( 'Chose the weight of the font family, multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'section'		=> 'fonts',
+					'settings'		=> 'second_font_variants',
 					'priority'		=> 10,
 					'default'		=> 'regular',
 					'choices'		=> $this->variants,
@@ -281,7 +277,7 @@ class Customizer_Manager {
 		 * Add a textarea control for typography
 		 */
 		$wp_customize->add_setting(
-			'heading_font_subsets',
+			'second_font_subsets',
 			array(
 				'default'			=> '',
 				'type'				=> 'theme_mod',
@@ -294,12 +290,12 @@ class Customizer_Manager {
 		$wp_customize->add_control(
 			new Customize_Select_Multiple_Control(
 				$wp_customize,
-				'heading_font_subsets',
+				'second_font_subsets',
 				array(
-					'label'			=> __( 'Headings font family subsets', 'italystrap' ),
-					'description'	=> __( 'Chose the weight of the font', 'italystrap' ),
-					'section'		=> 'typography',
-					'settings'		=> 'heading_font_subsets',
+					'label'			=> __( 'Subsets of the second font family', 'italystrap' ),
+					'description'	=> __( 'Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'section'		=> 'fonts',
+					'settings'		=> 'second_font_subsets',
 					'priority'		=> 10,
 					'default'		=> 'regular',
 					'choices'		=> $this->subsets,

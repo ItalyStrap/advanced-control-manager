@@ -41,13 +41,15 @@ class Web_Font_loading {
 	 */
 	function __construct( array $options = array() ) {
 
+		$this->options = $options;
+
 		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
 		$this->google_api_key = isset( $options['google_api_key'] ) ? '?key=' . esc_attr( $options['google_api_key'] ) : '';
 
 		$this->fonts = $this->get_remote_fonts();
 
-		// d( get_theme_mods() );
+		$this->get_theme_mods = get_theme_mods();
 
 	}
 
@@ -57,6 +59,10 @@ class Web_Font_loading {
 	 * @return String
 	 */
 	public function get_remote_fonts() {
+
+		if ( ! isset( $this->options['google_api_key'] ) ) {
+			return array();
+		}
 
 		// delete_transient( 'italystrap_google_fonts' );
 
@@ -83,7 +89,13 @@ class Web_Font_loading {
 	 */
 	public function prepare_fonts() {
 
-		$get_theme_mods = get_theme_mods();
+		$get_theme_mods = $this->get_theme_mods;
+		// remove_theme_mod( 'body_font_family' );
+		// remove_theme_mod( 'body_font_variants' );
+		// remove_theme_mod( 'body_font_subsets' );
+		// remove_theme_mod( 'heading_font_family' );
+		// remove_theme_mod( 'heading_font_variants' );
+		// remove_theme_mod( 'heading_font_subsets' );
 		// d( $get_theme_mods );
 		// d( $get_theme_mods['body_font_family'] );
 		// d( $get_theme_mods['body_font_variants'] );
@@ -92,11 +104,25 @@ class Web_Font_loading {
 		// d( $get_theme_mods['heading_font_variants'] );
 		// d( $get_theme_mods['heading_font_subsets'] );
 		$template_part = array(
-			'body',
-			'heading',
+			'first',
+			'second',
 		);
 
+		$fonts = array();
+
 		foreach ( $template_part as $key => $part ) {
+
+			if ( ! isset( $get_theme_mods[ $part . '_font_family' ] ) ) {
+				continue;
+			}
+
+			if ( ! isset( $get_theme_mods[ $part . '_font_variants' ] ) ) {
+				$get_theme_mods[ $part . '_font_variants' ] = '';
+			}
+
+			if ( ! isset( $get_theme_mods[ $part . '_font_subsets' ] ) ) {
+				$get_theme_mods[ $part . '_font_subsets' ] = 'latin';
+			}
 
 			/**
 			 * The array position of the font
@@ -117,15 +143,16 @@ class Web_Font_loading {
 				$this->fonts[ $position ]->variants
 				);
 
-			// d( $this->fonts[ $position ]->variants );
-
 			$fonts[ $key ]['subsets'] = array_intersect(
 				explode( ',', $get_theme_mods[ $part . '_font_subsets' ] ),
 				$this->fonts[ $position ]->subsets
 				);
 		}
 
-		return apply_filters( 'italystrap-fonts-before-loading', $fonts, $this );
+		/**
+		 * This must be an array
+		 */
+		return (array) apply_filters( 'italystrap_fonts_before_loading', $fonts, $this );
 
 	}
 
@@ -135,6 +162,10 @@ class Web_Font_loading {
 	function lazy_load_fonts() {
 
 		$fonts = $this->prepare_fonts();
+
+		if ( empty( $fonts ) ) {
+			return;
+		}
 
 		$font_to_observe = '';
 		$check = '';
@@ -149,12 +180,16 @@ class Web_Font_loading {
 
 			$comma = ( $count_fonts >= $i ) ? ',' : '' ;
 
-			// d( $font['family'] );
-			// d( $font['variants'] );
-			// d( implode( ',', $font['variants'] ) );
-			// d( $font['subsets'] );
-
-			// $weight = strpos( $font['variants'], 'italic' ) ? '' : ',{weight:' . absint( $font['variants'] ) . '}';
+			/**
+			 * The weight of the font
+			 *
+			 * @todo Per il momento la variabile è vuota, valutare se utilizzarla
+			 *       ma in quel caso si dovrà fare un foreach per ogni
+			 *       weight assegnato al font.
+			 * $weight = strpos( $font['variants'], 'italic' ) ? '' : ',{weight:' . absint( $font['variants'] ) . '}';
+			 *
+			 * @var string
+			 */
 			$weight = '';
 
 			$font_to_observe .= $range[ $key + 1 ] . '=new a.FontFaceObserver("' . esc_attr( $font['family'] ) . '"' . $weight . ')' . $comma;
@@ -163,24 +198,12 @@ class Web_Font_loading {
 
 			$font['family'] = str_replace( ' ', '+', $font['family'] );
 
-			$subsets = implode( ',', $font['subsets'] );
-			/**
-			 * Check if subset is set
-			 *
-			 * @var string
-			 */
-			$subsets = empty( $subsets ) ? 'latin' : $subsets;
-
-			$web_font_config['google']['families'][] = esc_attr( $font['family'] ) . ':' . esc_attr( implode( ',', $font['variants'] ) ) . ':' . esc_attr( $subsets );
+			$web_font_config['google']['families'][] = esc_attr( $font['family'] ) . ':' . esc_attr( implode( ',', $font['variants'] ) ) . ':' . esc_attr( implode( ',', $font['subsets'] ) );
 
 			$i++;
 		}
 
-		// d( $web_font_config['google']['families'][0] );
-		// d( $web_font_config['google']['families'][1] );
-		// d( json_encode( $web_font_config ) );
-
-		$css = '.fonts-loaded body{font-family: "' . esc_attr( $fonts[0]['family'] ) . '";}.fonts-loaded h1,.fonts-loaded h2,.fonts-loaded h3,.fonts-loaded h4,.fonts-loaded h5,.fonts-loaded h6 {font-family: "' . esc_attr( $fonts[1]['family'] ) . '";}';
+		$css = '.fonts-loaded body{font-family: "' . esc_attr( $fonts[0]['family'] ) . '";}.fonts-loaded h1,.fonts-loaded h2,.fonts-loaded h3,.fonts-loaded h4,.fonts-loaded h5,.fonts-loaded h6 {font-family: "' . esc_attr( $fonts[0]['family'] ) . '";}';
 
 		echo '<style>' . $css . '</style>'; // XSS ok.
 

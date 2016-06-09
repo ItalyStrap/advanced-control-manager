@@ -79,6 +79,26 @@ return array(
 				),
 			),
 			array(
+				'id'		=> 'web_font_loading',
+				'title'		=> __( 'Web font Loading', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'general',
+				'args'		=> array(
+						'name'			=> __( 'Web font Loading', 'italystrap' ),
+						'desc'			=> __( 'Activate it for using the web fonts loader, then you have to go to the customizer and select the font, weight and subsets you want to use in this site, after done that you have to add some CSS to your style, you can put it under ItalyStrap > Settings > Style > Custom CSS.
+							<br>You can apply the font to any HTML5 elements in your page like body, main, header, footer, hx, p, ecc, remember that for each elements you have to put first the class <code>.fonts-loaded</code> and then the name of the single elements at time.
+							<br>Example:
+							<br><pre><code>.fonts-loaded body{ font-family: "Open Sans"; }<br>.fonts-loaded h1{ font-family: "Lato"; }</code></pre>', 'italystrap' ),
+						'id'			=> 'web_font_loading',
+						'type'			=> 'checkbox',
+						'class'			=> 'web_font_loading',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+			array(
 				'id'		=> 'google_api_key',
 				'title'		=> __( 'Google API Key', 'italystrap' ),
 				'callback'	=> 'get_field_type',

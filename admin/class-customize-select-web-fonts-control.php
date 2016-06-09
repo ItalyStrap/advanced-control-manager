@@ -26,14 +26,14 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
 class Customize_Select_Web_Fonts_Control extends WP_Customize_Control {
 
 
-    /**
-     * The type of customize control being rendered.
-     *
-     * @since  1.0.0
-     * @access public
-     * @var    string
-     */
-    public $type = 'select-web-font';
+	/**
+	 * The type of customize control being rendered.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $type = 'select-web-font';
 
 	/**
 	 * Fonts container
@@ -97,10 +97,10 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control {
 		}
 ?>
 <label>
-	<span class="customize-category-select-control"><?php echo esc_html( $this->label ); ?></span>
+	<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
 	<?php if ( ! empty( $this->description ) ) : ?>
-		<span class="description customize-control-description"><?php echo $this->description; ?></span>
+		<span class="description customize-control-description"><?php echo $this->description; // XSS ok. ?></span>
 	<?php endif; ?>
 
 	<select class="widefat" <?php $this->link(); ?>>
@@ -108,9 +108,9 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control {
 		foreach ( $this->args['choices'] as $k => $v ) {
 			printf(
 				'<option value="%s" %s>%s</option>',
-				$k,
+				esc_attr( $k ),
 				selected( $this->value(), $k, false ),
-				$v->family
+				esc_attr( $v->family )
 			);
 		}
 		?>

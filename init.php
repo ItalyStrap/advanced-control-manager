@@ -95,19 +95,21 @@ add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 $post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
 
 /**
- * Get metaboxex value
  */
 add_action( 'wp', array( $post_meta, 'add_post_type_custom_css' ) );
 add_filter( 'body_class', array( $post_meta, 'body_class' ) );
 add_filter( 'post_class', array( $post_meta, 'post_class' ) );
 
-/**
- * [$generate_analytics description]
- *
- * @var Web_Font_loading
- */
-$web_font_loading = $injector->make( 'ItalyStrap\Core\Web_Font_loading' );
-add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
+
+if ( isset( $options['web_font_loading'] ) ) {
+	/**
+	 * Load the Web_Font_Loading classes
+	 *
+	 * @var Web_Font_loading
+	 */
+	$web_font_loading = $injector->make( 'ItalyStrap\Core\Web_Font_loading' );
+	add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
+}
 
 /**
  * Set CSS from admin option Script
