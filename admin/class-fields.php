@@ -556,7 +556,7 @@ class Fields extends A_Fields {
 	 */
 	public function field_type_description( $desc ) {
 
-		return  '<br/><small class="description">' . esc_html( $desc ) . '</small>';
+		return  '<br/><small class="description">' . wp_kses_post( $desc ) . '</small>';
 
 	}
 
