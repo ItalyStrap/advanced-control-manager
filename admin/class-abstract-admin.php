@@ -271,7 +271,7 @@ abstract class A_Admin implements I_Admin{
 	 */
 	public function settings_init() {
 
-		// If the theme options don't exist, create them.
+		// If the theme options doesn't exist, create them.
 		$this->add_option();
 
 		foreach ( $this->settings as $key => $setting ) {

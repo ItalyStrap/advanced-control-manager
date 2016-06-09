@@ -95,6 +95,7 @@ add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 $post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
 
 /**
+ * Get metaboxes value
  */
 add_action( 'wp', array( $post_meta, 'add_post_type_custom_css' ) );
 add_filter( 'body_class', array( $post_meta, 'body_class' ) );
