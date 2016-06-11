@@ -60,7 +60,7 @@ class Web_Font_loading {
 	 */
 	public function get_remote_fonts() {
 
-		if ( ! isset( $this->options['google_api_key'] ) ) {
+		if ( empty( $this->options['google_api_key'] ) ) {
 			return array();
 		}
 
