@@ -227,6 +227,23 @@ return array(
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
+				'id'		=> 'do_shortcode_widget_text',
+				'title'		=> __( 'Do ShortCode in Widget Text', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'shortcode',
+				'args'		=> array(
+						'name'			=> __( 'Do ShortCode in Widget Text', 'italystrap' ),
+						'desc'			=> __( 'This get you the possibility to insert any shortcode into a widget text.', 'italystrap' ),
+						'id'			=> 'do_shortcode_widget_text',
+						'type'			=> 'checkbox',
+						'class'			=> 'do_shortcode_widget_text',
+						'default'		=> '1',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+			array(
 				'id'		=> 'media_carousel_shortcode',
 				'title'		=> __( 'Carousel Shortcode', 'italystrap' ),
 				'callback'	=> 'get_field_type',

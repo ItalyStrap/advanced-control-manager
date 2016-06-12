@@ -28,6 +28,14 @@ if ( isset( $options['kill-emojis'] ) ) {
 }
 
 /**
+ * General
+ * Allow shortcode in widget text.
+ */
+if ( isset( $options['do_shortcode_widget_text'] ) ) {
+	add_filter( 'widget_text', 'do_shortcode' );
+}
+
+/**
  * Instantiate Init Class
  *
  * @var Init
