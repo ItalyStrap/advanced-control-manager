@@ -56,6 +56,7 @@ return array(
     'ItalyStrap\\Core\\Widget_Product' => $baseDir . '/widget/class-widget-product.php',
     'ItalyStrap\\Core\\Widget_VCard' => $baseDir . '/widget/class-widget-vcard2.php',
     'ItalyStrap\\Core\\Widgets_Register' => $baseDir . '/widget/class-widget-register.php',
+    'ItalyStrap\\Widget\\Widget_Attributes' => $baseDir . '/widget/class-widget-attributes.php',
     'ItalyStrap\\Widget\\Widget_Logic' => $baseDir . '/widget/class-widget-logic.php',
     'ItalyStrap\\Widget\\Widget_Logic_Admin' => $baseDir . '/widget/class-widget-logic-admin.php',
     'Italy_Cookie_Choices' => $baseDir . '/classes/italy-cookie-choices.php',

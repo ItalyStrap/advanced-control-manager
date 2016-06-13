@@ -146,6 +146,16 @@ add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999
 add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );
 
 /**
+ * Init the Widget_Attributes
+ *
+ * @var Widget_Attributes
+ */
+$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
+// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
+add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attributes' ) );
+
+/**
  * Widget Logic Functionality for admin
  *
  * @var Widget_Logic_Admin
