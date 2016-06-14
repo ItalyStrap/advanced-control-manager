@@ -9,23 +9,29 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Shortcode;
 
 /**
  * Add Bootstrap Carousel to gallery shortcode
  */
-class Shortcode_Carousel {
+class Carousel {
 
 	/**
 	 * Modify the gallery shortcode with Bootstrap Carousel functionality.
 	 *
-	 * @param  string  $output  The outputo of the shortcode.
-	 * @param  array   $atts    The shortcode attribute.
-	 * @param  boolean $content The content (set to false because no nedeed).
-	 * @param  boolean $tag     The tag (set to false because no nedeed).
-	 * @return string           Return the new Bootstrap carousel
+	 * @param  string  $output   The gallery output. Default empty.
+	 * @param  array   $atts     Attributes of the gallery shortcode.
+	 * @param  boolean $instance Unique numeric ID of this gallery shortcode instance.
+	 * @return string            Return the new Bootstrap carousel
 	 */
-	function gallery_shortcode( $output = '', $atts, $content = false, $tag = false ) {
+	function gallery_shortcode( $output, $atts, $instance ) {
+
+		/**
+		 * If type is not set return the output.
+		 */
+		if ( ! isset( $atts['type'] ) ) {
+			return $output;
+		}
 
 		/**
 		 * Deprecated title attribute for shortcode.
@@ -35,10 +41,17 @@ class Shortcode_Carousel {
 		if ( ! empty( $atts['title'] ) ) {
 			_deprecated_argument( __FUNCTION__, '1.4.0', __( 'Use $atts[\'image_title\'] instead of $atts[\'title\']', 'ItalyStrap' ) ); // WPCS: XSS OK.
 		}
-		$atts['image_title'] = ( isset( $atts['title'] ) ) ? $atts['title'] : null ;
 
-		$carousel_bootstrap = new Carousel_Bootstrap( $atts );
-		return $carousel_bootstrap->__get( 'output' );
+		if ( ! isset( $atts['image_title'] ) && isset( $atts['title'] ) ) {
+			$atts['image_title'] = $atts['title'];
+		}
+
+		if ( 'carousel' === $atts['type'] ) {
+			$carousel_bootstrap = new \ItalyStrap\Core\Carousel_Bootstrap( $atts );
+			return $carousel_bootstrap->__get( 'output' );
+		}
+
+		return $output;
 
 	}
 

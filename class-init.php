@@ -73,7 +73,7 @@ class Init {
 		}
 // d($gallery);
 		if ( ! $gallery ) {
-			$shortcode_carousel = new \ItalyStrap\Core\Shortcode_Carousel();
+			$shortcode_carousel = new \ItalyStrap\Shortcode\Carousel();
 			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 4 );
 			add_filter( 'jetpack_gallery_types', array( $shortcode_carousel, 'gallery_types' ) );
 			// add_filter( 'ItalyStrap_gallery_types', array( $shortcode_carousel, 'gallery_types' ), 999 );
