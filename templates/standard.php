@@ -46,7 +46,14 @@
 				if ( current_theme_supports( 'post-thumbnails' ) && $this->args['show_thumbnail'] && has_post_thumbnail() ) : ?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
-							<?php the_post_thumbnail( $this->args['thumb_size'] ); ?>
+							<?php the_post_thumbnail(
+								$this->args['thumb_size'],
+								array(
+									'class' => 'attachment-' . $this->args['thumb_size'] . ' size-' . $this->args['thumb_size'] . ' ' . $this->args['image_class'],
+									'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $this->post->ID ), '_wp_attachment_image_alt', true ) ) ),
+									'itemprop'	=> 'image',
+								)
+							); ?>
 						</a>
 					</figure>
 				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_url'] ) :?>
@@ -55,6 +62,7 @@
 							<?php 
 							$attr = array(
 								'itemprop'	=> 'image',
+								'class' => $this->args['image_class'],
 							);
 							$the_post_thumbnail = wp_get_attachment_image( $this->args['thumb_url'] , $this->args['thumb_size'], false, $attr );
 							echo apply_filters( 'italystrap_widget_the_post_thumbnail', $the_post_thumbnail );
@@ -124,7 +132,13 @@
 								// echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
 								?>
 								<?php if ( $this->args['show_readmore'] ) : ?>
-								<a href="<?php the_permalink(); ?>" class="more-link"><?php echo esc_attr( $this->args['excerpt_readmore'] ); ?></a>
+								<a <?php
+								$array = array(
+									'class'	=> 'more-link',
+									'href'	=> get_permalink(),
+									'rel'	=> 'prefetch',
+									);
+								ItalyStrap\Core\get_attr( 'widget_post_read_more', $array, true ) ?>><?php echo esc_attr( $this->args['excerpt_readmore'] ); ?></a>
 								<?php endif; ?>
 							</p>
 						</div>
