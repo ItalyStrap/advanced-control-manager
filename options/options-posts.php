@@ -33,18 +33,18 @@ return array(
 	/**
 	 * Custom CSS class for widget.
 	 */
-	'widget_class'				=> array(
-				'name'		=> __( 'Widget Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the widget class name.', 'ItalyStrap' ),
-				'id'		=> 'widget_class',
-				'type'		=> 'text',
-				'class'		=> 'widefat widget_class',
-				'class-p'	=> 'widget_class',
-				'default'	=> '',
-				'validate'	=> 'alpha_dash',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+	// 'widget_class'				=> array(
+	// 			'name'		=> __( 'Widget Class', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter the widget class name.', 'ItalyStrap' ),
+	// 			'id'		=> 'widget_class',
+	// 			'type'		=> 'text',
+	// 			'class'		=> 'widefat widget_class',
+	// 			'class-p'	=> 'widget_class',
+	// 			'default'	=> '',
+	// 			'validate'	=> 'alpha_dash',
+	// 			'sanitize'	=> 'sanitize_text_field',
+	// 			'section'	=> 'general',
+	// 			 ),
 
 	/**
 	 * Custom CSS class for container.
@@ -72,6 +72,22 @@ return array(
 				'type'		=> 'text',
 				'class'		=> 'widefat post_class',
 				'class-p'	=> 'post_class',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
+	 * Custom CSS class for image.
+	 */
+	'image_class'				=> array(
+				'name'		=> __( 'Image Class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the image class name.', 'ItalyStrap' ),
+				'id'		=> 'image_class',
+				'type'		=> 'text',
+				'class'		=> 'widefat image_class',
+				'class-p'	=> 'image_class',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
