@@ -116,4 +116,107 @@ class Register_Metaboxes {
 		 *       global $wp_scripts, $wp_styles;
 		 */
 	}
+
+	/**
+	 * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
+	 */
+	public function register_widget_areas_fields() {
+
+		/**
+		 * Sample metabox to demonstrate each field type included
+		 */
+		$cmb = new_cmb2_box(
+			array(
+				'id'            => $this->prefix . '-widget-areas-metabox',
+				'title'         => __( 'Widget Area settings', 'italystrap' ),
+				'object_types'  => array( 'sidebar' ),
+				'context'    	=> 'normal',
+				'priority'   	=> 'high',
+			)
+		);
+
+	// 'footer-box-1'	=> array(
+	// 	'name'				=> __( 'Footer Box 1', 'ItalyStrap' ),
+	// 	'id'				=> 'footer-box-1',
+	// 	'description'		=> __( 'Footer box 1 widget area.', 'ItalyStrap' ),
+	// 	'before_widget'		=> '<div id="%1$s" class="widget %2$s">',
+	// 	'after_widget' 		=> '</div>',
+	// 	'before_title'		=> '<h3 class="widget-title">',
+	// 	'after_title'		=> '</h3>',
+	// ),
+
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'			=> __( 'Before Widget', 'italystrap' ),
+		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
+		// 		'id'			=> $this->_prefix . '_before_widget',
+		// 		'type'			=> 'text',
+		// 		'attributes'	=> array( 'placeholder' => '' ),
+		// 	)
+		// );
+
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'			=> __( 'after_widget', 'italystrap' ),
+		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
+		// 		'id'			=> $this->_prefix . '_after_widget',
+		// 		'type'			=> 'text',
+		// 		'attributes'	=> array( 'placeholder' => '' ),
+		// 	)
+		// );
+
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'			=> __( 'before_title', 'italystrap' ),
+		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
+		// 		'id'			=> $this->_prefix . '_before_title',
+		// 		'type'			=> 'text',
+		// 		'attributes'	=> array( 'placeholder' => '' ),
+		// 	)
+		// );
+
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'			=> __( 'after_title', 'italystrap' ),
+		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
+		// 		'id'			=> $this->_prefix . '_after_title',
+		// 		'type'			=> 'text',
+		// 		'attributes'	=> array( 'placeholder' => '' ),
+		// 	)
+		// );
+		// 
+		$options = array(
+			'italystrap_content_header'	=> __( 'In the header', 'italystrap' ),
+			'italystrap_before_main'	=> __( 'Before the Main Content', 'italystrap' ),
+			'italystrap_before_loop'	=> __( 'Before the Loop', 'italystrap' ),
+			'italystrap_after_loop'		=> __( 'After the Loop', 'italystrap' ),
+			'italystrap_after_main'		=> __( 'After the Main Content', 'italystrap' ),
+		);
+
+		$options = apply_filters( 'italystrap_widget_area_position', $options );
+
+		$cmb->add_field(
+			array(
+				'name'				=> __( 'Display on', 'italystrap' ),
+				'desc'				=> __( 'Select the position to display this widget area.', 'italystrap' ),
+				'id'				=> $this->_prefix . '_action',
+				'type'				=> 'select',
+				'show_option_none'	=> true,
+				'options'			=> $options,
+				'attributes'		=> array( 'placeholder' => '' ),
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'				=> __( 'Priority', 'italystrap' ),
+				'desc'				=> __( 'Type the priority you want to display this widget area, it must be a number, by default the priority is 10, you can choose a number between 1 and 99999, this is useful when you want to display more than one widget area in the same position but in different order.', 'italystrap' ),
+				'id'				=> $this->_prefix . '_priority',
+				'type'				=> 'text',
+				'default'			=> 10,
+				'attributes'		=> array( 'placeholder' => '' ),
+			)
+		);
+
+	}
 }

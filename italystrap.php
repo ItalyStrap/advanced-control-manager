@@ -105,6 +105,21 @@ $customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
 add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
 
 /**
+ * Instantiate Customizer_Manager Class
+ * Questa deve essere eseguita sia in admin che in front-end
+ *
+ * @var Customizer_Manager
+ */
+$widget_areas = $injector->make( 'ItalyStrap\Widget\Widget_Areas' );
+$widget_areas->register_sidebars();
+add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
+add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
+add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
+add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
+// delete_option( 'italystrap_widget_area' );
+// d( get_option( 'italystrap_widget_area' ) );
+
+/**
  * Init the plugin
  */
 require( ITALYSTRAP_PLUGIN_PATH . 'class-init.php' );

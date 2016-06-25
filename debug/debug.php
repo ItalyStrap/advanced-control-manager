@@ -57,7 +57,7 @@
 // wp-admin > pre
 // 
 function add_style_for_pre_tag_var_dump() {
-	echo '<style>.wp-admin > pre{margin-left: 170px;}</style>';
+	echo '<style>.wp-admin > pre, kint{margin-left: 170px;}</style>';
 }
 add_action( 'admin_head', 'add_style_for_pre_tag_var_dump' );
 

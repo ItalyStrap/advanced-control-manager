@@ -120,6 +120,7 @@ add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_size
  */
 $register_metabox = $injector->make( 'ItalyStrap\Admin\Register_Metaboxes' );
 add_action( 'cmb2_admin_init', array( $register_metabox, 'register_script_settings' ) );
+add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
 
 /**
  * The array with all plugin options
