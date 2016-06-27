@@ -188,9 +188,16 @@ class Register_Metaboxes {
 		$options = array(
 			'italystrap_content_header'	=> __( 'In the header', 'italystrap' ),
 			'italystrap_before_main'	=> __( 'Before the Main Content', 'italystrap' ),
+			'italystrap_before_content'	=> __( 'Before the Main Content', 'italystrap' ),
+
 			'italystrap_before_loop'	=> __( 'Before the Loop', 'italystrap' ),
 			'italystrap_after_loop'		=> __( 'After the Loop', 'italystrap' ),
+
+			'italystrap_after_content'		=> __( 'After the Main Content', 'italystrap' ),
 			'italystrap_after_main'		=> __( 'After the Main Content', 'italystrap' ),
+			'italystrap_before_footer'		=> __( 'In the footer open', 'italystrap' ),
+			'italystrap_footer'		=> __( 'In the footer', 'italystrap' ),
+			'italystrap_after_footer'		=> __( 'In the footer closed', 'italystrap' ),
 		);
 
 		$options = apply_filters( 'italystrap_widget_area_position', $options );
@@ -214,6 +221,31 @@ class Register_Metaboxes {
 				'id'				=> $this->_prefix . '_priority',
 				'type'				=> 'text',
 				'default'			=> 10,
+				'attributes'		=> array( 'placeholder' => '' ),
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'		=> __( 'Background color', 'italystrap' ),
+				'desc'		=> __( 'Choose the color for the backgrount of the widget area.', 'italystrap' ),
+				'id'		=> $this->_prefix . '_background_color',
+				'type'		=> 'colorpicker',
+				'default'	=> '',
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'				=> __( 'Width', 'italystrap' ),
+				'desc'				=> __( 'Select the width of this widget area.', 'italystrap' ),
+				'id'				=> $this->_prefix . '_container_width',
+				'type'				=> 'select',
+				'default'			=> 'container-fluid',
+				'options'			=> array(
+					'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
+					'container'			=> __( 'Standard width', 'italystrap' ),
+				),
 				'attributes'		=> array( 'placeholder' => '' ),
 			)
 		);

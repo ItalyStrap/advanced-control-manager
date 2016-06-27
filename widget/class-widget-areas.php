@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+// use ItalyStrap\Core\ItalyStrapGlobalsCss;
+
 /**
  * Widget Areas Class
  */
@@ -37,8 +39,31 @@ class Widget_Areas {
 	 * @param [type] $argument [description].
 	 */
 	function __construct( array $options = array() ) {
-		// $this->options = $options;
-		$this->options = get_option( 'italystrap_widget_area' );
+		// $this->sidebars = $options;
+		$this->sidebars = get_option( 'italystrap_widget_area' );
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_style( $style = '' ) {
+
+		$css = '.' . $style['id'] . '{';
+
+		foreach ( $style['style'] as $key => $value ) {
+			if ( '#' === $value ) {
+				$value = 'transparent';
+			}
+			$css .= $key . ':' . $value . ';';
+		}
+
+		$css .= '}';
+	
+		return $css;
+	
 	}
 
 	/**
@@ -49,13 +74,19 @@ class Widget_Areas {
 	 */
 	public function add_widget_area( $id ) {
 
-		$sidebar_id = $this->options[ $id ]['value']['id'];
+		$sidebar_id = $this->sidebars[ $id ]['value']['id'];
+		$container_width = $this->sidebars[ $id ]['container_width'];
+// d( $container_width );
+// d( $this->sidebars );
+		$css =  $this->get_style( $this->sidebars[ $id ] );
+		// ItalyStrapGlobalsCss::set( $css );
 
 		if ( is_active_sidebar( $sidebar_id ) ) :
 		?>
+		<style scoped><?php echo esc_attr( $css ); ?></style>
 		<div <?php \ItalyStrap\Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), true ) ?>>
-			<div class="container-fluid">
-				<div class="row">
+			<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), true ) ?>>
+				<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), true ) ?>>
 					<?php dynamic_sidebar( $sidebar_id ); ?>
 				</div>
 			</div>
@@ -78,7 +109,7 @@ class Widget_Areas {
 			// d( get_option( 'italystrap_widget_area' ) );
 		// }
 
-		foreach ( (array) $this->options as $sidebar_key => $sidebar ) {
+		foreach ( (array) $this->sidebars as $sidebar_key => $sidebar ) {
 
 			if ( ! isset( $sidebar['value']['id'] ) ) {
 				continue;
@@ -124,14 +155,14 @@ class Widget_Areas {
 			add_option( 'italystrap_widget_area', array() );
 		}
 
-		// foreach ( $this->options as $key => $value ) {
+		// foreach ( $this->sidebars as $key => $value ) {
 		// 	if ( in_array( $post->post_name, $value, true ) && ! $update ) {
 		// 		return $post_ID;
 		// 	}
 		// }
-// d( in_array( $post->post_name, $this->options, true ) );
+// d( in_array( $post->post_name, $this->sidebars, true ) );
 // die();
-		// if ( in_array( $post->post_name, $this->options, true ) ) {
+		// if ( in_array( $post->post_name, $this->sidebars, true ) ) {
 		// 	return $post_ID;
 		// }
 
@@ -165,18 +196,36 @@ class Widget_Areas {
 		// );
 		// 
 		// delete_option( 'italystrap_widget_area' );
-		$action = get_post_meta( $post_ID, '_italystrap_action', true );
 
-		if ( ! $action ) {
+
+
+
+		// $action = get_post_meta( $post_ID, '_italystrap_action', true );
+		// $background_color = get_post_meta( $post_ID, '_italystrap_background_color', true );
+		// $container_width = get_post_meta( $post_ID, '_italystrap_container_width', true );
+
+		// if ( ! $action ) {
 			$action = isset( $_POST['_italystrap_action'] ) ? wp_unslash( $_POST['_italystrap_action'] ) : '';
-		}
-		
+		// }
 
-		$this->options[ $post_ID ] = array(
-			'id'		=> $post->post_name,
-			'action'	=> $action,
-			'priotity'	=> 10,
-			'value'		=> array(
+		// if ( ! $background_color ) {
+			$background_color = isset( $_POST['_italystrap_background_color'] ) ? wp_unslash( $_POST['_italystrap_background_color'] ) : '';
+		// }
+
+		// if ( ! $container_width ) {
+			$container_width = isset( $_POST['_italystrap_container_width'] ) ? wp_unslash( $_POST['_italystrap_container_width'] ) : '';
+		// }
+
+
+		$this->sidebars[ $post_ID ] = array(
+			'id'				=> $post->post_name,
+			'action'			=> $action,
+			'priotity'			=> 10,
+			'style'				=> array(
+				'background-color'	=> $background_color,
+				),
+			'container_width'	=> $container_width,
+			'value'				=> array(
 				'name'				=> $post->post_title,
 				'id'				=> $post->post_name,
 				'description'		=> $post->post_excerpt,
@@ -187,7 +236,7 @@ class Widget_Areas {
 			),
 		);
 
-		update_option( 'italystrap_widget_area', $this->options );
+		update_option( 'italystrap_widget_area', $this->sidebars );
 
 		return $post_ID;
 	
@@ -201,13 +250,13 @@ class Widget_Areas {
 	 */
 	public function delete_sidebar( $post_id ) {
 
-		if ( ! isset( $this->options[ $post_id ] ) ) {
+		if ( ! isset( $this->sidebars[ $post_id ] ) ) {
 			return $post_id;
 		}
 	
-		unset( $this->options[ $post_id ] );
+		unset( $this->sidebars[ $post_id ] );
 
-		update_option( 'italystrap_widget_area', $this->options );
+		update_option( 'italystrap_widget_area', $this->sidebars );
 	
 	}
 
