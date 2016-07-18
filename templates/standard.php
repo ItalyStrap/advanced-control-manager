@@ -26,13 +26,13 @@
 			if ( isset( $this->posts_to_exclude[0] ) && in_array( get_the_ID(), $this->posts_to_exclude, true ) ) {
 				continue;
 			}
-
+// d( $this->post );
 			/**
 			 * Ad "active" css class to current post
 			 *
 			 * @var string
 			 */
-			$current_post = ( $this->post->ID === $current_post_id && is_single() ) ? ' active' : '';
+			$current_post = ( $this->post && $this->post->ID === $current_post_id && is_single() ) ? ' active' : '';
 
 			$post_class = ( ! empty( $this->args['post_class'] ) ) ? ' ' . $this->args['post_class'] : '' ;
 
