@@ -1,6 +1,7 @@
-<?php namespace ItalyStrap\Core;
+<?php
 
-use \ItalyStrapAdminMediaSettings;
+
+namespace ItalyStrap\Widget;
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/

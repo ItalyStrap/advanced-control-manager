@@ -8,8 +8,6 @@
 
 namespace ItalyStrap\Core;
 
-use \ItalyStrapAdminMediaSettings;
-
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
  */
