@@ -137,7 +137,7 @@ class Widget_Areas {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function add_sidebar( $post_ID, $post, $update ) {
+	public function add_sidebar( $post_ID, $post, $update = false ) {
 
 		if ( 'sidebar' !== $post->post_type ) {
 			return $post_ID;

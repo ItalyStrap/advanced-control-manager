@@ -251,7 +251,7 @@ class CMB2_Utils {
 
 		// Check to see if it's anywhere in the root directory
 
-		$site_dir = ABSPATH;
+		$site_dir = self::normalize_path( ABSPATH );
 		$site_url = trailingslashit( is_multisite() ? network_site_url() : site_url() );
 
 		$url = str_replace(
@@ -400,4 +400,16 @@ class CMB2_Utils {
 		$parts = explode( '/', $value );
 		return is_array( $parts ) ? end( $parts ) : $value;
 	}
+
+	/**
+	 * Check if WP version is at least $version.
+	 * @since  2.2.2
+	 * @param  string  $version WP version string to compare.
+	 * @return bool             Result of comparison check.
+	 */
+	public function wp_at_least( $version ) {
+		global $wp_version;
+		return version_compare( $wp_version, $version, '>=' );
+	}
+
 }

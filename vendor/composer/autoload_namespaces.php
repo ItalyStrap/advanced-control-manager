@@ -6,11 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
-    'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
-    'Hautelook' => array($vendorDir . '/hautelook/phpass/src'),
-    'Handlebars' => array($vendorDir . '/xamin/handlebars.php/src'),
-    'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Detection' => array($vendorDir . '/mobiledetect/mobiledetectlib/namespaced'),
-    'BaconStringUtils' => array($vendorDir . '/bacon/bacon-string-utils/src'),
 );

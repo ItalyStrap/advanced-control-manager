@@ -1,13 +1,29 @@
-<?php namespace ItalyStrap\Core;
-
-use \ItalyStrap\Core\Widget;
+<?php
 /**
+ * Class for new vCard widget
+ *
+ * @package ItalyStrap
+ * @since 2.0.0
+ */
+
+namespace ItalyStrap\Core;
+
+use \ItalyStrapAdminMediaSettings;
+
+/**
+ * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
+ */
+
+/**
+ * Link utili
+ *
  * @link http://codex.wordpress.org/Function_Reference/the_widget
  * @link https://core.trac.wordpress.org/browser/tags/3.9.2/src/wp-includes/default-widgets.php#L0
  */
 
 /**
- * vCard Widget Local Business
+ * Widget vCard Local Business
+ *
  * @todo Controllare i vari link Schema.org, qualcuno potrebbe dare errore
  * @todo Mettere lista opzioni in ordine alfabetico con jquery
  * @todo Aggiornare la lista completa delle attività di local business
@@ -23,284 +39,62 @@ use \ItalyStrap\Core\Widget;
  *
  * Added upload media library for image
  * @link http://www.paulund.co.uk/add-upload-media-library-widgets
- *
  */
-
-class Vcard_Widget extends Widget {
+if ( ! class_exists( 'Widget_VCard' ) ) {
 
 	/**
-	 * Array with widget fields
-	 * @var array
+	 * Class
 	 */
-	private $fields = array();
-
-	private $schema = array();
-
-	public function widget_render( $args, $instance ) {}
-
-	function __construct() {
-
-		$widget_ops = array(
-			'classname'		=> 'widget_italystrap_vcard',
-			'description'	=> __( 'Use this widget to add a vCard Local Business', 'ItalyStrap' ),
-			);
-
-		parent::__construct( 'widget_italystrap_vcard', __( 'ItalyStrap: vCard Local Business', 'ItalyStrap' ), $widget_ops );
-
-		$this->fields = array(
-			'schema'			=> __( 'Local or Organization?', 'ItalyStrap' ),
-			'title'				=> __( 'Widget Title (optional)', 'ItalyStrap' ),
-			'company_name'		=> __( 'Company name', 'ItalyStrap' ),
-			'logo_url'			=> __( 'Logo URL', 'ItalyStrap' ),
-			'show_logo'			=> __( 'Show Logo', 'ItalyStrap' ),
-			'street_address'	=> __( 'Street Address', 'ItalyStrap' ),
-			'postal_code'		=> __( 'Zipcode/Postal Code', 'ItalyStrap' ),
-			'locality'			=> __( 'City/Locality', 'ItalyStrap' ),
-			'region'			=> __( 'State/Region', 'ItalyStrap' ),
-			'country'			=> __( 'Country', 'ItalyStrap' ),
-			'tel'				=> __( 'Telephone number', 'ItalyStrap' ),
-			'mobile'			=> __( 'Mobile number', 'ItalyStrap' ),
-			'fax'				=> __( 'Fax number', 'ItalyStrap' ),
-			'email'				=> __( 'Email', 'ItalyStrap' ),
-			'taxID'				=> __( 'TaxID', 'ItalyStrap' ),
-			'facebook'			=> __( 'Facebook page (hidden)', 'ItalyStrap' ),
-			'twitter'			=> __( 'Twitter page (hidden)', 'ItalyStrap' ),
-			'googleplus'		=> __( 'Googleplus page (hidden)', 'ItalyStrap' ),
-			'pinterest'			=> __( 'Pinterest page (hidden)', 'ItalyStrap' ),
-			'instagram'			=> __( 'Instagram page (hidden)', 'ItalyStrap' ),
-			'youtube'			=> __( 'Youtube page (hidden)', 'ItalyStrap' ),
-			'linkedin'			=> __( 'Linkedin page (hidden)', 'ItalyStrap' ),
-		);
-
-		$this->alt_option_name = 'widget_italystrap_vcard';
-
-		add_action( 'save_post', array( &$this, 'flush_widget_cache' ) );
-		add_action( 'deleted_post', array( &$this, 'flush_widget_cache' ) );
-		add_action( 'switch_theme', array( &$this, 'flush_widget_cache' ) );
-
-		$this->schema = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard-widget.php' );
-
-		// add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
-
-	}
-
-	function widget( $args, $instance ) {
-
-		$cache = wp_cache_get( 'widget_italystrap_vcard', 'widget' );
-
-		if ( ! is_array( $cache ) )
-			$cache = array();
-
-
-		if ( ! isset( $args['widget_id'] ) )
-			$args['widget_id'] = null;
-
-
-		if ( isset( $cache[ $args['widget_id'] ] ) ) {
-
-			echo $cache[ $args['widget_id'] ];
-			return;
-
-		}
-
-		ob_start();
-
-		foreach ( $args as $key => $value )
-			$$key = $value;
-
-		$title = apply_filters(
-			'ItalyStrapVcardWidget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
-
-		foreach ( $this->fields as $name => $label )
-			if ( ! isset( $instance[ $name ] ) )
-				$instance[ $name ] = '';
-
-		echo $before_widget;
+	class Widget_VCard extends Widget {
 
 		/**
-		 * Print the optional widget title
+		 * Init the constructor
 		 */
-		if ($title)
-			echo $before_title . $title . $after_title;
+		function __construct() {
 
-	?>
-
-<ul itemscope itemtype="http://schema.org/<?php esc_attr_e( $instance['schema'] ); ?>" class="list-unstyled schema" id="schema">
-
-<?php if ( $instance[ 'show_logo' ] ) : ?>
-
-	<img src="<?php echo esc_url( $instance['logo_url'] );?>" alt="<?php echo esc_html( $instance['company_name'] ); ?>" itemprop="logo" />
-
-<?php else : ?>
-
-	<meta  itemprop="logo" content="<?php echo esc_url( $instance['logo_url'] );?>"/>
-
-<?php endif; ?>
-
-<li>
-	<strong>
-		<a itemprop="url" href="<?php echo home_url( '/' ); ?>">
-			<span itemprop="name">
-				<?php
-
-				if ( $instance['company_name'] )
-					echo esc_html( $instance['company_name'] );
-
-				else echo bloginfo( 'name' );
-
-				?>
-			</span>
-		</a>
-	</strong>
-</li>
-<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-	<li itemprop="streetAddress">
-		<?php echo esc_html( $instance['street_address'] ); ?>
-	</li>
-	<li>
-		<span itemprop="postalCode"><?php echo esc_html( $instance['postal_code'] ) . ' ';?></span>
-		<span itemprop="addressLocality"><?php echo esc_html( $instance['locality'] ); ?></span>
-	</li>
-	<li itemprop="addressRegion"><?php echo esc_html( $instance['region'] ); ?></li>
-	<li itemprop="addressCountry"><?php echo esc_html( $instance['country'] ); ?></li>
-</div>
-<li itemprop="telephone"><?php echo esc_html( $instance['tel'] ); ?></li>
-<li itemprop="telephone"><?php echo esc_html( $instance['mobile'] ); ?></li>
-<li itemprop="faxNumber"><?php echo esc_html( $instance['fax'] ); ?></li>
-<li itemprop="email">
-	<a href="mailto:<?php echo antispambot( esc_html( $instance['email'], 1 ) ); ?>"><?php echo antispambot( esc_html( $instance['email'] ) ); ?></a>
-</li>
-<li itemprop="taxID"><?php echo esc_html( $instance['taxID'] ); ?></li>
-
-<?php
-
-if( $instance['facebook'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['facebook'] ) . '"/>';
-
-if( $instance['twitter'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['twitter'] ) . '"/>';
-
-if( $instance['googleplus'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['googleplus'] ) . '"/>';
-
-if( $instance['pinterest'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['pinterest'] ) . '"/>';
-
-if( $instance['instagram'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['instagram'] ) . '"/>';
-
-if( $instance['youtube'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['youtube'] ) . '"/>';
-
-if( $instance['linkedin'] )
-	echo '<meta  itemprop="sameAs" content="' . esc_url( $instance['linkedin'] ) . '"/>';
-
-?>
-
-</ul>
-
-	<?php
-		echo $after_widget;
-
-		$cache[ $args['widget_id'] ] = ob_get_flush();
-			wp_cache_set( 'widget_italystrap_vcard', $cache, 'widget' );
-
-	} // End $this->widget()
-
-
-	/**
-	 * Update widget data
-	 * @param  array $new_instance
-	 * @param  array $old_instance
-	 * @return array               Return the sanitized array
-	 */
-	function update( $new_instance, $old_instance ) {
-
-		/**
-		 * Sanitizzo l'array con array_map
-		 * @var array
-		 */
-		$instance = array_map( 'strip_tags', $new_instance );
-
-		$this->flush_widget_cache();
-
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-
-		if ( isset( $alloptions['widget_italystrap_vcard'] ) )
-			delete_option( 'widget_italystrap_vcard' );
-
-		return $instance;
-	}
-
-	/**
-	 * Form imput in widget admin panel
-	 * @param  array  $instance Array of input field
-	 * @return string			Return form HTML
-	 */
-	function form( $instance ) {
-// var_dump(get_option( 'widget_widget_italystrap_vcard' ));
-		$form = '';
-
-		foreach ( $this->fields as $name => $label ) {
-
-			${ $name } = isset( $instance[ $name ] ) ? esc_attr( $instance[ $name ] ) : '';
+			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' ) );
 
 			/**
-			 * Save select in widget
-			 * @link https://wordpress.org/support/topic/wordpress-custom-widget-select-options-not-saving
-			 * Display select only if is schema
+			 * Configure widget array.
+			 *
+			 * @var array
 			 */
-			if ( 'schema' === $name ) {
-				$form .= '';
-			?>
-			<p>
-				<label for="<?php esc_attr_e( $this->get_field_id( $name ) ); ?>">
-					<?php echo $label; ?>
-				</label>
-				<select name="<?php esc_attr_e( $this->get_field_name( $name ) ); ?>" id="<?php esc_attr_e( $this->get_field_id( $name ) ); ?>" style="width:100%;" id="selectSchema" class="selectSchema">
+			$args = array(
+				// Widget Backend label.
+				'label'				=> __( 'ItalyStrap vCard Local Business', 'ItalyStrap' ),
+				// Widget Backend Description.
+				'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'ItalyStrap' ),
+				'fields'			=> $fields,
+				'control_options'	=> array( 'width' => 340 ),
+			 );
 
-					<?php
-					$option = '';
-					foreach ( $this->schema as $key => $value )
-						$option .= '<option ' . ( $selected = ( $key === ${$name} ) ? 'selected="selected"' : '' ) . ' value="' . $key . '">' . $value . '</option>';
-					echo $option;
-					?>
-				</select>
-			</p>
-			<?php
-			} elseif ( 'show_logo' === $name ) {
-
-				$active = ( isset( $instance[ $name ] ) ) ? $instance[ $name ] : '' ;
-			?>
-			<p>
-				<input id="<?php esc_attr_e( $this->get_field_id( $name ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $name ) ); ?>" type="checkbox" <?php checked( $active, 1 ); ?> value="1" placeholder="<?php echo $label; ?>">
-				<label for="<?php esc_attr_e( $this->get_field_id( $name ) ); ?>">
-					<?php echo $label; ?>
-				</label>
-			</p>
-			<?php
-			} else {
-			?>
-			<p>
-				<label for="<?php esc_attr_e( $this->get_field_id( $name ) ); ?>">
-					<?php echo $label; ?>
-				</label>
-				<input class="widefat" id="<?php esc_attr_e( $this->get_field_id( $name ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( $name ) ); ?>" type="text" value="<?php echo ${$name}; ?>" placeholder="<?php echo $label; ?>">
-				<?php if ( 'logo_url' === $name ) :?>
-				<input class="upload_image_button button button-primary" type="button" value="Upload Image" />
-				<?php endif; ?>
-			</p>
-			<?php } //!- else
+			/**
+			 * Create Widget
+			 */
+			$this->create_widget( $args );
 		}
 
-	} // End $this->form()
+		/**
+		 * Dispay the widget content
+		 *
+		 * @param  array $args     Display arguments including 'before_title', 'after_title',
+		 *                        'before_widget', and 'after_widget'.
+		 * @param  array $instance The settings for the particular instance of the widget.
+		 */
+		public function widget_render( $args, $instance ) {
+			/**
+			 * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
+			 */
 
-	function flush_widget_cache() {
+			ob_start();
 
-		wp_cache_delete( 'widget_italystrap_vcard', 'widget' );
-	}
+			require( ITALYSTRAP_PLUGIN_PATH . 'templates/content-vcard.php' );
+
+			$out = ob_get_contents();
+			ob_end_clean();
+
+			return $out;
+
+		}
+	} // Class.
 }

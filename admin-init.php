@@ -158,24 +158,34 @@ $widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
 add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
 add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );
 
+/**
+ * This are some functionality in beta version.
+ * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
+ * constant in your wp-config.php first.
+ * Also remember that you do it at own risk.
+ * If you are not shure don't do it ;-)
+ */
+if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
-/**
- * Widget Logic Functionality for admin
- *
- * @var Widget_Logic_Admin
- */
-// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic_Admin' );
+	/**
+	 * Widget Logic Functionality for admin
+	 *
+	 * @var Widget_Logic_Admin
+	 */
+	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic_Admin' );
 
-/**
- * Widget changes submitted by ajax method.
- */
-// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
-/**
- * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
- */
-// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
-/**
- * Add Widget Logic specific options on the widget admin page.
- */
-// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
-// 
+	/**
+	 * Widget changes submitted by ajax method.
+	 */
+	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
+	/**
+	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
+	/**
+	 * Add Widget Logic specific options on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
+	// 
+
+}

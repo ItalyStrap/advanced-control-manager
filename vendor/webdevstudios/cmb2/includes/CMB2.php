@@ -111,6 +111,13 @@ class CMB2 {
 	protected $generated_nonce = '';
 
 	/**
+	 * Whether there are fields to be shown in columns. Set in CMB2::add_field().
+	 * @var   bool
+	 * @since 2.2.2
+	 */
+	protected $has_columns = false;
+
+	/**
 	 * Get started
 	 * @since 0.4.0
 	 * @param array   $meta_box  Metabox config array
@@ -887,7 +894,7 @@ class CMB2 {
 
 	/**
 	 * Set metabox property.
-	 * @since  2.2.0
+	 * @since  2.2.2
 	 * @param  string $property Metabox config property to retrieve
 	 * @param  mixed  $value    Value to set if no value found
 	 * @return mixed            Metabox config property value or false
@@ -1049,6 +1056,17 @@ class CMB2 {
 		if ( 'oembed' === $field['type'] ) {
 			// Initiate oembed Ajax hooks
 			cmb2_ajax();
+		}
+
+		if ( isset( $field['column'] ) && false !== $field['column'] ) {
+			$this->has_columns = true;
+
+			$column = is_array( $field['column'] ) ? $field['column'] : array();
+
+			$field['column'] = wp_parse_args( $column, array(
+				'name'     => isset( $field['name'] ) ? $field['name'] : '',
+				'position' => false,
+			) );
 		}
 
 		$this->_add_field_to_array(
@@ -1266,6 +1284,7 @@ class CMB2 {
 			case 'cmb_id':
 			case 'meta_box':
 			case 'updated':
+			case 'has_columns':
 				return $this->{$field};
 			case 'object_id':
 				return $this->object_id();

@@ -81,7 +81,9 @@ add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 /**
  * This filter render HTML in widget title parsing {{}}
  */
-add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
+if ( isset( $options['render_html_in_widget_title'] ) ) {
+	add_filter( 'widget_title', 'ItalyStrap\Core\render_html_in_title_output' );
+}
 
 /**
  * Instantiate MobileDetect Class
@@ -156,21 +158,32 @@ $widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
 add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attributes' ) );
 
 /**
- * Widget Logic Functionality for admin
- *
- * @var Widget_Logic_Admin
+ * This are some functionality in beta version.
+ * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
+ * constant in your wp-config.php first.
+ * Also remember that you do it at own risk.
+ * If you are not shure don't do it ;-)
  */
-// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
+if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
-/**
- * Widget changes submitted by ajax method.
- */
-// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
-/**
- * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
- */
-// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
-/**
- * Add Widget Logic specific options on the widget admin page.
- */
-// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
+	/**
+	 * Widget Logic Functionality for admin
+	 *
+	 * @var Widget_Logic_Admin
+	 */
+	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
+
+	/**
+	 * Widget changes submitted by ajax method.
+	 */
+	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
+	/**
+	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
+	/**
+	 * Add Widget Logic specific options on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
+
+}

@@ -20,7 +20,7 @@ class Widget_Posts2 extends Widget {
 
 		$widget_options = array(
 			'classname' => 'italystrap_posts_widget',
-			'description' => __( 'Displays list of posts with an array of options', 'ItalyStrap' ),
+			'description' => __( 'Displays list of posts with an array of options (DEPRECATED)', 'ItalyStrap' ),
 			);
 
 		$control_options = array(

@@ -71,7 +71,7 @@ class Init {
 		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) ) {
 			$gallery = true; // A http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
 		}
-// d($gallery);
+
 		if ( ! $gallery ) {
 			$shortcode_carousel = new \ItalyStrap\Shortcode\Carousel();
 			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 4 );
@@ -87,30 +87,34 @@ class Init {
 	 */
 	public function widgets_init() {
 
-		if ( isset( $this->options['vcardwidget'] ) ) {
-			\register_widget( 'ItalyStrap\Core\Vcard_Widget' );
+		$widget_list = array(
+			'vcardwidget'			=> 'Vcard_Widget', // Deprecated
+			'post_widget'			=> 'Widget_Posts2', // Deprecated
+			'widget_post'			=> 'Widget_Posts',
+			'media_carousel_widget'	=> 'Widget_Media_Carousel',
+			'widget_vcard'			=> 'Widget_VCard', // New
+		);
+
+		foreach ( $widget_list as $key => $value ) {
+			if ( isset( $this->options[ $key ] ) ) {
+				\register_widget( 'ItalyStrap\Core\\' . $value );
+			}
 		}
 
-		if ( isset( $this->options['post_widget'] ) ) {
-			\register_widget( 'ItalyStrap\Core\Widget_Posts' );
-		}
+		if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
-		if ( isset( $this->options['media_carousel_widget'] ) ) {
-			\register_widget( 'ItalyStrap\Core\Widget_Media_Carousel' );
-		}
+			if ( isset( $this->options['widget_image'] ) ) {
+				\register_widget( 'ItalyStrap\Core\Widget_Image' );
+			}
 
-		\register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
-		\register_widget( 'ItalyStrap\Core\Widget_VCard' );
-		\register_widget( 'ItalyStrap\Core\Widget_Posts2' );
+			\register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 
-		if ( isset( $this->options['widget_product'] ) ) {
-			$widget_product = new Widget_Product;
-			// register_widget( 'ItalyStrap\Core\Widget_Product' );
-			register_widget( $widget_product );
-		}
+			if ( isset( $this->options['widget_product'] ) ) {
+				$widget_product = new Widget_Product;
+				// register_widget( 'ItalyStrap\Core\Widget_Product' );
+				register_widget( $widget_product );
+			}
 
-		if ( isset( $this->options['widget_image'] ) ) {
-			\register_widget( 'ItalyStrap\Core\Widget_Image' );
 		}
 
 	}
@@ -145,3 +149,29 @@ class Init {
 		} else { echo ''; }
 	}
 } // End Init
+
+/**
+ * This are some functionality in beta version.
+ * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
+ * constant in your wp-config.php first.
+ * Also remember that you do it at own risk.
+ * If you are not shure don't do it ;-)
+ */
+if ( defined( 'ITALYSTRAP_BETA' ) ) {
+
+	/**
+	 * Instantiate Customizer_Manager Class
+	 * Questa deve essere eseguita sia in admin che in front-end
+	 *
+	 * @var Customizer_Manager
+	 */
+	$widget_areas = $injector->make( 'ItalyStrap\Widget\Widget_Areas' );
+	$widget_areas->register_sidebars();
+	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
+	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
+	add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 2 );
+	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
+	// delete_option( 'italystrap_widget_area' );
+	// d( get_option( 'italystrap_widget_area' ) );
+
+}
