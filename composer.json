@@ -16,7 +16,7 @@
 	"autoload": {
 		"classmap": [
 			"admin",
-			"classes",
+			"core",
 			"shortcode",
 			"widget",
 			"deprecated"
