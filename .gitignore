@@ -20,10 +20,10 @@ lang/ItalyStrap.po
 
 #Composer
 composer.lock
-vendor
-!/vendor/mobiledetect
-vendor/mobiledetect/mobiledetectlib
-vendor/composer/installed.json
+#vendor
+#!/vendor/mobiledetect
+#vendor/mobiledetect/mobiledetectlib
+#vendor/composer/installed.json
 
 #codeception.yml
 
