@@ -25,7 +25,7 @@ return array(
 		),
 	'menu_page'				=> array(
 		'page_title'		=> __( 'ItalyStrap Dashboard', 'italystrap' ),
-		'menu_title'		=> 'ItalyStrap',
+		'menu_title'		=> __( 'Dashboard', 'italystrap' ),
 		// 'capability'		=> $this->capability,
 		'menu_slug'			=> 'italystrap-dashboard',
 		// 'function'		=> array( $this, 'get_admin_view' ),
@@ -33,20 +33,20 @@ return array(
 		'position'			=> null,
 	),
 	'submenu_pages'	=> array(
-		array(
-			'parent_slug'	=> 'italystrap-dashboard',//'edit.php?post_type=stores'
-			'page_title'	=> __( 'Documentation', 'italystrap' ),
-			'menu_title'	=> __( 'Documentation', 'italystrap' ),
-			// 'capability'	=> $this->capability,
-			'menu_slug'		=> 'italystrap-documentation',
-			// 'function_cb'	=> array( $this, 'get_admin_view' ),
-		),
+		// array(
+		// 	'parent_slug'	=> 'italystrap-dashboard',//'edit.php?post_type=stores'
+		// 	'page_title'	=> __( 'Documentation', 'italystrap' ),
+		// 	'menu_title'	=> __( 'Documentation', 'italystrap' ),
+		// 	// 'capability'	=> $this->capability,
+		// 	'menu_slug'		=> 'italystrap-documentation',
+		// 	// 'function_cb'	=> array( $this, 'get_admin_view' ),
+		// ),
 		array(
 			'parent_slug'	=> 'italystrap-dashboard',
-			'page_title'	=> __( 'Options', 'italystrap' ),
-			'menu_title'	=> __( 'Options', 'italystrap' ),
+			'page_title'	=> __( 'Settings', 'italystrap' ),
+			'menu_title'	=> __( 'Settings', 'italystrap' ),
 			// 'capability'	=> $this->capability,
-			'menu_slug'		=> 'italystrap-options',
+			'menu_slug'		=> 'italystrap-settings',
 			// 'function_cb'	=> array( $this, 'get_admin_view' ),
 		),
 		array(
