@@ -10,6 +10,9 @@
  *	License:		GPLv2 or later
  *	License URI:	http://www.gnu.org/licenses/gpl-2.0.html
  *	Domain Path:	/lang
+ *	Git URI: https://github.com/overclokk/italystrap-extended
+ *	GitHub Plugin URI: https://github.com/overclokk/italystrap-extended
+ *	GitHub Branch: master
  *
  * @package ItalyStrap
  * @since 1.0.0
