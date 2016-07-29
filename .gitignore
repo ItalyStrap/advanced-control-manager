@@ -24,6 +24,8 @@ composer.lock
 #!/vendor/mobiledetect
 #vendor/mobiledetect/mobiledetectlib
 #vendor/composer/installed.json
+/vendor/**/.git
+/vendor/**/test*
 
 #codeception.yml
 
