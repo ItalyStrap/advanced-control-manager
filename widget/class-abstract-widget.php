@@ -570,6 +570,13 @@ abstract class Widget extends WP_Widget {
 	 */
 	protected function field_type( array $key, $out = '' ) {
 
+		/**
+		 * If field is requesting to be conditionally shown
+		 */
+		if ( ! $this->fields_type->should_show( $key ) ) {
+			return;
+		}
+
 		/* Set Defaults */
 		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
 		// var_dump( $key['default'] );

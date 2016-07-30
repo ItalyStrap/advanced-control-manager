@@ -41,8 +41,7 @@ return array(
 						'class'			=> 'show-ids',
 						'default'		=> '',
 						// 'validate'	=> 'ctype_alpha',
-						'sanitize'		=> 'sanitize_text_field',
-				),
+						'sanitize'		=> 'sanitize_text_field',				),
 			),
 			array(
 				'id'		=> 'show-thumb',
@@ -97,6 +96,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 			array(
 				'id'		=> 'google_api_key',
@@ -114,6 +114,7 @@ return array(
 						'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 		),
 	),

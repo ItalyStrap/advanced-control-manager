@@ -17,6 +17,38 @@ namespace ItalyStrap\Admin;
 abstract class A_Fields implements I_Fields {
 
 	/**
+	 * Determine whether this field should show, based on the 'show_on_cb' callback.
+	 * Forked from CMB2
+	 * @see CMB2_Field.php
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return bool Whether the field should be shown.
+	 */
+	public function should_show( $args ) {
+		
+		/**
+		 * Default. Show the field
+		 *
+		 * @var bool
+		 */
+		$show = true;
+
+		if ( ! isset( $args[ 'show_on_cb' ] ) ) {
+			return $show;
+		}
+
+		/**
+		 * Use the callback to determine showing the field, if it exists
+		 */
+		if ( is_callable( $args[ 'show_on_cb' ] ) ) {
+			$show = call_user_func( $args[ 'show_on_cb' ], $this );
+		}
+
+		return $show;
+	}
+
+	/**
 	 * Combines attributes into a string for a form element
 	 *
 	 * @since  2.0.0

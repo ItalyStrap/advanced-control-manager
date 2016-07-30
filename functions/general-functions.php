@@ -335,6 +335,17 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 }
 
 /**
+ * Is Beta version
+ *
+ * @return bool Return true if ITALYSTRAP_BETA version is declared
+ */
+function is_beta() {
+
+	return (bool) defined( 'ITALYSTRAP_BETA' );
+
+}
+
+/**
  * Cambio il testo per il link al post successivo
  *
  * @param  array $args Argomenti per le funzioni di paginazione.

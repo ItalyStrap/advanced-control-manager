@@ -211,6 +211,7 @@ abstract class A_Admin implements I_Admin{
 	 * @param string $page The slug name of the page whose settings sections you want to output.
 	 */
 	public function do_settings_sections( $page ) {
+
 		global $wp_settings_sections, $wp_settings_fields;
 
 		if ( ! isset( $wp_settings_sections[ $page ] ) ) {
@@ -275,13 +276,20 @@ abstract class A_Admin implements I_Admin{
 		$this->add_option();
 
 		foreach ( $this->settings as $key => $setting ) {
+
 			add_settings_section(
 				$setting['id'],
 				$setting['title'],
 				array( $this, $setting['callback'] ),
 				$setting['page']
 			);
+
 			foreach ( $setting['settings_fields'] as $key2 => $field ) {
+
+				if ( isset( $field['show_on'] ) && false === $field['show_on'] ) {
+					continue;
+				}
+
 				add_settings_field(
 					$field['id'],
 					$field['title'],
@@ -332,6 +340,13 @@ abstract class A_Admin implements I_Admin{
 	 * @param  array $args Array with arguments.
 	 */
 	public function get_field_type( $args ) {
+
+		/**
+		 * If field is requesting to be conditionally shown
+		 */
+		if ( ! $this->fields_type->should_show( $args ) ) {
+			return;
+		}
 
 		/**
 		 * Prefix method

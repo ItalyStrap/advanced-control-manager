@@ -107,7 +107,7 @@ class Init {
 				\register_widget( 'ItalyStrap\Core\Widget_Image' );
 			}
 
-			\register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
+			// \register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
 
 			if ( isset( $this->options['widget_product'] ) ) {
 				$widget_product = new Widget_Product;
