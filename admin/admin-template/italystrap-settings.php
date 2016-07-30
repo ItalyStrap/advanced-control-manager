@@ -35,6 +35,7 @@
 				</h3>
 				<div class="inside">
 					<a href="http://www.italystrap.it/"><img src="<?php echo ITALYSTRAP_PLUGIN_URL; ?>admin/img/logo.jpg" alt="Logo ItalyStrap" width="296px" heght="130px" class="img-responsive center-block"></a>
+					<p><a href="http://docs.italystrap.com/" target="_blank"><?php _e( 'Documentation', 'italystrap' ); ?></a></p>
 				</div>
 			</aside>
 		</div>
