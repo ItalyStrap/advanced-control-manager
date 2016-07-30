@@ -6,7 +6,7 @@
 node_modules
 
 #Sass directory
-css/src/sass/.sass-cache
+sass
 .sass-cache
 
 #Bower update

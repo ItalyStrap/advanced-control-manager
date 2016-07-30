@@ -76,15 +76,13 @@ module.exports = function(grunt) {
 		jshint: { // https://github.com/gruntjs/grunt-contrib-jshint
 			all: [
 				'js/src/*.js',
-				'!js/bootstrap.min.js',
-				'!js/jquery.min.js'
 			]
 		},
 
 		compass:{ // https://github.com/gruntjs/grunt-contrib-compass
 			src:{
 				options: {
-					sassDir:['admin/css/src/scss'],
+					sassDir:['admin/sass'],
 					cssDir:['admin/css'],
 					outputStyle: 'compressed'
 				}
