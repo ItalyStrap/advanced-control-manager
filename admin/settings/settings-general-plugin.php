@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 return array(
 	'options_name'			=> 'italystrap_settings',
 	'options_group'			=> 'italystrap_options_group',
-	'admin_view_path'		=> ITALYSTRAP_PLUGIN_PATH . 'admin/admin-template/',
+	'admin_view_path'		=> ITALYSTRAP_PLUGIN_PATH . 'admin/view/',
 	'plugin_action_links'	=> array(
 		'<a href="admin.php?page=italystrap-documentation">' . __( 'Documentation','italystrap' ) . '</a>',
 		'<a href="http://www.italystrap.it" target="_blank">ItalyStrap</a>',
