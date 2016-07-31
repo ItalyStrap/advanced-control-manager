@@ -74,8 +74,19 @@ class Admin extends A_Admin{
 
 		if ( 'italystrap-settings' === $this->pagenow ) {
 
-			wp_enqueue_script( 'admin', plugins_url( 'js/src/admin.js', __FILE__ ), array( 'jquery-ui-tabs' ) );
-			wp_enqueue_style( 'admin', plugins_url( 'css/admin.css', __FILE__ ) );
+			wp_enqueue_script(
+				$this->pagenow,
+				plugins_url( 'js/' . $this->pagenow . '.min.js', __FILE__ ),
+				array( 'jquery-ui-tabs' ),
+				false,
+				false,
+				true
+			);
+
+			wp_enqueue_style(
+				$this->pagenow,
+				plugins_url( 'css/' . $this->pagenow . '.css', __FILE__ )
+			);
 		}
 	}
 }

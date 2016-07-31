@@ -57,8 +57,8 @@ module.exports = function(grunt) {
 			// npm install grunt-contrib-uglify --save-dev
 			admin: {
 				files: {
-					'admin/js/admin.min.js': [
-						'admin/js/src/admin.js'
+					'admin/js/italystrap-settings.min.js': [
+						'admin/js/src/italystrap-settings.js'
 						],
 					'admin/js/gallery-settings.min.js': [
 						'admin/js/src/gallery-settings.js'
