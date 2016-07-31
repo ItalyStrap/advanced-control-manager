@@ -33,5 +33,5 @@ interface I_Admin {
 	 * @param  array $input The input array.
 	 * @return array        Return the array sanitized
 	 */
-	public function sanitization( $input );
+	public function update( $input );
 }

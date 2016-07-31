@@ -330,27 +330,27 @@ abstract class Widget extends WP_Widget {
 		$this->validation = new Validation;
 		$this->sanitization = new Sanitization;
 
-		foreach ( $this->fields as $key ) {
+		foreach ( $this->fields as $field ) {
 
-			if ( ! isset( $instance[ $key['id'] ] ) ) {
-				$instance[ $key['id'] ] = '';
+			if ( ! isset( $instance[ $field['id'] ] ) ) {
+				$instance[ $field['id'] ] = '';
 			}
 
 			/**
-			 * Validate fields if $key['validate'] is set
+			 * Validate fields if $field['validate'] is set
 			 */
-			if ( isset( $key['validate'] ) ) {
+			if ( isset( $field['validate'] ) ) {
 
-				if ( false === $this->validation->validate( $key['validate'], $instance[ $key['id'] ] ) ) {
+				if ( false === $this->validation->validate( $field['validate'], $instance[ $field['id'] ] ) ) {
 
-					$instance[ $key['id'] ] = '';
+					$instance[ $field['id'] ] = '';
 				}
 			}
 
-			if ( isset( $key['sanitize'] ) ) {
-				$instance[ $key['id'] ] = $this->sanitization->sanitize( $key['sanitize'], $instance[ $key['id'] ] );
+			if ( isset( $field['sanitize'] ) ) {
+				$instance[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $instance[ $field['id'] ] );
 			} else {
-				$instance[ $key['id'] ] = strip_tags( $instance[ $key['id'] ] );
+				$instance[ $field['id'] ] = strip_tags( $instance[ $field['id'] ] );
 			}
 		}
 

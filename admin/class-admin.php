@@ -77,12 +77,5 @@ class Admin extends A_Admin{
 			wp_enqueue_script( 'admin', plugins_url( 'js/src/admin.js', __FILE__ ), array( 'jquery-ui-tabs' ) );
 			wp_enqueue_style( 'admin', plugins_url( 'css/admin.css', __FILE__ ) );
 		}
-
-		// if ( 'italystrap-dashboard' === $this->pagenow || 'italystrap-documentation' === $this->pagenow ) {
-
-		// 	wp_enqueue_style( 'style', plugins_url( 'css/style.css', __FILE__ ) );
-		// 	wp_register_style( 'openSans', 'http://fonts.googleapis.com/css?family=Open+Sans:400,300' );
-		// 	wp_enqueue_style( 'openSans' );
-		// }
 	}
 }

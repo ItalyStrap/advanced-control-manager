@@ -74,6 +74,13 @@ abstract class A_Admin implements I_Admin{
 	protected $submenus = array();
 
 	/**
+	 * The fields preregistered in the config file.
+	 *
+	 * @var array
+	 */
+	protected $fields = array();
+
+	/**
 	 * Initialize Class
 	 *
 	 * @param array  $options     Get the plugin options.
@@ -301,12 +308,40 @@ abstract class A_Admin implements I_Admin{
 			}
 		}
 
+		$this->register_setting();
+
+	}
+
+	/**
+	 * Register settings.
+	 * This allow you to override this method.
+	 */
+	public function register_setting() {
+	
 		register_setting(
 			$this->args['options_group'],
 			$this->args['options_name'],
-			array( $this, 'sanitization' )
+			array( $this, 'update' )
 		);
+	
+	}
 
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_settings_fields() {
+
+		foreach ( $this->settings as $settings_value ) {
+			foreach ( $settings_value['settings_fields'] as $fields_key => $fields_value ) {
+				$this->fields[] = $fields_value['args'];
+			}
+		}
+
+		return $this->fields;
+	
 	}
 
 	/**
@@ -315,11 +350,41 @@ abstract class A_Admin implements I_Admin{
 	 * @param  array $input The input array.
 	 * @return array        Return the array sanitized
 	 */
-	public function sanitization( $input ) {
+	public function update( $input ) {
 
-		$new_input = (array) array_map( 'sanitize_text_field', $input );
+		$fields = $this->get_settings_fields();
 
-		return $new_input;
+		$this->validation = new Validation;
+		$this->sanitization = new Sanitization;
+
+		foreach ( $this->fields as $field ) {
+
+			if ( ! isset( $input[ $field['id'] ] ) ) {
+				$input[ $field['id'] ] = '';
+			}
+
+			/**
+			 * Validate fields if $field['validate'] is set
+			 */
+			if ( isset( $field['validate'] ) ) {
+
+				if ( false === $this->validation->validate( $field['validate'], $input[ $field['id'] ] ) ) {
+
+					$input[ $field['id'] ] = '';
+				}
+			}
+
+			if ( isset( $field['sanitize'] ) ) {
+				$input[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $input[ $field['id'] ] );
+			} else {
+				$input[ $field['id'] ] = strip_tags( $input[ $field['id'] ] );
+			}
+		}
+
+		// $new_input = (array) array_map( 'sanitize_text_field', $input );
+
+		// return $new_input;
+		return $input;
 
 	}
 

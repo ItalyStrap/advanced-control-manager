@@ -111,7 +111,7 @@ return array(
 						'type'			=> 'text',
 						'class'			=> 'google_api_key',
 						'default'		=> '',
-						'validate'		=> 'ctype_alpha',
+						// 'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
 				'show_on'				=> \ItalyStrap\Core\is_beta(),
@@ -317,10 +317,10 @@ return array(
 	/**
 	 * This is the CSS configuration
 	 */
-	'css'	=> array(
-		'tab_title'			=> __( 'CSS', 'italystrap' ),
-		'id'				=> 'css',
-		'title'				=> __( 'ItalyStrap options page for CSS', 'italystrap' ),
+	'style'	=> array(
+		'tab_title'			=> __( 'Style', 'italystrap' ),
+		'id'				=> 'style',
+		'title'				=> __( 'ItalyStrap options page for style purpose', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'This is the tab for changing the style of your site. Code entered here will be included in every page of the front-end of your site.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
@@ -330,7 +330,7 @@ return array(
 				'title'		=> __( 'Activate Custom CSS', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'css',
+				'section'	=> 'style',
 				'args'		=> array(
 						'name'			=> __( 'Custom CSS', 'italystrap' ),
 						'desc'			=> __( 'Activate Custom CSS functionality', 'italystrap' ),
@@ -347,7 +347,7 @@ return array(
 				'title'			=> __( 'Custom CSS', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'css',
+				'section'		=> 'style',
 				'args'			=> array(
 						'_name'			=> 'italystrap_settings[custom_css]',
 						'_id'			=> 'italystrap_settings[custom_css]',
@@ -360,7 +360,7 @@ return array(
 						'cols'			=> 100,
 						'placeholder'	=> '.my_css{color:#fff;}',
 						'default'		=> '',
-						'validate'		=> 'ctype_alpha',
+						// 'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
 			),
@@ -369,7 +369,7 @@ return array(
 				'title'			=> __( 'Body Class', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'css',
+				'section'		=> 'style',
 				'args'			=> array(
 						'name'			=> __( 'Body Class', 'italystrap' ),
 						'desc'			=> __( 'This will add a CSS class to body_class filter in every page.', 'italystrap' ),
@@ -387,7 +387,7 @@ return array(
 				'title'			=> __( 'Post Class', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'			=> 'italystrap_options_group',
-				'section'		=> 'css',
+				'section'		=> 'style',
 				'args'			=> array(
 						'name'			=> __( 'Post Class', 'italystrap' ),
 						'desc'			=> __( 'This will add a CSS class to post_class filter in every page.', 'italystrap' ),
@@ -460,24 +460,25 @@ return array(
 						'sanitize'		=> 'sanitize_text_field',
 				),
 			),
-			// array(
-			// 	'id'			=> 'lazyload-custom-placeholder',
-			// 	'title'			=> __( 'Custom Placeholder', 'italystrap' ),
-			// 	'callback'		=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
-			// 	'section'	=> 'lazyload',
-			// 	'args'			=> array(
-			// 			'name'			=> __( 'Custom Placeholder', 'italystrap' ),
-			// 			'desc'			=> __( 'Insert here your custom placeholder for lazyload image, this is the src attribute of the img tag, example: http://www.mysite.tld/wp-content/upload/media/my-placeholder.gif', 'italystrap' ),
-			// 			'id'			=> 'lazyload-custom-placeholder',
-			// 			'type'			=> 'text',
-			// 			'class'			=> 'lazyload-custom-placeholder',
-			// 			'placeholder'	=> '',
-			// 			'default'		=> '',
-			// 			'validate'		=> 'ctype_alpha',
-			// 			'sanitize'		=> 'sanitize_text_field',
-			// 	),
-			// ),
+			array(
+				'id'			=> 'lazyload-custom-placeholder',
+				'title'			=> __( 'Custom Placeholder', 'italystrap' ),
+				'callback'		=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'lazyload',
+				'args'			=> array(
+						'name'			=> __( 'Custom Placeholder', 'italystrap' ),
+						'desc'			=> __( 'Insert here your custom placeholder for lazyload image, this is the src attribute of the img tag, example: http://www.mysite.tld/wp-content/upload/media/my-placeholder.gif', 'italystrap' ),
+						'id'			=> 'lazyload-custom-placeholder',
+						'type'			=> 'text',
+						'class'			=> 'lazyload-custom-placeholder',
+						'placeholder'	=> '',
+						'default'		=> '',
+						'validate'		=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
+			),
 		),
 	),
 );
