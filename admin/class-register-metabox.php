@@ -188,12 +188,12 @@ class Register_Metaboxes {
 		$options = array(
 			'italystrap_content_header'	=> __( 'In the header', 'italystrap' ),
 			'italystrap_before_main'	=> __( 'Before the Main Content', 'italystrap' ),
-			'italystrap_before_content'	=> __( 'Before the Main Content', 'italystrap' ),
+			'italystrap_before_content'	=> __( 'Before the Content', 'italystrap' ),
 
 			'italystrap_before_loop'	=> __( 'Before the Loop', 'italystrap' ),
 			'italystrap_after_loop'		=> __( 'After the Loop', 'italystrap' ),
 
-			'italystrap_after_content'		=> __( 'After the Main Content', 'italystrap' ),
+			'italystrap_after_content'		=> __( 'After the Content', 'italystrap' ),
 			'italystrap_after_main'		=> __( 'After the Main Content', 'italystrap' ),
 			'italystrap_before_footer'		=> __( 'In the footer open', 'italystrap' ),
 			'italystrap_footer'		=> __( 'In the footer', 'italystrap' ),
