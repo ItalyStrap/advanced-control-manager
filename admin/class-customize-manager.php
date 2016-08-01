@@ -116,7 +116,7 @@ class Customizer_Manager {
 			'fonts',
 			array(
 				'title'				=> __( 'Fonts', 'italystrap' ),
-				'description'		=> __( 'Select the font family you want to use, then you have to add some CSS to your style.css or in the options of this plugin.', 'italystrap' ),
+				'description'		=> __( 'First of all you have to add the Google API Key in the plugin settings page, after that you can select the font family you want to use, then you have to add some CSS to your style.css or in the settings section of this plugin.', 'italystrap' ),
 				// 'panel' => $this->panel, // Not typically needed.
 				'priority'			=> 160,
 				'capability'		=> $this->capability,
