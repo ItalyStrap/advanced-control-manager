@@ -87,9 +87,10 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control {
 	 */
 	public function enqueue() {
 		wp_enqueue_script(
-			'jt-customize-controls',
+			'customizer-select-multiple',
 			ITALYSTRAP_PLUGIN_URL . '/admin/js/customizer-select-multiple.min.js',
-			array( 'jquery', 'customize-preview' ),
+			array( 'jquery' ),
+			// array( 'jquery', 'customize-preview' ), // Con customize-preview si blocca il "torna indietro"
 			null,
 			true
 		);
