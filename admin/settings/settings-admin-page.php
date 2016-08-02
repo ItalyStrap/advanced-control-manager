@@ -15,6 +15,8 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+$wp_upload_dir = wp_upload_dir();
+
 return array(
 	/**
 	 * This is the Lazy Load configuration
@@ -405,9 +407,9 @@ return array(
 	/**
 	 * This is the Script configuration
 	 */
-	'js'	=> array(
-		'tab_title'			=> __( 'JS', 'italystrap' ),
-		'id'				=> 'js',
+	'script'	=> array(
+		'tab_title'			=> __( 'Script', 'italystrap' ),
+		'id'				=> 'script',
 		'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
 		'desc'				=> __( 'Some functionality for JS', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
@@ -418,7 +420,7 @@ return array(
 				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'js',
+				'section'	=> 'script',
 				'args'		=> array(
 						'name'			=> __( 'Analytics ID', 'italystrap' ),
 						'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
@@ -435,12 +437,12 @@ return array(
 	/**
 	 * This is the Lazy Load configuration
 	 */
-	'lazyload'	=> array(
-		'tab_title'			=> __( 'LazyLoad', 'italystrap' ),
-		'id'				=> 'lazyload',
-		'title'				=> __( 'ItalyStrap options page for lazyload', 'italystrap' ),
+	'media'	=> array(
+		'tab_title'			=> __( 'Media', 'italystrap' ),
+		'id'				=> 'media',
+		'title'				=> __( 'Settings page for media addon functionality', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
-		'desc'				=> __( 'Load your image later.', 'italystrap' ),
+		'desc'				=> __( 'In this section you can customize the way your WordPress handles media.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -448,7 +450,7 @@ return array(
 				'title'		=> __( 'LazyLoad', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'lazyload',
+				'section'	=> 'media',
 				'args'		=> array(
 						'name'			=> __( 'LazyLoad', 'italystrap' ),
 						'desc'			=> __( 'Activate LazyLoad for images', 'italystrap' ),
@@ -465,15 +467,17 @@ return array(
 				'title'			=> __( 'Custom Placeholder', 'italystrap' ),
 				'callback'		=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
-				'section'	=> 'lazyload',
+				'section'	=> 'media',
 				'args'			=> array(
-						'name'			=> __( 'Custom Placeholder', 'italystrap' ),
-						'desc'			=> __( 'Insert here your custom placeholder for lazyload image, this is the src attribute of the img tag, example: http://www.mysite.tld/wp-content/upload/media/my-placeholder.gif', 'italystrap' ),
+						'name'			=> __( 'Custom Placeholder (Optional)', 'italystrap' ),
+						'desc'			=> __( 'Insert here your custom placeholder for image lazyloading, this is the src attribute of the img tag.
+							<br>Example:', 'italystrap' ) . ' ' . $wp_upload_dir['url'] . '/my-placeholder.gif' . '
+							<br>Default: <code>data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</code>',
 						'id'			=> 'lazyload-custom-placeholder',
 						'type'			=> 'text',
 						'class'			=> 'lazyload-custom-placeholder',
 						'placeholder'	=> '',
-						'default'		=> '',
+						'default'		=> 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
 						'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
