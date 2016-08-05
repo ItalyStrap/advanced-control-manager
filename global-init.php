@@ -115,6 +115,8 @@ class Init {
 				register_widget( $widget_product );
 			}
 
+			\register_widget( 'ItalyStrap\Core\Widget_Taxonomies_Posts' );
+
 		}
 
 	}

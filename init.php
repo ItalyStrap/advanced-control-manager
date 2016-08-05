@@ -166,6 +166,36 @@ add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attribu
  */
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
+	if ( isset( $options['category_posts_shortcode'] ) ) {
+		$shortcode_docs = new Shortcode_Docs;
+		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
+	}
+
+	if ( isset( $options['category_posts_widget'] ) ) {
+		$shortcode_docs = new Shortcode_Docs;
+		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	function add_to_top() {
+
+		global $injector;
+
+		// $category_posts = new Category_Posts;
+		$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
+		echo $category_posts->render();
+
+		return null;
+	
+	}
+	// add_action( 'italystrap_before_content', __NAMESPACE__ . '\add_to_top' );
+
+
 	/**
 	 * Widget Logic Functionality for admin
 	 *
