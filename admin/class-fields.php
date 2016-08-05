@@ -477,6 +477,10 @@ class Fields extends A_Fields {
 
 		foreach ( (array) $tax_arrays as $tax_obj ) {
 
+			if ( ! is_object( $tax_obj ) ) {
+				continue;
+			}
+
 			$out .= '<option value="' . esc_attr( $tax_obj->term_id ) . '" ';
 
 			if ( in_array( $tax_obj->term_id, (array) $selected ) ) {
