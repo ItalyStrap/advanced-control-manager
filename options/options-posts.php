@@ -372,12 +372,43 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'thumb_size'			=> array(
-				'name'		=> __( 'thumb_size', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the thumb size to display posts.', 'ItalyStrap' ),
+				'name'		=> __( 'Thumbnail size', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the thumbnail size to display in posts list.', 'ItalyStrap' ),
 				'id'		=> 'thumb_size',
 				'type'		=> 'select',
 				'class'		=> 'widefat thumb_size',
 				'default'	=> 'thumbnail',
+				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'display',
+				 ),
+
+	/**
+	 * Custom text or HTML markup.
+	 */
+	'show_first_thumbnail_bigger'			=> array(
+				'name'		=> __( 'Show the first thumbnail bigger', 'ItalyStrap' ),
+				'desc'		=> __( 'Check if you want to show the firt thumbnail bigger.', 'ItalyStrap' ),
+				'id'		=> 'show_first_thumbnail_bigger',
+				'type'		=> 'checkbox',
+				// 'class'		=> 'widefat show_first_thumbnail_bigger',
+				'default'	=> '',
+				// 'validate'	=> 'numeric',
+				'sanitize'	=> 'esc_attr',
+				'section'	=> 'display',
+				 ),
+
+	/**
+	 * Custom text or HTML markup.
+	 */
+	'first_thumb_size'			=> array(
+				'name'		=> __( 'The first thumbnail size', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the thumbnail size to display in posts list.', 'ItalyStrap' ),
+				'id'		=> 'first_thumb_size',
+				'type'		=> 'select',
+				'class'		=> 'widefat first_thumb_size',
+				'default'	=> 'medium',
 				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
