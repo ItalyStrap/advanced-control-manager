@@ -48,9 +48,9 @@ This widget was present in my [ItalyStrap starter theme](http://www.italystrap.i
 Add this code in your template files:
 
 `
-<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
-		new ItalyStrapBreadcrumbs();
-	} ?>
+<?php if ( class_exists('ItalyStrap\Core\breadcrumbs') ) {
+		ItalyStrap\Core\breadcrumbs();
+} ?>
 `
 
 ### What if haven't I got Bootstrap CSS? ###
@@ -171,6 +171,13 @@ If you have any problem please open a ticket :-)
 
 
 ## Changelog ##
+
+### 2.0.0 ###
+**Release Date:** September 19th, 2015  
+
+**Dev time:** 8h  
+
+* Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
 
 ### 1.3.3 ###
 **Release Date:** September 19th, 2015  

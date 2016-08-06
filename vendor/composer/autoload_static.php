@@ -33,7 +33,7 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
     public static $classMap = array (
         'ItalyStrapAdminGallerySettings' => __DIR__ . '/../..' . '/admin/ItalyStrapAdminGallerySettings.php',
         'ItalyStrapAdminMediaSettings' => __DIR__ . '/../..' . '/admin/ItalyStrapAdminMediaSettings.php',
-        'ItalyStrapBreadcrumbs' => __DIR__ . '/../..' . '/core/ItalyStrapBreadcrumbs.php',
+        'ItalyStrapBreadcrumbs' => __DIR__ . '/../..' . '/deprecated/ItalyStrapBreadcrumbs.php',
         'ItalyStrapLazyload' => __DIR__ . '/../..' . '/deprecated/ItalyStrapLazyload.php',
         'ItalyStrap\\Admin\\A_Admin' => __DIR__ . '/../..' . '/admin/class-abstract-admin.php',
         'ItalyStrap\\Admin\\A_Fields' => __DIR__ . '/../..' . '/admin/class-abstract-fields.php',
@@ -50,6 +50,7 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Admin\\Security_Input' => __DIR__ . '/../..' . '/admin/class-security-input.php',
         'ItalyStrap\\Admin\\Validation' => __DIR__ . '/../..' . '/admin/class-validation.php',
         'ItalyStrap\\Core\\A_Post_Meta' => __DIR__ . '/../..' . '/core/class-abstract-post-meta.php',
+        'ItalyStrap\\Core\\Breadcrumbs' => __DIR__ . '/../..' . '/core/breadcrumbs/class-breadcrumbs.php',
         'ItalyStrap\\Core\\Carousel' => __DIR__ . '/../..' . '/core/class-abstract-carousel.php',
         'ItalyStrap\\Core\\Carousel_Bootstrap' => __DIR__ . '/../..' . '/core/class-carousel-bootstrap.php',
         'ItalyStrap\\Core\\Category_Posts' => __DIR__ . '/../..' . '/core/class-category-posts.php',

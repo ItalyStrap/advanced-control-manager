@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'ItalyStrapAdminGallerySettings' => $baseDir . '/admin/ItalyStrapAdminGallerySettings.php',
     'ItalyStrapAdminMediaSettings' => $baseDir . '/admin/ItalyStrapAdminMediaSettings.php',
-    'ItalyStrapBreadcrumbs' => $baseDir . '/core/ItalyStrapBreadcrumbs.php',
+    'ItalyStrapBreadcrumbs' => $baseDir . '/deprecated/ItalyStrapBreadcrumbs.php',
     'ItalyStrapLazyload' => $baseDir . '/deprecated/ItalyStrapLazyload.php',
     'ItalyStrap\\Admin\\A_Admin' => $baseDir . '/admin/class-abstract-admin.php',
     'ItalyStrap\\Admin\\A_Fields' => $baseDir . '/admin/class-abstract-fields.php',
@@ -25,6 +25,7 @@ return array(
     'ItalyStrap\\Admin\\Security_Input' => $baseDir . '/admin/class-security-input.php',
     'ItalyStrap\\Admin\\Validation' => $baseDir . '/admin/class-validation.php',
     'ItalyStrap\\Core\\A_Post_Meta' => $baseDir . '/core/class-abstract-post-meta.php',
+    'ItalyStrap\\Core\\Breadcrumbs' => $baseDir . '/core/breadcrumbs/class-breadcrumbs.php',
     'ItalyStrap\\Core\\Carousel' => $baseDir . '/core/class-abstract-carousel.php',
     'ItalyStrap\\Core\\Carousel_Bootstrap' => $baseDir . '/core/class-carousel-bootstrap.php',
     'ItalyStrap\\Core\\Category_Posts' => $baseDir . '/core/class-category-posts.php',

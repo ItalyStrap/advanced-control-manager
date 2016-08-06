@@ -346,6 +346,36 @@ function is_beta() {
 }
 
 /**
+ * Get the Breadcrumbs
+ *
+ * @param  array  $args The breadcrumbs arguments.
+ *                      @see class Breadcrumbs for more info.
+ * @return string       Return the breadcrumbs html.
+ */
+function get_breadcrumbs( array $args = array() ) {
+
+	$breadcrumbs = new Breadcrumbs();
+
+	if ( ! is_object( $breadcrumbs ) ) {
+		return;
+	}
+
+	return $breadcrumbs->get_the_breadcrumbs( $args );
+}
+
+/**
+ * Print the Breadcrumbs
+ *
+ * @param  array  $args The breadcrumbs arguments.
+ *                      @see class Breadcrumbs for more info.
+ * @return string       Return the breadcrumbs html.
+ */
+function breadcrumbs( array $args = array() ) {
+
+	echo get_breadcrumbs( $args );
+}
+
+/**
  * Cambio il testo per il link al post successivo
  *
  * @param  array $args Argomenti per le funzioni di paginazione.
