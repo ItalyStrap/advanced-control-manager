@@ -147,16 +147,18 @@ $import_export = $injector->make( 'ItalyStrap\Admin\Import_Export' );
 add_action( 'admin_init', array( $import_export, 'export' ) );
 add_action( 'admin_init', array( $import_export, 'import' ) );
 
-/**
- * Init the Widget_Attributes
- *
- * @var Widget_Attributes
- */
-$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
-$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
-// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
-add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
-add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );
+if ( isset( $options['widget_attributes'] ) ) {
+	/**
+	 * Init the Widget_Attributes
+	 *
+	 * @var Widget_Attributes
+	 */
+	$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
+	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
+	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
+	add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );
+}
 
 /**
  * This are some functionality in beta version.

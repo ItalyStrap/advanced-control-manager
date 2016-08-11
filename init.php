@@ -21,21 +21,6 @@ if ( is_admin() ) {
 }
 
 /**
- * Option for killing the emojis
- */
-if ( isset( $options['kill-emojis'] ) ) {
-	add_action( 'init', 'ItalyStrap\Core\kill_emojis' );
-}
-
-/**
- * General
- * Allow shortcode in widget text.
- */
-if ( isset( $options['do_shortcode_widget_text'] ) ) {
-	add_filter( 'widget_text', 'do_shortcode' );
-}
-
-/**
  * Instantiate Init Class
  *
  * @var Init
@@ -122,6 +107,33 @@ if ( isset( $options['web_font_loading'] ) ) {
 	add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
 }
 
+if ( isset( $options['widget_attributes'] ) ) {
+	/**
+	 * Init the Widget_Attributes
+	 *
+	 * @var Widget_Attributes
+	 */
+	$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
+	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
+	add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attributes' ) );
+}
+
+/**
+ * Option for killing the emojis
+ */
+if ( isset( $options['kill-emojis'] ) ) {
+	add_action( 'init', 'ItalyStrap\Core\kill_emojis' );
+}
+
+/**
+ * General
+ * Allow shortcode in widget text.
+ */
+if ( isset( $options['do_shortcode_widget_text'] ) ) {
+	add_filter( 'widget_text', 'do_shortcode' );
+}
+
 /**
  * Set CSS from admin option Script
  */
@@ -133,29 +145,10 @@ ItalyStrapGlobalsCss::set( isset( $options['custom_css'] ) ? $options['custom_cs
 add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
 
 /**
- * [$generate_analytics description]
- *
- * @var Generate_Analytics
- */
-$generate_analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
-
-add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999 );
-
-/**
  * Print inline script in footer
  * Load after all and before shotdown hook
  */
 add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );
-
-/**
- * Init the Widget_Attributes
- *
- * @var Widget_Attributes
- */
-$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
-$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
-// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
-add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attributes' ) );
 
 /**
  * This are some functionality in beta version.
@@ -165,6 +158,14 @@ add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attribu
  * If you are not shure don't do it ;-)
  */
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
+
+	/**
+	 * [$generate_analytics description]
+	 *
+	 * @var Generate_Analytics
+	 */
+	$generate_analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
+	add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999 );
 
 	if ( isset( $options['category_posts_shortcode'] ) ) {
 		$shortcode_docs = new Shortcode_Docs;
@@ -182,17 +183,17 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	function add_to_top() {
+	// function add_to_top() {
 
-		global $injector;
+	// 	global $injector;
 
-		// $category_posts = new Category_Posts;
-		$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
-		echo $category_posts->render();
+	// 	// $category_posts = new Category_Posts;
+	// 	$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
+	// 	echo $category_posts->render();
 
-		return null;
+	// 	return null;
 	
-	}
+	// }
 	// add_action( 'italystrap_before_content', __NAMESPACE__ . '\add_to_top' );
 
 

@@ -31,13 +31,13 @@ return array(
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'show-ids',
-				'title'		=> __( 'Show post_type IDs', 'italystrap' ),
+				'title'		=> __( 'Show Post Type IDs', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'general',
 				'args'		=> array(
-						'name'			=> __( 'Show post_type IDs', 'italystrap' ),
-						'desc'			=> __( 'Show post_type IDs on table in post type edit screen', 'italystrap' ),
+						'name'			=> __( 'Show Post Type IDs', 'italystrap' ),
+						'desc'			=> __( 'Show Post Type IDs on table in post type edit screen', 'italystrap' ),
 						'id'			=> 'show-ids',
 						'type'			=> 'checkbox',
 						'class'			=> 'show-ids',
@@ -47,13 +47,13 @@ return array(
 			),
 			array(
 				'id'		=> 'show-thumb',
-				'title'		=> __( 'Show post_type Thumb', 'italystrap' ),
+				'title'		=> __( 'Show Post Type Thumb', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'general',
 				'args'		=> array(
-						'name'			=> __( 'Show post_type Thumb', 'italystrap' ),
-						'desc'			=> __( 'Show post_type Thumb on table in post type edit screen', 'italystrap' ),
+						'name'			=> __( 'Show Post Type Thumb', 'italystrap' ),
+						'desc'			=> __( 'Show Post Type Thumb on table in post type edit screen', 'italystrap' ),
 						'id'			=> 'show-thumb',
 						'type'			=> 'checkbox',
 						'class'			=> 'show-thumb',
@@ -70,7 +70,7 @@ return array(
 				'section'	=> 'general',
 				'args'		=> array(
 						'name'			=> __( 'Kill the Emojis', 'italystrap' ),
-						'desc'			=> __( 'If you don\'t use it kill it.', 'italystrap' ),
+						'desc'			=> __( 'The Emojis adds extra code in the header of your theme but if you don\'t use it then kill it.', 'italystrap' ),
 						'id'			=> 'kill-emojis',
 						'type'			=> 'checkbox',
 						'class'			=> 'kill-emojis',
@@ -132,6 +132,23 @@ return array(
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
+				'id'		=> 'widget_attributes',
+				'title'		=> __( 'HTML attributes for widget', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'widget',
+				'args'		=> array(
+						'name'			=> __( 'Activate attributes for every widget', 'italystrap' ),
+						'desc'			=> __( 'This will add two new input in every widget that allow you tu add custom "id" and "class" attributes in the html widget container.', 'italystrap' ),
+						'id'			=> 'widget_attributes',
+						'type'			=> 'checkbox',
+						'class'			=> 'widget_attributes',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+			array(
 				'id'		=> 'render_html_in_widget_title',
 				'title'		=> __( 'HTML in Widget Title', 'italystrap' ),
 				'callback'	=> 'get_field_type',
@@ -156,7 +173,7 @@ return array(
 				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'vCard Widget for Local Business (DEPRECATED)', 'italystrap' ),
-						'desc'			=> __( 'Activate a widget for vCard Local Business with schema.org murkup (DEPRECATED)', 'italystrap' ),
+						'desc'			=> __( 'Activate a widget for vCard Local Business with schema.org markup (DEPRECATED)', 'italystrap' ),
 						'id'			=> 'vcardwidget',
 						'type'			=> 'checkbox',
 						'class'			=> 'vcardwidget',
@@ -232,6 +249,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 			array(
 				'id'		=> 'widget_image',
@@ -249,6 +267,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 			array(
 				'id'		=> 'media_carousel_widget',
@@ -431,6 +450,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 		),
 	),

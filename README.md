@@ -175,9 +175,19 @@ If you have any problem please open a ticket :-)
 ### 2.0.0 ###
 **Release Date:** September 19th, 2015  
 
-**Dev time:** 8h  
+**Dev time:** 1year  
 
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
+* Deprecated vCard Widget (there's a new version for this widget, see below)
+* Added some general utilities:
+  * Show post type ID
+  * Show post type thumb
+  * Disable the emoji
+* Added new widget
+  * vCard Widget (this is a new version, the old one is deprecated, you can see in the widget description)
+  * Post Widget (a widget with many option for displaying post type in a widget area)
+  * Widget for Bootstrap Carousel (Works only if you have Twitter Bootstrap), the settings are the same of shortcode settings
+
 
 ### 1.3.3 ###
 **Release Date:** September 19th, 2015  
