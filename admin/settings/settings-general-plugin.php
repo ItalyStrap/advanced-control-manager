@@ -49,13 +49,13 @@ return array(
 			'menu_slug'		=> 'italystrap-settings',
 			// 'function_cb'	=> array( $this, 'get_admin_view' ),
 		),
-		array(
-			'parent_slug'	=> 'italystrap-dashboard',
-			'page_title'	=> __( 'Import/Export', 'italystrap' ),
-			'menu_title'	=> __( 'Import/Export', 'italystrap' ),
-			// 'capability'	=> $this->capability,
-			'menu_slug'		=> 'italystrap-import-export',
-			// 'function_cb'	=> array( $this, 'get_admin_view' ),
-		),
+		// array(
+		// 	'parent_slug'	=> 'italystrap-dashboard',
+		// 	'page_title'	=> __( 'Import/Export', 'italystrap' ),
+		// 	'menu_title'	=> __( 'Import/Export', 'italystrap' ),
+		// 	// 'capability'	=> $this->capability,
+		// 	'menu_slug'		=> 'italystrap-import-export',
+		// 	// 'function_cb'	=> array( $this, 'get_admin_view' ),
+		// ),
 	),
 );

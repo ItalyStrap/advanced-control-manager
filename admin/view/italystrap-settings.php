@@ -42,7 +42,7 @@
 	</div>
 </div>
 <div class="clear"></div>
-<div class="wrap">
+<!-- <div class="wrap">
 	<div class="metabox-holder">
 		<div class="postbox">
 			<h3 class="hndle"><span><?php _e( 'Export Settings', 'italystrap' ); ?></span></h3>
@@ -75,4 +75,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
