@@ -156,7 +156,7 @@ return array(
 				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Render HTML in Widget Title', 'italystrap' ),
-						'desc'			=> __( 'Activate this if you want to add some HTML tag to Widget title, you also have to add {{}} like this example {{strong}}Widget Title{{/strong}}', 'italystrap' ),
+						'desc'			=> __( 'Activate this if you want to add some HTML tag to Widget title, then add {{}} like this example {{strong}}Widget Title{{/strong}}', 'italystrap' ),
 						'id'			=> 'render_html_in_widget_title',
 						'type'			=> 'checkbox',
 						'class'			=> 'render_html_in_widget_title',
