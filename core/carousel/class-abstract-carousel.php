@@ -6,6 +6,10 @@
  * descriptions. You need to include the Bootstrap CSS and Javascript files on
  * your own; otherwise the class will not work.
  *
+ * @see https://www.smashingmagazine.com/2016/07/ten-requirements-for-making-home-page-carousels-work-for-end-users/ 10 requirements for better carousel
+ *
+ * @todo http://www.kennethcachia.com/background-check/index.html Analizza il colore di sfondo per dare un colore di contrasto agli andicatori e freccie.
+ *
  * @link www.italystrap.com
  * @since 2.0.0
  *
