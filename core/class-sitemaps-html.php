@@ -89,7 +89,7 @@ class Sitemaps_HTML {
 	/**
 	 * Print the HTML sitemaps
 	 *
-	 * @param  array  $args The arguments for class.
+	 * @param  array $args The arguments for class.
 	 */
 	public function the_html_sitemaps( $args = array() ) {
 
@@ -100,10 +100,10 @@ class Sitemaps_HTML {
 	/**
 	 * Get the HTML sitemaps outputs
 	 *
-	 * @param  array  $args Argument for HTML sitemaps
+	 * @param  array  $args Argument for HTML sitemaps.
 	 * @return string       Return the HTML sitemaps
 	 */
-	public function get_the_html_sitemaps( $args = array() ){
+	public function get_the_html_sitemaps( $args = array() ) {
 
 			/**
 			 * The post HTML output
@@ -209,7 +209,7 @@ class Sitemaps_HTML {
 
 			$posts_output .= '</div>';
 
-			return apply_filters( 'ItalyStrap_HTML_sitemaps', $posts_output );
+			return apply_filters( 'italystrap_html_sitemaps', $posts_output );
 
 	}
-}// Class end.
+}
