@@ -179,14 +179,17 @@ If you have any problem please open a ticket :-)
 
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
 * Deprecated vCard Widget (there's a new version for this widget, see below)
+* New API for the admin panel
 * Added some general utilities:
   * Show post type ID
   * Show post type thumb
   * Disable the emoji
-* Added new widget
+* Added new widgets
   * vCard Widget (this is a new version, the old one is deprecated, you can see in the widget description)
   * Post Widget (a widget with many option for displaying post type in a widget area)
   * Widget for Bootstrap Carousel (Works only if you have Twitter Bootstrap), the settings are the same of shortcode settings
+  * Carousel widget - This widget works like the shortcode for carousel, remember that you have to have Twitter Bootstrap css
+* New API for templating sistem, now you can override some template for example the template present in the widget posts.
 
 
 ### 1.3.3 ###

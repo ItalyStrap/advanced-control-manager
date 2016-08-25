@@ -376,6 +376,31 @@ function breadcrumbs( array $args = array() ) {
 }
 
 /**
+ * Retrieve the name of the highest priority template file that exists.
+ *
+ * @uses locate_template( $template_names );
+ *
+ * This allow to override the template used in plugin.
+ *
+ * @since 2.0.0
+ *
+ * @param string|array $template_names Template file(s) to search for, in order.
+ * @return string The template filename if one is located.
+ */
+function get_template( $template_names ) {
+
+	$located = '';
+
+	$located = locate_template( $template_names );
+
+	if ( '' === $located ) {
+		return ITALYSTRAP_PLUGIN_PATH . $template_names;
+	}
+
+	return $located;
+}
+
+/**
  * Cambio il testo per il link al post successivo
  *
  * @param  array $args Argomenti per le funzioni di paginazione.
