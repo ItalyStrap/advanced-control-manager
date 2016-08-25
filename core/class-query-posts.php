@@ -1,6 +1,6 @@
 <?php
 /**
- * This class is for elaborate te arguments from widget or shortcode and then return an HTML for display the posts/page result.
+ * This class is for elaborating the arguments from widget or shortcode and then return an HTML for display the posts/page result.
  *
  * @package Query_Posts
  * @version 1.0
@@ -66,21 +66,22 @@ class Query_Posts extends Query {
 	}
 
 	/**
-	 * Output the query result
+	 * Get the query arguments
 	 *
-	 * @return string The HTML result
+	 * @param  string $value [description]
+	 * @return string        [description]
 	 */
-	public function output() {
-
+	public function get_query_args( $value = '' ) {
+	
 		/**
 		 * Get the current post id
 		 *
 		 * @var int
 		 */
-		$current_post_id = is_object( $this->post ) ? $this->post->ID : '';
+		$this->current_post_id = is_object( $this->post ) ? $this->post->ID : '';
 
 		if ( ! empty( $this->args['exclude_current_post'] ) ) {
-			$this->posts_to_exclude[] = (int) $current_post_id;
+			$this->posts_to_exclude[] = (int) $this->current_post_id;
 		}
 
 		/**
@@ -115,7 +116,7 @@ class Query_Posts extends Query {
 		 *
 		 * @var array
 		 */
-		$args = array(
+		$query_args = array(
 			'posts_per_page'			=> $this->args['posts_number'] + count( $this->posts_to_exclude ),
 			'order'						=> $this->args['order'],
 			'orderby'					=> $this->args['orderby'],
@@ -130,17 +131,17 @@ class Query_Posts extends Query {
 		 */
 		if ( ! empty( $this->args['post_id'] ) ) {
 
-			$args['post__in'] = explode( ',', $this->args['post_id'] );
+			$query_args['post__in'] = explode( ',', $this->args['post_id'] );
 
 			/**
 			 * This delete last comma in case the input is like 1,2,
 			 */
-			$args['post__in'] = array_filter( $args['post__in'] );
+			$query_args['post__in'] = array_filter( $query_args['post__in'] );
 
 			/**
 			 * Convert array value from string to integer
 			 */
-			$args['post__in'] = array_map( 'absint', $args['post__in'] );
+			$query_args['post__in'] = array_map( 'absint', $query_args['post__in'] );
 
 		}
 
@@ -149,15 +150,15 @@ class Query_Posts extends Query {
 		 */
 		if ( 'only' === $this->args['sticky_post'] ) {
 
-			$args['post__in'] = self::$sticky_posts;
+			$query_args['post__in'] = self::$sticky_posts;
 
 		} elseif ( 'hide' === $this->args['sticky_post'] ) {
 
-			$args['ignore_sticky_posts'] = true;
+			$query_args['ignore_sticky_posts'] = true;
 
 		} else {
 
-			$args['posts_per_page'] -= count( self::$sticky_posts );
+			$query_args['posts_per_page'] -= count( self::$sticky_posts );
 
 		}
 
@@ -165,8 +166,8 @@ class Query_Posts extends Query {
 		 * Show the posts with tags selected
 		 */
 		if ( ! empty( $this->args['tags'] ) ) {
-			$args['tag__in'] = $this->args['tags'];
-			$args['update_post_term_cache'] = true;
+			$query_args['tag__in'] = $this->args['tags'];
+			$query_args['update_post_term_cache'] = true;
 		}
 
 		/**
@@ -182,9 +183,9 @@ class Query_Posts extends Query {
 				for ( $i = 0; $i < $count; $i++ ) {
 					$first_tag[] = $tags[ $i ]->term_id;
 				}
-				$args['tag__in'] = array_merge( $first_tag, (array) $this->args['tags'] );
-				$args['tag__in'] = array_flip( array_flip( $args['tag__in'] ) );
-				$args['update_post_term_cache'] = true;
+				$query_args['tag__in'] = array_merge( $first_tag, (array) $this->args['tags'] );
+				$query_args['tag__in'] = array_flip( array_flip( $query_args['tag__in'] ) );
+				$query_args['update_post_term_cache'] = true;
 			}
 		}
 
@@ -192,8 +193,8 @@ class Query_Posts extends Query {
 		 * Show the posts with cats selected
 		 */
 		if ( ! empty( $this->args['cats'] ) ) {
-			$args['category__in'] = $this->args['cats'];
-			$args['update_post_term_cache'] = true;
+			$query_args['category__in'] = $this->args['cats'];
+			$query_args['update_post_term_cache'] = true;
 		}
 
 		/**
@@ -209,9 +210,9 @@ class Query_Posts extends Query {
 				for ( $i = 0; $i < $count; $i++ ) {
 					$first_cat[] = $cats[ $i ]->term_id;
 				}
-				$args['category__in'] = array_merge( $first_cat, (array) $this->args['cats'] );
-				$args['category__in'] = array_flip( array_flip( $args['category__in'] ) );
-				$args['update_post_term_cache'] = true;
+				$query_args['category__in'] = array_merge( $first_cat, (array) $this->args['cats'] );
+				$query_args['category__in'] = array_flip( array_flip( $query_args['category__in'] ) );
+				$query_args['update_post_term_cache'] = true;
 			}
 		}
 
@@ -223,21 +224,31 @@ class Query_Posts extends Query {
 			$current_user = wp_get_current_user();
 
 			if ( isset( $current_user->ID ) ) {
-				$args['author'] = $current_user->ID;
+				$query_args['author'] = $current_user->ID;
 			}
 		}
 
 		if ( 'meta_value' === $this->args['orderby'] ) {
-			$args['meta_key'] = $this->args['meta_key'];
+			$query_args['meta_key'] = $this->args['meta_key'];
 		}
 
-		$args = apply_filters( "italystrap_{$this->context}_query_arg", $args );
+		return apply_filters( "italystrap_{$this->context}_query_arg", $query_args );
+	
+	}
 
-		$this->query->query( $args );
+	/**
+	 * Output the query result
+	 *
+	 * @return string The HTML result
+	 */
+	public function output() {
+
+		$this->query->query( $this->get_query_args() );
 
 		ob_start();
 
-		include $this->get_template_part();
+		// include $this->get_template_part();
+		include get_template( '/templates/standard.php' );
 
 		wp_reset_postdata();
 
