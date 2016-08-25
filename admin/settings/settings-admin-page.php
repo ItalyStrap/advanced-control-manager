@@ -52,8 +52,8 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'general',
 				'args'		=> array(
-						'name'			=> __( 'Show Post Type Thumb', 'italystrap' ),
-						'desc'			=> __( 'Show Post Type Thumb on table in post type edit screen', 'italystrap' ),
+						'name'			=> __( 'Show the Post Type Thumbnail', 'italystrap' ),
+						'desc'			=> __( 'Show Post Type Thumbnail on table in post type edit screen', 'italystrap' ),
 						'id'			=> 'show-thumb',
 						'type'			=> 'checkbox',
 						'class'			=> 'show-thumb',
@@ -138,8 +138,8 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'widget',
 				'args'		=> array(
-						'name'			=> __( 'Activate attributes for every widget', 'italystrap' ),
-						'desc'			=> __( 'This will add two new input in every widget that allow you tu add custom "id" and "class" attributes in the html widget container.', 'italystrap' ),
+						'name'			=> __( 'Activate HTML attributes for every widget', 'italystrap' ),
+						'desc'			=> __( 'This will add two new input in every widget that allow you to add custom "id" and "class" attributes in the html widget container.', 'italystrap' ),
 						'id'			=> 'widget_attributes',
 						'type'			=> 'checkbox',
 						'class'			=> 'widget_attributes',
@@ -156,7 +156,7 @@ return array(
 				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Render HTML in Widget Title', 'italystrap' ),
-						'desc'			=> __( 'Activate this if you want to add some HTML tag to Widget title, then add {{}} like this example {{strong}}Widget Title{{/strong}}', 'italystrap' ),
+						'desc'			=> __( 'Activate this if you want to add some HTML tag to Widget title, then change open and close html tag with <code>{{ or }}</code> like this example: &lt;strong&gt;Widget Title&lt;/strong&gt; becomes {{strong}}Widget Title{{/strong}}', 'italystrap' ),
 						'id'			=> 'render_html_in_widget_title',
 						'type'			=> 'checkbox',
 						'class'			=> 'render_html_in_widget_title',
@@ -172,7 +172,7 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'widget',
 				'args'		=> array(
-						'name'			=> __( 'vCard Widget for Local Business (DEPRECATED)', 'italystrap' ),
+						'name'			=> __( 'ItalyStrap vCard Widget for Local Business (DEPRECATED)', 'italystrap' ),
 						'desc'			=> __( 'Activate a widget for vCard Local Business with schema.org markup (DEPRECATED)', 'italystrap' ),
 						'id'			=> 'vcardwidget',
 						'type'			=> 'checkbox',
@@ -189,7 +189,7 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'widget',
 				'args'		=> array(
-						'name'			=> __( 'ItalyStrap vCard Local Business', 'italystrap' ),
+						'name'			=> __( 'vCard Local Business', 'italystrap' ),
 						'desc'			=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area.', 'italystrap' ),
 						'id'			=> 'widget_vcard',
 						'type'			=> 'checkbox',
@@ -277,7 +277,7 @@ return array(
 				'section'	=> 'widget',
 				'args'		=> array(
 						'name'			=> __( 'Widget for Media Carousel', 'italystrap' ),
-						'desc'			=> __( 'this will activate a Bootstrap media Carousel with a ton of options, Make shure you have a Twitter Bootstrap CSS in your site', 'italystrap' ),
+						'desc'			=> __( 'this will activate a Bootstrap media Carousel with a ton of options, make shure you have a Twitter Bootstrap CSS in your site', 'italystrap' ),
 						'id'			=> 'media_carousel_widget',
 						'type'			=> 'checkbox',
 						'class'			=> 'media_carousel_widget',
@@ -324,7 +324,7 @@ return array(
 				'section'	=> 'shortcode',
 				'args'		=> array(
 						'name'			=> __( 'Shortcode for Media Carousel', 'italystrap' ),
-						'desc'			=> __( 'This will activate a Bootstrap media Carousel inside built-in WordPress gallery shortcode with a ton of options, Make shure you have a Twitter Bootstrap CSS in your site', 'italystrap' ),
+						'desc'			=> __( 'This will activate a Bootstrap media Carousel inside built-in WordPress gallery shortcode with a ton of options, make shure you have a Twitter Bootstrap CSS in your site', 'italystrap' ),
 						'id'			=> 'media_carousel_shortcode',
 						'type'			=> 'checkbox',
 						'class'			=> 'media_carousel_shortcode',
@@ -426,34 +426,34 @@ return array(
 	/**
 	 * This is the Script configuration
 	 */
-	'script'	=> array(
-		'tab_title'			=> __( 'Script', 'italystrap' ),
-		'id'				=> 'script',
-		'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
-		'desc'				=> __( 'Some functionality for JS', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
-		'page'				=> 'italystrap_options_group',
-		'settings_fields'	=> array(
-			array(
-				'id'		=> 'google_analytics_id',
-				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'script',
-				'args'		=> array(
-						'name'			=> __( 'Analytics ID', 'italystrap' ),
-						'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
-						'id'			=> 'google_analytics_id',
-						'type'			=> 'text',
-						'class'			=> 'google_analytics_id',
-						'default'		=> '',
-						// 'validate'	=> 'ctype_alpha',
-						'sanitize'		=> 'sanitize_text_field',
-				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
-			),
-		),
-	),
+	// 'script'	=> array(
+	// 	'tab_title'			=> __( 'Script', 'italystrap' ),
+	// 	'id'				=> 'script',
+	// 	'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
+	// 	'desc'				=> __( 'Some functionality for JS', 'italystrap' ),
+	// 	'callback'			=> 'render_section_cb',
+	// 	'page'				=> 'italystrap_options_group',
+	// 	'settings_fields'	=> array(
+	// 		array(
+	// 			'id'		=> 'google_analytics_id',
+	// 			'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
+	// 			'callback'	=> 'get_field_type',
+	// 			'page'		=> 'italystrap_options_group',
+	// 			'section'	=> 'script',
+	// 			'args'		=> array(
+	// 					'name'			=> __( 'Analytics ID', 'italystrap' ),
+	// 					'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
+	// 					'id'			=> 'google_analytics_id',
+	// 					'type'			=> 'text',
+	// 					'class'			=> 'google_analytics_id',
+	// 					'default'		=> '',
+	// 					// 'validate'	=> 'ctype_alpha',
+	// 					'sanitize'		=> 'sanitize_text_field',
+	// 			),
+	// 			'show_on'				=> \ItalyStrap\Core\is_beta(),
+	// 		),
+	// 	),
+	// ),
 	/**
 	 * This is the Lazy Load configuration
 	 */

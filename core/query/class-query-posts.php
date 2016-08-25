@@ -248,7 +248,7 @@ class Query_Posts extends Query {
 		ob_start();
 
 		// include $this->get_template_part();
-		include get_template( '/templates/standard.php' );
+		include get_template( '/templates/content-post.php' );
 
 		wp_reset_postdata();
 

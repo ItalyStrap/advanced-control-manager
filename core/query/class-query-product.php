@@ -242,12 +242,13 @@ class Query_Product extends Query {
 		}
 
 		$args = apply_filters( 'italystrap_widget_query_args', $args );
-var_dump( $args );
+// var_dump( $args );
 		$this->query->query( $args );
 
 		ob_start();
 
-		include $this->get_template_part();
+		// include $this->get_template_part();
+		include get_template( '/templates/content-post.php' );
 
 		wp_reset_postdata();
 
