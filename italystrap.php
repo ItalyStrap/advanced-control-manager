@@ -134,7 +134,7 @@ if ( defined( 'ITALYSTRAP_DEV' ) ) {
  *
  * @since 2.0.0
  */
-do_action( 'italystrap_plugin_loaded' );
+do_action( 'italystrap_plugin_loaded', $injector );
 
 /**
  * This filter is used to load your php file right after ItalyStrap plugin is loaded.
@@ -176,7 +176,7 @@ if ( ! empty( $plugin_files_path ) ) {
 	 *
 	 * @since 2.0.0
 	 */
-	do_action( 'italystrap_child_plugin_loaded' );
+	do_action( 'italystrap_child_plugin_loaded', $injector );
 }
 
 /**

@@ -354,7 +354,7 @@ return array(
 				'section'	=> 'style',
 				'args'		=> array(
 						'name'			=> __( 'Custom CSS', 'italystrap' ),
-						'desc'			=> __( 'Activate Custom CSS functionality', 'italystrap' ),
+						'desc'			=> __( 'This will add new fields in the wp editor for adding custom CSS, ID and class attribute to post/page and also let you the new functionality below.', 'italystrap' ),
 						'id'			=> 'activate_custom_css',
 						'type'			=> 'checkbox',
 						'class'			=> 'activate_custom_css',

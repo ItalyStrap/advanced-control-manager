@@ -119,33 +119,10 @@ add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_size
  * @var Register_Metaboxes
  */
 $register_metabox = $injector->make( 'ItalyStrap\Admin\Register_Metaboxes' );
-add_action( 'cmb2_admin_init', array( $register_metabox, 'register_script_settings' ) );
-add_action( 'cmb2_admin_init', array( $register_metabox, 'register_widget_areas_fields' ) );
 
-/**
- * The array with all plugin options
- */
-$options_arr[] = $options;
-$options_arr[] = array();
-$injector->defineParam( 'options_arr', $options_arr );
-
-$imp_exp_args = array(
-	'name_action'	=> 'italystrap_action',
-	'export_nonce'	=> 'italystrap_export_nonce',
-	'import_nonce'	=> 'italystrap_import_nonce',
-	'filename'		=> 'italystrap-plugin-settings-export-',
-	'import_file'	=> 'italystrap_import_file',
-	);
-$injector->defineParam( 'imp_exp_args', $imp_exp_args );
-
-/**
- * Import Export functionality
- *
- * @var Import_Export
- */
-$import_export = $injector->make( 'ItalyStrap\Admin\Import_Export' );
-add_action( 'admin_init', array( $import_export, 'export' ) );
-add_action( 'admin_init', array( $import_export, 'import' ) );
+if ( ! empty( $options['activate_custom_css'] ) ) {
+	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_style_fields_in_wp_editor' ) );
+}
 
 if ( isset( $options['widget_attributes'] ) ) {
 	/**
@@ -158,36 +135,4 @@ if ( isset( $options['widget_attributes'] ) ) {
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
 	add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );
-}
-
-/**
- * This are some functionality in beta version.
- * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
- * constant in your wp-config.php first.
- * Also remember that you do it at own risk.
- * If you are not shure don't do it ;-)
- */
-if ( defined( 'ITALYSTRAP_BETA' ) ) {
-
-	/**
-	 * Widget Logic Functionality for admin
-	 *
-	 * @var Widget_Logic_Admin
-	 */
-	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic_Admin' );
-
-	/**
-	 * Widget changes submitted by ajax method.
-	 */
-	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
-	/**
-	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
-	/**
-	 * Add Widget Logic specific options on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
-	// 
-
 }

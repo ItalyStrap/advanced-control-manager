@@ -2,7 +2,7 @@
 /**
  * Various metaboxes for this plugin
  *
- * In this class I add soome metaboxes to use in various place of the plugin
+ * In this class I add some metaboxes to use in various place of the plugin
  * It uses CMB2 for that functionality
  *
  * @since 2.0.0
@@ -61,9 +61,9 @@ class Register_Metaboxes {
 	}
 
 	/**
-	 * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
+	 * Register new fields for add custom css, ID and class in every post/page
 	 */
-	public function register_script_settings() {
+	public function register_style_fields_in_wp_editor() {
 
 		$script_settings_metabox_object_types = apply_filters( 'italystrap_script_settings_metabox_object_types', array( 'post', 'page' ) );
 
@@ -118,7 +118,8 @@ class Register_Metaboxes {
 	}
 
 	/**
-	 * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
+	 * Register metaboxes in the widget areas
+	 * Per ora lo faccio partire direttamente dal tema, file bootstrap.php
 	 */
 	public function register_widget_areas_fields() {
 
@@ -135,56 +136,6 @@ class Register_Metaboxes {
 			)
 		);
 
-	// 'footer-box-1'	=> array(
-	// 	'name'				=> __( 'Footer Box 1', 'ItalyStrap' ),
-	// 	'id'				=> 'footer-box-1',
-	// 	'description'		=> __( 'Footer box 1 widget area.', 'ItalyStrap' ),
-	// 	'before_widget'		=> '<div id="%1$s" class="widget %2$s">',
-	// 	'after_widget' 		=> '</div>',
-	// 	'before_title'		=> '<h3 class="widget-title">',
-	// 	'after_title'		=> '</h3>',
-	// ),
-
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'			=> __( 'Before Widget', 'italystrap' ),
-		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
-		// 		'id'			=> $this->_prefix . '_before_widget',
-		// 		'type'			=> 'text',
-		// 		'attributes'	=> array( 'placeholder' => '' ),
-		// 	)
-		// );
-
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'			=> __( 'after_widget', 'italystrap' ),
-		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
-		// 		'id'			=> $this->_prefix . '_after_widget',
-		// 		'type'			=> 'text',
-		// 		'attributes'	=> array( 'placeholder' => '' ),
-		// 	)
-		// );
-
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'			=> __( 'before_title', 'italystrap' ),
-		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
-		// 		'id'			=> $this->_prefix . '_before_title',
-		// 		'type'			=> 'text',
-		// 		'attributes'	=> array( 'placeholder' => '' ),
-		// 	)
-		// );
-
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'			=> __( 'after_title', 'italystrap' ),
-		// 		'desc'			=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
-		// 		'id'			=> $this->_prefix . '_after_title',
-		// 		'type'			=> 'text',
-		// 		'attributes'	=> array( 'placeholder' => '' ),
-		// 	)
-		// );
-		// 
 		$options = array(
 			'italystrap_content_header'	=> __( 'In the header', 'italystrap' ),
 			'italystrap_before_main'	=> __( 'Before the Main Content', 'italystrap' ),

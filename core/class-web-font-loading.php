@@ -112,6 +112,10 @@ class Web_Font_loading {
 
 		foreach ( $template_part as $key => $part ) {
 
+			if ( empty( $this->fonts ) ) {
+				continue;
+			}
+
 			if ( ! isset( $get_theme_mods[ $part . '_font_family' ] ) ) {
 				continue;
 			}

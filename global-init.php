@@ -161,6 +161,10 @@ class Init {
  */
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
+	/*************
+	 * GLOBAL INIT
+	 ************/
+
 	/**
 	 * Instantiate Customizer_Manager Class
 	 * Questa deve essere eseguita sia in admin che in front-end
@@ -175,5 +179,117 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
 	// delete_option( 'italystrap_widget_area' );
 	// d( get_option( 'italystrap_widget_area' ) );
+
+	/*************
+	 * ADMIN INIT
+	 ************/
+
+	/**
+	 * The array with all plugin options
+	 */
+	$options_arr[] = $options;
+	$options_arr[] = array();
+	$injector->defineParam( 'options_arr', $options_arr );
+
+	$imp_exp_args = array(
+		'name_action'	=> 'italystrap_action',
+		'export_nonce'	=> 'italystrap_export_nonce',
+		'import_nonce'	=> 'italystrap_import_nonce',
+		'filename'		=> 'italystrap-plugin-settings-export-',
+		'import_file'	=> 'italystrap_import_file',
+		);
+	$injector->defineParam( 'imp_exp_args', $imp_exp_args );
+
+	/**
+	 * Import Export functionality
+	 *
+	 * @var Import_Export
+	 */
+	$import_export = $injector->make( 'ItalyStrap\Admin\Import_Export' );
+	add_action( 'admin_init', array( $import_export, 'export' ) );
+	add_action( 'admin_init', array( $import_export, 'import' ) );
+
+	/**
+	 * Widget Logic Functionality for admin
+	 *
+	 * @var Widget_Logic_Admin
+	 */
+	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic_Admin' );
+
+	/**
+	 * Widget changes submitted by ajax method.
+	 */
+	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
+	/**
+	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
+	/**
+	 * Add Widget Logic specific options on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
+	// 
+
+	/**
+	 * FRONTEND INIT
+	 */
+	
+	/**
+	 * [$generate_analytics description]
+	 *
+	 * @var Generate_Analytics
+	 */
+	$generate_analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
+	add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999 );
+
+	if ( isset( $options['category_posts_shortcode'] ) ) {
+		$shortcode_docs = new Shortcode_Docs;
+		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
+	}
+
+	if ( isset( $options['category_posts_widget'] ) ) {
+		$shortcode_docs = new Shortcode_Docs;
+		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	// function add_to_top() {
+
+	// 	global $injector;
+
+	// 	// $category_posts = new Category_Posts;
+	// 	$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
+	// 	echo $category_posts->render();
+
+	// 	return null;
+	
+	// }
+	// add_action( 'italystrap_before_content', __NAMESPACE__ . '\add_to_top' );
+
+
+	/**
+	 * Widget Logic Functionality for admin
+	 *
+	 * @var Widget_Logic_Admin
+	 */
+	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
+
+	/**
+	 * Widget changes submitted by ajax method.
+	 */
+	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
+	/**
+	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
+	/**
+	 * Add Widget Logic specific options on the widget admin page.
+	 */
+	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
 
 }

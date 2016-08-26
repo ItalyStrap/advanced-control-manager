@@ -45,7 +45,7 @@ if ( isset( $options['media_carousel_shortcode'] ) ) {
 // add_action( 'customize_register', array( $customizer_manager, 'register_init' ), 11 );
 
 /**
- * Attivate LazyLoad
+ * Activate LazyLoad
  */
 if ( isset( $options['lazyload'] ) ) {
 	/**
@@ -55,7 +55,6 @@ if ( isset( $options['lazyload'] ) ) {
 	 */
 	$lazy_load_image = $injector->make( 'ItalyStrap\Core\Lazy_Load_Image' );
 	$lazy_load_image::init();
-	// Lazy_Load_Image::init();
 }
 
 /**
@@ -82,20 +81,21 @@ if ( isset( $options['render_html_in_widget_title'] ) ) {
  */
 add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 
-/**
- * Instantiate Post_Meta Class
- *
- * @var Post_Meta
- */
-$post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
+if (  ! empty( $options['activate_custom_css'] )  ) {
+	/**
+	 * Instantiate Post_Meta Class
+	 *
+	 * @var Post_Meta
+	 */
+	$post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
 
-/**
- * Get metaboxes value
- */
-add_action( 'wp', array( $post_meta, 'add_post_type_custom_css' ) );
-add_filter( 'body_class', array( $post_meta, 'body_class' ) );
-add_filter( 'post_class', array( $post_meta, 'post_class' ) );
-
+	/**
+	 * Get metaboxes value
+	 */
+	add_action( 'wp', array( $post_meta, 'add_post_type_custom_css' ) );
+	add_filter( 'body_class', array( $post_meta, 'body_class' ) );
+	add_filter( 'post_class', array( $post_meta, 'post_class' ) );
+}
 
 if ( isset( $options['web_font_loading'] ) ) {
 	/**
@@ -149,72 +149,3 @@ add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
  * Load after all and before shotdown hook
  */
 add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );
-
-/**
- * This are some functionality in beta version.
- * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
- * constant in your wp-config.php first.
- * Also remember that you do it at own risk.
- * If you are not shure don't do it ;-)
- */
-if ( defined( 'ITALYSTRAP_BETA' ) ) {
-
-	/**
-	 * [$generate_analytics description]
-	 *
-	 * @var Generate_Analytics
-	 */
-	$generate_analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
-	add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999 );
-
-	if ( isset( $options['category_posts_shortcode'] ) ) {
-		$shortcode_docs = new Shortcode_Docs;
-		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
-	}
-
-	if ( isset( $options['category_posts_widget'] ) ) {
-		$shortcode_docs = new Shortcode_Docs;
-		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
-	}
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	// function add_to_top() {
-
-	// 	global $injector;
-
-	// 	// $category_posts = new Category_Posts;
-	// 	$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
-	// 	echo $category_posts->render();
-
-	// 	return null;
-	
-	// }
-	// add_action( 'italystrap_before_content', __NAMESPACE__ . '\add_to_top' );
-
-
-	/**
-	 * Widget Logic Functionality for admin
-	 *
-	 * @var Widget_Logic_Admin
-	 */
-	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
-
-	/**
-	 * Widget changes submitted by ajax method.
-	 */
-	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
-	/**
-	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
-	/**
-	 * Add Widget Logic specific options on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
-
-}
