@@ -18,17 +18,17 @@ return array(
 	/**
 	 * Custom link for the widget title.
 	 */
-	'title_link'				=> array(
-				'name'		=> __( 'Title link', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a custom title link.', 'ItalyStrap' ),
-				'id'		=> 'title_link',
-				'type'		=> 'url',
-				'class'		=> 'widefat title_link',
-				'default'	=> '',
-				'validate'	=> 'ctype_alpha',
-				'sanitize'	=> 'esc_url',
-				'section'	=> 'general',
-				 ),
+	// 'title_link'				=> array(
+	// 			'name'		=> __( 'Title link', 'ItalyStrap' ),
+	// 			'desc'		=> __( 'Enter a custom title link.', 'ItalyStrap' ),
+	// 			'id'		=> 'title_link',
+	// 			'type'		=> 'url',
+	// 			'class'		=> 'widefat title_link',
+	// 			'default'	=> '',
+	// 			'validate'	=> 'ctype_alpha',
+	// 			'sanitize'	=> 'esc_url',
+	// 			'section'	=> 'general',
+	// 			 ),
 
 	/**
 	 * Custom CSS class for widget.
@@ -146,7 +146,7 @@ return array(
 				'id'		=> 'custom_css',
 				'type'		=> 'textarea',
 				'class'		=> 'widefat custom_css',
-				'class-p'	=> 'custom_css',
+				'class-p'	=> 'custom_css hidden',
 				'default'	=> '',
 				// 'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
@@ -162,6 +162,7 @@ return array(
 				'id'		=> 'template',
 				'type'		=> 'select',
 				'class'		=> 'widefat template',
+				'class-p'	=> 'template hidden',
 				'default'	=> 'standard',
 				'options'	=> array(
 							'standard'  => __( 'Standard template (Default)', 'ItalyStrap' ),
@@ -181,7 +182,7 @@ return array(
 				'id'		=> 'template_custom',
 				'type'		=> 'text',
 				'class'		=> 'widefat template_custom',
-				'class-p'	=> 'template_custom',
+				'class-p'	=> 'template_custom hidden',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',

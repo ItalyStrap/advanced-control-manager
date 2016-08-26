@@ -157,7 +157,7 @@ return array(
 				'name'		=> __( 'Logo URL', 'ItalyStrap' ),
 				'desc'		=> __( 'The url of your logo.', 'ItalyStrap' ),
 				'id'		=> 'logo_url',
-				'type'		=> 'url',
+				'type'		=> 'media',
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
