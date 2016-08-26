@@ -129,7 +129,7 @@ class Init {
 	 */
 	public function print_inline_script_in_footer() {
 
-		$script = ItalyStrapGlobals::get();
+		$script = Inline_Script::get();
 
 		if ( ! $script ) {
 			return;
@@ -145,7 +145,7 @@ class Init {
 	 */
 	public function print_inline_css_in_header() {
 
-		$css = ItalyStrapGlobalsCss::get();
+		$css = Inline_Style::get();
 
 		if ( $css ) { echo '<style>' . esc_attr( $css ) . '</style>';
 		} else { echo ''; }

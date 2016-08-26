@@ -137,7 +137,7 @@ if ( isset( $options['do_shortcode_widget_text'] ) ) {
 /**
  * Set CSS from admin option Script
  */
-ItalyStrapGlobalsCss::set( isset( $options['custom_css'] ) ? $options['custom_css'] : '' );
+Inline_Style::set( isset( $options['custom_css'] ) ? $options['custom_css'] : '' );
 
 /**
  * Print inline css in header

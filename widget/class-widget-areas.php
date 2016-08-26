@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-// use ItalyStrap\Core\ItalyStrapGlobalsCss;
+// use ItalyStrap\Core\Inline_Style;
 
 /**
  * Widget Areas Class
@@ -79,7 +79,7 @@ class Widget_Areas {
 // d( $container_width );
 // d( $this->sidebars );
 		$css =  $this->get_style( $this->sidebars[ $id ] );
-		// ItalyStrapGlobalsCss::set( $css );
+		// Inline_Style::set( $css );
 
 		if ( is_active_sidebar( $sidebar_id ) ) :
 		?>

@@ -44,13 +44,13 @@ class Post_Meta extends A_Post_Meta {
 
 	/**
 	 * Take the custom css from WP Editor and
-	 * add it to the ItalyStrapGlobalsCss::set( $style ).
+	 * add it to the Inline_Style::set( $style ).
 	 */
 	public function add_post_type_custom_css() {
 
 		$style = $this->get_metabox( get_the_id(), $this->_prefix . '_custom_css_settings', true );
 
-		ItalyStrapGlobalsCss::set( $style );
+		Inline_Style::set( $style );
 
 	}
 
