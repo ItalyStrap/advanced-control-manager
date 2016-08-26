@@ -8,25 +8,11 @@
 ?>
 <ul itemscope itemtype="http://schema.org/<?php esc_textarea( $instance['schema'] ); ?>" class="list-unstyled schema <?php echo esc_attr( $instance['container_class'] ); ?>" id="schema">
 
-	<?php
-
-	// $html = '';
-
-	// foreach ( (array) $instance as $key => $value ) {
-
-	// 	if ( $value ) {
-	// 		$html .= '<li>' . esc_attr( $value ) . '</li>';
-	// 	}
-	// }
-	// echo $html; // XSS ok.
-
-	?>
-
 <?php if ( $instance['show_logo'] && $instance['logo_url'] ) : ?>
 
 	<img src="<?php echo esc_url( $instance['logo_url'] );?>" alt="<?php echo esc_textarea( $instance['company_name'] ); ?>" itemprop="logo" />
 
-<?php elseif( $instance['logo_url'] ) : ?>
+<?php elseif ( $instance['logo_url'] ) : ?>
 
 	<meta  itemprop="logo" content="<?php echo esc_url( $instance['logo_url'] );?>"/>
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Standard ultimate posts widget template
+ * Template for widget post
  *
  * @package ItalyStrap
  */
@@ -65,13 +65,13 @@
 				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_url'] ) :?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
-							<?php 
+							<?php
 							$attr = array(
 								'itemprop'	=> 'image',
 								'class' => $this->args['image_class'],
 							);
 							$the_post_thumbnail = wp_get_attachment_image( $this->args['thumb_url'] , $thumb_size, false, $attr );
-							echo apply_filters( 'italystrap_widget_the_post_thumbnail', $the_post_thumbnail );
+							echo apply_filters( 'italystrap_widget_the_post_thumbnail', $the_post_thumbnail ); // XSS ok.
 							?>
 						</a>
 					</figure>
@@ -95,7 +95,7 @@
 					
 							<?php
 							if ( $this->args['show_date'] ) : ?>
-								<time class="published" datetime="<?php echo get_the_time( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_time( $this->args['date_format'] ); ?></time>
+								<time class="published" datetime="<?php echo get_the_time( 'c' ); // XSS ok. ?>" itemprop="datePublished"><?php echo get_the_time( $this->args['date_format'] ); // XSS ok.?></time>
 							<?php
 							endif;
 
@@ -107,7 +107,7 @@
 							<?php if ( $this->args['show_author'] ) : ?>
 								<span class="author vcard" itemprop="author">
 									<?php esc_attr_e( 'By', 'ItalyStrap' ); ?>
-									<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author" class="fn">
+									<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author" class="fn">
 										<?php echo get_the_author(); ?>
 									</a>
 								</span>
@@ -134,8 +134,10 @@
 							<p itemprop="text">
 								<?php
 
-								echo get_the_excerpt();
-								// echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
+								echo esc_attr( get_the_excerpt() );
+								/**
+								 * Echo echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
+								 */
 								?>
 								<?php if ( $this->args['show_readmore'] ) : ?>
 								<a <?php
@@ -178,16 +180,6 @@
 						<?php endif; ?>
 					
 						<?php
-
-						// global $product;
-						// var_dump($product);
-						// var_dump($product->get_price_html() );
-						// var_dump($product->get_weight() );
-						// var_dump( $product->get_weight() . ' ' . esc_attr( get_option('woocommerce_weight_unit' ) ) );
-
-						// $_product = wc_get_product( $this->query->post->ID );
-
-						// var_dump($_product->get_regular_price());
 
 						if ( $this->args['custom_fields'] ) :
 
