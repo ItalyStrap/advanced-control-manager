@@ -79,13 +79,13 @@ class Lazy_Load_Image {
 		/**
 		 * Append unveil.js content to globalsjs static variable
 		 */
-		ItalyStrapGlobals::set( self::get_unveil( self::$unveilpath ) );
+		Inline_Script::set( self::get_unveil( self::$unveilpath ) );
 
 
 		/**
 		 * Append css in static variable and print in front-end footer
 		 */
-		ItalyStrapGlobalsCss::set( self::custom_css() );
+		Inline_Style::set( self::custom_css() );
 	}
 
 	/**
