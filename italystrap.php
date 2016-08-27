@@ -3,7 +3,7 @@
  *	Plugin Name:	ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
  *	Description:	Make your website more powerfull. | <a href="admin.php?page=italystrap-documentation">Documentation</a>
- *	Version:		2.0.0-beta
+ *	Version:		2.0.0-beta.1
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
  *	Text Domain:	ItalyStrap
@@ -98,14 +98,16 @@ $options = (array) get_option( $args['options_name'] );
  */
 $injector->defineParam( 'options', $options );
 
-/**
- * Instantiate Customizer_Manager Class
- * Questa deve essere eseguita sia in admin che in front-end
- *
- * @var Customizer_Manager
- */
-$customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
-add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
+if ( defined( 'ITALYSTRAP_BETA' ) ) {
+	/**
+	 * Instantiate Customizer_Manager Class
+	 * Questa deve essere eseguita sia in admin che in front-end
+	 *
+	 * @var Customizer_Manager
+	 */
+	$customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
+	add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
+}
 
 /**
  * Init the plugin
