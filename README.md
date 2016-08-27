@@ -70,7 +70,7 @@ For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that p
 ### How do I change the placeholder image in Lazy Load functionality ###
 
 `
-add_filter( 'ItalyStrapLazyload_placeholder_image', 'my_custom_lazyload_placeholder_image' );
+add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
 function my_custom_lazyload_placeholder_image( $image ) {
 	return 'http://url/to/image';
 }
@@ -81,24 +81,27 @@ function my_custom_lazyload_placeholder_image( $image ) {
 You can use the italystrap_get_apply_lazyload helper function:
 
 `
-if ( function_exists( 'italystrap_get_apply_lazyload' ) )
-	$content = italystrap_get_apply_lazyload( $content );
+if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
+  $content = ItalyStrap\Core\get_apply_lazyload( $content );
+}
 `
 
 Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
 
-You can also use italystrap_apply_lazyload helper function for print content:
+You can also use ItalyStrap\Core\apply_lazyload helper function for print content:
 
 `
-if ( function_exists( 'italystrap_apply_lazyload' ) )
-	italystrap_apply_lazyload( $content );
+if ( function_exists( 'ItalyStrap\Core\apply_lazyload' ) ) {
+  ItalyStrap\Core\apply_lazyload( $content );
+}
 `
 
 Otherwise you can also use output buffering, though this isn't recommended:
 
 `
-if ( function_exists( 'italystrap_get_apply_lazyload' ) )
-	ob_start( 'italystrap_get_apply_lazyload' );
+if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
+  ob_start( 'ItalyStrap\Core\get_apply_lazyload' );
+}
 `
 
 This will lazy load <em>all</em> your images.
@@ -197,7 +200,6 @@ If you have any problem please open a ticket :-)
  * Text area for custom CSS
  * Input fields for adding custom body class and post class attribute.
 * New API for templating system in beta version, in future you can override the template used for widget and shortcode.
-
 
 ### 1.3.3 ###
 **Release Date:** September 19th, 2015  

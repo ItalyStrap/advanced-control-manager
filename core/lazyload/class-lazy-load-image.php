@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Image lazy load forked from https://wordpress.org/plugins/lazy-load/
  * This function is used for lazy loading every image
@@ -8,6 +8,8 @@
  * @todo Verificare perché stampa gli script anche se
  *       non ci sono immagini da mettere in lazyload
  */
+
+namespace ItalyStrap\Core;
 
 class Lazy_Load_Image {
 
@@ -178,27 +180,5 @@ class Lazy_Load_Image {
 		return null;
 
 	}
-
-}
-
-/**
- * Return img tag lazyloaded
- * @param  string $content Text content to be processed
- * @return string          Text content processed
- */
-function get_apply_lazyload( $content ) {
-
-	return Lazy_Load_Image::add_image_placeholders( $content );
-
-}
-
-/**
- * Echo img tag lazyloaded
- * @param  string $content Text content to be processed
- * @return string          Text content processed
- */
-function apply_lazyload( $content ) {
-
-	echo Lazy_Load_Image::add_image_placeholders( $content );
 
 }

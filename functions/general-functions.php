@@ -400,6 +400,29 @@ function get_template( $template_names ) {
 	return $located;
 }
 
+
+/**
+ * Return img tag lazyloaded
+ * @param  string $content Text content to be processed
+ * @return string          Text content processed
+ */
+function get_apply_lazyload( $content ) {
+
+	return Lazy_Load_Image::add_image_placeholders( $content );
+
+}
+
+/**
+ * Echo img tag lazyloaded
+ * @param  string $content Text content to be processed
+ * @return string          Text content processed
+ */
+function apply_lazyload( $content ) {
+
+	echo Lazy_Load_Image::add_image_placeholders( $content );
+
+}
+
 /**
  * Cambio il testo per il link al post successivo
  *

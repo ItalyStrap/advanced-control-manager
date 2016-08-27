@@ -19,6 +19,8 @@ Bootstrap, Performance and Schema.org
 
 May the force be with you!
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 = Features included: =
 
 * **Breadcrumbs** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
@@ -46,9 +48,9 @@ This widget was present in my [ItalyStrap starter theme](http://www.italystrap.i
 Add this code in your template files:
 
 `
-<?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
-		new ItalyStrapBreadcrumbs();
-	} ?>
+<?php if ( class_exists('ItalyStrap\Core\breadcrumbs') ) {
+		ItalyStrap\Core\breadcrumbs();
+} ?>
 `
 
 = What if haven't I got Bootstrap CSS? =
@@ -68,7 +70,7 @@ For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that p
 = How do I change the placeholder image in Lazy Load functionality =
 
 `
-add_filter( 'ItalyStrapLazyload_placeholder_image', 'my_custom_lazyload_placeholder_image' );
+add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
 function my_custom_lazyload_placeholder_image( $image ) {
 	return 'http://url/to/image';
 }
@@ -76,27 +78,30 @@ function my_custom_lazyload_placeholder_image( $image ) {
 
 = How do I lazy load other images in my theme? =
 
-You can use the italystrap_get_apply_lazyload helper function:
+You can use the ItalyStrap\Core\get_apply_lazyload helper function:
 
 `
-if ( function_exists( 'italystrap_get_apply_lazyload' ) )
-	$content = italystrap_get_apply_lazyload( $content );
+if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
+	$content = ItalyStrap\Core\get_apply_lazyload( $content );
+}
 `
 
 Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
 
-You can also use italystrap_apply_lazyload helper function for print content:
+You can also use ItalyStrap\Core\apply_lazyload helper function for print content:
 
 `
-if ( function_exists( 'italystrap_apply_lazyload' ) )
-	italystrap_apply_lazyload( $content );
+if ( function_exists( 'ItalyStrap\Core\apply_lazyload' ) ) {
+  ItalyStrap\Core\apply_lazyload( $content );
+}
 `
 
 Otherwise you can also use output buffering, though this isn't recommended:
 
 `
-if ( function_exists( 'italystrap_get_apply_lazyload' ) )
-	ob_start( 'italystrap_get_apply_lazyload' );
+if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
+  ob_start( 'ItalyStrap\Core\get_apply_lazyload' );
+}
 `
 
 This will lazy load <em>all</em> your images.
@@ -148,23 +153,36 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
-= 1.4.0 =
-Release Date: September 19th, 2015
+= 2.0.0 Breaking Changes =
+Release Date: August 19th, 2016  
 
-Dev time: 100h
+Dev time: 1year  
 
+* Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
 * Deprecated title attribute ($atts['title']) in gallery shortcode, use image_title instead 
-
-= 1.3.4 =
-Release Date: September 19th, 2015
-
-Dev time: 1h
-
 * Fix posts page (not home page) visualization
 Promemoria prima di fare il deploy
 	Verificare questo ( is_home() && is_front_page() ) || is_front_page() nei breadcrumbs
 	Verificare home e post statici o di default
-* Added new widget for post display
+* New API for the admin panel
+* Added some general utilities:
+  * Show post type ID
+  * Show post type thumb
+  * Disable the emoji
+  * HTML attributes for widgets
+  * Possibility to add some tags to widget title with {{}} instead of <>
+* Widgets:
+  * vCard Widget (this is a new version, the old one is deprecated, you can see in the widget description)
+  * Post Widget (a widget with many option for displaying post type in a widget area)
+  * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS), the settings are the same of shortcode settings.
+  * Deprecated vCard Widget (there's a new version for this widget, see below)
+* Shortcode:
+  * Option for executing shortcode in the widget text
+  * Option for Carousel shortcode, now you have to activate it for making it works.
+* Style:
+ * Text area for custom CSS
+ * Input fields for adding custom body class and post class attribute.
+* New API for templating system in beta version, in future you can override the template used for widget and shortcode.
 
 = 1.3.3 =
 Release Date: September 19th, 2015
@@ -249,6 +267,9 @@ Dev time: 100h
 * First release
 
 == Upgrade Notice ==
+
+= 2.0 =
+2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/blog/).
 
 = 1.0.2 =
 This version fixes a documentation link in admin dashboard.  Upgrade as soon as possible
