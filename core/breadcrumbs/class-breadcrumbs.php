@@ -126,9 +126,21 @@ class Breadcrumbs {
 		/**
 		 * Get the first element of breadcrumbs
 		 */
-		if ( is_home() || is_front_page() ) {
+		if ( ( is_home() && is_front_page() ) || is_front_page() ) {
 
+			/**
+			 * This will display only in home page, static or not
+			 */
 			$breadcrumb .= $before_element_active . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /><meta itemprop="position" content="1" />'. $after_element;
+
+		} else if ( is_home() && ! is_front_page() ) {
+
+			/**
+			 * This will display only in blog static page
+			 */
+			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+
+			$breadcrumb .= $before_element_active . $wrapper_name . get_the_title( get_option( 'page_for_posts' ) ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 		} else {
 
@@ -408,7 +420,7 @@ class Breadcrumbs {
 		 *
 		 * @param string $breadcrumb the breadcrumb to be displayed.
 		 */
-		return apply_filters( 'ItalyStrap_get_the_breadcrumbs', $breadcrumb );
+		return apply_filters( 'italystrap_get_the_breadcrumbs', $breadcrumb );
 	}
 
 	/**
@@ -449,7 +461,7 @@ class Breadcrumbs {
 	 * Retrieve category parents.
 	 *
 	 * Da fare per le performance:
-	 * Modificare il metodo ItalyStrap_get_category_parents e creare un loop normale
+	 * Modificare il metodo italystrap_get_category_parents e creare un loop normale
 	 * la ricorsione è una martellata sui maroni
 	 * ma è comunque abbastanza veloce :-P
 	 *
