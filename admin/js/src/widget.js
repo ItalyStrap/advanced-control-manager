@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
 	});
 
 	/**********************************
-	 * ItalyStrap vCard Local Business
+	 * ItalyStrap vCard Local Business (DEPRECATED)
 	 **********************************/
 	$(document).on("click", ".upload_image_button", function() {
 

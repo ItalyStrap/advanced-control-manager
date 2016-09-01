@@ -23,6 +23,11 @@ class Widget_Posts extends Widget {
 	function __construct() {
 
 		/**
+		 * I don't like this and I have to find a better solution for loading script and style for widgets.
+		 */
+		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+
+		/**
 		 * List of posts type
 		 *
 		 * @todo Aggiungere any all'array

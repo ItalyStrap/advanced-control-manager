@@ -48,6 +48,13 @@ abstract class Widget extends WP_Widget {
 	private $sections_keys = array();
 
 	/**
+	 * This member is temporary only for loading script and style once.
+	 *
+	 * @var bool
+	 */
+	private static $method_loaded = false;
+
+	/**
 	 * Set the title field
 	 */
 	protected function title_field() {
@@ -697,13 +704,18 @@ abstract class Widget extends WP_Widget {
 	/**
 	 * Upload the Javascripts for the media uploader in widget config
 	 *
-	 * @todo Sistemare gli script da caricare per i vari widget nel pannello admin
+	 * @todo Sistemare questo metodo, trovare soluzione migliore per caricare script e style per ogni widget, ora viene caricato tutto anche attivano un solo widget.
+	 * Molto probabilmente ha più senso caricare gli script per i campi (fields) quando si utilizzano e non qui.
 	 *
 	 * @param string $hook The name of the page.
 	 */
 	public function upload_scripts( $hook ) {
 
 		if ( 'widgets.php' !== $hook ) {
+			return;
+		}
+
+		if ( true === self::$method_loaded ) {
 			return;
 		}
 
@@ -739,6 +751,8 @@ abstract class Widget extends WP_Widget {
 			);
 
 		}
+
+		self::$method_loaded = true;
 
 	}
 }

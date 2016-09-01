@@ -18,6 +18,11 @@ class Widget_Posts2 extends Widget {
 	 */
 	function __construct() {
 
+		/**
+		 * I don't like this and I have to find a better solution for loading script and style for widgets.
+		 */
+		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+
 		$widget_options = array(
 			'classname' => 'italystrap_posts_widget',
 			'description' => __( 'Displays list of posts with an array of options (DEPRECATED)', 'ItalyStrap' ),

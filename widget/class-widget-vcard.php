@@ -38,61 +38,64 @@ namespace ItalyStrap\Core;
  * Added upload media library for image
  * @link http://www.paulund.co.uk/add-upload-media-library-widgets
  */
-if ( ! class_exists( 'Widget_VCard' ) ) {
+
+/**
+ * Class
+ */
+class Widget_VCard extends Widget {
 
 	/**
-	 * Class
+	 * Init the constructor
 	 */
-	class Widget_VCard extends Widget {
+	function __construct() {
 
 		/**
-		 * Init the constructor
+		 * I don't like this and I have to find a better solution for loading script and style for widgets.
 		 */
-		function __construct() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
-			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' ) );
-
-			/**
-			 * Configure widget array.
-			 *
-			 * @var array
-			 */
-			$args = array(
-				// Widget Backend label.
-				'label'				=> __( 'ItalyStrap vCard Local Business', 'ItalyStrap' ),
-				// Widget Backend Description.
-				'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'ItalyStrap' ),
-				'fields'			=> $fields,
-				'control_options'	=> array( 'width' => 340 ),
-			 );
-
-			/**
-			 * Create Widget
-			 */
-			$this->create_widget( $args );
-		}
+		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' ) );
 
 		/**
-		 * Dispay the widget content
+		 * Configure widget array.
 		 *
-		 * @param  array $args     Display arguments including 'before_title', 'after_title',
-		 *                        'before_widget', and 'after_widget'.
-		 * @param  array $instance The settings for the particular instance of the widget.
+		 * @var array
 		 */
-		public function widget_render( $args, $instance ) {
-			/**
-			 * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
-			 */
+		$args = array(
+			// Widget Backend label.
+			'label'				=> __( 'ItalyStrap vCard Local Business', 'ItalyStrap' ),
+			// Widget Backend Description.
+			'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'ItalyStrap' ),
+			'fields'			=> $fields,
+			'control_options'	=> array( 'width' => 340 ),
+		 );
 
-			ob_start();
+		/**
+		 * Create Widget
+		 */
+		$this->create_widget( $args );
+	}
 
-			require( \ItalyStrap\Core\get_template( 'templates/content-vcard.php' ) );
+	/**
+	 * Dispay the widget content
+	 *
+	 * @param  array $args     Display arguments including 'before_title', 'after_title',
+	 *                        'before_widget', and 'after_widget'.
+	 * @param  array $instance The settings for the particular instance of the widget.
+	 */
+	public function widget_render( $args, $instance ) {
+		/**
+		 * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
+		 */
 
-			$out = ob_get_contents();
-			ob_end_clean();
+		ob_start();
 
-			return $out;
+		require( \ItalyStrap\Core\get_template( 'templates/content-vcard.php' ) );
 
-		}
-	} // Class.
-}
+		$out = ob_get_contents();
+		ob_end_clean();
+
+		return $out;
+
+	}
+} // Class.

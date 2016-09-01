@@ -40,6 +40,11 @@ class Vcard_Widget extends Widget {
 
 	function __construct() {
 
+		/**
+		 * I don't like this and I have to find a better solution for loading script and style for widgets.
+		 */
+		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+
 		$widget_ops = array(
 			'classname'		=> 'widget_italystrap_vcard',
 			'description'	=> __( 'Use this widget to add a vCard Local Business (DEPRECATED, Don\'t use it anymore)', 'ItalyStrap' ),
@@ -78,7 +83,7 @@ class Vcard_Widget extends Widget {
 		add_action( 'deleted_post', array( &$this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( &$this, 'flush_widget_cache' ) );
 
-		$this->schema = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard-widget.php' );
+		$this->schema = require( ITALYSTRAP_PLUGIN_PATH . 'deprecated/options-vcard-widget.php' );
 
 		// add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
