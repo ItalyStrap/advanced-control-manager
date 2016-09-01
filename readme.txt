@@ -1,37 +1,62 @@
 === ItalyStrap ===
 Contributors: overclokk
-Donate link: http://www.italystrap.it/
-Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
+Donate link: http://www.italystrap.com/
+Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
 Requires at least: 4.0
 Tested up to: 4.7
 Stable tag: 2.0.0-beta.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make your web site more powerfull
+Make your web site more powerfull with ItalyStrap
 
-Bootstrap, Performance and Schema.org
+(Requires PHP 5.3 >= and Developers skills)
 
 == Description ==
 
-[ItalyStrap](http://www.italystrap.it/) will add powerful features to your WordPress site.
-[ItalyStrap](https://github.com/overclokk/italystrap-extended) Also on github.
+Always make a backup before install it and always test it in a dev enviroment.
 
-May the force be with you!
+Make shure you have PHP 5.3 >=, better if you have PHP >= 7.0 (PHP 7 is awesome ;-) ).
+
+If you have any trouble [open a ticket](http://wordpress.org/support/plugin/italystrap).
+
+If you have any feature requests or code issue [open a ticket on github](https://github.com/overclokk/italystrap-extended/issues).
+
+[ItalyStrap](http://www.italystrap.com/) will add powerful features to your WordPress site. [ItalyStrap](https://github.com/overclokk/italystrap-extended) is also on github.
+
+I developed this plugin with many features because I need them in all sites I create for my clients, it also extends the [ItalyStrap Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
+
+Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible.
+
+This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
+If you are a developer you can extend it with his API (Dev docs coming soon).
+
+**Skills required**
+Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add CSS style to make it look like your site (you can add it in ItalyStrap > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
+
+**ItalyStrap will always be free**
+This is my thanks for what WordPress has given to me.
+
+**Get involved**
+If you want to contribute [click here](https://github.com/overclokk/italystrap-extended)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 = Features included: =
 
-* **Breadcrumbs** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
+* **[Breadcrumbs](http://docs.italystrap.com/breadcrumbs-wordpress-theme/)** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs ;-) ).
 
-* **Carousel** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
+* **[Carousel](http://docs.italystrap.com/the-carousel-shortcode/)** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Twitter Bootstrap CSS and JS or [ItalyStrap framework](http://www.italystrap.com/) installed. It will not include the files for you, so if they are not present, the carousel will not work. The carousel is provided by shortcode and widget.
 
-* **LazyLoad** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It work also with my Bootstrap Carousel.
+* **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel.
 
-* **Schema.org Local Business** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
+* **[Schema.org Local Business](http://docs.italystrap.com/widget-italystrap-vcard-local-business/)** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
 This widget will add microdata information about your  site for SEO purposes.
-This widget was present in my [ItalyStrap starter theme](http://www.italystrap.it/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus
+This widget was present in my [ItalyStrap starter theme](http://www.italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus
+
+* **Posts Widget** This adds a widget for displaying posts with a lot of options, in a future release you have also the power to change the template.
+
+* **Custom Style** Now you can add your custom style in single page or in the entire site, you can also add custom css class and ID attribute in single page or in the site.
 
 == Installation ==
 
@@ -172,6 +197,7 @@ Dev time: 1year
   * HTML attributes for widgets
   * Possibility to add some tags to widget title with {{}} instead of <>
 * Widgets:
+  * New API for building widgets in a easy way (Is is possible to create your own widget too)
   * vCard Widget (this is a new version, the old one is deprecated, you can see in the widget description)
   * Post Widget (a widget with many option for displaying post type in a widget area)
   * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS), the settings are the same of shortcode settings.
@@ -181,7 +207,7 @@ Dev time: 1year
 * Style:
  * Text area for custom CSS
  * Input fields for adding custom body class and post class attribute.
-* New API for templating system in beta version, in future you can override the template used for widget and shortcode.
+* New API for templating system in beta version, in future you can override the template used in widgets and shortcodes.
 
 = 1.3.3 =
 Release Date: September 19th, 2015
@@ -295,3 +321,5 @@ First release.
 
 * [Agnosia Bootstrap Carousel](https://wordpress.org/plugins/agnosia-bootstrap-carousel/)
 * [Lazy Load](https://wordpress.org/plugins/lazy-load/)
+* [WordPress Plugin Boilerplate](https://github.com/WPBP/WordPress-Plugin-Boilerplate-Powered)
+* [Disable Emojis](https://geek.hellyer.kiwi/)

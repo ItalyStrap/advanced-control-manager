@@ -185,7 +185,7 @@ module.exports = function(grunt) {
 		},
 
 		gitmerge: {
-			fromdev: { // Prima devo essewre in master e poi fare il merge da Dev
+			fromdev: { // Prima devo essere in master e poi fare il merge da Dev
 				options: {
 					branch: 'Dev'
 				}
@@ -323,6 +323,37 @@ module.exports = function(grunt) {
 							'!*.zip'], // What should be included in the zip
 						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						// dest: 'italystrap/',        // Where the zipfile should go
+						filter: 'isFile',
+					},
+				]
+			},
+			test: {
+				options: {
+					archive: '../<%= pkg.name %> <%= pkg.version %> test.zip' // Create zip file in theme directory
+				},
+				files: [
+					{
+						src: [
+							'**' ,
+							'!.git/**',
+							'!.sass-cache/**',
+							'!bower_components/**',
+							'!node_modules/**',
+							'!.gitattributes',
+							'!.gitignore',
+							'!bower.json',
+							'!Gruntfile.js',
+							'!package.json',
+							'!codeception.yml',
+							'!composer.json',
+							'!composer.lock',
+							'!phpunit.xml',
+							'!test_italystrap.php',
+							'!wp-tests-config.php',
+							'!snippets.md',
+							'!tests/**',
+							'!*.zip'], // What should be included in the zip
+						dest: 'italystrap/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -554,7 +585,7 @@ module.exports = function(grunt) {
 	 * Upgrade
 	 * $ npm install
 	 *
-	 * Controllare gli aggiornamenti con composer (mobile detect per ora la copio a mano in lib)
+	 * Controllare gli aggiornamenti con composer
 	 * $ composer update
 	 * or
 	 * $ grunt composer:update
