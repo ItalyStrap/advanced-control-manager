@@ -96,7 +96,7 @@ class Init {
 		);
 
 		foreach ( $widget_list as $key => $value ) {
-			if ( isset( $this->options[ $key ] ) ) {
+			if ( ! empty( $this->options[ $key ] ) ) {
 				\register_widget( 'ItalyStrap\Core\\' . $value );
 			}
 		}
