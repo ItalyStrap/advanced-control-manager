@@ -2,11 +2,11 @@
 /**
  *	Plugin Name:	ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
- *	Description:	Make your website more powerfull. | <a href="admin.php?page=italystrap-documentation">Documentation</a>
+ *	Description:	Make your website more powerfull.
  *	Version:		2.0.0-beta.1
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
- *	Text Domain:	ItalyStrap
+ *	Text Domain:	italystrap
  *	License:		GPLv2 or later
  *	License URI:	http://www.gnu.org/licenses/gpl-2.0.html
  *	Domain Path:	/lang
