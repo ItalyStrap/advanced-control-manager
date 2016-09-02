@@ -21,6 +21,13 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
+            ),
+        ),
         'D' => 
         array (
             'Detection' => 
@@ -31,18 +38,6 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
     );
 
     public static $classMap = array (
-        'Auryn\\CachingReflector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/CachingReflector.php',
-        'Auryn\\ConfigException' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ConfigException.php',
-        'Auryn\\Executable' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/Executable.php',
-        'Auryn\\InjectionException' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/InjectionException.php',
-        'Auryn\\Injector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/Injector.php',
-        'Auryn\\InjectorException' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/InjectorException.php',
-        'Auryn\\ReflectionCache' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ReflectionCache.php',
-        'Auryn\\ReflectionCacheApc' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ReflectionCacheApc.php',
-        'Auryn\\ReflectionCacheArray' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ReflectionCacheArray.php',
-        'Auryn\\Reflector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/Reflector.php',
-        'Auryn\\StandardReflector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/StandardReflector.php',
-        'Detection\\MobileDetect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
         'ItalyStrapAdminGallerySettings' => __DIR__ . '/../..' . '/admin/ItalyStrapAdminGallerySettings.php',
         'ItalyStrapAdminMediaSettings' => __DIR__ . '/../..' . '/admin/ItalyStrapAdminMediaSettings.php',
         'ItalyStrapBreadcrumbs' => __DIR__ . '/../..' . '/deprecated/ItalyStrapBreadcrumbs.php',

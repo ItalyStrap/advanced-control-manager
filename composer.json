@@ -6,7 +6,8 @@
 		"mobiledetect/mobiledetectlib": "dev-master",
 		"webdevstudios/cmb2": "dev-master",
 		"overclokk/minimum-requirements": "dev-master",
-		"rdlowrey/auryn": "^1.4"
+		"rdlowrey/auryn": "^1.4",
+        "erusev/parsedown": "^1.6"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^1.9",

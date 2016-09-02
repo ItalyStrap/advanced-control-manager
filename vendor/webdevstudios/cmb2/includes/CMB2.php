@@ -11,15 +11,17 @@
  * @property-read string $cmb_id
  * @property-read array $meta_box
  * @property-read array $updated
+ * @property-read bool  $has_columns
+ * @property-read array $tax_metaboxes_to_remove
  */
-class CMB2 {
+class CMB2 extends CMB2_Base {
 
 	/**
-	 * Current CMB2 instance ID
+	 * The object properties name.
 	 * @var   string
-	 * @since 2.0.0
+	 * @since 2.2.3
 	 */
-	protected $cmb_id = '';
+	protected $properties_name = 'meta_box';
 
 	/**
 	 * Metabox Config array
@@ -27,20 +29,6 @@ class CMB2 {
 	 * @since 0.9.0
 	 */
 	protected $meta_box = array();
-
-	/**
-	 * Object ID for metabox meta retrieving/saving
-	 * @var   mixed
-	 * @since 1.0.0
-	 */
-	protected $object_id = 0;
-
-	/**
-	 * Type of object being saved. (e.g., post, user, or comment)
-	 * @var   string
-	 * @since 1.0.0
-	 */
-	protected $object_type = 'post';
 
 	/**
 	 * Type of object registered for metabox. (e.g., post, user, or comment)
@@ -98,13 +86,6 @@ class CMB2 {
 
 	/**
 	 * Array of key => value data for saving. Likely $_POST data.
-	 * @var   array
-	 * @since 2.0.0
-	 */
-	public $data_to_save = array();
-
-	/**
-	 * Array of key => value data for saving. Likely $_POST data.
 	 * @var   string
 	 * @since 2.0.0
 	 */
@@ -118,26 +99,33 @@ class CMB2 {
 	protected $has_columns = false;
 
 	/**
+	 * If taxonomy field is requesting to remove_default, we store the taxonomy here.
+	 * @var   array
+	 * @since 2.2.3
+	 */
+	protected $tax_metaboxes_to_remove = array();
+
+	/**
 	 * Get started
 	 * @since 0.4.0
-	 * @param array   $meta_box  Metabox config array
+	 * @param array   $config    Metabox config array
 	 * @param integer $object_id Optional object id
 	 */
-	public function __construct( $meta_box, $object_id = 0 ) {
+	public function __construct( $config, $object_id = 0 ) {
 
-		if ( empty( $meta_box['id'] ) ) {
-			wp_die( __( 'Metabox configuration is required to have an ID parameter', 'cmb2' ) );
+		if ( empty( $config['id'] ) ) {
+			wp_die( esc_html__( 'Metabox configuration is required to have an ID parameter.', 'cmb2' ) );
 		}
 
-		$this->meta_box = wp_parse_args( $meta_box, $this->mb_defaults );
+		$this->meta_box = wp_parse_args( $config, $this->mb_defaults );
 		$this->meta_box['fields'] = array();
 
 		$this->object_id( $object_id );
 		$this->mb_object_type();
-		$this->cmb_id = $meta_box['id'];
+		$this->cmb_id = $config['id'];
 
-		if ( ! empty( $meta_box['fields'] ) && is_array( $meta_box['fields'] ) ) {
-			$this->add_fields( $meta_box['fields'] );
+		if ( ! empty( $config['fields'] ) && is_array( $config['fields'] ) ) {
+			$this->add_fields( $config['fields'] );
 		}
 
 		CMB2_Boxes::add( $this );
@@ -180,9 +168,9 @@ class CMB2 {
 		$object_type = $this->object_type( $object_type );
 		$object_id = $this->object_id( $object_id );
 
-		$this->nonce_field();
-
 		echo "\n<!-- Begin CMB2 Fields -->\n";
+
+		$this->nonce_field();
 
 		/**
 		 * Hook before form table begins
@@ -225,10 +213,8 @@ class CMB2 {
 
 		$classes = array( 'cmb2-wrap', 'form-table' );
 
-		$cb = $this->prop( 'classes_cb' );
-
 		// Use the callback to fetch classes.
-		if ( is_callable( $cb ) && ( $added_classes = call_user_func( $cb, $this ) ) ) {
+		if ( $added_classes = $this->get_param_callback_result( 'classes_cb' ) ) {
 			$added_classes = is_array( $added_classes ) ? $added_classes : array( $added_classes );
 			$classes = array_merge( $classes, $added_classes );
 		}
@@ -352,16 +338,13 @@ class CMB2 {
 
 		$desc            = $field_group->args( 'description' );
 		$label           = $field_group->args( 'name' );
-		$sortable        = $field_group->options( 'sortable' ) ? ' sortable' : ' non-sortable';
-		$repeat_class    = $field_group->args( 'repeatable' ) ? ' repeatable' : ' non-repeatable';
 		$group_val       = (array) $field_group->value();
-		$nrows           = count( $group_val );
-		$remove_disabled = $nrows <= 1 ? 'disabled="disabled" ' : '';
+		$remove_disabled = count( $group_val ) <= 1 ? 'disabled="disabled" ' : '';
 		$field_group->index = 0;
 
 		$field_group->peform_param_callback( 'before_group' );
 
-		echo '<div class="cmb-row cmb-repeat-group-wrap ', $field_group->row_classes(), '" data-fieldtype="group"><div class="cmb-td"><div id="', $field_group->id(), '_repeat" class="cmb-nested cmb-field-list cmb-repeatable-group', $sortable, $repeat_class, '" style="width:100%;">';
+		echo '<div class="cmb-row cmb-repeat-group-wrap ', $field_group->row_classes(), '" data-fieldtype="group"><div class="cmb-td"><div data-groupid="', $field_group->id(), '" id="', $field_group->id(), '_repeat" ', $this->group_wrap_attributes( $field_group ), '>';
 
 		if ( $desc || $label ) {
 			$class = $desc ? ' cmb-group-description' : '';
@@ -376,7 +359,6 @@ class CMB2 {
 		}
 
 		if ( ! empty( $group_val ) ) {
-
 			foreach ( $group_val as $group_key => $field_id ) {
 				$this->render_group_row( $field_group, $remove_disabled );
 				$field_group->index++;
@@ -394,6 +376,38 @@ class CMB2 {
 		$field_group->peform_param_callback( 'after_group' );
 
 		return $field_group;
+	}
+
+	/**
+	 * Get the group wrap attributes, which are passed through a filter.
+	 * @since  2.2.3
+	 * @param  CMB2_Field $field_group The group CMB2_Field object.
+	 * @return string                  The attributes string.
+	 */
+	public function group_wrap_attributes( $field_group ) {
+		$classes = 'cmb-nested cmb-field-list cmb-repeatable-group';
+		$classes .= $field_group->options( 'sortable' ) ? ' sortable' : ' non-sortable';
+		$classes .= $field_group->args( 'repeatable' ) ? ' repeatable' : ' non-repeatable';
+
+		$group_wrap_attributes = array(
+			'class' => $classes,
+			'style' => 'width:100%;',
+		);
+
+		/**
+		 * Allow for adding additional HTML attributes to a group wrapper.
+		 *
+		 * The attributes will be an array of key => value pairs for each attribute.
+		 *
+		 * @since 2.2.2
+		 *
+		 * @param string     $group_wrap_attributes Current attributes array.
+		 *
+		 * @param CMB2_Field $field_group           The group CMB2_Field object.
+		 */
+		$group_wrap_attributes = apply_filters( 'cmb2_group_wrap_attributes', $group_wrap_attributes, $field_group );
+
+		return CMB2_Utils::concat_attrs( $group_wrap_attributes );
 	}
 
 	/**
@@ -415,7 +429,7 @@ class CMB2 {
 			}
 
 			echo '
-			<div class="cmbhandle" title="' , __( 'Click to toggle', 'cmb2' ), '"><br></div>
+			<div class="cmbhandle" title="' , esc_attr__( 'Click to toggle', 'cmb2' ), '"><br></div>
 			<h3 class="cmb-group-title cmbhandle-title"><span>', $field_group->replace_hash( $field_group->options( 'group_title' ) ), '</span></h3>
 
 			<div class="inside cmb-td cmb-nested cmb-field-list">';
@@ -464,7 +478,13 @@ class CMB2 {
 			$field = $this->get_new_field( $field_args, $field_group );
 		}
 
-		$this->hidden_fields[] = new CMB2_Types( $field );
+		$type = new CMB2_Types( $field );
+
+		if ( $field_group ) {
+			$type->iterator = $field_group->index;
+		}
+
+		$this->hidden_fields[] = $type;
 
 		return $field;
 	}
@@ -712,8 +732,8 @@ class CMB2 {
 					? $old[ $field_group->index ][ $sub_id ]
 					: false;
 
-				$is_updated = ( ! cmb2_utils()->isempty( $new_val ) && $new_val !== $old_val );
-				$is_removed = ( cmb2_utils()->isempty( $new_val ) && ! cmb2_utils()->isempty( $old_val ) );
+				$is_updated = ( ! CMB2_Utils::isempty( $new_val ) && $new_val !== $old_val );
+				$is_removed = ( CMB2_Utils::isempty( $new_val ) && ! CMB2_Utils::isempty( $old_val ) );
 
 				// Compare values and add to `$updated` array
 				if ( $is_updated || $is_removed ) {
@@ -725,10 +745,10 @@ class CMB2 {
 
 			}
 
-			$saved[ $field_group->index ] = cmb2_utils()->filter_empty( $saved[ $field_group->index ] );
+			$saved[ $field_group->index ] = CMB2_Utils::filter_empty( $saved[ $field_group->index ] );
 		}
 
-		$saved = cmb2_utils()->filter_empty( $saved );
+		$saved = CMB2_Utils::filter_empty( $saved );
 
 		return $field_group->update_data( $saved, true );
 	}
@@ -1059,14 +1079,11 @@ class CMB2 {
 		}
 
 		if ( isset( $field['column'] ) && false !== $field['column'] ) {
-			$this->has_columns = true;
+			$field = $this->define_field_column( $field );
+		}
 
-			$column = is_array( $field['column'] ) ? $field['column'] : array();
-
-			$field['column'] = wp_parse_args( $column, array(
-				'name'     => isset( $field['name'] ) ? $field['name'] : '',
-				'position' => false,
-			) );
+		if ( isset( $field['taxonomy'] ) && ! empty( $field['remove_default'] ) ) {
+			$this->tax_metaboxes_to_remove[ $field['taxonomy'] ] = $field['taxonomy'];
 		}
 
 		$this->_add_field_to_array(
@@ -1076,6 +1093,25 @@ class CMB2 {
 		);
 
 		return $field['id'];
+	}
+
+	/**
+	 * Defines a field's column if requesting to be show in admin columns.
+	 * @since  2.2.3
+	 * @param  array  $field Metabox field config array.
+	 * @return array         Modified metabox field config array.
+	 */
+	protected function define_field_column( array $field ) {
+		$this->has_columns = true;
+
+		$column = is_array( $field['column'] ) ? $field['column'] : array();
+
+		$field['column'] = wp_parse_args( $column, array(
+			'name'     => isset( $field['name'] ) ? $field['name'] : '',
+			'position' => false,
+		) );
+
+		return $field;
 	}
 
 	/**
@@ -1119,7 +1155,7 @@ class CMB2 {
 	 */
 	protected function _add_field_to_array( $field, &$fields, $position = 0 ) {
 		if ( $position ) {
-			cmb2_utils()->array_insert( $fields, array( $field['id'] => $field ), $position );
+			CMB2_Utils::array_insert( $fields, array( $field['id'] => $field ), $position );
 		} else {
 			$fields[ $field['id'] ] = $field;
 		}
@@ -1233,22 +1269,13 @@ class CMB2 {
 	}
 
 	/**
-	 * Determine whether this cmb object should show, based on the 'show_on_cb' callback.
-	 *
-	 * @since 2.0.9
-	 *
-	 * @return bool Whether this cmb should be shown.
+	 * Handles metabox property callbacks, and passes this $cmb object as property.
+	 * @since  2.2.3
+	 * @param  callable $cb The callback method/function/closure
+	 * @return mixed        Return of the callback function.
 	 */
-	public function should_show() {
-		// Default to showing this cmb
-		$show = true;
-
-		// Use the callback to determine showing the cmb, if it exists
-		if ( is_callable( $this->prop( 'show_on_cb' ) ) ) {
-			$show = (bool) call_user_func( $this->prop( 'show_on_cb' ), $this );
-		}
-
-		return $show;
+	protected function do_callback( $cb ) {
+		return call_user_func( $cb, $this );
 	}
 
 	/**
@@ -1281,15 +1308,12 @@ class CMB2 {
 	 */
 	public function __get( $field ) {
 		switch ( $field ) {
-			case 'cmb_id':
-			case 'meta_box':
 			case 'updated':
 			case 'has_columns':
+			case 'tax_metaboxes_to_remove':
 				return $this->{$field};
-			case 'object_id':
-				return $this->object_id();
 			default:
-				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
+				return parent::__get( $field );
 		}
 	}
 

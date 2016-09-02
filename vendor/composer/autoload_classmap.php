@@ -6,18 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Auryn\\CachingReflector' => $vendorDir . '/rdlowrey/auryn/lib/CachingReflector.php',
-    'Auryn\\ConfigException' => $vendorDir . '/rdlowrey/auryn/lib/ConfigException.php',
-    'Auryn\\Executable' => $vendorDir . '/rdlowrey/auryn/lib/Executable.php',
-    'Auryn\\InjectionException' => $vendorDir . '/rdlowrey/auryn/lib/InjectionException.php',
-    'Auryn\\Injector' => $vendorDir . '/rdlowrey/auryn/lib/Injector.php',
-    'Auryn\\InjectorException' => $vendorDir . '/rdlowrey/auryn/lib/InjectorException.php',
-    'Auryn\\ReflectionCache' => $vendorDir . '/rdlowrey/auryn/lib/ReflectionCache.php',
-    'Auryn\\ReflectionCacheApc' => $vendorDir . '/rdlowrey/auryn/lib/ReflectionCacheApc.php',
-    'Auryn\\ReflectionCacheArray' => $vendorDir . '/rdlowrey/auryn/lib/ReflectionCacheArray.php',
-    'Auryn\\Reflector' => $vendorDir . '/rdlowrey/auryn/lib/Reflector.php',
-    'Auryn\\StandardReflector' => $vendorDir . '/rdlowrey/auryn/lib/StandardReflector.php',
-    'Detection\\MobileDetect' => $vendorDir . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
     'ItalyStrapAdminGallerySettings' => $baseDir . '/admin/ItalyStrapAdminGallerySettings.php',
     'ItalyStrapAdminMediaSettings' => $baseDir . '/admin/ItalyStrapAdminMediaSettings.php',
     'ItalyStrapBreadcrumbs' => $baseDir . '/deprecated/ItalyStrapBreadcrumbs.php',
