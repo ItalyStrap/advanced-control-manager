@@ -258,4 +258,58 @@ class Query_Posts extends Query {
 		return $output;
 
 	}
+
+	/**
+	 * Get custom fields
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_custom_fields( $value = '' ) {
+	
+		if ( $this->args['custom_fields'] ) :
+
+			$custom_field_name = explode( ',', $this->args['custom_fields'] ); ?>
+
+			<div class="entry-custom-fields">
+			<?php
+			foreach ( $custom_field_name as $name ) :
+
+				$name = trim( $name );
+				$custom_field_values = get_post_meta( $this->query->post->ID, $name );
+
+				if ( $custom_field_values ) :
+			?>
+					<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
+						<?php
+						/**
+						 * If is not an array echo custom field value
+						 */
+						if ( ! is_array( $custom_field_values ) ) {
+
+							echo esc_attr( $custom_field_values );
+
+						} else {
+
+							$last_value = end( $custom_field_values );
+							foreach ( $custom_field_values as $value ) {
+
+								echo esc_attr( $value );
+
+								if ( $value !== $last_value ) {
+
+									echo ', ';
+
+								}
+							}
+						}
+						?>
+					</div>
+			<?php endif;
+			endforeach; ?>
+			</div>
+		<?php
+		endif;
+
+	}
 }

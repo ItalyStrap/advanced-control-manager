@@ -468,7 +468,7 @@ return array(
 	 */
 	'custom_fields'				=> array(
 				'name'		=> __( 'Show custom fields', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show custom fields (comma separated).', 'ItalyStrap' ),
+				'desc'		=> __( 'Insert here the custom fields (comma separated).', 'ItalyStrap' ),
 				'id'		=> 'custom_fields',
 				'type'		=> 'text',
 				'class'		=> 'widefat custom_fields',
@@ -594,7 +594,7 @@ return array(
 	 */
 	'from_current_user'			=> array(
 				'name'		=> __( 'Show posts only from current user', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show posts only from current user.', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the user you want to display posts.', 'ItalyStrap' ),
 				'id'		=> 'from_current_user',
 				'type'		=> 'text',
 				// 'class'		=> 'widefat from_current_user',
@@ -625,7 +625,7 @@ return array(
 	 */
 	'post_id'				=> array(
 				'name'		=> __( 'Post/Page Id', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert post ID separated by comma.', 'ItalyStrap' ),
+				'desc'		=> __( 'Insert posts ID separated by comma.', 'ItalyStrap' ),
 				'id'		=> 'post_id',
 				'type'		=> 'text',
 				'class'		=> 'widefat post_id',
@@ -707,8 +707,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'meta_key'			=> array(
-				'name'		=> __( 'Custom fields', 'ItalyStrap' ),
-				'desc'		=> __( 'Inser the custom field separated by comma.', 'ItalyStrap' ),
+				'name'		=> __( 'Order by meta key (custom fields)', 'ItalyStrap' ),
+				'desc'		=> __( 'Inser the custom field separated by comma and select "Order by Value..." above.', 'ItalyStrap' ),
 				'id'		=> 'meta_key',
 				'type'		=> 'text',
 				'class'		=> 'widefat meta_key',

@@ -62,7 +62,7 @@
 							); ?>
 						</a>
 					</figure>
-				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_url'] ) :?>
+				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_id'] ) :?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
 							<?php
@@ -70,7 +70,7 @@
 								'itemprop'	=> 'image',
 								'class' => $this->args['image_class'],
 							);
-							$the_post_thumbnail = wp_get_attachment_image( $this->args['thumb_url'] , $thumb_size, false, $attr );
+							$the_post_thumbnail = wp_get_attachment_image( $this->args['thumb_id'] , $thumb_size, false, $attr );
 							echo apply_filters( 'italystrap_widget_the_post_thumbnail', $the_post_thumbnail ); // XSS ok.
 							?>
 						</a>
@@ -164,7 +164,7 @@
 							?>
 						<div class="entry-categories">
 							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'ItalyStrap' ); ?>:</strong>
-							<span class="entry-cats-list"><?php echo esc_attr( $categories ); ?></span>
+							<span class="entry-cats-list"><?php echo $categories; // XSS ok.?></span>
 						</div>
 						<?php endif; ?>
 					
@@ -175,61 +175,13 @@
 						?>
 						<div class="entry-tags">
 							<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'ItalyStrap' ); ?>:</strong>
-							<span class="entry-tags-list" itemprop="keywords"><?php echo esc_attr( $tags ); ?></span>
+							<span class="entry-tags-list" itemprop="keywords"><?php echo $tags; // XSS ok. ?></span>
 						</div>
 						<?php endif; ?>
 					
-						<?php
-
-						if ( $this->args['custom_fields'] ) :
-
-							$custom_field_name = explode( ',', $this->args['custom_fields'] );
-
-							?>
-
-							<div class="entry-custom-fields">
-								<?php
-								foreach ( $custom_field_name as $name ) :
-
-									$name = trim( $name );
-									$custom_field_values = get_post_meta( $this->query->post->ID, $name );
-
-									if ( $custom_field_values ) :
-								?>
-										<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
-											<?php
-											/**
-											 * If is not an array echo custom field value
-											 */
-											if ( ! is_array( $custom_field_values ) ) {
-
-												echo esc_attr( $custom_field_values );
-
-											} else {
-
-												$last_value = end( $custom_field_values );
-												foreach ( $custom_field_values as $value ) {
-
-													echo esc_attr( $value );
-
-													if ( $value !== $last_value ) {
-
-														echo ', ';
-
-													}
-												}
-											}
-											?>
-										</div>
-								<?php endif;
-								endforeach; ?>
-
-							</div>
-						<?php endif; ?>
-						<?php do_action( 'italystrap_widget_posts_content_footer', $this->query ); ?>
+						<?php $this->get_custom_fields(); ?>
 					</footer>
 				</section>
-			<?php do_action( 'italystrap_widget_posts_content_article', $this->query ); ?>
 		</article>
 
 		<?php endwhile; ?>
