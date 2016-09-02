@@ -1,6 +1,5 @@
 <div class="wrap">
 	<h1><?php _e( 'ItalyStrap Dashboard', 'italystrap' ); ?></h1>
-
 	<div class="welcome-panel" id="welcome-panel">
 		<div class="welcome-panel-content">
 			<h2><?php _e( 'Welcome to ItalyStrap', 'italystrap' ); ?></h2>
@@ -8,8 +7,8 @@
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column">
 					<h3><?php _e( 'Get Started', 'italystrap' ); ?></h3>
-					<a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-settings'); ?>" class="button button-primary button-hero load-customize hide-if-no-customize"><?php _e( 'Make your site more powerfull', 'italystrap' ); ?></a>
-					<p><?php _e( 'or you can read the ', 'italystrap' ); ?><a href="http://docs.italystrap.com/" target="_blank"><?php _e( 'documentation', 'italystrap' ); ?></a></p>
+					<a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-settings'); ?>" class="button button-primary button-hero load-customize hide-if-no-customize"><?php _e( 'Go to the settings page', 'italystrap' ); ?></a>
+					<h4 style="font-size:24px;"><?php _e( 'But first of all you can read the ', 'italystrap' ); ?><a href="http://docs.italystrap.com/" target="_blank"><?php _e( 'documentation', 'italystrap' ); ?></a></h4>
 				</div>
 <!-- 				<div class="welcome-panel-column">
 					<h3>Passi successivi</h3>
@@ -28,6 +27,15 @@
 						<li><a class="welcome-icon welcome-learn-more" href="https://codex.wordpress.org/First_Steps_With_WordPress ">Maggiori informazioni su come iniziare</a></li>
 					</ul>
 				</div> -->
+			</div>
+			<div style="clear:both;">
+				<?php 
+				$parsedown = new Parsedown();
+
+				$readme = ItalyStrap\Core\get_file_content( ITALYSTRAP_PLUGIN_PATH . 'README.md' );
+
+				echo $parsedown->text( $readme );
+				?>
 			</div>
 		</div>
 	</div>
