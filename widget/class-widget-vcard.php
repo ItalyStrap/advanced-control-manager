@@ -84,18 +84,26 @@ class Widget_VCard extends Widget {
 	 * @param  array $instance The settings for the particular instance of the widget.
 	 */
 	public function widget_render( $args, $instance ) {
+
+
+		$vcard = new VCard();
+
+		$vcard->get_args( 'widget_vcard', $instance, require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' ) );
+
+		return $vcard->output();
+
 		/**
 		 * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
 		 */
 
-		ob_start();
+		// ob_start();
 
-		require( \ItalyStrap\Core\get_template( 'templates/content-vcard.php' ) );
+		// require( \ItalyStrap\Core\get_template( 'templates/content-vcard.php' ) );
 
-		$out = ob_get_contents();
-		ob_end_clean();
+		// $out = ob_get_contents();
+		// ob_end_clean();
 
-		return $out;
+		// return $out;
 
 	}
 } // Class.

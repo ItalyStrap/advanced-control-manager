@@ -5,6 +5,8 @@
  * @package ItalyStrap
  */
 
+namespace ItalyStrap\Core;
+
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
@@ -19,102 +21,102 @@ return array(
 	 * The type of schema.
 	 */
 	'schema'				=> array(
-				'name'		=> __( 'Select your business', 'ItalyStrap' ),
-				'desc'		=> __( 'Select your kind of activity.', 'ItalyStrap' ),
+				'name'		=> __( 'Select your business', 'italystrap' ),
+				'desc'		=> __( 'Select your kind of activity.', 'italystrap' ),
 				'id'		=> 'schema',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
 				'default'	=> 'LocalBusiness',
 				'options'	=> array(
-						'LocalBusiness'					=> __( 'Local Business - (Default)', 'ItalyStrap' ),
-						'Organization'					=> __( 'Organization - (For services and home offices)', 'ItalyStrap' ),
-						'AccountingService'				=> __( 'Accounting Service', 'ItalyStrap' ),
-						'AutoBodyShop'					=> __( 'Auto Body Shop', 'ItalyStrap' ),
-						'AutoDealer'					=> __( 'Auto Dealer', 'ItalyStrap' ),
-						'AutoPartsStore'				=> __( 'Auto Parts Store', 'ItalyStrap' ),
-						'AutoRental'					=> __( 'Auto Rental', 'ItalyStrap' ),
-						'AutoRepair'					=> __( 'Auto Repair', 'ItalyStrap' ),
-						'AutoWash'						=> __( 'Auto Wash', 'ItalyStrap' ),
-						'Attorney'						=> __( 'Attorney', 'ItalyStrap' ),
-						'Bakery'						=> __( 'Bakery', 'ItalyStrap' ),
-						'BarOrPub'						=> __( 'Bar Or Pub', 'ItalyStrap' ),
-						'BeautySalon'					=> __( 'Beauty Salon', 'ItalyStrap' ),
-						'BedAndBreakfast'				=> __( 'Bed &amp; Breakfast', 'ItalyStrap' ),
-						'BikeStore'						=> __( 'Bicycle Store', 'ItalyStrap' ),
-						'BookStore'						=> __( 'Book Store', 'ItalyStrap' ),
-						'CafeOrCoffeeShop'				=> __( 'Cafe Or Coffee Shop', 'ItalyStrap' ),
-						'ChildCare'						=> __( 'Child Care', 'ItalyStrap' ),
-						'ClothingStore'					=> __( 'Clothing Store', 'ItalyStrap' ),
-						'ComputerStore'					=> __( 'Computer Store', 'ItalyStrap' ),
-						'DaySpa'						=> __( 'Day Spa', 'ItalyStrap' ),
-						'Dentist'						=> __( 'Dentist', 'ItalyStrap' ),
-						'DryCleaningOrLaundry'			=> __( 'Dry Cleaning Or Laundry', 'ItalyStrap' ),
-						'Electrician'					=> __( 'Electrician', 'ItalyStrap' ),
-						'ElectronicsStore'				=> __( 'Electronics Store', 'ItalyStrap' ),
-						'EmergencyService'				=> __( 'Emergency Service', 'ItalyStrap' ),
-						'EntertainmentBusiness'			=> __( 'Entertainment Business', 'ItalyStrap' ),
-						'EventVenue'					=> __( 'Event Venue', 'ItalyStrap' ),
-						'ExerciseGym'					=> __( 'Exercise Gym', 'ItalyStrap' ),
-						'FinancialService'				=> __( 'Financial Service', 'ItalyStrap' ),
-						'Florist'						=> __( 'Florist', 'ItalyStrap' ),
-						'FurnitureStore'				=> __( 'Furniture Store', 'ItalyStrap' ),
-						'FoodEstablishment'				=> __( 'Food Establishment', 'ItalyStrap' ),
-						'GardenStore'					=> __( 'Garden Store', 'ItalyStrap' ),
-						'GeneralContractor'				=> __( 'General Contractor', 'ItalyStrap' ),
-						'GolfCourse'					=> __( 'Golf Course', 'ItalyStrap' ),
-						'HairSalon'						=> __( 'Hair Salon', 'ItalyStrap' ),
-						'HardwareStore'					=> __( 'Hardware Store', 'ItalyStrap' ),
-						'HealthAndBeautyBusiness'		=> __( 'Health And Beauty Business', 'ItalyStrap' ),
-						'HomeAndConstructionBusiness'	=> __( 'Home And Construction Business', 'ItalyStrap' ),
-						'HobbyShop'						=> __( 'Hobby Shop', 'ItalyStrap' ),
-						'HomeGoodsStore'				=> __( 'Home Goods Store', 'ItalyStrap' ),
-						'Hospital'						=> __( 'Hospital', 'ItalyStrap' ),
-						'Hotel'							=> __( 'Hotel', 'ItalyStrap' ),
-						'HousePainter'					=> __( 'House Painter', 'ItalyStrap' ),
-						'HVACBusiness'					=> __( 'HVAC Business', 'ItalyStrap' ),
-						'InsuranceAgency'				=> __( 'Insurance Agency', 'ItalyStrap' ),
-						'JewelryStore'					=> __( 'Jewelry Store', 'ItalyStrap' ),
-						'LiquorStore'					=> __( 'Liquor Store', 'ItalyStrap' ),
-						'Locksmith'						=> __( 'Locksmith', 'ItalyStrap' ),
-						'LodgingBusiness'				=> __( 'Lodging Business', 'ItalyStrap' ),
-						'MedicalClinic'					=> __( 'Medical Clinic', 'ItalyStrap' ),
-						'MensClothingStore'				=> __( 'Mens Clothing Store', 'ItalyStrap' ),
-						'MobilePhoneStore'				=> __( 'Mobile Phone Store', 'ItalyStrap' ),
-						'Motel'							=> __( 'Motel', 'ItalyStrap' ),
-						'MotorcycleDealer'				=> __( 'Motorcycle Dealer', 'ItalyStrap' ),
-						'MotorcycleRepair'				=> __( 'Motorcycle Repair', 'ItalyStrap' ),
-						'MovingCompany'					=> __( 'Moving Company', 'ItalyStrap' ),
-						'MusicStore'					=> __( 'Music Store', 'ItalyStrap' ),
-						'NailSalon'						=> __( 'Nail Salon', 'ItalyStrap' ),
-						'NightClub'						=> __( 'Night Club', 'ItalyStrap' ),
-						'Notary'						=> __( 'Notary Public', 'ItalyStrap' ),
-						'OfficeEquipmentStore'			=> __( 'Office Equipment Store', 'ItalyStrap' ),
-						'Optician'						=> __( 'Optician', 'ItalyStrap' ),
-						'PetStore'						=> __( 'PetStore', 'ItalyStrap' ),
-						'Physician'						=> __( 'Physician', 'ItalyStrap' ),
-						'Plumber'						=> __( 'Plumber', 'ItalyStrap' ),
-						'ProfessionalService'			=> __( 'Professional Service', 'ItalyStrap' ),
-						'RealEstateAgent'				=> __( 'Real Estate Agent', 'ItalyStrap' ),
-						'Residence'						=> __( 'Residence', 'ItalyStrap' ),
-						'Restaurant'					=> __( 'Restaurant', 'ItalyStrap' ),
-						'RoofingContractor'				=> __( 'Roofing Contractor', 'ItalyStrap' ),
-						'RVPark'						=> __( 'RV Park', 'ItalyStrap' ),
-						'School'						=> __( 'School', 'ItalyStrap' ),
-						'SelfStorage'					=> __( 'Self Storage', 'ItalyStrap' ),
-						'ShoeStore'						=> __( 'ShoeStore', 'ItalyStrap' ),
-						'SkiResort'						=> __( 'Ski Resort', 'ItalyStrap' ),
-						'SportingGoodsStore'			=> __( 'Sporting Goods Store', 'ItalyStrap' ),
-						'SportsClub'					=> __( 'Sports Club', 'ItalyStrap' ),
-						'Store'							=> __( 'Store', 'ItalyStrap' ),
-						'TattooParlor'					=> __( 'Tattoo Parlor', 'ItalyStrap' ),
-						'Taxi'							=> __( 'Taxi', 'ItalyStrap' ),
-						'TennisComplex'					=> __( 'Tennis Complex', 'ItalyStrap' ),
-						'TireShop'						=> __( 'Tire Shop', 'ItalyStrap' ),
-						'ToyStore'						=> __( 'Toy Store', 'ItalyStrap' ),
-						'TravelAgency'					=> __( 'Travel Agency', 'ItalyStrap' ),
-						'VeterinaryCare'				=> __( 'Veterinary Care', 'ItalyStrap' ),
-						'WholesaleStore'				=> __( 'Wholesale Store', 'ItalyStrap' ),
-						'Winery'						=> __( 'Winery', 'ItalyStrap' ),
+						'LocalBusiness'					=> __( 'Local Business - (Default)', 'italystrap' ),
+						'Organization'					=> __( 'Organization - (For services and home offices)', 'italystrap' ),
+						'AccountingService'				=> __( 'Accounting Service', 'italystrap' ),
+						'AutoBodyShop'					=> __( 'Auto Body Shop', 'italystrap' ),
+						'AutoDealer'					=> __( 'Auto Dealer', 'italystrap' ),
+						'AutoPartsStore'				=> __( 'Auto Parts Store', 'italystrap' ),
+						'AutoRental'					=> __( 'Auto Rental', 'italystrap' ),
+						'AutoRepair'					=> __( 'Auto Repair', 'italystrap' ),
+						'AutoWash'						=> __( 'Auto Wash', 'italystrap' ),
+						'Attorney'						=> __( 'Attorney', 'italystrap' ),
+						'Bakery'						=> __( 'Bakery', 'italystrap' ),
+						'BarOrPub'						=> __( 'Bar Or Pub', 'italystrap' ),
+						'BeautySalon'					=> __( 'Beauty Salon', 'italystrap' ),
+						'BedAndBreakfast'				=> __( 'Bed &amp; Breakfast', 'italystrap' ),
+						'BikeStore'						=> __( 'Bicycle Store', 'italystrap' ),
+						'BookStore'						=> __( 'Book Store', 'italystrap' ),
+						'CafeOrCoffeeShop'				=> __( 'Cafe Or Coffee Shop', 'italystrap' ),
+						'ChildCare'						=> __( 'Child Care', 'italystrap' ),
+						'ClothingStore'					=> __( 'Clothing Store', 'italystrap' ),
+						'ComputerStore'					=> __( 'Computer Store', 'italystrap' ),
+						'DaySpa'						=> __( 'Day Spa', 'italystrap' ),
+						'Dentist'						=> __( 'Dentist', 'italystrap' ),
+						'DryCleaningOrLaundry'			=> __( 'Dry Cleaning Or Laundry', 'italystrap' ),
+						'Electrician'					=> __( 'Electrician', 'italystrap' ),
+						'ElectronicsStore'				=> __( 'Electronics Store', 'italystrap' ),
+						'EmergencyService'				=> __( 'Emergency Service', 'italystrap' ),
+						'EntertainmentBusiness'			=> __( 'Entertainment Business', 'italystrap' ),
+						'EventVenue'					=> __( 'Event Venue', 'italystrap' ),
+						'ExerciseGym'					=> __( 'Exercise Gym', 'italystrap' ),
+						'FinancialService'				=> __( 'Financial Service', 'italystrap' ),
+						'Florist'						=> __( 'Florist', 'italystrap' ),
+						'FurnitureStore'				=> __( 'Furniture Store', 'italystrap' ),
+						'FoodEstablishment'				=> __( 'Food Establishment', 'italystrap' ),
+						'GardenStore'					=> __( 'Garden Store', 'italystrap' ),
+						'GeneralContractor'				=> __( 'General Contractor', 'italystrap' ),
+						'GolfCourse'					=> __( 'Golf Course', 'italystrap' ),
+						'HairSalon'						=> __( 'Hair Salon', 'italystrap' ),
+						'HardwareStore'					=> __( 'Hardware Store', 'italystrap' ),
+						'HealthAndBeautyBusiness'		=> __( 'Health And Beauty Business', 'italystrap' ),
+						'HomeAndConstructionBusiness'	=> __( 'Home And Construction Business', 'italystrap' ),
+						'HobbyShop'						=> __( 'Hobby Shop', 'italystrap' ),
+						'HomeGoodsStore'				=> __( 'Home Goods Store', 'italystrap' ),
+						'Hospital'						=> __( 'Hospital', 'italystrap' ),
+						'Hotel'							=> __( 'Hotel', 'italystrap' ),
+						'HousePainter'					=> __( 'House Painter', 'italystrap' ),
+						'HVACBusiness'					=> __( 'HVAC Business', 'italystrap' ),
+						'InsuranceAgency'				=> __( 'Insurance Agency', 'italystrap' ),
+						'JewelryStore'					=> __( 'Jewelry Store', 'italystrap' ),
+						'LiquorStore'					=> __( 'Liquor Store', 'italystrap' ),
+						'Locksmith'						=> __( 'Locksmith', 'italystrap' ),
+						'LodgingBusiness'				=> __( 'Lodging Business', 'italystrap' ),
+						'MedicalClinic'					=> __( 'Medical Clinic', 'italystrap' ),
+						'MensClothingStore'				=> __( 'Mens Clothing Store', 'italystrap' ),
+						'MobilePhoneStore'				=> __( 'Mobile Phone Store', 'italystrap' ),
+						'Motel'							=> __( 'Motel', 'italystrap' ),
+						'MotorcycleDealer'				=> __( 'Motorcycle Dealer', 'italystrap' ),
+						'MotorcycleRepair'				=> __( 'Motorcycle Repair', 'italystrap' ),
+						'MovingCompany'					=> __( 'Moving Company', 'italystrap' ),
+						'MusicStore'					=> __( 'Music Store', 'italystrap' ),
+						'NailSalon'						=> __( 'Nail Salon', 'italystrap' ),
+						'NightClub'						=> __( 'Night Club', 'italystrap' ),
+						'Notary'						=> __( 'Notary Public', 'italystrap' ),
+						'OfficeEquipmentStore'			=> __( 'Office Equipment Store', 'italystrap' ),
+						'Optician'						=> __( 'Optician', 'italystrap' ),
+						'PetStore'						=> __( 'PetStore', 'italystrap' ),
+						'Physician'						=> __( 'Physician', 'italystrap' ),
+						'Plumber'						=> __( 'Plumber', 'italystrap' ),
+						'ProfessionalService'			=> __( 'Professional Service', 'italystrap' ),
+						'RealEstateAgent'				=> __( 'Real Estate Agent', 'italystrap' ),
+						'Residence'						=> __( 'Residence', 'italystrap' ),
+						'Restaurant'					=> __( 'Restaurant', 'italystrap' ),
+						'RoofingContractor'				=> __( 'Roofing Contractor', 'italystrap' ),
+						'RVPark'						=> __( 'RV Park', 'italystrap' ),
+						'School'						=> __( 'School', 'italystrap' ),
+						'SelfStorage'					=> __( 'Self Storage', 'italystrap' ),
+						'ShoeStore'						=> __( 'ShoeStore', 'italystrap' ),
+						'SkiResort'						=> __( 'Ski Resort', 'italystrap' ),
+						'SportingGoodsStore'			=> __( 'Sporting Goods Store', 'italystrap' ),
+						'SportsClub'					=> __( 'Sports Club', 'italystrap' ),
+						'Store'							=> __( 'Store', 'italystrap' ),
+						'TattooParlor'					=> __( 'Tattoo Parlor', 'italystrap' ),
+						'Taxi'							=> __( 'Taxi', 'italystrap' ),
+						'TennisComplex'					=> __( 'Tennis Complex', 'italystrap' ),
+						'TireShop'						=> __( 'Tire Shop', 'italystrap' ),
+						'ToyStore'						=> __( 'Toy Store', 'italystrap' ),
+						'TravelAgency'					=> __( 'Travel Agency', 'italystrap' ),
+						'VeterinaryCare'				=> __( 'Veterinary Care', 'italystrap' ),
+						'WholesaleStore'				=> __( 'Wholesale Store', 'italystrap' ),
+						'Winery'						=> __( 'Winery', 'italystrap' ),
 					),
 				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
@@ -124,8 +126,8 @@ return array(
 	 * CSS class for the container of this widget.
 	 */
 	'container_class'			=> array(
-				'name'		=> __( 'Container CSS class', 'ItalyStrap' ),
-				'desc'		=> __( 'CSS class for the container of this widget.', 'ItalyStrap' ),
+				'name'		=> __( 'Container CSS class', 'italystrap' ),
+				'desc'		=> __( 'CSS class for the container of this widget.', 'italystrap' ),
 				'id'		=> 'container_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat container_class',
@@ -139,25 +141,10 @@ return array(
 	 * Your company name.
 	 */
 	'company_name'			=> array(
-				'name'		=> __( 'Company name', 'ItalyStrap' ),
-				'desc'		=> __( 'Your company name.', 'ItalyStrap' ),
+				'name'		=> __( 'Company name', 'italystrap' ),
+				'desc'		=> __( 'Your company name.', 'italystrap' ),
 				'id'		=> 'company_name',
 				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> '',
-				'validate'	=> 'alpha_dash',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'info',
-				 ),
-
-	/**
-	 * The url of your logo.
-	 */
-	'logo_url'				=> array(
-				'name'		=> __( 'Logo URL', 'ItalyStrap' ),
-				'desc'		=> __( 'The url of your logo.', 'ItalyStrap' ),
-				'id'		=> 'logo_url',
-				'type'		=> 'media',
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
@@ -169,23 +156,85 @@ return array(
 	 * Check if you want to show the logo in the widget section.
 	 */
 	'show_logo'				=> array(
-				'name'		=> __( 'Show Logo', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show the logo in the widget section.', 'ItalyStrap' ),
+				'name'		=> __( 'Show Logo image', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show the logo in the widget section.', 'italystrap' ),
 				'id'		=> 'show_logo',
 				'type'		=> 'checkbox',
-				'class'		=> 'widefat',
-				'default'	=> 0,
+				// 'class'		=> 'widefat',
+				'default'	=> '',
+				'sanitize'	=> 'esc_attr',
+				'section'	=> 'display',
+				 ),
+
+	/**
+	 * Logo size.
+	 */
+	'logo_size'			=> array(
+				'name'		=> __( 'Logo size', 'ItalyStrap' ),
+				'desc'		=> __( 'Select the thumbnail size to display in posts list.', 'ItalyStrap' ),
+				'id'		=> 'logo_size',
+				'type'		=> 'select',
+				'class'		=> 'widefat logo_size',
+				'default'	=> 'thumbnail',
+				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
+				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'display',
+				 ),
+
+	/**
+	 * Logo class.
+	 */
+	'logo_class'				=> array(
+				'name'		=> __( 'Image Class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter the image class name.', 'ItalyStrap' ),
+				'id'		=> 'logo_class',
+				'type'		=> 'text',
+				'class'		=> 'widefat logo_class',
+				'class-p'	=> 'logo_class',
+				'default'	=> '',
 				'validate'	=> 'alpha_dash',
-				'sanitize'	=> 'strip_tags|esc_url',
-				'section'	=> 'info',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'display',
+				 ),
+
+	/**
+	 * The url of your logo.
+	 */
+	'logo_url'				=> array(
+				'name'		=> __( 'Logo URL (DEPRECATED)', 'italystrap' ),
+				'desc'		=> __( 'The url of your logo. (DEPRECATED)', 'italystrap' ),
+				'id'		=> 'logo_url',
+				'type'		=> 'text',
+				'class'		=> 'widefat',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'display',
+				 ),
+
+	/**
+	 * The ID of your logo.
+	 */
+	'logo_id'				=> array(
+				'name'		=> __( 'Logo image ID', 'italystrap' ),
+				'desc'		=> __( 'Add your logo image.', 'italystrap' ),
+				'id'		=> 'logo_id',
+				'type'		=> 'media',
+				'class'		=> 'widefat ids',
+				'class-p'	=> 'hidden',
+				'default'	=> '',
+				'validate'	=> 'alpha_dash',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'display',
 				 ),
 
 	/**
 	 * Your street address.
 	 */
 	'street_address'		=> array(
-				'name'		=> __( 'Street Address', 'ItalyStrap' ),
-				'desc'		=> __( 'Your street address.', 'ItalyStrap' ),
+				'name'		=> __( 'Street Address', 'italystrap' ),
+				'desc'		=> __( 'Your street address.', 'italystrap' ),
 				'id'		=> 'street_address',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
@@ -199,8 +248,8 @@ return array(
 	 * Your postal code.
 	 */
 	'postal_code'			=> array(
-				'name'		=> __( 'Zipcode/Postal Code', 'ItalyStrap' ),
-				'desc'		=> __( 'Your postal code.', 'ItalyStrap' ),
+				'name'		=> __( 'Zipcode/Postal Code', 'italystrap' ),
+				'desc'		=> __( 'Your postal code.', 'italystrap' ),
 				'id'		=> 'postal_code',
 				'type'		=> 'number',
 				'class'		=> 'widefat',
@@ -214,8 +263,8 @@ return array(
 	 * Your city or locality.
 	 */
 	'locality'				=> array(
-				'name'		=> __( 'City/Locality', 'ItalyStrap' ),
-				'desc'		=> __( 'Your city or locality.', 'ItalyStrap' ),
+				'name'		=> __( 'City/Locality', 'italystrap' ),
+				'desc'		=> __( 'Your city or locality.', 'italystrap' ),
 				'id'		=> 'locality',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
@@ -229,8 +278,8 @@ return array(
 	 * Your State / Region.
 	 */
 	'region'				=> array(
-				'name'		=> __( 'State/Region', 'ItalyStrap' ),
-				'desc'		=> __( 'Your State / Region.', 'ItalyStrap' ),
+				'name'		=> __( 'State/Region', 'italystrap' ),
+				'desc'		=> __( 'Your State / Region.', 'italystrap' ),
 				'id'		=> 'region',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
@@ -244,8 +293,8 @@ return array(
 	 * Your Country.
 	 */
 	'country'				=> array(
-				'name'		=> __( 'Country', 'ItalyStrap' ),
-				'desc'		=> __( 'Your Country.', 'ItalyStrap' ),
+				'name'		=> __( 'Country', 'italystrap' ),
+				'desc'		=> __( 'Your Country.', 'italystrap' ),
 				'id'		=> 'country',
 				'type'		=> 'text',
 				'class'		=> 'widefat',
@@ -259,8 +308,8 @@ return array(
 	 * Your telephone number.
 	 */
 	'tel'					=> array(
-				'name'		=> __( 'Telephone number', 'ItalyStrap' ),
-				'desc'		=> __( 'Your telephone number.', 'ItalyStrap' ),
+				'name'		=> __( 'Telephone number', 'italystrap' ),
+				'desc'		=> __( 'Your telephone number.', 'italystrap' ),
 				'id'		=> 'tel',
 				'type'		=> 'tel',
 				'class'		=> 'widefat',
@@ -274,8 +323,8 @@ return array(
 	 * Your mobile number.
 	 */
 	'mobile'				=> array(
-				'name'		=> __( 'Mobile number', 'ItalyStrap' ),
-				'desc'		=> __( 'Your mobile number.', 'ItalyStrap' ),
+				'name'		=> __( 'Mobile number', 'italystrap' ),
+				'desc'		=> __( 'Your mobile number.', 'italystrap' ),
 				'id'		=> 'mobile',
 				'type'		=> 'tel',
 				'class'		=> 'widefat',
@@ -289,8 +338,8 @@ return array(
 	 * Your fax number.
 	 */
 	'fax'					=> array(
-				'name'		=> __( 'Fax number', 'ItalyStrap' ),
-				'desc'		=> __( 'Your fax number.', 'ItalyStrap' ),
+				'name'		=> __( 'Fax number', 'italystrap' ),
+				'desc'		=> __( 'Your fax number.', 'italystrap' ),
 				'id'		=> 'fax',
 				'type'		=> 'tel',
 				'class'		=> 'widefat',
@@ -304,8 +353,8 @@ return array(
 	 * Your email.
 	 */
 	'email'					=> array(
-				'name'		=> __( 'Email', 'ItalyStrap' ),
-				'desc'		=> __( 'Your email.', 'ItalyStrap' ),
+				'name'		=> __( 'Email', 'italystrap' ),
+				'desc'		=> __( 'Your email.', 'italystrap' ),
 				'id'		=> 'email',
 				'type'		=> 'email',
 				'class'		=> 'widefat',
@@ -319,8 +368,8 @@ return array(
 	 * Your taxID.
 	 */
 	'taxID'					=> array(
-				'name'		=> __( 'TaxID', 'ItalyStrap' ),
-				'desc'		=> __( 'Your taxID.', 'ItalyStrap' ),
+				'name'		=> __( 'TaxID', 'italystrap' ),
+				'desc'		=> __( 'Your taxID.', 'italystrap' ),
 				'id'		=> 'taxID',
 				'type'		=> 'number',
 				'class'		=> 'widefat',
@@ -334,8 +383,8 @@ return array(
 	 * Your Facebook page url (hidden).
 	 */
 	'facebook'				=> array(
-				'name'		=> __( 'Facebook page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your Facebook page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'Facebook page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your Facebook page url (hidden).', 'italystrap' ),
 				'id'		=> 'facebook',
 				'type'		=> 'url',
 				'class'		=> 'widefat',
@@ -349,8 +398,8 @@ return array(
 	 * Your twitter page url (hidden).
 	 */
 	'twitter'				=> array(
-				'name'		=> __( 'Twitter page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your twitter page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'Twitter page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your twitter page url (hidden).', 'italystrap' ),
 				'id'		=> 'twitter',
 				'type'		=> 'url',
 				'class'		=> 'widefat',
@@ -365,8 +414,8 @@ return array(
 	 * Your googleplus page url (hidden).
 	 */
 	'googleplus'				=> array(
-				'name'		=> __( 'Googleplus page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your googleplus page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'Googleplus page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your googleplus page url (hidden).', 'italystrap' ),
 				'id'		=> 'googleplus',
 				'type'		=> 'url',
 				'class'		=> 'widefat',
@@ -380,8 +429,8 @@ return array(
 	 * Your pinterest page url (hidden).
 	 */
 	'pinterest'				=> array(
-				'name'		=> __( 'Pinterest page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your pinterest page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'Pinterest page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your pinterest page url (hidden).', 'italystrap' ),
 				'id'		=> 'pinterest',
 				'type'		=> 'url',
 				'class'		=> 'widefat',
@@ -395,8 +444,8 @@ return array(
 	 * Your instagram page url (hidden).
 	 */
 	'instagram'				=> array(
-				'name'		=> __( 'Instagram page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your instagram page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'Instagram page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your instagram page url (hidden).', 'italystrap' ),
 				'id'		=> 'instagram',
 				'type'		=> 'url',
 				'class'		=> 'widefat',
@@ -410,8 +459,8 @@ return array(
 	 * Your youtube page url (hidden).
 	 */
 	'youtube'				=> array(
-				'name'		=> __( 'YouTube page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your youtube page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'YouTube page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your youtube page url (hidden).', 'italystrap' ),
 				'id'		=> 'youtube',
 				'type'		=> 'url',
 				'class'		=> 'widefat',
@@ -425,8 +474,8 @@ return array(
 	 * Your linkedin page url (hidden).
 	 */
 	'linkedin'				=> array(
-				'name'		=> __( 'Linkedin page (hidden)', 'ItalyStrap' ),
-				'desc'		=> __( 'Your linkedin page url (hidden).', 'ItalyStrap' ),
+				'name'		=> __( 'Linkedin page (hidden)', 'italystrap' ),
+				'desc'		=> __( 'Your linkedin page url (hidden).', 'italystrap' ),
 				'id'		=> 'linkedin',
 				'type'		=> 'url',
 				'class'		=> 'widefat',

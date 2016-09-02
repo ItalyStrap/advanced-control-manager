@@ -1,105 +1,82 @@
 <?php
 /**
- * This is a template content for outputting the vCard Business Widget and Shortcode
+ * Template for vCard Business Widget and Shortcode
  *
- * @package ItalyStrap\Core
+ * @package ItalyStrap
  */
 
+namespace ItalyStrap;
+
+/**
+ * HTML attribute for ul container
+ *
+ * @var array
+ */
+$ul_attr = array(
+	'id'	=> 'schema',
+	'class'	=> 'list-unstyled schema' . esc_attr( $this->args['container_class'] ),
+	'itemtype'	=> 'http://schema.org/' . esc_textarea( $this->args['schema'] ),
+	'itemscope'=> true,
+	);
+
 ?>
-<ul itemscope itemtype="http://schema.org/<?php esc_textarea( $instance['schema'] ); ?>" class="list-unstyled schema <?php echo esc_attr( $instance['container_class'] ); ?>" id="schema">
 
-<?php if ( $instance['show_logo'] && $instance['logo_url'] ) : ?>
+<ul <?php Core\get_attr( 'vcard_container', $ul_attr, true ); ?>>
 
-	<img src="<?php echo esc_url( $instance['logo_url'] );?>" alt="<?php echo esc_textarea( $instance['company_name'] ); ?>" itemprop="logo" />
+<?php if ( $this->args['show_logo'] && $this->args['logo_id'] ) : ?>
+	<li>
+		<figure class="vcard-logo">
+			<?php
+			$attr = array(
+				'itemprop'	=> 'image',
+				'class'		=> esc_attr( $this->args['logo_class'] ),
+				'alt'		=> $this->get_company_name(),
+			);
+			$the_post_thumbnail = wp_get_attachment_image( $this->args['logo_id'] , $this->args['logo_size'], false, $attr );
+			echo apply_filters( 'italystrap_vcard_logo', $the_post_thumbnail ); // XSS ok.
+			?>
+		</figure>
+	</li>
 
-<?php elseif ( $instance['logo_url'] ) : ?>
+<?php elseif ( $this->args['logo_id'] ) : ?>
 
-	<meta  itemprop="logo" content="<?php echo esc_url( $instance['logo_url'] );?>"/>
+	<?php $logo_url = wp_get_attachment_image_src( $this->args['logo_id'] ); ?>
+
+	<meta  itemprop="logo" content="<?php echo esc_url( $logo_url[0] );?>"/>
 
 <?php endif; ?>
 
 <li>
 	<strong>
 		<a itemprop="url" href="<?php echo home_url( '/' ); // XSS ok. ?>">
-			<span itemprop="name">
-				<?php
-
-				if ( $instance['company_name'] ) {
-					echo esc_textarea( $instance['company_name'] );
-				} else {
-					echo bloginfo( 'name' );
-				}
-
-				?>
-			</span>
+			<span itemprop="name"><?php $this->get_company_name( true ); ?></span>
 		</a>
 	</strong>
 </li>
 <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 	<li itemprop="streetAddress">
-		<?php echo esc_textarea( $instance['street_address'] ); ?>
+		<?php echo esc_textarea( $this->args['street_address'] ); ?>
 	</li>
 	<li>
-		<span itemprop="postalCode"><?php echo esc_textarea( $instance['postal_code'] ) . ' ';?></span>
-		<span itemprop="addressLocality"><?php echo esc_textarea( $instance['locality'] ); ?></span>
+		<span itemprop="postalCode"><?php echo esc_textarea( $this->args['postal_code'] ) . ' ';?></span>
+		<span itemprop="addressLocality"><?php echo esc_textarea( $this->args['locality'] ); ?></span>
 	</li>
-	<?php if ( $instance['region'] ) : ?>
-	<li itemprop="addressRegion"><?php echo esc_textarea( $instance['region'] ); ?></li>
+
+	<?php if ( $this->args['region'] ) : ?>
+		<li itemprop="addressRegion"><?php echo esc_textarea( $this->args['region'] ); ?></li>
 	<?php endif; ?>
-	<?php if ( $instance['country'] ) : ?>
-	<li itemprop="addressCountry"><?php echo esc_textarea( $instance['country'] ); ?></li>
+
+	<?php if ( $this->args['country'] ) : ?>
+		<li itemprop="addressCountry"><?php echo esc_textarea( $this->args['country'] ); ?></li>
 	<?php endif; ?>
+
 </div>
 
 <?php
 
-if ( $instance['tel'] ) {
-	echo '<li class="telephone" itemprop="telephone">' . esc_textarea( $instance['tel'] ) . '</li>';
-}
+$this->get_itemprop_contacts( true );
 
-if ( $instance['mobile'] ) {
-	echo '<li class="telephone" itemprop="telephone">' . esc_textarea( $instance['mobile'] ) . '</li>';
-}
-
-if ( $instance['fax'] ) {
-	echo '<li class="faxNumber" itemprop="faxNumber">' . esc_textarea( $instance['fax'] ) . '</li>';
-}
-
-if ( $instance['email'] ) {
-	echo '<li class="email" itemprop="email"><a href="mailto:' . antispambot( is_email( $instance['email'], 1 ) ) . '">' . antispambot( is_email( $instance['email'] ) ) . '</a></li>'; // XSS ok.
-}
-
-if ( $instance['taxID'] ) {
-	echo '<li class="taxID" itemprop="taxID">' . esc_textarea( $instance['taxID'] ) . '</li>';
-}
-
-if ( $instance['facebook'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['facebook'] ) . '"/>';
-}
-
-if ( $instance['twitter'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['twitter'] ) . '"/>';
-}
-
-if ( $instance['googleplus'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['googleplus'] ) . '"/>';
-}
-
-if ( $instance['pinterest'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['pinterest'] ) . '"/>';
-}
-
-if ( $instance['instagram'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['instagram'] ) . '"/>';
-}
-
-if ( $instance['youtube'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['youtube'] ) . '"/>';
-}
-
-if ( $instance['linkedin'] ) {
-	echo '<meta itemprop="sameAs" content="' . esc_url( $instance['linkedin'] ) . '"/>';
-}
+$this->get_itemprop_sameas( true );
 
 ?>
 </ul>

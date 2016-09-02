@@ -57,6 +57,7 @@ return array(
     'ItalyStrap\\Core\\Query_Posts' => $baseDir . '/core/query/class-query-posts.php',
     'ItalyStrap\\Core\\Query_Product' => $baseDir . '/core/query/class-query-product.php',
     'ItalyStrap\\Core\\Sitemaps_HTML' => $baseDir . '/core/class-sitemaps-html.php',
+    'ItalyStrap\\Core\\VCard' => $baseDir . '/core/vcard/class-vcard.php',
     'ItalyStrap\\Core\\Vcard_Widget' => $baseDir . '/deprecated/class-widget-vcard.php',
     'ItalyStrap\\Core\\Web_Font_loading' => $baseDir . '/core/class-web-font-loading.php',
     'ItalyStrap\\Core\\Widget' => $baseDir . '/widget/class-abstract-widget.php',

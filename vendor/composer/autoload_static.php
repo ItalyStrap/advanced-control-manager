@@ -82,6 +82,7 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Core\\Query_Posts' => __DIR__ . '/../..' . '/core/query/class-query-posts.php',
         'ItalyStrap\\Core\\Query_Product' => __DIR__ . '/../..' . '/core/query/class-query-product.php',
         'ItalyStrap\\Core\\Sitemaps_HTML' => __DIR__ . '/../..' . '/core/class-sitemaps-html.php',
+        'ItalyStrap\\Core\\VCard' => __DIR__ . '/../..' . '/core/vcard/class-vcard.php',
         'ItalyStrap\\Core\\Vcard_Widget' => __DIR__ . '/../..' . '/deprecated/class-widget-vcard.php',
         'ItalyStrap\\Core\\Web_Font_loading' => __DIR__ . '/../..' . '/core/class-web-font-loading.php',
         'ItalyStrap\\Core\\Widget' => __DIR__ . '/../..' . '/widget/class-abstract-widget.php',
