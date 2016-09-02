@@ -1,9 +1,11 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Array definition for Posts default options
  *
  * @package ItalyStrap
  */
+
+namespace ItalyStrap\Core;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -395,7 +397,6 @@ return array(
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_first_thumbnail_bigger',
 				'default'	=> '',
-				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
 				'section'	=> 'display',
 				 ),
@@ -419,12 +420,12 @@ return array(
 	/**
 	 * Custom CSS class for widget.
 	 */
-	'thumb_url'				=> array(
+	'thumb_id'				=> array(
 				'name'		=> __( 'Enter ID of a fall-back thumbnail (optional)', 'ItalyStrap' ),
 				'desc'		=> __( 'Add a fall-back thumbnail in case no one is found.', 'ItalyStrap' ),
-				'id'		=> 'thumb_url',
+				'id'		=> 'thumb_id',
 				'type'		=> 'media',
-				'class'		=> 'widefat thumb_url ids',
+				'class'		=> 'widefat thumb_id ids',
 				'class-p'	=> 'hidden',
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
