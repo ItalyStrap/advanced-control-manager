@@ -80,10 +80,13 @@ module.exports = function(grunt) {
 		},
 
 		compass:{ // https://github.com/gruntjs/grunt-contrib-compass
-			src:{
+			admin:{
 				options: {
 					sassDir:['admin/sass'],
 					cssDir:['admin/css'],
+					imagesDir:['admin/img'],
+					httpPath:['../'], // http://stackoverflow.com/questions/13888978/how-to-out-put-images-for-sprite-in-compass-sass
+					relativeAssets:true,
 					outputStyle: 'compressed'
 				}
 			},

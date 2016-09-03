@@ -44,6 +44,35 @@
 }
 
 /**
+ * Difficulty level color
+ */
+.easy > td,
+aside .easy{
+	background-color: #c8e9fa;
+}
+.medium > td,
+aside .medium{
+	background-color: #fffbcb;
+}
+.hard > td,
+aside .hard{
+	background-color: #f9c9b3;
+}
+
+aside .easy,
+aside .medium,
+aside .hard{
+	padding: 5px;
+}
+
+/**
+ * Sprite for difficulty icons
+ */
+// @import "compass/utilities/sprites";
+// @import "difficulty-sprite/*.png";
+// @include all-difficulty-sprite-sprites;
+
+/**
  * This stylesheet is used to style the admin option form of the plugin.
  */
 
