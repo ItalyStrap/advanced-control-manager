@@ -205,6 +205,43 @@ abstract class A_Admin implements I_Admin{
 	}
 
 	/**
+	 * Add information to the plugin description in plugin.php page
+	 *
+	 * @param array  $plugin_meta An array of the plugin's metadata,
+	 *                            including the version, author,
+	 *                            author URI, and plugin URI.
+	 * @param string $plugin_file Path to the plugin file, relative to the plugins directory.
+	 * @param array  $plugin_data An array of plugin data.
+	 * @param string $status      Status of the plugin. Defaults are 'All', 'Active',
+	 *                            'Inactive', 'Recently Activated', 'Upgrade',
+	 *                            'Must-Use', 'Drop-ins', 'Search'.
+	 * @return array              Return the new array
+	 */
+	public function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
+
+		if ( ! isset( $this->args['basename'] ) ) {
+			return $plugin_meta;
+		}
+
+		if ( $this->args['basename'] !== $plugin_file ) {
+			return $plugin_meta;
+		}
+
+		if ( ! isset( $this->args['plugin_row_meta'] ) ) {
+			return $plugin_meta;
+		}
+
+		if ( ! is_array( $this->args['plugin_row_meta'] ) ) {
+			return $plugin_meta;
+		}
+
+		$plugin_meta = array_merge( $plugin_meta, $this->args['plugin_row_meta'] );
+
+		return $plugin_meta;
+	
+	}
+
+	/**
 	 * Prints out all settings sections added to a particular settings page
 	 *
 	 * Part of the Settings API. Use this in a settings page callback function

@@ -62,6 +62,8 @@ class Admin extends A_Admin{
 		 */
 		add_filter( 'plugin_action_links_' . ITALYSTRAP_BASENAME, array( $this, 'plugin_action_links' ) );
 
+		add_filter( 'plugin_row_meta' , array( $this, 'plugin_row_meta' ), 10, 4 );
+
 	}
 
 	/**

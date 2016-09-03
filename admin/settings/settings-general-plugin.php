@@ -16,11 +16,18 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 return array(
+	'basename'				=> ITALYSTRAP_BASENAME,
 	'options_name'			=> 'italystrap_settings',
 	'options_group'			=> 'italystrap_options_group',
 	'admin_view_path'		=> ITALYSTRAP_PLUGIN_PATH . 'admin/view/',
 	'plugin_action_links'	=> array(
-		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Documentation','italystrap' ) . '</a>',
+		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
+		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Doc','italystrap' ) . '</a>',
+		'<a href="http://www.italystrap.it" target="_blank">ItalyStrap</a>',
+		),
+	'plugin_row_meta'		=> array(
+		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
+		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Doc','italystrap' ) . '</a>',
 		'<a href="http://www.italystrap.it" target="_blank">ItalyStrap</a>',
 		),
 	'menu_page'				=> array(
