@@ -321,18 +321,22 @@ class Fields extends A_Fields {
 	 * @return string      Return the HTML Field Checkbox
 	 */
 	public function field_type_checkbox( array $key, $out = '' ) {
-// var_dump($key);
-// var_dump($key['id']);
-// var_dump($key['value']);
+
 		$out .= ' <input type="checkbox" ';
 
 		if ( isset( $key['class'] ) ) {
-			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
+			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
+		}
 
 		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
-// var_dump( $key['value'] );
-		if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
-			$out .= ' checked="checked" '; }
+
+		// if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
+		// 	$out .= ' checked="checked" ';
+		// }
+
+		if ( ( ! isset( $key['value'] ) && ! empty( $key['default'] ) ) || ( isset( $key['value']  ) && ! empty( $key['value'] ) ) ) {
+			$out .= ' checked="checked" ';
+		}
 
 		/**
 		 * Da vedere se utilizzabile per fare il controllo sulle checkbox.
@@ -344,7 +348,7 @@ class Fields extends A_Fields {
 		 */
 
 		$out .= ' /> ';
-// var_dump($out);
+
 		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		if ( isset( $key['desc'] ) ) {
