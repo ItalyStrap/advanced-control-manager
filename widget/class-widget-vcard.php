@@ -6,7 +6,14 @@
  * @since 2.0.0
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Widget;
+
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
+
+use \ItalyStrap\Core\VCard;
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/

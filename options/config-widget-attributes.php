@@ -5,8 +5,6 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Widget;
-
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }

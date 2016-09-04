@@ -97,25 +97,25 @@ class Init {
 
 		foreach ( $widget_list as $key => $value ) {
 			if ( ! empty( $this->options[ $key ] ) ) {
-				\register_widget( 'ItalyStrap\Core\\' . $value );
+				\register_widget( 'ItalyStrap\Widget\\' . $value );
 			}
 		}
 
 		if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
 			if ( isset( $this->options['widget_image'] ) ) {
-				\register_widget( 'ItalyStrap\Core\Widget_Image' );
+				\register_widget( 'ItalyStrap\Widget\Widget_Image' );
 			}
 
-			// \register_widget( 'ItalyStrap\Core\Widget_Breadcrumbs' );
+			\register_widget( 'ItalyStrap\Widget\Widget_Breadcrumbs' );
 
-			if ( isset( $this->options['widget_product'] ) ) {
-				$widget_product = new Widget_Product;
-				// register_widget( 'ItalyStrap\Core\Widget_Product' );
-				register_widget( $widget_product );
-			}
+			// if ( isset( $this->options['widget_product'] ) ) {
+				// $widget_product = new Widget_Product;
+				\register_widget( 'ItalyStrap\Widget\Widget_Product' );
+				// register_widget( $widget_product );
+			// }
 
-			\register_widget( 'ItalyStrap\Core\Widget_Taxonomies_Posts' );
+			\register_widget( 'ItalyStrap\Widget\Widget_Taxonomies_Posts' );
 
 		}
 
@@ -147,8 +147,11 @@ class Init {
 
 		$css = Inline_Style::get();
 
-		if ( $css ) { echo '<style>' . esc_attr( $css ) . '</style>';
-		} else { echo ''; }
+		if ( $css ) {
+			echo '<style>' . esc_attr( $css ) . '</style>';
+		} else {
+			echo '';
+		}
 	}
 } // End Init
 

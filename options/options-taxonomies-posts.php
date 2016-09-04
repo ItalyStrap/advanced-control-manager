@@ -1,11 +1,11 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Array definition for Posts default options
  *
  * @package ItalyStrap
  */
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
@@ -378,7 +378,7 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat thumb_size',
 				'default'	=> 'thumbnail',
-				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
+				'options'	=> ( ( is_admin() ) ? \ItalyStrap\Core\get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',

@@ -1,4 +1,16 @@
-<?php namespace ItalyStrap\Core;
+<?php
+/**
+ * Widget API: Widget Image
+ *
+ * @package ItalyStrap
+ * @since 2.0.0
+ */
+
+namespace ItalyStrap\Widget;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
 
 use \ItalyStrapAdminMediaSettings;
 

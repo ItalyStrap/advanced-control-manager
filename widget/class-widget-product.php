@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php
 /**
  * Widget API: Widget_Product class
  *
@@ -6,9 +6,13 @@
  * @since 4.0.0
  */
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+namespace ItalyStrap\Widget;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
+
+use \ItalyStrap\Core\Query_Posts;
 
 /**
  * Widget Class for post type

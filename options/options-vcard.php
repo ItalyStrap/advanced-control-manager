@@ -5,9 +5,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
-
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
@@ -163,7 +161,7 @@ return array(
 				// 'class'		=> 'widefat',
 				'default'	=> '',
 				'sanitize'	=> 'esc_attr',
-				'section'	=> 'display',
+				'section'	=> 'logo',
 				 ),
 
 	/**
@@ -176,18 +174,18 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat logo_size',
 				'default'	=> 'thumbnail',
-				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
+				'options'	=> ( ( is_admin() ) ? \ItalyStrap\Core\get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'display',
+				'section'	=> 'logo',
 				 ),
 
 	/**
 	 * Logo class.
 	 */
 	'logo_class'				=> array(
-				'name'		=> __( 'Image Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image class name.', 'ItalyStrap' ),
+				'name'		=> __( 'Logo css class', 'ItalyStrap' ),
+				'desc'		=> __( 'Enter logo css class.', 'ItalyStrap' ),
 				'id'		=> 'logo_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat logo_class',
@@ -195,7 +193,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'display',
+				'section'	=> 'logo',
 				 ),
 
 	/**
@@ -210,7 +208,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'display',
+				'section'	=> 'logo',
 				 ),
 
 	/**
@@ -226,7 +224,7 @@ return array(
 				'default'	=> '',
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'display',
+				'section'	=> 'logo',
 				 ),
 
 	/**

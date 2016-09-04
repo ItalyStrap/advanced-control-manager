@@ -5,9 +5,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
-
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
@@ -381,7 +379,7 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat thumb_size',
 				'default'	=> 'thumbnail',
-				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
+				'options'	=> ( ( is_admin() ) ? \ItalyStrap\Core\get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
@@ -411,7 +409,7 @@ return array(
 				'type'		=> 'select',
 				'class'		=> 'widefat first_thumb_size',
 				'default'	=> 'medium',
-				'options'	=> ( ( is_admin() ) ? get_image_size_array() : null ),
+				'options'	=> ( ( is_admin() ) ? \ItalyStrap\Core\get_image_size_array() : null ),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',

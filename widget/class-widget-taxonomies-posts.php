@@ -6,9 +6,9 @@
  * @since 2.0.0
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Widget;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 

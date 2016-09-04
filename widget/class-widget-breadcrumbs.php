@@ -1,7 +1,16 @@
 <?php
-
+/**
+ * Widget API: Widget Breadcrumbs
+ *
+ * @package ItalyStrap
+ * @since 2.0.0
+ */
 
 namespace ItalyStrap\Widget;
+
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/

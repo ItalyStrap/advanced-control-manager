@@ -390,7 +390,7 @@ module.exports = function(grunt) {
 					'!composer.json',
 					'!Gruntfile.js',
 					'!package.json',
-					'!README.md',
+					// '!README.md',
 					'!composer.lock',
 					// '!vendor/mobiledetect/**'
 					],
@@ -409,7 +409,7 @@ module.exports = function(grunt) {
 					'!composer.json',
 					'!Gruntfile.js',
 					'!package.json',
-					'!README.md',
+					// '!README.md',
 					'!composer.lock',
 					// '!vendor/mobiledetect/**'
 					],
@@ -433,7 +433,7 @@ module.exports = function(grunt) {
 					'!composer.json',
 					'!Gruntfile.js',
 					'!package.json',
-					'!README.md',
+					// '!README.md',
 					'!composer.lock',
 					// 'vendor/mobiledetect/namespaced/Detection/**',
 					// 'vendor/mobiledetect/mobiledetectlib/Mobile_Detect.php',

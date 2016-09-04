@@ -5,7 +5,9 @@
  * @package ItalyStrap
  */
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) die();
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
+	die();
+}
 
 /**
  * Definition array() with all the options connected to the
