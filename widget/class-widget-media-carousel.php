@@ -41,7 +41,7 @@ class Widget_Media_Carousel extends Widget {
 		$image_size_media = new ItalyStrapAdminMediaSettings;
 		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
-		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ) );
+		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php' ) );
 
 		/**
 		 * Configure widget array.

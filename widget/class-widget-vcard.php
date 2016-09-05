@@ -61,7 +61,7 @@ class Widget_VCard extends Widget {
 		 */
 		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
-		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' ) );
+		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' ) );
 
 		/**
 		 * Configure widget array.
@@ -95,7 +95,7 @@ class Widget_VCard extends Widget {
 
 		$vcard = new VCard();
 
-		$vcard->get_args( 'widget_vcard', $instance, require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' ) );
+		$vcard->get_args( 'widget_vcard', $instance, require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' ) );
 
 		return $vcard->output();
 

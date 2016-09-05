@@ -38,7 +38,7 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 			/**
 			 * Define data by given attributes.
 			 */
-			$this->fields = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' );
+			$this->fields = require( ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php' );
 
 			$this->carousel_options = array(
 				'orderby'		=> array(
@@ -104,7 +104,7 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 
 			}
 
-			$translation_array = json_encode( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ) );
+			$translation_array = json_encode( require( ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php' ) );
 			// var_dump( $translation_array ); die();
 			wp_localize_script( 'italystrap-gallery-settings', 'gallery_fields', $translation_array );
 

@@ -124,8 +124,8 @@ abstract class Carousel {
 		 *
 		 * @todo Usare il file options-media-carousel.php
 		 */
-		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ), $args, 'gallery' );
-		// $args = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' ), $args, 'gallery' );
+		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php' ), $args, 'gallery' );
+		// $args = shortcode_atts( require( ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php' ), $args, 'gallery' );
 		$args = apply_filters( 'italystrap_carousel_attributes', $args );
 
 		return $args;

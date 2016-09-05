@@ -42,7 +42,7 @@ class Widget_Media_Carousel extends Widget {
 		/**
 		 * Define data by given attributes.
 		 */
-		$this->fields = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-carousel.php' );
+		$this->fields = require( ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php' );
 
 		$this->carousel_options = array(
 			'orderby'		=> array(

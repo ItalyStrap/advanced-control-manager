@@ -33,7 +33,7 @@ class test_widgetTest extends \Codeception\TestCase\WPTestCase
 
 		}
 
-		// $pair = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-vcard.php' );
+		// $pair = require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' );
 
 		// foreach ( $pair as $key => $default ) {
 		// 	$this->assertTrue( isset( $default['default'] ) );

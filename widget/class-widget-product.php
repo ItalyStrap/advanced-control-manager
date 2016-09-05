@@ -74,7 +74,7 @@ class Widget_Product extends Widget {
 			'label'				=> __( 'ItalyStrap Product', 'italystrap' ),
 			// Widget Backend Description.
 			'description'		=> __( 'Displays list of WC product with an array of options', 'italystrap' ),
-			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ) ),
+			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 		 );
 

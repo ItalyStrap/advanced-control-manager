@@ -57,7 +57,7 @@ class Query_Posts extends Query {
 		/**
 		 * Define data by given attributes.
 		 */
-		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ), $args, 'query_posts' );
+		$args = shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/posts.php' ), $args, 'query_posts' );
 
 		$args = apply_filters( 'italystrap_query_posts_args', $args );
 

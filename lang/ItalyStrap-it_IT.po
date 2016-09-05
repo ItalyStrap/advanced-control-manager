@@ -219,359 +219,359 @@ msgstr ""
 msgid "Authors:"
 msgstr "Autori:"
 
-#: options/options-vcard-widget.php:16
+#: config/vcard-widget.php:16
 msgid "Local Business - (Default)"
 msgstr ""
 
-#: options/options-vcard-widget.php:17
+#: config/vcard-widget.php:17
 msgid "Organization - (For services and home offices)"
 msgstr ""
 
-#: options/options-vcard-widget.php:18
+#: config/vcard-widget.php:18
 msgid "Accounting Service"
 msgstr ""
 
-#: options/options-vcard-widget.php:19
+#: config/vcard-widget.php:19
 msgid "Auto Body Shop"
 msgstr ""
 
-#: options/options-vcard-widget.php:20
+#: config/vcard-widget.php:20
 msgid "Auto Dealer"
 msgstr ""
 
-#: options/options-vcard-widget.php:21
+#: config/vcard-widget.php:21
 msgid "Auto Parts Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:22
+#: config/vcard-widget.php:22
 msgid "Auto Rental"
 msgstr ""
 
-#: options/options-vcard-widget.php:23
+#: config/vcard-widget.php:23
 msgid "Auto Repair"
 msgstr ""
 
-#: options/options-vcard-widget.php:24
+#: config/vcard-widget.php:24
 msgid "Auto Wash"
 msgstr ""
 
-#: options/options-vcard-widget.php:25
+#: config/vcard-widget.php:25
 msgid "Attorney"
 msgstr ""
 
-#: options/options-vcard-widget.php:26
+#: config/vcard-widget.php:26
 msgid "Bakery"
 msgstr ""
 
-#: options/options-vcard-widget.php:27
+#: config/vcard-widget.php:27
 msgid "Bar Or Pub"
 msgstr ""
 
-#: options/options-vcard-widget.php:28
+#: config/vcard-widget.php:28
 msgid "Beauty Salon"
 msgstr ""
 
-#: options/options-vcard-widget.php:29
+#: config/vcard-widget.php:29
 msgid "Bed &amp; Breakfast"
 msgstr ""
 
-#: options/options-vcard-widget.php:30
+#: config/vcard-widget.php:30
 msgid "Bicycle Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:31
+#: config/vcard-widget.php:31
 msgid "Book Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:32
+#: config/vcard-widget.php:32
 msgid "Cafe Or Coffee Shop"
 msgstr ""
 
-#: options/options-vcard-widget.php:33
+#: config/vcard-widget.php:33
 msgid "Child Care"
 msgstr ""
 
-#: options/options-vcard-widget.php:34
+#: config/vcard-widget.php:34
 msgid "Clothing Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:35
+#: config/vcard-widget.php:35
 msgid "Computer Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:36
+#: config/vcard-widget.php:36
 msgid "Day Spa"
 msgstr ""
 
-#: options/options-vcard-widget.php:37
+#: config/vcard-widget.php:37
 msgid "Dentist"
 msgstr ""
 
-#: options/options-vcard-widget.php:38
+#: config/vcard-widget.php:38
 msgid "Dry Cleaning Or Laundry"
 msgstr ""
 
-#: options/options-vcard-widget.php:39
+#: config/vcard-widget.php:39
 msgid "Electrician"
 msgstr ""
 
-#: options/options-vcard-widget.php:40
+#: config/vcard-widget.php:40
 msgid "Electronics Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:41
+#: config/vcard-widget.php:41
 msgid "Emergency Service"
 msgstr ""
 
-#: options/options-vcard-widget.php:42
+#: config/vcard-widget.php:42
 msgid "Entertainment Business"
 msgstr ""
 
-#: options/options-vcard-widget.php:43
+#: config/vcard-widget.php:43
 msgid "Event Venue"
 msgstr ""
 
-#: options/options-vcard-widget.php:44
+#: config/vcard-widget.php:44
 msgid "Exercise Gym"
 msgstr ""
 
-#: options/options-vcard-widget.php:45
+#: config/vcard-widget.php:45
 msgid "Financial Service"
 msgstr ""
 
-#: options/options-vcard-widget.php:46
+#: config/vcard-widget.php:46
 msgid "Florist"
 msgstr ""
 
-#: options/options-vcard-widget.php:47
+#: config/vcard-widget.php:47
 msgid "Furniture Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:48
+#: config/vcard-widget.php:48
 msgid "Food Establishment"
 msgstr ""
 
-#: options/options-vcard-widget.php:49
+#: config/vcard-widget.php:49
 msgid "Garden Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:50
+#: config/vcard-widget.php:50
 msgid "General Contractor"
 msgstr ""
 
-#: options/options-vcard-widget.php:51
+#: config/vcard-widget.php:51
 msgid "Golf Course"
 msgstr ""
 
-#: options/options-vcard-widget.php:52
+#: config/vcard-widget.php:52
 msgid "Hair Salon"
 msgstr ""
 
-#: options/options-vcard-widget.php:53
+#: config/vcard-widget.php:53
 msgid "Hardware Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:54
+#: config/vcard-widget.php:54
 msgid "Health And Beauty Business"
 msgstr ""
 
-#: options/options-vcard-widget.php:55
+#: config/vcard-widget.php:55
 msgid "Home And Construction Business"
 msgstr ""
 
-#: options/options-vcard-widget.php:56
+#: config/vcard-widget.php:56
 msgid "Hobby Shop"
 msgstr ""
 
-#: options/options-vcard-widget.php:57
+#: config/vcard-widget.php:57
 msgid "Home Goods Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:58
+#: config/vcard-widget.php:58
 msgid "Hospital"
 msgstr ""
 
-#: options/options-vcard-widget.php:59
+#: config/vcard-widget.php:59
 msgid "Hotel"
 msgstr ""
 
-#: options/options-vcard-widget.php:60
+#: config/vcard-widget.php:60
 msgid "House Painter"
 msgstr ""
 
-#: options/options-vcard-widget.php:61
+#: config/vcard-widget.php:61
 msgid "HVAC Business"
 msgstr ""
 
-#: options/options-vcard-widget.php:62
+#: config/vcard-widget.php:62
 msgid "Insurance Agency"
 msgstr ""
 
-#: options/options-vcard-widget.php:63
+#: config/vcard-widget.php:63
 msgid "Jewelry Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:64
+#: config/vcard-widget.php:64
 msgid "Liquor Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:65
+#: config/vcard-widget.php:65
 msgid "Locksmith"
 msgstr ""
 
-#: options/options-vcard-widget.php:66
+#: config/vcard-widget.php:66
 msgid "Lodging Business"
 msgstr ""
 
-#: options/options-vcard-widget.php:67
+#: config/vcard-widget.php:67
 msgid "Medical Clinic"
 msgstr ""
 
-#: options/options-vcard-widget.php:68
+#: config/vcard-widget.php:68
 msgid "Mens Clothing Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:69
+#: config/vcard-widget.php:69
 msgid "Mobile Phone Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:70
+#: config/vcard-widget.php:70
 msgid "Motel"
 msgstr ""
 
-#: options/options-vcard-widget.php:71
+#: config/vcard-widget.php:71
 msgid "Motorcycle Dealer"
 msgstr ""
 
-#: options/options-vcard-widget.php:72
+#: config/vcard-widget.php:72
 msgid "Motorcycle Repair"
 msgstr ""
 
-#: options/options-vcard-widget.php:73
+#: config/vcard-widget.php:73
 msgid "Moving Company"
 msgstr ""
 
-#: options/options-vcard-widget.php:74
+#: config/vcard-widget.php:74
 msgid "Music Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:75
+#: config/vcard-widget.php:75
 msgid "Nail Salon"
 msgstr ""
 
-#: options/options-vcard-widget.php:76
+#: config/vcard-widget.php:76
 msgid "Night Club"
 msgstr ""
 
-#: options/options-vcard-widget.php:77
+#: config/vcard-widget.php:77
 msgid "Notary Public"
 msgstr ""
 
-#: options/options-vcard-widget.php:78
+#: config/vcard-widget.php:78
 msgid "Office Equipment Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:79
+#: config/vcard-widget.php:79
 msgid "Optician"
 msgstr ""
 
-#: options/options-vcard-widget.php:80
+#: config/vcard-widget.php:80
 msgid "PetStore"
 msgstr ""
 
-#: options/options-vcard-widget.php:81
+#: config/vcard-widget.php:81
 msgid "Physician"
 msgstr ""
 
-#: options/options-vcard-widget.php:82
+#: config/vcard-widget.php:82
 msgid "Plumber"
 msgstr ""
 
-#: options/options-vcard-widget.php:83
+#: config/vcard-widget.php:83
 msgid "Professional Service"
 msgstr ""
 
-#: options/options-vcard-widget.php:84
+#: config/vcard-widget.php:84
 msgid "Real Estate Agent"
 msgstr ""
 
-#: options/options-vcard-widget.php:85
+#: config/vcard-widget.php:85
 msgid "Residence"
 msgstr ""
 
-#: options/options-vcard-widget.php:86
+#: config/vcard-widget.php:86
 msgid "Restaurant"
 msgstr ""
 
-#: options/options-vcard-widget.php:87
+#: config/vcard-widget.php:87
 msgid "Roofing Contractor"
 msgstr ""
 
-#: options/options-vcard-widget.php:88
+#: config/vcard-widget.php:88
 msgid "RV Park"
 msgstr ""
 
-#: options/options-vcard-widget.php:89
+#: config/vcard-widget.php:89
 msgid "School"
 msgstr ""
 
-#: options/options-vcard-widget.php:90
+#: config/vcard-widget.php:90
 msgid "Self Storage"
 msgstr ""
 
-#: options/options-vcard-widget.php:91
+#: config/vcard-widget.php:91
 msgid "ShoeStore"
 msgstr ""
 
-#: options/options-vcard-widget.php:92
+#: config/vcard-widget.php:92
 msgid "Ski Resort"
 msgstr ""
 
-#: options/options-vcard-widget.php:93
+#: config/vcard-widget.php:93
 msgid "Sporting Goods Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:94
+#: config/vcard-widget.php:94
 msgid "Sports Club"
 msgstr ""
 
-#: options/options-vcard-widget.php:95
+#: config/vcard-widget.php:95
 msgid "Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:96
+#: config/vcard-widget.php:96
 msgid "Tattoo Parlor"
 msgstr ""
 
-#: options/options-vcard-widget.php:97
+#: config/vcard-widget.php:97
 msgid "Taxi"
 msgstr ""
 
-#: options/options-vcard-widget.php:98
+#: config/vcard-widget.php:98
 msgid "Tennis Complex"
 msgstr ""
 
-#: options/options-vcard-widget.php:99
+#: config/vcard-widget.php:99
 msgid "Tire Shop"
 msgstr ""
 
-#: options/options-vcard-widget.php:100
+#: config/vcard-widget.php:100
 msgid "Toy Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:101
+#: config/vcard-widget.php:101
 msgid "Travel Agency"
 msgstr ""
 
-#: options/options-vcard-widget.php:102
+#: config/vcard-widget.php:102
 msgid "Veterinary Care"
 msgstr ""
 
-#: options/options-vcard-widget.php:103
+#: config/vcard-widget.php:103
 msgid "Wholesale Store"
 msgstr ""
 
-#: options/options-vcard-widget.php:104
+#: config/vcard-widget.php:104
 msgid "Winery"
 msgstr ""
 

@@ -28,7 +28,7 @@ if ( ! class_exists( 'Widget_Breadcrumbs' ) ) {
 		 */
 		function __construct() {
 
-			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-breadcrumbs.php' ) );
+			$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/breadcrumbs.php' ) );
 
 			/**
 			 * Configure widget array.

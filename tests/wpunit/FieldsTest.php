@@ -19,7 +19,7 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 		// before
 		parent::setUp();
 
-		$this->fields_array = require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' );
+		$this->fields_array = require( ITALYSTRAP_PLUGIN_PATH . 'config/posts.php' );
 
 		$this->fields_type = new \ItalyStrap\Admin\Fields;
 

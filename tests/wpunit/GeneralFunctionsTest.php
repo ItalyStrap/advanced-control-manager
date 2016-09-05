@@ -28,7 +28,7 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
 			'title'	=> 'The title',
 		);
 
-		$array = ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ), $atts, $shortcode = '' );
+		$array = ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php' ), $atts, $shortcode = '' );
 
 		$this->assertTrue( is_array( $array ) );
 

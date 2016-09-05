@@ -45,7 +45,7 @@ class Widget_Taxonomies_Posts extends Widget {
 			'label'				=> __( 'ItalyStrap Taxonomies Posts', 'italystrap' ),
 			// Widget Backend Description.
 			'description'		=> __( 'Displays list of categories with an array of options', 'italystrap' ),
-			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-taxonomies-posts.php' ) ),
+			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/taxonomies-posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 		 );

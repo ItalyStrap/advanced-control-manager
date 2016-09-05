@@ -38,7 +38,7 @@ class Widget_Attributes {
 
 		$this->fields_type = $fields_type;
 
-		$this->config = require( ITALYSTRAP_PLUGIN_PATH . 'options/config-widget-attributes.php' );
+		$this->config = require( ITALYSTRAP_PLUGIN_PATH . 'config/widget-attributes.php' );
 
 		$this->new_input_fields = array( 'widget_css_id', 'widget_css_css' );
 

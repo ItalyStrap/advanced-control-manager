@@ -41,7 +41,7 @@ class Widget_Image extends Widget {
 		$image_size_media = new ItalyStrapAdminMediaSettings;
 		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
-		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-image.php' ) );
+		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/image.php' ) );
 
 		/**
 		 * Configure widget array.

@@ -60,6 +60,13 @@ if ( ! defined( 'ITALYSTRAP_BASENAME' ) ) {
 	define( 'ITALYSTRAP_BASENAME', plugin_basename( ITALYSTRAP_FILE ) );
 }
 
+/**
+ * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended/
+ */
+if ( ! defined( 'ITALYSTRAP_CONFIG_PATH' ) ) {
+	define( 'ITALYSTRAP_CONFIG_PATH', ITALYSTRAP_PLUGIN_PATH . 'config/' );
+}
+
 require( ITALYSTRAP_PLUGIN_PATH . 'vendor/overclokk/minimum-requirements/minimum-requirements.php' );
 
 /**
@@ -213,5 +220,7 @@ if ( ! empty( $plugin_files_path ) ) {
 }
 
 /**
+ * To do
+ *
  * @todo Agganciare init all'azione plugin_loaded (forse plugin_loaded è troppo presto, valutare se usare init direttamente) che in questo modo sarà possibile eventualmente fare un remove_actions se necessario (normalmente con plugin premium)
  */
