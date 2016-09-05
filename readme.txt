@@ -22,22 +22,29 @@ If you have any trouble [open a ticket](http://wordpress.org/support/plugin/ital
 
 If you have any feature requests or code issue [open a ticket on github](https://github.com/overclokk/italystrap-extended/issues).
 
-[ItalyStrap](http://www.italystrap.com/) will add powerful features to your WordPress site. [ItalyStrap](https://github.com/overclokk/italystrap-extended) is also on github.
+[ItalyStrap](http://www.italystrap.com/) will add powerful features to your WordPress site.
+
+[ItalyStrap](https://github.com/overclokk/italystrap-extended) is also on github.
+
+= Purpose =
 
 I developed this plugin with many features because I need them in all sites I create for my clients, it also extends the [ItalyStrap Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
 
-Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible.
+Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for posts type loop and so on.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
 
-**Skills required**
+= Skills required =
+
 Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add CSS style to make it look like your site (you can add it in ItalyStrap > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
 
-**ItalyStrap will always be free**
+= ItalyStrap will always be free =
+
 This is my thanks for what WordPress has given to me.
 
-**Get involved**
+= Get involved =
+
 If you want to contribute [click here](https://github.com/overclokk/italystrap-extended)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
@@ -179,7 +186,7 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.0.0 Breaking Changes =
-Release Date: August 19th, 2016  
+Release Date: September 19th, 2016  
 
 Dev time: 1year  
 
@@ -323,3 +330,5 @@ First release.
 * [Lazy Load](https://wordpress.org/plugins/lazy-load/)
 * [WordPress Plugin Boilerplate](https://github.com/WPBP/WordPress-Plugin-Boilerplate-Powered)
 * [Disable Emojis](https://geek.hellyer.kiwi/)
+* [Tonya Mork](https://knowthecode.io/)
+* [Carl Alexander](https://carlalexander.ca/)

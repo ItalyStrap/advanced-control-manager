@@ -1,37 +1,69 @@
 # ItalyStrap #
 **Contributors:** overclokk  
-**Donate link:** http://www.italystrap.it/  
-**Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
+**Donate link:** http://www.italystrap.com/  
+**Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.7  
-**Stable tag:** 2.0.0-beta.1  
+**Stable tag:** 2.0.0-beta.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Make your web site more powerfull
+Make your web site more powerfull with ItalyStrap
 
-Bootstrap, Performance and Schema.org
+(Requires PHP 5.3 >= and Developers skills)
 
 ## Description ##
 
-[ItalyStrap](http://www.italystrap.it/) will add powerful features to your WordPress site.
-[ItalyStrap](https://github.com/overclokk/italystrap-extended) Also on github.
+Always make a backup before install it and always test it in a dev enviroment.
 
-May the force be with you!
+Make shure you have PHP 5.3 >=, better if you have PHP >= 7.0 (PHP 7 is awesome ;-) ).
+
+If you have any trouble [open a ticket](http://wordpress.org/support/plugin/italystrap).
+
+If you have any feature requests or code issue [open a ticket on github](https://github.com/overclokk/italystrap-extended/issues).
+
+[ItalyStrap](http://www.italystrap.com/) will add powerful features to your WordPress site.
+
+[ItalyStrap](https://github.com/overclokk/italystrap-extended) is also on github.
+
+### Purpose ###
+
+I developed this plugin with many features because I need them in all sites I create for my clients, it also extends the [ItalyStrap Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
+
+Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for posts type loop and so on.
+
+This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
+If you are a developer you can extend it with his API (Dev docs coming soon).
+
+### Skills required ###
+
+Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add CSS style to make it look like your site (you can add it in ItalyStrap > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
+
+### ItalyStrap will always be free ###
+
+This is my thanks for what WordPress has given to me.
+
+### Get involved ###
+
+If you want to contribute [click here](https://github.com/overclokk/italystrap-extended)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ### Features included: ###
 
-* **Breadcrumbs** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs).
+* **[Breadcrumbs](http://docs.italystrap.com/breadcrumbs-wordpress-theme/)** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs ;-) ).
 
-* **Carousel** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Bootstrap css and js or ItalyStrap template installed. It will not include the files for you, so if they are not present, the carousel will not work.
+* **[Carousel](http://docs.italystrap.com/the-carousel-shortcode/)** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Twitter Bootstrap CSS and JS or [ItalyStrap framework](http://www.italystrap.com/) installed. It will not include the files for you, so if they are not present, the carousel will not work. The carousel is provided by shortcode and widget.
 
-* **LazyLoad** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It work also with my Bootstrap Carousel.
+* **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel.
 
-* **Schema.org Local Business** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
+* **[Schema.org Local Business](http://docs.italystrap.com/widget-italystrap-vcard-local-business/)** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
 This widget will add microdata information about your  site for SEO purposes.
-This widget was present in my [ItalyStrap starter theme](http://www.italystrap.it/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus
+This widget was present in my [ItalyStrap starter theme](http://www.italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus
+
+* **Posts Widget** This adds a widget for displaying posts with a lot of options, in a future release you have also the power to change the template.
+
+* **Custom Style** Now you can add your custom style in single page or in the entire site, you can also add custom css class and ID attribute in single page or in the site.
 
 ## Installation ##
 
@@ -47,11 +79,11 @@ This widget was present in my [ItalyStrap starter theme](http://www.italystrap.i
 
 Add this code in your template files:
 
-`
-<?php if ( class_exists('ItalyStrap\Core\breadcrumbs') ) {
-		ItalyStrap\Core\breadcrumbs();
-} ?>
-`
+
+	<?php if ( class_exists('ItalyStrap\Core\breadcrumbs') ) {
+			ItalyStrap\Core\breadcrumbs();
+	} ?>
+
 
 ### What if haven't I got Bootstrap CSS? ###
 
@@ -69,40 +101,40 @@ For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that p
 
 ### How do I change the placeholder image in Lazy Load functionality ###
 
-`
-add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
-function my_custom_lazyload_placeholder_image( $image ) {
-	return 'http://url/to/image';
-}
-`
+
+	add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
+	function my_custom_lazyload_placeholder_image( $image ) {
+		return 'http://url/to/image';
+	}
+
 
 ### How do I lazy load other images in my theme? ###
 
-You can use the italystrap_get_apply_lazyload helper function:
+You can use the ItalyStrap\Core\get_apply_lazyload helper function:
 
-`
-if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
-  $content = ItalyStrap\Core\get_apply_lazyload( $content );
-}
-`
+
+	if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
+		$content = ItalyStrap\Core\get_apply_lazyload( $content );
+	}
+
 
 Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
 
 You can also use ItalyStrap\Core\apply_lazyload helper function for print content:
 
-`
-if ( function_exists( 'ItalyStrap\Core\apply_lazyload' ) ) {
-  ItalyStrap\Core\apply_lazyload( $content );
-}
-`
+
+	if ( function_exists( 'ItalyStrap\Core\apply_lazyload' ) ) {
+	  ItalyStrap\Core\apply_lazyload( $content );
+	}
+
 
 Otherwise you can also use output buffering, though this isn't recommended:
 
-`
-if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
-  ob_start( 'ItalyStrap\Core\get_apply_lazyload' );
-}
-`
+
+	if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
+	  ob_start( 'ItalyStrap\Core\get_apply_lazyload' );
+	}
+
 
 This will lazy load <em>all</em> your images.
 
@@ -139,48 +171,53 @@ If you have any problem please open a ticket :-)
 ## Screenshots ##
 
 ### 1. Default breadcrumbs (With Bootstrap CSS) ###
-![Default breadcrumbs (With Bootstrap CSS)](http://s.wordpress.org/extend/plugins/italystrap/screenshot-1.png)
+![Default breadcrumbs (With Bootstrap CSS)](http://ps.w.org/italystrap/assets/screenshot-1.png)
 
 ### 2. Custom breadcrumbs (With Bootstrap CSS) ###
-![Custom breadcrumbs (With Bootstrap CSS)](http://s.wordpress.org/extend/plugins/italystrap/screenshot-2.png)
+![Custom breadcrumbs (With Bootstrap CSS)](http://ps.w.org/italystrap/assets/screenshot-2.png)
 
 ### 3. Breadcrumbs in page (With Bootstrap CSS) ###
-![Breadcrumbs in page (With Bootstrap CSS)](http://s.wordpress.org/extend/plugins/italystrap/screenshot-3.png)
+![Breadcrumbs in page (With Bootstrap CSS)](http://ps.w.org/italystrap/assets/screenshot-3.png)
 
 ### 4. Gallery in admin dashboard ###
-![Gallery in admin dashboard](http://s.wordpress.org/extend/plugins/italystrap/screenshot-4.png)
+![Gallery in admin dashboard](http://ps.w.org/italystrap/assets/screenshot-4.png)
 
 ### 5. Gallery with new Carousel functionality ###
-![Gallery with new Carousel functionality](http://s.wordpress.org/extend/plugins/italystrap/screenshot-5.png)
+![Gallery with new Carousel functionality](http://ps.w.org/italystrap/assets/screenshot-5.png)
 
 ### 6. Gallery shortcode with type="carousel" for Bootstrap Carousel ###
-![Gallery shortcode with type="carousel" for Bootstrap Carousel](http://s.wordpress.org/extend/plugins/italystrap/screenshot-6.png)
+![Gallery shortcode with type="carousel" for Bootstrap Carousel](http://ps.w.org/italystrap/assets/screenshot-6.png)
 
 ### 7. Example of Carousel in article page (740x370) ###
-![Example of Carousel in article page (740x370)](http://s.wordpress.org/extend/plugins/italystrap/screenshot-7.png)
+![Example of Carousel in article page (740x370)](http://ps.w.org/italystrap/assets/screenshot-7.png)
 
 ### 8. Example of Lazy Loading for image ###
-![Example of Lazy Loading for image](http://s.wordpress.org/extend/plugins/italystrap/screenshot-8.png)
+![Example of Lazy Loading for image](http://ps.w.org/italystrap/assets/screenshot-8.png)
 
 ### 9. ItalyStrap Local Business widget in admin panel ###
-![ItalyStrap Local Business widget in admin panel](http://s.wordpress.org/extend/plugins/italystrap/screenshot-9.png)
+![ItalyStrap Local Business widget in admin panel](http://ps.w.org/italystrap/assets/screenshot-9.png)
 
 ### 10. ItalyStrap Local Business widget in widgetized themes (sidebar, footer, ...) ###
-![ItalyStrap Local Business widget in widgetized themes (sidebar, footer, ...)](http://s.wordpress.org/extend/plugins/italystrap/screenshot-10.png)
+![ItalyStrap Local Business widget in widgetized themes (sidebar, footer, ...)](http://ps.w.org/italystrap/assets/screenshot-10.png)
 
 ### 11. ItalyStrap Local Business widget HTML markup example ###
-![ItalyStrap Local Business widget HTML markup example](http://s.wordpress.org/extend/plugins/italystrap/screenshot-11.png)
+![ItalyStrap Local Business widget HTML markup example](http://ps.w.org/italystrap/assets/screenshot-11.png)
 
 
 
 ## Changelog ##
 
-### 2.0.0 ###
-**Release Date:** September 19th, 2015  
+### 2.0.0 Breaking Changes ###
+Release Date: September 19th, 2016  
 
-**Dev time:** 1year  
+Dev time: 1year  
 
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
+* Deprecated title attribute ($atts['title']) in gallery shortcode, use image_title instead 
+* Deprecated vCard Widget (there's a new version for this widget, see below)
+* Deprecated italystrap_get_apply_lazyload( $content ); and italystrap_apply_lazyload( $content ); use ItalyStrap\Core\get_apply_lazyload( $content ); and ItalyStrap\Core\apply_lazyload( $content );
+* All filters and actions start with 'italistrap_' lowercase (if you find some in uppercase please let me know)
+* Fix front page and posts page visualization for breadcrumbs
 * New API for the admin panel
 * Added some general utilities:
   * Show post type ID
@@ -189,60 +226,60 @@ If you have any problem please open a ticket :-)
   * HTML attributes for widgets
   * Possibility to add some tags to widget title with {{}} instead of <>
 * Widgets:
+  * New API for building widgets in a easy way (Is is possible to create your own widget too)
   * vCard Widget (this is a new version, the old one is deprecated, you can see in the widget description)
   * Post Widget (a widget with many option for displaying post type in a widget area)
   * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS), the settings are the same of shortcode settings.
-  * Deprecated vCard Widget (there's a new version for this widget, see below)
 * Shortcode:
   * Option for executing shortcode in the widget text
   * Option for Carousel shortcode, now you have to activate it for making it works.
 * Style:
  * Text area for custom CSS
  * Input fields for adding custom body class and post class attribute.
-* New API for templating system in beta version, in future you can override the template used for widget and shortcode.
+* New API for templating system in beta version, in future you can override the template used in widgets and shortcodes.
 
 ### 1.3.3 ###
-**Release Date:** September 19th, 2015  
+Release Date: September 19th, 2015
 
-**Dev time:** 8h  
+Dev time: 8h
 
 * Added logo upload in vCard widget
 * Fixed some issue
 
 ### 1.3.2 ###
-**Release Date:** August 14th, 2015  
+Release Date: August 14th, 2015
 
-**Dev time:** 20h  
+Dev time: 20h
 
 * Added a simple HTML sitemaps class for theme (beta version)
 * [Fixed Deprecating PHP4 style constructors in WordPress 4.3](https://make.wordpress.org/core/2015/07/02/deprecating-php4-style-constructors-in-wordpress-4-3/)
 
 ### 1.3.1 ###
-**Release Date:** June 13th, 2015  
+Release Date: June 13th, 2015
 
-**Dev time:** 1h  
+Dev time: 1h
 
 * Added taxonomy support for breadcrumbs
 
 ### 1.3.0 ###
-**Release Date:** March 4th, 2015  
+Release Date: March 4th, 2015
 
-**Dev time:** 30h  
+Dev time: 30h
 
 * Added Local Business widget for widgetized themes
 
 ### 1.2.1 ###
-**Release Date:** March 1st, 2015  
+Release Date: March 1st, 2015
 
-**Dev time:** 5h  
+Dev time: 5h
 
 * Added new function for LazyLoad
 * Fixed some issue
 
 ### 1.2.0 ###
-**Release Date:** February 27th, 2015  
+Release Date: February 27th, 2015
 
-**Dev time:** 40h  
+Dev time: 40h
 
 * Fixed some bug and issue
 * Added static class for appending inline script and print it in footer after wp_print_footer_scripts hook (for performance purpose)
@@ -250,9 +287,9 @@ If you have any problem please open a ticket :-)
 * Added class for Lazy Load image functionality
 
 ### 1.1.0 ###
-**Release Date:** February 20th, 2015  
+Release Date: February 20th, 2015
 
-**Dev time:** 80h  
+Dev time: 80h
 
 * Renders extra controls for image dimension in the new media UI
 * Added Bootstrap Carousel functionality forked from Agnosia Bootstrap Carousel by AuSoft
@@ -263,27 +300,30 @@ If you have any problem please open a ticket :-)
 
 
 ### 1.0.2 ###
-**Release Date:** January 8th, 2015  
+Release Date: January 8th, 2015
 
-**Dev time:** 1h  
+Dev time: 1h
 
 * Fixed documentation link in admin dashboard (Thanks to Stefano Tondi from G+)
 
 ### 1.0.1 ###
-**Release Date:** January 8th, 2015  
+Release Date: January 8th, 2015
 
-**Dev time:** 1h  
+Dev time: 1h
 
 * Updated Breadcrumbs documentation
 
 ### 1.0.0 ###
-**Release Date:** January 7th, 2015  
+Release Date: January 7th, 2015
 
-**Dev time:** 100h  
+Dev time: 100h
 
 * First release
 
 ## Upgrade Notice ##
+
+### 2.0 ###
+2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/blog/).
 
 ### 1.0.2 ###
 This version fixes a documentation link in admin dashboard.  Upgrade as soon as possible
@@ -310,3 +350,7 @@ First release.
 
 * [Agnosia Bootstrap Carousel](https://wordpress.org/plugins/agnosia-bootstrap-carousel/)
 * [Lazy Load](https://wordpress.org/plugins/lazy-load/)
+* [WordPress Plugin Boilerplate](https://github.com/WPBP/WordPress-Plugin-Boilerplate-Powered)
+* [Disable Emojis](https://geek.hellyer.kiwi/)
+* [Tonya Mork](https://knowthecode.io/)
+* [Carl Alexander](https://carlalexander.ca/)
