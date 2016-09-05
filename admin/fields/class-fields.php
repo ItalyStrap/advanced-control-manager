@@ -149,7 +149,7 @@ class Fields extends A_Fields {
 				</ul>
 			</div>
 			<span style="clear:both;"></span>
-			<input class="upload_single_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add image', 'ItalyStrap' ); ?>" />
+			<input class="upload_single_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add image', 'italystrap' ); ?>" />
 		<hr>
 		<?php
 
@@ -180,7 +180,7 @@ class Fields extends A_Fields {
 		ob_start();
 
 		?>
-			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+			<h5><?php esc_attr_e( 'Add your images', 'italystrap' ); ?></h5>
 			<hr>
 			<div class="media_carousel_sortable">
 				<ul id="sortable" class="carousel_images">
@@ -195,7 +195,7 @@ class Fields extends A_Fields {
 				</ul>
 			</div>
 			<span style="clear:both;"></span>
-			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'italystrap' ); ?>" />
 		<hr>
 		<?php
 
@@ -227,7 +227,7 @@ class Fields extends A_Fields {
 		ob_start();
 
 		?>
-			<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+			<h5><?php esc_attr_e( 'Add your images', 'italystrap' ); ?></h5>
 			<hr>
 			<div class="media_carousel_sortable">
 				<ul id="sortable" class="carousel_images">
@@ -264,7 +264,7 @@ class Fields extends A_Fields {
 				</ul>
 			</div>
 			<span style="clear:both;"></span>
-			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+			<input class="upload_carousel_image_button button button-primary widefat" type="button" value="<?php esc_attr_e( 'Add images', 'italystrap' ); ?>" />
 		<hr>
 		<?php
 
@@ -383,7 +383,7 @@ class Fields extends A_Fields {
 		}
 
 		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
 			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
 		}
 
@@ -428,7 +428,7 @@ class Fields extends A_Fields {
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
 			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
 		}
 
@@ -473,7 +473,7 @@ class Fields extends A_Fields {
 		$selected = ! empty( $key['value'] ) ? $key['value'] : array();
 
 		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
 			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
 		}
 
@@ -525,7 +525,7 @@ class Fields extends A_Fields {
 		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
 		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'ItalyStrap' ) ;
+			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
 			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
 		}
 

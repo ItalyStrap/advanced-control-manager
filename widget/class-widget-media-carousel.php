@@ -39,7 +39,7 @@ class Widget_Media_Carousel extends Widget {
 		 * @var ItalyStrapAdminMediaSettings
 		 */
 		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
 		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-media-carousel.php' ) );
 
@@ -49,9 +49,9 @@ class Widget_Media_Carousel extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Media Carousel', 'ItalyStrap' ),
+			'label'				=> __( 'ItalyStrap Media Carousel', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Add a image carousel for all your media files from any posts type (posts, pages, attachments and custom post type)', 'ItalyStrap' ),
+			'description'		=> __( 'Add a image carousel for all your media files from any posts type (posts, pages, attachments and custom post type)', 'italystrap' ),
 			'fields'			=> $fields,
 			'control_options'	=> array( 'width' => 450 ),
 		 );

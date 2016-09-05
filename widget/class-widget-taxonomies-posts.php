@@ -42,7 +42,7 @@ class Widget_Taxonomies_Posts extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Taxonomies Posts', 'ItalyStrap' ),
+			'label'				=> __( 'ItalyStrap Taxonomies Posts', 'italystrap' ),
 			// Widget Backend Description.
 			'description'		=> __( 'Displays list of categories with an array of options', 'italystrap' ),
 			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-taxonomies-posts.php' ) ),

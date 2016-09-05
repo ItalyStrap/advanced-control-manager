@@ -36,9 +36,9 @@ if ( ! class_exists( 'Widget_Breadcrumbs' ) ) {
 			 */
 			$args = array(
 				// Widget Backend label.
-				'label'				=> __( 'ItalyStrap Breadcrumbs', 'ItalyStrap' ),
+				'label'				=> __( 'ItalyStrap Breadcrumbs', 'italystrap' ),
 				// Widget Backend Description.
-				'description'		=> __( 'Add a Breadcrumbs ti widgetized area', 'ItalyStrap' ),
+				'description'		=> __( 'Add a Breadcrumbs ti widgetized area', 'italystrap' ),
 				'fields'			=> $fields,
 				'control_options'	=> array( 'width' => 340 ),
 			 );

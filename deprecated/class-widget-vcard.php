@@ -1,6 +1,6 @@
-<?php namespace ItalyStrap\Core;
+<?php namespace ItalyStrap\Widget;
 
-use \ItalyStrap\Core\Widget;
+use \ItalyStrap\Widget\Widget;
 /**
  * @link http://codex.wordpress.org/Function_Reference/the_widget
  * @link https://core.trac.wordpress.org/browser/tags/3.9.2/src/wp-includes/default-widgets.php#L0
@@ -47,34 +47,34 @@ class Vcard_Widget extends Widget {
 
 		$widget_ops = array(
 			'classname'		=> 'widget_italystrap_vcard',
-			'description'	=> __( 'Use this widget to add a vCard Local Business (DEPRECATED, Don\'t use it anymore)', 'ItalyStrap' ),
+			'description'	=> __( 'Use this widget to add a vCard Local Business (DEPRECATED, Don\'t use it anymore)', 'italystrap' ),
 			);
 
-		parent::__construct( 'widget_italystrap_vcard', __( 'ItalyStrap: vCard Local Business', 'ItalyStrap' ), $widget_ops );
+		parent::__construct( 'widget_italystrap_vcard', __( 'ItalyStrap: vCard Local Business', 'italystrap' ), $widget_ops );
 
 		$this->fields = array(
-			'schema'			=> __( 'Local or Organization?', 'ItalyStrap' ),
-			'title'				=> __( 'Widget Title (optional)', 'ItalyStrap' ),
-			'company_name'		=> __( 'Company name', 'ItalyStrap' ),
-			'logo_url'			=> __( 'Logo URL', 'ItalyStrap' ),
-			'show_logo'			=> __( 'Show Logo', 'ItalyStrap' ),
-			'street_address'	=> __( 'Street Address', 'ItalyStrap' ),
-			'postal_code'		=> __( 'Zipcode/Postal Code', 'ItalyStrap' ),
-			'locality'			=> __( 'City/Locality', 'ItalyStrap' ),
-			'region'			=> __( 'State/Region', 'ItalyStrap' ),
-			'country'			=> __( 'Country', 'ItalyStrap' ),
-			'tel'				=> __( 'Telephone number', 'ItalyStrap' ),
-			'mobile'			=> __( 'Mobile number', 'ItalyStrap' ),
-			'fax'				=> __( 'Fax number', 'ItalyStrap' ),
-			'email'				=> __( 'Email', 'ItalyStrap' ),
-			'taxID'				=> __( 'TaxID', 'ItalyStrap' ),
-			'facebook'			=> __( 'Facebook page (hidden)', 'ItalyStrap' ),
-			'twitter'			=> __( 'Twitter page (hidden)', 'ItalyStrap' ),
-			'googleplus'		=> __( 'Googleplus page (hidden)', 'ItalyStrap' ),
-			'pinterest'			=> __( 'Pinterest page (hidden)', 'ItalyStrap' ),
-			'instagram'			=> __( 'Instagram page (hidden)', 'ItalyStrap' ),
-			'youtube'			=> __( 'Youtube page (hidden)', 'ItalyStrap' ),
-			'linkedin'			=> __( 'Linkedin page (hidden)', 'ItalyStrap' ),
+			'schema'			=> __( 'Local or Organization?', 'italystrap' ),
+			'title'				=> __( 'Widget Title (optional)', 'italystrap' ),
+			'company_name'		=> __( 'Company name', 'italystrap' ),
+			'logo_url'			=> __( 'Logo URL', 'italystrap' ),
+			'show_logo'			=> __( 'Show Logo', 'italystrap' ),
+			'street_address'	=> __( 'Street Address', 'italystrap' ),
+			'postal_code'		=> __( 'Zipcode/Postal Code', 'italystrap' ),
+			'locality'			=> __( 'City/Locality', 'italystrap' ),
+			'region'			=> __( 'State/Region', 'italystrap' ),
+			'country'			=> __( 'Country', 'italystrap' ),
+			'tel'				=> __( 'Telephone number', 'italystrap' ),
+			'mobile'			=> __( 'Mobile number', 'italystrap' ),
+			'fax'				=> __( 'Fax number', 'italystrap' ),
+			'email'				=> __( 'Email', 'italystrap' ),
+			'taxID'				=> __( 'TaxID', 'italystrap' ),
+			'facebook'			=> __( 'Facebook page (hidden)', 'italystrap' ),
+			'twitter'			=> __( 'Twitter page (hidden)', 'italystrap' ),
+			'googleplus'		=> __( 'Googleplus page (hidden)', 'italystrap' ),
+			'pinterest'			=> __( 'Pinterest page (hidden)', 'italystrap' ),
+			'instagram'			=> __( 'Instagram page (hidden)', 'italystrap' ),
+			'youtube'			=> __( 'Youtube page (hidden)', 'italystrap' ),
+			'linkedin'			=> __( 'Linkedin page (hidden)', 'italystrap' ),
 		);
 
 		$this->alt_option_name = 'widget_italystrap_vcard';

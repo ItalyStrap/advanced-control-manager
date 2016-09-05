@@ -39,7 +39,7 @@ class Widget_Image extends Widget {
 		 * @var ItalyStrapAdminMediaSettings
 		 */
 		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
 		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'options/options-image.php' ) );
 
@@ -50,9 +50,9 @@ class Widget_Image extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Image', 'ItalyStrap' ),
+			'label'				=> __( 'ItalyStrap Image', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Add a image with title, url and description', 'ItalyStrap' ),
+			'description'		=> __( 'Add a image with title, url and description', 'italystrap' ),
 			'fields'			=> $fields,
 			'control_options'	=> array( 'width' => 450 ),
 		 );

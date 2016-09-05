@@ -19,8 +19,8 @@ return array(
 	 * Text below the image.
 	 */
 	'text'				=> array(
-				'name'		=> __( 'Text of the image', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the text of the image.', 'ItalyStrap' ),
+				'name'		=> __( 'Text of the image', 'italystrap' ),
+				'desc'		=> __( 'Enter the text of the image.', 'italystrap' ),
 				'id'		=> 'text',
 				'type'		=> 'textarea',
 				'class'		=> 'widefat',

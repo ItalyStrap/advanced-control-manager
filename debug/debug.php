@@ -12,7 +12,7 @@
 
 
 // http://codex.wordpress.org/Function_Reference/wp_get_theme
-// $my_theme = wp_get_theme( 'ItalyStrap' );
+// $my_theme = wp_get_theme( 'italystrap' );
 // if ( $my_theme->exists() ) add some code
 // 
 // 
@@ -82,8 +82,8 @@ function test_carousel_posts() {
 	// 	);
 
 	// 'ids'				=> array(
-	// 			'name'		=> __( 'Images ID', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Enter the image ID.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Images ID', 'italystrap' ),
+	// 			'desc'		=> __( 'Enter the image ID.', 'italystrap' ),
 	// 			'id'		=> 'ids',
 	// 			'type'		=> 'media_list',
 	// 			'class'		=> 'widefat ids',
@@ -96,16 +96,16 @@ function test_carousel_posts() {
 	//  * Type of gallery. If it's not "carousel", nothing will be done.
 	//  */
 	// 'type'				=> array(
-	// 			'name'		=> __( 'Type of gallery', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Type of gallery', 'italystrap' ),
+	// 			'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'italystrap' ),
 	// 			'id'		=> 'type',
 	// 			'type'		=> 'select',
 	// 			'class'		=> 'widefat',
 	// 			'class-p'	=> 'hidden',
 	// 			'default'	=> 'carousel',
 	// 			'options'	=> array(
-	// 						'standard'  => __( 'Standard Gallery', 'ItalyStrap' ),
-	// 						'carousel'  => __( 'Carousel (Default)', 'ItalyStrap' ),
+	// 						'standard'  => __( 'Standard Gallery', 'italystrap' ),
+	// 						'carousel'  => __( 'Carousel (Default)', 'italystrap' ),
 	// 			 			),
 	// 			'validate'	=> 'alpha_numeric',
 	// 			'filter'	=> 'sanitize_text_field',

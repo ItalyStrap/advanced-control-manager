@@ -47,7 +47,7 @@ class Shortcode_Category_Posts {
 
 			$output .= '<div class="col-md-6 col-sm-6">';
 			$term_link = esc_url( get_term_link( $category ) );
-			$output .= '<header><h2><i class="fa fa-folder-o"></i> <a href="' . $term_link . '">' . $category->name . '</a> <small>( ' . sprintf( _n( '%1$s Article', '%1$s Articles', $category->count, 'ItalyStrap' ), number_format_i18n( $category->count ) ) . ' )</small></h2>';
+			$output .= '<header><h2><i class="fa fa-folder-o"></i> <a href="' . $term_link . '">' . $category->name . '</a> <small>( ' . sprintf( _n( '%1$s Article', '%1$s Articles', $category->count, 'italystrap' ), number_format_i18n( $category->count ) ) . ' )</small></h2>';
 			$output .= '<p>' . $category->description . '</p></header>';
 
 			$sub_categories = get_categories( array(
@@ -65,7 +65,7 @@ class Shortcode_Category_Posts {
 
 					$output .= '<li><i class="fa fa-folder"></i> ';
 					$sub_term_link = esc_url( get_term_link( $sub_category ) );
-					$output .= '<a href="' . $sub_term_link . '">' . $sub_category->name . '</a> <small>( ' . sprintf( _n( '%1$s Article', '%1$s Articles', $sub_category->count, 'ItalyStrap' ), number_format_i18n( $sub_category->count ) ) . ' )</small>';
+					$output .= '<a href="' . $sub_term_link . '">' . $sub_category->name . '</a> <small>( ' . sprintf( _n( '%1$s Article', '%1$s Articles', $sub_category->count, 'italystrap' ), number_format_i18n( $sub_category->count ) ) . ' )</small>';
 					$output .= '</li>';
 
 				}

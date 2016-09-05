@@ -39,7 +39,7 @@ class Carousel {
 		 * @deprecated 1.4.0 Deprecated title attribute for shortcode, use image_title instead
 		 */
 		if ( ! empty( $atts['title'] ) ) {
-			_deprecated_argument( __FUNCTION__, '1.4.0', __( 'Use $atts[\'image_title\'] instead of $atts[\'title\']', 'ItalyStrap' ) ); // WPCS: XSS OK.
+			_deprecated_argument( __FUNCTION__, '1.4.0', __( 'Use $atts[\'image_title\'] instead of $atts[\'title\']', 'italystrap' ) ); // WPCS: XSS OK.
 		}
 
 		if ( ! isset( $atts['image_title'] ) && isset( $atts['title'] ) ) {

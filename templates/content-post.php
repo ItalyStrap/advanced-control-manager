@@ -100,13 +100,13 @@
 							endif;
 
 							if ( $this->args['show_date'] && $this->args['show_author'] ) : ?>
-							<span class="sep"><?php esc_attr_e( '|', 'ItalyStrap' ); ?></span>
+							<span class="sep"><?php esc_attr_e( '|', 'italystrap' ); ?></span>
 							<?php
 							endif; ?>
 					
 							<?php if ( $this->args['show_author'] ) : ?>
 								<span class="author vcard" itemprop="author">
-									<?php esc_attr_e( 'By', 'ItalyStrap' ); ?>
+									<?php esc_attr_e( 'By', 'italystrap' ); ?>
 									<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author" class="fn">
 										<?php echo get_the_author(); ?>
 									</a>
@@ -114,12 +114,12 @@
 							<?php endif; ?>
 					
 							<?php if ( $this->args['show_author'] && $this->args['show_comments_number'] ) : ?>
-								<span class="sep"><?php esc_attr_e( '|', 'ItalyStrap' ); ?></span>
+								<span class="sep"><?php esc_attr_e( '|', 'italystrap' ); ?></span>
 							<?php endif; ?>
 					
 							<?php if ( $this->args['show_comments_number'] ) : ?>
 								<a class="comments" href="<?php comments_link(); ?>">
-									<?php comments_number( __( 'No comments', 'ItalyStrap' ), __( 'One comment', 'ItalyStrap' ), __( '% comments', 'ItalyStrap' ) ); ?>
+									<?php comments_number( __( 'No comments', 'italystrap' ), __( 'One comment', 'italystrap' ), __( '% comments', 'italystrap' ) ); ?>
 								</a>
 							<?php endif; ?>
 					
@@ -163,7 +163,7 @@
 						if ( $this->args['show_cats'] && $categories ) :
 							?>
 						<div class="entry-categories">
-							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'ItalyStrap' ); ?>:</strong>
+							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'italystrap' ); ?>:</strong>
 							<span class="entry-cats-list"><?php echo $categories; // XSS ok.?></span>
 						</div>
 						<?php endif; ?>
@@ -174,7 +174,7 @@
 						if ( $this->args['show_tags'] && $tags ) :
 						?>
 						<div class="entry-tags">
-							<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'ItalyStrap' ); ?>:</strong>
+							<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'italystrap' ); ?>:</strong>
 							<span class="entry-tags-list" itemprop="keywords"><?php echo $tags; // XSS ok. ?></span>
 						</div>
 						<?php endif; ?>
@@ -189,7 +189,7 @@
 		<?php else : ?>
 
 			<p class="post-widget-not-found">
-				<?php esc_attr_e( 'No posts found.', 'ItalyStrap' ); ?>
+				<?php esc_attr_e( 'No posts found.', 'italystrap' ); ?>
 			</p>
 
 		<?php endif; ?>

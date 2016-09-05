@@ -168,8 +168,8 @@ return array(
 	 * Logo size.
 	 */
 	'logo_size'			=> array(
-				'name'		=> __( 'Logo size', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the thumbnail size to display in posts list.', 'ItalyStrap' ),
+				'name'		=> __( 'Logo size', 'italystrap' ),
+				'desc'		=> __( 'Select the thumbnail size to display in posts list.', 'italystrap' ),
 				'id'		=> 'logo_size',
 				'type'		=> 'select',
 				'class'		=> 'widefat logo_size',
@@ -184,8 +184,8 @@ return array(
 	 * Logo class.
 	 */
 	'logo_class'				=> array(
-				'name'		=> __( 'Logo css class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter logo css class.', 'ItalyStrap' ),
+				'name'		=> __( 'Logo css class', 'italystrap' ),
+				'desc'		=> __( 'Enter logo css class.', 'italystrap' ),
 				'id'		=> 'logo_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat logo_class',

@@ -26,8 +26,8 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 		$this->dom = new \DOMDocument();
 
 		$this->test_type_text = array(
-				'name'      => __( 'Widget Class', 'ItalyStrap' ),
-				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'name'      => __( 'Widget Class', 'italystrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'italystrap' ),
 				'id'        => 'widget_class',
 				'_id'       => 'widget_class',
 				'_name'     => 'widget_class',
@@ -40,8 +40,8 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 				 );
 
 		$this->test_type_hidden = array(
-				'name'      => __( 'Widget Class', 'ItalyStrap' ),
-				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'name'      => __( 'Widget Class', 'italystrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'italystrap' ),
 				'id'        => 'widget_class',
 				'_id'       => 'widget_class',
 				'_name'     => 'widget_class',
@@ -54,8 +54,8 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 				 );
 
 		$this->test_type_textarea = array(
-				'name'      => __( 'Widget Class', 'ItalyStrap' ),
-				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'name'      => __( 'Widget Class', 'italystrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'italystrap' ),
 				'id'        => 'widget_class',
 				'_id'       => 'widget_class',
 				'_name'     => 'widget_class',
@@ -66,8 +66,8 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 				 );
 
 		$this->test_type_checkbox = array(
-				'name'      => __( 'Widget Class', 'ItalyStrap' ),
-				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'name'      => __( 'Widget Class', 'italystrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'italystrap' ),
 				'id'        => 'widget_class',
 				'_id'       => 'widget_class',
 				'_name'     => 'widget_class',
@@ -78,8 +78,8 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 				 );
 
 		$this->test_type_select = array(
-				'name'      => __( 'Widget Class', 'ItalyStrap' ),
-				'desc'      => __( 'Enter the widget class name.', 'ItalyStrap' ),
+				'name'      => __( 'Widget Class', 'italystrap' ),
+				'desc'      => __( 'Enter the widget class name.', 'italystrap' ),
 				'id'        => 'widget_class',
 				'_id'       => 'widget_class',
 				'_name'     => 'widget_class',

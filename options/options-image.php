@@ -19,8 +19,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'id'				=> array(
-				'name'		=> __( 'Enter Images ID', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the media or post type ID.', 'ItalyStrap' ),
+				'name'		=> __( 'Enter Images ID', 'italystrap' ),
+				'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
 				'id'		=> 'id',
 				'type'		=> 'media',
 				'class'		=> 'widefat ids',
@@ -35,8 +35,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'image_title'			=> array(
-				'name'		=> __( 'Image title', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image title.', 'ItalyStrap' ),
+				'name'		=> __( 'Image title', 'italystrap' ),
+				'desc'		=> __( 'Enter the image title.', 'italystrap' ),
 				'id'		=> 'image_title',
 				'type'		=> 'text',
 				'class'		=> 'widefat image_title',
@@ -50,8 +50,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'caption'			=> array(
-				'name'		=> __( 'Image caption', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image caption.', 'ItalyStrap' ),
+				'name'		=> __( 'Image caption', 'italystrap' ),
+				'desc'		=> __( 'Enter the image caption.', 'italystrap' ),
 				'id'		=> 'caption',
 				'type'		=> 'textarea',
 				'class'		=> 'widefat caption',
@@ -66,8 +66,8 @@ return array(
 	 * Alternative text.
 	 */
 	'alt'				=> array(
-				'name'		=> __( 'Alternative text', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the alternative text.', 'ItalyStrap' ),
+				'name'		=> __( 'Alternative text', 'italystrap' ),
+				'desc'		=> __( 'Enter the alternative text.', 'italystrap' ),
 				'id'		=> 'alt',
 				'type'		=> 'text',
 				'class'		=> 'widefat alt',
@@ -80,8 +80,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'description'		=> array(
-				'name'		=> __( 'Image description', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image description.', 'ItalyStrap' ),
+				'name'		=> __( 'Image description', 'italystrap' ),
+				'desc'		=> __( 'Enter the image description.', 'italystrap' ),
 				'id'		=> 'description',
 				'type'		=> 'textarea',
 				'class'		=> 'widefat description',
@@ -99,8 +99,8 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
-				'name'		=> __( 'Size for images', 'ItalyStrap' ),
-				'desc'		=> __( '', 'ItalyStrap' ),
+				'name'		=> __( 'Size for images', 'italystrap' ),
+				'desc'		=> __( '', 'italystrap' ),
 				'id'		=> 'size',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
@@ -114,8 +114,8 @@ return array(
 	 * Alignment for image
 	 */
 	'alignment'				=> array(
-				'name'		=> __( 'Alignment', 'ItalyStrap' ),
-				'desc'		=> __( '', 'ItalyStrap' ),
+				'name'		=> __( 'Alignment', 'italystrap' ),
+				'desc'		=> __( '', 'italystrap' ),
 				'id'		=> 'alignment',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
@@ -134,8 +134,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'add_figure_container'		=> array(
-				'name'		=> esc_html__( 'Add container <figure>', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to add <figure> tag for img container.', 'ItalyStrap' ),
+				'name'		=> esc_html__( 'Add container <figure>', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to add <figure> tag for img container.', 'italystrap' ),
 				'id'		=> 'add_figure_container',
 				'type'		=> 'checkbox',
 				'class'		=> 'add_figure_container',
@@ -149,8 +149,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'container_css_class'		=> array(
-				'name'		=> __( 'Container CSS class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image css class (optional).', 'ItalyStrap' ),
+				'name'		=> __( 'Container CSS class', 'italystrap' ),
+				'desc'		=> __( 'Enter the image css class (optional).', 'italystrap' ),
 				'id'		=> 'container_css_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat container_css_class',
@@ -164,8 +164,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'image_css_class'		=> array(
-				'name'		=> __( 'Image CSS class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image css class (optional).', 'ItalyStrap' ),
+				'name'		=> __( 'Image CSS class', 'italystrap' ),
+				'desc'		=> __( 'Enter the image css class (optional).', 'italystrap' ),
 				'id'		=> 'image_css_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat image_css_class',
@@ -179,8 +179,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'link'		=> array(
-				'name'		=> __( 'Link URL', 'ItalyStrap' ),
-				'desc'		=> __( 'When you click on image.', 'ItalyStrap' ),
+				'name'		=> __( 'Link URL', 'italystrap' ),
+				'desc'		=> __( 'When you click on image.', 'italystrap' ),
 				'id'		=> 'link',
 				'type'		=> 'text',
 				'class'		=> 'widefat link',
@@ -194,8 +194,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'link_target_blank'		=> array(
-				'name'		=> __( 'Open in a new windows', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to open in a new tab/windows.', 'ItalyStrap' ),
+				'name'		=> __( 'Open in a new windows', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to open in a new tab/windows.', 'italystrap' ),
 				'id'		=> 'link_target_blank',
 				'type'		=> 'checkbox',
 				'class'		=> 'link_target_blank',

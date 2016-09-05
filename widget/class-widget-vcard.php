@@ -70,9 +70,9 @@ class Widget_VCard extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap vCard Local Business', 'ItalyStrap' ),
+			'label'				=> __( 'ItalyStrap vCard Local Business', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'ItalyStrap' ),
+			'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'italystrap' ),
 			'fields'			=> $fields,
 			'control_options'	=> array( 'width' => 340 ),
 		 );

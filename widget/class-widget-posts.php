@@ -44,9 +44,9 @@ class Widget_Posts extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Posts', 'ItalyStrap' ),
+			'label'				=> __( 'ItalyStrap Posts', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Displays list of posts with an array of options', 'ItalyStrap' ),
+			'description'		=> __( 'Displays list of posts with an array of options', 'italystrap' ),
 			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 			'widget_options'	=> array( 'customize_selective_refresh' => true ),

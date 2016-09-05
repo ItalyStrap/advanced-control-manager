@@ -32,7 +32,7 @@ return array(
 		),
 	'menu_page'				=> array(
 		'page_title'		=> __( 'ItalyStrap Dashboard', 'italystrap' ),
-		'menu_title'		=> 'ItalyStrap',
+		'menu_title'		=> 'italystrap',
 		// 'capability'		=> $this->capability,
 		'menu_slug'			=> 'italystrap-dashboard',
 		// 'function'		=> array( $this, 'get_admin_view' ),

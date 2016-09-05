@@ -39,8 +39,8 @@ class Widget_Product extends Widget {
 		// $fields['tags']['options'] = ( ( is_admin() ) ? get_taxonomies_list_array( 'product_tag' ) : null );
 
 		$fields['post_types'] = array(
-			'name'		=> __( 'Post type', 'ItalyStrap' ),
-			'desc'		=> __( 'Select the post type.', 'ItalyStrap' ),
+			'name'		=> __( 'Post type', 'italystrap' ),
+			'desc'		=> __( 'Select the post type.', 'italystrap' ),
 			'id'		=> 'post_types',
 			'type'		=> 'multiple_select',
 			'class'		=> 'widefat post_types',
@@ -71,9 +71,9 @@ class Widget_Product extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Product', 'ItalyStrap' ),
+			'label'				=> __( 'ItalyStrap Product', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Displays list of WC product with an array of options', 'ItalyStrap' ),
+			'description'		=> __( 'Displays list of WC product with an array of options', 'italystrap' ),
 			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'options/options-posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 		 );

@@ -4,7 +4,7 @@
  * @since 2.0
  */
 function italystrap_login_errors( $error ){
-    return __('<strong>Login Failed</strong>: please check your username and password.', 'ItalyStrap');
+    return __('<strong>Login Failed</strong>: please check your username and password.', 'italystrap');
 }
 
 add_filter( 'login_errors', 'italystrap_login_errors' );

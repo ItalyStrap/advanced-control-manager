@@ -44,13 +44,13 @@
 	<!-- <div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>"><?php _e( 'Documentation', 'ItalyStrap' ); ?></a>
+				<a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>"><?php _e( 'Documentation', 'italystrap' ); ?></a>
 				<div class="jumbotron">
 					<h1 class='text-center'>ItalyStrap</h1>
-					<h3 class='text-center h2'><?php _e( 'Make your website more powerful', 'ItalyStrap' ) ?></h3>
+					<h3 class='text-center h2'><?php _e( 'Make your website more powerful', 'italystrap' ) ?></h3>
 				</div>
 				<div class="page-header">
-					<h3 class="text-center h1"><?php _e( 'New Entry', 'ItalyStrap' ); ?></h3>
+					<h3 class="text-center h1"><?php _e( 'New Entry', 'italystrap' ); ?></h3>
 				</div>
 
 				<div class="col-md-4 col-md-push-4">
@@ -59,8 +59,8 @@
 						<div class="caption">
 							<h4><span class="dashicons dashicons-store"></span> ItalyStrap vCard for Local Business</h4>
 							<h5>Add Schema.org Local business in your site</h5>
-							<p><?php _e( 'A simple Widget to add Schema.org Local business in your widgetized themes', 'ItalyStrap' ); ?></p>
-							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+							<p><?php _e( 'A simple Widget to add Schema.org Local business in your widgetized themes', 'italystrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'italystrap' ); ?></a></p>
 						</div>
 					</div>
 				</div>
@@ -70,14 +70,14 @@
 
 		<div class="row">
 			<div class="page-header">
-				<h3 class="text-center h1"><?php _e( 'Coming soon', 'ItalyStrap' ); ?></h3 class="text-center">
+				<h3 class="text-center h1"><?php _e( 'Coming soon', 'italystrap' ); ?></h3 class="text-center">
 			</div>
 			<div class="col-md-12">
 				<div class="col-md-4 new-md-4">
 					<div class="thumbnail">
 						<div class="caption">
 							<h4><span class="dashicons dashicons-editor-code"></span> Shortcode</h4>
-							<p><?php _e( 'Add shortcode in admin panel, only for Bootstrap Style', 'ItalyStrap' ); ?></p>
+							<p><?php _e( 'Add shortcode in admin panel, only for Bootstrap Style', 'italystrap' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -85,7 +85,7 @@
 					<div class="thumbnail">
 						<div class="caption">
 							<h4><span class="dashicons dashicons-share"></span> Social</h4>
-							<p><?php _e( 'Social Button and Markup', 'ItalyStrap' ); ?></p>
+							<p><?php _e( 'Social Button and Markup', 'italystrap' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 					<div class="thumbnail">
 						<div class="caption">
 							<h4><span class="dashicons dashicons-id"></span> OpenGraph and Twitter Cards</h4>
-							<p><?php _e( 'OpenGraph and Twitter Cards for your social share', 'ItalyStrap' ); ?></p>
+							<p><?php _e( 'OpenGraph and Twitter Cards for your social share', 'italystrap' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h3 class="text-center h1"><?php _e( 'Currently present', 'ItalyStrap' ); ?></h3>
+					<h3 class="text-center h1"><?php _e( 'Currently present', 'italystrap' ); ?></h3>
 				</div>
 
 
@@ -114,8 +114,8 @@
 						<div class="caption">
 							<h4><span class="dashicons dashicons-store"></span> ItalyStrap vCard for Local Business</h4>
 							<h5>Add Schema.org Local business in your site</h5>
-							<p><?php _e( 'A simple Widget to add Schema.org Local business in your widgetized themes', 'ItalyStrap' ); ?></p>
-							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+							<p><?php _e( 'A simple Widget to add Schema.org Local business in your widgetized themes', 'italystrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'italystrap' ); ?></a></p>
 						</div>
 					</div>
 				</div>
@@ -127,8 +127,8 @@
 						<div class="caption">
 							<h4><span class="dashicons dashicons-performance"></span> Lazy Load</h4>
 							<h5>Lazy Load for images and Carousel</h5>
-							<p><?php _e( 'Activate Lazy Load from Option Page and let the magic begin :-)', 'ItalyStrap' ); ?></p>
-							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+							<p><?php _e( 'Activate Lazy Load from Option Page and let the magic begin :-)', 'italystrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'italystrap' ); ?></a></p>
 						</div>
 					</div>
 				</div>
@@ -139,8 +139,8 @@
 						<div class="caption">
 							<h4><span class="dashicons dashicons-images-alt"></span> Bootstrap Carousel</h4>
 							<h5>With Schema.org and responsive images</h5>
-							<p><?php _e( 'Add attribute <code>type="carousel"</code> at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise It will show standard WordPress Gallery.', 'ItalyStrap' ); ?></p>
-							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+							<p><?php _e( 'Add attribute <code>type="carousel"</code> at gallery shortcode, this will show Bootstrap Carousel based on the selected images and their titles and descriptions, otherwise It will show standard WordPress Gallery.', 'italystrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'italystrap' ); ?></a></p>
 						</div>
 					</div>
 				</div>
@@ -150,8 +150,8 @@
 						<div class="image breadimage"></div>
 						<div class="caption">
 							<h4><span class="dashicons dashicons-networking"></span> Breadcrumbs</h4>
-							<p><?php _e( 'Add breadcrumbs to your site in a simple and fast way and get Google rich snippet with Schema.org markup', 'ItalyStrap' ); ?></p>
-							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'ItalyStrap' ); ?></a></p>
+							<p><?php _e( 'Add breadcrumbs to your site in a simple and fast way and get Google rich snippet with Schema.org markup', 'italystrap' ); ?></p>
+							<p class="submit"><a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-documentation'); ?>" class="button button-primary"><?php _e( 'Read the documentation', 'italystrap' ); ?></a></p>
 						</div>
 					</div>
 				</div>

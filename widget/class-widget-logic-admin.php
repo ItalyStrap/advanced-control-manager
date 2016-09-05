@@ -250,7 +250,7 @@ class Widget_Logic_Admin {
 
 		$key = array(
 			'name'		=> __( 'Widget logic', 'italystrap' ),
-			'desc'		=> __( 'Add conditional tag to this widget.', 'ItalyStrap' ),
+			'desc'		=> __( 'Add conditional tag to this widget.', 'italystrap' ),
 			'id'		=> $id_disp . '-widget_logic',
 			'type'		=> 'textarea',
 			'class'		=> 'widefat widget_logic',

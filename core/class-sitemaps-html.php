@@ -131,7 +131,7 @@ class Sitemaps_HTML {
 				'exclude_admin' => false,
 			);
 
-			$posts_output .= '<h2 itemprop="name">' . __( 'Authors:', 'ItalyStrap' ) . '</h2><meta itemprop="itemListOrder" content="Ascending" /><ul>' . $this->get_wp_list_author( $author_args ) . '</ul>';
+			$posts_output .= '<h2 itemprop="name">' . __( 'Authors:', 'italystrap' ) . '</h2><meta itemprop="itemListOrder" content="Ascending" /><ul>' . $this->get_wp_list_author( $author_args ) . '</ul>';
 
 			/**
 			 * A list of post names registered

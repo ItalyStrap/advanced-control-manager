@@ -52,7 +52,7 @@ class Init {
 		/**
 		 * Load po file
 		 */
-		load_plugin_textdomain( 'ItalyStrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
+		load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
 	}
 
 	/**

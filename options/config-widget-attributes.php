@@ -19,8 +19,8 @@ return array(
 	 * CSS ID for the widgets.
 	 */
 	'widget_css_id'				=> array(
-				'name'		=> __( 'Widget CSS ID', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the CSS ID for this widget.', 'ItalyStrap' ),
+				'name'		=> __( 'Widget CSS ID', 'italystrap' ),
+				'desc'		=> __( 'Enter the CSS ID for this widget.', 'italystrap' ),
 				'id'		=> 'widget_css_id',
 				'type'		=> 'text',
 				'class'		=> 'widefat widget_css_id',
@@ -34,8 +34,8 @@ return array(
 	 * CSS class for the widgets.
 	 */
 	'widget_css_class'				=> array(
-				'name'		=> __( 'Widget CSS class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the CSS ID for this widget.', 'ItalyStrap' ),
+				'name'		=> __( 'Widget CSS class', 'italystrap' ),
+				'desc'		=> __( 'Enter the CSS ID for this widget.', 'italystrap' ),
 				'id'		=> 'widget_css_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat widget_css_class',

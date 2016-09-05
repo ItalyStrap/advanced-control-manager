@@ -46,22 +46,22 @@ class Widget_Media_Carousel extends Widget {
 
 		$this->carousel_options = array(
 			'orderby'		=> array(
-					'menu_order'	=> __( 'Menu order (Default)', 'ItalyStrap' ),
-					'title'			=> __( 'Order by the image\'s title', 'ItalyStrap' ),
-					'post_date'		=> __( 'Sort by date/time', 'ItalyStrap' ),
-					'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
-					'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
+					'menu_order'	=> __( 'Menu order (Default)', 'italystrap' ),
+					'title'			=> __( 'Order by the image\'s title', 'italystrap' ),
+					'post_date'		=> __( 'Sort by date/time', 'italystrap' ),
+					'rand'			=> __( 'Order randomly', 'italystrap' ),
+					'ID'			=> __( 'Order by the image\'s ID', 'italystrap' ),
 				),
 			'indicators'	=> array(
-					'before-inner'	=> __( 'before-inner', 'ItalyStrap' ),
-					'after-inner'	=> __( 'after-inner', 'ItalyStrap' ),
-					'after-control'	=> __( 'after-control', 'ItalyStrap' ),
-					'false'			=> __( 'false', 'ItalyStrap' ),
+					'before-inner'	=> __( 'before-inner', 'italystrap' ),
+					'after-inner'	=> __( 'after-inner', 'italystrap' ),
+					'after-control'	=> __( 'after-control', 'italystrap' ),
+					'false'			=> __( 'false', 'italystrap' ),
 				),
 			'control'		=> true,
 			'pause'			=> array(
-					'false'			=> __( 'none', 'ItalyStrap' ),
-					'hover'			=> __( 'hover', 'ItalyStrap' ),
+					'false'			=> __( 'none', 'italystrap' ),
+					'hover'			=> __( 'hover', 'italystrap' ),
 				),
 			'image_title'	=> true,
 			'text' 			=> true,
@@ -71,7 +71,7 @@ class Widget_Media_Carousel extends Widget {
 
 		$widget_ops = array(
 			'classname'		=> 'widget_italystrap_media_carousel',
-			'description'	=> __( 'Use this widget to add a Bootstrap Media Carousel', 'ItalyStrap' ),
+			'description'	=> __( 'Use this widget to add a Bootstrap Media Carousel', 'italystrap' ),
 			);
 
 		/**
@@ -85,7 +85,7 @@ class Widget_Media_Carousel extends Widget {
 
 		parent::__construct(
 			'widget_italystrap_media_carousel',
-			__( 'ItalyStrap: Bootstrap Media Carousel', 'ItalyStrap' ),
+			__( 'ItalyStrap: Bootstrap Media Carousel', 'italystrap' ),
 			$widget_ops,
 			$control_ops
 		);
@@ -211,7 +211,7 @@ class Widget_Media_Carousel extends Widget {
 		 * @var ItalyStrapAdminMediaSettings
 		 */
 		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
 		?>
 		<p>
@@ -233,7 +233,7 @@ class Widget_Media_Carousel extends Widget {
 			if ( 'ids' === $key ) {
 
 			?>
-				<h5><?php esc_attr_e( 'Add your images', 'ItalyStrap' ); ?></h5>
+				<h5><?php esc_attr_e( 'Add your images', 'italystrap' ); ?></h5>
 				<hr>
 				<p>
 					<label for="<?php esc_attr_e( $this->get_field_id( $key ) ); ?>" style="display:none">
@@ -265,7 +265,7 @@ class Widget_Media_Carousel extends Widget {
 					</ul>
 				</div>
 				<span style="clear:both;"></span>
-				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add images', 'ItalyStrap' ); ?>" />
+				<input class="upload_carousel_image_button button button-primary" type="button" value="<?php esc_attr_e( 'Add images', 'italystrap' ); ?>" />
 			<hr>
 			<?php
 			} else if ( 'size' === $key || 'sizetablet' === $key || 'sizephone' === $key ) {

@@ -42,22 +42,22 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 
 			$this->carousel_options = array(
 				'orderby'		=> array(
-						'menu_order'	=> __( 'Menu order (Default)', 'ItalyStrap' ),
-						'title'			=> __( 'Order by the image\'s title', 'ItalyStrap' ),
-						'post_date'		=> __( 'Sort by date/time', 'ItalyStrap' ),
-						'rand'			=> __( 'Order randomly', 'ItalyStrap' ),
-						'ID'			=> __( 'Order by the image\'s ID', 'ItalyStrap' ),
+						'menu_order'	=> __( 'Menu order (Default)', 'italystrap' ),
+						'title'			=> __( 'Order by the image\'s title', 'italystrap' ),
+						'post_date'		=> __( 'Sort by date/time', 'italystrap' ),
+						'rand'			=> __( 'Order randomly', 'italystrap' ),
+						'ID'			=> __( 'Order by the image\'s ID', 'italystrap' ),
 					),
 				'indicators'	=> array(
-						'before-inner'	=> __( 'before-inner', 'ItalyStrap' ),
-						'after-inner'	=> __( 'after-inner', 'ItalyStrap' ),
-						'after-control'	=> __( 'after-control', 'ItalyStrap' ),
-						'false'			=> __( 'false', 'ItalyStrap' ),
+						'before-inner'	=> __( 'before-inner', 'italystrap' ),
+						'after-inner'	=> __( 'after-inner', 'italystrap' ),
+						'after-control'	=> __( 'after-control', 'italystrap' ),
+						'false'			=> __( 'false', 'italystrap' ),
 					),
 				'control'		=> true,
 				'pause'			=> array(
-						'false'			=> __( 'none', 'ItalyStrap' ),
-						'hover'			=> __( 'hover', 'ItalyStrap' ),
+						'false'			=> __( 'none', 'italystrap' ),
+						'hover'			=> __( 'hover', 'italystrap' ),
 					),
 				'image_title'	=> true,
 				'text' 			=> true,
@@ -78,8 +78,8 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 				apply_filters(
 					'ItalyStrap_gallery_types',
 					array(
-						'default' => __( 'Standard gallery', 'ItalyStrap' ),
-						'carousel' => __( 'Bootstrap Carousel', 'ItalyStrap' ),
+						'default' => __( 'Standard gallery', 'italystrap' ),
+						'carousel' => __( 'Bootstrap Carousel', 'italystrap' ),
 					)
 				);
 
@@ -129,7 +129,7 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 				}
 				</style>
 				<label class="setting">
-					<span><?php esc_attr_e( 'Type', 'ItalyStrap' ); ?></span>
+					<span><?php esc_attr_e( 'Type', 'italystrap' ); ?></span>
 					<select class="type" name="type" data-setting="type">
 						<?php foreach ( $this->gallery_types as $value => $caption ) : ?>
 							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $default_gallery_type ); ?>><?php echo esc_html( $caption ); ?></option>
@@ -151,7 +151,7 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 			 * @var ItalyStrapAdminMediaSettings
 			 */
 			$image_size_media = new ItalyStrapAdminMediaSettings;
-			$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+			$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
 			foreach ( $this->fields as $key => $label ) {
 
@@ -237,9 +237,9 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 			}//!- foreach
 
 			?>
-					<!-- <p><?php esc_attr_e( 'For more informations about the options below see the <a href="admin.php?page=italystrap-documentation#carousel" target="_blank">documentation.</a>', 'ItalyStrap' ); ?></p>
+					<!-- <p><?php esc_attr_e( 'For more informations about the options below see the <a href="admin.php?page=italystrap-documentation#carousel" target="_blank">documentation.</a>', 'italystrap' ); ?></p>
 					<label class="setting">
-						<span><?php esc_attr_e( 'Indicators', 'ItalyStrap' ); ?></span>
+						<span><?php esc_attr_e( 'Indicators', 'italystrap' ); ?></span>
 						<select class="indicators" name="indicators" data-setting="indicators">
 							<option value="" disabled selected>Select your option</option>
 							<?php foreach ( $this->indicators as $value ) : ?>
@@ -248,11 +248,11 @@ if ( ! class_exists( 'ItalyStrapAdminGallerySettings' ) ) {
 						</select>
 					</label>
 					<label class="setting">
-						<span><?php esc_attr_e( 'HTML ID', 'ItalyStrap' ); ?></span>
+						<span><?php esc_attr_e( 'HTML ID', 'italystrap' ); ?></span>
 						<input type="text" name="name" value="" data-setting="name" placeholder="eg. myCssID">
 					</label>
 					<label class="setting">
-						<span><?php esc_attr_e( 'Interval', 'ItalyStrap' ); ?></span>
+						<span><?php esc_attr_e( 'Interval', 'italystrap' ); ?></span>
 					</label>
 					<input type="text" name="interval" value="" data-setting="interval" placeholder="5000"> -->
 

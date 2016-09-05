@@ -61,8 +61,8 @@ abstract class Widget extends WP_Widget {
 
 		return array(
 			'title'	=> array(
-				'name'		=> __( 'Title', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the widget title.', 'ItalyStrap' ),
+				'name'		=> __( 'Title', 'italystrap' ),
+				'desc'		=> __( 'Enter the widget title.', 'italystrap' ),
 				'id'		=> 'title',
 				'type'		=> 'text',
 				'class'		=> 'widefat',

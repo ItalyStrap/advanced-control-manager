@@ -30,7 +30,7 @@
 			<aside>
 				<h3 class="hndle">
 					<span>
-						<?php esc_attr_e( 'ItalyStrap', 'italystrap' ); ?>
+						<?php esc_attr_e( 'italystrap', 'italystrap' ); ?>
 					</span>
 				</h3>
 				<div class="inside">

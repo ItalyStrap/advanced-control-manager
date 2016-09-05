@@ -19,8 +19,8 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'title_link'				=> array(
-				'name'		=> __( 'Title link', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter a custom title link.', 'ItalyStrap' ),
+				'name'		=> __( 'Title link', 'italystrap' ),
+				'desc'		=> __( 'Enter a custom title link.', 'italystrap' ),
 				'id'		=> 'title_link',
 				'type'		=> 'url',
 				'class'		=> 'widefat title_link',
@@ -34,8 +34,8 @@ return array(
 	 * Custom CSS class for widget.
 	 */
 	// 'widget_class'				=> array(
-	// 			'name'		=> __( 'Widget Class', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Enter the widget class name.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Widget Class', 'italystrap' ),
+	// 			'desc'		=> __( 'Enter the widget class name.', 'italystrap' ),
 	// 			'id'		=> 'widget_class',
 	// 			'type'		=> 'text',
 	// 			'class'		=> 'widefat widget_class',
@@ -50,8 +50,8 @@ return array(
 	 * Custom CSS class for container.
 	 */
 	'container_class'			=> array(
-				'name'		=> __( 'Container Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the container class name.', 'ItalyStrap' ),
+				'name'		=> __( 'Container Class', 'italystrap' ),
+				'desc'		=> __( 'Enter the container class name.', 'italystrap' ),
 				'id'		=> 'container_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat container_class',
@@ -66,8 +66,8 @@ return array(
 	 * Custom CSS class for the article html tag.
 	 */
 	'post_class'				=> array(
-				'name'		=> __( 'Post Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the post class name.', 'ItalyStrap' ),
+				'name'		=> __( 'Post Class', 'italystrap' ),
+				'desc'		=> __( 'Enter the post class name.', 'italystrap' ),
 				'id'		=> 'post_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat post_class',
@@ -82,8 +82,8 @@ return array(
 	 * Custom CSS class for image.
 	 */
 	'image_class'				=> array(
-				'name'		=> __( 'Image Class', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the image class name.', 'ItalyStrap' ),
+				'name'		=> __( 'Image Class', 'italystrap' ),
+				'desc'		=> __( 'Enter the image class name.', 'italystrap' ),
 				'id'		=> 'image_class',
 				'type'		=> 'text',
 				'class'		=> 'widefat image_class',
@@ -98,8 +98,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	// 'before_posts'				=> array(
-	// 			'name'		=> __( 'Before posts', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Enter a custom text or HTML markup.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Before posts', 'italystrap' ),
+	// 			'desc'		=> __( 'Enter a custom text or HTML markup.', 'italystrap' ),
 	// 			'id'		=> 'before_posts',
 	// 			'type'		=> 'textarea',
 	// 			'class'		=> 'widefat before_posts',
@@ -111,8 +111,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	// 'after_posts'				=> array(
-	// 			'name'		=> __( 'After posts', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Enter a custom text or HTML markup.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'After posts', 'italystrap' ),
+	// 			'desc'		=> __( 'Enter a custom text or HTML markup.', 'italystrap' ),
 	// 			'id'		=> 'after_posts',
 	// 			'type'		=> 'textarea',
 	// 			'class'		=> 'widefat after_posts',
@@ -125,8 +125,8 @@ return array(
 	 * Custom CSS class for widget.
 	 */
 	'entry_title'				=> array(
-				'name'		=> __( 'HTML tag for post title', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the heading tag for title (default is h4).', 'ItalyStrap' ),
+				'name'		=> __( 'HTML tag for post title', 'italystrap' ),
+				'desc'		=> __( 'Enter the heading tag for title (default is h4).', 'italystrap' ),
 				'id'		=> 'entry_title',
 				'type'		=> 'text',
 				'class'		=> 'widefat entry_title',
@@ -141,8 +141,8 @@ return array(
 	 * Custom CSS.
 	 */
 	'custom_css'				=> array(
-				'name'		=> __( 'Custom CSS', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter your custom CSS.', 'ItalyStrap' ),
+				'name'		=> __( 'Custom CSS', 'italystrap' ),
+				'desc'		=> __( 'Enter your custom CSS.', 'italystrap' ),
 				'id'		=> 'custom_css',
 				'type'		=> 'textarea',
 				'class'		=> 'widefat custom_css',
@@ -157,15 +157,15 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'template'			=> array(
-				'name'		=> __( 'Template', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the template to display posts.', 'ItalyStrap' ),
+				'name'		=> __( 'Template', 'italystrap' ),
+				'desc'		=> __( 'Select the template to display posts.', 'italystrap' ),
 				'id'		=> 'template',
 				'type'		=> 'select',
 				'class'		=> 'widefat template',
 				'default'	=> 'standard',
 				'options'	=> array(
-							'standard'  => __( 'Standard template (Default)', 'ItalyStrap' ),
-							'custom'  => __( 'Custom template', 'ItalyStrap' ),
+							'standard'  => __( 'Standard template (Default)', 'italystrap' ),
+							'custom'  => __( 'Custom template', 'italystrap' ),
 				 			),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
@@ -176,8 +176,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'template_custom'			=> array(
-				'name'		=> __( 'Template custom name', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert your template custom name.', 'ItalyStrap' ),
+				'name'		=> __( 'Template custom name', 'italystrap' ),
+				'desc'		=> __( 'Insert your template custom name.', 'italystrap' ),
 				'id'		=> 'template_custom',
 				'type'		=> 'text',
 				'class'		=> 'widefat template_custom',
@@ -192,8 +192,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'posts_number'				=> array(
-				'name'		=> __( 'Number of posts', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert the number of posts to display.', 'ItalyStrap' ),
+				'name'		=> __( 'Number of posts', 'italystrap' ),
+				'desc'		=> __( 'Insert the number of posts to display.', 'italystrap' ),
 				'id'		=> 'posts_number',
 				'type'		=> 'number',
 				'class'		=> 'widefat posts_number',
@@ -207,8 +207,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_title'				=> array(
-				'name'		=> __( 'Show the title', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show the title.', 'ItalyStrap' ),
+				'name'		=> __( 'Show the title', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show the title.', 'italystrap' ),
 				'id'		=> 'show_title',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_title',
@@ -222,8 +222,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_date'					=> array(
-				'name'		=> __( 'Show the date', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show the date.', 'ItalyStrap' ),
+				'name'		=> __( 'Show the date', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show the date.', 'italystrap' ),
 				'id'		=> 'show_date',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_date',
@@ -237,8 +237,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'date_format'				=> array(
-				'name'		=> __( 'Date format', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show the date.', 'ItalyStrap' ),
+				'name'		=> __( 'Date format', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show the date.', 'italystrap' ),
 				'id'		=> 'date_format',
 				'type'		=> 'text',
 				'class'		=> 'widefat date_format',
@@ -252,8 +252,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_author'				=> array(
-				'name'		=> __( 'Show post author', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show post\'s author.', 'ItalyStrap' ),
+				'name'		=> __( 'Show post author', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show post\'s author.', 'italystrap' ),
 				'id'		=> 'show_author',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_author',
@@ -267,8 +267,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_comments_number'		=> array(
-				'name'		=> __( 'Show comments number', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show comments number.', 'ItalyStrap' ),
+				'name'		=> __( 'Show comments number', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show comments number.', 'italystrap' ),
 				'id'		=> 'show_comments_number',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_comments_number',
@@ -282,8 +282,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_excerpt'				=> array(
-				'name'		=> __( 'Show excerpt', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show excerpt.', 'ItalyStrap' ),
+				'name'		=> __( 'Show excerpt', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show excerpt.', 'italystrap' ),
 				'id'		=> 'show_excerpt',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_excerpt',
@@ -297,8 +297,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'excerpt_length'			=> array(
-				'name'		=> __( 'Excerpt length', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert the numbers of words to display.', 'ItalyStrap' ),
+				'name'		=> __( 'Excerpt length', 'italystrap' ),
+				'desc'		=> __( 'Insert the numbers of words to display.', 'italystrap' ),
 				'id'		=> 'excerpt_length',
 				'type'		=> 'number',
 				'class'		=> 'widefat excerpt_length',
@@ -312,8 +312,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_content'				=> array(
-				'name'		=> __( 'Show content', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show content.', 'ItalyStrap' ),
+				'name'		=> __( 'Show content', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show content.', 'italystrap' ),
 				'id'		=> 'show_content',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_content',
@@ -327,8 +327,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_readmore'				=> array(
-				'name'		=> __( 'Show readmore', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show readmore tag.', 'ItalyStrap' ),
+				'name'		=> __( 'Show readmore', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show readmore tag.', 'italystrap' ),
 				'id'		=> 'show_readmore',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_readmore',
@@ -342,12 +342,12 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'excerpt_readmore'			=> array(
-				'name'		=> __( 'Excerpt read more', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert the custom "read more" words.', 'ItalyStrap' ),
+				'name'		=> __( 'Excerpt read more', 'italystrap' ),
+				'desc'		=> __( 'Insert the custom "read more" words.', 'italystrap' ),
 				'id'		=> 'excerpt_readmore',
 				'type'		=> 'text',
 				'class'		=> 'widefat excerpt_readmore',
-				'default'	=> __( 'Read more &rarr;', 'ItalyStrap' ),
+				'default'	=> __( 'Read more &rarr;', 'italystrap' ),
 				'validate'	=> 'alpha_dash',
 				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'display',
@@ -357,8 +357,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'show_thumbnail'			=> array(
-				'name'		=> __( 'Show thumbnail', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to show thumbnail.', 'ItalyStrap' ),
+				'name'		=> __( 'Show thumbnail', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to show thumbnail.', 'italystrap' ),
 				'id'		=> 'show_thumbnail',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_thumbnail',
@@ -372,8 +372,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'thumb_size'			=> array(
-				'name'		=> __( 'thumb_size', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the thumb size to display posts.', 'ItalyStrap' ),
+				'name'		=> __( 'thumb_size', 'italystrap' ),
+				'desc'		=> __( 'Select the thumb size to display posts.', 'italystrap' ),
 				'id'		=> 'thumb_size',
 				'type'		=> 'select',
 				'class'		=> 'widefat thumb_size',
@@ -388,8 +388,8 @@ return array(
 	 * Custom CSS class for widget.
 	 */
 	'thumb_url'				=> array(
-				'name'		=> __( 'Enter ID of a fall-back thumbnail (optional)', 'ItalyStrap' ),
-				'desc'		=> __( 'Add a fall-back thumbnail in case no one is found.', 'ItalyStrap' ),
+				'name'		=> __( 'Enter ID of a fall-back thumbnail (optional)', 'italystrap' ),
+				'desc'		=> __( 'Add a fall-back thumbnail in case no one is found.', 'italystrap' ),
 				'id'		=> 'thumb_url',
 				'type'		=> 'media',
 				'class'		=> 'widefat thumb_url ids',
@@ -404,8 +404,8 @@ return array(
 	 * Show post categories.
 	 */
 	'show_cats'					=> array(
-				'name'		=> __( 'Show post categories', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show post categories.', 'ItalyStrap' ),
+				'name'		=> __( 'Show post categories', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show post categories.', 'italystrap' ),
 				'id'		=> 'show_cats',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_cats',
@@ -419,8 +419,8 @@ return array(
 	 * Show post tags.
 	 */
 	'show_tags'					=> array(
-				'name'		=> __( 'Show post tags', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show post tags.', 'ItalyStrap' ),
+				'name'		=> __( 'Show post tags', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show post tags.', 'italystrap' ),
 				'id'		=> 'show_tags',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat show_tags',
@@ -434,8 +434,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'custom_fields'				=> array(
-				'name'		=> __( 'Show custom fields', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show custom fields (comma separated).', 'ItalyStrap' ),
+				'name'		=> __( 'Show custom fields', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show custom fields (comma separated).', 'italystrap' ),
 				'id'		=> 'custom_fields',
 				'type'		=> 'text',
 				'class'		=> 'widefat custom_fields',
@@ -449,8 +449,8 @@ return array(
 	 * Show posts only from current category.
 	 */
 	// 'atcat'						=> array(
-	// 			'name'		=> __( 'Show posts only from current category', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Check if you want to Show posts only from current category.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Show posts only from current category', 'italystrap' ),
+	// 			'desc'		=> __( 'Check if you want to Show posts only from current category.', 'italystrap' ),
 	// 			'id'		=> 'atcat',
 	// 			'type'		=> 'checkbox',
 	// 			// 'class'		=> 'widefat atcat',
@@ -464,12 +464,12 @@ return array(
 	 * Select Categories.
 	 */
 	'cats'						=> array(
-				'name'		=> __( 'Select Categories', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the categories. (Use ctrl for multiple select)', 'ItalyStrap' ),
+				'name'		=> __( 'Select Categories', 'italystrap' ),
+				'desc'		=> __( 'Select the categories. (Use ctrl for multiple select)', 'italystrap' ),
 				'id'		=> 'cats',
 				'type'		=> 'taxonomy_multiple_select',
 				'class'		=> 'widefat cats',
-				'show_option_none' => __( 'No selection', 'ItalyStrap' ), // Default false, with tre write None
+				'show_option_none' => __( 'No selection', 'italystrap' ), // Default false, with tre write None
 				'default'	=> '0',
 				'taxonomy'	=> 'category',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'category' ) : null ),
@@ -482,8 +482,8 @@ return array(
 	 * Show posts only from current tag.
 	 */
 	// 'attag'						=> array(
-	// 			'name'		=> __( 'Show posts only from current tag', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Check if you want to Show posts only from current tag.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Show posts only from current tag', 'italystrap' ),
+	// 			'desc'		=> __( 'Check if you want to Show posts only from current tag.', 'italystrap' ),
 	// 			'id'		=> 'attag',
 	// 			'type'		=> 'checkbox',
 	// 			// 'class'		=> 'widefat attag',
@@ -497,12 +497,12 @@ return array(
 	 * Select Tags.
 	 */
 	'tags'						=> array(
-				'name'		=> __( 'Select Tags', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the Tag. (Use ctrl for multiple select)', 'ItalyStrap' ),
+				'name'		=> __( 'Select Tags', 'italystrap' ),
+				'desc'		=> __( 'Select the Tag. (Use ctrl for multiple select)', 'italystrap' ),
 				'id'		=> 'tags',
 				'type'		=> 'taxonomy_multiple_select',
 				'class'		=> 'widefat tags',
-				'show_option_none' => __( 'No selection', 'ItalyStrap' ),
+				'show_option_none' => __( 'No selection', 'italystrap' ),
 				'default'	=> 'none',
 				'taxonomy'	=> 'post_tag',
 				// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
@@ -515,8 +515,8 @@ return array(
 	 * Show related posts by tags
 	 */
 	'related_by_tags'			=> array(
-				'name'		=> __( 'Show related posts by tags', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show related posts by tags.', 'ItalyStrap' ),
+				'name'		=> __( 'Show related posts by tags', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show related posts by tags.', 'italystrap' ),
 				'id'		=> 'related_by_tags',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat related_by_tags',
@@ -530,8 +530,8 @@ return array(
 	 * Show related posts by tags
 	 */
 	'related_by_cats'			=> array(
-				'name'		=> __( 'Show related posts by cats', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show related posts by cats.', 'ItalyStrap' ),
+				'name'		=> __( 'Show related posts by cats', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show related posts by cats.', 'italystrap' ),
 				'id'		=> 'related_by_cats',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat related_by_cats',
@@ -545,8 +545,8 @@ return array(
 	 * Esclude current post from loop
 	 */
 	'exclude_current_post'			=> array(
-				'name'		=> __( 'Esclude current post from loop', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Esclude the current post from loop.', 'ItalyStrap' ),
+				'name'		=> __( 'Esclude current post from loop', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Esclude the current post from loop.', 'italystrap' ),
 				'id'		=> 'exclude_current_post',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat exclude_current_post',
@@ -560,8 +560,8 @@ return array(
 	 * Show posts only from current user.
 	 */
 	'from_current_user'			=> array(
-				'name'		=> __( 'Show posts only from current user', 'ItalyStrap' ),
-				'desc'		=> __( 'Check if you want to Show posts only from current user.', 'ItalyStrap' ),
+				'name'		=> __( 'Show posts only from current user', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to Show posts only from current user.', 'italystrap' ),
 				'id'		=> 'from_current_user',
 				'type'		=> 'text',
 				// 'class'		=> 'widefat from_current_user',
@@ -575,8 +575,8 @@ return array(
 	 * Select the post type.
 	 */
 	'post_types'				=> array(
-				'name'		=> __( 'Post type', 'ItalyStrap' ),
-				'desc'		=> __( 'Select the post type to show.', 'ItalyStrap' ),
+				'name'		=> __( 'Post type', 'italystrap' ),
+				'desc'		=> __( 'Select the post type to show.', 'italystrap' ),
 				'id'		=> 'post_types',
 				'type'		=> 'multiple_select',
 				'class'		=> 'widefat post_types',
@@ -591,8 +591,8 @@ return array(
 	 * Select the post ID.
 	 */
 	'post_id'				=> array(
-				'name'		=> __( 'Post/Page Id', 'ItalyStrap' ),
-				'desc'		=> __( 'Insert post ID separated by comma.', 'ItalyStrap' ),
+				'name'		=> __( 'Post/Page Id', 'italystrap' ),
+				'desc'		=> __( 'Insert post ID separated by comma.', 'italystrap' ),
 				'id'		=> 'post_id',
 				'type'		=> 'text',
 				'class'		=> 'widefat post_id',
@@ -606,8 +606,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	// 'users'				=> array(
-	// 			'name'		=> __( 'Select user', 'ItalyStrap' ),
-	// 			'desc'		=> __( 'Select the post type.', 'ItalyStrap' ),
+	// 			'name'		=> __( 'Select user', 'italystrap' ),
+	// 			'desc'		=> __( 'Select the post type.', 'italystrap' ),
 	// 			'id'		=> 'users',
 	// 			'type'		=> 'multiple_select',
 	// 			'class'		=> 'widefat users',
@@ -622,16 +622,16 @@ return array(
 	 * Select if you want to show sticky posts or not.
 	 */
 	'sticky_post'				=> array(
-				'name'		=> __( 'Sticky post', 'ItalyStrap' ),
-				'desc'		=> __( 'Select if you want to show sticky posts or not.', 'ItalyStrap' ),
+				'name'		=> __( 'Sticky post', 'italystrap' ),
+				'desc'		=> __( 'Select if you want to show sticky posts or not.', 'italystrap' ),
 				'id'		=> 'sticky_post',
 				'type'		=> 'select',
 				'class'		=> 'widefat sticky_post',
 				'default'	=> 'show',
 				'options'	=> array(
-						'show'	=> __( 'Show all posts', 'ItalyStrap' ),
-						'hide'	=> __( 'Hide Sticky Posts', 'ItalyStrap' ),
-						'only'	=> __( 'Show Only Sticky Posts', 'ItalyStrap' ),
+						'show'	=> __( 'Show all posts', 'italystrap' ),
+						'hide'	=> __( 'Hide Sticky Posts', 'italystrap' ),
+						'only'	=> __( 'Show Only Sticky Posts', 'italystrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
@@ -642,28 +642,28 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'orderby'					=> array(
-				'name'		=> __( 'Order by', 'ItalyStrap' ),
-				'desc'		=> __( 'How posts have to be ordered.', 'ItalyStrap' ),
+				'name'		=> __( 'Order by', 'italystrap' ),
+				'desc'		=> __( 'How posts have to be ordered.', 'italystrap' ),
 				'id'		=> 'orderby',
 				'type'		=> 'select',
 				'class'		=> 'widefat orderby',
 				'default'	=> 'none',
 				'options'	=> array(
-						'none'			=> __( 'No order. (Default)', 'ItalyStrap' ),
-						'ID'			=> __( 'Order by post id.', 'ItalyStrap' ),
-						'author'		=> __( 'Order by author.', 'ItalyStrap' ),
-						'title'			=> __( 'Title.', 'ItalyStrap' ),
-						'name'			=> __( 'Order by post name (post slug).', 'ItalyStrap' ),
-						'type'			=> __( 'Order by post type (available since Version 4.0).', 'ItalyStrap' ),
-						'date'			=> __( 'Order by date', 'ItalyStrap' ),
-						'modified'			=> __( 'Order by last modified date.', 'ItalyStrap' ),
-						'parent'			=> __( 'Order by post/page parent id.', 'ItalyStrap' ),
-						'rand'			=> __( 'Random order.', 'ItalyStrap' ),
-						'comment_count'	=> __( 'Order by number of comments.', 'ItalyStrap' ),
-						'menu_order'	=> __( 'Order by Page Order.', 'ItalyStrap' ),
-						'meta_value'	=> __( 'Order by value in custom field ("meta_key=keyname" must also be present in the query)', 'ItalyStrap' ),
-						'meta_value_num'	=> __( 'Order by value in custom field ("meta_key=keyname" must also be present in the query)', 'ItalyStrap' ),
-						'post__in'		=> __( 'Preserve post ID order given in the post__in array.', 'ItalyStrap' ),
+						'none'			=> __( 'No order. (Default)', 'italystrap' ),
+						'ID'			=> __( 'Order by post id.', 'italystrap' ),
+						'author'		=> __( 'Order by author.', 'italystrap' ),
+						'title'			=> __( 'Title.', 'italystrap' ),
+						'name'			=> __( 'Order by post name (post slug).', 'italystrap' ),
+						'type'			=> __( 'Order by post type (available since Version 4.0).', 'italystrap' ),
+						'date'			=> __( 'Order by date', 'italystrap' ),
+						'modified'			=> __( 'Order by last modified date.', 'italystrap' ),
+						'parent'			=> __( 'Order by post/page parent id.', 'italystrap' ),
+						'rand'			=> __( 'Random order.', 'italystrap' ),
+						'comment_count'	=> __( 'Order by number of comments.', 'italystrap' ),
+						'menu_order'	=> __( 'Order by Page Order.', 'italystrap' ),
+						'meta_value'	=> __( 'Order by value in custom field ("meta_key=keyname" must also be present in the query)', 'italystrap' ),
+						'meta_value_num'	=> __( 'Order by value in custom field ("meta_key=keyname" must also be present in the query)', 'italystrap' ),
+						'post__in'		=> __( 'Preserve post ID order given in the post__in array.', 'italystrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',
@@ -674,8 +674,8 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'meta_key'			=> array(
-				'name'		=> __( 'Custom fields', 'ItalyStrap' ),
-				'desc'		=> __( 'Inser the custom field separated by comma.', 'ItalyStrap' ),
+				'name'		=> __( 'Custom fields', 'italystrap' ),
+				'desc'		=> __( 'Inser the custom field separated by comma.', 'italystrap' ),
 				'id'		=> 'meta_key',
 				'type'		=> 'text',
 				'class'		=> 'widefat meta_key',
@@ -689,15 +689,15 @@ return array(
 	 * Custom text or HTML markup.
 	 */
 	'order'					=> array(
-				'name'		=> __( 'Order', 'ItalyStrap' ),
-				'desc'		=> __( 'How posts have to be ordered.', 'ItalyStrap' ),
+				'name'		=> __( 'Order', 'italystrap' ),
+				'desc'		=> __( 'How posts have to be ordered.', 'italystrap' ),
 				'id'		=> 'order',
 				'type'		=> 'select',
 				'class'		=> 'widefat order',
 				'default'	=> 'DESC',
 				'options'	=> array(
-					'DESC'	=> __( 'Descending', 'ItalyStrap' ),
-					'ASC'	=> __( 'Ascending', 'ItalyStrap' ),
+					'DESC'	=> __( 'Descending', 'italystrap' ),
+					'ASC'	=> __( 'Ascending', 'italystrap' ),
 					),
 				// 'validate'	=> 'numeric_comma',
 				'sanitize'	=> 'sanitize_text_field',

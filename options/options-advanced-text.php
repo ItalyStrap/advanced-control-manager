@@ -19,8 +19,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'ids'				=> array(
-				'name'		=> __( 'Images ID', 'ItalyStrap' ),
-				'desc'		=> __( 'Enter the media or post type ID.', 'ItalyStrap' ),
+				'name'		=> __( 'Images ID', 'italystrap' ),
+				'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
 				'id'		=> 'ids',
 				'type'		=> 'media_list',
 				'class'		=> 'widefat ids',

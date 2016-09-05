@@ -96,7 +96,7 @@ function get_file_content( $filename ) {
 
 	// Check to see if the file exists at the specified path.
 	if ( ! file_exists( $filename ) ) {
-		throw new Exception( __( 'The file doesn\'t exist.', 'ItalyStrap' ) ); }
+		throw new Exception( __( 'The file doesn\'t exist.', 'italystrap' ) ); }
 
 	// Open the file for reading.
 	$file_resource = fopen( $filename, 'r' );
@@ -158,7 +158,7 @@ function get_image_size_array( $custom_size = array() ) {
 	 */
 	$image_size_media = new ItalyStrapAdminMediaSettings;
 
-	$image_size_media_array = (array) $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'ItalyStrap' ) ) );
+	$image_size_media_array = (array) $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
 
 	return $image_size_media_array;
 

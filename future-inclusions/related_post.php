@@ -16,7 +16,7 @@ function show_related_posts() {
    		);
     $post_correlati = new WP_Query($args);
   		if( $post_correlati->have_posts() ) {
-          echo '<h3>' . __('Related posts', 'ItalyStrap') .  '</h3>' . "\n";
+          echo '<h3>' . __('Related posts', 'italystrap') .  '</h3>' . "\n";
   		    echo '<div class="row" itemscope itemtype="http://schema.org/Article">' . "\n";
     		while ($post_correlati->have_posts()) : $post_correlati->the_post(); ?>
 				<span class="col-md-3 col-xs-6">
@@ -76,7 +76,7 @@ function controzzi_show_related_posts() {
     $post_correlati = new WP_Query( $args );
 
     if ( $post_correlati->have_posts() ) {
-      echo '<h4 class="entry-related-heading">' . __( 'Ti potrebbe interessare anche...', 'ItalyStrap' ) .  '</h4>' . "\n";
+      echo '<h4 class="entry-related-heading">' . __( 'Ti potrebbe interessare anche...', 'italystrap' ) .  '</h4>' . "\n";
       echo '<section class="row entry-related" itemscope itemtype="http://schema.org/Article">' . "\n";
       while ( $post_correlati->have_posts() ) :
 
@@ -114,7 +114,7 @@ function controzzi_show_related_posts() {
         <footer class="entry-footer">
           <span itemprop="author"><?php the_author_posts_link(); ?></span>
           <?php if ( comments_open() ) : ?>
-             | <span><?php comments_number( __( 'No Responses', 'ItalyStrap' ), __( 'One Response', 'ItalyStrap' ), __( '% Responses', 'ItalyStrap' ) ); ?></span>
+             | <span><?php comments_number( __( 'No Responses', 'italystrap' ), __( 'One Response', 'italystrap' ), __( '% Responses', 'italystrap' ) ); ?></span>
           <?php endif ?>
         </footer>
         <span class="clearfix"></span>

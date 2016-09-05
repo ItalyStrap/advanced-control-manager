@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php namespace ItalyStrap\Widget;
 
 use \WP_Widget;
 use \WP_Query;
@@ -25,7 +25,7 @@ class Widget_Posts2 extends Widget {
 
 		$widget_options = array(
 			'classname' => 'italystrap_posts_widget',
-			'description' => __( 'Displays list of posts with an array of options (DEPRECATED)', 'ItalyStrap' ),
+			'description' => __( 'Displays list of posts with an array of options (DEPRECATED)', 'italystrap' ),
 			);
 
 		$control_options = array(
@@ -34,7 +34,7 @@ class Widget_Posts2 extends Widget {
 
 		parent::__construct(
 			'sticky-posts',
-			__( 'ItalyStrap Posts Widget', 'ItalyStrap' ),
+			__( 'ItalyStrap Posts Widget', 'italystrap' ),
 			$widget_options,
 			$control_options
 		);
@@ -222,7 +222,9 @@ class Widget_Posts2 extends Widget {
 			}
 		} elseif ( 'standard' === $instance['template'] ) {
 
-			include 'templates/standard.php';
+			// include( ITALYSTRAP_PLUGIN_PATH . 'templates/standard.php' );
+			include( ITALYSTRAP_PLUGIN_PATH . 'templates/legacy.php' );
+			// include get_template( '/templates/content-post.php' );
 
 		} else {
 
@@ -311,7 +313,7 @@ class Widget_Posts2 extends Widget {
 		 * @var array
 		 */
 		$instance = wp_parse_args( (array) $instance, array(
-			'title'				=> __( 'ItalyStrap Widget Posts', 'ItalyStrap' ),
+			'title'				=> __( 'ItalyStrap Widget Posts', 'italystrap' ),
 			'class'				=> '',
 			'title_link'		=> '',
 			'number'			=> '5',
@@ -322,7 +324,7 @@ class Widget_Posts2 extends Widget {
 			'thumb_size'		=> 'thumbnail',
 			'attag'				=> false,
 			'excerpt_length'	=> 10,
-			'excerpt_readmore'	=> __( 'Read more &rarr;', 'ItalyStrap' ),
+			'excerpt_readmore'	=> __( 'Read more &rarr;', 'italystrap' ),
 			'order'				=> 'DESC',
 			'orderby'			=> 'date',
 			'meta_key'			=> '',
@@ -426,36 +428,36 @@ class Widget_Posts2 extends Widget {
 ?>
 
 <div class="upw-tabs">
-<a class="upw-tab-item active" data-toggle="upw-tab-general"><?php esc_attr_e( 'General', 'ItalyStrap' ); ?></a>
-<a class="upw-tab-item" data-toggle="upw-tab-display"><?php esc_attr_e( 'Display', 'ItalyStrap' ); ?></a>
-<a class="upw-tab-item" data-toggle="upw-tab-filter"><?php esc_attr_e( 'Filter', 'ItalyStrap' ); ?></a>
-<a class="upw-tab-item" data-toggle="upw-tab-order"><?php esc_attr_e( 'Order', 'ItalyStrap' ); ?></a>
+<a class="upw-tab-item active" data-toggle="upw-tab-general"><?php esc_attr_e( 'General', 'italystrap' ); ?></a>
+<a class="upw-tab-item" data-toggle="upw-tab-display"><?php esc_attr_e( 'Display', 'italystrap' ); ?></a>
+<a class="upw-tab-item" data-toggle="upw-tab-filter"><?php esc_attr_e( 'Filter', 'italystrap' ); ?></a>
+<a class="upw-tab-item" data-toggle="upw-tab-order"><?php esc_attr_e( 'Order', 'italystrap' ); ?></a>
 </div>
 
 <div class="upw-tab upw-tab-general">
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_attr_e( 'Title', 'italystrap' ); ?>:</label>
 	<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
 </p>
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'title_link' ); ?>"><?php esc_attr_e( 'Title URL', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'title_link' ); ?>"><?php esc_attr_e( 'Title URL', 'italystrap' ); ?>:</label>
 	<input class="widefat" id="<?php echo $this->get_field_id( 'title_link' ); ?>" name="<?php echo $this->get_field_name( 'title_link' ); ?>" type="text" value="<?php echo $title_link; ?>" />
 </p>
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'class' ); ?>"><?php esc_attr_e( 'CSS class', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'class' ); ?>"><?php esc_attr_e( 'CSS class', 'italystrap' ); ?>:</label>
 	<input class="widefat" id="<?php echo $this->get_field_id( 'class' ); ?>" name="<?php echo $this->get_field_name( 'class' ); ?>" type="text" value="<?php echo $class; ?>" />
 </p>
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'before_posts' ); ?>"><?php esc_attr_e( 'Before posts', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'before_posts' ); ?>"><?php esc_attr_e( 'Before posts', 'italystrap' ); ?>:</label>
 	<textarea class="widefat" id="<?php echo $this->get_field_id( 'before_posts' ); ?>" name="<?php echo $this->get_field_name( 'before_posts' ); ?>" rows="5"><?php echo $before_posts; ?></textarea>
 </p>
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'after_posts' ); ?>"><?php esc_attr_e( 'After posts', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'after_posts' ); ?>"><?php esc_attr_e( 'After posts', 'italystrap' ); ?>:</label>
 	<textarea class="widefat" id="<?php echo $this->get_field_id( 'after_posts' ); ?>" name="<?php echo $this->get_field_name( 'after_posts' ); ?>" rows="5"><?php echo $after_posts; ?></textarea>
 </p>
 
@@ -464,68 +466,68 @@ class Widget_Posts2 extends Widget {
 <div class="upw-tab upw-hide upw-tab-display">
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'template' ); ?>"><?php esc_attr_e( 'Template', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'template' ); ?>"><?php esc_attr_e( 'Template', 'italystrap' ); ?>:</label>
 	<select name="<?php echo $this->get_field_name( 'template' ); ?>" id="<?php echo $this->get_field_id( 'template' ); ?>" class="widefat">
-		<!-- <option value="legacy"<?php if ( 'legacy' === $template ) echo ' selected'; ?>><?php esc_attr_e( 'Legacy', 'ItalyStrap' ); ?></option> -->
-		<option value="standard"<?php if ( 'standard' === $template) echo ' selected'; ?>><?php esc_attr_e( 'Standard', 'ItalyStrap' ); ?></option>
-		<option value="custom"<?php if ( 'custom' === $template) echo ' selected'; ?>><?php esc_attr_e( 'Custom', 'ItalyStrap' ); ?></option>
+		<!-- <option value="legacy"<?php if ( 'legacy' === $template ) echo ' selected'; ?>><?php esc_attr_e( 'Legacy', 'italystrap' ); ?></option> -->
+		<option value="standard"<?php if ( 'standard' === $template) echo ' selected'; ?>><?php esc_attr_e( 'Standard', 'italystrap' ); ?></option>
+		<option value="custom"<?php if ( 'custom' === $template) echo ' selected'; ?>><?php esc_attr_e( 'Custom', 'italystrap' ); ?></option>
 	</select>
 </p>
 
 <p<?php if ($template !== 'custom') echo ' style="display:none;"'; ?>>
-<label for="<?php echo $this->get_field_id( 'template_custom' ); ?>"><?php esc_attr_e( 'Custom Template Name', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'template_custom' ); ?>"><?php esc_attr_e( 'Custom Template Name', 'italystrap' ); ?>:</label>
 <input class="widefat" id="<?php echo $this->get_field_id( 'template_custom' ); ?>" name="<?php echo $this->get_field_name( 'template_custom' ); ?>" type="text" value="<?php echo $template_custom; ?>" />
 </p>
 
 <p>
-<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_attr_e( 'Number of posts', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_attr_e( 'Number of posts', 'italystrap' ); ?>:</label>
 <input class="widefat" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" min="-1" />
 </p>
 
 <p>
 <input class="checkbox" id="<?php echo $this->get_field_id( 'show_title' ); ?>" name="<?php echo $this->get_field_name( 'show_title' ); ?>" type="checkbox" <?php checked( (bool) $show_title, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_title' ); ?>"><?php esc_attr_e( 'Show title', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_title' ); ?>"><?php esc_attr_e( 'Show title', 'italystrap' ); ?></label>
 </p>
 
 <p>
 <input class="checkbox" id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" type="checkbox" <?php checked( (bool) $show_date, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php esc_attr_e( 'Show published date', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php esc_attr_e( 'Show published date', 'italystrap' ); ?></label>
 </p>
 
 <p<?php if ( ! $show_date) echo ' style="display:none;"'; ?>>
-<label for="<?php echo $this->get_field_id( 'date_format' ); ?>"><?php esc_attr_e( 'Date format', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'date_format' ); ?>"><?php esc_attr_e( 'Date format', 'italystrap' ); ?>:</label>
 <input class="widefat" type="text" id="<?php echo $this->get_field_id( 'date_format' ); ?>" name="<?php echo $this->get_field_name( 'date_format' ); ?>" value="<?php echo $date_format; ?>" />
 </p>
 
 <p>
 <input class="checkbox" id="<?php echo $this->get_field_id( 'show_author' ); ?>" name="<?php echo $this->get_field_name( 'show_author' ); ?>" type="checkbox" <?php checked( (bool) $show_author, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_author' ); ?>"><?php esc_attr_e( 'Show post author', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_author' ); ?>"><?php esc_attr_e( 'Show post author', 'italystrap' ); ?></label>
 </p>
 
 <p>
 <input class="checkbox" id="<?php echo $this->get_field_id( 'show_comments' ); ?>" name="<?php echo $this->get_field_name( 'show_comments' ); ?>" type="checkbox" <?php checked( (bool) $show_comments, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_comments' ); ?>"><?php esc_attr_e( 'Show comments count', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_comments' ); ?>"><?php esc_attr_e( 'Show comments count', 'italystrap' ); ?></label>
 </p>
 
 <p>
 <input class="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" type="checkbox" <?php checked( (bool) $show_excerpt, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php esc_attr_e( 'Show excerpt', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php esc_attr_e( 'Show excerpt', 'italystrap' ); ?></label>
 </p>
 
 <p<?php if ( ! $show_excerpt) echo ' style="display:none;"'; ?>>
-<label for="<?php echo $this->get_field_id( 'excerpt_length' ); ?>"><?php esc_attr_e( 'Excerpt length (in words)', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'excerpt_length' ); ?>"><?php esc_attr_e( 'Excerpt length (in words)', 'italystrap' ); ?>:</label>
 <input class="widefat" type="number" id="<?php echo $this->get_field_id( 'excerpt_length' ); ?>" name="<?php echo $this->get_field_name( 'excerpt_length' ); ?>" value="<?php echo $excerpt_length; ?>" min="-1" />
 </p>
 
 <p>
 <input class="checkbox" id="<?php echo $this->get_field_id( 'show_content' ); ?>" name="<?php echo $this->get_field_name( 'show_content' ); ?>" type="checkbox" <?php checked( (bool) $show_content, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_content' ); ?>"><?php esc_attr_e( 'Show content', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_content' ); ?>"><?php esc_attr_e( 'Show content', 'italystrap' ); ?></label>
 </p>
 
 <p<?php if ( ! $show_excerpt && ! $show_content) echo ' style="display:none;"'; ?>>
 <label for="<?php echo $this->get_field_id( 'show_readmore' ); ?>">
 <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_readmore' ); ?>" name="<?php echo $this->get_field_name( 'show_readmore' ); ?>"<?php checked( (bool) $show_readmore, true ); ?> />
-<?php esc_attr_e( 'Show read more link', 'ItalyStrap' ); ?>
+<?php esc_attr_e( 'Show read more link', 'italystrap' ); ?>
 </label>
 </p>
 
@@ -540,7 +542,7 @@ class Widget_Posts2 extends Widget {
 <p>
 	<input class="checkbox" id="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>" name="<?php echo $this->get_field_name( 'show_thumbnail' ); ?>" type="checkbox" <?php checked( (bool) $show_thumbnail, true ); ?> />
 
-	<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php esc_attr_e( 'Show thumbnail', 'ItalyStrap' ); ?></label>
+	<label for="<?php echo $this->get_field_id( 'show_thumbnail' ); ?>"><?php esc_attr_e( 'Show thumbnail', 'italystrap' ); ?></label>
 </p>
 
 <p<?php if ( ! $show_thumbnail) echo ' style="display:none;"'; ?>>
@@ -553,9 +555,9 @@ class Widget_Posts2 extends Widget {
 <br>
 <br>
 	<label for="<?php esc_attr_e( $this->get_field_id( 'thumb_url' ) ); ?>" class="widefat">
-		<?php echo esc_attr_e( 'Load fall-back thumbnail', 'ItalyStrap' ); ?>
+		<?php echo esc_attr_e( 'Load fall-back thumbnail', 'italystrap' ); ?>
 	</label>
-	<input id="<?php esc_attr_e( $this->get_field_id( 'thumb_url' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'thumb_url' ) ); ?>" type="text" value="<?php  echo ${'thumb_url'}; ?>" placeholder="<?php echo esc_attr_e( 'Load fall-back thumbnail', 'ItalyStrap' ); ?>" class="widefat">
+	<input id="<?php esc_attr_e( $this->get_field_id( 'thumb_url' ) ); ?>" name="<?php esc_attr_e( $this->get_field_name( 'thumb_url' ) ); ?>" type="text" value="<?php  echo ${'thumb_url'}; ?>" placeholder="<?php echo esc_attr_e( 'Load fall-back thumbnail', 'italystrap' ); ?>" class="widefat">
 	<input class="upload_image_button button button-primary widefat" type="button" value="Upload Image" />
 </p>
 
@@ -563,16 +565,16 @@ class Widget_Posts2 extends Widget {
 
 <p>
 <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_cats' ); ?>" name="<?php echo $this->get_field_name( 'show_cats' ); ?>" <?php checked( (bool) $show_cats, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_cats' ); ?>"> <?php esc_attr_e( 'Show post categories', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_cats' ); ?>"> <?php esc_attr_e( 'Show post categories', 'italystrap' ); ?></label>
 </p>
 
 <p>
 <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_tags' ); ?>" name="<?php echo $this->get_field_name( 'show_tags' ); ?>" <?php checked( (bool) $show_tags, true ); ?> />
-<label for="<?php echo $this->get_field_id( 'show_tags' ); ?>"> <?php esc_attr_e( 'Show post tags', 'ItalyStrap' ); ?></label>
+<label for="<?php echo $this->get_field_id( 'show_tags' ); ?>"> <?php esc_attr_e( 'Show post tags', 'italystrap' ); ?></label>
 </p>
 
 <p>
-<label for="<?php echo $this->get_field_id( 'custom_fields' ); ?>"><?php esc_attr_e( 'Show custom fields (comma separated)', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'custom_fields' ); ?>"><?php esc_attr_e( 'Show custom fields (comma separated)', 'italystrap' ); ?>:</label>
 <input class="widefat" id="<?php echo $this->get_field_id( 'custom_fields' ); ?>" name="<?php echo $this->get_field_name( 'custom_fields' ); ?>" type="text" value="<?php echo $custom_fields; ?>" />
 </p>
 
@@ -582,11 +584,11 @@ class Widget_Posts2 extends Widget {
 
 <p>
 	<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'atcat' ); ?>" name="<?php echo $this->get_field_name( 'atcat' ); ?>" <?php checked( (bool) $atcat, true ); ?> />
-	<label for="<?php echo $this->get_field_id( 'atcat' ); ?>"> <?php esc_attr_e( 'Show posts only from current category', 'ItalyStrap' );?></label>
+	<label for="<?php echo $this->get_field_id( 'atcat' ); ?>"> <?php esc_attr_e( 'Show posts only from current category', 'italystrap' );?></label>
 </p>
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'cats' ); ?>"><?php esc_attr_e( 'Categories', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'cats' ); ?>"><?php esc_attr_e( 'Categories', 'italystrap' ); ?>:</label>
 	<select name="<?php echo $this->get_field_name( 'cats' ); ?>[]" id="<?php echo $this->get_field_id( 'cats' ); ?>" class="widefat" style="height: auto;" size="<?php echo $c ?>" multiple>
 		<option value="" <?php if (empty( $cats )) echo 'selected="selected"'; ?>><?php esc_attr_e( '&ndash; Show All &ndash;' ) ?></option>
 		<?php
@@ -600,11 +602,11 @@ class Widget_Posts2 extends Widget {
 <?php if ( $tag_list ) : ?>
 <p>
 	<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'attag' ); ?>" name="<?php echo $this->get_field_name( 'attag' ); ?>" <?php checked( (bool) $attag, true ); ?> />
-	<label for="<?php echo $this->get_field_id( 'attag' ); ?>"> <?php esc_attr_e( 'Show posts only from current tag', 'ItalyStrap' );?></label>
+	<label for="<?php echo $this->get_field_id( 'attag' ); ?>"> <?php esc_attr_e( 'Show posts only from current tag', 'italystrap' );?></label>
 </p>
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'tags' ); ?>"><?php esc_attr_e( 'Tags', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'tags' ); ?>"><?php esc_attr_e( 'Tags', 'italystrap' ); ?>:</label>
 	<select name="<?php echo $this->get_field_name( 'tags' ); ?>[]" id="<?php echo $this->get_field_id( 'tags' ); ?>" class="widefat" style="height: auto;" size="<?php echo $t ?>" multiple>
 		<option value="" <?php if (empty( $tags )) echo 'selected="selected"'; ?>><?php esc_attr_e( '&ndash; Show All &ndash;' ) ?></option>
 		<?php
@@ -616,7 +618,7 @@ class Widget_Posts2 extends Widget {
 <?php endif; ?>
 
 <p>
-<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php esc_attr_e( 'Post types', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php esc_attr_e( 'Post types', 'italystrap' ); ?>:</label>
 <select name="<?php echo $this->get_field_name( 'types' ); ?>[]" id="<?php echo $this->get_field_id( 'types' ); ?>" class="widefat" style="height: auto;" size="<?php echo $n ?>" multiple>
 	<option value="" <?php if (empty( $types )) echo 'selected="selected"'; ?>><?php esc_attr_e( '&ndash; Show All &ndash;' ) ?></option>
 	<?php
@@ -629,11 +631,11 @@ class Widget_Posts2 extends Widget {
 </p>
 
 <p>
-<label for="<?php echo $this->get_field_id( 'sticky' ); ?>"><?php esc_attr_e( 'Sticky posts', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'sticky' ); ?>"><?php esc_attr_e( 'Sticky posts', 'italystrap' ); ?>:</label>
 <select name="<?php echo $this->get_field_name( 'sticky' ); ?>" id="<?php echo $this->get_field_id( 'sticky' ); ?>" class="widefat">
-	<option value="show"<?php if ( $sticky === 'show') echo ' selected'; ?>><?php esc_attr_e( 'Show All Posts', 'ItalyStrap' ); ?></option>
-	<option value="hide"<?php if ( $sticky == 'hide') echo ' selected'; ?>><?php esc_attr_e( 'Hide Sticky Posts', 'ItalyStrap' ); ?></option>
-	<option value="only"<?php if ( $sticky == 'only') echo ' selected'; ?>><?php esc_attr_e( 'Show Only Sticky Posts', 'ItalyStrap' ); ?></option>
+	<option value="show"<?php if ( $sticky === 'show') echo ' selected'; ?>><?php esc_attr_e( 'Show All Posts', 'italystrap' ); ?></option>
+	<option value="hide"<?php if ( $sticky == 'hide') echo ' selected'; ?>><?php esc_attr_e( 'Hide Sticky Posts', 'italystrap' ); ?></option>
+	<option value="only"<?php if ( $sticky == 'only') echo ' selected'; ?>><?php esc_attr_e( 'Show Only Sticky Posts', 'italystrap' ); ?></option>
 </select>
 </p>
 
@@ -642,27 +644,27 @@ class Widget_Posts2 extends Widget {
 <div class="upw-tab upw-hide upw-tab-order">
 
 <p>
-	<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php esc_attr_e( 'Order by', 'ItalyStrap' ); ?>:</label>
+	<label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php esc_attr_e( 'Order by', 'italystrap' ); ?>:</label>
 	<select name="<?php echo $this->get_field_name( 'orderby' ); ?>" id="<?php echo $this->get_field_id( 'orderby' ); ?>" class="widefat">
-		<option value="date"<?php if ( $orderby == 'date') echo ' selected'; ?>><?php esc_attr_e( 'Published Date', 'ItalyStrap' ); ?></option>
-		<option value="title"<?php if ( $orderby == 'title') echo ' selected'; ?>><?php esc_attr_e( 'Title', 'ItalyStrap' ); ?></option>
-		<option value="comment_count"<?php if ( $orderby == 'comment_count') echo ' selected'; ?>><?php esc_attr_e( 'Comment Count', 'ItalyStrap' ); ?></option>
+		<option value="date"<?php if ( $orderby == 'date') echo ' selected'; ?>><?php esc_attr_e( 'Published Date', 'italystrap' ); ?></option>
+		<option value="title"<?php if ( $orderby == 'title') echo ' selected'; ?>><?php esc_attr_e( 'Title', 'italystrap' ); ?></option>
+		<option value="comment_count"<?php if ( $orderby == 'comment_count') echo ' selected'; ?>><?php esc_attr_e( 'Comment Count', 'italystrap' ); ?></option>
 		<option value="rand"<?php if ( $orderby == 'rand') echo ' selected'; ?>><?php esc_attr_e( 'Random' ); ?></option>
-		<option value="meta_value"<?php if ( $orderby == 'meta_value') echo ' selected'; ?>><?php esc_attr_e( 'Custom Field', 'ItalyStrap' ); ?></option>
-		<option value="menu_order"<?php if ( $orderby == 'menu_order') echo ' selected'; ?>><?php esc_attr_e( 'Menu Order', 'ItalyStrap' ); ?></option>
+		<option value="meta_value"<?php if ( $orderby == 'meta_value') echo ' selected'; ?>><?php esc_attr_e( 'Custom Field', 'italystrap' ); ?></option>
+		<option value="menu_order"<?php if ( $orderby == 'menu_order') echo ' selected'; ?>><?php esc_attr_e( 'Menu Order', 'italystrap' ); ?></option>
 	</select>
 </p>
 
 <p<?php if ($orderby !== 'meta_value') echo ' style="display:none;"'; ?>>
-<label for="<?php echo $this->get_field_id( 'meta_key' ); ?>"><?php esc_attr_e( 'Custom field', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'meta_key' ); ?>"><?php esc_attr_e( 'Custom field', 'italystrap' ); ?>:</label>
 <input class="widefat" id="<?php echo $this->get_field_id( 'meta_key' ); ?>" name="<?php echo $this->get_field_name( 'meta_key' ); ?>" type="text" value="<?php echo $meta_key; ?>" />
 </p>
 
 <p>
-<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php esc_attr_e( 'Order', 'ItalyStrap' ); ?>:</label>
+<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php esc_attr_e( 'Order', 'italystrap' ); ?>:</label>
 <select name="<?php echo $this->get_field_name( 'order' ); ?>" id="<?php echo $this->get_field_id( 'order' ); ?>" class="widefat">
-	<option value="DESC"<?php if ( $order == 'DESC') echo ' selected'; ?>><?php esc_attr_e( 'Descending', 'ItalyStrap' ); ?></option>
-	<option value="ASC"<?php if ( $order == 'ASC') echo ' selected'; ?>><?php esc_attr_e( 'Ascending', 'ItalyStrap' ); ?></option>
+	<option value="DESC"<?php if ( $order == 'DESC') echo ' selected'; ?>><?php esc_attr_e( 'Descending', 'italystrap' ); ?></option>
+	<option value="ASC"<?php if ( $order == 'ASC') echo ' selected'; ?>><?php esc_attr_e( 'Ascending', 'italystrap' ); ?></option>
 </select>
 </p>
 
