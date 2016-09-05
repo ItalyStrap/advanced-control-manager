@@ -355,6 +355,7 @@ module.exports = function(grunt) {
 							'!wp-tests-config.php',
 							'!snippets.md',
 							'!tests/**',
+							'!future-inclusions/**',
 							'!*.zip'], // What should be included in the zip
 						dest: 'italystrap/',        // Where the zipfile should go
 						filter: 'isFile',
