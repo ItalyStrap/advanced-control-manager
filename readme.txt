@@ -45,7 +45,7 @@ This is my thanks for what WordPress has given to me.
 
 = Get involved =
 
-If you want to contribute [click here](https://github.com/overclokk/italystrap-extended)
+If you want to contribute [click here](https://github.com/overclokk/italystrap-extended) do a fork and do a pull request :-)
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 

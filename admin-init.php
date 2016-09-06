@@ -64,7 +64,7 @@ if ( isset( $options['show-thumb'] ) ) {
 /**
  * Define admin settings parmeter
  */
-$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/settings/settings-admin-page.php' );
+$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/config/options.php' );
 $injector->defineParam( 'settings', $admin_settings );
 // d( $admin_settings['general']['settings_fields'][0] );
 // get_admin_default_settings( $admin_settings );

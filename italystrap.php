@@ -120,7 +120,7 @@ require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
  */
 $injector = new \Auryn\Injector;
 
-$args = require( ITALYSTRAP_PLUGIN_PATH . 'admin/settings/settings-general-plugin.php' );
+$args = require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
 
 $injector->defineParam( 'args', $args );
 
