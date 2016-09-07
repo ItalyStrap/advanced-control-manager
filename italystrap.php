@@ -79,7 +79,7 @@ require( ITALYSTRAP_PLUGIN_PATH . 'vendor/overclokk/minimum-requirements/minimum
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '5.3', '4', 'ItalyStrap' );
+$requirements = new Minimum_Requirements( '5.3', '4' );
 
 /**
  * Check compatibility on install
