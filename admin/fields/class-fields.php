@@ -578,7 +578,7 @@ class Fields extends A_Fields {
 	 */
 	public function field_type_label( $name = '', $id = '' ) {
 
-		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . ':</label>';
+		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . '</label>';
 
 	}
 
