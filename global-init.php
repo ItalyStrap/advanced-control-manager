@@ -90,32 +90,32 @@ class Init {
 		$widget_list = array(
 			'vcardwidget'			=> 'Vcard_Widget', // Deprecated
 			'post_widget'			=> 'Widget_Posts2', // Deprecated
-			'widget_post'			=> 'Widget_Posts',
-			'media_carousel_widget'	=> 'Widget_Media_Carousel',
-			'widget_vcard'			=> 'Widget_VCard', // New
+			'widget_post'			=> 'Posts',
+			'media_carousel_widget'	=> 'Carousel',
+			'widget_vcard'			=> 'VCard', // New
 		);
 
 		foreach ( $widget_list as $key => $value ) {
 			if ( ! empty( $this->options[ $key ] ) ) {
-				\register_widget( 'ItalyStrap\Widget\\' . $value );
+				\register_widget( 'ItalyStrap\\Widget\\' . $value );
 			}
 		}
 
 		if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
 			if ( isset( $this->options['widget_image'] ) ) {
-				\register_widget( 'ItalyStrap\Widget\Widget_Image' );
+				\register_widget( 'ItalyStrap\Widget\Image' );
 			}
 
-			\register_widget( 'ItalyStrap\Widget\Widget_Breadcrumbs' );
+			\register_widget( 'ItalyStrap\Widget\Breadcrumbs' );
 
 			// if ( isset( $this->options['widget_product'] ) ) {
 				// $widget_product = new Widget_Product;
-				\register_widget( 'ItalyStrap\Widget\Widget_Product' );
+				\register_widget( 'ItalyStrap\Widget\Product' );
 				// register_widget( $widget_product );
 			// }
 
-			\register_widget( 'ItalyStrap\Widget\Widget_Taxonomies_Posts' );
+			\register_widget( 'ItalyStrap\Widget\Taxonomies_Posts' );
 
 		}
 
@@ -174,7 +174,7 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	 *
 	 * @var Customizer_Manager
 	 */
-	$widget_areas = $injector->make( 'ItalyStrap\Widget\Widget_Areas' );
+	$widget_areas = $injector->make( 'ItalyStrap\Widget\Areas\Areas' );
 	$widget_areas->register_sidebars();
 	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
 	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );

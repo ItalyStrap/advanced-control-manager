@@ -130,8 +130,8 @@ if ( isset( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
-	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
+	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
 	add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );

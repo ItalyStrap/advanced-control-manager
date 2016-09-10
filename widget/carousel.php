@@ -22,7 +22,7 @@ use \ItalyStrapAdminMediaSettings;
 /**
  * Class
  */
-class Widget_Media_Carousel extends Widget {
+class Carousel extends Widget {
 
 	/**
 	 * Init the constructor

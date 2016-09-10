@@ -49,7 +49,7 @@ use \ItalyStrap\Core\VCard;
 /**
  * Class
  */
-class Widget_VCard extends Widget {
+class VCard extends Widget {
 
 	/**
 	 * Init the constructor

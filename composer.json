@@ -1,13 +1,16 @@
 {
     "name": "overclokk/italystrap-extended",
     "description": "Make your site more powerfull",
+    "type": "wordpress-plugin",
+    "license": "GPL 2.0",
 	"require": {
 		"php": "^7",
 		"mobiledetect/mobiledetectlib": "dev-master",
 		"webdevstudios/cmb2": "dev-master",
 		"overclokk/minimum-requirements": "dev-master",
 		"rdlowrey/auryn": "^1.4",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "leafo/scssphp": "^0.6.5"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^1.9",
@@ -19,9 +22,11 @@
 			"admin",
 			"core",
 			"shortcode",
-			"widget",
 			"deprecated"
-		]
+		],
+		"psr-4": {
+			"ItalyStrap\\Widget\\": "widget/"
+		}
 	},
 	"autoload-dev": {
 		

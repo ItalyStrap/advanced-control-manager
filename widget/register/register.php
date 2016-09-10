@@ -11,7 +11,7 @@
  * @package Italystrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Widget\Register;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Widget Register Class
  */
-class Widgets_Register {
+class Register {
 
 	/**
 	 * Widget object

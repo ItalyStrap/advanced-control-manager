@@ -21,7 +21,7 @@ use \ItalyStrapAdminMediaSettings;
 /**
  * Class
  */
-class Widget_Image extends Widget {
+class Image extends Widget {
 
 	/**
 	 * Init the constructor

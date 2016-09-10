@@ -6,7 +6,7 @@
  * @since 2.0.0
  */
 
-namespace ItalyStrap\Widget;
+namespace ItalyStrap\Widget\Areas;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Widget Areas Class
  */
-class Widget_Areas {
+class Areas {
 
 	/**
 	 * [$var description]

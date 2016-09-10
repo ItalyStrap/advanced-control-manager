@@ -113,8 +113,8 @@ if ( isset( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Widget_Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
-	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Widget_Attributes' );
+	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attributes' ) );
 }

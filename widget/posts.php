@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget API: Widget_Taxonomies_Posts class
+ * Widget API: Widget_Posts class
  *
  * @package ItalyStrap
  * @since 2.0.0
@@ -12,10 +12,12 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use \ItalyStrap\Core\Query_Posts;
+
 /**
- * Widget Class for displaying Taxonomies_Posts
+ * Widget Class for post type
  */
-class Widget_Taxonomies_Posts extends Widget {
+class Posts extends Widget {
 
 	/**
 	 * Init the constructor
@@ -42,10 +44,10 @@ class Widget_Taxonomies_Posts extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Taxonomies Posts', 'italystrap' ),
+			'label'				=> __( 'ItalyStrap Posts', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Displays list of categories with an array of options', 'italystrap' ),
-			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/taxonomies-posts.php' ) ),
+			'description'		=> __( 'Displays list of posts with an array of options', 'italystrap' ),
+			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 		 );
@@ -66,16 +68,10 @@ class Widget_Taxonomies_Posts extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		global $injector;
+		$query_posts = Query_Posts::init();
 
-		// $category_posts = new Category_Posts;
-		$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
-		return $category_posts->render();
+		$query_posts->get_widget_args( $instance );
 
-		// $query_posts = Query_Posts::init();
-
-		// $query_posts->get_widget_args( $instance );
-
-		// return $query_posts->output();
+		return $query_posts->output();
 	}
 } // Class.

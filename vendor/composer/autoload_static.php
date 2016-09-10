@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
 {
     public static $prefixLengthsPsr4 = array (
+        'I' => 
+        array (
+            'ItalyStrap\\Widget\\' => 18,
+        ),
         'A' => 
         array (
             'Auryn\\' => 6,
@@ -14,6 +18,10 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
     );
 
     public static $prefixDirsPsr4 = array (
+        'ItalyStrap\\Widget\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/widget',
+        ),
         'Auryn\\' => 
         array (
             0 => __DIR__ . '/..' . '/rdlowrey/auryn/lib',
@@ -38,18 +46,6 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
     );
 
     public static $classMap = array (
-        'Auryn\\CachingReflector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/CachingReflector.php',
-        'Auryn\\ConfigException' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ConfigException.php',
-        'Auryn\\Executable' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/Executable.php',
-        'Auryn\\InjectionException' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/InjectionException.php',
-        'Auryn\\Injector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/Injector.php',
-        'Auryn\\InjectorException' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/InjectorException.php',
-        'Auryn\\ReflectionCache' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ReflectionCache.php',
-        'Auryn\\ReflectionCacheApc' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ReflectionCacheApc.php',
-        'Auryn\\ReflectionCacheArray' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/ReflectionCacheArray.php',
-        'Auryn\\Reflector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/Reflector.php',
-        'Auryn\\StandardReflector' => __DIR__ . '/..' . '/rdlowrey/auryn/lib/StandardReflector.php',
-        'Detection\\MobileDetect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
         'ItalyStrapAdminGallerySettings' => __DIR__ . '/../..' . '/admin/ItalyStrapAdminGallerySettings.php',
         'ItalyStrapAdminMediaSettings' => __DIR__ . '/../..' . '/admin/ItalyStrapAdminMediaSettings.php',
         'ItalyStrapBreadcrumbs' => __DIR__ . '/../..' . '/deprecated/ItalyStrapBreadcrumbs.php',
@@ -91,26 +87,11 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Core\\Sitemaps_HTML' => __DIR__ . '/../..' . '/core/class-sitemaps-html.php',
         'ItalyStrap\\Core\\VCard' => __DIR__ . '/../..' . '/core/vcard/class-vcard.php',
         'ItalyStrap\\Core\\Web_Font_loading' => __DIR__ . '/../..' . '/core/class-web-font-loading.php',
-        'ItalyStrap\\Core\\Widgets_Register' => __DIR__ . '/../..' . '/widget/class-widget-register.php',
         'ItalyStrap\\Shortcode\\Carousel' => __DIR__ . '/../..' . '/shortcode/carousel/class-carousel.php',
         'ItalyStrap\\Shortcode\\Shortcode_Category_Posts' => __DIR__ . '/../..' . '/shortcode/class-shortcode-category-posts.php',
         'ItalyStrap\\Widget\\Vcard_Widget' => __DIR__ . '/../..' . '/deprecated/class-widget-vcard.php',
-        'ItalyStrap\\Widget\\Widget' => __DIR__ . '/../..' . '/widget/class-abstract-widget.php',
-        'ItalyStrap\\Widget\\Widget_Areas' => __DIR__ . '/../..' . '/widget/areas/class-widget-areas.php',
-        'ItalyStrap\\Widget\\Widget_Attributes' => __DIR__ . '/../..' . '/widget/attributes/class-widget-attributes.php',
-        'ItalyStrap\\Widget\\Widget_Breadcrumbs' => __DIR__ . '/../..' . '/widget/class-widget-breadcrumbs.php',
-        'ItalyStrap\\Widget\\Widget_Image' => __DIR__ . '/../..' . '/widget/class-widget-image.php',
-        'ItalyStrap\\Widget\\Widget_Logic' => __DIR__ . '/../..' . '/widget/logic/class-widget-logic.php',
-        'ItalyStrap\\Widget\\Widget_Logic_Admin' => __DIR__ . '/../..' . '/widget/logic/class-widget-logic-admin.php',
-        'ItalyStrap\\Widget\\Widget_Media_Carousel' => __DIR__ . '/../..' . '/widget/class-widget-media-carousel.php',
-        'ItalyStrap\\Widget\\Widget_Posts' => __DIR__ . '/../..' . '/widget/class-widget-posts.php',
         'ItalyStrap\\Widget\\Widget_Posts2' => __DIR__ . '/../..' . '/deprecated/class-widget-posts2.php',
-        'ItalyStrap\\Widget\\Widget_Product' => __DIR__ . '/../..' . '/widget/class-widget-product.php',
-        'ItalyStrap\\Widget\\Widget_Taxonomies_Posts' => __DIR__ . '/../..' . '/widget/class-widget-taxonomies-posts.php',
-        'ItalyStrap\\Widget\\Widget_VCard' => __DIR__ . '/../..' . '/widget/class-widget-vcard.php',
         'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
-        'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
-        'ParsedownTest' => __DIR__ . '/..' . '/erusev/parsedown/test/ParsedownTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

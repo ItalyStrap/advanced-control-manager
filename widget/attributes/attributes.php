@@ -8,7 +8,7 @@
  * @since 2.0.0
  */
 
-namespace ItalyStrap\Widget;
+namespace ItalyStrap\Widget\Attributes;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -19,7 +19,7 @@ use ItalyStrap\Admin\I_Fields;
 /**
  * Class for adding field attributes for widget
  */
-class Widget_Attributes {
+class Attributes {
 
 	/**
 	 * Variable to store field object.

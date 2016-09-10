@@ -17,7 +17,7 @@ use \ItalyStrap\Core\Query_Posts;
 /**
  * Widget Class for post type
  */
-class Widget_Product extends Widget {
+class Product extends Widget {
 
 	/**
 	 * Fire Before Create Fields
