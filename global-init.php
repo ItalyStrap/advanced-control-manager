@@ -8,6 +8,9 @@
 
 namespace ItalyStrap\Core;
 
+use \ItalyStrap\Core\Asset\Inline_Style;
+use \ItalyStrap\Core\Asset\Inline_Script;
+
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }

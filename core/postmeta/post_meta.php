@@ -9,7 +9,9 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Postmeta;
+
+use \ItalyStrap\Core\Asset\Inline_Style;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

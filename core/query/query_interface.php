@@ -10,9 +10,9 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Query;
 
-interface I_Query {
+interface Query_Interface {
 
 	/**
 	 * Output the query result

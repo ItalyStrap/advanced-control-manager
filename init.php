@@ -12,6 +12,8 @@
 
 namespace ItalyStrap\Core;
 
+use \ItalyStrap\Core\Asset\Inline_Style;
+
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
@@ -49,11 +51,11 @@ if ( isset( $options['media_carousel_shortcode'] ) ) {
  */
 if ( isset( $options['lazyload'] ) ) {
 	/**
-	 * Instantiate Post_Meta Class
+	 * Instantiate lazy_load_image Class
 	 *
-	 * @var Post_Meta
+	 * @var lazy_load_image
 	 */
-	$lazy_load_image = $injector->make( 'ItalyStrap\Core\Lazy_Load_Image' );
+	$lazy_load_image = $injector->make( 'ItalyStrap\Core\Lazyload\Lazy_Load_Image' );
 	$lazy_load_image::init();
 }
 
@@ -87,7 +89,7 @@ if (  ! empty( $options['activate_custom_css'] )  ) {
 	 *
 	 * @var Post_Meta
 	 */
-	$post_meta = $injector->make( 'ItalyStrap\Core\Post_Meta' );
+	$post_meta = $injector->make( 'ItalyStrap\Core\Postmeta\Post_Meta' );
 
 	/**
 	 * Get metaboxes value

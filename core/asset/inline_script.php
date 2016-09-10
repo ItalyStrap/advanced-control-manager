@@ -11,7 +11,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Asset;
 
 /**
  * Class description

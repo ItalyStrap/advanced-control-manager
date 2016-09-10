@@ -69,7 +69,7 @@ class Taxonomies_Posts extends Widget {
 		global $injector;
 
 		// $category_posts = new Category_Posts;
-		$category_posts = $injector->make( 'ItalyStrap\Core\Category_Posts' );
+		$category_posts = $injector->make( 'ItalyStrap\Core\Query\Category_Posts' );
 		return $category_posts->render();
 
 		// $query_posts = Query_Posts::init();

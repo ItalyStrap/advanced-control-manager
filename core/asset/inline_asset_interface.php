@@ -9,9 +9,9 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Asset;
 
-interface I_Inline_Asset {
+interface Inline_Asset_Interface {
 
 	/**
 	 * This append new data to the static variable.

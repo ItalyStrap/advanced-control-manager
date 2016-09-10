@@ -11,6 +11,7 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         array (
             'ItalyStrap\\Widget\\' => 18,
             'ItalyStrap\\Shortcode\\' => 21,
+            'ItalyStrap\\Core\\' => 16,
         ),
         'A' => 
         array (
@@ -26,6 +27,10 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Shortcode\\' => 
         array (
             0 => __DIR__ . '/../..' . '/shortcode',
+        ),
+        'ItalyStrap\\Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core',
         ),
         'Auryn\\' => 
         array (
@@ -69,29 +74,10 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Admin\\Sanitization' => __DIR__ . '/../..' . '/admin/class-sanitization.php',
         'ItalyStrap\\Admin\\Security_Input' => __DIR__ . '/../..' . '/admin/class-security-input.php',
         'ItalyStrap\\Admin\\Validation' => __DIR__ . '/../..' . '/admin/class-validation.php',
-        'ItalyStrap\\Core\\A_Post_Meta' => __DIR__ . '/../..' . '/core/post-meta/class-abstract-post-meta.php',
-        'ItalyStrap\\Core\\Breadcrumbs' => __DIR__ . '/../..' . '/core/breadcrumbs/class-breadcrumbs.php',
-        'ItalyStrap\\Core\\Carousel' => __DIR__ . '/../..' . '/core/carousel/class-abstract-carousel.php',
-        'ItalyStrap\\Core\\Carousel_Bootstrap' => __DIR__ . '/../..' . '/core/carousel/class-carousel-bootstrap.php',
-        'ItalyStrap\\Core\\Category_Posts' => __DIR__ . '/../..' . '/core/class-category-posts.php',
-        'ItalyStrap\\Core\\Generate_Analytics' => __DIR__ . '/../..' . '/core/class-generate-analytics.php',
-        'ItalyStrap\\Core\\I_Inline_Asset' => __DIR__ . '/../..' . '/core/asset/i-inline-asset.php',
-        'ItalyStrap\\Core\\I_Query' => __DIR__ . '/../..' . '/core/query/i-query.php',
-        'ItalyStrap\\Core\\Inline_Asset' => __DIR__ . '/../..' . '/core/asset/class-abstract-inline-asset.php',
-        'ItalyStrap\\Core\\Inline_Script' => __DIR__ . '/../..' . '/core/asset/class-inline-script.php',
-        'ItalyStrap\\Core\\Inline_Style' => __DIR__ . '/../..' . '/core/asset/class-inline-style.php',
         'ItalyStrap\\Core\\ItalyStrapCarousel' => __DIR__ . '/../..' . '/deprecated/ItalyStrapCarousel.php',
         'ItalyStrap\\Core\\ItalyStrapGlobals' => __DIR__ . '/../..' . '/deprecated/ItalyStrapGlobals.php',
         'ItalyStrap\\Core\\ItalyStrapGlobalsCss' => __DIR__ . '/../..' . '/deprecated/ItalyStrapGlobals.php',
         'ItalyStrap\\Core\\ItalyStrapHTMLSitemaps' => __DIR__ . '/../..' . '/deprecated/ItalyStrapHTMLSitemaps.php',
-        'ItalyStrap\\Core\\Lazy_Load_Image' => __DIR__ . '/../..' . '/core/lazyload/class-lazy-load-image.php',
-        'ItalyStrap\\Core\\Post_Meta' => __DIR__ . '/../..' . '/core/post-meta/class-post-meta.php',
-        'ItalyStrap\\Core\\Query' => __DIR__ . '/../..' . '/core/query/class-abstract-query.php',
-        'ItalyStrap\\Core\\Query_Posts' => __DIR__ . '/../..' . '/core/query/class-query-posts.php',
-        'ItalyStrap\\Core\\Query_Product' => __DIR__ . '/../..' . '/core/query/class-query-product.php',
-        'ItalyStrap\\Core\\Sitemaps_HTML' => __DIR__ . '/../..' . '/core/class-sitemaps-html.php',
-        'ItalyStrap\\Core\\VCard' => __DIR__ . '/../..' . '/core/vcard/class-vcard.php',
-        'ItalyStrap\\Core\\Web_Font_loading' => __DIR__ . '/../..' . '/core/class-web-font-loading.php',
         'ItalyStrap\\Widget\\Vcard_Widget' => __DIR__ . '/../..' . '/deprecated/class-widget-vcard.php',
         'ItalyStrap\\Widget\\Widget_Posts2' => __DIR__ . '/../..' . '/deprecated/class-widget-posts2.php',
         'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',

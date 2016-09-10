@@ -11,13 +11,14 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Query;
+
 use \WP_Query;
 
 /**
  * Query Class for widget and shortcode
  */
-abstract class Query implements I_Query {
+abstract class Query implements Query_Interface {
 
 	/**
 	 * WordPress query object.

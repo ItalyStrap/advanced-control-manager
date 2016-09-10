@@ -8,5 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'ItalyStrap\\Widget\\' => array($baseDir . '/widget'),
     'ItalyStrap\\Shortcode\\' => array($baseDir . '/shortcode'),
+    'ItalyStrap\\Core\\' => array($baseDir . '/core'),
     'Auryn\\' => array($vendorDir . '/rdlowrey/auryn/lib'),
 );

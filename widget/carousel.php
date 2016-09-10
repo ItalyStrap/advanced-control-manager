@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Core\Carousel_Bootstrap;
+use \ItalyStrap\Core\Carousel\Bootstrap;
 use \ItalyStrapAdminMediaSettings;
 
 /**
@@ -71,7 +71,7 @@ class Carousel extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$mediacarousel = new Carousel_Bootstrap( $instance );
+		$mediacarousel = new Bootstrap( $instance );
 
 		return $mediacarousel->__get( 'output' );
 	}

@@ -9,7 +9,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Postmeta;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();

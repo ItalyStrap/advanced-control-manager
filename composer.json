@@ -20,10 +20,10 @@
 	"autoload": {
 		"classmap": [
 			"admin",
-			"core",
 			"deprecated"
 		],
 		"psr-4": {
+			"ItalyStrap\\Core\\": "core/",
 			"ItalyStrap\\Widget\\": "widget/",
 			"ItalyStrap\\Shortcode\\": "shortcode/"
 		}

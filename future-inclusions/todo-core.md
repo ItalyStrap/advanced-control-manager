@@ -1,0 +1,1 @@
+http://code.tutsplus.com/articles/how-to-add-custom-fields-to-attachments--wp-31100

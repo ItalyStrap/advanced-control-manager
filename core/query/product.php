@@ -1,19 +1,20 @@
 <?php
 /**
- * This class is for elaborating the arguments from widget or shortcode and then return an HTML for display the posts/page result.
+ * This class is for elaborate te arguments from widget or shortcode and then return an HTML for display the posts/page result.
  *
  * @package Query_Posts
  * @version 1.0
  * @since   2.0
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Query;
+
 use \WP_Query;
 
 /**
  * Query Class for widget and shortcode
  */
-class Query_Posts extends Query {
+class Product extends Query {
 
 	/**
 	 * Constructor.
@@ -40,9 +41,9 @@ class Query_Posts extends Query {
 	 *
 	 * @return self
 	 */
-	public static function init( $context = null ) {
+	public static function init() {
 
-		return new self( new WP_Query(), $context );
+		return new self( new WP_Query() );
 
 	}
 
@@ -66,22 +67,21 @@ class Query_Posts extends Query {
 	}
 
 	/**
-	 * Get the query arguments
+	 * Output the query result
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @return string The HTML result
 	 */
-	public function get_query_args( $value = '' ) {
-	
+	public function output() {
+
 		/**
 		 * Get the current post id
 		 *
 		 * @var int
 		 */
-		$this->current_post_id = is_object( $this->post ) ? $this->post->ID : '';
+		$current_post_id = is_object( $this->post ) ? $this->post->ID : '';
 
 		if ( ! empty( $this->args['exclude_current_post'] ) ) {
-			$this->posts_to_exclude[] = (int) $this->current_post_id;
+			$this->posts_to_exclude[] = (int) $current_post_id;
 		}
 
 		/**
@@ -116,7 +116,7 @@ class Query_Posts extends Query {
 		 *
 		 * @var array
 		 */
-		$query_args = array(
+		$args = array(
 			'posts_per_page'			=> $this->args['posts_number'] + count( $this->posts_to_exclude ),
 			'order'						=> $this->args['order'],
 			'orderby'					=> $this->args['orderby'],
@@ -124,6 +124,16 @@ class Query_Posts extends Query {
 			'no_found_rows'				=> true,
 			'update_post_term_cache'	=> false,
 			'update_post_meta_cache'	=> false,
+			// 'product_tag'				=> 'tag',
+			// 'product_cat'				=> 'tag',
+			'tax_query' 			=> array(
+				array(
+					'taxonomy' 		=> 'product_tag',
+					'terms' 	=> array( '226' ),
+					// 'field' 	=> 'slug',
+					// 'operator' 	=> 'IN'
+				)
+			),
 		);
 
 		/**
@@ -131,17 +141,17 @@ class Query_Posts extends Query {
 		 */
 		if ( ! empty( $this->args['post_id'] ) ) {
 
-			$query_args['post__in'] = explode( ',', $this->args['post_id'] );
+			$args['post__in'] = explode( ',', $this->args['post_id'] );
 
 			/**
 			 * This delete last comma in case the input is like 1,2,
 			 */
-			$query_args['post__in'] = array_filter( $query_args['post__in'] );
+			$args['post__in'] = array_filter( $args['post__in'] );
 
 			/**
 			 * Convert array value from string to integer
 			 */
-			$query_args['post__in'] = array_map( 'absint', $query_args['post__in'] );
+			$args['post__in'] = array_map( 'absint', $args['post__in'] );
 
 		}
 
@@ -150,15 +160,15 @@ class Query_Posts extends Query {
 		 */
 		if ( 'only' === $this->args['sticky_post'] ) {
 
-			$query_args['post__in'] = self::$sticky_posts;
+			$args['post__in'] = self::$sticky_posts;
 
 		} elseif ( 'hide' === $this->args['sticky_post'] ) {
 
-			$query_args['ignore_sticky_posts'] = true;
+			$args['ignore_sticky_posts'] = true;
 
 		} else {
 
-			$query_args['posts_per_page'] -= count( self::$sticky_posts );
+			$args['posts_per_page'] -= count( self::$sticky_posts );
 
 		}
 
@@ -166,8 +176,8 @@ class Query_Posts extends Query {
 		 * Show the posts with tags selected
 		 */
 		if ( ! empty( $this->args['tags'] ) ) {
-			$query_args['tag__in'] = $this->args['tags'];
-			$query_args['update_post_term_cache'] = true;
+			$args['tag__in'] = $this->args['tags'];
+			$args['update_post_term_cache'] = true;
 		}
 
 		/**
@@ -183,9 +193,9 @@ class Query_Posts extends Query {
 				for ( $i = 0; $i < $count; $i++ ) {
 					$first_tag[] = $tags[ $i ]->term_id;
 				}
-				$query_args['tag__in'] = array_merge( $first_tag, (array) $this->args['tags'] );
-				$query_args['tag__in'] = array_flip( array_flip( $query_args['tag__in'] ) );
-				$query_args['update_post_term_cache'] = true;
+				$args['tag__in'] = array_merge( $first_tag, (array) $this->args['tags'] );
+				$args['tag__in'] = array_flip( array_flip( $args['tag__in'] ) );
+				$args['update_post_term_cache'] = true;
 			}
 		}
 
@@ -193,8 +203,8 @@ class Query_Posts extends Query {
 		 * Show the posts with cats selected
 		 */
 		if ( ! empty( $this->args['cats'] ) ) {
-			$query_args['category__in'] = $this->args['cats'];
-			$query_args['update_post_term_cache'] = true;
+			$args['category__in'] = $this->args['cats'];
+			$args['update_post_term_cache'] = true;
 		}
 
 		/**
@@ -210,12 +220,12 @@ class Query_Posts extends Query {
 				for ( $i = 0; $i < $count; $i++ ) {
 					$first_cat[] = $cats[ $i ]->term_id;
 				}
-				$query_args['category__in'] = array_merge( $first_cat, (array) $this->args['cats'] );
-				$query_args['category__in'] = array_flip( array_flip( $query_args['category__in'] ) );
-				$query_args['update_post_term_cache'] = true;
+				$args['category__in'] = array_merge( $first_cat, (array) $this->args['cats'] );
+				$args['category__in'] = array_flip( array_flip( $args['category__in'] ) );
+				$args['update_post_term_cache'] = true;
 			}
 		}
-
+// var_dump($this->args['from_current_user']);
 		/**
 		 * Show posts only from current user.
 		 */
@@ -224,26 +234,17 @@ class Query_Posts extends Query {
 			$current_user = wp_get_current_user();
 
 			if ( isset( $current_user->ID ) ) {
-				$query_args['author'] = $current_user->ID;
+				$args['author'] = $current_user->ID;
 			}
 		}
 
 		if ( 'meta_value' === $this->args['orderby'] ) {
-			$query_args['meta_key'] = $this->args['meta_key'];
+			$args['meta_key'] = $this->args['meta_key'];
 		}
 
-		return apply_filters( "italystrap_{$this->context}_query_arg", $query_args );
-	
-	}
-
-	/**
-	 * Output the query result
-	 *
-	 * @return string The HTML result
-	 */
-	public function output() {
-
-		$this->query->query( $this->get_query_args() );
+		$args = apply_filters( 'italystrap_widget_query_args', $args );
+// var_dump( $args );
+		$this->query->query( $args );
 
 		ob_start();
 
@@ -256,60 +257,6 @@ class Query_Posts extends Query {
 		ob_end_clean();
 
 		return $output;
-
-	}
-
-	/**
-	 * Get custom fields
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_custom_fields( $value = '' ) {
-	
-		if ( $this->args['custom_fields'] ) :
-
-			$custom_field_name = explode( ',', $this->args['custom_fields'] ); ?>
-
-			<div class="entry-custom-fields">
-			<?php
-			foreach ( $custom_field_name as $name ) :
-
-				$name = trim( $name );
-				$custom_field_values = get_post_meta( $this->query->post->ID, $name );
-
-				if ( $custom_field_values ) :
-			?>
-					<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
-						<?php
-						/**
-						 * If is not an array echo custom field value
-						 */
-						if ( ! is_array( $custom_field_values ) ) {
-
-							echo esc_attr( $custom_field_values );
-
-						} else {
-
-							$last_value = end( $custom_field_values );
-							foreach ( $custom_field_values as $value ) {
-
-								echo esc_attr( $value );
-
-								if ( $value !== $last_value ) {
-
-									echo ', ';
-
-								}
-							}
-						}
-						?>
-					</div>
-			<?php endif;
-			endforeach; ?>
-			</div>
-		<?php
-		endif;
 
 	}
 }

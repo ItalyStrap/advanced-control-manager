@@ -1,4 +1,4 @@
-<?php namespace ItalyStrap\Core;
+<?php namespace ItalyStrap\Core\Query;
 
 use \WP_Query;
 
@@ -17,7 +17,7 @@ class Category_Posts {
 	/**
 	 * Inizializzo il costruttore
 	 */
-	function __construct( array $options = array(), Query_Posts $query = null ) {
+	function __construct( array $options = array(), Posts $query = null ) {
 
 		$this->options = $options;
 

@@ -12,12 +12,12 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Asset;
 
 /**
  * Class description
  */
-abstract class Inline_Asset implements I_Inline_Asset {
+abstract class Inline_Asset implements Inline_Asset_Interface {
 
 	/**
 	 * The data that will be printend inline.

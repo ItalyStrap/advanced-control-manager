@@ -9,8 +9,14 @@
  *       non ci sono immagini da mettere in lazyload
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Lazyload;
 
+use ItalyStrap\Core\Asset\Inline_Script;
+use ItalyStrap\Core\Asset\Inline_Style;
+
+/**
+ * 
+ */
 class Lazy_Load_Image {
 
 	private static $unveilpath = '';
@@ -151,7 +157,7 @@ class Lazy_Load_Image {
 	 */
 	static function get_unveil( $filename ) {
 
-		$content = get_file_content( $filename );
+		$content = \ItalyStrap\Core\get_file_content( $filename );
 
 		/**
 		 * Add script for img opacity
