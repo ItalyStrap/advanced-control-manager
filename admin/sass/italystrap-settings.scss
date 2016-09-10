@@ -48,15 +48,18 @@
  */
 .easy > td,
 aside .easy{
-	background-color: #c8e9fa;
+	// background-color: #c8e9fa;
+	border-right: 10px solid #c8e9fa;
 }
 .medium > td,
 aside .medium{
-	background-color: #fffbcb;
+	// background-color: #fffbcb;
+	border-right: 10px solid #fffbcb;
 }
 .hard > td,
 aside .hard{
-	background-color: #f9c9b3;
+	// background-color: #f9c9b3;
+	border-right: 10px solid #f9c9b3;
 }
 
 aside .easy,
