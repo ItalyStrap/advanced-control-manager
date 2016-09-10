@@ -136,7 +136,9 @@ class Lazy_Load_Image {
 		 * The meta tag works only if there is Schema.org markup
 		 * @var string
 		 */
-		$content = preg_replace( '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', sprintf( '<img${1}src="%s" data-src="${2}"${3}><meta  itemprop="image" content="${2}"/><noscript><img${1}src="${2}"${3}></noscript>', $placeholder_image ), $content );
+		$content = preg_replace( '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', sprintf( '<img${1}src="%s" data-src="${2}"${3}><noscript><img${1}src="${2}"${3}></noscript><meta itemprop="image" content="${2}"/>', $placeholder_image ), $content );
+
+		$content = preg_replace( '#<img([^>]+?)srcset=[\'"]?([^\'">]+)[\'"]?([^>]*)>#', sprintf( '<img${1}srcset="%s" data-srcset="${2}"${3}>', $placeholder_image ), $content );
 
 		return $content;
 	}
