@@ -10,6 +10,7 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'I' => 
         array (
             'ItalyStrap\\Widget\\' => 18,
+            'ItalyStrap\\Shortcode\\' => 21,
         ),
         'A' => 
         array (
@@ -21,6 +22,10 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Widget\\' => 
         array (
             0 => __DIR__ . '/../..' . '/widget',
+        ),
+        'ItalyStrap\\Shortcode\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/shortcode',
         ),
         'Auryn\\' => 
         array (
@@ -87,8 +92,6 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Core\\Sitemaps_HTML' => __DIR__ . '/../..' . '/core/class-sitemaps-html.php',
         'ItalyStrap\\Core\\VCard' => __DIR__ . '/../..' . '/core/vcard/class-vcard.php',
         'ItalyStrap\\Core\\Web_Font_loading' => __DIR__ . '/../..' . '/core/class-web-font-loading.php',
-        'ItalyStrap\\Shortcode\\Carousel' => __DIR__ . '/../..' . '/shortcode/carousel/class-carousel.php',
-        'ItalyStrap\\Shortcode\\Shortcode_Category_Posts' => __DIR__ . '/../..' . '/shortcode/class-shortcode-category-posts.php',
         'ItalyStrap\\Widget\\Vcard_Widget' => __DIR__ . '/../..' . '/deprecated/class-widget-vcard.php',
         'ItalyStrap\\Widget\\Widget_Posts2' => __DIR__ . '/../..' . '/deprecated/class-widget-posts2.php',
         'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',

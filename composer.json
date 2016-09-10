@@ -21,11 +21,11 @@
 		"classmap": [
 			"admin",
 			"core",
-			"shortcode",
 			"deprecated"
 		],
 		"psr-4": {
-			"ItalyStrap\\Widget\\": "widget/"
+			"ItalyStrap\\Widget\\": "widget/",
+			"ItalyStrap\\Shortcode\\": "shortcode/"
 		}
 	},
 	"autoload-dev": {

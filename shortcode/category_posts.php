@@ -5,7 +5,7 @@ use \WP_Query;
 /**
  * Classe per la documentazione
  */
-class Shortcode_Category_Posts {
+class Category_Posts {
 
 	/**
 	 * Inizializzo il costruttore

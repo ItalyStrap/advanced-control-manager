@@ -47,8 +47,6 @@ return array(
     'ItalyStrap\\Core\\Sitemaps_HTML' => $baseDir . '/core/class-sitemaps-html.php',
     'ItalyStrap\\Core\\VCard' => $baseDir . '/core/vcard/class-vcard.php',
     'ItalyStrap\\Core\\Web_Font_loading' => $baseDir . '/core/class-web-font-loading.php',
-    'ItalyStrap\\Shortcode\\Carousel' => $baseDir . '/shortcode/carousel/class-carousel.php',
-    'ItalyStrap\\Shortcode\\Shortcode_Category_Posts' => $baseDir . '/shortcode/class-shortcode-category-posts.php',
     'ItalyStrap\\Widget\\Vcard_Widget' => $baseDir . '/deprecated/class-widget-vcard.php',
     'ItalyStrap\\Widget\\Widget_Posts2' => $baseDir . '/deprecated/class-widget-posts2.php',
     'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
