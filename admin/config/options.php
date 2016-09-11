@@ -361,6 +361,7 @@ return array(
 						'default'		=> '',
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
+						'option_type'	=> 'theme_mod',
 				),
 			),
 			array(
@@ -383,6 +384,7 @@ return array(
 						'default'		=> '',
 						// 'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
+						'option_type'	=> 'theme_mod',
 				),
 			),
 			array(
@@ -401,6 +403,7 @@ return array(
 						'default'		=> '',
 						'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
+						'option_type'	=> 'theme_mod',
 				),
 			),
 			array(
@@ -419,6 +422,7 @@ return array(
 						'default'		=> '',
 						'validate'		=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
+						'option_type'	=> 'theme_mod',
 				),
 			),
 		),

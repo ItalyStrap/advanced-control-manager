@@ -136,6 +136,18 @@ $options = (array) get_option( $args['options_name'] );
  */
 $injector->defineParam( 'options', $options );
 
+/**
+ * Get the theme mods
+ *
+ * @var array
+ */
+$get_theme_mods = get_theme_mods();
+
+/**
+ * Define get_theme_mods parmeter
+ */
+$injector->defineParam( 'get_theme_mods', $get_theme_mods );
+
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**
 	 * Instantiate Customizer_Manager Class

@@ -69,6 +69,10 @@ $injector->defineParam( 'settings', $admin_settings );
 // d( $admin_settings['general']['settings_fields'][0] );
 // get_admin_default_settings( $admin_settings );
 
+// echo "<pre>";
+// print_r(get_theme_mods());
+// echo "</pre>";
+
 /**
  * Instanziate the Fields
  *
@@ -89,6 +93,8 @@ $injector->defineParam( 'settings', $admin_settings );
 $injector->define( 'ItalyStrap\Admin\Admin', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
 $admin = $injector->make( 'ItalyStrap\Admin\Admin' );
 $admin->init();
+// $admin->delete_option();
+add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
 
 /**
  * Instanziate the ItalyStrapAdminGallerySettings

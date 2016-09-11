@@ -89,12 +89,13 @@ abstract class A_Admin implements I_Admin{
 	/**
 	 * Initialize Class
 	 *
-	 * @param array    $options     Get the plugin options.
-	 * @param array    $settings    [description].
-	 * @param array    $args        [description].
-	 * @param I_Fields $fields_type The Fields object.
+	 * @param array    $options        Get the plugin options.
+	 * @param array    $settings       The configuration array plugin fields.
+	 * @param array    $args           The configuration array for plugin.
+	 * @param array    $get_theme_mods The theme options.
+	 * @param I_Fields $fields_type    The Fields object.
 	 */
-	public function __construct( array $options = array(), array $settings, array $args, I_Fields $fields_type ) {
+	public function __construct( array $options = array(), array $settings, array $args, array $get_theme_mods, I_Fields $fields_type ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
 			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.
@@ -107,6 +108,10 @@ abstract class A_Admin implements I_Admin{
 		$this->args = $args;
 
 		$this->fields_type = $fields_type;
+
+		$this->fields = $this->get_settings_fields();
+
+		$this->get_theme_mods = $get_theme_mods;
 
 	}
 
@@ -306,9 +311,21 @@ abstract class A_Admin implements I_Admin{
 	public function add_option() {
 
 		if ( false === get_option( $this->args['options_name'] ) ) {
-			add_option( $this->args['options_name'] );
+			$default = $this->get_plugin_settings_array_default();
+			add_option( $this->args['options_name'], $default );
+			$this->set_theme_mods( $default );
 		}
 
+	}
+
+	/**
+	 * Delete option
+	 */
+	public function delete_option() {
+	
+		delete_option( $this->args['options_name'] );
+		$this->remove_theme_mods( $this->get_plugin_settings_array_default() );
+	
 	}
 
 	/**
@@ -371,13 +388,13 @@ abstract class A_Admin implements I_Admin{
 	 */
 	public function get_settings_fields() {
 
-		foreach ( $this->settings as $settings_value ) {
+		foreach ( (array) $this->settings as $settings_value ) {
 			foreach ( $settings_value['settings_fields'] as $fields_key => $fields_value ) {
-				$this->fields[] = $fields_value['args'];
+				$fields[ $fields_value['id'] ] = $fields_value['args'];
 			}
 		}
 
-		return $this->fields;
+		return $fields;
 	
 	}
 
@@ -388,8 +405,6 @@ abstract class A_Admin implements I_Admin{
 	 * @return array        Return the array sanitized
 	 */
 	public function update( $input ) {
-
-		$fields = $this->get_settings_fields();
 
 		$this->validation = new Validation;
 		$this->sanitization = new Sanitization;
@@ -418,9 +433,6 @@ abstract class A_Admin implements I_Admin{
 			}
 		}
 
-		// $new_input = (array) array_map( 'sanitize_text_field', $input );
-
-		// return $new_input;
 		return $input;
 
 	}
@@ -474,5 +486,114 @@ abstract class A_Admin implements I_Admin{
 			echo $this->fields_type->field_type_text( $args ); // XSS ok.
 
 		}
+	}
+
+	/**
+	 * Get admin settings default value in an array
+	 *
+	 * @param  array $settings The array with settings
+	 * @return array           The new array with default options
+	 */
+	public function get_plugin_settings_array_default() {
+
+		$default_settings = array();
+
+		foreach ( (array) $this->fields as $key => $setting ) {
+			$default_settings[ $key ] = $setting['default'];
+		}
+
+		return $default_settings;
+
+	}
+
+	/**
+	 * Set theme mods
+	 *
+	 * @param  array $value The options array with value.
+	 */
+	public function set_theme_mods( array $value = array() ) {
+	
+		foreach ( (array) $this->fields as $key => $field ) {
+			if ( isset( $field['option_type'] ) && 'theme_mod' === $field['option_type'] ) {
+				set_theme_mod( $key, $value[ $key ] );
+			}
+		}
+	
+	}
+
+	/**
+	 * Remove theme mods
+	 *
+	 * @param  array $value The options array with value.
+	 */
+	public function remove_theme_mods( array $value = array() ) {
+	
+		foreach ( (array) $this->fields as $key => $field ) {
+			if ( isset( $field['option_type'] ) && 'theme_mod' === $field['option_type'] ) {
+				remove_theme_mod( $key );
+			}
+		}
+	
+	}
+
+	/**
+	 * Save options in theme_mod
+	 *
+	 * @param  string $option    The name of the option.
+	 * @param  array  $old_value The old options.
+	 * @param  array  $value     The new options.
+	 *
+	 * @return string            The name of the option.
+	 */
+	public function save( $option, $old_value, $value ) {
+
+		if ( ! isset( $this->args['options_name'] ) ) {
+			return $option;
+		}
+
+		if ( $option !== $this->args['options_name'] ) {
+			return $option;
+		}
+
+		/**
+		 * Prendo il valore che verrà salvato $value
+		 *
+		 * Guardo in $this->settings quali sono gli argomenti che dovranno
+		 * essere salvati in theme_mod (o option)
+		 *
+		 * Salvo eventuali argomenti come theme_mod
+		 *
+		 * ? unset eventuali valori savati in theme_mod da
+		 * quelli che verranno salvati in option per evitare duplicazione?
+		 *
+		 * 
+		 */
+		echo "<pre>";
+		print_r($value);
+		echo "</pre>";
+		// echo "<pre>";
+		// print_r($this->fields);
+		// echo "</pre>";
+		$this->set_theme_mods( $value );
+		// foreach ( (array) $this->fields as $key => $field ) {
+		// 	if ( 'theme_mod' === $field['option_type'] ) {
+		// 		set_theme_mod( $key, $value[ $key ] );
+		// 	}
+		// }
+		// echo "<pre>";
+		// print_r($value);
+		// echo "</pre>";
+		// echo "<pre>";
+		// print_r($this->settings);
+		// echo "</pre>";
+		echo "<pre>";
+		print_r(get_theme_mods());
+		print_r($this->get_theme_mods);
+		echo "</pre>";
+
+		wp_die();
+
+		return $option;
+	
 	}
 }
