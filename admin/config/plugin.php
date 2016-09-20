@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 return array(
 	'basename'				=> ITALYSTRAP_BASENAME,
-	'options_name'			=> 'italystrap_settings_2',
+	'options_name'			=> 'italystrap_settings',
 	'options_group'			=> 'italystrap_options_group',
 	'admin_view_path'		=> ITALYSTRAP_PLUGIN_PATH . 'admin/view/',
 	'plugin_action_links'	=> array(
