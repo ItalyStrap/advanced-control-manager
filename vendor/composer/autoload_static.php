@@ -63,6 +63,7 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
         'ItalyStrap\\Admin\\A_Admin' => __DIR__ . '/../..' . '/admin/class-abstract-admin.php',
         'ItalyStrap\\Admin\\A_Fields' => __DIR__ . '/../..' . '/admin/fields/class-abstract-fields.php',
         'ItalyStrap\\Admin\\Admin' => __DIR__ . '/../..' . '/admin/class-admin.php',
+        'ItalyStrap\\Admin\\Admin_Uninstall' => __DIR__ . '/../..' . '/admin/class-admin-uninstall.php',
         'ItalyStrap\\Admin\\Customize_Select_Multiple_Control' => __DIR__ . '/../..' . '/admin/customizer/class-customize-select-multiple-control.php',
         'ItalyStrap\\Admin\\Customize_Select_Web_Fonts_Control' => __DIR__ . '/../..' . '/admin/customizer/class-customize-select-web-fonts-control.php',
         'ItalyStrap\\Admin\\Customizer_Manager' => __DIR__ . '/../..' . '/admin/customizer/class-customize-manager.php',

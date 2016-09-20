@@ -13,6 +13,7 @@ return array(
     'ItalyStrap\\Admin\\A_Admin' => $baseDir . '/admin/class-abstract-admin.php',
     'ItalyStrap\\Admin\\A_Fields' => $baseDir . '/admin/fields/class-abstract-fields.php',
     'ItalyStrap\\Admin\\Admin' => $baseDir . '/admin/class-admin.php',
+    'ItalyStrap\\Admin\\Admin_Uninstall' => $baseDir . '/admin/class-admin-uninstall.php',
     'ItalyStrap\\Admin\\Customize_Select_Multiple_Control' => $baseDir . '/admin/customizer/class-customize-select-multiple-control.php',
     'ItalyStrap\\Admin\\Customize_Select_Web_Fonts_Control' => $baseDir . '/admin/customizer/class-customize-select-web-fonts-control.php',
     'ItalyStrap\\Admin\\Customizer_Manager' => $baseDir . '/admin/customizer/class-customize-manager.php',
