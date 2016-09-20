@@ -151,7 +151,7 @@ class Init {
 		$css = Inline_Style::get();
 
 		if ( $css ) {
-			echo '<style>' . esc_attr( $css ) . '</style>';
+			echo '<style>' . wp_strip_all_tags( $css ) . '</style>';
 		} else {
 			echo '';
 		}
