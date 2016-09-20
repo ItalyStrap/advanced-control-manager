@@ -55,6 +55,13 @@ abstract class Widget extends WP_Widget {
 	private static $method_loaded = false;
 
 	/**
+	 * Store the configuration array
+	 *
+	 * @var array
+	 */
+	private $config = array();
+
+	/**
 	 * Set the title field
 	 */
 	protected function title_field() {

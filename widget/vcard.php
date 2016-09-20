@@ -56,12 +56,14 @@ class VCard extends Widget {
 	 */
 	function __construct() {
 
+		$this->config = require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' );
+
 		/**
 		 * I don't like this and I have to find a better solution for loading script and style for widgets.
 		 */
 		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
-		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' ) );
+		$fields = array_merge( $this->title_field(), $this->config );
 
 		/**
 		 * Configure widget array.
@@ -95,7 +97,7 @@ class VCard extends Widget {
 
 		$vcard = new VCard();
 
-		$vcard->get_args( 'widget_vcard', $instance, require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' ) );
+		$vcard->get_args( 'widget_vcard', $instance, $this->config );
 
 		return $vcard->output();
 
