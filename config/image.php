@@ -10,6 +10,14 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 /**
+ * Instance of list of image sizes
+ *
+ * @var ItalyStrapAdminMediaSettings
+ */
+$image_size_media = new ItalyStrapAdminMediaSettings;
+$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+
+/**
  * Definition array() with all the options connected to the
  * module which must be called by an include (setoptions).
  */
@@ -47,6 +55,21 @@ return array(
 				 ),
 
 	/**
+	 * Define tag for image title. Default: h4.
+	 */
+	'image_title_tag'			=> array(
+				'name'		=> __( 'Image title tag', 'italystrap' ),
+				'desc'		=> __( 'Define tag for image title. Default: h4.', 'italystrap' ),
+				'id'		=> 'image_title_tag',
+				'type'		=> 'text',
+				'class'		=> 'widefat',
+				'default'	=> 'h4',
+				// 'validate'	=> 'esc_attr',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
 	 * Ids for the images to use.
 	 */
 	'caption'			=> array(
@@ -61,21 +84,6 @@ return array(
 				'section'	=> 'general',
 				 ),
 
-
-	/**
-	 * Alternative text.
-	 */
-	'alt'				=> array(
-				'name'		=> __( 'Alternative text', 'italystrap' ),
-				'desc'		=> __( 'Enter the alternative text.', 'italystrap' ),
-				'id'		=> 'alt',
-				'type'		=> 'text',
-				'class'		=> 'widefat alt',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
 	/**
 	 * Ids for the images to use.
 	 */
@@ -87,6 +95,34 @@ return array(
 				'class'		=> 'widefat description',
 				'default'	=> '',
 				// 'validate'	=> 'numeric_comma',
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
+	 * Add paragraphs.
+	 */
+	'wpautop'		=> array(
+				'name'		=> __( 'Add paragraphs', 'italystrap' ),
+				'desc'		=> __( 'Automatically add paragraphs.', 'italystrap' ),
+				'id'		=> 'wpautop',
+				'type'		=> 'checkbox',
+				'class'		=> 'wpautop',
+				'default'	=> 0,
+				'sanitize'	=> 'sanitize_text_field',
+				'section'	=> 'general',
+				 ),
+
+	/**
+	 * Ids for the images to use.
+	 */
+	'do_shortcode'		=> array(
+				'name'		=> __( 'Do Shortcode', 'italystrap' ),
+				'desc'		=> __( '.', 'italystrap' ),
+				'id'		=> 'do_shortcode',
+				'type'		=> 'checkbox',
+				'class'		=> 'do_shortcode',
+				'default'	=> 0,
 				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'general',
 				 ),
@@ -134,8 +170,8 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'add_figure_container'		=> array(
-				'name'		=> esc_html__( 'Add container <figure>', 'italystrap' ),
-				'desc'		=> __( 'Check if you want to add <figure> tag for img container.', 'italystrap' ),
+				'name'		=> esc_html__( 'Add container "figure"', 'italystrap' ),
+				'desc'		=> __( 'Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for img container.', 'italystrap' ),
 				'id'		=> 'add_figure_container',
 				'type'		=> 'checkbox',
 				'class'		=> 'add_figure_container',

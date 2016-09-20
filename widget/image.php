@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Core\Image\Image;
 use \ItalyStrapAdminMediaSettings;
 
 /**
@@ -28,20 +29,14 @@ class Image extends Widget {
 	 */
 	function __construct() {
 
+		$this->config = require( ITALYSTRAP_PLUGIN_PATH . 'config/image.php' );
+
 		/**
 		 * I don't like this and I have to find a better solution for loading script and style for widgets.
 		 */
 		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
 
-		/**
-		 * Instance of list of image sizes
-		 *
-		 * @var ItalyStrapAdminMediaSettings
-		 */
-		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
-
-		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/image.php' ) );
+		$fields = array_merge( $this->title_field(), $this->config );
 
 		/**
 		 * Configure widget array.
@@ -72,54 +67,10 @@ class Image extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$size_class = esc_attr( $instance['size'] );
+		$image = new Image();
 
-		$align = ( isset( $instance['alignment'] ) ) ? esc_attr( $instance['alignment'] ) : '';
+		$image->get_args( 'widget_image', $instance, $this->config );
 
-		$image_css_class = ( isset( $instance['image_css_class'] ) ) ? esc_attr( $instance['image_css_class'] ) : '';
-
-		$container_css_class = isset( $instance['container_css_class'] ) ? esc_attr( $instance['container_css_class'] ) : '';
-
-		$out = '';
-
-		if ( ! empty( $instance['add_figure_container'] ) ) {
-			$out = '<figure class="widget-figure-media ' . $container_css_class . '">';
-		}
-
-		if ( ! empty( $instance['link'] ) ) {
-			$out .= '<a href="' . esc_attr( $instance['link'] ) . '">';
-		}
-
-		$attr = array(
-		'class'		=> "attachment-$size_class size-$size_class $align $image_css_class",
-		'itemprop'	=> 'image',
-		);
-
-		if ( isset( $instance['image_title'] ) ) {
-			$attr['title'] = esc_attr( $instance['image_title'] );
-		}
-
-		if ( isset( $instance['alt'] ) ) {
-			$attr['alt'] = esc_attr( $instance['alt'] );
-		}
-
-		$out .= wp_get_attachment_image( $instance['id'] , $size_class, false, $attr );
-
-		if ( ! empty( $instance['link'] ) ) {
-			$out .= '</a>';
-		}
-
-		if ( ! empty( $instance['add_figure_container'] ) ) {
-
-			if ( ! empty( $instance['caption'] ) ) {
-
-				$out .= '<figcaption class="fig-null">' . esc_attr( $instance['caption'] ) . '</figcaption>';
-
-			}
-
-			$out .= '</figure>';
-		}
-
-		return $out;
+		return $image->output();
 	}
 } // Class.
