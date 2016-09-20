@@ -37,7 +37,7 @@ class VCard {
 		 */
 		$args = shortcode_atts_multidimensional_array( $default, $args, $context );
 
-		$args = apply_filters( 'italystrap_{$context}', $args );
+		$args = apply_filters( 'italystrap_{$context}_args', $args );
 
 		$this->args = $args;
 
