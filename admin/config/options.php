@@ -254,7 +254,7 @@ return array(
 			),
 			array(
 				'id'		=> 'vcardwidget',
-				'title'		=> __( 'vCard Widget', 'italystrap' ),
+				'title'		=> __( 'vCard Widget (DEPRECATED)', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'widget',
@@ -271,7 +271,7 @@ return array(
 			),
 			array( // DEPRECATED
 				'id'		=> 'post_widget',
-				'title'		=> __( 'Posts Widget', 'italystrap' ),
+				'title'		=> __( 'Posts Widget (DEPRECATED)', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'widget',
