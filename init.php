@@ -99,7 +99,7 @@ if (  ! empty( $options['activate_custom_css'] )  ) {
 	add_filter( 'post_class', array( $post_meta, 'post_class' ) );
 }
 
-if ( isset( $options['web_font_loading'] ) ) {
+if ( ! empty( $options['web_font_loading'] ) ) {
 	/**
 	 * Load the Web_Font_Loading classes
 	 *
