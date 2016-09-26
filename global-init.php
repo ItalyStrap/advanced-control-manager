@@ -16,6 +16,13 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 /**
+ * Define HOME_URL
+ */
+if ( ! defined( 'HOME_URL' ) ) {
+	define( 'HOME_URL', get_home_url( null, '/' ) );
+}
+
+/**
  * Init Class for ItalyStrap Core
  */
 class Init {
@@ -96,6 +103,7 @@ class Init {
 			'widget_post'			=> 'Posts',
 			'media_carousel_widget'	=> 'Carousel',
 			'widget_vcard'			=> 'VCard', // New
+			'widget_image'			=> 'Image', // New
 		);
 
 		foreach ( $widget_list as $key => $value ) {
@@ -105,10 +113,6 @@ class Init {
 		}
 
 		if ( defined( 'ITALYSTRAP_BETA' ) ) {
-
-			if ( isset( $this->options['widget_image'] ) ) {
-				\register_widget( 'ItalyStrap\Widget\Image' );
-			}
 
 			\register_widget( 'ItalyStrap\Widget\Breadcrumbs' );
 
