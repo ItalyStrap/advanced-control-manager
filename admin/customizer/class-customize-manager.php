@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use WP_Customize_Manager;
-use \ItalyStrap\Core\Web_Font_loading;
+use \ItalyStrap\Core\Web_Font_Loading;
 
 /**
  * Contains methods for customizing the theme customization screen.
@@ -46,7 +46,7 @@ class Customizer_Manager {
 	/**
 	 * Init the class
 	 */
-	function __construct( array $options = array(), Web_Font_loading $web_fonts ) {
+	function __construct( array $options = array(), Web_Font_Loading $web_fonts ) {
 
 		$this->options = $options;
 

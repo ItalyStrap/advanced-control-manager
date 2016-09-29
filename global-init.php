@@ -100,7 +100,7 @@ class Init {
 		$widget_list = array(
 			'vcardwidget'			=> 'Vcard_Widget', // Deprecated
 			'post_widget'			=> 'Widget_Posts2', // Deprecated
-			'widget_post'			=> 'Posts',
+			'widget_posts'			=> 'Posts',
 			'media_carousel_widget'	=> 'Carousel',
 			'widget_vcard'			=> 'VCard', // New
 			'widget_image'			=> 'Image', // New
@@ -118,7 +118,7 @@ class Init {
 
 			// if ( isset( $this->options['widget_product'] ) ) {
 				// $widget_product = new Widget_Product;
-				\register_widget( 'ItalyStrap\Widget\Product' );
+				\register_widget( 'ItalyStrap\Widget\Products' );
 				// register_widget( $widget_product );
 			// }
 

@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Image\Image;
+use ItalyStrap\Core\Image\Image as Image_Base;
 use \ItalyStrapAdminMediaSettings;
 
 /**
@@ -67,7 +67,7 @@ class Image extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$image = new Image();
+		$image = new Image_Base();
 
 		$image->get_args( 'widget_image', $instance, $this->config );
 

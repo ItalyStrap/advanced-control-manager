@@ -12,12 +12,12 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Core\Query\Posts as Products;
+use \ItalyStrap\Core\Query\Posts as Products_Base;
 
 /**
  * Widget Class for post type
  */
-class Product extends Widget {
+class Products extends Widget {
 
 	/**
 	 * Fire Before Create Fields
@@ -141,7 +141,7 @@ class Product extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$query_posts = Products::init( $this->id_base );
+		$query_posts = Products_Base::init( $this->id_base );
 
 		$query_posts->get_widget_args( $instance );
 

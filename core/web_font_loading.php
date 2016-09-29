@@ -18,7 +18,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 /**
  * Web Font Loading class
  */
-class Web_Font_loading {
+class Web_Font_Loading {
 
 	/**
 	 * Google API font URL

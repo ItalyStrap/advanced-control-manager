@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Core\Query\Posts;
+use \ItalyStrap\Core\Query\Posts as Posts_Base;
 
 /**
  * Widget Class for post type
@@ -68,7 +68,7 @@ class Posts extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$query_posts = Posts::init();
+		$query_posts = Posts_Base::init();
 
 		$query_posts->get_widget_args( $instance );
 

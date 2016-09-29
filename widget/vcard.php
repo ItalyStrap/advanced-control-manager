@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use \ItalyStrap\Core\VCard;
+use \ItalyStrap\Core\VCard as VCard_Base;
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
@@ -95,7 +95,7 @@ class VCard extends Widget {
 	public function widget_render( $args, $instance ) {
 
 
-		$vcard = new VCard();
+		$vcard = new VCard_Base();
 
 		$vcard->get_args( 'widget_vcard', $instance, $this->config );
 
