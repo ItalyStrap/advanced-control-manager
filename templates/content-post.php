@@ -134,7 +134,8 @@
 							<p itemprop="text">
 								<?php
 
-								echo esc_attr( get_the_excerpt() );
+								// echo esc_attr( get_the_excerpt() );
+								echo esc_attr( wp_trim_words( get_the_excerpt(), $this->args['excerpt_length'], '' ) );
 								/**
 								 * Echo echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
 								 */
