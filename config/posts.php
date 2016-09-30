@@ -566,9 +566,24 @@ return array(
 				'id'		=> 'related_by_cats',
 				'type'		=> 'checkbox',
 				// 'class'		=> 'widefat related_by_cats',
-				'default'	=> '0',
+				'default'	=> 0,
 				// 'validate'	=> 'numeric',
 				'sanitize'	=> 'esc_attr',
+				'section'	=> 'filter',
+				 ),
+
+	/**
+	 * Custom text or HTML markup.
+	 */
+	'offset'				=> array(
+				'name'		=> __( 'Discard posts', 'italystrap' ),
+				'desc'		=> __( 'Number of post to displace or pass over. Warning: Setting the offset parameter overrides/ignores the paged parameter and breaks pagination <a href="https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination">(Click here for a workaround)</a>. The "offset" parameter is ignored when "posts_per_page"=>-1 (show all posts) is used.', 'italystrap' ),
+				'id'		=> 'offset',
+				'type'		=> 'number',
+				'class'		=> 'widefat offset',
+				'default'	=> 0,
+				'validate'	=> 'numeric',
+				'sanitize'	=> 'sanitize_text_field',
 				'section'	=> 'filter',
 				 ),
 

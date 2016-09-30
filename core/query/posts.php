@@ -233,6 +233,10 @@ class Posts extends Query {
 			$query_args['meta_key'] = $this->args['meta_key'];
 		}
 
+		if ( ! empty( $this->args['offset'] ) ) {
+			$query_args['offset'] = absint( $this->args['offset'] );
+		}
+
 		return apply_filters( "italystrap_{$this->context}_query_arg", $query_args );
 	
 	}
