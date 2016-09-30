@@ -51,18 +51,35 @@ class Areas {
 	 */
 	public function get_style( $style = '' ) {
 
-		$css = '.' . $style['id'] . '{';
+		$css = '.' . esc_attr( $style['id'] ) . ' > div{';
 
 		foreach ( $style['style'] as $key => $value ) {
 			if ( '#' === $value ) {
 				$value = 'transparent';
 			}
-			$css .= $key . ':' . $value . ';';
+			$css .= esc_attr( $key ) . ':' . esc_attr( $value ) . ';';
 		}
 
 		$css .= '}';
 	
 		return $css;
+	
+	}
+
+	/**
+	 * Get the widget area
+	 *
+	 * @param  int    $id The sidebar ID.
+	 * @return string     The html output
+	 */
+	public function get_widget_area( $id ) {
+	
+		$output = sprintf(
+			'<style scoped>%s</style>',
+			esc_attr( $this->get_style( $this->sidebars[ $id ] ) )
+			);
+
+		return $output;
 	
 	}
 
@@ -83,7 +100,7 @@ class Areas {
 
 		if ( is_active_sidebar( $sidebar_id ) ) :
 		?>
-		<style scoped><?php echo esc_attr( $css ); ?></style>
+		<style scoped><?php echo $css; ?></style>
 		<div <?php \ItalyStrap\Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), true ) ?>>
 			<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), true ) ?>>
 				<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), true ) ?>>
@@ -216,11 +233,15 @@ class Areas {
 			$container_width = isset( $_POST['_italystrap_container_width'] ) ? wp_unslash( $_POST['_italystrap_container_width'] ) : '';
 		// }
 
+		// if ( ! $priority ) {
+			$priority = isset( $_POST['_italystrap_priority'] ) ? absint( $_POST['_italystrap_priority'] ) : 10;
+		// }
+
 
 		$this->sidebars[ $post_ID ] = array(
 			'id'				=> $post->post_name,
 			'action'			=> $action,
-			'priotity'			=> 10,
+			'priotity'			=> $priority,
 			'style'				=> array(
 				'background-color'	=> $background_color,
 				),
