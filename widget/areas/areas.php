@@ -72,12 +72,21 @@ class Areas {
 	 * @param  int    $id The sidebar ID.
 	 * @return string     The html output
 	 */
-	public function get_widget_area( $id ) {
+	public function get_widget_area( $sidebar_id, $container_width ) {
 	
+		// $output = sprintf(
+		// 	'<style scoped>%s</style>',
+		// 	esc_attr( $this->get_style( $this->sidebars[ $sidebar_id ] ) )
+		// 	);
+
 		$output = sprintf(
-			'<style scoped>%s</style>',
-			esc_attr( $this->get_style( $this->sidebars[ $id ] ) )
-			);
+			'<div %1$s><div %2$s><div %3$s>%4$s</div></div></div>',
+			\ItalyStrap\Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), false ),
+			\ItalyStrap\Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), false ),
+			\ItalyStrap\Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), false ),
+			dynamic_sidebar( $sidebar_id )
+
+		);
 
 		return $output;
 	
@@ -93,14 +102,16 @@ class Areas {
 
 		$sidebar_id = $this->sidebars[ $id ]['value']['id'];
 		$container_width = $this->sidebars[ $id ]['container_width'];
-// d( $container_width );
-// d( $this->sidebars );
-		$css =  $this->get_style( $this->sidebars[ $id ] );
+
+		// $css =  $this->get_style( $this->sidebars[ $id ] );
+		/**
+		 * <style scoped><?php echo $css; ?></style>
+		 */
 		// Inline_Style::set( $css );
 
 		if ( is_active_sidebar( $sidebar_id ) ) :
+			// $this->get_widget_area( $sidebar_id, $container_width );
 		?>
-		<style scoped><?php echo $css; ?></style>
 		<div <?php \ItalyStrap\Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), true ) ?>>
 			<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), true ) ?>>
 				<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), true ) ?>>
