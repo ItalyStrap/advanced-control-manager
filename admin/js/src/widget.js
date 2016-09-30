@@ -141,7 +141,7 @@ jQuery(document).ready(function($) {
 			 * Image URL
 			 * @type {string}
 			 */
-			var url = attachment.sizes.thumbnail.url ? attachment.sizes.thumbnail.url : attachment.url ;
+			var url = attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url ;
 
 			var ul_container = null;
 			var input_ids = null;
@@ -216,7 +216,7 @@ jQuery(document).ready(function($) {
 			 * Image URL
 			 * @type {string}
 			 */
-			var url = attachment.sizes.thumbnail.url ? attachment.sizes.thumbnail.url : attachment.url ;
+			var url = attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url ;
 
 			var ul_container = null;
 			var input_ids = null;
