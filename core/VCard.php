@@ -142,7 +142,7 @@ class VCard {
 		foreach ( $contacts as $contact_key => $itemprop ) {
 			if ( $this->args[ $contact_key ] ) {
 				if ( 'email' === $contact_key ) {
-					$contacts_list .= '<li class="' . $itemprop . '" itemprop="' . $itemprop . '"><a href="mailto:' . antispambot( is_email( $this->args[ $contact_key ], 1 ) ) . '">' . antispambot( is_email( $this->args[ $contact_key ] ) ) . '</a></li>'; // XSS ok.
+					$contacts_list .= '<li class="' . $itemprop . '" itemprop="' . $itemprop . '"><a href="mailto:' . antispambot( is_email( $this->args[ $contact_key ] ) ) . '">' . antispambot( is_email( $this->args[ $contact_key ] ) ) . '</a></li>'; // XSS ok.
 				} else {
 					$contacts_list .= '<li class="' . $itemprop . '" itemprop="' . $itemprop . '">' . esc_textarea( $this->args[ $contact_key ] ) . '</li>';
 				}
