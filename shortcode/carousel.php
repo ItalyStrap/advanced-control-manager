@@ -11,6 +11,8 @@
 
 namespace ItalyStrap\Shortcode;
 
+use ItalyStrap\Core\Carousel\Bootstrap;
+
 /**
  * Add Bootstrap Carousel to gallery shortcode
  */
@@ -47,7 +49,7 @@ class Carousel {
 		}
 
 		if ( 'carousel' === $atts['type'] ) {
-			$carousel_bootstrap = new \ItalyStrap\Core\Carousel_Bootstrap( $atts );
+			$carousel_bootstrap = new Bootstrap( $atts );
 			return $carousel_bootstrap->__get( 'output' );
 		}
 
