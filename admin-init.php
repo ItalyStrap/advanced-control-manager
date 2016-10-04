@@ -119,14 +119,17 @@ $gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
 $image_size_media = $injector->make( 'ItalyStrapAdminMediaSettings' );
 add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
 
+/**
+ * Instanziate the Register_Metaboxes.
+ * Questo oggetto va lasciato fuori da condizionali perché
+ * il tema nel file bootstrap mi esegue il metodo 'register_widget_areas_fields'
+ *
+ * @var Register_Metaboxes
+ */
+$register_metabox = $injector->make( 'ItalyStrap\Admin\Register_Metaboxes' );
+
 if ( ! empty( $options['activate_custom_css'] ) ) {
 
-	/**
-	 * Instanziate the Register_Metaboxes
-	 *
-	 * @var Register_Metaboxes
-	 */
-	$register_metabox = $injector->make( 'ItalyStrap\Admin\Register_Metaboxes' );
 	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_style_fields_in_wp_editor' ) );
 }
 
