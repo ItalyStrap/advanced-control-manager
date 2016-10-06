@@ -1,4 +1,6 @@
 <?php namespace ItalyStrap\Core;
+
+use \ItalyStrap\Core\Carousel\Bootstrap;
 /**
  * ItalyStrap Carousel initially forked from Agnosia Bootstrap Carousel by AuSoft
  *
@@ -19,7 +21,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 	/**
 	 * The Carousel Bootsrap class
 	 */
-	class ItalyStrapCarousel extends Carousel {
+	class ItalyStrapCarousel extends Bootstrap {
 
 		/**
 		 * Initialize the contstructor
@@ -27,7 +29,7 @@ if ( ! class_exists( 'ItalyStrapCarousel' ) ) {
 		 */
 		function __construct( $args ) {
 
-			_deprecated_function( __CLASS__, '2.0', 'ItalyStrap\\\Core\\\Carousel_Bootstrap' );
+			_deprecated_function( __CLASS__, '2.0', 'ItalyStrap\\\Core\\\Carousel\\\Bootstrap' );
 
 			parent::__construct( $args );
 

@@ -16,7 +16,7 @@ use ItalyStrap\Core\Carousel\Bootstrap;
 /**
  * Add Bootstrap Carousel to gallery shortcode
  */
-class Carousel {
+class Gallery {
 
 	/**
 	 * Modify the gallery shortcode with Bootstrap Carousel functionality.

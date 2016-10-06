@@ -8,10 +8,10 @@
 
 namespace ItalyStrap\Core;
 
-use \ItalyStrap\Core\Asset\Inline_Style;
-use \ItalyStrap\Core\Asset\Inline_Script;
+use ItalyStrap\Core\Asset\Inline_Style;
+use ItalyStrap\Core\Asset\Inline_Script;
 
-use ItalyStrap\Shortcode\Carousel;
+use ItalyStrap\Shortcode\Gallery;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -85,7 +85,7 @@ class Init {
 		}
 
 		if ( ! $gallery ) {
-			$shortcode_carousel = new Carousel();
+			$shortcode_carousel = new Gallery();
 			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 4 );
 			add_filter( 'jetpack_gallery_types', array( $shortcode_carousel, 'gallery_types' ) );
 			// add_filter( 'ItalyStrap_gallery_types', array( $shortcode_carousel, 'gallery_types' ), 999 );
@@ -108,7 +108,7 @@ class Init {
 			'widget_image'			=> 'Image', // New
 		);
 
-		foreach ( $widget_list as $key => $value ) {
+		foreach ( (array) $widget_list as $key => $value ) {
 			if ( ! empty( $this->options[ $key ] ) ) {
 				\register_widget( 'ItalyStrap\\Widget\\' . $value );
 			}
@@ -191,6 +191,32 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
 	// delete_option( 'italystrap_widget_area' );
 	// d( get_option( 'italystrap_widget_area' ) );
+
+
+	/**
+	 * WooCommerce enqueue style
+	 *
+	 * @link https://docs.woothemes.com/document/css-structure/
+	 */
+	function dequeue_unused_styles( $enqueue_styles ) {
+
+		if ( is_cart() || is_checkout() || is_account_page() ) {
+
+			return $enqueue_styles;
+
+		} else {
+
+			return false;
+
+		}
+
+
+	}
+	// add_filter( 'woocommerce_enqueue_styles', __NAMESPACE__ . '\dequeue_unused_styles' );
+
+	// Or just remove them all in one line.
+	// add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
 
 	/*************
 	 * ADMIN INIT
