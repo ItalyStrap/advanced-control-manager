@@ -141,12 +141,12 @@ $injector->defineParam( 'options', $options );
  *
  * @var array
  */
-$get_theme_mods = get_theme_mods();
+$theme_mods = get_theme_mods();
 
 /**
- * Define get_theme_mods parmeter
+ * Define theme_mods parmeter
  */
-$injector->defineParam( 'get_theme_mods', $get_theme_mods );
+$injector->defineParam( 'theme_mods', $theme_mods );
 
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**

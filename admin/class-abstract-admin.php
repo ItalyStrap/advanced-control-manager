@@ -92,10 +92,10 @@ abstract class A_Admin implements I_Admin{
 	 * @param array    $options        Get the plugin options.
 	 * @param array    $settings       The configuration array plugin fields.
 	 * @param array    $args           The configuration array for plugin.
-	 * @param array    $get_theme_mods The theme options.
+	 * @param array    $theme_mods     The theme options.
 	 * @param I_Fields $fields_type    The Fields object.
 	 */
-	public function __construct( array $options = array(), array $settings, array $args, array $get_theme_mods, I_Fields $fields_type ) {
+	public function __construct( array $options = array(), array $settings, array $args, array $theme_mods, I_Fields $fields_type ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
 			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.
@@ -111,7 +111,7 @@ abstract class A_Admin implements I_Admin{
 
 		$this->fields = $this->get_settings_fields();
 
-		$this->get_theme_mods = $get_theme_mods;
+		$this->theme_mods = $theme_mods;
 
 	}
 

@@ -39,7 +39,7 @@ class Web_Font_Loading {
 	 *
 	 * @param array $options The plugin options.
 	 */
-	function __construct( array $options = array() ) {
+	function __construct( array $options = array(), array $theme_mods ) {
 
 		$this->options = $options;
 
@@ -49,7 +49,7 @@ class Web_Font_Loading {
 
 		$this->fonts = $this->get_remote_fonts();
 
-		$this->get_theme_mods = get_theme_mods();
+		$this->theme_mods = $theme_mods;
 
 	}
 
@@ -89,20 +89,20 @@ class Web_Font_Loading {
 	 */
 	public function prepare_fonts() {
 
-		$get_theme_mods = $this->get_theme_mods;
+		// $theme_mods = $this->theme_mods;
 		// remove_theme_mod( 'body_font_family' );
 		// remove_theme_mod( 'body_font_variants' );
 		// remove_theme_mod( 'body_font_subsets' );
 		// remove_theme_mod( 'heading_font_family' );
 		// remove_theme_mod( 'heading_font_variants' );
 		// remove_theme_mod( 'heading_font_subsets' );
-		// d( $get_theme_mods );
-		// d( $get_theme_mods['body_font_family'] );
-		// d( $get_theme_mods['body_font_variants'] );
-		// d( $get_theme_mods['body_font_subsets'] );
-		// d( $get_theme_mods['heading_font_family'] );
-		// d( $get_theme_mods['heading_font_variants'] );
-		// d( $get_theme_mods['heading_font_subsets'] );
+		// d( $theme_mods );
+		// d( $this->theme_mods['body_font_family'] );
+		// d( $this->theme_mods['body_font_variants'] );
+		// d( $this->theme_mods['body_font_subsets'] );
+		// d( $this->theme_mods['heading_font_family'] );
+		// d( $this->theme_mods['heading_font_variants'] );
+		// d( $this->theme_mods['heading_font_subsets'] );
 		$template_part = array(
 			'first',
 			'second',
@@ -116,16 +116,16 @@ class Web_Font_Loading {
 				continue;
 			}
 
-			if ( ! isset( $get_theme_mods[ $part . '_font_family' ] ) ) {
+			if ( ! isset( $this->theme_mods[ $part . '_font_family' ] ) ) {
 				continue;
 			}
 
-			if ( ! isset( $get_theme_mods[ $part . '_font_variants' ] ) ) {
-				$get_theme_mods[ $part . '_font_variants' ] = '';
+			if ( ! isset( $this->theme_mods[ $part . '_font_variants' ] ) ) {
+				$this->theme_mods[ $part . '_font_variants' ] = '';
 			}
 
-			if ( ! isset( $get_theme_mods[ $part . '_font_subsets' ] ) ) {
-				$get_theme_mods[ $part . '_font_subsets' ] = 'latin';
+			if ( ! isset( $this->theme_mods[ $part . '_font_subsets' ] ) ) {
+				$this->theme_mods[ $part . '_font_subsets' ] = 'latin';
 			}
 
 			/**
@@ -133,7 +133,7 @@ class Web_Font_Loading {
 			 *
 			 * @var int The position of the font because it is an array.
 			 */
-			$position = (int) $get_theme_mods[ $part . '_font_family' ];
+			$position = (int) $this->theme_mods[ $part . '_font_family' ];
 
 			/**
 			 * Get the font family from $position
@@ -143,12 +143,12 @@ class Web_Font_Loading {
 			$fonts[ $key ]['family'] = $this->fonts[ $position ]->family;
 
 			$fonts[ $key ]['variants'] = array_intersect(
-				explode( ',', $get_theme_mods[ $part . '_font_variants' ] ),
+				explode( ',', $this->theme_mods[ $part . '_font_variants' ] ),
 				$this->fonts[ $position ]->variants
 				);
 
 			$fonts[ $key ]['subsets'] = array_intersect(
-				explode( ',', $get_theme_mods[ $part . '_font_subsets' ] ),
+				explode( ',', $this->theme_mods[ $part . '_font_subsets' ] ),
 				$this->fonts[ $position ]->subsets
 				);
 		}
