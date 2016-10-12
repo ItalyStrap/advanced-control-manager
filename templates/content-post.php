@@ -56,7 +56,7 @@
 								$thumb_size,
 								array(
 									'class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->args['image_class'],
-									'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $this->post->ID ), '_wp_attachment_image_alt', true ) ) ),
+									'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $this->query->post->ID ), '_wp_attachment_image_alt', true ) ) ),
 									'itemprop'	=> 'image',
 								)
 							); ?>

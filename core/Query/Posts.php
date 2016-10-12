@@ -177,7 +177,7 @@ class Posts extends Query {
 		 */
 		if ( ! empty( $this->args['related_by_tags'] ) ) {
 
-			$tags = wp_get_post_terms( $this->post->ID );
+			$tags = wp_get_post_terms( $this->current_post_id );
 
 			if ( $tags ) {
 				$count = count( $tags );
@@ -204,7 +204,7 @@ class Posts extends Query {
 		 */
 		if ( ! empty( $this->args['related_by_cats'] ) ) {
 
-			$cats = wp_get_post_terms( $this->post->ID, 'category' );
+			$cats = wp_get_post_terms( $this->current_post_id, 'category' );
 
 			if ( $cats ) {
 				$count = count( $cats );
