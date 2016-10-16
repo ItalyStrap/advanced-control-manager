@@ -414,3 +414,39 @@ function apply_lazyload( $content ) {
 // 	return $args;
 // }
 // add_filter( 'italystrap_previous_next_post_link_args', __NAMESPACE__ . '\change_next_article_link' );
+
+/**
+ * This shortcode is only for intarnal use
+ *
+ * @param  array $atts Shortcode attributes.
+ *
+ * @return string      The shortcode output
+ */
+function _display_config( $atts ) {
+
+	if ( ! isset( $atts['file'] ) ) {
+		return;
+	}
+
+	if ( ! file_exists( ITALYSTRAP_PLUGIN_PATH . 'config/' . $atts['file'] . '.php' ) ) {
+		return;
+	}
+
+	$get_settings = require( ITALYSTRAP_PLUGIN_PATH . 'config/' . $atts['file'] . '.php' );
+
+	$output = '<ul>';
+
+	foreach ( (array) $get_settings as $key => $setting ) {
+		$output .= sprintf(
+			'<li><strong>%s</strong><br>%s</li>',
+			$setting['name'],
+			$setting['desc']
+			);
+	}
+
+	$output .= '</ul>';
+
+	return $output;
+}
+
+add_shortcode( 'display_config', __NAMESPACE__ . '\_display_config' );
