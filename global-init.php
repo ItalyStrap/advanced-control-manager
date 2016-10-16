@@ -164,6 +164,24 @@ class Init {
 	}
 } // End Init
 
+if ( ! empty( $options['widget_areas'] ) ) {
+	/**
+	 * Instantiate Widget Areas Class
+	 * Questa deve essere eseguita sia in admin che in front-end
+	 *
+	 * @var Areas
+	 */
+	$widget_areas = $injector->make( 'ItalyStrap\Widget\Areas\Areas' );
+	$widget_areas->register_sidebars();
+	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
+	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
+	add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 2 );
+	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
+
+	// delete_option( 'italystrap_widget_area' );
+	// d( get_option( 'italystrap_widget_area' ) );
+}
+
 /**
  * This are some functionality in beta version.
  * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
@@ -176,22 +194,6 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/*************
 	 * GLOBAL INIT
 	 ************/
-
-	/**
-	 * Instantiate Customizer_Manager Class
-	 * Questa deve essere eseguita sia in admin che in front-end
-	 *
-	 * @var Customizer_Manager
-	 */
-	$widget_areas = $injector->make( 'ItalyStrap\Widget\Areas\Areas' );
-	$widget_areas->register_sidebars();
-	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
-	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
-	add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 2 );
-	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
-	// delete_option( 'italystrap_widget_area' );
-	// d( get_option( 'italystrap_widget_area' ) );
-
 
 	/**
 	 * WooCommerce enqueue style
@@ -271,14 +273,6 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**
 	 * FRONTEND INIT
 	 */
-	
-	/**
-	 * [$generate_analytics description]
-	 *
-	 * @var Generate_Analytics
-	 */
-	$generate_analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
-	add_action( 'wp_footer', array( $generate_analytics, 'render_analytics' ), 99999 );
 
 	if ( isset( $options['category_posts_shortcode'] ) ) {
 		$shortcode_docs = new Shortcode_Docs;

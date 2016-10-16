@@ -136,6 +136,16 @@ if ( isset( $options['do_shortcode_widget_text'] ) ) {
 	add_filter( 'widget_text', 'do_shortcode' );
 }
 
+if ( ! empty( $options['activate_analytics'] ) ) {
+	/**
+	 * [$generate_analytics description]
+	 *
+	 * @var Generate_Analytics
+	 */
+	$analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
+	add_action( 'wp_footer', array( $analytics, 'render_analytics' ), 99999 );
+}
+
 /**
  * Set CSS from admin option Script
  */

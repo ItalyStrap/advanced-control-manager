@@ -132,6 +132,24 @@ return array(
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
+				'id'		=> 'widget_areas',
+				'title'		=> __( 'Widget Areas', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'widget',
+				'args'		=> array(
+						'name'			=> __( 'Activate new settings page for widget areas', 'italystrap' ),
+						'desc'			=> __( 'This will add new settings page on Appearance where you can create new widget area to append on theme action hook.', 'italystrap' ),
+						'id'			=> 'widget_areas',
+						'type'			=> 'checkbox',
+						'class'			=> 'widget_areas medium',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
+			),
+			array(
 				'id'		=> 'widget_attributes',
 				'title'		=> __( 'HTML attributes for widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',
@@ -430,34 +448,52 @@ return array(
 	/**
 	 * This is the Script configuration
 	 */
-	// 'script'	=> array(
-	// 	'tab_title'			=> __( 'Script', 'italystrap' ),
-	// 	'id'				=> 'script',
-	// 	'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
-	// 	'desc'				=> __( 'Some functionality for JS', 'italystrap' ),
-	// 	'callback'			=> 'render_section_cb',
-	// 	'page'				=> 'italystrap_options_group',
-	// 	'settings_fields'	=> array(
-	// 		array(
-	// 			'id'		=> 'google_analytics_id',
-	// 			'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
-	// 			'callback'	=> 'get_field_type',
-	// 			'page'		=> 'italystrap_options_group',
-	// 			'section'	=> 'script',
-	// 			'args'		=> array(
-	// 					'name'			=> __( 'Analytics ID', 'italystrap' ),
-	// 					'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
-	// 					'id'			=> 'google_analytics_id',
-	// 					'type'			=> 'text',
-	// 					'class'			=> 'google_analytics_id',
-	// 					'default'		=> '',
-	// 					// 'validate'	=> 'ctype_alpha',
-	// 					'sanitize'		=> 'sanitize_text_field',
-	// 			),
-	// 			'show_on'				=> \ItalyStrap\Core\is_beta(),
-	// 		),
-	// 	),
-	// ),
+	'script'	=> array(
+		'tab_title'			=> __( 'Script', 'italystrap' ),
+		'id'				=> 'script',
+		'title'				=> __( 'ItalyStrap options page for script', 'italystrap' ),
+		'desc'				=> __( 'Some functionality for JS', 'italystrap' ),
+		'callback'			=> 'render_section_cb',
+		'page'				=> 'italystrap_options_group',
+		'settings_fields'	=> array(
+			array(
+				'id'		=> 'activate_analytics',
+				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'script',
+				'args'		=> array(
+						'name'			=> __( 'Activate Google analitycs script', 'italystrap' ),
+						'desc'			=> __( 'This will add the Google analytics script in every page of your site before the <code>&lt;/body&gt;</code> tag. The snippet will be appended to <code>wp_footer</code> hook.', 'italystrap' ),
+						'id'			=> 'activate_analytics',
+						'type'			=> 'checkbox',
+						'class'			=> 'activate_analytics easy',
+						'default'		=> '1',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
+			),
+			array(
+				'id'		=> 'google_analytics_id',
+				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'script',
+				'args'		=> array(
+						'name'			=> __( 'Analytics ID', 'italystrap' ),
+						'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
+						'id'			=> 'google_analytics_id',
+						'type'			=> 'text',
+						'class'			=> 'google_analytics_id easy',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+				'show_on'				=> \ItalyStrap\Core\is_beta(),
+			),
+		),
+	),
 	/**
 	 * This is the Lazy Load configuration
 	 */
