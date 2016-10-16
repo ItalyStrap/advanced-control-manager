@@ -192,7 +192,7 @@ Dev time: 1year
 
 Make backup first ;-)
 
-** DEPRECATED **
+**DEPRECATED**
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
 * Deprecated title attribute (`$atts['title']`) in `gallery` shortcode, use `image_title` instead.
 * Deprecated vCard Widget (there's a new version for this widget, see below)
