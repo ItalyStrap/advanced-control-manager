@@ -366,9 +366,9 @@ module.exports = function(grunt) {
 
 		"github-release": { // https://github.com/dolbyzerr/grunt-github-releaser
 			options: {
-				repository: 'overclokk/ItalyStrap-extended', // Path to repository
+				repository: 'overclokk/italystrap-extended', // Path to repository
 				release: {
-					name: '<%= pkg.name %> <%= pkg.version %>',
+					name: 'ItalyStrap plugin v.<%= pkg.version %>',
 					body: '## New release of <%= pkg.name %> <%= pkg.version %> \nSee the **[changelog](https://github.com/overclokk/italystrap-extended#changelog)**',
 				}
 			},
