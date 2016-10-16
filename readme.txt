@@ -186,35 +186,47 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.0.0 Breaking Changes =
-Release Date: September 19th, 2016  
+Release Date: October 19th, 2016  
 
-Dev time: 1year  
+Dev time: 1year
 
+Make backup first ;-)
+
+** DEPRECATED **
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
-* Deprecated title attribute ($atts['title']) in gallery shortcode, use image_title instead 
+* Deprecated title attribute (`$atts['title']`) in `gallery` shortcode, use `image_title` instead.
 * Deprecated vCard Widget (there's a new version for this widget, see below)
-* Deprecated italystrap_get_apply_lazyload( $content ); and italystrap_apply_lazyload( $content ); use ItalyStrap\Core\get_apply_lazyload( $content ); and ItalyStrap\Core\apply_lazyload( $content );
-* All filters and actions start with 'italistrap_' lowercase (if you find some in uppercase please let me know)
-* Fix front page and posts page visualization for breadcrumbs
-* New API for the admin panel
-* Added some general utilities:
+* Deprecated `italystrap_get_apply_lazyload( $content );` and `italystrap_apply_lazyload( $content );` use `ItalyStrap\Core\get_apply_lazyload( $content );` and `ItalyStrap\Core\apply_lazyload( $content );`
+
+** FIX **
+* **All filters and actions** start with `italistrap_` **lowercase** (if you find some in CamelCase or some without a prefix please let me know).
+* Fix front page and posts page visualization for breadcrumbs.
+
+** ENHANCEMENTS **
+* New API for settings options
+* New API for settings options
+* New API for fields
+* New API for sanitization and validation
+* New API for exporting and importing still in alpha version not active
+* New plugin settings interface for displaying all options.
+* New API for templating system in beta version, in future you can override the template used in widgets and shortcodes like WooCommerce does.
+* Added some general utilities in plugin settings:
   * Show post type ID
   * Show post type thumb
   * Disable the emoji
   * HTML attributes for widgets
-  * Possibility to add some tags to widget title with {{}} instead of <>
-* Widgets:
-  * New API for building widgets in a easy way (Is is possible to create your own widget too)
-  * vCard Widget (this is a new version, the old one is deprecated, you can see in the widget description)
-  * Post Widget (a widget with many option for displaying post type in a widget area)
-  * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS), the settings are the same of shortcode settings.
-* Shortcode:
+  * Possibility to add some tags to widget title with `{{}}` instead of `<>`
+* ** Widgets: **
+  * New API for building widgets in a easy way (it is possible to create your own widget too but the docs will be available soon)
+  * Widget for vCard  with schema.org markup (this is a new version, the old one is deprecated, you can see in the widget description)
+  * Widget for Post (a widget with a lot of options for displaying post, page and custom type in a widget area)
+  * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS loaded by your theme), the settings are the same of shortcode settings.
+* ** Shortcode: **
   * Option for executing shortcode in the widget text
   * Option for Carousel shortcode, now you have to activate it for making it works.
 * Style:
  * Text area for custom CSS
  * Input fields for adding custom body class and post class attribute.
-* New API for templating system in beta version, in future you can override the template used in widgets and shortcodes.
 
 = 1.3.3 =
 Release Date: September 19th, 2015
