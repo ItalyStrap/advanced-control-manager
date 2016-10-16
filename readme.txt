@@ -47,6 +47,9 @@ This is my thanks for what WordPress has given to me.
 
 If you want to contribute [click here](https://github.com/overclokk/italystrap-extended) do a fork and do a pull request :-)
 
+= Want to try the beta functionality? =
+To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php` file, **REMEMBER** that you have to do this in a development enviroment, **do not do this in a production site**. 
+
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 = Features included: =
@@ -198,11 +201,11 @@ Make backup first ;-)
 * Deprecated vCard Widget (there's a new version for this widget, see below)
 * Deprecated `italystrap_get_apply_lazyload( $content );` and `italystrap_apply_lazyload( $content );` use `ItalyStrap\Core\get_apply_lazyload( $content );` and `ItalyStrap\Core\apply_lazyload( $content );`
 
-** FIX **
+**FIX**
 * **All filters and actions** start with `italistrap_` **lowercase** (if you find some in CamelCase or some without a prefix please let me know).
 * Fix front page and posts page visualization for breadcrumbs.
 
-** ENHANCEMENTS **
+**ENHANCEMENTS**
 * New API for settings options
 * New API for settings options
 * New API for fields
@@ -216,17 +219,19 @@ Make backup first ;-)
   * Disable the emoji
   * HTML attributes for widgets
   * Possibility to add some tags to widget title with `{{}}` instead of `<>`
-* ** Widgets: **
+* **Widgets:**
   * New API for building widgets in a easy way (it is possible to create your own widget too but the docs will be available soon)
   * Widget for vCard  with schema.org markup (this is a new version, the old one is deprecated, you can see in the widget description)
   * Widget for Post (a widget with a lot of options for displaying post, page and custom type in a widget area)
   * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS loaded by your theme), the settings are the same of shortcode settings.
-* ** Shortcode: **
+* **Shortcode:**
   * Option for executing shortcode in the widget text
   * Option for Carousel shortcode, now you have to activate it for making it works.
-* Style:
+* **Style:**
  * Text area for custom CSS
  * Input fields for adding custom body class and post class attribute.
+* **Script:**
+ * There are a new section in plugin settings still in BETA version for adding script like GA adn FB pixel
 
 = 1.3.3 =
 Release Date: September 19th, 2015
