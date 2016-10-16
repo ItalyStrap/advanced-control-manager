@@ -429,7 +429,7 @@ class Fields extends A_Fields {
 
 		if ( isset( $key['show_option_none'] ) ) {
 			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+			$key['options'] = array_merge( array( 'none' => $none ), $key['options'] );
 		}
 
 		foreach ( (array) $key['options'] as $field => $option ) {
@@ -479,6 +479,7 @@ class Fields extends A_Fields {
 
 		$tax_arrays = get_terms( $key['taxonomy'] );
 
+// var_dump( wp_list_categories( array( 'taxonomy' => $key['taxonomy'], 'echo' => false ) ) );
 		foreach ( (array) $tax_arrays as $tax_obj ) {
 
 			if ( ! is_object( $tax_obj ) ) {
