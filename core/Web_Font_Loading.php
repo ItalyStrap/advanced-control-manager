@@ -72,14 +72,33 @@ class Web_Font_Loading {
 
 			$fonts = wp_remote_retrieve_body( $font_content );
 
-			$fonts = json_decode( $fonts );
+			$fonts = (array) json_decode( $fonts );
+
+			$fonts = $this->rename_key_by_font_family_name( $fonts );
 
 			set_transient( 'italystrap_google_fonts', $fonts, MONTH_IN_SECONDS );
 
 		}
 
-		return $fonts->items;
+		return $fonts['items'];
+	}
 
+	/**
+	 * Rename array key by font family name
+	 *
+	 * @param  array $items The array with Google fonts.
+	 * @return array        Return the new array
+	 */
+	public function rename_key_by_font_family_name( array $items = array() ) {
+
+		$i = 0;
+		foreach ( $items['items'] as $key => $object ) {
+			$items['items'][ $object->family ] = $object;
+			unset( $items['items'][ $i ] );
+			$i++;
+		}
+
+		return $items;
 	}
 
 	/**
@@ -133,23 +152,23 @@ class Web_Font_Loading {
 			 *
 			 * @var int The position of the font because it is an array.
 			 */
-			$position = (int) $this->theme_mods[ $part . '_font_family' ];
+			$font_family = esc_attr( $this->theme_mods[ $part . '_font_family' ] );
 
 			/**
-			 * Get the font family from $position
+			 * Get the font family from $font_family
 			 *
 			 * @var string The font family name.
 			 */
-			$fonts[ $key ]['family'] = $this->fonts[ $position ]->family;
+			$fonts[ $key ]['family'] = $this->fonts[ $font_family ]->family;
 
 			$fonts[ $key ]['variants'] = array_intersect(
-				explode( ',', $this->theme_mods[ $part . '_font_variants' ] ),
-				$this->fonts[ $position ]->variants
+				explode( ',', esc_attr( $this->theme_mods[ $part . '_font_variants' ] ) ),
+				$this->fonts[ $font_family ]->variants
 				);
 
 			$fonts[ $key ]['subsets'] = array_intersect(
-				explode( ',', $this->theme_mods[ $part . '_font_subsets' ] ),
-				$this->fonts[ $position ]->subsets
+				explode( ',', esc_attr( $this->theme_mods[ $part . '_font_subsets' ] ) ),
+				$this->fonts[ $font_family ]->subsets
 				);
 		}
 
