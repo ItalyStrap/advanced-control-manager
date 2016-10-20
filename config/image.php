@@ -136,7 +136,7 @@ return array(
 	 */
 	'size'				=> array(
 				'name'		=> __( 'Size for images', 'italystrap' ),
-				'desc'		=> __( '', 'italystrap' ),
+				'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
 				'id'		=> 'size',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
@@ -151,7 +151,7 @@ return array(
 	 */
 	'alignment'				=> array(
 				'name'		=> __( 'Alignment', 'italystrap' ),
-				'desc'		=> __( '', 'italystrap' ),
+				'desc'		=> __( 'Alignment for image', 'italystrap' ),
 				'id'		=> 'alignment',
 				'type'		=> 'select',
 				'class'		=> 'widefat',
