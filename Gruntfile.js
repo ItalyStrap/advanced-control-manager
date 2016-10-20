@@ -234,12 +234,18 @@ module.exports = function(grunt) {
 				},
 				files: {
 					// Specify the files you want to commit
+					// src: [
+					// 	'bower.json', //For now bower it is not uploaded
+					// 	'readme.txt',
+					// 	'README.md',
+					// 	'package.json',
+					// 	'italystrap.php'
+					// 	]
 					src: [
-						'bower.json', //For now bower it is not uploaded
-						'readme.txt',
-						'README.md',
-						'package.json',
-						'italystrap.php'
+						'*.json', //For now bower it is not uploaded
+						'*.txt',
+						'*.md',
+						'*.php'
 						]
 				}
 			},
@@ -324,7 +330,7 @@ module.exports = function(grunt) {
 							// '!Gruntfile.js',
 							// '!package.json',
 							'!*.zip'], // What should be included in the zip
-						dest: '<%= pkg.name %>/',        // Where the zipfile should go
+						dest: 'italystrap/',        // Where the zipfile should go
 						// dest: 'italystrap/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
@@ -624,8 +630,6 @@ module.exports = function(grunt) {
 	 * Update Readme.txt Documentation
 	 * Add new screanshot
 	 * Update changelog only in readme.txt
-	 * Update the documentation in plugin file
-	 * Update Homepage plugin in admin dashboard (the box functionality)
 	 *
 	 * Aggiornare la lingua con poedit
 	 * 
