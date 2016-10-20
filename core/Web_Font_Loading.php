@@ -80,6 +80,10 @@ class Web_Font_Loading {
 
 		}
 
+		if ( is_object( $fonts ) ) {
+			return $fonts->items;
+		}
+
 		return $fonts['items'];
 	}
 
