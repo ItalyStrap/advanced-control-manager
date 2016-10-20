@@ -320,7 +320,7 @@ Dev time: 100h
 == Upgrade Notice ==
 
 = 2.0 =
-2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/blog/).
+2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/plugin-version-2-available/).
 
 = 1.0.2 =
 This version fixes a documentation link in admin dashboard.  Upgrade as soon as possible

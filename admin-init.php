@@ -20,6 +20,9 @@ if ( ! is_admin() ) {
 	return;
 }
 
+add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
+add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
+
 /**
  * Instantiate Init Class
  *

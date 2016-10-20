@@ -33,6 +33,13 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) ) {
 }
 
 /**
+ * Define some costant for internal use
+ */
+if ( ! defined( 'ITALYSTRAP_PLUGIN_VERSION' ) ) {
+	define( 'ITALYSTRAP_PLUGIN_VERSION', '2.0.0' );
+}
+
+/**
  * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended\italystrap.php
  */
 if ( ! defined( 'ITALYSTRAP_FILE' ) ) {

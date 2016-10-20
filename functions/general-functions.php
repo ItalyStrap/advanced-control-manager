@@ -450,3 +450,65 @@ function _display_config( $atts ) {
 }
 
 add_shortcode( 'display_config', __NAMESPACE__ . '\_display_config' );
+
+/**
+ * ItalyStrap plugin on activation
+ */
+function plugin_on_activation() {
+
+	// var_dump( get_user_meta( get_current_user_id(), 'italystrap_notice_plugin_update_2', true ) );
+	// var_dump( delete_user_meta( get_current_user_id(), 'italystrap_notice_plugin_update_2' ) );
+
+	add_action( 'admin_notices', __NAMESPACE__ . '\_admin_notice_success', 999 );
+
+}
+
+/**
+ * Add notice.
+ * Internal use.
+ */
+function _admin_notice_success() {
+
+	global $pagenow;
+	if ( 'plugins.php' !== $pagenow ) {
+		return null;
+	}
+
+	if ( get_user_meta( get_current_user_id(), 'italystrap_notice_plugin_update_2' )  ) {
+		return null;
+	}
+
+	$message = 'Welcome to the new version 2.0 of ItalyStrap plugin, this is a major release and it is a breaking change, this means that the prevous version of the code has been changed, for example the function for the breadcrumbs, the lazyload and the carousel, please read the <a href="admin.php?page=italystrap-dashboard">changelog</a> for more information.';
+	?>
+	<div class="notice notice-success is-dismissible">
+		<p><?php echo $message; ?></p>
+		<a class="dismiss-notice" href="?italystrap_notice_plugin_update=0">Hide Notice</a>
+		<!-- <button type="button" class="notice-dismiss"> -->
+		<!-- <span class="screen-reader-text">Dismiss this notice.</span> -->
+	<!-- </button> -->
+	</div>
+	<?php
+}
+
+/**
+ * Add the dismiss notice.
+ */
+function _notice_plugin_update() {
+
+	if ( ! isset( $_GET['italystrap_notice_plugin_update'] ) ) {
+		return null;
+	}
+
+	if ( '0' !== $_GET['italystrap_notice_plugin_update'] ) {
+		return null;
+	}
+
+	add_user_meta( get_current_user_id(), 'italystrap_notice_plugin_update_2', 'true', true );
+
+	/**
+	 * Maybe this is not the right way to handle this but for now it works.
+	 * Because otherways fire everytime.
+	 */
+	wp_redirect( 'plugins.php', 301 );
+	exit;
+}
