@@ -197,6 +197,14 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.0.1 =
+Release Date: October 19th, 2016
+
+Dev time:
+
+* [Fix typo #11](https://github.com/overclokk/italystrap-extended/pull/11)
+
+
 = 2.0.0 Breaking Changes =
 Release Date: October 19th, 2016
 
