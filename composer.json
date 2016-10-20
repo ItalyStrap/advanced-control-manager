@@ -1,6 +1,6 @@
 {
     "name": "overclokk/italystrap-extended",
-    "description": "Make your site more powerfull",
+    "description": "Make your site more powerful",
     "type": "wordpress-plugin",
     "license": "GPL 2.0",
 	"require": {
@@ -29,7 +29,7 @@
 		}
 	},
 	"autoload-dev": {
-		
+
 	},
 	"extra": {
 		"installer-paths": {
