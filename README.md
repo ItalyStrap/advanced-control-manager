@@ -4,13 +4,15 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.7  
-**Stable tag:** 2.0.0-rc.1  
+**Stable tag:** 2.0.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Make your web site more powerfull with ItalyStrap
 
 (Requires PHP 5.3 >= and Developers skills)
+
+The version 2.0.0 is a new and complete rebuild of this plugin.
 
 ## Description ##
 
@@ -28,16 +30,16 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 ### Purpose ###
 
-I developed this plugin with many features because I need them in all sites I create for my clients, it also extends the [ItalyStrap Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
+I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
 
-Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for posts type loop and so on.
+Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for displaying lists of posts type with a lot of options and so on.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
 
 ### Skills required ###
 
-Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add CSS style to make it look like your site (you can add it in ItalyStrap > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
+Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add your own CSS style to make it look like your site (you can add it in ItalyStrap > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
 
 ### ItalyStrap will always be free ###
 
@@ -67,6 +69,8 @@ This widget was present in my [ItalyStrap starter theme](http://www.italystrap.c
 * **Posts Widget** This adds a widget for displaying posts with a lot of options, in a future release you have also the power to change the template.
 
 * **Custom Style** Now you can add your custom style in single page or in the entire site, you can also add custom css class and ID attribute in single page or in the site.
+
+* **And many more**
 
 ## Installation ##
 
@@ -141,7 +145,7 @@ Otherwise you can also use output buffering, though this isn't recommended:
 
 This will lazy load <em>all</em> your images.
 
-### This plugin is using JavaScript. What about visitors without JS? ###
+### Lazy load uses JavaScript. What about visitors without JS active? ###
 
 No worries. They get the original element in a noscript element. No Lazy Loading for them, though.
 
@@ -206,6 +210,21 @@ If you have any problem please open a ticket :-)
 ### 11. ItalyStrap Local Business widget HTML markup example ###
 ![ItalyStrap Local Business widget HTML markup example](http://ps.w.org/italystrap/assets/screenshot-11.png)
 
+### 12. ItalyStrap admin settings ###
+![ItalyStrap admin settings](http://ps.w.org/italystrap/assets/screenshot-12.png)
+
+### 13. ItalyStrap admin settings ###
+![ItalyStrap admin settings](http://ps.w.org/italystrap/assets/screenshot-13.png)
+
+### 14. ItalyStrap admin settings ###
+![ItalyStrap admin settings](http://ps.w.org/italystrap/assets/screenshot-14.png)
+
+### 15. ItalyStrap admin settings ###
+![ItalyStrap admin settings](http://ps.w.org/italystrap/assets/screenshot-15.png)
+
+### 16. ItalyStrap admin settings ###
+![ItalyStrap admin settings](http://ps.w.org/italystrap/assets/screenshot-16.png)
+
 
 
 ## Changelog ##
@@ -213,7 +232,7 @@ If you have any problem please open a ticket :-)
 ### 2.0.0 Breaking Changes ###
 Release Date: October 19th, 2016  
 
-Dev time: 1year
+Dev time: over a year
 
 Make backup first ;-)
 
@@ -340,7 +359,7 @@ Dev time: 100h
 ## Upgrade Notice ##
 
 ### 2.0 ###
-2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/blog/).
+2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/plugin-version-2-available/).
 
 ### 1.0.2 ###
 This version fixes a documentation link in admin dashboard.  Upgrade as soon as possible
