@@ -8,7 +8,7 @@ Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make your web site more powerfull with ItalyStrap
+Make your web site more powerful with ItalyStrap
 
 (Requires PHP 5.3 >= and Developers skills)
 
@@ -32,7 +32,7 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
 
-Think about ItalyStrap like a Jetpack with many functionality that make your site more powerfull and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for displaying lists of posts type with a lot of options and so on.
+Think about ItalyStrap like a Jetpack with many functionality that make your site more powerful and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for displaying lists of posts type with a lot of options and so on.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
@@ -50,7 +50,7 @@ This is my thanks for what WordPress has given to me.
 If you want to contribute [click here](https://github.com/overclokk/italystrap-extended) do a fork and do a pull request :-)
 
 = Want to try the beta functionality? =
-To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php` file, **REMEMBER** that you have to do this in a development enviroment, **do not do this in a production site**. 
+To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php` file, **REMEMBER** that you have to do this in a development enviroment, **do not do this in a production site**.
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
@@ -163,7 +163,7 @@ Put the code below in your file js and type your Bootstrap Carousell ID in place
 
 `var cHeight = 0;$("#YOURCAROUSELID").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});`
 
-= I'm using an external carousel, will Lazy Load work with it? = 
+= I'm using an external carousel, will Lazy Load work with it? =
 
 I tried only with ItalyStrap Bootstrap Carousel, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
 
@@ -198,7 +198,7 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.0.0 Breaking Changes =
-Release Date: October 19th, 2016  
+Release Date: October 19th, 2016
 
 Dev time: over a year
 
@@ -339,17 +339,17 @@ This version updates Breadcrumbs documentation.  Upgrade as soon as possible
 First release.
 
 == Translations ==
- 
+
 * English: default, always included.
 * Italian: Italiano, sempre incluso.
 * German: Deutsch - immer dabei!
 * French: Français, toujours inclus.
- 
+
 *Note:* This plugins is localized/ translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating I recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/) and for validating the ["Poedit Editor"](http://www.poedit.net/).
- 
+
 == Additional Info ==
 **Idea Behind / Philosophy:** A plugin for improve and add some powerful improvement to your site. I'll try to add more feautures if it makes some sense. So stay tuned :).
- 
+
 == Credits ==
 
 * [Agnosia Bootstrap Carousel](https://wordpress.org/plugins/agnosia-bootstrap-carousel/)
