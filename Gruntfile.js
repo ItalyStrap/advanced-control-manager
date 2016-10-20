@@ -395,12 +395,13 @@ module.exports = function(grunt) {
 					'!tests/**',
 					'!future-inclusions/**',
 					'!bower.json',
-					'!composer.json',
+					// '!composer.json',
 					'!Gruntfile.js',
 					'!package.json',
 					'!*.yml',
 					// '!README.md',
-					'!composer.lock',
+					'!snippets.md',
+					// '!composer.lock',
 					// '!vendor/mobiledetect/**'
 					],
 				dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
@@ -416,12 +417,13 @@ module.exports = function(grunt) {
 					'!tests/**',
 					'!future-inclusions/**',
 					'!bower.json',
-					'!composer.json',
+					// '!composer.json',
 					'!Gruntfile.js',
 					'!package.json',
 					'!*.yml',
 					// '!README.md',
-					'!composer.lock',
+					'!snippets.md',
+					// '!composer.lock',
 					// '!vendor/mobiledetect/**'
 					],
 				dest: 'E:/Dropbox/svn-wordpress/italystrap/tags/<%= pkg.version %>/',
@@ -644,7 +646,7 @@ module.exports = function(grunt) {
 	 * 
 	 * Poi nella cartella svn-wordpress
 	 * dx mouse e +add
-	 * dx mouse e committ
+	 * dx mouse e commit
 	 */
 	grunt.registerTask('deploy', [
 								'gitcommit:first',
