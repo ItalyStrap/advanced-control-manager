@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2015-11-30 15:16+0100\n"
-"PO-Revision-Date: 2015-11-30 15:17+0100\n"
+"POT-Creation-Date: 2016-10-20 17:43+0200\n"
+"PO-Revision-Date: 2016-10-20 17:44+0200\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,143 +20,844 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: .sass-cache\n"
 "X-Poedit-SearchPathExcluded-3: bower_components\n"
 
-#: admin/ItalyStrapAdminGallerySettings.php:34
+#: admin/ItalyStrapAdminGallerySettings.php:45 config/media-carousel.php:63
+msgid "Menu order (Default)"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:46 config/media-carousel.php:64
+msgid "Order by the image's title"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:47 config/media-carousel.php:65
+msgid "Sort by date/time"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:48 config/media-carousel.php:66
+msgid "Order randomly"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:49 config/media-carousel.php:67
+msgid "Order by the image's ID"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:52
+msgid "before-inner"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:53
+msgid "after-inner"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:54
+msgid "after-control"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:55
+msgid "false"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:59 config/media-carousel.php:204
+msgid "none"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:60
+msgid "hover"
+msgstr ""
+
+#: admin/ItalyStrapAdminGallerySettings.php:81
 msgid "Standard gallery"
 msgstr "Galleria standard"
 
-#: admin/ItalyStrapAdminGallerySettings.php:35
+#: admin/ItalyStrapAdminGallerySettings.php:82
 msgid "Bootstrap Carousel"
 msgstr "Bootstrap Carousel"
 
-#: admin/ItalyStrapAdminGallerySettings.php:72
-msgid "Type"
-msgstr "Tipo"
+#: admin/ItalyStrapAdminGallerySettings.php:154 config/image.php:18
+#: functions/general-functions.php:139 widget/Carousel.php:42
+msgid "Real size"
+msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:80
+#: admin/class-import-export.php:131
+msgid "Please upload a valid .json file"
+msgstr ""
+
+#: admin/class-import-export.php:131
+msgid "No valid json file"
+msgstr ""
+
+#: admin/class-import-export.php:138
+msgid "The json file can't be empty"
+msgstr ""
+
+#: admin/class-import-export.php:138
+msgid "Empty file"
+msgstr ""
+
+#: admin/class-import-export.php:147
+msgid "Please upload a file to import"
+msgstr ""
+
+#: admin/class-import-export.php:147
+msgid "No file import"
+msgstr ""
+
+#: admin/class-register-metabox.php:76
+msgid "CSS and JavaScript settings"
+msgstr ""
+
+#: admin/class-register-metabox.php:85 admin/config/options.php:374
+#: admin/config/options.php:387 admin/config/options.php:394
+#: config/posts.php:144 config/taxonomies-posts.php:144
+msgid "Custom CSS"
+msgstr ""
+
+#: admin/class-register-metabox.php:86
 msgid ""
-"For more informations about the options below see the <a href=\"admin.php?"
-"page=italystrap-documentation#carousel\" target=\"_blank\">documentation.</a>"
-msgstr ""
-"Per maggiori informazioni sulle opzioni sotto guarda la <a href=\"admin.php?"
-"page=italystrap-documentation#carousel\" target=\"_blank\">documentazione.</"
-"a>"
-
-#: admin/ItalyStrapAdminGallerySettings.php:82
-msgid "Indicators"
-msgstr "Indicatori"
-
-#: admin/ItalyStrapAdminGallerySettings.php:91
-msgid "HTML ID"
-msgstr "ID HTML"
-
-#: admin/ItalyStrapAdminGallerySettings.php:95
-msgid "Interval"
-msgstr "Intervallo"
-
-#: admin/ItalystrapAdmin.php:70
-msgid "ItalyStrap Dashboard"
-msgstr "ItalyStrap Dashboard"
-
-#: admin/ItalystrapAdmin.php:87 admin/ItalystrapAdmin.php:129
-#: admin/ItalystrapAdmin.php:144
-msgid "You do not have sufficient permissions to access this page."
-msgstr "Non hai sufficienti permessi per accedere a questa pagina."
-
-#: admin/ItalystrapAdmin.php:104 admin/ItalystrapAdmin.php:105
-#: admin/ItalystrapAdmin.php:161 admin/admin-template/dashboard-page.php:6
-#: admin/admin-template/documentation-page.php:6
-msgid "Documentation"
-msgstr "Documentazione"
-
-#: admin/ItalystrapAdmin.php:113 admin/ItalystrapAdmin.php:114
-msgid "Options"
-msgstr "Opzioni"
-
-#: admin/ItalystrapAdmin.php:179
-msgid "ItalyStrap options page"
-msgstr "Pagina opzioni di ItalyStrap"
-
-#: admin/ItalystrapAdmin.php:186
-msgid "LazyLoad"
-msgstr "LazyLoad"
-
-#: admin/ItalystrapAdmin.php:194
-msgid "Vcard Widget Local Business"
-msgstr "Vcard Widget Local Business"
-
-#: admin/ItalystrapAdmin.php:202
-msgid "Post Widget for Custom Loop"
+"This code will be included verbatim in style tag before </head> tag of your "
+"page or post"
 msgstr ""
 
-#: admin/ItalystrapAdmin.php:210
+#: admin/class-register-metabox.php:95
+msgid "Body Classes"
+msgstr ""
+
+#: admin/class-register-metabox.php:96
+msgid ""
+"These class names will be added to the body_class() function (provided your "
+"theme uses these functions), separate each one by comma."
+msgstr ""
+
+#: admin/class-register-metabox.php:105
+msgid "Post Classes"
+msgstr ""
+
+#: admin/class-register-metabox.php:106
+msgid ""
+"These class names will be added to the post_class() function (provided your "
+"theme uses these functions), separate each one by comma."
+msgstr ""
+
+#: admin/class-register-metabox.php:132
+msgid "Widget Area settings"
+msgstr ""
+
+#: admin/class-register-metabox.php:140
+msgid "In the header"
+msgstr ""
+
+#: admin/class-register-metabox.php:141
+msgid "Before the Main Content"
+msgstr ""
+
+#: admin/class-register-metabox.php:142
+msgid "Before the Content"
+msgstr ""
+
+#: admin/class-register-metabox.php:144
+msgid "Before the Loop"
+msgstr ""
+
+#: admin/class-register-metabox.php:145
+msgid "After the Loop"
+msgstr ""
+
+#: admin/class-register-metabox.php:147
+msgid "After the Content"
+msgstr ""
+
+#: admin/class-register-metabox.php:148
+msgid "After the Main Content"
+msgstr ""
+
+#: admin/class-register-metabox.php:149
+msgid "In the footer open"
+msgstr ""
+
+#: admin/class-register-metabox.php:150
+msgid "In the footer"
+msgstr ""
+
+#: admin/class-register-metabox.php:151
+msgid "In the footer closed"
+msgstr ""
+
+#: admin/class-register-metabox.php:158
+msgid "Display on"
+msgstr ""
+
+#: admin/class-register-metabox.php:159
+msgid "Select the position to display this widget area."
+msgstr ""
+
+#: admin/class-register-metabox.php:170
+msgid "Priority"
+msgstr ""
+
+#: admin/class-register-metabox.php:171
+msgid ""
+"Type the priority you want to display this widget area, it must be a number, "
+"by default the priority is 10, you can choose a number between 1 and 99999, "
+"this is useful when you want to display more than one widget area in the "
+"same position but in different order."
+msgstr ""
+
+#: admin/class-register-metabox.php:181
+msgid "Background color"
+msgstr ""
+
+#: admin/class-register-metabox.php:182
+msgid "Choose the color for the backgrount of the widget area."
+msgstr ""
+
+#: admin/class-register-metabox.php:191
+msgid "Width"
+msgstr ""
+
+#: admin/class-register-metabox.php:192
+msgid "Select the width of this widget area."
+msgstr ""
+
+#: admin/class-register-metabox.php:197
+msgid "Full witdh"
+msgstr ""
+
+#: admin/class-register-metabox.php:198
+msgid "Standard width"
+msgstr ""
+
+#: admin/config/options.php:25
+msgid "General"
+msgstr ""
+
+#: admin/config/options.php:27
+msgid "ItalyStrap options page for general"
+msgstr ""
+
+#: admin/config/options.php:29
+msgid "General setting for ItalyStrap plugin"
+msgstr ""
+
+#: admin/config/options.php:34 admin/config/options.php:39
+msgid "Show Post Type IDs"
+msgstr ""
+
+#: admin/config/options.php:40
+msgid "Post type edit screen: show post/page IDS"
+msgstr ""
+
+#: admin/config/options.php:50
+msgid "Show Post Type Thumb"
+msgstr ""
+
+#: admin/config/options.php:55
+msgid "Show the Post Type Thumbnail"
+msgstr ""
+
+#: admin/config/options.php:56
+msgid "Post type edit screen: show post/page thumbnail"
+msgstr ""
+
+#: admin/config/options.php:67 admin/config/options.php:72
+msgid "Kill the Emojis"
+msgstr ""
+
+#: admin/config/options.php:73
+msgid ""
+"Avoid loading Emojis support if your does not need it to speed up the "
+"website."
+msgstr ""
+
+#: admin/config/options.php:84 admin/config/options.php:89
+msgid "Web font Loading"
+msgstr ""
+
+#: admin/config/options.php:90
+msgid ""
+"Activate it for using the web fonts loader, then you have to go to the "
+"customizer and select the font, weight and subsets you want to use in this "
+"site, after done that you have to add some CSS to your style, you can put it "
+"under ItalyStrap > Settings > Style > Custom CSS.\n"
+"\t\t\t\t\t\t\t<br>You can apply the font to any HTML5 elements in your page "
+"like body, main, header, footer, hx, p, ecc, remember that for each elements "
+"you have to put first the class <code>.fonts-loaded</code> and then the name "
+"of the single elements at time.\n"
+"\t\t\t\t\t\t\t<br>Example:\n"
+"\t\t\t\t\t\t\t<br><pre><code>.fonts-loaded body{ font-family: \"Open Sans"
+"\"; }<br>.fonts-loaded h1{ font-family: \"Lato\"; }</code></pre>"
+msgstr ""
+
+#: admin/config/options.php:105 admin/config/options.php:110
+msgid "Google API Key"
+msgstr ""
+
+#: admin/config/options.php:111
+msgid "Insert here the google API key."
+msgstr ""
+
+#: admin/config/options.php:127
+msgid "Widgets"
+msgstr ""
+
+#: admin/config/options.php:129
+msgid "ItalyStrap options page for widgets"
+msgstr ""
+
+#: admin/config/options.php:131
+msgid "Select the widgets you want to use."
+msgstr ""
+
+#: admin/config/options.php:136 widget/Areas/Areas.php:308
+#: widget/Areas/Areas.php:321
+msgid "Widget Areas"
+msgstr ""
+
+#: admin/config/options.php:141
+msgid "Activate new settings page for widget areas"
+msgstr ""
+
+#: admin/config/options.php:142
+msgid ""
+"This will add new settings page on Appearance where you can create new "
+"widget area to append on theme action hook."
+msgstr ""
+
+#: admin/config/options.php:154
+msgid "HTML attributes for widget"
+msgstr ""
+
+#: admin/config/options.php:159
+msgid "Activate two new input HTML attributes for every widget"
+msgstr ""
+
+#: admin/config/options.php:160
+msgid ""
+"This will add two new input in every widget that allow for custom <code>id</"
+"code> and <code>class</code> attributes in the widget container."
+msgstr ""
+
+#: admin/config/options.php:171
+msgid "HTML in Widget Title"
+msgstr ""
+
+#: admin/config/options.php:176
+msgid "Render HTML in Widget Title"
+msgstr ""
+
+#: admin/config/options.php:177
+msgid ""
+"Activate this if you want to add an HTML tag to Widget title: replace the "
+"opening and closing tags with <code>{{</code> and <code>}}</code>. E.g.: "
+"<code>&lt;strong&gt;Widget Title&lt;/strong&gt;</code> <strong>becomes</"
+"strong> <code>{{strong}}Widget Title{{/strong}}</code>"
+msgstr ""
+
+#: admin/config/options.php:188
+msgid "vCard Widget"
+msgstr ""
+
+#: admin/config/options.php:193
+msgid "vCard Local Business"
+msgstr ""
+
+#: admin/config/options.php:194
+msgid ""
+"Add a vCard Local Business with Schema.org markup to your theme widgetized "
+"area. (This plugin does not provide any style, you have to add it in the "
+"style.css of your theme)."
+msgstr ""
+
+#: admin/config/options.php:205 admin/config/options.php:210
+msgid "Image Widget"
+msgstr ""
+
+#: admin/config/options.php:211
+msgid ""
+"Activate image widget and displays an image from media with an array of "
+"options. (This plugin does not provide any style, you have to add it in the "
+"style.css of your theme)"
+msgstr ""
+
+#: admin/config/options.php:223
+msgid "Carousel Widget"
+msgstr ""
+
+#: admin/config/options.php:228
 msgid "Widget for Media Carousel"
 msgstr ""
 
-#: admin/ItalystrapAdmin.php:238
-msgid "Activate LazyLoad for images"
-msgstr "Attiva LazyLoad per le immagini"
-
-#: admin/ItalystrapAdmin.php:251
-msgid "Activate Vcard Widget for your local business (Experimental)"
-msgstr "Attiva la scheda per la tua Local Business (sperimentale)"
-
-#: admin/ItalystrapAdmin.php:264
-msgid "Activate Post Widget for Custom posts loop"
+#: admin/config/options.php:229
+msgid ""
+"this will activate a Bootstrap media Carousel with a ton of options, make "
+"shure you have a Twitter Bootstrap CSS in your site."
 msgstr ""
 
-#: admin/ItalystrapAdmin.php:277
-msgid "Activate Bootstrap Carousel Media Widget"
+#: admin/config/options.php:240
+msgid "Posts Widget"
 msgstr ""
 
-#: admin/admin-template/dashboard-page.php:9
+#: admin/config/options.php:245
+msgid "Widget for custom loop of posts , pages and custom post types"
+msgstr ""
+
+#: admin/config/options.php:246
+msgid ""
+"This widget allow you to create a custom loop of posts/page/CPT with a lot "
+"of options like \"Recent Posts\" or \"Posts more comented\" or \"Related "
+"posts\" ecc and place it in your sidebars. (This plugin does not provide any "
+"style, you have to add it in the style.css of your theme)"
+msgstr ""
+
+#: admin/config/options.php:257
+msgid "Product Widget"
+msgstr ""
+
+#: admin/config/options.php:262
+msgid "Product Widget for Custom Loop"
+msgstr ""
+
+#: admin/config/options.php:263
+msgid ""
+"Activate product widget and displays list of product with an array of "
+"options, this widget will work only if you have WooCommerce installed and "
+"activated. (This plugin does not provide any style, you have to add it in "
+"the style.css of your theme)"
+msgstr ""
+
+#: admin/config/options.php:275
+msgid "vCard Widget (DEPRECATED)"
+msgstr ""
+
+#: admin/config/options.php:280
+msgid "ItalyStrap vCard Widget for Local Business (DEPRECATED)"
+msgstr ""
+
+#: admin/config/options.php:281
+msgid ""
+"Activate a widget for vCard Local Business with schema.org markup "
+"(DEPRECATED)"
+msgstr ""
+
+#: admin/config/options.php:292
+msgid "Posts Widget (DEPRECATED)"
+msgstr ""
+
+#: admin/config/options.php:297
+msgid "Posts Widget for Custom Loop (DEPRECATED)"
+msgstr ""
+
+#: admin/config/options.php:298
+msgid ""
+"Activate posts widget and displays list of posts with an array of options"
+msgstr ""
+
+#: admin/config/options.php:313
+msgid "Shortcodes"
+msgstr ""
+
+#: admin/config/options.php:315
+msgid "ItalyStrap options page for shortcodes"
+msgstr ""
+
+#: admin/config/options.php:317
+msgid "Select the shortcodes you want to use."
+msgstr ""
+
+#: admin/config/options.php:322 admin/config/options.php:327
+msgid "Do ShortCode in Widget Text"
+msgstr ""
+
+#: admin/config/options.php:328
+msgid ""
+"This get you the possibility to insert any shortcode into a widget text."
+msgstr ""
+
+#: admin/config/options.php:339
+msgid "Carousel Shortcode"
+msgstr ""
+
+#: admin/config/options.php:344
+msgid "Shortcode for Media Carousel"
+msgstr ""
+
+#: admin/config/options.php:345
+msgid ""
+"This will activate a Bootstrap media Carousel inside built-in WordPress "
+"gallery shortcode with a ton of options, make shure you have a Twitter "
+"Bootstrap CSS in your site"
+msgstr ""
+
+#: admin/config/options.php:360
+msgid "Style"
+msgstr ""
+
+#: admin/config/options.php:362
+msgid "ItalyStrap options page for style purpose"
+msgstr ""
+
+#: admin/config/options.php:364
+msgid ""
+"This is the tab for changing the style of your site. Code entered here will "
+"be included in every page of the front-end of your site."
+msgstr ""
+
+#: admin/config/options.php:369
+msgid "Activate Custom CSS"
+msgstr ""
+
+#: admin/config/options.php:375
+msgid ""
+"This will add new fields in the wp editor for adding custom CSS, ID and "
+"class attribute to post/page and also let you use the new functionality "
+"below."
+msgstr ""
+
+#: admin/config/options.php:395
+msgid ""
+"Enter your custom CSS, this styles will be included verbatim in <style> tags "
+"in the <head> element of your html. The code will appear before styles that "
+"were registered individually and after your styles enqueued with the "
+"WordPress API."
+msgstr ""
+
+#: admin/config/options.php:410 admin/config/options.php:415
+msgid "Body Class"
+msgstr ""
+
+#: admin/config/options.php:416
+msgid "This will add a CSS class to body_class filter in every page."
+msgstr ""
+
+#: admin/config/options.php:429 admin/config/options.php:434
+#: config/posts.php:69 config/taxonomies-posts.php:69
+msgid "Post Class"
+msgstr ""
+
+#: admin/config/options.php:435
+msgid "This will add a CSS class to post_class filter in every page."
+msgstr ""
+
+#: admin/config/options.php:501
+#: future-inclusions/white-label-cms/wlcms-plugin.php:548
+msgid "Media"
+msgstr ""
+
+#: admin/config/options.php:503
+msgid "Settings page for media add-on functionality"
+msgstr ""
+
+#: admin/config/options.php:505
+msgid "In this section you can customize the way your WordPress handles media."
+msgstr ""
+
+#: admin/config/options.php:510 admin/config/options.php:515
+msgid "Lazy Loading of images"
+msgstr ""
+
+#: admin/config/options.php:516
+msgid "Activate Lazy Loading of images"
+msgstr ""
+
+#: admin/config/options.php:527
+msgid "Custom Placeholder"
+msgstr ""
+
+#: admin/config/options.php:532
+msgid "Custom Placeholder (Optional)"
+msgstr ""
+
+#: admin/config/options.php:533
+msgid ""
+"Insert here your custom placeholder for image lazyloading, this is the src "
+"attribute of the img tag.\n"
+"\t\t\t\t\t\t\t<br>Example:"
+msgstr ""
+
+#: admin/config/plugin.php:24 admin/config/plugin.php:29
+#: admin/config/plugin.php:53 admin/config/plugin.php:54 admin/view/test.php:7
+msgid "Settings"
+msgstr ""
+
+#: admin/config/plugin.php:25 admin/config/plugin.php:30
+msgid "Doc"
+msgstr ""
+
+#: admin/config/plugin.php:34 admin/view/italystrap-dashboard.php:2
+msgid "ItalyStrap Dashboard"
+msgstr "ItalyStrap Dashboard"
+
+#: admin/customizer/class-customize-manager.php:58
+msgid "100"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:59
+msgid "100italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:60
+msgid "200"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:61
+msgid "200italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:62
+msgid "300"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:63
+msgid "300italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:64
+msgid "Regular 400"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:65
+msgid "Italic 400"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:66
+msgid "500"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:67
+msgid "500italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:68
+msgid "600"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:69
+msgid "600italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:70
+msgid "700"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:71
+msgid "700italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:72
+msgid "800"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:73
+msgid "800italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:74
+msgid "900"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:75
+msgid "900italic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:79
+msgid "Bengali"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:80
+msgid "Cyrillic"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:81
+msgid "Cyrillic Extended"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:82
+msgid "Devanagari"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:83
+msgid "Greek"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:84
+msgid "Greek Extended"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:85
+msgid "Gujarati"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:86
+msgid "Hebrew"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:87
+msgid "Khmer"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:88
+msgid "Latin"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:89
+msgid "Latin Extended"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:90
+msgid "Tamil"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:91
+msgid "Telugu"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:92
+msgid "Thai"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:93
+msgid "Vietnamese"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:118
+msgid "Fonts"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:119
+msgid ""
+"First of all you have to add the Google API Key in the plugin settings page, "
+"after that you can select the font family you want to use, then you have to "
+"add some CSS to your style.css or in the settings section of this plugin."
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:145
+msgid "The first font family"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:146
+msgid "Select the first font family with weight and subsets"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:175
+msgid "Weight of the first font family"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:176
+#: admin/customizer/class-customize-manager.php:266
+msgid ""
+"Chose the weight of the font family, multiple selection allowed (press CTRL "
+"and click)"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:205
+msgid "Subsets of the first font family"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:206
+#: admin/customizer/class-customize-manager.php:296
+msgid ""
+"Chose the subsets of the font family, default \"latin\", multiple selection "
+"allowed (press CTRL and click)"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:235
+msgid "The Second font family"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:236
+msgid "Select the second font family with weight and subsets"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:265
+msgid "Weight of the second font family"
+msgstr ""
+
+#: admin/customizer/class-customize-manager.php:295
+msgid "Subsets of the second font family"
+msgstr ""
+
+#: admin/fields/class-fields.php:386 admin/fields/class-fields.php:431
+#: admin/fields/class-fields.php:476 admin/fields/class-fields.php:529
+msgid "None"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:5
+msgid "Welcome to ItalyStrap"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:6
+msgid "Here you can find some link to get you started"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:9
+msgid "Get Started"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:10
+msgid "Go to the settings page"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:11
+msgid "But first of all you can read the "
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:11
+msgid "documentation"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:47
+#: admin/view/italystrap-documentation.php:6
+#: admin/view/italystrap-settings.php:38
+msgid "Documentation"
+msgstr "Documentazione"
+
+#: admin/view/italystrap-dashboard.php:50
 msgid "Make your website more powerful"
 msgstr "Rendi il tuo sito più performante"
 
-#: admin/admin-template/dashboard-page.php:12
+#: admin/view/italystrap-dashboard.php:53
 msgid "New Entry"
 msgstr "Ultimo aggiunto"
 
-#: admin/admin-template/dashboard-page.php:21
-#: admin/admin-template/dashboard-page.php:76
+#: admin/view/italystrap-dashboard.php:62
+#: admin/view/italystrap-dashboard.php:117
 msgid ""
 "A simple Widget to add Schema.org Local business in your widgetized themes"
 msgstr ""
 "Un semplice widget per aggiungere il markup per la Local Busines di Schema."
 "org nel tuo sito"
 
-#: admin/admin-template/dashboard-page.php:22
-#: admin/admin-template/dashboard-page.php:77
-#: admin/admin-template/dashboard-page.php:90
-#: admin/admin-template/dashboard-page.php:102
-#: admin/admin-template/dashboard-page.php:113
+#: admin/view/italystrap-dashboard.php:63
+#: admin/view/italystrap-dashboard.php:118
+#: admin/view/italystrap-dashboard.php:131
+#: admin/view/italystrap-dashboard.php:143
+#: admin/view/italystrap-dashboard.php:154
 msgid "Read the documentation"
 msgstr "Leggi la documentazione"
 
-#: admin/admin-template/dashboard-page.php:32
+#: admin/view/italystrap-dashboard.php:73
 msgid "Coming soon"
 msgstr "Prossimamente"
 
-#: admin/admin-template/dashboard-page.php:39
+#: admin/view/italystrap-dashboard.php:80
 msgid "Add shortcode in admin panel, only for Bootstrap Style"
 msgstr "Aggiungi gli shortcode nel pannelo admin, solo per Bootstrap CSS"
 
-#: admin/admin-template/dashboard-page.php:47
+#: admin/view/italystrap-dashboard.php:88
 msgid "Social Button and Markup"
 msgstr "Social Button and Markup"
 
-#: admin/admin-template/dashboard-page.php:55
+#: admin/view/italystrap-dashboard.php:96
 msgid "OpenGraph and Twitter Cards for your social share"
 msgstr "OpenGraph and Twitter Cards per la tua condivisione sui social"
 
-#: admin/admin-template/dashboard-page.php:65
+#: admin/view/italystrap-dashboard.php:106
 msgid "Currently present"
 msgstr "Attualmente presenti"
 
-#: admin/admin-template/dashboard-page.php:89
+#: admin/view/italystrap-dashboard.php:130
 msgid "Activate Lazy Load from Option Page and let the magic begin :-)"
 msgstr "Attiva Lazy Load dalla pagina \"Opzioni\" e che la magia cominci :-)"
 
-#: admin/admin-template/dashboard-page.php:101
+#: admin/view/italystrap-dashboard.php:142
 msgid ""
 "Add attribute <code>type=\"carousel\"</code> at gallery shortcode, this will "
 "show Bootstrap Carousel based on the selected images and their titles and "
@@ -167,7 +868,7 @@ msgstr ""
 "selezionate mostrando anche titoli e descrizioni, altrimenti verrà "
 "visualizzata la galleria standard di WordPress."
 
-#: admin/admin-template/dashboard-page.php:112
+#: admin/view/italystrap-dashboard.php:153
 msgid ""
 "Add breadcrumbs to your site in a simple and fast way and get Google rich "
 "snippet with Schema.org markup"
@@ -175,1112 +876,2405 @@ msgstr ""
 "Aggiungi i Breadcrumbs nel tuo sito in modo semplice e veloce e ottieni i "
 "Rich Snippet di Google grazie a Schema.org"
 
-#: classes/ItalyStrapBreadcrumbs.php:311
-msgid "Tag: "
-msgstr "Tag: "
-
-#: classes/ItalyStrapBreadcrumbs.php:318
-msgid "Tax: "
-msgstr "Tax:"
-
-#: classes/ItalyStrapBreadcrumbs.php:325
-msgid "Yearly archive: "
-msgstr "Archivio annuale: "
-
-#: classes/ItalyStrapBreadcrumbs.php:339
-msgid "Monthly archive: "
-msgstr "Archivio mensile"
-
-#: classes/ItalyStrapBreadcrumbs.php:361
-msgid "Daily archive: "
-msgstr "Archivio giornaliero: "
-
-#: classes/ItalyStrapBreadcrumbs.php:368
-msgid "Author Archives: "
-msgstr "Archivio autore: "
-
-#: classes/ItalyStrapBreadcrumbs.php:375
-msgid "Search Results: "
-msgstr "Risultato della ricerca: "
-
-#: classes/ItalyStrapBreadcrumbs.php:381
-msgid "Not Found"
-msgstr "Non trovato"
-
-#: classes/ItalyStrapBreadcrumbs.php:390
-msgid "Page"
-msgstr "Pagina"
-
-#: classes/ItalyStrapCarousel.php:33
-msgid "Use $atts['image_title'] instead of $atts['title']"
-msgstr ""
-
-#: classes/ItalyStrapHTMLSitemaps.php:92
-msgid "Authors:"
-msgstr "Autori:"
-
-#: config/vcard-widget.php:16
-msgid "Local Business - (Default)"
-msgstr ""
-
-#: config/vcard-widget.php:17
-msgid "Organization - (For services and home offices)"
-msgstr ""
-
-#: config/vcard-widget.php:18
-msgid "Accounting Service"
-msgstr ""
-
-#: config/vcard-widget.php:19
-msgid "Auto Body Shop"
-msgstr ""
-
-#: config/vcard-widget.php:20
-msgid "Auto Dealer"
-msgstr ""
-
-#: config/vcard-widget.php:21
-msgid "Auto Parts Store"
-msgstr ""
-
-#: config/vcard-widget.php:22
-msgid "Auto Rental"
-msgstr ""
-
-#: config/vcard-widget.php:23
-msgid "Auto Repair"
-msgstr ""
-
-#: config/vcard-widget.php:24
-msgid "Auto Wash"
-msgstr ""
-
-#: config/vcard-widget.php:25
-msgid "Attorney"
-msgstr ""
-
-#: config/vcard-widget.php:26
-msgid "Bakery"
-msgstr ""
-
-#: config/vcard-widget.php:27
-msgid "Bar Or Pub"
-msgstr ""
-
-#: config/vcard-widget.php:28
-msgid "Beauty Salon"
-msgstr ""
-
-#: config/vcard-widget.php:29
-msgid "Bed &amp; Breakfast"
-msgstr ""
-
-#: config/vcard-widget.php:30
-msgid "Bicycle Store"
-msgstr ""
-
-#: config/vcard-widget.php:31
-msgid "Book Store"
-msgstr ""
-
-#: config/vcard-widget.php:32
-msgid "Cafe Or Coffee Shop"
-msgstr ""
-
-#: config/vcard-widget.php:33
-msgid "Child Care"
-msgstr ""
-
-#: config/vcard-widget.php:34
-msgid "Clothing Store"
-msgstr ""
-
-#: config/vcard-widget.php:35
-msgid "Computer Store"
-msgstr ""
-
-#: config/vcard-widget.php:36
-msgid "Day Spa"
-msgstr ""
-
-#: config/vcard-widget.php:37
-msgid "Dentist"
-msgstr ""
-
-#: config/vcard-widget.php:38
-msgid "Dry Cleaning Or Laundry"
-msgstr ""
-
-#: config/vcard-widget.php:39
-msgid "Electrician"
-msgstr ""
-
-#: config/vcard-widget.php:40
-msgid "Electronics Store"
-msgstr ""
-
-#: config/vcard-widget.php:41
-msgid "Emergency Service"
-msgstr ""
-
-#: config/vcard-widget.php:42
-msgid "Entertainment Business"
-msgstr ""
-
-#: config/vcard-widget.php:43
-msgid "Event Venue"
-msgstr ""
-
-#: config/vcard-widget.php:44
-msgid "Exercise Gym"
-msgstr ""
-
-#: config/vcard-widget.php:45
-msgid "Financial Service"
-msgstr ""
-
-#: config/vcard-widget.php:46
-msgid "Florist"
-msgstr ""
-
-#: config/vcard-widget.php:47
-msgid "Furniture Store"
-msgstr ""
-
-#: config/vcard-widget.php:48
-msgid "Food Establishment"
-msgstr ""
-
-#: config/vcard-widget.php:49
-msgid "Garden Store"
-msgstr ""
-
-#: config/vcard-widget.php:50
-msgid "General Contractor"
-msgstr ""
-
-#: config/vcard-widget.php:51
-msgid "Golf Course"
-msgstr ""
-
-#: config/vcard-widget.php:52
-msgid "Hair Salon"
-msgstr ""
-
-#: config/vcard-widget.php:53
-msgid "Hardware Store"
-msgstr ""
-
-#: config/vcard-widget.php:54
-msgid "Health And Beauty Business"
-msgstr ""
-
-#: config/vcard-widget.php:55
-msgid "Home And Construction Business"
-msgstr ""
-
-#: config/vcard-widget.php:56
-msgid "Hobby Shop"
-msgstr ""
-
-#: config/vcard-widget.php:57
-msgid "Home Goods Store"
-msgstr ""
-
-#: config/vcard-widget.php:58
-msgid "Hospital"
-msgstr ""
-
-#: config/vcard-widget.php:59
-msgid "Hotel"
-msgstr ""
-
-#: config/vcard-widget.php:60
-msgid "House Painter"
-msgstr ""
-
-#: config/vcard-widget.php:61
-msgid "HVAC Business"
-msgstr ""
-
-#: config/vcard-widget.php:62
-msgid "Insurance Agency"
-msgstr ""
-
-#: config/vcard-widget.php:63
-msgid "Jewelry Store"
-msgstr ""
-
-#: config/vcard-widget.php:64
-msgid "Liquor Store"
-msgstr ""
-
-#: config/vcard-widget.php:65
-msgid "Locksmith"
-msgstr ""
-
-#: config/vcard-widget.php:66
-msgid "Lodging Business"
-msgstr ""
-
-#: config/vcard-widget.php:67
-msgid "Medical Clinic"
-msgstr ""
-
-#: config/vcard-widget.php:68
-msgid "Mens Clothing Store"
-msgstr ""
-
-#: config/vcard-widget.php:69
-msgid "Mobile Phone Store"
-msgstr ""
-
-#: config/vcard-widget.php:70
-msgid "Motel"
-msgstr ""
-
-#: config/vcard-widget.php:71
-msgid "Motorcycle Dealer"
-msgstr ""
-
-#: config/vcard-widget.php:72
-msgid "Motorcycle Repair"
-msgstr ""
-
-#: config/vcard-widget.php:73
-msgid "Moving Company"
-msgstr ""
-
-#: config/vcard-widget.php:74
-msgid "Music Store"
-msgstr ""
-
-#: config/vcard-widget.php:75
-msgid "Nail Salon"
-msgstr ""
-
-#: config/vcard-widget.php:76
-msgid "Night Club"
-msgstr ""
-
-#: config/vcard-widget.php:77
-msgid "Notary Public"
-msgstr ""
-
-#: config/vcard-widget.php:78
-msgid "Office Equipment Store"
-msgstr ""
-
-#: config/vcard-widget.php:79
-msgid "Optician"
-msgstr ""
-
-#: config/vcard-widget.php:80
-msgid "PetStore"
-msgstr ""
-
-#: config/vcard-widget.php:81
-msgid "Physician"
-msgstr ""
-
-#: config/vcard-widget.php:82
-msgid "Plumber"
-msgstr ""
-
-#: config/vcard-widget.php:83
-msgid "Professional Service"
-msgstr ""
-
-#: config/vcard-widget.php:84
-msgid "Real Estate Agent"
-msgstr ""
-
-#: config/vcard-widget.php:85
-msgid "Residence"
-msgstr ""
-
-#: config/vcard-widget.php:86
-msgid "Restaurant"
-msgstr ""
-
-#: config/vcard-widget.php:87
-msgid "Roofing Contractor"
-msgstr ""
-
-#: config/vcard-widget.php:88
-msgid "RV Park"
-msgstr ""
-
-#: config/vcard-widget.php:89
-msgid "School"
-msgstr ""
-
-#: config/vcard-widget.php:90
-msgid "Self Storage"
-msgstr ""
-
-#: config/vcard-widget.php:91
-msgid "ShoeStore"
+#: admin/view/italystrap-import-export.php:4
+#: admin/view/italystrap-settings.php:75 admin/view/test.php:262
+msgid "Export Settings"
 msgstr ""
 
-#: config/vcard-widget.php:92
-msgid "Ski Resort"
+#: admin/view/italystrap-import-export.php:6
+#: admin/view/italystrap-settings.php:77 admin/view/test.php:264
+msgid ""
+"Export the plugin settings for this site as a .json file. This allows you to "
+"easily import the configuration into another site."
 msgstr ""
 
-#: config/vcard-widget.php:93
-msgid "Sporting Goods Store"
+#: admin/view/italystrap-import-export.php:11
+#: admin/view/italystrap-settings.php:82 admin/view/test.php:269
+msgid "Export"
 msgstr ""
 
-#: config/vcard-widget.php:94
-msgid "Sports Club"
+#: admin/view/italystrap-import-export.php:18
+#: admin/view/italystrap-settings.php:89 admin/view/test.php:276
+msgid "Import Settings"
 msgstr ""
 
-#: config/vcard-widget.php:95
-msgid "Store"
+#: admin/view/italystrap-import-export.php:20
+#: admin/view/italystrap-settings.php:91 admin/view/test.php:278
+msgid ""
+"Import the plugin settings from a .json file. This file can be obtained by "
+"exporting the settings on another site using the form above."
 msgstr ""
 
-#: config/vcard-widget.php:96
-msgid "Tattoo Parlor"
+#: admin/view/italystrap-import-export.php:28
+#: admin/view/italystrap-settings.php:99 admin/view/test.php:286
+msgid "Import"
 msgstr ""
 
-#: config/vcard-widget.php:97
-msgid "Taxi"
+#: admin/view/italystrap-settings.php:41
+msgid "Difficulty level color explanation"
 msgstr ""
 
-#: config/vcard-widget.php:98
-msgid "Tennis Complex"
+#: admin/view/italystrap-settings.php:46
+msgid "Easy:"
 msgstr ""
 
-#: config/vcard-widget.php:99
-msgid "Tire Shop"
+#: admin/view/italystrap-settings.php:47
+msgid "Easy to use, no code needed."
 msgstr ""
 
-#: config/vcard-widget.php:100
-msgid "Toy Store"
+#: admin/view/italystrap-settings.php:54
+msgid "Medium:"
 msgstr ""
 
-#: config/vcard-widget.php:101
-msgid "Travel Agency"
+#: admin/view/italystrap-settings.php:55
+msgid "Medium difficulty, it may need to code."
 msgstr ""
 
-#: config/vcard-widget.php:102
-msgid "Veterinary Care"
+#: admin/view/italystrap-settings.php:62
+msgid "Hard:"
 msgstr ""
 
-#: config/vcard-widget.php:103
-msgid "Wholesale Store"
+#: admin/view/italystrap-settings.php:63
+msgid "Hard to use, you have to add code."
 msgstr ""
 
-#: config/vcard-widget.php:104
-msgid "Winery"
+#: admin/view/test.php:8
+msgid "Settings 2"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:80
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:293
-msgid "Test Metabox"
+#: admin/view/test.php:9
+msgid "Import/Export"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:91
-#: vendor/webdevstudios/cmb2/example-functions.php:376
-msgid "Test Text"
+#: admin/view/test.php:20 admin/view/test.php:241 config/media-carousel.php:263
+msgid "Text"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:92
-#: vendor/webdevstudios/cmb2/example-functions.php:104
-#: vendor/webdevstudios/cmb2/example-functions.php:112
-#: vendor/webdevstudios/cmb2/example-functions.php:120
-#: vendor/webdevstudios/cmb2/example-functions.php:129
-#: vendor/webdevstudios/cmb2/example-functions.php:137
-#: vendor/webdevstudios/cmb2/example-functions.php:151
-#: vendor/webdevstudios/cmb2/example-functions.php:158
-#: vendor/webdevstudios/cmb2/example-functions.php:166
-#: vendor/webdevstudios/cmb2/example-functions.php:183
-#: vendor/webdevstudios/cmb2/example-functions.php:192
-#: vendor/webdevstudios/cmb2/example-functions.php:200
-#: vendor/webdevstudios/cmb2/example-functions.php:207
-#: vendor/webdevstudios/cmb2/example-functions.php:214
-#: vendor/webdevstudios/cmb2/example-functions.php:228
-#: vendor/webdevstudios/cmb2/example-functions.php:241
-#: vendor/webdevstudios/cmb2/example-functions.php:254
-#: vendor/webdevstudios/cmb2/example-functions.php:266
-#: vendor/webdevstudios/cmb2/example-functions.php:275
-#: vendor/webdevstudios/cmb2/example-functions.php:283
-#: vendor/webdevstudios/cmb2/example-functions.php:292
-#: vendor/webdevstudios/cmb2/example-functions.php:299
-#: vendor/webdevstudios/cmb2/example-functions.php:313
-#: vendor/webdevstudios/cmb2/example-functions.php:377
-#: vendor/webdevstudios/cmb2/example-functions.php:468
-#: vendor/webdevstudios/cmb2/example-functions.php:476
-#: vendor/webdevstudios/cmb2/example-functions.php:483
-#: vendor/webdevstudios/cmb2/example-functions.php:490
-#: vendor/webdevstudios/cmb2/example-functions.php:497
-#: vendor/webdevstudios/cmb2/example-functions.php:504
-#: vendor/webdevstudios/cmb2/example-functions.php:511
-#: vendor/webdevstudios/cmb2/example-functions.php:538
-#: vendor/webdevstudios/cmb2/example-functions.php:546
-#: vendor/webdevstudios/cmb2/example-functions.php:553
-#: vendor/webdevstudios/cmb2/example-functions.php:590
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:305
+#: admin/view/test.php:21 admin/view/test.php:28 admin/view/test.php:35
+#: admin/view/test.php:42 admin/view/test.php:48 admin/view/test.php:54
+#: admin/view/test.php:66 admin/view/test.php:72 admin/view/test.php:78
+#: admin/view/test.php:84 admin/view/test.php:91 admin/view/test.php:97
+#: admin/view/test.php:103 admin/view/test.php:115 admin/view/test.php:127
+#: admin/view/test.php:139 admin/view/test.php:150 admin/view/test.php:158
+#: admin/view/test.php:165 admin/view/test.php:172 admin/view/test.php:179
+#: admin/view/test.php:190 admin/view/test.php:242 admin/view/test.php:249
 msgid "field description (optional)"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:103
-msgid "Test Text Small"
+#: admin/view/test.php:27 admin/view/test.php:248
+msgid "Color Picker"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:111
+#: admin/view/test.php:34
 msgid "Test Text Medium"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:119
+#: admin/view/test.php:41
 msgid "Website URL"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:128
+#: admin/view/test.php:47
 msgid "Test Text Email"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:136
+#: admin/view/test.php:53
 msgid "Test Time"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:143
-#: vendor/webdevstudios/cmb2/example-functions.php:144
+#: admin/view/test.php:59 admin/view/test.php:60
 msgid "Time zone"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:150
+#: admin/view/test.php:65
 msgid "Test Date Picker"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:157
+#: admin/view/test.php:71
 msgid "Test Date Picker (UNIX timestamp)"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:165
+#: admin/view/test.php:77
 msgid "Test Date/Time Picker Combo (UNIX timestamp)"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:182
+#: admin/view/test.php:83
 msgid "Test Money"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:191
-msgid "Test Color Picker"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/example-functions.php:199
+#: admin/view/test.php:90
 msgid "Test Text Area"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:206
+#: admin/view/test.php:96
 msgid "Test Text Area Small"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:213
+#: admin/view/test.php:102
 msgid "Test Text Area for Code"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:220
+#: admin/view/test.php:108
 msgid "Test Title Weeeee"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:221
+#: admin/view/test.php:109
 msgid "This is a title description"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:227
+#: admin/view/test.php:114
 msgid "Test Select"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:233
-#: vendor/webdevstudios/cmb2/example-functions.php:246
-#: vendor/webdevstudios/cmb2/example-functions.php:258
+#: admin/view/test.php:120 admin/view/test.php:132 admin/view/test.php:143
 msgid "Option One"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:234
-#: vendor/webdevstudios/cmb2/example-functions.php:247
-#: vendor/webdevstudios/cmb2/example-functions.php:259
+#: admin/view/test.php:121 admin/view/test.php:133 admin/view/test.php:144
 msgid "Option Two"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:235
-#: vendor/webdevstudios/cmb2/example-functions.php:248
-#: vendor/webdevstudios/cmb2/example-functions.php:260
+#: admin/view/test.php:122 admin/view/test.php:134 admin/view/test.php:145
 msgid "Option Three"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:240
+#: admin/view/test.php:126
 msgid "Test Radio inline"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:253
+#: admin/view/test.php:138
 msgid "Test Radio"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:265
+#: admin/view/test.php:149
 msgid "Test Taxonomy Radio"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:274
+#: admin/view/test.php:157
 msgid "Test Taxonomy Select"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:282
+#: admin/view/test.php:164
 msgid "Test Taxonomy Multi Checkbox"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:291
+#: admin/view/test.php:171
 msgid "Test Checkbox"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:298
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:304
+#: admin/view/test.php:178
 msgid "Test Multi Checkbox"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:304
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:310
+#: admin/view/test.php:183
 msgid "Check One"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:305
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:311
+#: admin/view/test.php:184
 msgid "Check Two"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:306
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:312
+#: admin/view/test.php:185
 msgid "Check Three"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:312
+#: admin/view/test.php:189
 msgid "Test wysiwyg"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:320
+#: admin/view/test.php:196
 msgid "Test Image"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:321
+#: admin/view/test.php:197
 msgid "Upload an image or enter a URL."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:327
+#: admin/view/test.php:202
 msgid "Multiple Files"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:328
+#: admin/view/test.php:203
 msgid "Upload or add multiple images/attachments."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:335
+#: admin/view/test.php:209
 msgid "oEmbed"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:336
+#: admin/view/test.php:210
 msgid ""
 "Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
 "href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
 "Embeds</a>."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:367
-msgid "About Page Metabox"
+#: admin/view/test.php:295
+msgid "Plugin Name."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:396
-msgid "Repeating Field Group"
+#: config/advanced-text.php:22 config/media-carousel.php:22
+msgid "Images ID"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:404
-msgid "Generates reusable form entries"
+#: config/advanced-text.php:23 config/image.php:31 config/media-carousel.php:23
+msgid "Enter the media or post type ID."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:406
-msgid "Entry {#}"
+#: config/breadcrumbs.php:22
+msgid "Text of the image"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:407
-msgid "Add Another Entry"
+#: config/breadcrumbs.php:23
+msgid "Enter the text of the image."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:408
-msgid "Remove Entry"
+#: config/image.php:30
+msgid "Enter Images ID"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:421
-msgid "Entry Title"
+#: config/image.php:46
+msgid "Image title"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:428
-msgid "Description"
+#: config/image.php:47
+msgid "Enter the image title."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:429
-msgid "Write a short description for this entry"
+#: config/image.php:61
+msgid "Image title tag"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:435
-msgid "Entry Image"
+#: config/image.php:62 config/media-carousel.php:216
+msgid "Define tag for image title. Default: h4."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:441
-msgid "Image Caption"
+#: config/image.php:76
+msgid "Image caption"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:460
-#: vendor/webdevstudios/cmb2/example-functions.php:530
-msgid "User Profile Metabox"
+#: config/image.php:77
+msgid "Enter the image caption."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:467
-#: vendor/webdevstudios/cmb2/example-functions.php:537
-msgid "Extra Info"
+#: config/image.php:91
+msgid "Image description"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:475
-msgid "Avatar"
+#: config/image.php:92
+msgid "Enter the image description."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:482
-msgid "Facebook URL"
+#: config/image.php:106
+msgid "Add paragraphs"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:489
-msgid "Twitter URL"
+#: config/image.php:107
+msgid "Automatically add paragraphs."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:496
-msgid "Google+ URL"
+#: config/image.php:120
+msgid "Do Shortcode"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:503
-msgid "Linkedin URL"
+#: config/image.php:121
+msgid "."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:510
-msgid "User Field"
+#: config/image.php:138 config/media-carousel.php:350
+#: config/media-carousel.php:382 config/media-carousel.php:400
+msgid "Size for images"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/example-functions.php:545
-msgid "Term Image"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/example-functions.php:552
-msgid "Arbitrary Term Field"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/example-functions.php:574
-msgid "Theme Options Metabox"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/example-functions.php:589
-msgid "Site Background Color"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2.php:122
-msgid "Metabox configuration is required to have an ID parameter"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2.php:375
-msgid "Click to toggle"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Ajax.php:40
-msgid "Please Try Again"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Ajax.php:135
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:834
-msgid "Remove Embed"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Ajax.php:139
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:835
-#, php-format
-msgid "No oEmbed Results Found for %s. View more info at"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1020
-msgid "Add Group"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1021
-msgid "Remove Group"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1043
-#: vendor/webdevstudios/cmb2/includes/CMB2_Field.php:1047
-#: vendor/webdevstudios/cmb2/tests/test-cmb-field.php:265
-msgid "None"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:86
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:119
-msgid "Clear"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:87
-msgid "Default"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:88
-msgid "Select Color"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:89
-msgid "Current Color"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:110
-msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:111
-msgid "Su, Mo, Tu, We, Th, Fr, Sa"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:112
-msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:113
+#: config/image.php:139 config/media-carousel.php:351
 msgid ""
-"January, February, March, April, May, June, July, August, September, "
-"October, November, December"
+"Size for image attachment. Accepted values: thumbnail, medium, large, full "
+"or own custom name added in add_image_size function. Default: full."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:114
-msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+#: config/image.php:153
+msgid "Alignment"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:115
-msgid "Next"
+#: config/image.php:154
+msgid "Alignment for image"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:116
-msgid "Prev"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:117
-msgid "Today"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:118
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:128
-msgid "Done"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:122
-msgid "Choose Time"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:123
-msgid "Time"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:124
-msgid "Hour"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:125
-msgid "Minute"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:126
-msgid "Second"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:127
-msgid "Now"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:135
-msgid "Use this file"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:136
-msgid "Use these files"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:137
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1009
-msgid "Remove Image"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:138
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:357
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1028
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:155
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:163
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:779
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
-msgid "Remove"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:139
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1023
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:779
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
-msgid "File:"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:140
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:1026
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:779
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
-msgid "Download"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_JS.php:141
-msgid "Select / Deselect All"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:298
-msgid "Add Row"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:756
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:804
-msgid "No terms"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:872
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:736
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:760
-msgid "Add or Upload Files"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:933
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:788
-#: vendor/webdevstudios/cmb2/tests/test-cmb-types.php:806
-msgid "Add or Upload File"
-msgstr ""
-
-#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:141
+#: config/image.php:174
 msgid ""
-"Term Metadata is a WordPress > 4.4 feature. Please upgrade your WordPress "
-"install."
+"Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for "
+"img container."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:145
-msgid "Term metaboxes configuration requires a 'taxonomies' parameter"
+#: config/image.php:188 config/vcard.php:127
+msgid "Container CSS class"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/helper-functions.php:250
-msgid "Save"
+#: config/image.php:189 config/image.php:204
+msgid "Enter the image css class (optional)."
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:49
-msgid "Menu order (Default)"
+#: config/image.php:203
+msgid "Image CSS class"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:50
-msgid "Order by the image's title"
+#: config/image.php:218
+msgid "Link URL"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:51
-msgid "Sort by date/time"
+#: config/image.php:219
+msgid "When you click on image."
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:52
-msgid "Order randomly"
+#: config/image.php:233
+msgid "Open in a new windows"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:53
-msgid "Order by the image's ID"
+#: config/image.php:234
+msgid "Check if you want to open in a new tab/windows."
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:56
-msgid "before-inner"
+#: config/media-carousel.php:37
+msgid "Type of gallery"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:57
-msgid "after-inner"
+#: config/media-carousel.php:38
+msgid ""
+"Enter the type of gallery, if it's not \"carousel\", nothing will be done."
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:58
-msgid "after-control"
+#: config/media-carousel.php:45
+msgid "Standard Gallery"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:59
-msgid "false"
+#: config/media-carousel.php:46
+msgid "Carousel (Default)"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:63
-msgid "none"
+#: config/media-carousel.php:56
+msgid "Order Image By"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:64
-msgid "hover"
+#: config/media-carousel.php:57
+msgid "Alternative appearing order of images."
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:74
-msgid "Use this widget to add a Bootstrap Media Carousel"
+#: config/media-carousel.php:79
+msgid "Carousel Name"
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:88
-msgid "ItalyStrap: Bootstrap Media Carousel"
+#: config/media-carousel.php:80
+msgid ""
+"Recomended when you want to have more than one carousel in the same page."
 msgstr ""
 
-#: widget/class-carousel-media-widget.php:214
-msgid "Real size"
+#: config/media-carousel.php:94
+msgid "Carousel container width"
 msgstr ""
 
-#: widget/class-posts-widget.php:21
-msgid "Displays list of posts with an array of options"
+#: config/media-carousel.php:95
+msgid "Enter the Carousel container width (optional)."
 msgstr ""
 
-#: widget/class-posts-widget.php:30
-msgid "ItalyStrap Posts Widget"
+#: config/media-carousel.php:109
+msgid "Carousel container height"
 msgstr ""
 
-#: widget/class-posts-widget.php:307
-msgid "ItalyStrap Widget Posts"
+#: config/media-carousel.php:110
+msgid "Enter the Carousel container height (optional)."
 msgstr ""
 
-#: widget/class-posts-widget.php:318
+#: config/media-carousel.php:125
+msgid "Indicators"
+msgstr "Indicatori"
+
+#: config/media-carousel.php:126
+msgid "Indicators."
+msgstr ""
+
+#: config/media-carousel.php:132
+msgid "Before inner (Default)"
+msgstr ""
+
+#: config/media-carousel.php:133
+msgid "After inner"
+msgstr ""
+
+#: config/media-carousel.php:134
+msgid "After control"
+msgstr ""
+
+#: config/media-carousel.php:135
+msgid "False"
+msgstr ""
+
+#: config/media-carousel.php:146
+msgid "Enable control"
+msgstr ""
+
+#: config/media-carousel.php:147
+msgid "Enable or disable arrow right and left."
+msgstr ""
+
+#: config/media-carousel.php:180
+msgid "Carousel interval"
+msgstr ""
+
+#: config/media-carousel.php:181
+msgid ""
+"The amount of time to delay between automatically cycling an item in "
+"milliseconds."
+msgstr ""
+
+#: config/media-carousel.php:197
+msgid "Pause"
+msgstr ""
+
+#: config/media-carousel.php:198
+msgid ""
+"Pauses the cycling of the carousel on mouseenter and resumes the cycling of "
+"the carousel on mouseleave."
+msgstr ""
+
+#: config/media-carousel.php:205
+msgid "hover (Default)"
+msgstr ""
+
+#: config/media-carousel.php:215
+msgid "Carousel titletag"
+msgstr ""
+
+#: config/media-carousel.php:230
+msgid "Image Title"
+msgstr ""
+
+#: config/media-carousel.php:231
+msgid "Show or hide image title. Set false to hide. Default: true."
+msgstr ""
+
+#: config/media-carousel.php:244 config/taxonomies-posts.php:22
+msgid "Title link"
+msgstr ""
+
+#: config/media-carousel.php:245
+msgid "Type of link to show if \"title\" is set to true."
+msgstr ""
+
+#: config/media-carousel.php:251
+msgid "None (Default)"
+msgstr ""
+
+#: config/media-carousel.php:252
+msgid "File"
+msgstr ""
+
+#: config/media-carousel.php:253
+msgid "Link"
+msgstr ""
+
+#: config/media-carousel.php:264
+msgid "Show or hide image text. Set false to hide. Default: true."
+msgstr ""
+
+#: config/media-carousel.php:276
+msgid "wpautop"
+msgstr ""
+
+#: config/media-carousel.php:277
+msgid "Auto-format text. Default: true."
+msgstr ""
+
+#: config/media-carousel.php:289
+msgid "do_shortcode"
+msgstr ""
+
+#: config/media-carousel.php:290
+msgid "Auto-format text. Default: false."
+msgstr ""
+
+#: config/media-carousel.php:302 config/posts.php:53
+#: config/taxonomies-posts.php:53
+msgid "Container Class"
+msgstr ""
+
+#: config/media-carousel.php:303
+msgid "Extra class for container."
+msgstr ""
+
+#: config/media-carousel.php:317
+msgid "Item Class"
+msgstr ""
+
+#: config/media-carousel.php:318
+msgid "Extra class for item."
+msgstr ""
+
+#: config/media-carousel.php:332
+msgid "Caption Class"
+msgstr ""
+
+#: config/media-carousel.php:333
+msgid "Extra class for caption."
+msgstr ""
+
+#: config/media-carousel.php:366
+msgid "Responsive image"
+msgstr ""
+
+#: config/media-carousel.php:367
+msgid "Activate responsive image."
+msgstr ""
+
+#: config/media-carousel.php:383
+msgid ""
+"Size for image attachment. Accepted values: thumbnail, medium, large, full "
+"or own custom name added in add_image_size function. Default: large."
+msgstr ""
+
+#: config/media-carousel.php:401
+msgid ""
+"Size for image attachment. Accepted values: thumbnail, medium, large, full "
+"or own custom name added in add_image_size function. Default: medium."
+msgstr ""
+
+#: config/posts.php:54 config/taxonomies-posts.php:54
+msgid "Enter the container class name."
+msgstr ""
+
+#: config/posts.php:70 config/taxonomies-posts.php:70
+msgid "Enter the post class name."
+msgstr ""
+
+#: config/posts.php:85 config/taxonomies-posts.php:85
+msgid "Image Class"
+msgstr ""
+
+#: config/posts.php:86 config/taxonomies-posts.php:86
+msgid "Enter the image class name."
+msgstr ""
+
+#: config/posts.php:128 config/taxonomies-posts.php:128
+msgid "HTML tag for post title"
+msgstr ""
+
+#: config/posts.php:129 config/taxonomies-posts.php:129
+msgid "Enter the heading tag for title (default is h4)."
+msgstr ""
+
+#: config/posts.php:145 config/taxonomies-posts.php:145
+msgid "Enter your custom CSS."
+msgstr ""
+
+#: config/posts.php:160 config/taxonomies-posts.php:160
+msgid "Template"
+msgstr ""
+
+#: config/posts.php:161 config/taxonomies-posts.php:161
+msgid "Select the template to display posts."
+msgstr ""
+
+#: config/posts.php:168 config/taxonomies-posts.php:167
+msgid "Standard template (Default)"
+msgstr ""
+
+#: config/posts.php:169 config/taxonomies-posts.php:168
+msgid "Custom template"
+msgstr ""
+
+#: config/posts.php:180 config/taxonomies-posts.php:179
+msgid "Template custom name"
+msgstr ""
+
+#: config/posts.php:181 config/taxonomies-posts.php:180
+msgid "Insert your template custom name."
+msgstr ""
+
+#: config/posts.php:196 config/taxonomies-posts.php:195
+msgid "Number of posts"
+msgstr ""
+
+#: config/posts.php:197 config/taxonomies-posts.php:196
+msgid "Insert the number of posts to display."
+msgstr ""
+
+#: config/posts.php:211 config/taxonomies-posts.php:210
+msgid "Show the title"
+msgstr ""
+
+#: config/posts.php:212 config/taxonomies-posts.php:211
+msgid "Check if you want to show the title."
+msgstr ""
+
+#: config/posts.php:226 config/taxonomies-posts.php:225
+msgid "Show the date"
+msgstr ""
+
+#: config/posts.php:227 config/posts.php:242 config/taxonomies-posts.php:226
+#: config/taxonomies-posts.php:241
+msgid "Check if you want to show the date."
+msgstr ""
+
+#: config/posts.php:241 config/taxonomies-posts.php:240
+msgid "Date format"
+msgstr ""
+
+#: config/posts.php:256 config/taxonomies-posts.php:255
+msgid "Show post author"
+msgstr ""
+
+#: config/posts.php:257 config/taxonomies-posts.php:256
+msgid "Check if you want to show post's author."
+msgstr ""
+
+#: config/posts.php:271 config/taxonomies-posts.php:270
+msgid "Show comments number"
+msgstr ""
+
+#: config/posts.php:272 config/taxonomies-posts.php:271
+msgid "Check if you want to Show comments number."
+msgstr ""
+
+#: config/posts.php:286 config/taxonomies-posts.php:285
+msgid "Show excerpt"
+msgstr ""
+
+#: config/posts.php:287 config/taxonomies-posts.php:286
+msgid "Check if you want to show excerpt."
+msgstr ""
+
+#: config/posts.php:301 config/taxonomies-posts.php:300
+msgid "Excerpt length"
+msgstr ""
+
+#: config/posts.php:302 config/taxonomies-posts.php:301
+msgid "Insert the numbers of words to display."
+msgstr ""
+
+#: config/posts.php:316 config/taxonomies-posts.php:315
+msgid "Show content"
+msgstr ""
+
+#: config/posts.php:317 config/taxonomies-posts.php:316
+msgid "Check if you want to show content."
+msgstr ""
+
+#: config/posts.php:331 config/taxonomies-posts.php:330
+msgid "Show readmore"
+msgstr ""
+
+#: config/posts.php:332 config/taxonomies-posts.php:331
+msgid "Check if you want to show readmore tag."
+msgstr ""
+
+#: config/posts.php:346 config/taxonomies-posts.php:345
+msgid "Excerpt read more"
+msgstr ""
+
+#: config/posts.php:347 config/taxonomies-posts.php:346
+msgid "Insert the custom \"read more\" words."
+msgstr ""
+
+#: config/posts.php:351 config/taxonomies-posts.php:350
+#: deprecated/class-widget-posts2.php:327
 msgid "Read more &rarr;"
 msgstr ""
 
-#: widget/class-vcard-widget.php:43
-msgid "Use this widget to add a vCard Local Business"
-msgstr "Usa questo wodget per aggiungere una scheda per la Local Business"
+#: config/posts.php:361 config/taxonomies-posts.php:360
+msgid "Show thumbnail"
+msgstr ""
 
-#: widget/class-vcard-widget.php:46
-msgid "ItalyStrap: vCard Local Business"
-msgstr "ItalyStrap: vCard Local Business"
+#: config/posts.php:362 config/taxonomies-posts.php:361
+msgid "Check if you want to show thumbnail."
+msgstr ""
 
-#: widget/class-vcard-widget.php:49
-msgid "Local or Organization?"
-msgstr "Local or Organization?"
+#: config/posts.php:376
+msgid "Thumbnail size"
+msgstr ""
 
-#: widget/class-vcard-widget.php:50
-msgid "Widget Title (optional)"
-msgstr "Titolo del widget (opzionale)"
+#: config/posts.php:377 config/posts.php:407 config/vcard.php:172
+msgid "Select the thumbnail size to display in posts list."
+msgstr ""
 
-#: widget/class-vcard-widget.php:51
+#: config/posts.php:392
+msgid "Show the first thumbnail bigger"
+msgstr ""
+
+#: config/posts.php:393
+msgid "Check if you want to show the firt thumbnail bigger."
+msgstr ""
+
+#: config/posts.php:406
+msgid "The first thumbnail size"
+msgstr ""
+
+#: config/posts.php:422 config/taxonomies-posts.php:391
+msgid "Enter ID of a fall-back thumbnail (optional)"
+msgstr ""
+
+#: config/posts.php:423 config/taxonomies-posts.php:392
+msgid "Add a fall-back thumbnail in case no one is found."
+msgstr ""
+
+#: config/posts.php:438 config/taxonomies-posts.php:407
+msgid "Show post categories"
+msgstr ""
+
+#: config/posts.php:439 config/taxonomies-posts.php:408
+msgid "Check if you want to Show post categories."
+msgstr ""
+
+#: config/posts.php:453 config/taxonomies-posts.php:422
+msgid "Show post tags"
+msgstr ""
+
+#: config/posts.php:454 config/taxonomies-posts.php:423
+msgid "Check if you want to Show post tags."
+msgstr ""
+
+#: config/posts.php:468 config/taxonomies-posts.php:437
+msgid "Show custom fields"
+msgstr ""
+
+#: config/posts.php:469
+msgid "Insert here the custom fields (comma separated)."
+msgstr ""
+
+#: config/posts.php:498 config/taxonomies-posts.php:467
+msgid "Select Categories"
+msgstr ""
+
+#: config/posts.php:499 config/taxonomies-posts.php:468
+msgid "Select the categories. (Use ctrl for multiple select)"
+msgstr ""
+
+#: config/posts.php:503 config/posts.php:536 config/taxonomies-posts.php:472
+#: config/taxonomies-posts.php:505
+msgid "No selection"
+msgstr ""
+
+#: config/posts.php:531 config/taxonomies-posts.php:500
+msgid "Select Tags"
+msgstr ""
+
+#: config/posts.php:532 config/taxonomies-posts.php:501
+msgid "Select the Tag. (Use ctrl for multiple select)"
+msgstr ""
+
+#: config/posts.php:549 config/taxonomies-posts.php:518
+msgid "Show related posts by tags"
+msgstr ""
+
+#: config/posts.php:550 config/taxonomies-posts.php:519
+msgid "Check if you want to Show related posts by tags."
+msgstr ""
+
+#: config/posts.php:564 config/taxonomies-posts.php:533
+msgid "Show related posts by cats"
+msgstr ""
+
+#: config/posts.php:565 config/taxonomies-posts.php:534
+msgid "Check if you want to Show related posts by cats."
+msgstr ""
+
+#: config/posts.php:579
+msgid "Discard posts"
+msgstr ""
+
+#: config/posts.php:580
+msgid ""
+"Number of post to displace or pass over. Warning: Setting the offset "
+"parameter overrides/ignores the paged parameter and breaks pagination <a "
+"href=\"https://codex.wordpress.org/"
+"Making_Custom_Queries_using_Offset_and_Pagination\">(Click here for a "
+"workaround)</a>. The \"offset\" parameter is ignored when \"posts_per_page"
+"\"=>-1 (show all posts) is used."
+msgstr ""
+
+#: config/posts.php:594 config/taxonomies-posts.php:548
+msgid "Esclude current post from loop"
+msgstr ""
+
+#: config/posts.php:595 config/taxonomies-posts.php:549
+msgid "Check if you want to Esclude the current post from loop."
+msgstr ""
+
+#: config/posts.php:609 config/taxonomies-posts.php:563
+msgid "Show posts only from current user"
+msgstr ""
+
+#: config/posts.php:610
+msgid "Select the user you want to display posts."
+msgstr ""
+
+#: config/posts.php:624 config/taxonomies-posts.php:578 widget/Products.php:42
+msgid "Post type"
+msgstr ""
+
+#: config/posts.php:625 config/taxonomies-posts.php:579
+msgid "Select the post type to show."
+msgstr ""
+
+#: config/posts.php:640 config/taxonomies-posts.php:594
+msgid "Post/Page Id"
+msgstr ""
+
+#: config/posts.php:641
+msgid "Insert posts ID separated by comma."
+msgstr ""
+
+#: config/posts.php:671 config/taxonomies-posts.php:625
+msgid "Sticky post"
+msgstr ""
+
+#: config/posts.php:672 config/taxonomies-posts.php:626
+msgid "Select if you want to show sticky posts or not."
+msgstr ""
+
+#: config/posts.php:678 config/taxonomies-posts.php:632
+msgid "Show all posts"
+msgstr ""
+
+#: config/posts.php:679 config/taxonomies-posts.php:633
+msgid "Hide Sticky Posts"
+msgstr ""
+
+#: config/posts.php:680 config/taxonomies-posts.php:634
+msgid "Show Only Sticky Posts"
+msgstr ""
+
+#: config/posts.php:691 config/taxonomies-posts.php:645
+msgid "Order by"
+msgstr ""
+
+#: config/posts.php:692 config/posts.php:739 config/taxonomies-posts.php:646
+#: config/taxonomies-posts.php:693
+msgid "How posts have to be ordered."
+msgstr ""
+
+#: config/posts.php:698 config/taxonomies-posts.php:652
+msgid "No order. (Default)"
+msgstr ""
+
+#: config/posts.php:699 config/taxonomies-posts.php:653
+msgid "Order by post id."
+msgstr ""
+
+#: config/posts.php:700 config/taxonomies-posts.php:654
+msgid "Order by author."
+msgstr ""
+
+#: config/posts.php:701 config/taxonomies-posts.php:655
+msgid "Title."
+msgstr ""
+
+#: config/posts.php:702 config/taxonomies-posts.php:656
+msgid "Order by post name (post slug)."
+msgstr ""
+
+#: config/posts.php:703 config/taxonomies-posts.php:657
+msgid "Order by post type (available since Version 4.0)."
+msgstr ""
+
+#: config/posts.php:704 config/taxonomies-posts.php:658
+msgid "Order by date"
+msgstr ""
+
+#: config/posts.php:705 config/taxonomies-posts.php:659
+msgid "Order by last modified date."
+msgstr ""
+
+#: config/posts.php:706 config/taxonomies-posts.php:660
+msgid "Order by post/page parent id."
+msgstr ""
+
+#: config/posts.php:707 config/taxonomies-posts.php:661
+msgid "Random order."
+msgstr ""
+
+#: config/posts.php:708 config/taxonomies-posts.php:662
+msgid "Order by number of comments."
+msgstr ""
+
+#: config/posts.php:709 config/taxonomies-posts.php:663
+msgid "Order by Page Order."
+msgstr ""
+
+#: config/posts.php:710 config/posts.php:711 config/taxonomies-posts.php:664
+#: config/taxonomies-posts.php:665
+msgid ""
+"Order by value in custom field (\"meta_key=keyname\" must also be present in "
+"the query)"
+msgstr ""
+
+#: config/posts.php:712 config/taxonomies-posts.php:666
+msgid "Preserve post ID order given in the post__in array."
+msgstr ""
+
+#: config/posts.php:723
+msgid "Order by meta key (custom fields)"
+msgstr ""
+
+#: config/posts.php:724
+msgid ""
+"Inser the custom field separated by comma and select \"Order by Value...\" "
+"above."
+msgstr ""
+
+#: config/posts.php:738 config/taxonomies-posts.php:692
+msgid "Order"
+msgstr ""
+
+#: config/posts.php:745 config/taxonomies-posts.php:699
+msgid "Descending"
+msgstr ""
+
+#: config/posts.php:746 config/taxonomies-posts.php:700
+msgid "Ascending"
+msgstr ""
+
+#: config/taxonomies-posts.php:23
+msgid "Enter a custom title link."
+msgstr ""
+
+#: config/taxonomies-posts.php:375
+msgid "thumb_size"
+msgstr ""
+
+#: config/taxonomies-posts.php:376
+msgid "Select the thumb size to display posts."
+msgstr ""
+
+#: config/taxonomies-posts.php:438
+msgid "Check if you want to Show custom fields (comma separated)."
+msgstr ""
+
+#: config/taxonomies-posts.php:564
+msgid "Check if you want to Show posts only from current user."
+msgstr ""
+
+#: config/taxonomies-posts.php:595
+msgid "Insert post ID separated by comma."
+msgstr ""
+
+#: config/taxonomies-posts.php:677
+msgid "Custom fields"
+msgstr ""
+
+#: config/taxonomies-posts.php:678
+msgid "Inser the custom field separated by comma."
+msgstr ""
+
+#: config/vcard.php:22
+msgid "Select your business"
+msgstr ""
+
+#: config/vcard.php:23
+msgid "Select your kind of activity."
+msgstr ""
+
+#: config/vcard.php:29 deprecated/options-vcard-widget.php:16
+msgid "Local Business - (Default)"
+msgstr ""
+
+#: config/vcard.php:30 deprecated/options-vcard-widget.php:17
+msgid "Organization - (For services and home offices)"
+msgstr ""
+
+#: config/vcard.php:31 deprecated/options-vcard-widget.php:18
+msgid "Accounting Service"
+msgstr ""
+
+#: config/vcard.php:32 deprecated/options-vcard-widget.php:19
+msgid "Auto Body Shop"
+msgstr ""
+
+#: config/vcard.php:33 deprecated/options-vcard-widget.php:20
+msgid "Auto Dealer"
+msgstr ""
+
+#: config/vcard.php:34 deprecated/options-vcard-widget.php:21
+msgid "Auto Parts Store"
+msgstr ""
+
+#: config/vcard.php:35 deprecated/options-vcard-widget.php:22
+msgid "Auto Rental"
+msgstr ""
+
+#: config/vcard.php:36 deprecated/options-vcard-widget.php:23
+msgid "Auto Repair"
+msgstr ""
+
+#: config/vcard.php:37 deprecated/options-vcard-widget.php:24
+msgid "Auto Wash"
+msgstr ""
+
+#: config/vcard.php:38 deprecated/options-vcard-widget.php:25
+msgid "Attorney"
+msgstr ""
+
+#: config/vcard.php:39 deprecated/options-vcard-widget.php:26
+msgid "Bakery"
+msgstr ""
+
+#: config/vcard.php:40 deprecated/options-vcard-widget.php:27
+msgid "Bar Or Pub"
+msgstr ""
+
+#: config/vcard.php:41 deprecated/options-vcard-widget.php:28
+msgid "Beauty Salon"
+msgstr ""
+
+#: config/vcard.php:42 deprecated/options-vcard-widget.php:29
+msgid "Bed &amp; Breakfast"
+msgstr ""
+
+#: config/vcard.php:43 deprecated/options-vcard-widget.php:30
+msgid "Bicycle Store"
+msgstr ""
+
+#: config/vcard.php:44 deprecated/options-vcard-widget.php:31
+msgid "Book Store"
+msgstr ""
+
+#: config/vcard.php:45 deprecated/options-vcard-widget.php:32
+msgid "Cafe Or Coffee Shop"
+msgstr ""
+
+#: config/vcard.php:46 deprecated/options-vcard-widget.php:33
+msgid "Child Care"
+msgstr ""
+
+#: config/vcard.php:47 deprecated/options-vcard-widget.php:34
+msgid "Clothing Store"
+msgstr ""
+
+#: config/vcard.php:48 deprecated/options-vcard-widget.php:35
+msgid "Computer Store"
+msgstr ""
+
+#: config/vcard.php:49 deprecated/options-vcard-widget.php:36
+msgid "Day Spa"
+msgstr ""
+
+#: config/vcard.php:50 deprecated/options-vcard-widget.php:37
+msgid "Dentist"
+msgstr ""
+
+#: config/vcard.php:51 deprecated/options-vcard-widget.php:38
+msgid "Dry Cleaning Or Laundry"
+msgstr ""
+
+#: config/vcard.php:52 deprecated/options-vcard-widget.php:39
+msgid "Electrician"
+msgstr ""
+
+#: config/vcard.php:53 deprecated/options-vcard-widget.php:40
+msgid "Electronics Store"
+msgstr ""
+
+#: config/vcard.php:54 deprecated/options-vcard-widget.php:41
+msgid "Emergency Service"
+msgstr ""
+
+#: config/vcard.php:55 deprecated/options-vcard-widget.php:42
+msgid "Entertainment Business"
+msgstr ""
+
+#: config/vcard.php:56 deprecated/options-vcard-widget.php:43
+msgid "Event Venue"
+msgstr ""
+
+#: config/vcard.php:57 deprecated/options-vcard-widget.php:44
+msgid "Exercise Gym"
+msgstr ""
+
+#: config/vcard.php:58 deprecated/options-vcard-widget.php:45
+msgid "Financial Service"
+msgstr ""
+
+#: config/vcard.php:59 deprecated/options-vcard-widget.php:46
+msgid "Florist"
+msgstr ""
+
+#: config/vcard.php:60 deprecated/options-vcard-widget.php:47
+msgid "Furniture Store"
+msgstr ""
+
+#: config/vcard.php:61 deprecated/options-vcard-widget.php:48
+msgid "Food Establishment"
+msgstr ""
+
+#: config/vcard.php:62 deprecated/options-vcard-widget.php:49
+msgid "Garden Store"
+msgstr ""
+
+#: config/vcard.php:63 deprecated/options-vcard-widget.php:50
+msgid "General Contractor"
+msgstr ""
+
+#: config/vcard.php:64 deprecated/options-vcard-widget.php:51
+msgid "Golf Course"
+msgstr ""
+
+#: config/vcard.php:65 deprecated/options-vcard-widget.php:52
+msgid "Hair Salon"
+msgstr ""
+
+#: config/vcard.php:66 deprecated/options-vcard-widget.php:53
+msgid "Hardware Store"
+msgstr ""
+
+#: config/vcard.php:67 deprecated/options-vcard-widget.php:54
+msgid "Health And Beauty Business"
+msgstr ""
+
+#: config/vcard.php:68 deprecated/options-vcard-widget.php:55
+msgid "Home And Construction Business"
+msgstr ""
+
+#: config/vcard.php:69 deprecated/options-vcard-widget.php:56
+msgid "Hobby Shop"
+msgstr ""
+
+#: config/vcard.php:70 deprecated/options-vcard-widget.php:57
+msgid "Home Goods Store"
+msgstr ""
+
+#: config/vcard.php:71 deprecated/options-vcard-widget.php:58
+msgid "Hospital"
+msgstr ""
+
+#: config/vcard.php:72 deprecated/options-vcard-widget.php:59
+msgid "Hotel"
+msgstr ""
+
+#: config/vcard.php:73 deprecated/options-vcard-widget.php:60
+msgid "House Painter"
+msgstr ""
+
+#: config/vcard.php:74 deprecated/options-vcard-widget.php:61
+msgid "HVAC Business"
+msgstr ""
+
+#: config/vcard.php:75 deprecated/options-vcard-widget.php:62
+msgid "Insurance Agency"
+msgstr ""
+
+#: config/vcard.php:76 deprecated/options-vcard-widget.php:63
+msgid "Jewelry Store"
+msgstr ""
+
+#: config/vcard.php:77 deprecated/options-vcard-widget.php:64
+msgid "Liquor Store"
+msgstr ""
+
+#: config/vcard.php:78 deprecated/options-vcard-widget.php:65
+msgid "Locksmith"
+msgstr ""
+
+#: config/vcard.php:79 deprecated/options-vcard-widget.php:66
+msgid "Lodging Business"
+msgstr ""
+
+#: config/vcard.php:80 deprecated/options-vcard-widget.php:67
+msgid "Medical Clinic"
+msgstr ""
+
+#: config/vcard.php:81 deprecated/options-vcard-widget.php:68
+msgid "Mens Clothing Store"
+msgstr ""
+
+#: config/vcard.php:82 deprecated/options-vcard-widget.php:69
+msgid "Mobile Phone Store"
+msgstr ""
+
+#: config/vcard.php:83 deprecated/options-vcard-widget.php:70
+msgid "Motel"
+msgstr ""
+
+#: config/vcard.php:84 deprecated/options-vcard-widget.php:71
+msgid "Motorcycle Dealer"
+msgstr ""
+
+#: config/vcard.php:85 deprecated/options-vcard-widget.php:72
+msgid "Motorcycle Repair"
+msgstr ""
+
+#: config/vcard.php:86 deprecated/options-vcard-widget.php:73
+msgid "Moving Company"
+msgstr ""
+
+#: config/vcard.php:87 deprecated/options-vcard-widget.php:74
+msgid "Music Store"
+msgstr ""
+
+#: config/vcard.php:88 deprecated/options-vcard-widget.php:75
+msgid "Nail Salon"
+msgstr ""
+
+#: config/vcard.php:89 deprecated/options-vcard-widget.php:76
+msgid "Night Club"
+msgstr ""
+
+#: config/vcard.php:90 deprecated/options-vcard-widget.php:77
+msgid "Notary Public"
+msgstr ""
+
+#: config/vcard.php:91 deprecated/options-vcard-widget.php:78
+msgid "Office Equipment Store"
+msgstr ""
+
+#: config/vcard.php:92 deprecated/options-vcard-widget.php:79
+msgid "Optician"
+msgstr ""
+
+#: config/vcard.php:93 deprecated/options-vcard-widget.php:80
+msgid "PetStore"
+msgstr ""
+
+#: config/vcard.php:94 deprecated/options-vcard-widget.php:81
+msgid "Physician"
+msgstr ""
+
+#: config/vcard.php:95 deprecated/options-vcard-widget.php:82
+msgid "Plumber"
+msgstr ""
+
+#: config/vcard.php:96 deprecated/options-vcard-widget.php:83
+msgid "Professional Service"
+msgstr ""
+
+#: config/vcard.php:97 deprecated/options-vcard-widget.php:84
+msgid "Real Estate Agent"
+msgstr ""
+
+#: config/vcard.php:98 deprecated/options-vcard-widget.php:85
+msgid "Residence"
+msgstr ""
+
+#: config/vcard.php:99 deprecated/options-vcard-widget.php:86
+msgid "Restaurant"
+msgstr ""
+
+#: config/vcard.php:100 deprecated/options-vcard-widget.php:87
+msgid "Roofing Contractor"
+msgstr ""
+
+#: config/vcard.php:101 deprecated/options-vcard-widget.php:88
+msgid "RV Park"
+msgstr ""
+
+#: config/vcard.php:102 deprecated/options-vcard-widget.php:89
+msgid "School"
+msgstr ""
+
+#: config/vcard.php:103 deprecated/options-vcard-widget.php:90
+msgid "Self Storage"
+msgstr ""
+
+#: config/vcard.php:104 deprecated/options-vcard-widget.php:91
+msgid "ShoeStore"
+msgstr ""
+
+#: config/vcard.php:105 deprecated/options-vcard-widget.php:92
+msgid "Ski Resort"
+msgstr ""
+
+#: config/vcard.php:106 deprecated/options-vcard-widget.php:93
+msgid "Sporting Goods Store"
+msgstr ""
+
+#: config/vcard.php:107 deprecated/options-vcard-widget.php:94
+msgid "Sports Club"
+msgstr ""
+
+#: config/vcard.php:108 deprecated/options-vcard-widget.php:95
+msgid "Store"
+msgstr ""
+
+#: config/vcard.php:109 deprecated/options-vcard-widget.php:96
+msgid "Tattoo Parlor"
+msgstr ""
+
+#: config/vcard.php:110 deprecated/options-vcard-widget.php:97
+msgid "Taxi"
+msgstr ""
+
+#: config/vcard.php:111 deprecated/options-vcard-widget.php:98
+msgid "Tennis Complex"
+msgstr ""
+
+#: config/vcard.php:112 deprecated/options-vcard-widget.php:99
+msgid "Tire Shop"
+msgstr ""
+
+#: config/vcard.php:113 deprecated/options-vcard-widget.php:100
+msgid "Toy Store"
+msgstr ""
+
+#: config/vcard.php:114 deprecated/options-vcard-widget.php:101
+msgid "Travel Agency"
+msgstr ""
+
+#: config/vcard.php:115 deprecated/options-vcard-widget.php:102
+msgid "Veterinary Care"
+msgstr ""
+
+#: config/vcard.php:116 deprecated/options-vcard-widget.php:103
+msgid "Wholesale Store"
+msgstr ""
+
+#: config/vcard.php:117 deprecated/options-vcard-widget.php:104
+msgid "Winery"
+msgstr ""
+
+#: config/vcard.php:128
+msgid "CSS class for the container of this widget."
+msgstr ""
+
+#: config/vcard.php:142 deprecated/class-widget-vcard.php:58
 msgid "Company name"
 msgstr "Nome azienda"
 
-#: widget/class-vcard-widget.php:52
-msgid "Logo URL"
-msgstr "URL del Logo"
+#: config/vcard.php:143
+msgid "Your company name."
+msgstr ""
 
-#: widget/class-vcard-widget.php:53
-msgid "Show Logo"
-msgstr "Mostra logo"
+#: config/vcard.php:157
+msgid "Show Logo image"
+msgstr ""
 
-#: widget/class-vcard-widget.php:54
+#: config/vcard.php:158
+msgid "Check if you want to show the logo in the widget section."
+msgstr ""
+
+#: config/vcard.php:171
+msgid "Logo size"
+msgstr ""
+
+#: config/vcard.php:187
+msgid "Logo css class"
+msgstr ""
+
+#: config/vcard.php:188
+msgid "Enter logo css class."
+msgstr ""
+
+#: config/vcard.php:203
+msgid "Logo URL (DEPRECATED)"
+msgstr ""
+
+#: config/vcard.php:204
+msgid "The url of your logo. (DEPRECATED)"
+msgstr ""
+
+#: config/vcard.php:218
+msgid "Logo image ID"
+msgstr ""
+
+#: config/vcard.php:219
+msgid "Add your logo image."
+msgstr ""
+
+#: config/vcard.php:234 deprecated/class-widget-vcard.php:61
 msgid "Street Address"
 msgstr "Indirizzo"
 
-#: widget/class-vcard-widget.php:55
+#: config/vcard.php:235
+msgid "Your street address."
+msgstr ""
+
+#: config/vcard.php:249 deprecated/class-widget-vcard.php:62
 msgid "Zipcode/Postal Code"
 msgstr "Codice postale"
 
-#: widget/class-vcard-widget.php:56
+#: config/vcard.php:250
+msgid "Your postal code."
+msgstr ""
+
+#: config/vcard.php:264 deprecated/class-widget-vcard.php:63
 msgid "City/Locality"
 msgstr "Citt&agrave;"
 
-#: widget/class-vcard-widget.php:57
+#: config/vcard.php:265
+msgid "Your city or locality."
+msgstr ""
+
+#: config/vcard.php:279 deprecated/class-widget-vcard.php:64
 msgid "State/Region"
 msgstr "Regione"
 
-#: widget/class-vcard-widget.php:58
+#: config/vcard.php:280
+msgid "Your State / Region."
+msgstr ""
+
+#: config/vcard.php:294 deprecated/class-widget-vcard.php:65
 msgid "Country"
 msgstr "Stato"
 
-#: widget/class-vcard-widget.php:59
+#: config/vcard.php:295
+msgid "Your Country."
+msgstr ""
+
+#: config/vcard.php:309 deprecated/class-widget-vcard.php:66
 msgid "Telephone number"
 msgstr "Numero di telefono"
 
-#: widget/class-vcard-widget.php:60
+#: config/vcard.php:310
+msgid "Your telephone number."
+msgstr ""
+
+#: config/vcard.php:324 deprecated/class-widget-vcard.php:67
 msgid "Mobile number"
 msgstr "Numero cellulare"
 
-#: widget/class-vcard-widget.php:61
+#: config/vcard.php:325
+msgid "Your mobile number."
+msgstr ""
+
+#: config/vcard.php:339 deprecated/class-widget-vcard.php:68
 msgid "Fax number"
 msgstr "Numero fax"
 
-#: widget/class-vcard-widget.php:62
+#: config/vcard.php:340
+msgid "Your fax number."
+msgstr ""
+
+#: config/vcard.php:354 deprecated/class-widget-vcard.php:69
 msgid "Email"
 msgstr "Email"
 
-#: widget/class-vcard-widget.php:63
+#: config/vcard.php:355
+msgid "Your email."
+msgstr ""
+
+#: config/vcard.php:369 deprecated/class-widget-vcard.php:70
 msgid "TaxID"
 msgstr "Partita I.V.A."
 
-#: widget/class-vcard-widget.php:64
+#: config/vcard.php:370
+msgid "Your taxID."
+msgstr ""
+
+#: config/vcard.php:384 deprecated/class-widget-vcard.php:71
 msgid "Facebook page (hidden)"
 msgstr "Pagina Facebook (nascosto)"
 
-#: widget/class-vcard-widget.php:65
+#: config/vcard.php:385
+msgid "Your Facebook page url (hidden)."
+msgstr ""
+
+#: config/vcard.php:399 deprecated/class-widget-vcard.php:72
 msgid "Twitter page (hidden)"
 msgstr "Pagina di Twitter (nascosto)"
 
-#: widget/class-vcard-widget.php:66
+#: config/vcard.php:400
+msgid "Your twitter page url (hidden)."
+msgstr ""
+
+#: config/vcard.php:415 deprecated/class-widget-vcard.php:73
 msgid "Googleplus page (hidden)"
 msgstr "Pagina Googleplus (nascosto)"
 
-#: widget/class-vcard-widget.php:67
+#: config/vcard.php:416
+msgid "Your googleplus page url (hidden)."
+msgstr ""
+
+#: config/vcard.php:430 deprecated/class-widget-vcard.php:74
 msgid "Pinterest page (hidden)"
 msgstr "Pagina di Pinterest (nascosto)"
 
-#: widget/class-vcard-widget.php:68
+#: config/vcard.php:431
+msgid "Your pinterest page url (hidden)."
+msgstr ""
+
+#: config/vcard.php:445 deprecated/class-widget-vcard.php:75
 msgid "Instagram page (hidden)"
 msgstr "Pagina Instagram (nascosto)"
 
-#: widget/class-vcard-widget.php:69
-msgid "Youtube page (hidden)"
-msgstr "Pagina di youtube (nascosto)"
+#: config/vcard.php:446
+msgid "Your instagram page url (hidden)."
+msgstr ""
 
-#: widget/class-vcard-widget.php:70
+#: config/vcard.php:460
+msgid "YouTube page (hidden)"
+msgstr ""
+
+#: config/vcard.php:461
+msgid "Your youtube page url (hidden)."
+msgstr ""
+
+#: config/vcard.php:475 deprecated/class-widget-vcard.php:77
 msgid "Linkedin page (hidden)"
 msgstr "Pagina di Linkedin (nascosto)"
 
-#: widget/templates/legacy.php:51
-msgid "By"
+#: config/vcard.php:476
+msgid "Your linkedin page url (hidden)."
 msgstr ""
 
-#: widget/templates/legacy.php:58
-msgid "No responses"
+#: config/widget-attributes.php:22
+msgid "Widget CSS ID"
 msgstr ""
 
-#: widget/templates/legacy.php:58
-msgid "One response"
+#: config/widget-attributes.php:23 config/widget-attributes.php:38
+msgid "Enter the CSS ID for this widget."
 msgstr ""
 
-#: widget/templates/legacy.php:58
-msgid "% responses"
+#: config/widget-attributes.php:37
+msgid "Widget CSS class"
 msgstr ""
 
-#: widget/templates/legacy.php:81
-msgid "Categories"
+#: core/Breadcrumbs.php:335 deprecated/ItalyStrapBreadcrumbs.php:315
+msgid "Tag: "
+msgstr "Tag: "
+
+#: core/Breadcrumbs.php:342 deprecated/ItalyStrapBreadcrumbs.php:329
+msgid "Yearly archive: "
+msgstr "Archivio annuale: "
+
+#: core/Breadcrumbs.php:357 deprecated/ItalyStrapBreadcrumbs.php:343
+msgid "Monthly archive: "
+msgstr "Archivio mensile"
+
+#: core/Breadcrumbs.php:381 deprecated/ItalyStrapBreadcrumbs.php:365
+msgid "Daily archive: "
+msgstr "Archivio giornaliero: "
+
+#: core/Breadcrumbs.php:388 deprecated/ItalyStrapBreadcrumbs.php:372
+msgid "Author Archives: "
+msgstr "Archivio autore: "
+
+#: core/Breadcrumbs.php:395 deprecated/ItalyStrapBreadcrumbs.php:379
+msgid "Search Results: "
+msgstr "Risultato della ricerca: "
+
+#: core/Breadcrumbs.php:401 deprecated/ItalyStrapBreadcrumbs.php:385
+msgid "Not Found"
+msgstr "Non trovato"
+
+#: core/Breadcrumbs.php:410 deprecated/ItalyStrapBreadcrumbs.php:394
+msgid "Page"
+msgstr "Pagina"
+
+#: core/Query/Query.php:86
+msgid "Context name must be a string"
 msgstr ""
 
-#: widget/templates/legacy.php:91
-msgid "Tags"
+#: core/Sitemaps_HTML.php:134
+msgid "Authors:"
+msgstr "Autori:"
+
+#: deprecated/ItalyStrapBreadcrumbs.php:322
+msgid "Tax: "
+msgstr "Tax:"
+
+#: deprecated/class-widget-posts2.php:28
+msgid "Displays list of posts with an array of options (DEPRECATED)"
 msgstr ""
 
-#: widget/templates/legacy.php:127
-msgid "No posts found."
+#: deprecated/class-widget-posts2.php:37
+msgid "ItalyStrap Posts Widget"
 msgstr ""
 
-#: widget/templates/standard.php:87
+#: deprecated/class-widget-posts2.php:316
+msgid "ItalyStrap Widget Posts"
+msgstr ""
+
+#: deprecated/class-widget-vcard.php:50
+msgid ""
+"Use this widget to add a vCard Local Business (DEPRECATED, Don't use it "
+"anymore)"
+msgstr ""
+
+#: deprecated/class-widget-vcard.php:53
+msgid "ItalyStrap: vCard Local Business"
+msgstr "ItalyStrap: vCard Local Business"
+
+#: deprecated/class-widget-vcard.php:56
+msgid "Local or Organization?"
+msgstr "Local or Organization?"
+
+#: deprecated/class-widget-vcard.php:57
+msgid "Widget Title (optional)"
+msgstr "Titolo del widget (opzionale)"
+
+#: deprecated/class-widget-vcard.php:59
+msgid "Logo URL"
+msgstr "URL del Logo"
+
+#: deprecated/class-widget-vcard.php:60
+msgid "Show Logo"
+msgstr "Mostra logo"
+
+#: deprecated/class-widget-vcard.php:76
+msgid "Youtube page (hidden)"
+msgstr "Pagina di youtube (nascosto)"
+
+#: functions/general-functions.php:77
+msgid "The file doesn't exist."
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:46
+#: future-inclusions/logic/class-widget-logic.php:37
+#: future-inclusions/widget-logic-admin.php:17
+#: future-inclusions/widget-logic.php:20
+msgid "when plugin starts (default)"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:47
+#: future-inclusions/logic/class-widget-logic.php:38
+#: future-inclusions/widget-logic-admin.php:18
+#: future-inclusions/widget-logic.php:21
+msgid "after theme loads"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:48
+#: future-inclusions/logic/class-widget-logic.php:39
+#: future-inclusions/widget-logic-admin.php:19
+#: future-inclusions/widget-logic.php:22
+msgid "when all PHP loaded"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:49
+#: future-inclusions/logic/class-widget-logic.php:40
+#: future-inclusions/widget-logic-admin.php:20
+#: future-inclusions/widget-logic.php:23
+msgid "during page header"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:252
+msgid "Widget logic"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:253
+msgid "Add conditional tag to this widget."
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:305
+#: future-inclusions/widget-logic-admin.php:70
+msgid "Success! Options file imported"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:308
+#: future-inclusions/widget-logic-admin.php:71
+msgid "Invalid options file"
+msgstr ""
+
+#: future-inclusions/logic/class-widget-logic-admin.php:311
+#: future-inclusions/widget-logic-admin.php:73
+msgid "No options file provided"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:2
+#: future-inclusions/widget-logic-admin.php:137
+msgid "Widget Logic options"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:5
+#: future-inclusions/widget-logic-admin.php:140
+msgid ""
+"Adds a new WP filter you can use in your own code. Not needed for main "
+"Widget Logic functionality."
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:7
+#: future-inclusions/widget-logic-admin.php:142
+msgid "Add 'widget_content' filter"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:10
+#: future-inclusions/widget-logic-admin.php:145
+msgid "Resets a theme's custom queries before your Widget Logic is checked"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:12
+#: future-inclusions/widget-logic-admin.php:147
+msgid "Use 'wp_reset_query' fix"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:15
+#: future-inclusions/widget-logic-admin.php:150
+msgid ""
+"Delays widget logic code being evaluated til various points in the WP "
+"loading process"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:15
+#: future-inclusions/widget-logic-admin.php:150
+msgid "Load logic"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:28
+#: future-inclusions/widget-logic-admin.php:163
+msgid "Save WL options"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:32
+#: future-inclusions/widget-logic-admin.php:167
+msgid "Save all WL options to a plain text config file"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:32
+#: future-inclusions/widget-logic-admin.php:167
+msgid "Export options"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:33
+#: future-inclusions/widget-logic-admin.php:168
+msgid "Import options"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:33
+#: future-inclusions/widget-logic-admin.php:168
+msgid "Load all WL options from a plain text config file"
+msgstr ""
+
+#: future-inclusions/logic/view/widget-logic-admin.php:34
+#: future-inclusions/widget-logic-admin.php:169
+msgid "Select file for importing"
+msgstr ""
+
+#: future-inclusions/related_post.php:19
+msgid "Related posts"
+msgstr ""
+
+#: future-inclusions/related_post.php:79
+msgid "Ti potrebbe interessare anche..."
+msgstr ""
+
+#: future-inclusions/related_post.php:117
+msgid "No Responses"
+msgstr ""
+
+#: future-inclusions/related_post.php:117
+msgid "One Response"
+msgstr ""
+
+#: future-inclusions/related_post.php:117
+msgid "% Responses"
+msgstr ""
+
+#: future-inclusions/security.php:7
+msgid "<strong>Login Failed</strong>: please check your username and password."
+msgstr ""
+
+#: future-inclusions/white-label-cms/includes/admin.config.php:46
+#: future-inclusions/white-label-cms/wlcms-plugin.php:70
+msgid "Dashboard"
+msgstr ""
+
+#: future-inclusions/white-label-cms/includes/admin.view.php:329
+msgid ""
+"WARNING! Deleting a role can have severe consequences, proceed only if you "
+"know what you are doing."
+msgstr ""
+
+#: future-inclusions/white-label-cms/wlcms-plugin.php:546
+msgid "Posts"
+msgstr ""
+
+#: future-inclusions/white-label-cms/wlcms-plugin.php:550
+msgid "Comments"
+msgstr ""
+
+#: future-inclusions/white-label-cms/wlcms-plugin.php:552
+msgid "Tools"
+msgstr ""
+
+#: future-inclusions/white-label-cms/wlcms-plugin.php:554
+msgid "Profile"
+msgstr ""
+
+#: future-inclusions/white-label-cms/wlcms-plugin.php:722
+msgid ""
+"<strong>Error!</strong> During the import process we almost imported a non "
+"White Label CMS setting - please ensure you uploaded the correct file and "
+"try again."
+msgstr ""
+
+#: future-inclusions/widget-logic-admin.php:206
+msgid "Widget logic:"
+msgstr ""
+
+#: future-inclusions/wp-instagram-widget.php:53
+#: future-inclusions/wp-instagram-widget.php:127
+msgid "Instagram"
+msgstr ""
+
+#: future-inclusions/wp-instagram-widget.php:127
+msgid "Follow Me!"
+msgstr ""
+
+#: future-inclusions/wp-instagram-widget.php:228
+msgid "Instagram Image"
+msgstr ""
+
+#: hooks/simply-show-thumb.php:23
+msgid "Thumb"
+msgstr ""
+
+#: shortcode/Gallery.php:44
+msgid "Use $atts['image_title'] instead of $atts['title']"
+msgstr ""
+
+#: templates/content-post.php:89 templates/standard.php:122
 msgid "No comments"
 msgstr ""
 
-#: widget/templates/standard.php:87
+#: templates/content-post.php:89 templates/standard.php:122
 msgid "One comment"
 msgstr ""
 
-#: widget/templates/standard.php:87
+#: templates/content-post.php:89 templates/standard.php:122
 #, php-format
 msgid "% comments"
 msgstr ""
+
+#: templates/legacy.php:52
+msgid "By"
+msgstr ""
+
+#: templates/legacy.php:59
+msgid "No responses"
+msgstr ""
+
+#: templates/legacy.php:59
+msgid "One response"
+msgstr ""
+
+#: templates/legacy.php:59
+msgid "% responses"
+msgstr ""
+
+#: templates/legacy.php:82
+msgid "Categories"
+msgstr ""
+
+#: templates/legacy.php:92
+msgid "Tags"
+msgstr ""
+
+#: templates/legacy.php:128
+msgid "No posts found."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:42
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:72
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:80
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:43
+msgid ""
+"Details are shown above. The importer will now try again with a different "
+"parser..."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:84
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:89
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:279
+#: tests/phpunit/data/plugins/wordpress-importer/parsers.php:468
+msgid ""
+"This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:132
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:141
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:192
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:196
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:205
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:133
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:176
+msgid "All done."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:176
+msgid "Have fun!"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:177
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:197
+#, php-format
+msgid ""
+"The export file could not be found at <code>%s</code>. It is likely that "
+"this was caused by a permissions problem."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:213
+#, php-format
+msgid ""
+"This WXR file (version %s) may not be supported by this version of the "
+"importer. Please consider updating."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:238
+#, php-format
+msgid ""
+"Failed to import author %s. Their posts will be attributed to the current "
+"user."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:264
+msgid "Assign Authors"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:265
+msgid ""
+"To make it easier for you to edit and save the imported content, you may "
+"want to reassign the author of the imported item to an existing user of this "
+"site. For example, you may want to import all the entries as <code>admin</"
+"code>s entries."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:267
+#, php-format
+msgid ""
+"If a new user is created by WordPress, a new password will be randomly "
+"generated and the new user&#8217;s role will be set as %s. Manually changing "
+"the new user&#8217;s details will be necessary."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:277
+msgid "Import Attachments"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:280
+msgid "Download and import file attachments"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:297
+msgid "Import author:"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:308
+msgid "or create new user with login name:"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:311
+msgid "as a new user:"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:319
+msgid "assign posts to an existing user:"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:321
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:322
+msgid "- Select -"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:372
+#, php-format
+msgid ""
+"Failed to create new user for %s. Their posts will be attributed to the "
+"current user."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:423
+#, php-format
+msgid "Failed to import category %s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:463
+#, php-format
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:509
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:650
+#, php-format
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:535
+#, php-format
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:557
+#, php-format
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:616
+#, php-format
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:781
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:788
+#, php-format
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:851
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:864
+msgid "Invalid file type"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:908
+msgid "Remote server did not respond"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:914
+#, php-format
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:921
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:926
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:932
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1031
+msgid "Import WordPress"
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1038
+#, php-format
+msgid ""
+"A new version of this importer is available. Please update to version %s to "
+"ensure compatibility with newer export files."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1053
+msgid ""
+"Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import "
+"the posts, pages, comments, custom fields, categories, and tags into this "
+"site."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1054
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#: tests/phpunit/data/plugins/wordpress-importer/wordpress-importer.php:1128
+msgid ""
+"Import <strong>posts, pages, comments, custom fields, categories, and tags</"
+"strong> from a WordPress export file."
+msgstr ""
+
+#: tests/phpunit/tests/customize/nav-menus.php:121
+msgid "Custom Link"
+msgstr ""
+
+#: tests/phpunit/tests/includes/helpers.php:203
+msgid "Incorrect usage test"
+msgstr ""
+
+#: tests/phpunit/tests/theme/themeDir.php:176
+msgid "Stylesheet is missing."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:28
+#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:37
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:34
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:43
+#: tests/phpunit/tests/xmlrpc/wp/getTaxonomy.php:20
+#: tests/phpunit/tests/xmlrpc/wp/getTaxonomy.php:29
+#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:28
+#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:37
+#: tests/phpunit/tests/xmlrpc/wp/getTerms.php:20
+#: tests/phpunit/tests/xmlrpc/wp/getTerms.php:29
+#: tests/phpunit/tests/xmlrpc/wp/newTerm.php:29
+#: tests/phpunit/tests/xmlrpc/wp/newTerm.php:38
+msgid "Invalid taxonomy"
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:46
+msgid "You are not allowed to delete terms in this taxonomy."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:55
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:70
+#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:56
+msgid "Empty Term"
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:64
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:61
+#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:65
+msgid "Invalid term ID"
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/editComment.php:47
+msgid "You are not allowed to moderate or edit this comment."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:52
+msgid "You are not allowed to edit terms in this taxonomy."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:79
+#: tests/phpunit/tests/xmlrpc/wp/newTerm.php:56
+msgid "The term name cannot be empty."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:88
+msgid "This taxonomy is not hierarchical so you can't set a parent."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:125
+#: tests/phpunit/tests/xmlrpc/wp/newTerm.php:82
+msgid "Parent term does not exist."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:135
+#, php-format
+msgid "The slug &#8220;%s&#8221; is already in use by another term"
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/getTaxonomy.php:38
+#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:46
+#: tests/phpunit/tests/xmlrpc/wp/getTerms.php:38
+msgid "You are not allowed to assign terms in this taxonomy."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/newTerm.php:47
+msgid "You are not allowed to create terms in this taxonomy."
+msgstr ""
+
+#: tests/phpunit/tests/xmlrpc/wp/newTerm.php:65
+msgid "This taxonomy is not hierarchical."
+msgstr ""
+
+#: tests/wpunit/FieldsTest.php:29 tests/wpunit/FieldsTest.php:43
+#: tests/wpunit/FieldsTest.php:57 tests/wpunit/FieldsTest.php:69
+#: tests/wpunit/FieldsTest.php:81
+msgid "Widget Class"
+msgstr ""
+
+#: tests/wpunit/FieldsTest.php:30 tests/wpunit/FieldsTest.php:44
+#: tests/wpunit/FieldsTest.php:58 tests/wpunit/FieldsTest.php:70
+#: tests/wpunit/FieldsTest.php:82
+msgid "Enter the widget class name."
+msgstr ""
+
+#: vendor/overclokk/minimum-requirements/minimum-requirements.php:201
+#, php-format
+msgid "requires %s plugins to work"
+msgstr ""
+
+#: vendor/overclokk/minimum-requirements/minimum-requirements.php:227
+#, php-format
+msgid ""
+"Your server is running %s version %s but this plugin requires at least %s"
+msgstr ""
+
+#: vendor/overclokk/minimum-requirements/minimum-requirements.php:246
+#, php-format
+msgid "Activation of %s in not possible"
+msgstr ""
+
+#: vendor/overclokk/minimum-requirements/minimum-requirements.php:248
+#: vendor/overclokk/minimum-requirements/minimum-requirements.php:264
+msgid "Activation of "
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:338
+#, php-format
+msgid ""
+"The \"%s\" field parameter has been deprecated in favor of the \"%s\" "
+"parameter."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:342
+#, php-format
+msgid ""
+"Using the \"%s\" field parameter as a callback has been deprecated in favor "
+"of the \"%s\" parameter."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:372
+#, php-format
+msgid ""
+"%1$s was called with a parameter that is <strong>deprecated</strong> since "
+"version %2$s! %3$s"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:375
+#, php-format
+msgid ""
+"%1$s was called with a parameter that is <strong>deprecated</strong> since "
+"version %2$s with no alternative available."
+msgstr ""
+
+#: widget/Areas/Areas.php:307
+msgid "Widget Area"
+msgstr ""
+
+#: widget/Areas/Areas.php:318
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: widget/Areas/Areas.php:319
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: widget/Areas/Areas.php:320
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: widget/Areas/Areas.php:322
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: widget/Areas/Areas.php:323
+msgid "Search %a"
+msgstr ""
+
+#: widget/Areas/Areas.php:324
+#, php-format
+msgid "No %s Found"
+msgstr ""
+
+#: widget/Areas/Areas.php:325
+#, php-format
+msgid "No %s Found In Trash"
+msgstr ""
+
+#: widget/Breadcrumbs.php:37
+msgid "ItalyStrap Breadcrumbs"
+msgstr ""
+
+#: widget/Breadcrumbs.php:39
+msgid "Add a Breadcrumbs ti widgetized area"
+msgstr ""
+
+#: widget/Carousel.php:52
+msgid "ItalyStrap Media Carousel"
+msgstr ""
+
+#: widget/Carousel.php:54
+msgid ""
+"Add a image carousel for all your media files from any posts type (posts, "
+"pages, attachments and custom post type)"
+msgstr ""
+
+#: widget/Image.php:48
+msgid "ItalyStrap Image"
+msgstr ""
+
+#: widget/Image.php:50
+msgid "Add a image with title, url and description"
+msgstr ""
+
+#: widget/Posts.php:47
+msgid "ItalyStrap Posts"
+msgstr ""
+
+#: widget/Posts.php:49
+msgid "Displays list of posts with an array of options"
+msgstr ""
+
+#: widget/Products.php:43
+msgid "Select the post type."
+msgstr ""
+
+#: widget/Products.php:74
+msgid "ItalyStrap Product"
+msgstr ""
+
+#: widget/Products.php:76
+msgid "Displays list of WC product with an array of options"
+msgstr ""
+
+#: widget/Taxonomies_Posts.php:45
+msgid "ItalyStrap Taxonomies Posts"
+msgstr ""
+
+#: widget/Taxonomies_Posts.php:47
+msgid "Displays list of categories with an array of options"
+msgstr ""
+
+#: widget/VCard.php:75
+msgid "ItalyStrap vCard Local Business"
+msgstr ""
+
+#: widget/VCard.php:77
+msgid ""
+"Add a vCard Local Business with Schema.org markup to your theme widgetized "
+"area"
+msgstr ""
+
+#: widget/Widget.php:71
+msgid "Title"
+msgstr ""
+
+#: widget/Widget.php:72
+msgid "Enter the widget title."
+msgstr ""
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid ""
+#~ "For more informations about the options below see the <a href=\"admin.php?"
+#~ "page=italystrap-documentation#carousel\" target=\"_blank\">documentation."
+#~ "</a>"
+#~ msgstr ""
+#~ "Per maggiori informazioni sulle opzioni sotto guarda la <a href=\"admin."
+#~ "php?page=italystrap-documentation#carousel\" target=\"_blank"
+#~ "\">documentazione.</a>"
+
+#~ msgid "HTML ID"
+#~ msgstr "ID HTML"
+
+#~ msgid "Interval"
+#~ msgstr "Intervallo"
+
+#~ msgid "You do not have sufficient permissions to access this page."
+#~ msgstr "Non hai sufficienti permessi per accedere a questa pagina."
+
+#~ msgid "Options"
+#~ msgstr "Opzioni"
+
+#~ msgid "ItalyStrap options page"
+#~ msgstr "Pagina opzioni di ItalyStrap"
+
+#~ msgid "LazyLoad"
+#~ msgstr "LazyLoad"
+
+#~ msgid "Vcard Widget Local Business"
+#~ msgstr "Vcard Widget Local Business"
+
+#~ msgid "Activate LazyLoad for images"
+#~ msgstr "Attiva LazyLoad per le immagini"
+
+#~ msgid "Activate Vcard Widget for your local business (Experimental)"
+#~ msgstr "Attiva la scheda per la tua Local Business (sperimentale)"
+
+#~ msgid "Use this widget to add a vCard Local Business"
+#~ msgstr "Usa questo wodget per aggiungere una scheda per la Local Business"
 
 #~ msgid "(Activate LazyLoad for images)"
 #~ msgstr "(Attiva Lazy Load per le immagini)"
