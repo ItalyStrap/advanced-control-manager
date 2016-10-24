@@ -15,7 +15,7 @@ use ItalyStrap\Core\Asset\Inline_Script;
 use ItalyStrap\Core\Asset\Inline_Style;
 
 /**
- * 
+ *
  */
 class Lazy_Load_Image {
 
@@ -35,9 +35,9 @@ class Lazy_Load_Image {
 	 * @return string        [description]
 	 */
 	public function __construct( array $options ) {
-	
+
 		self::$options = $options;
-	
+
 	}
 
 	static function init() {
@@ -164,13 +164,13 @@ class Lazy_Load_Image {
 		 * @var string Js Code
 		 */
 		// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});$(this).parent("img").css( "opacity","1");});});';
-		
+
 		//Da testare
 		// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$(this).load(function(){$(this).css( "opacity","1");});});});';
 
 		$output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});});});';
 
-		$content .= $content . $output;
+		$content .= $output;
 
 		return $content;
 
