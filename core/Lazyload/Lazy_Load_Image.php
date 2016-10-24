@@ -15,7 +15,7 @@ use ItalyStrap\Core\Asset\Inline_Script;
 use ItalyStrap\Core\Asset\Inline_Style;
 
 /**
- * 
+ *
  */
 class Lazy_Load_Image {
 
@@ -35,9 +35,9 @@ class Lazy_Load_Image {
 	 * @return string        [description]
 	 */
 	public function __construct( array $options ) {
-	
+
 		self::$options = $options;
-	
+
 	}
 
 	static function init() {
@@ -129,7 +129,7 @@ class Lazy_Load_Image {
 		 */
 		$placeholder_image_default = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-		if ( isset( self::$options['lazyload-custom-placeholder'] ) ) {
+		if ( ! empty( self::$options['lazyload-custom-placeholder'] ) ) {
 			$placeholder_image = self::$options['lazyload-custom-placeholder'];
 		} else {
 			$placeholder_image = $placeholder_image_default;
@@ -164,7 +164,7 @@ class Lazy_Load_Image {
 		 * @var string Js Code
 		 */
 		// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});$(this).parent("img").css( "opacity","1");});});';
-		
+
 		//Da testare
 		// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$(this).load(function(){$(this).css( "opacity","1");});});});';
 
