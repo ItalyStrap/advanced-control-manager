@@ -49,7 +49,7 @@ if ( isset( $options['media_carousel_shortcode'] ) ) {
 /**
  * Activate LazyLoad
  */
-if ( isset( $options['lazyload'] ) ) {
+if ( ! empty( $options['lazyload'] ) ) {
 	/**
 	 * Instantiate lazy_load_image Class
 	 *
