@@ -23,6 +23,17 @@
       var source = this.getAttribute(attrib);
       source = source || this.getAttribute("data-src");
       if (source) {
+        /* Start responsive images patch */
+        var sizes  = this.getAttribute("data-sizes");
+            srcset = this.getAttribute("data-srcset");
+
+        if ( sizes && srcset ) {
+          this.setAttribute( "sizes", sizes );
+        }
+        if ( srcset )
+          this.setAttribute( "srcset", srcset );
+        /* End responsive images patch */
+
         this.setAttribute("src", source);
         if (typeof callback === "function") callback.call(this);
       }

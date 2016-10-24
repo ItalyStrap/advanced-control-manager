@@ -108,11 +108,27 @@ class Lazy_Load_Image {
 		if( is_feed() || is_preview() )
 			return $content;
 
+
 		/**
 		 * Don't lazy-load if the content has already been run through previously
 		 */
 		if ( false !== strpos( $content, 'data-src' ) )
 			return $content;
+
+		/**
+		 * This is a pretty simple regex, but it works
+		 * @var string
+		 */
+		return preg_replace_callback( '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', array( __CLASS__ , 'replace_callback' ) , $content );
+
+	}
+
+
+	/**
+	 * @param array $matches
+	 * @return string			[description]
+	 */
+	static function replace_callback( $matches ) {
 
 		/**
 		 * In case you want to change the placeholder image use filter
@@ -137,17 +153,24 @@ class Lazy_Load_Image {
 
 		$placeholder_image = apply_filters( 'italystrap_lazy_load_placeholder_image', $placeholder_image );
 
-		/**
-		 * This is a pretty simple regex, but it works
-		 * The meta tag works only if there is Schema.org markup
-		 * @var string
-		 */
-		$content = preg_replace( '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#', sprintf( '<img${1}src="%s" data-src="${2}"${3}><noscript><img${1}src="${2}"${3}></noscript><meta itemprop="image" content="${2}"/>', $placeholder_image ), $content );
 
-		// $content = preg_replace( '#<img([^>]+?)srcset=[\'"]?([^\'">]+)[\'"]?([^>]*)>#', sprintf( '<img${1}srcset="%s" data-srcset="${2}"${3}>', $placeholder_image ), $content );
+		/*
+		* Replace srcset, sizes and src attributes
+		*/
+		$content = str_replace( array( 'srcset', 'sizes' ), array( 'data-srcset', 'data-sizes' ),
+			sprintf( '<img%1$ssrc="%2$s" data-src="%3$s"%4$s>', $matches[1], $placeholder_image, $matches[2], $matches[3] )
+		);
+
+		/*
+		* Add noscript fallback plus microdata
+		* The meta tag works only if there is Schema.org markup
+		*/
+		$content .= sprintf( '<noscript><img%1$ssrc="%2$s"%3$s></noscript><meta itemprop="image" content="%2$s"/>',  $matches[1], $matches[2], $matches[3] );
 
 		return $content;
 	}
+
+
 
 	/**
 	 * Read and return unveil.js
@@ -170,7 +193,7 @@ class Lazy_Load_Image {
 
 		$output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});});});';
 
-		$content .= $content . $output;
+		$content .= $output;
 
 		return $content;
 
