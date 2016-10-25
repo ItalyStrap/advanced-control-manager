@@ -60,7 +60,7 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 * **[Carousel](http://docs.italystrap.com/the-carousel-shortcode/)** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Twitter Bootstrap CSS and JS or [ItalyStrap framework](http://www.italystrap.com/) installed. It will not include the files for you, so if they are not present, the carousel will not work. The carousel is provided by shortcode and widget.
 
-* **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel.
+* **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel, srcset and sizes.
 
 * **[Schema.org Local Business](http://docs.italystrap.com/widget-italystrap-vcard-local-business/)** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
 This widget will add microdata information about your  site for SEO purposes.
@@ -198,11 +198,13 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.0.1 =
-Release Date: October 19th, 2016
+Release Date: October 25th, 2016
 
-Dev time:
+Dev time: 4h
 
-* [Fix typo #11](https://github.com/overclokk/italystrap-extended/pull/11)
+* [Fix typo #11](https://github.com/overclokk/italystrap-extended/pull/11) Thanks to [Marco Bianco](https://github.com/cobyan)
+* [Improvement to Lazy Load #14](https://github.com/overclokk/italystrap-extended/pull/14) Thanks to [Rocco Aliberti](https://github.com/eri-trabiccolo)
+* Added custom placeholder for Lazy Load
 
 
 = 2.0.0 Breaking Changes =
@@ -360,9 +362,17 @@ First release.
 
 == Credits ==
 
+= Plugin =
 * [Agnosia Bootstrap Carousel](https://wordpress.org/plugins/agnosia-bootstrap-carousel/)
 * [Lazy Load](https://wordpress.org/plugins/lazy-load/)
 * [WordPress Plugin Boilerplate](https://github.com/WPBP/WordPress-Plugin-Boilerplate-Powered)
 * [Disable Emojis](https://geek.hellyer.kiwi/)
+
+= Developers =
 * [Tonya Mork](https://knowthecode.io/)
 * [Carl Alexander](https://carlalexander.ca/)
+* [Alain Schlesser](https://www.alainschlesser.com/)
+* [Luca Tumedei](https://github.com/lucatume)
+* [Mattia Migliorini](https://github.com/deshack)
+* [Marco Bianco](https://github.com/cobyan)
+* [Rocco Aliberti](https://github.com/eri-trabiccolo)
