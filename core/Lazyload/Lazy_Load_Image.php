@@ -50,7 +50,6 @@ class Lazy_Load_Image {
 		 * @var string
 		 */
 		self::$unveilpath = ITALYSTRAP_PLUGIN_PATH . $file;
-
 	}
 
 	/**

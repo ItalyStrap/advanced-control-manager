@@ -530,18 +530,22 @@ return array(
 				'section'	=> 'media',
 				'args'			=> array(
 						'name'			=> __( 'Custom Placeholder (Optional)', 'italystrap' ),
-						'desc'			=> __( 'Insert here your custom placeholder for image lazyloading, this is the src attribute of the img tag.
-							<br>Example:', 'italystrap' ) . ' <code>' . $wp_upload_dir['url'] . '/my-placeholder.gif</code>' . '
-							<br>Default: <code>data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</code>',
+						'desc'			=> sprintf(
+							__( 'Insert here your custom placeholder for image lazyloading from your media file, this is the src attribute of the img tag.
+							%1$sExample: %2$s %1$sDefault (transparent): %3$s %1$sFor more info: %4$s', 'italystrap' ),
+							'<br>',
+							' <code>' . $wp_upload_dir['url'] . '/my-placeholder.gif</code>',
+							'<code>data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</code>',
+							esc_url( 'http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/' )
+							),
 						'id'			=> 'lazyload-custom-placeholder',
 						'type'			=> 'text',
 						'class'			=> 'lazyload-custom-placeholder medium',
 						'placeholder'	=> '',
 						'default'		=> 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-						'validate'		=> 'ctype_alpha',
+						// 'validate'		=> 'esc_url',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 		),
 	),
