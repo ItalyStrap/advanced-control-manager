@@ -3,7 +3,7 @@
  *	Plugin Name:	ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
  *	Description:	Make your web site more powerful with ItalyStrap. (Requires PHP 5.3 >= and Developers skills). The version 2 is a new and complete rebuild of this plugin. Always make a backup before upgrading.
- *	Version:		2.0.0
+ *	Version:		2.0.1
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
  *	Text Domain:	italystrap
