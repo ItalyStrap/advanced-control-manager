@@ -251,7 +251,8 @@ module.exports = function(grunt) {
 			},
 			first:{
 				options: {
-					message: 'Commit before deploy of new version'
+					// message: 'Commit before deploy of new version'
+					message: 'Composer update'
 				},
 				files: {
 					src: [
