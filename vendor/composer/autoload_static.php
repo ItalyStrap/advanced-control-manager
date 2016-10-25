@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
 {
     public static $prefixLengthsPsr4 = array (
+        'L' => 
+        array (
+            'Leafo\\ScssPhp\\' => 14,
+        ),
         'I' => 
         array (
             'ItalyStrap\\Widget\\' => 18,
@@ -20,6 +24,10 @@ class ComposerStaticInit61d2c58b3f38e3101cd48c853b7a5c1d
     );
 
     public static $prefixDirsPsr4 = array (
+        'Leafo\\ScssPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/leafo/scssphp/src',
+        ),
         'ItalyStrap\\Widget\\' => 
         array (
             0 => __DIR__ . '/../..' . '/widget',

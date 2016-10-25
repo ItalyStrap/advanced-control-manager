@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 ### Enhancements
 
+* CMB2 REST API! CMB2 now has WP REST API endpoints for displaying your boxes and fields data, as well as registers rest fields in the existing post, user, term, and comment endpoints (in the cmb2 namespace). Enabling the REST API for your boxes/fields is opt-in, meaning it will not be automatically enabled. For more info, [check out the wiki](https://github.com/WebDevStudios/CMB2/wiki/REST-API).
 * Small string improvement, move a period inside the translatable string. Props [@pedro-mendonca](https://github.com/pedro-mendonca) ([#672](https://github.com/WebDevStudios/CMB2/pull/672)).
 * Introduce the `'save_field'` boolean field parameter for disabling the saving of a field. Useful if you want to display the value of another field, or use a disabled/read-only field. Props [@jamesgol](https://github.com/jamesgol) ([#674](https://github.com/WebDevStudios/CMB2/pull/674), [#346](https://github.com/WebDevStudios/CMB2/issues/346), [#500](https://github.com/WebDevStudios/CMB2/issues/500)).
 * Update docblocks for `CMB2_Field::save_field_from_data()` and `CMB2_Field::save_field()`. Props [@jamesgol](https://github.com/jamesgol) ([#675](https://github.com/WebDevStudios/CMB2/pull/675)).
@@ -22,11 +23,20 @@ All notable changes to this project will be documented in this file.
 * Minor update to make naming-conventions consistent. Props [ramiy](https://github.com/ramiy) ([#718](https://github.com/WebDevStudios/CMB2/pull/718)).
 * Update files to be compatible with PHP7 CodeSniffer standards. Props [ryanshoover](https://github.com/ryanshoover) ([#719](https://github.com/WebDevStudios/CMB2/pull/719), [#720](https://github.com/WebDevStudios/CMB2/pull/720)).
 * Make exception message translatable. Props [ramiy](https://github.com/ramiy) ([#724](https://github.com/WebDevStudios/CMB2/pull/724)).
+* Portuguese translation provided by [@alvarogois](https://github.com/alvarogois) and [@pedro-mendonca](https://github.com/pedro-mendonca) - [#709](https://github.com/WebDevStudios/CMB2/pull/709), [#727](https://github.com/WebDevStudios/CMB2/pull/727).
+* Stop using `$wp_version` global Props [ramiy](https://github.com/ramiy) ([#731](https://github.com/WebDevStudios/CMB2/pull/731)).
+* Closures (anonymous functions) are now supported for any box/field `'*_cb'` parameters. E.g.
+```php
+	...
+	'show_on_cb' => function( $cmb ) { return has_tag( 'cats', $cmb->object_id ); },
+	...
+```
 
 ### Bug Fixes
 
-* If custom field types use a method and the Type object has not been instantiated, Try to guess the Type object and instantiate, then throw a `_doing_it_wrong` notice.
+* If custom field types use a method and the Type object has not been instantiated, Try to guess the Type object and instantiate.
 * Normalize WordPress root path (`ABSPATH`) and theme rooth path (`get_theme_root()`). Props [@rianbotha](https://github.com/rianbotha) ([#677](https://github.com/WebDevStudios/CMB2/pull/677), [#676](https://github.com/WebDevStudios/CMB2/pull/676)).
+* Fix issue with `'cmb2_remove_row'` Javascript callback for non-group row removal. Fixes [#729](https://github.com/WebDevStudios/CMB2/pull/729)).
 
 ## 2.2.2.1 - 2016-06-27
 

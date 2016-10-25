@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Leafo\\ScssPhp\\' => array($vendorDir . '/leafo/scssphp/src'),
     'ItalyStrap\\Widget\\' => array($baseDir . '/widget'),
     'ItalyStrap\\Shortcode\\' => array($baseDir . '/shortcode'),
     'ItalyStrap\\Core\\' => array($baseDir . '/core'),

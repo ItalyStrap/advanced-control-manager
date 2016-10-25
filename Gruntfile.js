@@ -262,15 +262,15 @@ module.exports = function(grunt) {
 						]
 				}
 			},
-			composer:{
+			composer:{ // Questa non funziona, non prende i file nelle sottodirectory
 				options: {
 					message: 'Composer update'
 				},
-				files: {
-					src: [
-						'vendor/**/*'
-						]
-				}	
+				files: [{
+					expand: true,
+					cwd: 'vendor/',
+					src: '**/*'
+				}]
 			}
 		},
 
@@ -652,12 +652,24 @@ module.exports = function(grunt) {
 	 * Change version only in package.json
 	 *
 	 * Open Git Bash and type:
-	 * $ grunt deploy
+	 * $ grunt update-no-dev
+	 *
+	 * Poi a mano commit su eventuali aggiornamenti, quindi:
 	 * 
+	 * $ grunt deploy
+	 *
+	 * E volendo alla fine ricaricare le librerie per i test
+	 * $ grunt composer:update
+	 *
 	 * Poi nella cartella svn-wordpress
 	 * dx mouse e +add
 	 * dx mouse e commit
 	 */
+	grunt.registerTask('update-no-dev', [
+								'composer:update:no-dev',
+								'composer:dump-autoload -o',
+								]);
+
 	grunt.registerTask('deploy', [
 								'gitcommit:first',
 								'gitcheckout:devtomaster',
