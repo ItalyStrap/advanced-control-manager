@@ -251,8 +251,7 @@ module.exports = function(grunt) {
 			},
 			first:{
 				options: {
-					// message: 'Commit before deploy of new version'
-					message: 'Composer update'
+					message: 'Commit before deploy of new version'
 				},
 				files: {
 					src: [
@@ -262,6 +261,16 @@ module.exports = function(grunt) {
 						'*.json'
 						]
 				}
+			},
+			composer:{
+				options: {
+					message: 'Composer update'
+				},
+				files: {
+					src: [
+						'vendor/**/*'
+						]
+				}	
 			}
 		},
 
