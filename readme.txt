@@ -197,6 +197,16 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.0.2 =
+Release Date: October 28th, 2016
+
+Dev time: 2h
+
+* New options for adding a CSS class to image title for widget image
+* Fixed field type for Zipcode in vCard widget
+* Temporary added P.IVA for vCard output
+* Changed array short notation to extended notation
+
 = 2.0.1 =
 Release Date: October 25th, 2016
 
@@ -205,7 +215,6 @@ Dev time: 4h
 * [Fix typo #11](https://github.com/overclokk/italystrap-extended/pull/11) Thanks to [Marco Bianco](https://github.com/cobyan)
 * [Improvement to Lazy Load #14](https://github.com/overclokk/italystrap-extended/pull/14) Thanks to [Rocco Aliberti](https://github.com/eri-trabiccolo)
 * Added custom placeholder for Lazy Load
-
 
 = 2.0.0 Breaking Changes =
 Release Date: October 19th, 2016
