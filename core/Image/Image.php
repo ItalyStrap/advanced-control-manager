@@ -118,9 +118,10 @@ class Image {
 		}
 
 		return sprintf(
-			'<%1$s>%2$s</%1$s>',
+			'<%1$s class="%3$s">%2$s</%1$s>',
 			$this->args['image_title_tag'],
-			esc_attr( $this->args['image_title'] )
+			esc_attr( $this->args['image_title'] ),
+			esc_attr( $this->args['image_title_class'] )
 		);
 	
 	}
