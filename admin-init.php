@@ -93,7 +93,7 @@ $injector->defineParam( 'settings', $admin_settings );
  *
  * @var Admin
  */
-$injector->define( 'ItalyStrap\Admin\Admin', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+$injector->define( 'ItalyStrap\Admin\Admin', array( 'fields_type' => 'ItalyStrap\Admin\Fields' ) );
 $admin = $injector->make( 'ItalyStrap\Admin\Admin' );
 $admin->init();
 // $admin->delete_option();
@@ -142,7 +142,7 @@ if ( isset( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', ['fields_type' => 'ItalyStrap\Admin\Fields'] );
+	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', array( 'fields_type' => 'ItalyStrap\Admin\Fields' ) );
 	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
