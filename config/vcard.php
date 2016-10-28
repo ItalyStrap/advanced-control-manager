@@ -249,7 +249,7 @@ return array(
 				'name'		=> __( 'Zipcode/Postal Code', 'italystrap' ),
 				'desc'		=> __( 'Your postal code.', 'italystrap' ),
 				'id'		=> 'postal_code',
-				'type'		=> 'number',
+				'type'		=> 'text',
 				'class'		=> 'widefat',
 				'default'	=> '',
 				'validate'	=> 'numeric',
