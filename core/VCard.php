@@ -143,6 +143,8 @@ class VCard {
 			if ( $this->args[ $contact_key ] ) {
 				if ( 'email' === $contact_key ) {
 					$contacts_list .= '<li class="' . $itemprop . '" itemprop="' . $itemprop . '"><a href="mailto:' . antispambot( is_email( $this->args[ $contact_key ] ) ) . '">' . antispambot( is_email( $this->args[ $contact_key ] ) ) . '</a></li>'; // XSS ok.
+				} elseif ( 'taxID' === $contact_key ) {
+					$contacts_list .= '<li class="' . $itemprop . '" itemprop="' . $itemprop . '"><span>P.IVA</span> ' . esc_textarea( $this->args[ $contact_key ] ) . '</li>';
 				} else {
 					$contacts_list .= '<li class="' . $itemprop . '" itemprop="' . $itemprop . '">' . esc_textarea( $this->args[ $contact_key ] ) . '</li>';
 				}
