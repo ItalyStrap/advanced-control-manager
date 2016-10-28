@@ -70,6 +70,21 @@ return array(
 				 ),
 
 	/**
+	 * Define CSS class for image title. Default: h4.
+	 */
+	'image_title_class'			=> array(
+		'name'		=> __( 'Image title CSS class', 'italystrap' ),
+		'desc'		=> __( 'Define CSS class for image title. Default: widget-image-title.', 'italystrap' ),
+		'id'		=> 'image_title_class',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> 'widget-image-title',
+		// 'validate'	=> 'esc_attr',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'style',
+	),
+
+	/**
 	 * Ids for the images to use.
 	 */
 	'caption'			=> array(
