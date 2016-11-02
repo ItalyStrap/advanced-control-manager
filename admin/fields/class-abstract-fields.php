@@ -11,6 +11,8 @@
 
 namespace ItalyStrap\Admin;
 
+use InvalidArgumentException;
+
 /**
  * Abstract class for fields functionality
  */
@@ -60,6 +62,14 @@ abstract class A_Fields implements I_Fields {
 	 * @return string           Return the field html
 	 */
 	public function get_field_type( array $key, array $instance ) {
+
+		if ( ! isset( $key['_id'] ) ) {
+			throw new InvalidArgumentException( __( 'The _id key is not set', 'italystrap' ) );
+		}
+
+		if ( ! isset( $key['_name'] ) ) {
+			throw new InvalidArgumentException( __( 'The _name key is not set', 'italystrap' ) );
+		}
 
 		/**
 		 * If field is requesting to be conditionally shown
