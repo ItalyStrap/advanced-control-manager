@@ -333,6 +333,12 @@ class Fields extends A_Fields {
 		// if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
 		// 	$out .= ' checked="checked" ';
 		// }
+		// if ( 'menu_cache' === $key['id'] ) {
+		// 	d( isset( $key['value'] ) );
+
+		// 	d( $key['default'] );
+		// 	d( $key['value'] );
+		// }
 
 		if ( ( ! isset( $key['value'] ) && ! empty( $key['default'] ) ) || ( isset( $key['value']  ) && ! empty( $key['value'] ) ) ) {
 			$out .= ' checked="checked" ';
@@ -352,7 +358,8 @@ class Fields extends A_Fields {
 		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		if ( isset( $key['desc'] ) ) {
-			$out .= $this->field_type_description( $key['desc'] ); }
+			$out .= $this->field_type_description( $key['desc'] );
+		}
 
 		return $out;
 	}

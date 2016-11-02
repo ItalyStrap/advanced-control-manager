@@ -412,39 +412,14 @@ abstract class A_Admin implements I_Admin{
 	 *
 	 * @param  array $args Array with arguments.
 	 */
-	public function get_field_type( $args ) {
+	public function get_field_type( array $args ) {
 
 		/**
-		 * If field is requesting to be conditionally shown
+		 * Set field id and name
 		 */
-		if ( ! $this->fields_type->should_show( $args ) ) {
-			return;
-		}
-
-		/**
-		 * Prefix method
-		 *
-		 * @var string
-		 */
-		$field_method = 'field_type_' . str_replace( '-', '_', $args['type'] );
-
-		$args['value'] = ( isset( $this->options[ $args['id'] ] ) ) ? $this->options[ $args['id'] ] : '' ;
-
-		/* Set field id and name  */
 		$args['_id'] = $args['_name'] = $this->args['options_name'] . '[' . $args['id'] . ']';
 
-		/**
-		 * Run method
-		 */
-		if ( method_exists( $this->fields_type, $field_method ) ) {
-
-			echo $this->fields_type->$field_method( $args ); // XSS ok.
-
-		} else {
-
-			echo $this->fields_type->field_type_text( $args ); // XSS ok.
-
-		}
+		echo $this->fields_type->get_field_type( $args, $this->options ); // XSS ok.
 	}
 
 	/**

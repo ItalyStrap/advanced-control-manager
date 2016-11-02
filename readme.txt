@@ -197,6 +197,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.1.0 =
+Release Date: October 28th, 2016
+
+Dev time: 2h
+
+* Better Field Class improvements
+
 = 2.0.2 =
 Release Date: October 28th, 2016
 

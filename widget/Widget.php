@@ -579,74 +579,18 @@ abstract class Widget extends WP_Widget {
 	 *
 	 * @access protected
 	 * @param  array  $key The key of field's array to create the HTML field.
-	 * @param  string $out The HTML form output.
+	 *
 	 * @return string      Return the HTML Fields
 	 */
-	protected function field_type( array $key, $out = '' ) {
+	protected function field_type( array $key ) {
 
 		/**
-		 * If field is requesting to be conditionally shown
+		 * Set field id and name
 		 */
-		if ( ! $this->fields_type->should_show( $key ) ) {
-			return;
-		}
-
-		/* Set Defaults */
-		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
-		// var_dump( $key['default'] );
-		// var_dump( $key['value'] );
-		// var_dump( $this->instance[ $key['id'] ] );
-		if ( isset( $this->instance[ $key['id'] ] ) ) {
-			// var_dump($this->instance[ $key['id'] ]);
-			if ( is_array( $this->instance[ $key['id'] ] ) ) {
-				$key['value'] = $this->instance[ $key['id'] ];
-				// var_dump($key['value']);
-			} else {
-				$key['value'] = empty( $this->instance[ $key['id'] ] ) ? '' : strip_tags( $this->instance[ $key['id'] ] );
-			}
-		} else {
-			// var_dump( $key );
-			// var_dump( $key['id'] );
-			// var_dump( $key['value'] );
-			// unset( $key['value'] );
-			// var_dump( $key['value'] );
-		}
-
-		/* Set field id and name  */
 		$key['_id'] = $this->get_field_id( $key['id'] );
 		$key['_name'] = $this->get_field_name( $key['id'] );
 
-		/* Set field type */
-		if ( ! isset( $key['type'] ) ) { $key['type'] = 'text'; }
-
-		/* Prefix method */
-		$field_method = 'field_type_' . str_replace( '-', '_', $key['type'] );
-
-		/* Check for <p> Class */
-		$p_class = ( isset( $key['class-p'] ) ) ? ' class="' . $key['class-p'] . '"' : '';
-
-		// $this->fields_type
-		//
-		// var_dump( $this->fields_type->$field_method( $key ) );
-		/**
-		 * if ( method_exists( $this, $field_method ) ) {
-		 * 	return '<p' . $p_class . '>' . $this->$field_method( $key ) . '</p>';
-		 * } else {
-		 * return '<p' . $p_class . '>' . $this->field_type_text( $key ) . '</p>'; }
-		 */
-
-		/**
-		 * Run method
-		 */
-		if ( method_exists( $this->fields_type, $field_method ) ) {
-
-			return '<p' . $p_class . '>' . $this->fields_type->$field_method( $key ) . '</p>';
-
-		} else {
-
-			return '<p' . $p_class . '>' . $this->fields_type->field_type_text( $key ) . '</p>';
-
-		}
+		return $this->fields_type->get_field_type( $key, $this->instance );
 
 	}
 

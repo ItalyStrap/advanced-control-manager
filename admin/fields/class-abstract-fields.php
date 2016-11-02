@@ -23,9 +23,11 @@ abstract class A_Fields implements I_Fields {
 	 *
 	 * @since 2.0.0
 	 *
+	 * @param  array $key      The array with field arguments.
+	 *
 	 * @return bool Whether the field should be shown.
 	 */
-	public function should_show( $args ) {
+	public function should_show( $key ) {
 		
 		/**
 		 * Default. Show the field
@@ -34,18 +36,94 @@ abstract class A_Fields implements I_Fields {
 		 */
 		$show = true;
 
-		if ( ! isset( $args[ 'show_on_cb' ] ) ) {
+		if ( ! isset( $key[ 'show_on_cb' ] ) ) {
 			return $show;
 		}
 
 		/**
 		 * Use the callback to determine showing the field, if it exists
 		 */
-		if ( is_callable( $args[ 'show_on_cb' ] ) ) {
-			$show = call_user_func( $args[ 'show_on_cb' ], $this );
+		if ( is_callable( $key[ 'show_on_cb' ] ) ) {
+			$show = call_user_func( $key[ 'show_on_cb' ], $this );
 		}
 
 		return $show;
+	}
+
+	/**
+	 * Get the field type
+	 *
+	 * @param  array $key      The array with field arguments.
+	 * @param  array $instance This is the $instance variable of widget
+	 *                         or the options variable of the plugin.
+	 *
+	 * @return string           Return the field html
+	 */
+	public function get_field_type( array $key, array $instance ) {
+
+		/**
+		 * If field is requesting to be conditionally shown
+		 */
+		if ( ! $this->should_show( $key ) ) {
+			return;
+		}
+
+		/**
+		 * Set field type
+		 */
+		if ( ! isset( $key['type'] ) ) {
+			$key['type'] = 'text';
+		}
+
+		/**
+		 * Prefix method
+		 *
+		 * @var string
+		 */
+		$field_method = 'field_type_' . str_replace( '-', '_', $key['type'] );
+
+		/**
+		 * Set Defaults
+		 */
+		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
+
+		if ( isset( $instance[ $key['id'] ] ) ) {
+
+			if ( is_array( $instance[ $key['id'] ] ) ) {
+				$key['value'] = $instance[ $key['id'] ];
+
+			} else {
+				$key['value'] = strip_tags( $instance[ $key['id'] ] );
+			}
+		} else {
+			$key['value'] = null;
+		}
+
+		/**
+		 * CSS class for <p>
+		 *
+		 * @var string
+		 */
+		$p_class = isset( $key['class-p'] ) ? ' class="' . $key['class-p'] . '"' : '';
+
+		/**
+		 * The field html
+		 *
+		 * @var string
+		 */
+		$output = '';
+
+		/**
+		 * Run method
+		 */
+		$output = sprintf(
+			'<p%1$s>%2$s</p>',
+			$p_class,
+			method_exists( $this, $field_method ) ? $this->$field_method( $key ) : $this->field_type_text( $key )
+		);
+
+		return $output;
+	
 	}
 
 	/**
