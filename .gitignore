@@ -20,12 +20,9 @@ lang/ItalyStrap.po
 
 #Composer
 composer.lock
-#vendor
-#!/vendor/mobiledetect
-#vendor/mobiledetect/mobiledetectlib
-#vendor/composer/installed.json
-/vendor/**/.git
-/vendor/**/test*
+vendor/
+#/vendor/**/.git
+#/vendor/**/test*
 
 lucatume/wp-browser
 lucatume/wp-browser-commons
