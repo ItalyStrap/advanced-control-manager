@@ -201,5 +201,34 @@ class Register_Metaboxes {
 			)
 		);
 
+
+
+
+
+		$maps_settings_metabox_object_types = apply_filters( 'lovetrotter_maps_settings_metabox_object_types', array( 'post' ) );
+
+		/**
+		 * Sample metabox to demonstrate each field type included
+		 */
+		// $cmb = new_cmb2_box(
+		// 	array(
+		// 		'id'            => $this->prefix . '-maps-settings-metabox',
+		// 		'title'         => __( 'Advanced settings', 'lovetrotter' ),
+		// 		'object_types'  => $maps_settings_metabox_object_types,
+		// 		'context'    => 'normal',
+		// 		'priority'   => 'high',
+		// 	)
+		// );
+
+		// $cmb->add_field(
+		// 	array(
+		// 		'name' => __( 'Location', 'lovetrotter' ),
+		// 		'desc' => __( 'Advance maps setting for this page/post', 'lovetrotter' ),
+		// 		'id' => $this->_prefix . '_location',
+		// 		'type' => 'pw_map',
+		// 		// 'split_values' => true, // Save latitude and longitude as two separate fields
+		// 	)
+		// );
+
 	}
 }
