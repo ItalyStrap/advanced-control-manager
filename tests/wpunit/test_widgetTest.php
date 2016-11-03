@@ -21,11 +21,11 @@ class test_widgetTest extends \Codeception\TestCase\WPTestCase
 
 	public function test_default_option_is_set_in_file() {
 
-		$scanned_directory = array_diff( scandir( ITALYSTRAP_PLUGIN_PATH . 'options' ), array('..', '.', 'index.php', 'options-carousel.php', 'options-vcard-widget.php' ) );
+		$scanned_directory = array_diff( scandir( ITALYSTRAP_PLUGIN_PATH . 'config' ), array('..', '.', 'index.php', 'carousel.php', 'vcard-widget.php' ) );
 
 		foreach ( $scanned_directory as $key => $value) {
 
-			$pair = require( ITALYSTRAP_PLUGIN_PATH . 'options/' . $value );
+			$pair = require( ITALYSTRAP_PLUGIN_PATH . 'config/' . $value );
 
 			foreach ( $pair as $key => $default ) {
 				$this->assertTrue( isset( $default['default'] ) );
@@ -46,7 +46,7 @@ class test_widgetTest extends \Codeception\TestCase\WPTestCase
 	 */
 	function test_italystrap_widget_media_carousel() {
 
-		$widget = new ItalyStrap\Core\Widget_Media_Carousel( 'foo', 'Foo' );
+		$widget = new ItalyStrap\Widget\Carousel( 'foo', 'Foo' );
 		ob_start();
 		$args = array(
 			'before_widget' => '<section>',

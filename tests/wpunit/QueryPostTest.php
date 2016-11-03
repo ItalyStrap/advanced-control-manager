@@ -2,9 +2,9 @@
 /**
  * Test the Query_Posts Class
  */
-namespace ItalyStrap\Core;
+// namespace ItalyStrap\Core;
 
-use \WP_Query;
+// use \WP_Query;
 
 class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 
@@ -22,7 +22,7 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 		// Before.
 		parent::setUp();
 
-		$this->query = Query_Posts::init();
+		$this->query = ItalyStrap\Core\Query\Posts::init();
 
 		// Your set up methods here.
 	}
@@ -42,7 +42,7 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	 * it should be instantiatable
 	 */
 	public function it_should_be_instantiatable() {
-		$this->assertInstanceOf( 'ItalyStrap\Core\Query_Posts', $this->query );
+		$this->assertInstanceOf( 'ItalyStrap\Core\Query\Posts', $this->query );
 	}
 
 	/**

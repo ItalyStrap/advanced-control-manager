@@ -73,7 +73,7 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
 	 */
 	public function test_if_return_a_string() {
 
-		$string = ItalyStrap\Core\render_html_in_title_output( 'Questo è un [strong]titolo[/strong] in grassetto' );
+		$string = ItalyStrap\Core\render_html_in_title_output( 'Questo è un {{strong}}titolo{{/strong}} in grassetto' );
 
 		$this->assertTrue( is_string( $string ) );
 		$this->assertContains( '<strong>', $string );

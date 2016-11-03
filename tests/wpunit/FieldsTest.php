@@ -134,6 +134,24 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 
     /**
      * @test
+     * it_should_be_show
+     */
+    public function it_should_be_show() {
+    	$key[ 'show_on_cb' ] = '__return_true';
+        $this->assertTrue( $this->fields_type->should_show( $key ) );
+    }
+
+    /**
+     * @test
+     * it_should_be_hide
+     */
+    public function it_should_be_hide() {
+    	$key[ 'show_on_cb' ] = '__return_false';
+        $this->assertTrue( ! $this->fields_type->should_show( $key ) );
+    }
+
+    /**
+     * @test
      * it_should_be_field_type_set
      */
     public function it_should_be_field_type_set() {
@@ -290,5 +308,4 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 		$this->assertNotEmpty( $element->getAttribute( $attr ), "Attribute $attr is empty for type $type" );
 
 	}
-
 }
