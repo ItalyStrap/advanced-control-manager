@@ -101,9 +101,8 @@ add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
 
 /**
  * Instanziate the ItalyStrapAdminGallerySettings
- *
- * @var ItalyStrapAdminGallerySettings
  */
+$injector->define( 'ItalyStrapAdminGallerySettings', array( 'fields_type' => 'ItalyStrap\Admin\Fields' ) );
 $gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
 
 /**

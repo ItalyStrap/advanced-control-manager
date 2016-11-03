@@ -229,6 +229,8 @@ Dev time: 2h
 * Better Field Class improvements
 * Added Google Analytics snippet with basic options
 * New function for getting default plugin config
+* Added Cache for menu in only for beta tester
+* Improved functionality for gallery settings (work in progress)
 
 = 2.0.2 =
 Release Date: October 28th, 2016
