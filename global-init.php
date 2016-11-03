@@ -182,6 +182,25 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	// d( get_option( 'italystrap_widget_area' ) );
 }
 
+// if ( ! empty( $options['shortcode_widget'] ) ) {
+	/**
+	 * Instantiate Widget to Shortcode Class
+	 * Questa deve essere eseguita sia in admin che in front-end
+	 *
+	 * @var ItalyStrap\Shortcode\Widget
+	 */
+	// $shortcode_widget = $injector->make( 'ItalyStrap\Shortcode\Widget' );
+
+	// add_shortcode( 'widget', array( $shortcode_widget, 'shortcode' ) );
+
+	// add_action( 'widgets_init', array( $shortcode_widget, 'arbitrary_sidebar' ), 20 );
+	// add_action( 'in_widget_form', array( $shortcode_widget, 'in_widget_form' ), 10, 3 );
+	// add_filter( 'mce_external_plugins', array( $shortcode_widget, 'mce_external_plugins' ) );
+	// add_filter( 'mce_buttons', array( $shortcode_widget, 'mce_buttons' ) );
+	// add_action( 'admin_enqueue_scripts', array( $shortcode_widget, 'editor_parameters' ) );
+	// add_action( 'wp_enqueue_scripts', array( $shortcode_widget, 'editor_parameters' ) );
+// }
+
 /**
  * This are some functionality in beta version.
  * If you want to use thoose functionality you have to define ITALYSTRAP_BETA
