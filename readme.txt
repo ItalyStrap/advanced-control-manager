@@ -227,6 +227,7 @@ Release Date: October 28th, 2016
 Dev time: 2h
 
 * Better Field Class improvements
+* Added Google Analytics snippet with basic options
 
 = 2.0.2 =
 Release Date: October 28th, 2016
