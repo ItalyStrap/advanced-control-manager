@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Admin;
+<?php
 /**
  * Fields API: Fields Class
  *
  * @package ItalyStrap
  * @since 2.0.0
  */
+
+namespace ItalyStrap\Admin;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -332,12 +334,6 @@ class Fields extends A_Fields {
 
 		// if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
 		// 	$out .= ' checked="checked" ';
-		// }
-		// if ( 'menu_cache' === $key['id'] ) {
-		// 	d( isset( $key['value'] ) );
-
-		// 	d( $key['default'] );
-		// 	d( $key['value'] );
 		// }
 
 		if ( ( ! isset( $key['value'] ) && ! empty( $key['default'] ) ) || ( isset( $key['value']  ) && ! empty( $key['value'] ) ) ) {

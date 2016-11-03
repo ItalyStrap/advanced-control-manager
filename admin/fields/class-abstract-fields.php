@@ -49,7 +49,31 @@ abstract class A_Fields implements I_Fields {
 			$show = call_user_func( $key[ 'show_on_cb' ], $this );
 		}
 
-		return $show;
+		return (bool) $show;
+	}
+
+	/**
+	 * Set _id _name attributes
+	 *
+	 * @todo Creare codice per settare _id e _name in caso non siano forniti
+	 *       come chiave -> valore con l'array $key.
+	 *       Attualmente sono generati dalle classi che gestiscono widget e admin
+	 *       Vedere: Widget::field_type();
+	 *       Vedere: Admin::get_field_type();
+	 *       Valutare se passare per referenza il valore
+	 *
+	 * @param  array $key The array with field arguments.
+	 * @return array      The new array with _id and _name set.
+	 */
+	public function set_attr_id_name( array &$key ) {
+
+		/**
+		 * Set field id and name
+		 */
+		$key['_id'] = $key['_name'] = $this->args['options_name'] . '[' . $key['id'] . ']';
+
+		return $key;
+	
 	}
 
 	/**
@@ -75,7 +99,7 @@ abstract class A_Fields implements I_Fields {
 		 * If field is requesting to be conditionally shown
 		 */
 		if ( ! $this->should_show( $key ) ) {
-			return;
+			return '';
 		}
 
 		/**
