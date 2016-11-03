@@ -12,7 +12,8 @@
 
 namespace ItalyStrap\Core;
 
-use \ItalyStrap\Core\Asset\Inline_Style;
+use ItalyStrap\Core\Asset\Inline_Style;
+use ItalyStrap\Core\Cache\Menu as Menu_Cache;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -109,7 +110,7 @@ if ( ! empty( $options['web_font_loading'] ) ) {
 	add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
 }
 
-if ( isset( $options['widget_attributes'] ) ) {
+if ( ! empty( $options['widget_attributes'] ) ) {
 	/**
 	 * Init the Widget_Attributes
 	 *
@@ -124,7 +125,7 @@ if ( isset( $options['widget_attributes'] ) ) {
 /**
  * Option for killing the emojis
  */
-if ( isset( $options['kill-emojis'] ) ) {
+if ( ! empty( $options['kill-emojis'] ) ) {
 	add_action( 'init', 'ItalyStrap\Core\kill_emojis' );
 }
 
@@ -132,18 +133,31 @@ if ( isset( $options['kill-emojis'] ) ) {
  * General
  * Allow shortcode in widget text.
  */
-if ( isset( $options['do_shortcode_widget_text'] ) ) {
+if ( ! empty( $options['do_shortcode_widget_text'] ) ) {
 	add_filter( 'widget_text', 'do_shortcode' );
 }
 
 if ( ! empty( $options['activate_analytics'] ) ) {
 	/**
-	 * [$generate_analytics description]
+	 * Generate the Google analytics code
 	 *
 	 * @var Generate_Analytics
 	 */
 	$analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
 	add_action( 'wp_footer', array( $analytics, 'render_analytics' ), 99999 );
+}
+
+/**
+ * @link https://github.com/inpsyde/menu-cache
+ */
+if ( ! empty( $options['menu_cache'] ) && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
+
+	$cache = new Menu_Cache();
+
+	add_filter( 'pre_wp_nav_menu', [ $cache, 'get_menu' ], 10, 2 );
+
+	// Unfortunately, there is no appropriate action, so we have to (mis)use a filter here. Almost as last as possible.
+	add_filter( 'wp_nav_menu', [ $cache, 'cache_menu' ], PHP_INT_MAX - 1, 2 );
 }
 
 /**

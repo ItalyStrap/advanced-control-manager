@@ -10,7 +10,8 @@
 		"overclokk/minimum-requirements": "dev-master",
 		"rdlowrey/auryn": "^1.4",
         "erusev/parsedown": "^1.6",
-        "leafo/scssphp": "^0.6.5"
+        "leafo/scssphp": "^0.6.5",
+        "inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^1.9",
