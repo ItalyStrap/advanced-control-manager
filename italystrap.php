@@ -138,6 +138,8 @@ $injector->defineParam( 'args', $args );
  */
 $options = (array) get_option( $args['options_name'] );
 
+$options = wp_parse_args( $options, \ItalyStrap\Core\get_default_from_config( require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' ) ) );
+
 /**
  * Define options parmeter
  */
@@ -185,7 +187,9 @@ require( ITALYSTRAP_PLUGIN_PATH . 'admin-init.php' );
  * Require Debug file, this file is only for internal development
  */
 if ( defined( 'ITALYSTRAP_DEV' ) ) {
-	require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
+	add_action( 'plugins_loaded', function () use ( $injector ) {
+		require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
+	}, 9999 );
 }
 
 /**
