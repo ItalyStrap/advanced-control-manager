@@ -60,6 +60,28 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
 }
 
 /**
+ * Get options default
+ *
+ * @param  array $config The configuration array.
+ *
+ * @return array         Return the array with options default.
+ */
+function get_default_from_config( array $config = array() ) {
+
+	$options_default = array();
+
+	foreach ( $config as $value ) {
+		foreach ( $value['settings_fields'] as $settings_fields_value ) {
+			$default = isset( $settings_fields_value['args']['default'] ) ? $settings_fields_value['args']['default'] : null;
+			$options_default[ $settings_fields_value['id'] ] = $default;
+		}
+	}
+
+	return $options_default;
+
+}
+
+/**
  * Read and return file content
  *
  * @link https://tommcfarlin.com/reading-files-with-php/

@@ -222,12 +222,13 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.1.0 =
-Release Date: October 28th, 2016
+Release Date: November 3rd, 2016
 
 Dev time: 2h
 
 * Better Field Class improvements
 * Added Google Analytics snippet with basic options
+* New function for getting default plugin config
 
 = 2.0.2 =
 Release Date: October 28th, 2016
