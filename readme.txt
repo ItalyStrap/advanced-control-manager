@@ -102,6 +102,10 @@ Using git, browse to your `/wp-content/plugins/` directory and clone this reposi
 
 `git clone https://github.com/overclokk/italystrap-extended.git italystrap`
 
+`cd italystrap`
+
+`composer install --no-dev`
+
 Then go to your Plugins screen and click Activate.
 
 == Frequently Asked Questions ==
@@ -231,6 +235,7 @@ Dev time: 2h
 * New function for getting default plugin config
 * Added Cache for menu in only for beta tester
 * Improved functionality for gallery settings (work in progress)
+* Some code fix
 
 = 2.0.2 =
 Release Date: October 28th, 2016

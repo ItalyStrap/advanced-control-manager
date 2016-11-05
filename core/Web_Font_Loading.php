@@ -158,6 +158,10 @@ class Web_Font_Loading {
 			 */
 			$font_family = esc_attr( $this->theme_mods[ $part . '_font_family' ] );
 
+			if ( ! isset( $this->fonts[ $font_family ] ) ) {
+				return array();
+			}
+
 			/**
 			 * Get the font family from $font_family
 			 *
