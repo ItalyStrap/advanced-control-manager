@@ -236,6 +236,7 @@ Dev time: 2h
 * Added Cache for menu in only for beta tester
 * Improved functionality for gallery settings (work in progress)
 * Some code fix
+* Fixed a PHP 5.3 fatal error
 
 = 2.0.2 =
 Release Date: October 28th, 2016

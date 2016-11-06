@@ -95,14 +95,16 @@ class Posts extends Query {
 		};
 		add_filter( 'excerpt_more', $new_excerpt_more );
 
+		$excerpt_length = $this->args['excerpt_length'];
+
 		/**
 		 * Excerpt length filter
 		 *
 		 * @var functions
 		 */
 		if ( $this->args['excerpt_length'] > 0 ) {
-			add_filter( 'excerpt_length', function ( $length ) {
-				return $this->args['excerpt_length'];
+			add_filter( 'excerpt_length', function ( $length ) use ( $excerpt_length ) {
+				return $excerpt_length;
 			} );
 		}
 

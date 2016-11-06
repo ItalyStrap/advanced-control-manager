@@ -136,6 +136,7 @@ class Areas {
 		// if ( ! is_admin() ) {
 			// d( get_option( 'italystrap_widget_area' ) );
 		// }
+		$areas_obj = $this;
 
 		foreach ( (array) $this->sidebars as $sidebar_key => $sidebar ) {
 
@@ -154,7 +155,9 @@ class Areas {
 			// d( $sidebar );
 			register_sidebar( $sidebar['value'] );
 
-			add_action( $sidebar['action'], function() use ( $sidebar_key ) { $this->add_widget_area( $sidebar_key ); }, absint( $sidebar['priotity'] ) );
+			add_action( $sidebar['action'], function() use ( $sidebar_key, $areas_obj ) {
+				$areas_obj->add_widget_area( $sidebar_key );
+			}, absint( $sidebar['priotity'] ) );
 		}
 	
 	}
