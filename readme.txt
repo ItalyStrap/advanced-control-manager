@@ -226,9 +226,9 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.1.0 =
-Release Date: November 3rd, 2016
+Release Date: November 7th, 2016
 
-Dev time: 2h
+Dev time: 10h
 
 * Better Field Class API improvements
 * Added Google Analytics snippet with basic options in ItalyStrap settings
