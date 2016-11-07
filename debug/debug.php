@@ -12,10 +12,10 @@
 /**
  * Print style for kint and pre wp-admin > pre
  */
-function add_style_for_pre_tag_var_dump() {
+function add_style_for_pre_tag_var_dump_and_kint_debugger() {
 	echo '<style>.wp-admin > pre, .kint{margin-left: 170px;}</style>';
 }
-add_action( 'admin_head', 'add_style_for_pre_tag_var_dump' );
+add_action( 'admin_head', 'add_style_for_pre_tag_var_dump_and_kint_debugger' );
 
 // http://codex.wordpress.org/Function_Reference/wp_get_theme
 // $my_theme = wp_get_theme( 'italystrap' );
