@@ -42,7 +42,7 @@ add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 /**
  * Add ID to post_type table
  */
-if ( isset( $options['show-ids'] ) ) {
+if ( ! empty( $options['show-ids'] ) ) {
 	require( 'hooks/simply-show-ids.php' );
 	add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
 }
@@ -52,7 +52,7 @@ if ( isset( $options['show-ids'] ) ) {
  * @todo  maybe add, remove & customize admin table?
  * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/manage_$post_type_posts_columns
  */
-if ( isset( $options['show-thumb'] ) ) {
+if ( ! empty( $options['show-thumb'] ) ) {
 	if ( isset( $_GET['post_type'] ) && 'product' === $_GET['post_type'] ) {
 		return;
 	}
@@ -135,7 +135,7 @@ if ( ! empty( $options['activate_custom_css'] ) ) {
 	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_style_fields_in_wp_editor' ) );
 }
 
-if ( isset( $options['widget_attributes'] ) ) {
+if ( ! empty( $options['widget_attributes'] ) ) {
 	/**
 	 * Init the Widget_Attributes
 	 *

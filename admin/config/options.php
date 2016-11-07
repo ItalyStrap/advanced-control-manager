@@ -561,7 +561,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
+				// 'show_on'				=> \ItalyStrap\Core\is_beta(),
 			),
 		),
 	),

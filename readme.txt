@@ -230,10 +230,10 @@ Release Date: November 3rd, 2016
 
 Dev time: 2h
 
-* Better Field Class improvements
-* Added Google Analytics snippet with basic options
+* Better Field Class API improvements
+* Added Google Analytics snippet with basic options in ItalyStrap settings
 * New function for getting default plugin config
-* Added Cache for menu in only for beta tester
+* Added PHP Cache for menu only for beta tester
 * Improved functionality for gallery settings (work in progress)
 * Some code fix
 * Fixed a PHP 5.3 fatal error
