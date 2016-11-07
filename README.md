@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.7  
-**Stable tag:** 2.0.2  
+**Stable tag:** 2.1.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -74,11 +74,39 @@ This widget was present in my [ItalyStrap starter theme](http://www.italystrap.c
 
 ## Installation ##
 
+### Upload ###
+
+1. Download the latest [tagged archive](https://github.com/overclokk/italystrap-extended/releases) (choose the "zip" option) or the [latest from WP.org](https://wordpress.org/plugins/italystrap/).
+2. Go to the Plugins -> Add New screen and click the Upload tab.
+3. Upload the zipped archive directly.
+4. Go to the Plugins screen and click Activate.
+
+### Manual ###
+
+1. Download the latest [tagged archive](https://github.com/overclokk/italystrap-extended/releases) (choose the "zip" option) or the [latest from WP.org](https://wordpress.org/plugins/italystrap/).
+2. Unzip the archive.
+3. Copy the folder to your /wp-content/plugins/ directory.
+4. Go to the Plugins screen and click Activate.
+
+### WP.org ###
+
 1. Install ItalyStrap either via the WordPress.org plugin directory, or by uploading the files to the `/wp-content/plugins/` directory in your server.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Activate your desired functionality from ItalyStrap option page.
 4. After activating ItalyStrap, read the documentation for any kind of customization.
 5. That's it.  You're ready to go!
+
+### Git ###
+
+Using git, browse to your `/wp-content/plugins/` directory and clone this repository:
+
+`git clone https://github.com/overclokk/italystrap-extended.git italystrap`
+
+`cd italystrap`
+
+`composer install --no-dev`
+
+Then go to your Plugins screen and click Activate.
 
 ## Frequently Asked Questions ##
 
@@ -228,6 +256,19 @@ If you have any problem please open a ticket :-)
 
 
 ## Changelog ##
+
+### 2.1.0 ###
+Release Date: November 7th, 2016
+
+Dev time: 10h
+
+* Better Field Class API improvements
+* Added Google Analytics snippet with basic options in ItalyStrap settings
+* New function for getting default plugin config
+* Added PHP Cache for menu only for beta tester
+* Improved functionality for gallery settings (work in progress)
+* Some code fix
+* Fixed a PHP 5.3 fatal error
 
 ### 2.0.2 ###
 Release Date: October 28th, 2016
