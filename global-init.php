@@ -86,7 +86,7 @@ class Init {
 
 		if ( ! $gallery ) {
 			$shortcode_carousel = new Gallery();
-			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 4 );
+			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 3 );
 			add_filter( 'jetpack_gallery_types', array( $shortcode_carousel, 'gallery_types' ) );
 			// add_filter( 'ItalyStrap_gallery_types', array( $shortcode_carousel, 'gallery_types' ), 999 );
 		}

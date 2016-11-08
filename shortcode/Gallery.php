@@ -21,12 +21,12 @@ class Gallery {
 	/**
 	 * Modify the gallery shortcode with Bootstrap Carousel functionality.
 	 *
-	 * @param  string  $output   The gallery output. Default empty.
-	 * @param  array   $atts     Attributes of the gallery shortcode.
-	 * @param  boolean $instance Unique numeric ID of this gallery shortcode instance.
-	 * @return string            Return the new Bootstrap carousel
+	 * @param  string $output   The gallery output. Default empty.
+	 * @param  array  $atts     Attributes of the gallery shortcode.
+	 * @param  int    $instance Unique numeric ID of this gallery shortcode instance.
+	 * @return string           Return the new Bootstrap carousel
 	 */
-	function gallery_shortcode( $output, $atts, $instance ) {
+	function gallery_shortcode( $output, array $atts, $instance = null ) {
 
 		/**
 		 * If type is not set return the output.
