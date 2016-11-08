@@ -10,9 +10,6 @@
  *	License:		GPLv2 or later
  *	License URI:	http://www.gnu.org/licenses/gpl-2.0.html
  *	Domain Path:	/lang
- *	Git URI: https://github.com/overclokk/italystrap-extended
- *	GitHub Plugin URI: https://github.com/overclokk/italystrap-extended
- *	GitHub Branch: master
  *
  * @package ItalyStrap
  * @since 1.0.0
@@ -72,6 +69,27 @@ if ( ! defined( 'ITALYSTRAP_BASENAME' ) ) {
  */
 if ( ! defined( 'ITALYSTRAP_CONFIG_PATH' ) ) {
 	define( 'ITALYSTRAP_CONFIG_PATH', ITALYSTRAP_PLUGIN_PATH . 'config/' );
+}
+
+/**
+ * Define Bog Name constant
+ */
+if ( ! defined( 'GET_BLOGINFO_NAME' ) ) {
+	define( 'GET_BLOGINFO_NAME', get_option( 'blogname' ) );
+}
+
+/**
+ * Define Blog Description Constant
+ */
+if ( ! defined( 'GET_BLOGINFO_DESCRIPTION' ) ) {
+	define( 'GET_BLOGINFO_DESCRIPTION', get_option( 'blogdescription' ) );
+}
+
+/**
+ * Define HOME_URL
+ */
+if ( ! defined( 'HOME_URL' ) ) {
+	define( 'HOME_URL', get_home_url( null, '/' ) );
 }
 
 require( ITALYSTRAP_PLUGIN_PATH . 'vendor/overclokk/minimum-requirements/minimum-requirements.php' );
