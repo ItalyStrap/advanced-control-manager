@@ -366,7 +366,7 @@ return array(
 						'id'			=> 'do_shortcode_widget_text',
 						'type'			=> 'checkbox',
 						'class'			=> 'do_shortcode_widget_text easy',
-						'default'		=> '1',
+						'default'		=> '',
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
