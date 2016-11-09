@@ -9,31 +9,19 @@
  *
  * @since 1.0.0
  *
- * @package ItalyStrap
+ * @package ItalyStrap\Settings
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Settings;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
+if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
 /**
  * Class for admin area
  */
-class Admin extends A_Admin{
-
-	/**
-	 * Initialize Class
-	 *
-	 * @param array  $options     Get the plugin options.
-	 * @param object $fields_type The Fields object.
-	 */
-	// public function __construct( array $options = array(), array $settings, array $args, I_Fields $fields_type ) {
-
-	// 	parent::__construct( $options, $settings, $args, $fields_type );
-
-	// }
+class Settings extends Settings_Base {
 
 	/**
 	 * Initialize admin area with those hooks

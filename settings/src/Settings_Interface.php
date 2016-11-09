@@ -7,16 +7,16 @@
  * @link [URL]
  * @since 2.0.0
  *
- * @package ItalyStrap
+ * @package ItalyStrap\Settings
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Settings;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-interface I_Admin {
+interface Settings_Interface {
 
 	/**
 	 * Function description

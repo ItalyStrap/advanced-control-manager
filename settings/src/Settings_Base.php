@@ -1,18 +1,19 @@
 <?php
 /**
- * Abstract class for admin panel
+ * Abstract class for the WordPress Settings API
  *
- * This class add some functions for use in admin panel
+ * This class make simple the plugins admin panel creations,
+ * you only have to write the array with the plugin configuration and that's it.
  *
  * @link http://codex.wordpress.org/Adding_Administration_Menus
  * @link http://code.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options--wp-24902
  *
  * @since 2.0.0
  *
- * @package ItalyStrap
+ * @package ItalyStrap\Settings
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Settings;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -23,7 +24,7 @@ use ItalyStrap\Fields\Fields_Interface;
 /**
  * Class for admin area
  */
-abstract class A_Admin implements I_Admin{
+abstract class Settings_Base implements Settings_Interface{
 
 	/**
 	 * Definition of variables containing the configuration
@@ -180,10 +181,12 @@ abstract class A_Admin implements I_Admin{
 			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) );
 		}
 
+		$file_path = file_exists( $this->args['admin_view_path'] . $this->pagenow . '.php' ) ? $this->args['admin_view_path'] . $this->pagenow . '.php' : __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . $this->pagenow . '.php';
+
 		/**
 		 * Require settings-page.php
 		 */
-		require( $this->args['admin_view_path'] . $this->pagenow . '.php' );
+		require( $file_path );
 
 	}
 

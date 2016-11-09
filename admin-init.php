@@ -85,8 +85,8 @@ $injector->defineParam( 'settings', $admin_settings );
  *
  * @var Admin
  */
-$injector->define( 'ItalyStrap\Admin\Admin', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
-$admin = $injector->make( 'ItalyStrap\Admin\Admin' );
+$injector->define( 'ItalyStrap\Settings\Settings', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
+$admin = $injector->make( 'ItalyStrap\Settings\Settings' );
 $admin->init();
 // $admin->delete_option();
 add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
