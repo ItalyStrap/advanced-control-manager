@@ -181,7 +181,7 @@ abstract class Settings_Base implements Settings_Interface{
 			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) );
 		}
 
-		$file_path = file_exists( $this->args['admin_view_path'] . $this->pagenow . '.php' ) ? $this->args['admin_view_path'] . $this->pagenow . '.php' : __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . $this->pagenow . '.php';
+		$file_path = file_exists( $this->args['admin_view_path'] . $this->pagenow . '.php' ) ? $this->args['admin_view_path'] . $this->pagenow . '.php' : __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'italystrap-settings.php';
 
 		/**
 		 * Require settings-page.php

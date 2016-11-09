@@ -2,7 +2,7 @@
 /**
  * Template to display the options page.
  *
- * @package ItalyStrap\Admin
+ * @package ItalyStrap\Settings
  */
 
 ?>
