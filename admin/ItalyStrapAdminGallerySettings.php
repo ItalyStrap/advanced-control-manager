@@ -8,7 +8,7 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
 
-use ItalyStrap\Admin\I_Fields;
+use ItalyStrap\Fields\Fields_Interface;
 
 class ItalyStrapAdminGallerySettings {
 
@@ -35,7 +35,7 @@ class ItalyStrapAdminGallerySettings {
 
 	private $instance_old = array();
 
-	function __construct( I_Fields $fields_type ) {
+	function __construct( Fields_Interface $fields_type ) {
 
 		$this->fields_type = $fields_type;
 

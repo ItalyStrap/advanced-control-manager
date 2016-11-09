@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Fields\Fields_Interface;
+
 /**
  * Class for admin area
  */
@@ -95,7 +97,7 @@ abstract class A_Admin implements I_Admin{
 	 * @param array    $theme_mods     The theme options.
 	 * @param I_Fields $fields_type    The Fields object.
 	 */
-	public function __construct( array $options = array(), array $settings, array $args, array $theme_mods, I_Fields $fields_type ) {
+	public function __construct( array $options = array(), array $settings, array $args, array $theme_mods, Fields_Interface $fields_type ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
 			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.

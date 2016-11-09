@@ -13,7 +13,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 use \WP_Widget;
-use ItalyStrap\Admin\Fields;
+use ItalyStrap\Fields\Fields;
 use ItalyStrap\Admin\Sanitization;
 use ItalyStrap\Admin\Validation;
 

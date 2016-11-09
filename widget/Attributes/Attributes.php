@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Admin\I_Fields;
+use ItalyStrap\Fields\Fields_Interface;
 
 /**
  * Class for adding field attributes for widget
@@ -31,10 +31,10 @@ class Attributes {
 	/**
 	 * Init the constructor
 	 *
-	 * @param array    $options     The plugin options.
-	 * @param I_Fields $fields_type Field object.
+	 * @param array            $options     The plugin options.
+	 * @param Fields_Interface $fields_type Field object.
 	 */
-	public function __construct( array $options = array(), I_Fields $fields_type ) {
+	public function __construct( array $options = array(), Fields_Interface $fields_type ) {
 
 		$this->fields_type = $fields_type;
 

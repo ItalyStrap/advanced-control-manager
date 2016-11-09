@@ -24,6 +24,7 @@
 			"deprecated"
 		],
 		"psr-4": {
+			"ItalyStrap\\Fields\\": "fields/",
 			"ItalyStrap\\Core\\": "core/",
 			"ItalyStrap\\Widget\\": "widget/",
 			"ItalyStrap\\Shortcode\\": "shortcode/"

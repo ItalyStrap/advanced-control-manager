@@ -6,7 +6,7 @@
  * @since 2.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Fields;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -15,7 +15,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 /**
  * Class for make field type
  */
-class Fields extends A_Fields {
+class Fields extends Fields_Base {
 
 	/**
 	 * Create the Field Text

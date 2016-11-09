@@ -9,14 +9,14 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Fields;
 
 use InvalidArgumentException;
 
 /**
  * Abstract class for fields functionality
  */
-abstract class A_Fields implements I_Fields {
+abstract class Fields_Base implements Fields_Interface {
 
 	/**
 	 * Determine whether this field should show, based on the 'show_on_cb' callback.

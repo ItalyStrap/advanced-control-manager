@@ -10,9 +10,9 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Fields;
 
-interface I_Fields {
+interface Fields_Interface {
 
 	/**
 	 * Handles outputting an 'input' element

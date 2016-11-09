@@ -77,14 +77,6 @@ $injector->defineParam( 'settings', $admin_settings );
 // echo "</pre>";
 
 /**
- * Instanziate the Fields
- *
- * @var Fields
- */
-// $fields = $injector->make( 'ItalyStrap\Admin\Fields' );
-// $injector->share( $fields );
-
-/**
  * Instantiate Admin Class
  *
  * @param array    $options     Plugin options
@@ -93,7 +85,7 @@ $injector->defineParam( 'settings', $admin_settings );
  *
  * @var Admin
  */
-$injector->define( 'ItalyStrap\Admin\Admin', array( 'fields_type' => 'ItalyStrap\Admin\Fields' ) );
+$injector->define( 'ItalyStrap\Admin\Admin', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
 $admin = $injector->make( 'ItalyStrap\Admin\Admin' );
 $admin->init();
 // $admin->delete_option();
@@ -102,7 +94,7 @@ add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
 /**
  * Instanziate the ItalyStrapAdminGallerySettings
  */
-$injector->define( 'ItalyStrapAdminGallerySettings', array( 'fields_type' => 'ItalyStrap\Admin\Fields' ) );
+$injector->define( 'ItalyStrapAdminGallerySettings', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
 $gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
 
 /**
@@ -141,7 +133,7 @@ if ( ! empty( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', array( 'fields_type' => 'ItalyStrap\Admin\Fields' ) );
+	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
 	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
