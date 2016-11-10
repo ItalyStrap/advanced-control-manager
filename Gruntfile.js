@@ -90,6 +90,30 @@ module.exports = function(grunt) {
 					outputStyle: 'compressed'
 				}
 			},
+			fontello:{
+				options: {
+					sassDir:['sass'],
+					cssDir:['css'],
+					fontsDir:['font'],
+					imagesDir:['admin/img'],
+					httpPath:['../'], // http://stackoverflow.com/questions/13888978/how-to-out-put-images-for-sprite-in-compass-sass
+					relativeAssets:true,
+					outputStyle: 'compressed'
+				}
+			},
+		},
+
+		fontello: { // https://github.com/jubalm/grunt-fontello
+			dist: {
+				options: {
+					config  : 'font/config.json',
+					fonts   : 'font',
+					styles  : 'sass',
+					scss    : true,
+					force   : true,
+					// exclude: ['animation.css', 'fontello-ie7-codes.css', 'fontello.eot'],
+				}
+			}
 		},
 
 		less: { // https://github.com/gruntjs/grunt-contrib-less
@@ -521,8 +545,8 @@ module.exports = function(grunt) {
 								fs.writeFile(file + '/index.php', index_php_text);
 								// fs.writeSync(fd, index_php_text);
 								// console.log("%s (%s)", file, path.extname(file));
-		    				});
-		    				fs.writeSync(fd, index_php_text);
+							});
+							fs.writeSync(fd, index_php_text);
 						} else {
 							console.log( 'error ' + err );
 							throw err;
@@ -573,6 +597,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-fontello');
 	grunt.loadNpmTasks('grunt-phpcs');
 	grunt.loadNpmTasks('grunt-phpcbf');
 	grunt.loadNpmTasks('grunt-contrib-watch');

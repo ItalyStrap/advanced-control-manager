@@ -13,6 +13,8 @@ namespace ItalyStrap\Core\Social;
 
 /**
  * The vCard Class
+ *
+ * @todo This class need more improvements
  */
 class Share {
 
@@ -32,7 +34,23 @@ class Share {
 
 		$wpseo_social = get_option( 'wpseo_social' );
 		$this->via = ! empty( $option['twitter_site'] ) ? '&via=' . $option['twitter_site'] : '' ;
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999999 );
 	}
+
+	/**
+	 * Enqueue scripts
+	 *
+	 * @param string $handle Script name
+	 * @param string $src Script url
+	 * @param array $deps (optional) Array of script names on which this script depends
+	 * @param string|bool $ver (optional) Script version (used for cache busting), set to null to disable
+	 * @param bool $in_footer (optional) Whether to enqueue the script before </head> or before </body>
+	 */
+	function enqueue_scripts() {
+		wp_enqueue_style( 'fontello', ITALYSTRAP_PLUGIN_URL . 'css/social.css', null, null, null );
+	}
+	
 
 	/**
 	 * Set social url
@@ -44,6 +62,8 @@ class Share {
 
 		$get_permalink = get_permalink();
 		$get_the_title = get_the_title();
+		$get_the_excerpt = get_the_content();
+		$thumb_url = wp_get_attachment_thumb_url( get_the_id() );
 	
 		$this->social_url = array(
 			'facebook'	=> sprintf(
@@ -61,10 +81,16 @@ class Share {
 				$get_permalink
 			),
 			'linkedin'	=> sprintf(
-				'http://www.linkedin.com/shareArticle?url=%s&title=%s',
+				'http://www.linkedin.com/shareArticle?mini=true&url=%s&title=%s',
 				$get_permalink,
 				$get_the_title
 			),
+			// 'pinterest'	=> sprintf(
+			// 	'https://pinterest.com/pin/create/button/?url=%s&media=%s&description=%s',
+			// 	$thumb_url,
+			// 	$get_the_title,
+			// 	''
+			// ),
 		);
 	
 	}
@@ -82,11 +108,22 @@ class Share {
 		$this->set_social_url();
 
 		$output = '<ul class="social-button list-inline">';
-	
+
+		$format_array = array(
+			'href'		=> '%s',
+			'class'		=> 'btn btn-default',
+			'target'	=> 'popup',
+			'onclick'	=> '%s return false;',
+			'rel'		=> 'nofollow',
+			'title'		=> '%s',
+		);
+
 		foreach ( $this->social_url as $key => $url ) {
 
+			$format = \ItalyStrap\Core\get_attr( $key, $format_array );
+
 			$output .= sprintf(
-				'<li><a href="%s" target="popup" onclick="%s return false;" rel="nofollow" title="%s"><span class="font-icon icon-facebook">%s</span></a></li>',
+				'<li><a ' . $format . '><span class="font-icon icon-%s">%s</span></a></li>',
 				$url,
 				sprintf(
 					'window.open("%s","popup","width=600,height=600");',
@@ -96,6 +133,7 @@ class Share {
 					__( 'Share on %s', 'italystrap' ),
 					$key
 				),
+				$key,
 				$key
 			);
 		}
