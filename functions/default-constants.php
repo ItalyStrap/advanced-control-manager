@@ -11,7 +11,7 @@ namespace ItalyStrap\Core;
 /**
  * Set default constant for the plugin.
  */
-public function set_plugin_default_constant() {
+function set_plugin_default_constant() {
 
 	/**
 	 * Define some costant for internal use
