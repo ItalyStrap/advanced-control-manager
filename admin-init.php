@@ -76,6 +76,8 @@ $injector->defineParam( 'settings', $admin_settings );
 // print_r(get_theme_mods());
 // echo "</pre>";
 
+$fields_type = array( 'fields_type' => 'ItalyStrap\Fields\Fields' );
+
 /**
  * Instantiate Admin Class
  *
@@ -85,7 +87,7 @@ $injector->defineParam( 'settings', $admin_settings );
  *
  * @var Admin
  */
-$injector->define( 'ItalyStrap\Settings\Settings', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
+$injector->define( 'ItalyStrap\Settings\Settings', $fields_type );
 $admin = $injector->make( 'ItalyStrap\Settings\Settings' );
 $admin->init();
 // $admin->delete_option();
@@ -94,7 +96,7 @@ add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
 /**
  * Instanziate the ItalyStrapAdminGallerySettings
  */
-$injector->define( 'ItalyStrapAdminGallerySettings', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
+$injector->define( 'ItalyStrapAdminGallerySettings', $fields_type );
 $gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
 
 /**
@@ -133,7 +135,7 @@ if ( ! empty( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
+	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', $fields_type );
 	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );

@@ -11,15 +11,6 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 	class ItalyStrapAdminMediaSettings {
 
 		/**
-		 * Init the constructor
-		 */
-		// function __construct() {
-
-			// add_filter( 'image_size_names_choose', array( $this, 'get_image_sizes' ), 999 );
-
-		// }
-
-		/**
 		 * Add list of all image size to administrators in the WordPress Media Library
 		 *
 		 * @package ItalyStrap
