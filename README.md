@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.0  
 **Tested up to:** 4.7  
-**Stable tag:** 2.1.0  
+**Stable tag:** 2.1.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -257,6 +257,18 @@ If you have any problem please open a ticket :-)
 
 ## Changelog ##
 
+### 2.1.1 ###
+Release Date: November 10th, 2016
+
+Dev time: 30h
+
+* Fixed [#15](https://github.com/overclokk/italystrap-extended/issues/15)
+* psr-4 almost ready for admin classes
+* Improvements of the Fields API
+* Improvemente of the Settings API
+* Class for Social Sharing only for beta tester
+* Other fix, improvements and refactoring
+
 ### 2.1.0 ###
 Release Date: November 7th, 2016
 
@@ -449,6 +461,7 @@ First release.
 * [Lazy Load](https://wordpress.org/plugins/lazy-load/)
 * [WordPress Plugin Boilerplate](https://github.com/WPBP/WordPress-Plugin-Boilerplate-Powered)
 * [Disable Emojis](https://geek.hellyer.kiwi/)
+* [Ultimate Posts Widget](https://wordpress.org/plugins/ultimate-posts-widget/)
 
 ### Developers ###
 * [Tonya Mork](https://knowthecode.io/)
