@@ -50,9 +50,9 @@ class Update implements Update_Interface{
 	 * @param  array $instance The array with value to save.
 	 * @return array           The array validated and sanitized.
 	 */
-	public function update( array $instance = array() ) {
+	public function update( array $instance = array(), array $fields = array() ) {
 
-		foreach ( $this->fields as $field ) {
+		foreach ( $fields as $field ) {
 
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';

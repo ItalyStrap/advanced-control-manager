@@ -26,5 +26,5 @@ interface Update_Interface {
 	 * @param  array $input The input array.
 	 * @return array        Return the array sanitized
 	 */
-	public function update( $instance );
+	public function update( $instance, $fields );
 }
