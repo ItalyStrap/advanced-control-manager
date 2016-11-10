@@ -57,10 +57,7 @@ class Settings extends Settings_Base {
 	}
 
 	/**
-	 * Get Aside
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * Get Aside for settings page
 	 */
 	public function get_aside() {
 	
