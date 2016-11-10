@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Fields\Fields_Interface;
+use ItalyStrap\Admin\Validation;
+use ItalyStrap\Admin\Sanitization;
 
 /**
  * Class for admin area
@@ -358,18 +360,18 @@ abstract class Settings_Base implements Settings_Interface{
 	/**
 	 * Sanitize the input data
 	 *
-	 * @param  array $input The input array.
-	 * @return array        Return the array sanitized
+	 * @param  array $instance The input array.
+	 * @return array           Return the array sanitized
 	 */
-	public function update( $input ) {
+	public function update( $instance ) {
 
 		$this->validation = new Validation;
 		$this->sanitization = new Sanitization;
 
 		foreach ( $this->fields as $field ) {
 
-			if ( ! isset( $input[ $field['id'] ] ) ) {
-				$input[ $field['id'] ] = '';
+			if ( ! isset( $instance[ $field['id'] ] ) ) {
+				$instance[ $field['id'] ] = '';
 			}
 
 			/**
@@ -377,20 +379,20 @@ abstract class Settings_Base implements Settings_Interface{
 			 */
 			if ( isset( $field['validate'] ) ) {
 
-				if ( false === $this->validation->validate( $field['validate'], $input[ $field['id'] ] ) ) {
+				if ( false === $this->validation->validate( $field['validate'], $instance[ $field['id'] ] ) ) {
 
-					$input[ $field['id'] ] = '';
+					$instance[ $field['id'] ] = '';
 				}
 			}
 
 			if ( isset( $field['sanitize'] ) ) {
-				$input[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $input[ $field['id'] ] );
+				$instance[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $instance[ $field['id'] ] );
 			} else {
-				$input[ $field['id'] ] = strip_tags( $input[ $field['id'] ] );
+				$instance[ $field['id'] ] = strip_tags( $instance[ $field['id'] ] );
 			}
 		}
 
-		return $input;
+		return $instance;
 
 	}
 
