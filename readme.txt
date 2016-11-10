@@ -429,6 +429,7 @@ First release.
 * [Lazy Load](https://wordpress.org/plugins/lazy-load/)
 * [WordPress Plugin Boilerplate](https://github.com/WPBP/WordPress-Plugin-Boilerplate-Powered)
 * [Disable Emojis](https://geek.hellyer.kiwi/)
+* [Ultimate Posts Widget](https://wordpress.org/plugins/ultimate-posts-widget/)
 
 = Developers =
 * [Tonya Mork](https://knowthecode.io/)
