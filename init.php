@@ -161,7 +161,7 @@ if ( ! empty( $options['menu_cache'] ) && version_compare( PHP_VERSION, '5.4.0',
 	add_filter( 'wp_nav_menu', array( $cache, 'cache_menu' ), PHP_INT_MAX - 1, 2 );
 }
 
-if ( ! empty( $options['social_share'] ) || is_beta() ) {
+if ( ! empty( $options['activate_social_share'] ) && is_beta() ) {
 	$social_share = new Share();
 
 	add_filter( 'the_content', function ( $content ) use ( $social_share ) {
