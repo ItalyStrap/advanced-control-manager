@@ -26,6 +26,20 @@ interface Settings_Interface {
 	public function settings_init();
 
 	/**
+	 * Add option
+	 *
+	 * @since 2.0.0
+	 */
+	public function add_option();
+
+	/**
+	 * Delete option
+	 *
+	 * @since 2.0.0
+	 */
+	public function delete_option();
+
+	/**
 	 * Sanitize the input data
 	 *
 	 * @since 2.0.0

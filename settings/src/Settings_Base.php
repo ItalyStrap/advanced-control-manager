@@ -86,17 +86,11 @@ abstract class Settings_Base implements Settings_Interface{
 	/**
 	 * Initialize Class
 	 *
-	 * @param array  $options     Get the plugin options.
-	 * @param object $fields_type The Fields object.
-	 */
-	/**
-	 * Initialize Class
-	 *
-	 * @param array    $options        Get the plugin options.
-	 * @param array    $settings       The configuration array plugin fields.
-	 * @param array    $args           The configuration array for plugin.
-	 * @param array    $theme_mods     The theme options.
-	 * @param I_Fields $fields_type    The Fields object.
+	 * @param array            $options        Get the plugin options.
+	 * @param array            $settings       The configuration array plugin fields.
+	 * @param array            $args           The configuration array for plugin.
+	 * @param array            $theme_mods     The theme options.
+	 * @param Fields_Interface $fields_type    The Fields object.
 	 */
 	public function __construct( array $options = array(), array $settings, array $args, array $theme_mods, Fields_Interface $fields_type ) {
 
@@ -140,7 +134,7 @@ abstract class Settings_Base implements Settings_Interface{
 			$this->args['menu_page']['menu_title'],
 			$this->capability, // $this->args['menu_page']['capability'],
 			$this->args['menu_page']['menu_slug'],
-			array( $this, 'get_admin_view' ),
+			array( $this, 'get_settings_view' ),
 			$this->args['menu_page']['icon_url'],
 			$this->args['menu_page']['position']
 		);
@@ -165,7 +159,7 @@ abstract class Settings_Base implements Settings_Interface{
 				$this->capability, // $submenu['capability'],
 				$submenu['menu_slug'],
 				// $submenu['function_cb']
-				array( $this, 'get_admin_view' )
+				array( $this, 'get_settings_view' )
 			);
 
 		}
@@ -175,17 +169,16 @@ abstract class Settings_Base implements Settings_Interface{
 	/**
 	 * The add_submenu_page callback
 	 */
-	public function get_admin_view() {
+	public function get_settings_view() {
 
 		if ( ! current_user_can( $this->capability ) ) {
 			wp_die( esc_attr__( 'You do not have sufficient permissions to access this page.' ) );
 		}
 
-		$file_path = file_exists( $this->args['admin_view_path'] . $this->pagenow . '.php' ) ? $this->args['admin_view_path'] . $this->pagenow . '.php' : __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'italystrap-settings.php';
+		$file_path = file_exists( $this->args['admin_view_path'] . $this->pagenow . '.php' )
+			? $this->args['admin_view_path'] . $this->pagenow . '.php'
+			: __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'italystrap-settings.php';
 
-		/**
-		 * Require settings-page.php
-		 */
 		require( $file_path );
 
 	}

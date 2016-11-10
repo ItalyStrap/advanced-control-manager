@@ -52,6 +52,20 @@ class Settings extends Settings_Base {
 
 		add_filter( 'plugin_row_meta' , array( $this, 'plugin_row_meta' ), 10, 4 );
 
+		add_action( 'italystrap_after_settings_form', array( $this, 'get_aside' ) );
+
+	}
+
+	/**
+	 * Get Aside
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_aside() {
+	
+		require( $this->args['admin_view_path'] . 'italystrap-aside.php' );
+	
 	}
 
 	/**
