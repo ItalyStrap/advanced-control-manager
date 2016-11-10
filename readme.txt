@@ -225,6 +225,18 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.1.1 =
+Release Date: November 10th, 2016
+
+Dev time: 30h
+
+* Fixed [#15](https://github.com/overclokk/italystrap-extended/issues/15)
+* psr-4 almost ready for admin classes
+* Improvements of the Fields API
+* Improvemente of the Settings API
+* Class for Social Sharing only for beta tester
+* Other fix, improvements and refactoring
+
 = 2.1.0 =
 Release Date: November 7th, 2016
 

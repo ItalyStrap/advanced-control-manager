@@ -33,7 +33,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) ) {
  * Define some costant for internal use
  */
 if ( ! defined( 'ITALYSTRAP_PLUGIN_VERSION' ) ) {
-	define( 'ITALYSTRAP_PLUGIN_VERSION', '2.0.0' );
+	define( 'ITALYSTRAP_PLUGIN_VERSION', '2.1.0' );
 }
 
 /**
