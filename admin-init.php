@@ -94,6 +94,39 @@ $admin->init();
 add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
 
 /**
+ * Import Export
+ */
+
+/**
+ * Import/Export configuration
+ *
+ * @var array
+ */
+$imp_exp_args = array(
+	'capability'	=> 'manage_options',
+	'name_action'	=> 'italystrap_action',
+	'export_nonce'	=> 'italystrap_export_nonce',
+	'import_nonce'	=> 'italystrap_import_nonce',
+	'filename'		=> 'italystrap-plugin-settings-export-',
+	'import_file'	=> 'italystrap_import_file',
+	'options_names'	=> array(
+			$args['options_name'],
+		),
+	);
+$injector->defineParam( 'imp_exp_args', $imp_exp_args );
+
+$injector->define( 'ItalyStrap\Import_Export\Import_Export', $fields_type );
+/**
+ * Import Export Object
+ *
+ * @var Import_Export
+ */
+$import_export = $injector->make( 'ItalyStrap\Import_Export\Import_Export' );
+add_action( 'italystrap_after_settings_page', array( $import_export, 'get_view' ) );
+add_action( 'admin_init', array( $import_export, 'export' ) );
+add_action( 'admin_init', array( $import_export, 'import' ) );
+
+/**
  * Instanziate the ItalyStrapAdminGallerySettings
  */
 $injector->define( 'ItalyStrapAdminGallerySettings', $fields_type );

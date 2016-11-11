@@ -244,31 +244,6 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	 ************/
 
 	/**
-	 * The array with all plugin options
-	 */
-	$options_arr[] = $options;
-	$options_arr[] = array();
-	$injector->defineParam( 'options_arr', $options_arr );
-
-	$imp_exp_args = array(
-		'name_action'	=> 'italystrap_action',
-		'export_nonce'	=> 'italystrap_export_nonce',
-		'import_nonce'	=> 'italystrap_import_nonce',
-		'filename'		=> 'italystrap-plugin-settings-export-',
-		'import_file'	=> 'italystrap_import_file',
-		);
-	$injector->defineParam( 'imp_exp_args', $imp_exp_args );
-
-	/**
-	 * Import Export functionality
-	 *
-	 * @var Import_Export
-	 */
-	$import_export = $injector->make( 'ItalyStrap\Admin\Import_Export' );
-	add_action( 'admin_init', array( $import_export, 'export' ) );
-	add_action( 'admin_init', array( $import_export, 'import' ) );
-
-	/**
 	 * Widget Logic Functionality for admin
 	 *
 	 * @var Widget_Logic_Admin

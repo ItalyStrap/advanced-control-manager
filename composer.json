@@ -26,6 +26,7 @@
 		"psr-4": {
 			"ItalyStrap\\Settings\\": "src/settings/src/",
 			"ItalyStrap\\Fields\\": "src/fields/src/",
+			"ItalyStrap\\Import_Export\\": "src/import_export/src/",
 			"ItalyStrap\\Core\\": "core/",
 			"ItalyStrap\\Widget\\": "widget/",
 			"ItalyStrap\\Shortcode\\": "shortcode/"
