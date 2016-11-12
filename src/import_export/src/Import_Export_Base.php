@@ -57,6 +57,8 @@ abstract class Import_Export_Base {
 
 		$this->capability = $imp_exp_args['capability'];
 
+		$this->fields_type = $fields_type;
+
 	}
 
 	/**
@@ -75,11 +77,15 @@ abstract class Import_Export_Base {
 			return false;
 		}
 
-		if ( empty( $_POST[ $this->args['name_action'] ] ) || "{ $name }_settings" !== $_POST[ $this->args['name_action'] ] ) { // WPCS: input var okay.
+		if ( empty( $_POST[ $this->args['name_action'] ] ) || "{$name}_settings" !== $_POST[ $this->args['name_action'] ] ) { // WPCS: input var okay.
 			return false;
 		}
 
-		if ( ! wp_verify_nonce( $_POST[ $this->args[ "{$name}_nonce" ] ], $this->args[ "{ $name }_nonce" ] ) ) { // WPCS: input var okay.
+		// if ( ! wp_verify_nonce( $_POST[ $this->args[ "{$name}_nonce" ] ], $this->args['name_action'] ) ) { // WPCS: input var okay.
+		// 	return false;
+		// }
+
+		if ( ! check_admin_referer( $this->args['name_action'], $this->args[ "{$name}_nonce" ] ) ) { // WPCS: input var okay.
 			return false;
 		}
 
@@ -94,5 +100,61 @@ abstract class Import_Export_Base {
 
 		require( 'view/italystrap-import-export.php' );
 
+	}
+
+	/**
+	 * Do fields
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function do_fields( $value = '' ) {
+
+		$args['export_settings'] = array(
+			'name'		=> __( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'italystrap' ),
+			'desc'		=> '',
+			'id'		=> $this->args['name_action'],
+			'_id'		=> $this->args['name_action'],
+			'_name'		=> $this->args['name_action'],
+			'type'		=> 'hidden',
+			// 'class'		=> 'widefat italystrap_action',
+			'default'	=> $value,
+			'value'		=> $value,
+		 );
+
+		$args['import_file'] = array(
+			'name'		=> __( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'italystrap' ),
+			'desc'		=> '',
+			'id'		=> $this->args['import_file'],
+			'_id'		=> $this->args['import_file'],
+			'_name'		=> $this->args['import_file'],
+			'type'		=> 'file',
+			// 'class'		=> 'widefat italystrap_action',
+			// 'default'	=> $value,
+			// 'value'		=> $value,
+		 );
+
+		$args['import_settings'] = array(
+			'name'		=> '',
+			'desc'		=> '',
+			'id'		=> $this->args['name_action'],
+			'_id'		=> $this->args['name_action'],
+			'_name'		=> $this->args['name_action'],
+			'type'		=> 'hidden',
+			// 'class'		=> 'widefat italystrap_action',
+			'default'	=> $value,
+			'value'		=> $value,
+		 );
+
+		$default = array(
+			'value'		=> $value,
+		);
+
+		$output = '';
+
+		$output .= $this->fields_type->get_field_type( $args[ $value ], $default ); // XSS ok.
+	
+		echo $output;
+	
 	}
 }

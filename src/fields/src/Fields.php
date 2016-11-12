@@ -119,6 +119,23 @@ class Fields extends Fields_Base {
 	}
 
 	/**
+	 * Create the field file
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML field file
+	 */
+	public function field_type_file( array $key, $out = '' ) {
+
+		$attr = array(
+			'type'	=> 'file',
+			);
+
+		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+	}
+
+	/**
 	 * Create the Field Media
 	 * This field add a single image
 	 *
@@ -568,6 +585,10 @@ class Fields extends Fields_Base {
 	 */
 	public function field_type_description( $desc ) {
 
+		if ( empty( $desc ) ) {
+			return '';
+		}
+
 		return  '<br/><small class="description">' . wp_kses_post( $desc ) . '</small>';
 
 	}
@@ -581,6 +602,10 @@ class Fields extends Fields_Base {
 	 * @return string       Return the labels
 	 */
 	public function field_type_label( $name = '', $id = '' ) {
+
+		if ( empty( $name ) ) {
+			return '';
+		}
 
 		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . '</label>';
 
