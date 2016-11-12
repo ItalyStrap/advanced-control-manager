@@ -111,7 +111,9 @@ $imp_exp_args = array(
 	'import_file'	=> 'italystrap_import_file',
 	'options_names'	=> array(
 			$args['options_name'],
+			'italystrap_widget_area',
 	),
+	'i18n'			=> array(),
 );
 $injector->defineParam( 'imp_exp_args', $imp_exp_args );
 

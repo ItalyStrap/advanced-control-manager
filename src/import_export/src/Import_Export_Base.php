@@ -46,6 +46,15 @@ abstract class Import_Export_Base {
 	protected $settings = array();
 
 	/**
+	 * The translation strings
+	 *
+	 * @var array
+	 */
+	protected $i18n = array();
+
+	protected $fields_args = array();
+
+	/**
 	 * Init Class
 	 *
 	 * @param array            $imp_exp_args [description]
@@ -58,6 +67,8 @@ abstract class Import_Export_Base {
 		$this->capability = $imp_exp_args['capability'];
 
 		$this->fields_type = $fields_type;
+
+		$this->i18n = wp_parse_args( $this->args['i18n'], require( 'config/i18n.php' ) );
 
 	}
 
@@ -130,42 +141,45 @@ abstract class Import_Export_Base {
 	 */
 	public function do_fields( $value = '' ) {
 
-		$args['export_settings'] = array(
-			'name'		=> __( 'Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'italystrap' ),
-			'desc'		=> '',
-			'id'		=> $this->args['name_action'],
-			'_id'		=> $this->args['name_action'],
-			'_name'		=> $this->args['name_action'],
-			'type'		=> 'hidden',
-			// 'class'		=> 'widefat italystrap_action',
-			'default'	=> $value,
-			'value'		=> $value,
-		 );
+		$this->fields_args = array(
 
-		$args['import_file'] = array(
-			'name'		=> __( 'Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'italystrap' ),
-			'desc'		=> '',
-			'id'		=> $this->args['import_file'],
-			'_id'		=> $this->args['import_file'],
-			'_name'		=> $this->args['import_file'],
-			'type'		=> 'file',
-			// 'class'		=> 'widefat italystrap_action',
-			// 'default'	=> $value,
-			// 'value'		=> $value,
-		 );
+			'export_settings'	=> array(
+				'name'		=> $this->i18n['export']['desc'],
+				'desc'		=> '',
+				'id'		=> $this->args['name_action'],
+				'_id'		=> $this->args['name_action'],
+				'_name'		=> $this->args['name_action'],
+				'type'		=> 'hidden',
+				// 'class'		=> 'widefat italystrap_action',
+				'default'	=> $value,
+				'value'		=> $value,
+			 ),
 
-		$args['import_settings'] = array(
-			'name'		=> '',
-			'desc'		=> '',
-			'id'		=> $this->args['name_action'],
-			'_id'		=> $this->args['name_action'],
-			'_name'		=> $this->args['name_action'],
-			'type'		=> 'hidden',
-			// 'class'		=> 'widefat italystrap_action',
-			'class-p'		=> 'hidden',
-			'default'	=> $value,
-			'value'		=> $value,
-		 );
+			'import_file'	=> array(
+				'name'		=> $this->i18n['import']['desc'],
+				'desc'		=> '',
+				'id'		=> $this->args['import_file'],
+				'_id'		=> $this->args['import_file'],
+				'_name'		=> $this->args['import_file'],
+				'type'		=> 'file',
+				// 'class'		=> 'widefat italystrap_action',
+				// 'default'	=> $value,
+				// 'value'		=> $value,
+			 ),
+
+			'import_settings'	=> array(
+				'name'		=> '',
+				'desc'		=> '',
+				'id'		=> $this->args['name_action'],
+				'_id'		=> $this->args['name_action'],
+				'_name'		=> $this->args['name_action'],
+				'type'		=> 'hidden',
+				// 'class'		=> 'widefat italystrap_action',
+				'class-p'		=> 'hidden',
+				'default'	=> $value,
+				'value'		=> $value,
+			 ),
+		);
 
 		$default = array(
 			'value'		=> $value,
@@ -173,7 +187,7 @@ abstract class Import_Export_Base {
 
 		$output = '';
 
-		$output .= $this->fields_type->get_field_type( $args[ $value ], $default );
+		$output .= $this->fields_type->get_field_type( $this->fields_args[ $value ], $default );
 	
 		echo $output; // XSS ok.
 	

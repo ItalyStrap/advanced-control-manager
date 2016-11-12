@@ -3,7 +3,7 @@
 		<div class="postbox">
 			<h3 class="hndle">
 				<span>
-					<?php _e( 'Export Settings', 'italystrap' ); ?>
+					<?php echo $this->i18n['export']['title']; // XSS ok.?>
 				</span>
 			</h3>
 			<div class="inside">
@@ -20,7 +20,7 @@
 		<div class="postbox">
 			<h3 class="hndle">
 				<span>
-					<?php _e( 'Import Settings', 'italystrap' ); ?>
+					<?php echo $this->i18n['import']['title']; // XSS ok.?>
 				</span>
 			</h3>
 			<div class="inside">

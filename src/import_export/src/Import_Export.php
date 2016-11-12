@@ -88,8 +88,8 @@ class Import_Export extends Import_Export_Base {
 		 */
 		if ( 'json' !== $extension ) {
 			wp_die(
-				esc_attr__( 'Please upload a valid .json file', 'italystrap' ),
-				esc_attr__( 'No valid json file', 'italystrap' ),
+				$this->i18n['no_json_file']['message'],
+				$this->i18n['no_json_file']['title'],
 				array( 'back_link' => true )
 			);
 		}
@@ -99,8 +99,8 @@ class Import_Export extends Import_Export_Base {
 		 */
 		if ( 0 === $_FILES[ $this->args['import_file'] ]['size'] ) { // WPCS: input var okay.
 			wp_die(
-				esc_attr__( 'The json file can\'t be empty', 'italystrap' ),
-				esc_attr__( 'Empty file', 'italystrap' ),
+				$this->i18n['zero_size']['message'],
+				$this->i18n['zero_size']['title'],
 				array( 'back_link' => true )
 			);
 		}
@@ -112,8 +112,8 @@ class Import_Export extends Import_Export_Base {
 		 */
 		if ( empty( $import_file ) ) {
 			wp_die(
-				esc_attr__( 'Please upload a file to import', 'italystrap' ),
-				esc_attr__( 'No file import', 'italystrap' ),
+				$this->i18n['no_file']['message'],
+				$this->i18n['no_file']['title'],
 				array( 'back_link' => true )
 			);
 		}
