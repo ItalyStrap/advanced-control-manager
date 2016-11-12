@@ -111,7 +111,10 @@ $imp_exp_args = array(
 	'import_file'	=> 'italystrap_import_file',
 	'options_names'	=> array(
 			$args['options_name'],
+			// 'theme_mods_ItalyStrap',
+			// 'theme_mods_' . get_option( 'stylesheet' ),
 			// 'italystrap_widget_area',
+			// 'theme_mods_twentyeleven',
 	),
 	'i18n'			=> array(),
 );
