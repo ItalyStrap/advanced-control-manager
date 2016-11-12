@@ -94,6 +94,26 @@ abstract class Import_Export_Base {
 	}
 
 	/**
+	 * Get date and time string
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_date_time_string() {
+
+		$output = sprintf(
+			'%s %s',
+			date_i18n( get_option( 'date_format' ) ),
+			date_i18n( get_option( 'time_format' ) )
+		);
+
+		$output = str_replace( array( ' ', ':' ), '-', $output );
+
+		return $output;
+	
+	}
+
+	/**
 	 * Get view.
 	 */
 	public function get_view() {
@@ -142,6 +162,7 @@ abstract class Import_Export_Base {
 			'_name'		=> $this->args['name_action'],
 			'type'		=> 'hidden',
 			// 'class'		=> 'widefat italystrap_action',
+			'class-p'		=> 'hidden',
 			'default'	=> $value,
 			'value'		=> $value,
 		 );
@@ -152,9 +173,9 @@ abstract class Import_Export_Base {
 
 		$output = '';
 
-		$output .= $this->fields_type->get_field_type( $args[ $value ], $default ); // XSS ok.
+		$output .= $this->fields_type->get_field_type( $args[ $value ], $default );
 	
-		echo $output;
+		echo $output; // XSS ok.
 	
 	}
 }

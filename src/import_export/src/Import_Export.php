@@ -44,7 +44,13 @@ class Import_Export extends Import_Export_Base {
 		 * date_default_timezone_set('UTC');
 		 */
 		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=' . $this->args['filename'] . date( 'm-d-Y' ) . '.json' );
+		header(
+			sprintf(
+				'Content-Disposition: attachment; filename=%s-%s.json',
+				$this->args['filename'],
+				$this->get_date_time_string()
+			)
+		);
 		header( 'Expires: 0' );
 
 		if ( is_callable( 'wp_json_encode' ) ) {
