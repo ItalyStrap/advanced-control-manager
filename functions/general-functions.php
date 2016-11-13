@@ -376,6 +376,19 @@ function breadcrumbs( array $args = array() ) {
 }
 
 /**
+ * Do breadcrumbs
+ *
+ * @since 2.2.0
+ *
+ * @param  array  $args The breadcrumbs arguments.
+ */
+function do_breadcrumbs( array $args = array() ) {
+
+	breadcrumbs( $args );
+}
+add_action( 'do_breadcrumbs', __NAMESPACE__ . '\do_breadcrumbs' );
+
+/**
  * Retrieve the name of the highest priority template file that exists.
  *
  * @uses locate_template( $template_names );
