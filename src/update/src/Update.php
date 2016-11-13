@@ -5,7 +5,7 @@
  * This class manage the updating of the Settings and the Widget API
  *
  * @link [URL]
- * @since 2.1.2
+ * @since 2.3.0
  *
  * @package ItalyStrap\Update
  */

@@ -5,7 +5,7 @@
  * This is the interface for the admin class
  *
  * @link [URL]
- * @since 2.0.0
+ * @since 2.3.0
  *
  * @package ItalyStrap\Settings
  */
