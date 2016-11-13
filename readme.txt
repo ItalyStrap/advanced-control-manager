@@ -32,7 +32,7 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
 
-Think about ItalyStrap like a Jetpack with many functionality that make your site more powerful and extensible, for example: lazyload image, widget and shortcode for Twitter Bootstrap Carousel, widget for displaying lists of posts type with a lot of options and so on.
+Think about ItalyStrap like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options and so on, see above for the full list of featured.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
@@ -47,10 +47,10 @@ This is my thanks for what WordPress has given to me.
 
 = Get involved =
 
-If you want to contribute [click here](https://github.com/overclokk/italystrap-extended) do a fork and do a pull request :-)
+If you want to contribute [click here](https://github.com/overclokk/italystrap-extended) do a fork and do a pull request to the Dev branch :-)
 
 = Want to try the beta functionality? =
-To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php` file, **REMEMBER** that you have to do this in a development enviroment, **do not do this in a production site**.
+To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php` file, **REMEMBER** that you have to do this in a development enviroment, **do not do this in a production site** and do always a backup.
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
@@ -58,17 +58,19 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 * **[Breadcrumbs](http://docs.italystrap.com/breadcrumbs-wordpress-theme/)** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs ;-) ).
 
-* **[Carousel](http://docs.italystrap.com/the-carousel-shortcode/)** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my some improvements Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and more functionality, it works only if you have Twitter Bootstrap CSS and JS or [ItalyStrap framework](http://www.italystrap.com/) installed. It will not include the files for you, so if they are not present, the carousel will not work. The carousel is provided by shortcode and widget.
+* **[Carousel](http://docs.italystrap.com/the-carousel-shortcode/)** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my many improvements. Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and many functionality, it works only if you have Twitter Bootstrap CSS and JS or [ItalyStrap framework](http://www.italystrap.com/) installed. It will not include the files for you, so if they are not present, the carousel will not work. The carousel is provided by shortcode and widget.
 
 * **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel, srcset and sizes.
 
 * **[Schema.org Local Business](http://docs.italystrap.com/widget-italystrap-vcard-local-business/)** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
 This widget will add microdata information about your  site for SEO purposes.
-This widget was present in my [ItalyStrap starter theme](http://www.italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus
+This widget was present in my [ItalyStrap starter theme](http://www.italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus.
 
-* **Posts Widget** This adds a widget for displaying posts with a lot of options, in a future release you have also the power to change the template.
+* **Posts Widget** This adds a widget for displaying posts with a lot of options, you can create a related posts, posts from any taxonomies, pages, and mmore, in a future release you have also the power to change the template.
 
 * **Custom Style** Now you can add your custom style in single page or in the entire site, you can also add custom css class and ID attribute in single page or in the site.
+
+* **Google Analytics** You can add Google Analytics snippet to your theme, this is a simple functionality that add the GA snippet to `wp_footer` hook
 
 * **And many more**
 
@@ -114,11 +116,7 @@ Then go to your Plugins screen and click Activate.
 
 Add this code in your template files:
 
-`
-<?php if ( class_exists('ItalyStrap\Core\breadcrumbs') ) {
-		ItalyStrap\Core\breadcrumbs();
-} ?>
-`
+`<?php do_action( 'do_breadcrumbs', array() ); ?>`
 
 = What if haven't I got Bootstrap CSS? =
 
@@ -224,6 +222,16 @@ If you have any problem please open a ticket :-)
 
 
 == Changelog ==
+
+= 2.2.0 =
+Release Date: November 13th, 2016
+
+Dev time: 50h
+
+* New Import Export API for the plugin
+* Added hook for breadcrumbs, now you can use `<?php do_action( 'do_breadcrumbs', array() ); ?>` instead of the core function.
+* Fixed some issue
+* customize_selective_refresh for all widget in this plugin.
 
 = 2.1.1 =
 Release Date: November 10th, 2016
