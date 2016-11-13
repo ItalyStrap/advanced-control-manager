@@ -76,6 +76,7 @@ class VCard extends Widget {
 			// Widget Backend Description.
 			'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'italystrap' ),
 			'fields'			=> $fields,
+			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 			'control_options'	=> array( 'width' => 340 ),
 		 );
 

@@ -53,6 +53,7 @@ class Carousel extends Widget {
 			// Widget Backend Description.
 			'description'		=> __( 'Add a image carousel for all your media files from any posts type (posts, pages, attachments and custom post type)', 'italystrap' ),
 			'fields'			=> $fields,
+			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 			'control_options'	=> array( 'width' => 450 ),
 		 );
 

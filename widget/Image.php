@@ -49,6 +49,7 @@ class Image extends Widget {
 			// Widget Backend Description.
 			'description'		=> __( 'Add a image with title, url and description', 'italystrap' ),
 			'fields'			=> $fields,
+			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 			'control_options'	=> array( 'width' => 450 ),
 		 );
 

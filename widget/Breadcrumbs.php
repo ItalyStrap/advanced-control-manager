@@ -38,6 +38,7 @@ class Breadcrumbs extends Widget {
 			// Widget Backend Description.
 			'description'		=> __( 'Add a Breadcrumbs ti widgetized area', 'italystrap' ),
 			'fields'			=> $fields,
+			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 			'control_options'	=> array( 'width' => 340 ),
 		 );
 
