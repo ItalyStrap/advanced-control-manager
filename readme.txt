@@ -223,6 +223,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.2.1 =
+Release Date: November 13th, 2016
+
+Dev time: 50h
+
+* Added jpeg_quality option
+
 = 2.2.0 =
 Release Date: November 13th, 2016
 

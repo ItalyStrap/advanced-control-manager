@@ -154,6 +154,18 @@ $image_size_media = $injector->make( 'ItalyStrapAdminMediaSettings' );
 add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
 
 /**
+ * Option for jpeg_quality
+ */
+if ( ! empty( $options['jpeg_quality'] ) ) {
+	add_filter( 'jpeg_quality', function ( $quality, $context ) use ( $options ) {
+
+		$options['jpeg_quality'] = $options['jpeg_quality'] > 99 ? 100 : $options['jpeg_quality'];
+
+		return absint( $options['jpeg_quality'] );
+	}, 99, 2 );
+}
+
+/**
  * Instanziate the Register_Metaboxes.
  * Questo oggetto va lasciato fuori da condizionali perché
  * il tema nel file bootstrap mi esegue il metodo 'register_widget_areas_fields'

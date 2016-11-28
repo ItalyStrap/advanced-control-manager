@@ -595,6 +595,24 @@ return array(
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
+				'id'		=> 'jpeg_quality',
+				'title'		=> __( 'Jpeg quality', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'media',
+				'args'		=> array(
+						'name'			=> __( 'Jpeg quality for images', 'italystrap' ),
+						'desc'			=> __( 'Select the jpeg quality for images. Best value: 100, worse value: 75, default: 82', 'italystrap' ),
+						'id'			=> 'jpeg_quality',
+						'type'			=> 'number',
+						'class'			=> 'jpeg_quality easy',
+						'default'		=> 82,
+						'validate'		=> 'is_numeric|is_int',
+						'sanitize'		=> 'sanitize_text_field',
+						'option_type'	=> 'theme_mod',
+				),
+			),
+			array(
 				'id'		=> 'lazyload',
 				'title'		=> __( 'Lazy Loading of images', 'italystrap' ),
 				'callback'	=> 'get_field_type',
