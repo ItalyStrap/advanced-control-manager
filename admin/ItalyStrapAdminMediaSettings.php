@@ -65,10 +65,10 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 					 * Get the size of each custom thumb
 					 */
 					$sizes[ $_size ] = array(
-							'width'		=> $_wp_additional_image_sizes[ $_size ]['width'],
-							'height'	=> $_wp_additional_image_sizes[ $_size ]['height'],
-							'crop'		=> $_wp_additional_image_sizes[ $_size ]['crop'],
-							);
+						'width'		=> $_wp_additional_image_sizes[ $_size ]['width'],
+						'height'	=> $_wp_additional_image_sizes[ $_size ]['height'],
+						'crop'		=> $_wp_additional_image_sizes[ $_size ]['crop'],
+					);
 
 				}
 
@@ -77,8 +77,13 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 				 */
 				if ( isset( $sizes[ $_size ] ) ) {
 
-					$custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
-
+					// $custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
+					$custom[ $_size ] = sprintf(
+						'%s %sx%spx',
+						ucwords( str_replace( '-', ' ', $_size ) ),
+						$sizes[ $_size ]['width'],
+						$sizes[ $_size ]['height']
+					);
 				}
 			}
 
