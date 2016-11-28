@@ -229,6 +229,8 @@ Release Date: November 13th, 2016
 Dev time: 50h
 
 * Added jpeg_quality option
+* Improved validation on options saving
+* Fixed excerpt more output
 
 = 2.2.0 =
 Release Date: November 13th, 2016

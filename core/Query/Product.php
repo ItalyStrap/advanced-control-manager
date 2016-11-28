@@ -85,25 +85,35 @@ class Product extends Query {
 		}
 
 		/**
+		 * I filtri 'excerpt_more' e 'excerpt_length' sono commentati perché
+		 * causavano dei conflitti scoperti inserendo get_the_excerpt in un template
+		 * di WooCommerce, fare ulteriori test ma non credo che siano da usare
+		 * qui poiché le impostazioni di un widget non dovrebbero sovrascrivere
+		 * quelle del tema.
+		 * @see Posts::get_query_args();
+		 * @see Product::get_query_args();
+		 */
+
+		/**
 		 * Excerpt more filter
 		 *
 		 * @var function
 		 */
-		$new_excerpt_more = function ( $more ) {
-			return '...';
-		};
-		add_filter( 'excerpt_more', $new_excerpt_more );
+		// $new_excerpt_more = function ( $more ) {
+		// 	return '...';
+		// };
+		// add_filter( 'excerpt_more', $new_excerpt_more );
 
 		/**
 		 * Excerpt length filter
 		 *
 		 * @var functions
 		 */
-		if ( $this->args['excerpt_length'] > 0 ) {
-			add_filter( 'excerpt_length', function ( $length ) {
-				return $this->args['excerpt_length'];
-			} );
-		}
+		// if ( $this->args['excerpt_length'] > 0 ) {
+		// 	add_filter( 'excerpt_length', function ( $length ) {
+		// 		return $this->args['excerpt_length'];
+		// 	} );
+		// }
 
 		/**
 		 * $class = $this->args['widget_class'];
