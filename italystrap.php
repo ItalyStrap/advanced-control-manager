@@ -168,7 +168,7 @@ $injector->defineParam( 'options', $options );
  *
  * @var array
  */
-$theme_mods = get_theme_mods();
+$theme_mods = (array) get_theme_mods();
 
 /**
  * Define theme_mods parmeter
