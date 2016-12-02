@@ -449,7 +449,7 @@ abstract class Settings_Base implements Settings_Interface{
 		$default_settings = array();
 
 		foreach ( (array) $this->fields as $key => $setting ) {
-			$default_settings[ $key ] = $setting['default'];
+			$default_settings[ $key ] = isset( $setting['default'] ) ? $setting['default'] : '';
 		}
 
 		return $default_settings;
