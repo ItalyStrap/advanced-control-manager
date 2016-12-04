@@ -275,7 +275,8 @@ module.exports = function(grunt) {
 						'*.json', //For now bower it is not uploaded
 						'*.txt',
 						'*.md',
-						'*.php'
+						'*.php',
+						'*.js',
 						]
 				}
 			},
@@ -500,8 +501,12 @@ module.exports = function(grunt) {
 		},
 
 		clean: { // https://github.com/gruntjs/grunt-contrib-clean
-			options: { force: true },
-			clean: ['../ItalyStrap']
+			options: {
+				force: true,
+				// 'no-write': true
+			},
+			// clean: ['../ItalyStrap']
+			trunk: ['E:/Dropbox/svn-wordpress/italystrap/trunk/*']
 
 		},
 
@@ -713,6 +718,7 @@ module.exports = function(grunt) {
 								'prompt',
 								'compress:main',
 								'github-release',
+								'clean',
 								'copy',
 								'gitcheckout:mastertodev',
 								'gitmerge:frommaster',

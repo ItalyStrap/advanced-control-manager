@@ -224,13 +224,16 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.2.1 =
-Release Date: November 13th, 2016
+Release Date: Dicember 4th, 2016
 
-Dev time: 50h
+Dev time: 100h
 
 * Added jpeg_quality option
-* Improved validation on options saving
-* Fixed excerpt more output
+* Improved validation of options on settings saving
+* Fixed excerpt more output in Widget Posts
+* Fixed a php fatal error on new install
+* fixed undefined index on new install
+* Some code refactoring
 
 = 2.2.0 =
 Release Date: November 13th, 2016
