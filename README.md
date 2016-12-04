@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.1  
 **Tested up to:** 4.7  
-**Stable tag:** 2.2.0  
+**Stable tag:** 2.2.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -254,6 +254,18 @@ If you have any problem please open a ticket :-)
 
 
 ## Changelog ##
+
+### 2.2.1 ###
+Release Date: Dicember 4th, 2016
+
+Dev time: 100h
+
+* Added jpeg_quality option
+* Improved validation of options on settings saving
+* Fixed excerpt more output in Widget Posts
+* Fixed a php fatal error on new install
+* fixed undefined index on new install
+* Some code refactoring
 
 ### 2.2.0 ###
 Release Date: November 13th, 2016
