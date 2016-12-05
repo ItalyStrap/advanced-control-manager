@@ -278,6 +278,10 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
 	}
 
+	// $facebook_page = new \ItalyStrap\Core\Facebook\Page();
+	// add_action( 'wp_footer', array( $facebook_page, 'script_2' ), 99 );
+	// add_action( 'italystrap_sidebar', array( $facebook_page, 'output' ) );
+
 	/**
 	 * Function description
 	 *
