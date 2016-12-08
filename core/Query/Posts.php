@@ -133,7 +133,7 @@ class Posts extends Query {
 			'posts_per_page'			=> $this->args['posts_number'] + count( $this->posts_to_exclude ),
 			'order'						=> $this->args['order'],
 			'orderby'					=> $this->args['orderby'],
-			'post_type'					=> ( empty( $this->args['post_types'] ) ? 'post' : explode( ',', $this->args['post_types'] ) ),
+			'post_type'					=> ( empty( $this->args['post_types'] ) ? 'post' : ( is_array( $this->args['post_types'] ) ? $this->args['post_types'] : explode( ',', $this->args['post_types'] ) ) ),
 			'no_found_rows'				=> true,
 			'update_post_term_cache'	=> false,
 			'update_post_meta_cache'	=> false,

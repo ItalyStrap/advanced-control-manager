@@ -630,7 +630,7 @@ return array(
 				'default'	=> 'post',
 				'options'	=> ( ( isset( $get_post_types ) ) ? $get_post_types : null ),
 				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
+				'sanitize'	=> 'sanitize_select_multiple',
 				'section'	=> 'filter',
 				 ),
 
