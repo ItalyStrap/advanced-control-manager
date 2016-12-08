@@ -102,10 +102,11 @@ class Init {
 		$widget_list = array(
 			'vcardwidget'			=> 'Vcard_Widget', // Deprecated
 			'post_widget'			=> 'Widget_Posts2', // Deprecated
-			'widget_posts'			=> 'Posts',
 			'media_carousel_widget'	=> 'Carousel',
+			'widget_posts'			=> 'Posts',
 			'widget_vcard'			=> 'VCard', // New
 			'widget_image'			=> 'Image', // New
+			'widget_facebook_page'	=> 'Facebook_Page', // New
 		);
 
 		foreach ( (array) $widget_list as $key => $value ) {
