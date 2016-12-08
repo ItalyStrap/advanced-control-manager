@@ -69,6 +69,17 @@ class Update implements Update_Interface{
 				}
 			}
 
+			/**
+			 * @todo Fare il controllo che $instance[ $field['id'] ] non sia un array
+			 *       Nel caso fosse un array bisogna fare un sanitize apposito,
+			 *       per ora ho aggiunto un metodo ::sanitize_select_multiple() che
+			 *       sanitizza i valori nell'array ma bisogna sempre indicarlo
+			 *       nella configurazione del widget/option altrimenti da errore.
+			 *       Valutare anche in futuro di fare un metodo ricorsivo per array
+			 *       multidimensionali.
+			 *       Altre possibilità sono gli array con valori boleani o float e int
+			 *       Per ora sanitizza come fossero stringhe.
+			 */
 			if ( isset( $field['sanitize'] ) ) {
 				$instance[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $instance[ $field['id'] ] );
 			} else {
