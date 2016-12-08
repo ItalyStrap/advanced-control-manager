@@ -29,7 +29,7 @@ class Fields extends Fields_Base {
 
 		$attr = array();
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -45,9 +45,9 @@ class Fields extends Fields_Base {
 		$attr = array(
 			'type'	=> 'hidden',
 			'desc'	=> '',
-			);
+		);
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -62,9 +62,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'number',
-			);
+		);
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -79,9 +79,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'email',
-			);
+		);
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -96,9 +96,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'url',
-			);
+		);
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -113,9 +113,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'tel',
-			);
+		);
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -130,9 +130,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'file',
-			);
+		);
 
-		return $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 	}
 
 	/**
@@ -148,9 +148,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'text',
-			);
+		);
 
-		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		$out = $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 
 		$value = isset( $key['value'] ) ? esc_attr( $key['value'] ) : '';
 
@@ -190,9 +190,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'text',
-			);
+		);
 
-		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		$out = $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 
 		$value = isset( $key['value'] ) ? esc_attr( $key['value'] ) : '';
 
@@ -237,9 +237,9 @@ class Fields extends Fields_Base {
 
 		$attr = array(
 			'type'	=> 'text',
-			);
+		);
 
-		$out = $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>' . $this->input( $attr, $key );
+		$out = $this->field_type_label( $key['name'], $key['_id'] ) . $this->input( $attr, $key );
 
 		$value = isset( $key['value'] ) ? esc_attr( $key['value'] ) : '';
 
@@ -302,7 +302,7 @@ class Fields extends Fields_Base {
 	 * @return string      Return the HTML Field Textarea
 	 */
 	public function field_type_textarea( array $key, $out = '' ) {
-		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		$out .= '<textarea ';
 
@@ -368,7 +368,7 @@ class Fields extends Fields_Base {
 
 		$out .= ' /> ';
 
-		$out .= $this->field_type_label( $key['name'], $key['_id'] );
+		$out .= $this->field_type_label( $key['name'], $key['_id'], false );
 
 		if ( isset( $key['desc'] ) ) {
 			$out .= $this->field_type_description( $key['desc'] );
@@ -387,7 +387,7 @@ class Fields extends Fields_Base {
 	 */
 	public function field_type_select( array $key, $out = '' ) {
 
-		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
@@ -436,16 +436,17 @@ class Fields extends Fields_Base {
 	 */
 	public function field_type_multiple_select( array $key, $out = '' ) {
 
-		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
-		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
+		// $out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
+		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '[]" ';
 
 		if ( isset( $key['class'] ) ) {
 			$out .= 'class="' . esc_attr( $key['class'] ) . '" '; }
 
 		$out .= 'size="6" multiple> ';
 
-		$selected = isset( $key['value'] ) ? $key['value'] : $key['default'];
+		$selected = ! empty( $key['value'] ) ? $key['value'] : array();
 
 		if ( isset( $key['show_option_none'] ) ) {
 			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
@@ -456,8 +457,9 @@ class Fields extends Fields_Base {
 
 			$out .= '<option value="' . esc_attr( $field ) . '" ';
 
-			if ( $selected === $field ) {
-				$out .= ' selected="selected" '; }
+			if ( in_array( $field, (array) $selected, true ) ) {
+				$out .= ' selected="selected" ';
+			}
 
 			$out .= '> ' . esc_html( $option ) . '</option>';
 
@@ -481,7 +483,7 @@ class Fields extends Fields_Base {
 	 */
 	public function field_type_taxonomy_multiple_select( array $key, $out = '' ) {
 
-		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '[]" ';
 
@@ -534,7 +536,7 @@ class Fields extends Fields_Base {
 	 */
 	public function field_type_select_group( array $key, $out = '' ) {
 
-		$out .= $this->field_type_label( $key['name'], $key['_id'] ) . '<br/>';
+		$out .= $this->field_type_label( $key['name'], $key['_id'] );
 
 		$out .= '<select id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
@@ -577,10 +579,46 @@ class Fields extends Fields_Base {
 	}
 
 	/**
+	 * Create the field image_size
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 *
+	 * @return string      Return the HTML field image_size
+	 */
+	public function field_type_group( array $key, $out = '' ) {
+
+		foreach ( $key['group_field'] as $field ) {
+
+			$this->set_attr_id_name( $field );
+
+			/**
+			 * Prefix method
+			 *
+			 * @var string
+			 */
+			$field_method = 'field_type_' . str_replace( '-', '_', $field['type'] );
+
+			$attr['type'] = $field['type'];
+
+			// $out .= method_exists( $this, $field_method ) ? $this->$field_method( $field ) : $this->field_type_text( $field );
+			$out .= method_exists( $this, $field_method ) ? $this->$field_method( $field ) : $this->field_type_text( $field );
+		}
+
+		return sprintf(
+			'%1$s %2$s',
+			$this->field_type_label( $key['name'], $key['_id'] ),
+			$out
+		);
+	}
+
+	/**
 	 * Create the field description
 	 *
 	 * @access public
 	 * @param  string $desc The description.
+	 *
 	 * @return string       Return the description
 	 */
 	public function field_type_description( $desc ) {
@@ -589,7 +627,10 @@ class Fields extends Fields_Base {
 			return '';
 		}
 
-		return  '<br/><small class="description">' . wp_kses_post( $desc ) . '</small>';
+		return  sprintf(
+			'<br/><small class="description">%s</small>',
+			wp_kses_post( $desc )
+		);
 
 	}
 
@@ -599,15 +640,21 @@ class Fields extends Fields_Base {
 	 * @access public
 	 * @param  string $name The labels name.
 	 * @param  string $id   The labels ID.
+	 *
 	 * @return string       Return the labels
 	 */
-	public function field_type_label( $name = '', $id = '' ) {
+	public function field_type_label( $name = '', $id = '', $br = true ) {
 
 		if ( empty( $name ) ) {
 			return '';
 		}
 
-		return '<label for="' . esc_attr( $id ). '">' . esc_html( $name ) . '</label>';
+		return sprintf(
+			'<label for="%s">%s</label>%s',
+			esc_attr( $id ),
+			esc_html( $name ),
+			$br ? '<br/>' : ''
+		);
 
 	}
 

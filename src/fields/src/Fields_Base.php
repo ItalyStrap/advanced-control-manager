@@ -67,6 +67,11 @@ abstract class Fields_Base implements Fields_Interface {
 	 */
 	public function set_attr_id_name( array &$key ) {
 
+		//italystrap_settings
+		if ( empty( $this->args['options_name'] ) ) {
+			$this->args['options_name'] = 'italystrap_settings';
+		}
+
 		/**
 		 * Set field id and name
 		 */
