@@ -100,4 +100,25 @@ class Sanitization {
 		return $array;
 	
 	}
+
+	/**
+	 * Sanitize taxonomy_multiple_select and return an array with taxonomies ID
+	 *
+	 * @param  array|string $instance_value The value to sanitize
+	 * @return array                        The sanitized array
+	 */
+	public function sanitize_select_multiple( $instance_value ) {
+
+		if ( ! $instance_value ) {
+			return $instance_value;
+		}
+
+		$array = array_map( 'esc_attr', (array) $instance_value );
+		$count = count( $array );
+		if ( 1 === $count && 0 === $array[0] ) {
+			return array();
+		}
+		return $array;
+	
+	}
 }
