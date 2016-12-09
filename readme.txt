@@ -223,6 +223,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.3.0 =
+Release Date: Dicember 4th, 2016
+
+Dev time: 100h
+
+* Added new functionality for the excerpt read more link
+
 = 2.2.1 =
 Release Date: Dicember 4th, 2016
 

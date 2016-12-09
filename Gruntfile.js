@@ -277,7 +277,7 @@ module.exports = function(grunt) {
 						'*.md',
 						'*.php',
 						'*.js',
-						]
+					]
 				}
 			},
 			first:{
