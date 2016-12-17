@@ -222,6 +222,7 @@ do_action( 'italystrap_plugin_loaded', $injector );
  * The purpose is to have al code in the same scope without using global
  * with variables provided from this plugin.
  *
+ * @example
  * Usage example:
  *
  * 1 - First of all you have to have the file/files with some code
@@ -237,6 +238,16 @@ do_action( 'italystrap_plugin_loaded', $injector );
  *                  array( plugin_dir_path( __FILE__ ) . 'my-dir/my-file.php' )
  *     );
  * }
+ *
+ * @example
+ * Another example:
+ * add_filter( 'italystrap_require_plugin_files_path', function ( $files_path ) {
+ * 
+ *     $files_path[] = PLUGIN_PATH . 'bootstrap.php';
+ * 
+ *     return $files_path;
+ * } );
+ *
  * Important:
  * Remeber that the file you want to load just after ItalyStrap plugin
  * has not to be required/included from your plugin because
@@ -250,6 +261,9 @@ $plugin_files_path = apply_filters( 'italystrap_require_plugin_files_path', arra
 
 if ( ! empty( $plugin_files_path ) ) {
 	foreach ( (array) $plugin_files_path as $key => $plugin_file_path ) {
+		if ( ! file_exists( $plugin_file_path ) ) {
+			continue;
+		}
 		require( $plugin_file_path );
 	}
 	/**
