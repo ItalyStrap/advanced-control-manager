@@ -144,7 +144,7 @@ if ( ! empty( $options['activate_analytics'] ) ) {
 	 *
 	 * @var Generate_Analytics
 	 */
-	$analytics = $injector->make( 'ItalyStrap\Core\Generate_Analytics' );
+	$analytics = $injector->make( 'ItalyStrap\Core\Google\Analytics' );
 	add_action( 'wp_footer', array( $analytics, 'render_analytics' ), 99999 );
 }
 

@@ -139,14 +139,16 @@ class Init {
 	 */
 	public function print_inline_script_in_footer() {
 
-		$script = Inline_Script::get();
+		$script = apply_filters( 'italystrap_custom_inline_script', Inline_Script::get() );
 
 		if ( ! $script ) {
 			return;
 		}
 
-		// echo '<script type="text/javascript">/*<![CDATA[*/' . json_encode( $script ) . '/*]]>*/</script>';
-		echo '<script type="text/javascript">/*<![CDATA[*/' . $script . '/*]]>*/</script>';
+		printf(
+			'<script type="text/javascript">/*<![CDATA[*/%s/*]]>*/</script>',
+			$script
+		);
 
 	}
 
@@ -155,13 +157,16 @@ class Init {
 	 */
 	public function print_inline_css_in_header() {
 
-		$css = Inline_Style::get();
+		$css = apply_filters( 'italystrap_custom_inline_style', Inline_Style::get() );
 
-		if ( $css ) {
-			echo '<style>' . wp_strip_all_tags( $css ) . '</style>';
-		} else {
-			echo '';
+		if ( empty( $css ) ) {
+			return;
 		}
+
+		printf(
+			'<style type="text/css" id="custom-inline-css">%s</style>',
+			wp_strip_all_tags( $css )
+		);
 	}
 } // End Init
 
