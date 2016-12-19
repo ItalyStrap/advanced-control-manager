@@ -12,7 +12,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Core;
+namespace ItalyStrap\Core\Google;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -24,7 +24,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
  * @todo A quick WordPress template tag to create Google Analytics Event Tracking on links. Built on behalf of CFO Publishing.
  * @link https://gist.github.com/AramZS/8930496
  */
-class Generate_Analytics {
+class Analytics {
 
 	/**
 	 * Plugin options settings.
@@ -40,7 +40,7 @@ class Generate_Analytics {
 	 */
 	function __construct( array $options = array() ) {
 		$this->options = $options;
-		add_filter( 'body_class', array( $this, 'render_tag_manager' ), 10000, 2 );
+		// add_filter( 'body_class', array( $this, 'render_tag_manager' ), 10000, 2 );
 	}
 
 	// add_filter( 'body_class', 'render_tag_manager', 10000 );
