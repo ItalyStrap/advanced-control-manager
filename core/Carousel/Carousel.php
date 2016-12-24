@@ -20,7 +20,8 @@
 
 namespace ItalyStrap\Core\Carousel;
 
-use \ItalyStrap\Core\Asset\Inline_Script;
+use ItalyStrap\Core\Asset\Inline_Script;
+use ItalyStrap\Core;
 
 /**
  * The Carousel Bootsrap class
@@ -70,15 +71,19 @@ abstract class Carousel {
 	function __construct( $args ) {
 
 		$this->args = $this->get_attributes( $args );
-		$this->output = '';
-		if ( $this->validate_data() ) {
-			do_action( 'italystrap_carousel_before_init' );
-			$this->container_style = $this->get_container_style();
-			$this->item_style      = $this->get_item_style();
-			$this->posts           = $this->get_posts();
-			$this->output          = $this->get_output();
-			do_action( 'italystrap_carousel_init' );
+
+		if ( ! $this->validate_data() ) {
+			return '';
 		}
+
+		// if ( $this->validate_data() ) {
+		do_action( 'italystrap_carousel_before_init' );
+		$this->container_style = $this->get_container_style();
+		$this->item_style      = $this->get_item_style();
+		$this->posts           = $this->get_posts();
+		$this->output          = $this->get_output();
+		do_action( 'italystrap_carousel_init' );
+		// }
 
 		/**
 		 * Append javascript in static variable and print in front-end footer
@@ -95,7 +100,8 @@ abstract class Carousel {
 	public function __get( $property ) {
 
 		if ( property_exists( $this, $property ) ) {
-			return $this->$property; }
+			return $this->$property;
+		}
 
 	}
 
@@ -108,7 +114,8 @@ abstract class Carousel {
 	public function __set( $property, $value ) {
 
 		if ( property_exists( $this, $property ) ) {
-			$this->$property = $value; }
+			$this->$property = $value;
+		}
 
 		return $this;
 	}
@@ -254,6 +261,7 @@ abstract class Carousel {
 				$output .= $this->get_caption_container( 'start' );
 				$output .= $this->get_title( $post );
 				$output .= $this->get_excerpt( $post );
+				$output .= $this->get_permalink( $post );
 				$output .= $this->get_caption_container( 'end' );
 			}
 			$output .= $this->get_img_container( 'end' );
@@ -464,11 +472,22 @@ abstract class Carousel {
 		 *
 		 * @var string
 		 */
-		$metadata = '<meta  itemprop="name" content="' . esc_attr( $post['post_title'] ) . '"/><meta  itemprop="width" content="' . absint( $img_attr[1] ) . '"/><meta  itemprop="height" content="' . absint( $img_attr[2] ) . '"/><meta  itemprop="position" content="' . $schemaposition . '"/>';
+		$metadata = sprintf(
+			'<meta  itemprop="name" content="%s"/><meta  itemprop="width" content="%s"/><meta  itemprop="height" content="%s"/><meta  itemprop="position" content="%s"/>',
+			esc_attr( $post['post_title'] ),
+			absint( $img_attr[1] ),
+			absint( $img_attr[2] ),
+			$schemaposition
+		);
 
 		foreach ( $imgmeta as $key => $value ) {
 			if ( ! empty( $value ) ) {
-				$metadata .= '<meta  itemprop="exifData" content="' . esc_attr( $key ) . ': ' . esc_attr( $value ) . '"/>'; }
+				$metadata .= sprintf(
+					'<meta  itemprop="exifData" content="%s: %s"/>',
+					esc_attr( $key ),
+					esc_attr( $value )
+				);
+			}
 		}
 
 		return $metadata;
@@ -521,38 +540,59 @@ abstract class Carousel {
 	 */
 	public function get_title( $post ) {
 
-		if ( '' === $this->args['image_title'] || 'false' === $this->args['image_title'] ) {
-			return;
+		if ( empty( $this->args['image_title'] ) ) {
+			return '';
 		}
 
-		$post_thumbnail_id = ( 'attachment' === $post['post_type'] ) ? ( (int) $post['ID'] ) : ( (int) get_post_thumbnail_id( $post['ID'] ) ) ;
+		if ( 'false' === $this->args['image_title'] ) {
+			return '';
+		}
+
+		$post_thumbnail_id = 'attachment' === $post['post_type'] ? (int) $post['ID'] : (int) get_post_thumbnail_id( $post['ID'] );
 
 		if ( empty( $post_thumbnail_id ) ) {
-			return;
+			return '';
 		}
 
 		$size_class = $this->get_img_size_attr();
 		$img_attr = wp_get_attachment_image_src( $post_thumbnail_id, $size_class );
 
-		$link_file = ( 'attachment' === $post['post_type'] ) ? $post['guid'] : $img_attr[0];
+		$link_file = 'attachment' === $post['post_type'] ? $post['guid'] : $img_attr[0];
 
 		$output = '';
+
+		$post['post_title'] = apply_filters( 'the_title', $post['post_title'], $post['ID'] );
 
 		switch ( $this->args['link'] ) {
 
 		 	case 'file':
-		 		$post_title = '<a href="' . esc_url( $link_file ) . '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
+		 		$post_title = sprintf(
+		 			'<a href="%s" itemprop="url">%s</a>',
+		 			esc_url( $link_file ),
+		 			esc_attr( $post['post_title'] )
+		 		);
 		 		break;
+
 		 	case 'none':
-		 		$post_title = esc_attr( $post['post_title'] );
+		 		// $post_title = esc_attr( $post['post_title'] );
+		 		$post_title = wp_kses_post( $post['post_title'] );
 		 		break;
+
 		 	default:
-		 		$post_title = '<a href="' . esc_url( get_permalink( $post['ID'] ) ). '" itemprop="url">' . esc_attr( $post['post_title'] ) . '</a>';
+		 		$post_title = sprintf(
+		 			'<a href="%s" itemprop="url">%s</a>',
+		 			esc_url( get_permalink( $post['ID'] ) ),
+		 			esc_attr( $post['post_title'] )
+		 		);
 		 		break;
 
 		}
 
-		$output .= '<'. esc_attr( $this->args['titletag'] ) .' class="slide-title">' . $post_title . '</' . esc_attr( $this->args['titletag'] ) . '>';
+		$output .= sprintf(
+			'<%1$s class="slide-title">%2$s</%1$s>',
+			esc_attr( $this->args['titletag'] ),
+			$post_title
+		);
 
 		$output = apply_filters( 'italystrap_carousel_title', $output, $this->args, $post );
 
@@ -562,11 +602,20 @@ abstract class Carousel {
 
 	/**
 	 * Get the excerpt for an image.
+	 * Didascalia
 	 *
 	 * @param array $post The post object.
 	 * @return string     HTML result.
 	 */
 	public function get_excerpt( $post ) {
+
+		if ( empty( $this->args['text'] ) ) {
+			return '';
+		}
+
+		if ( 'false' === $this->args['text'] ) {
+			return '';
+		}
 
 		/**
 		 * Da fare.
@@ -582,18 +631,54 @@ abstract class Carousel {
 
 		if ( 'false' !== $this->args['text'] ) {
 
-			$output .= ( '1' === $this->args['wpautop'] || 'false' !== $this->args['wpautop'] ) ? wpautop( wp_kses_post( $post['post_excerpt'] ) ) : esc_attr( $post['post_excerpt'] );
+			$output .= '1' === $this->args['wpautop'] || 'false' !== $this->args['wpautop']
+			? wpautop( wp_kses_post( $post['post_excerpt'] ) )
+			: esc_attr( $post['post_excerpt'] );
 
-			$output = ( '1' === $this->args['do_shortcode'] ) ? do_shortcode( $output ) : $output;
+			$output = '1' === $this->args['do_shortcode'] ? do_shortcode( $output ) : $output;
 
 		}
 
-		$output = '<div class="slide-description" itemprop="description">' . $output . '</div>';
+		$output = sprintf(
+			'<div class="slide-description" itemprop="description">%s</div>',
+			$output
+		);
 
 		$output = apply_filters( 'italystrap_carousel_excerpt', $output, $this->args, $post );
 
 		return $output;
 
+	}
+
+	/**
+	 * Get post permalink or if it is an attachment get the parent if it is set.
+	 *
+	 * @param  string $post The post array.
+	 *
+	 * @return string       The permalink
+	 */
+	public function get_permalink( $post ) {
+
+		if ( empty( $this->args['link_button'] ) ) {
+			return '';
+		}
+
+		if ( 0 === $post['post_parent'] ) {
+			return '';
+		}
+
+		$post_id = $post['ID'];
+
+		if ( 'attachment' === $post['post_type'] ) {
+			$post_id = $post['post_parent'];
+		}
+
+		return sprintf(
+			'<a href="%1$s" class="%2$s">%3$s</a>',
+			esc_url( get_permalink( $post_id ) ),
+			esc_attr( $this->args['link_button_css_class'] ),
+			esc_attr( $this->args['link_button_text'] )
+		);
 	}
 
 
@@ -664,9 +749,18 @@ abstract class Carousel {
 		 * http://stackoverflow.com/questions/27675968/lazy-load-not-work-in-bootstrap-carousel
 		 * http://jsfiddle.net/51muqdLf/5/
 		 */
-		$lazyload = 'var cHeight = 0;$("#' . esc_js( $this->args['name'] ) . '").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});';
+		$lazyload = sprintf(
+			'var cHeight = 0;$("#%s").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});',
+			esc_js( $this->args['name'] )
+		);
 
-		$output = 'jQuery(document).ready(function($){$("#' . esc_js( $this->args['name'] ) . '").carousel({interval:' . absint( $this->args['interval'] ) . $pause .' });' . $lazyload . '});';
+		$output = sprintf(
+			'jQuery(document).ready(function($){$("#%s").carousel({interval:%d%s});%s});',
+			esc_js( $this->args['name'] ),
+			absint( $this->args['interval'] ),
+			$pause,
+			$lazyload
+		);
 
 		$output = apply_filters( 'italystrap_carousel_javascript', $output, $this->args, $lazyload );
 

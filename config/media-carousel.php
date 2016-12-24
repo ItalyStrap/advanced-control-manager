@@ -19,56 +19,59 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'ids'				=> array(
-				'name'		=> __( 'Images ID', 'italystrap' ),
-				'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
-				'id'		=> 'ids',
-				'type'		=> 'media_list',
-				'class'		=> 'widefat ids',
-				'default'	=> false,
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Images ID', 'italystrap' ),
+		'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
+		'id'		=> 'ids',
+		'type'		=> 'media_list',
+		'class'		=> 'widefat ids',
+		'default'	=> false,
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Type of gallery. If it's not "carousel", nothing will be done.
 	 */
 	'type'				=> array(
-				'name'		=> __( 'Type of gallery', 'italystrap' ),
-				'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'italystrap' ),
-				'id'		=> 'type',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'class-p'	=> 'hidden',
-				'default'	=> 'carousel',
-				'options'	=> array(
-							'standard'  => __( 'Standard Gallery', 'italystrap' ),
-							'carousel'  => __( 'Carousel (Default)', 'italystrap' ),
-				 			),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Type of gallery', 'italystrap' ),
+		'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'italystrap' ),
+		'id'		=> 'type',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'class-p'	=> 'hidden',
+		'default'	=> 'carousel',
+		'options'	=> array(
+					'standard'  => __( 'Standard Gallery', 'italystrap' ),
+					'carousel'  => __( 'Carousel (Default)', 'italystrap' ),
+		 			),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+		// 'attributes'=> array(
+		// 	'data-setting'	=> 'type'
+		// ),
+	),
 
 	/**
 	 * Alternative appearing order of images.
 	 */
 	'orderby'			=> array(
-				'name'		=> __( 'Order Image By', 'italystrap' ),
-				'desc'		=> __( 'Alternative appearing order of images.', 'italystrap' ),
-				'id'		=> 'orderby',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'menu_order',
-				'options'	=> array(
-							'menu_order'	=> __( 'Menu order (Default)', 'italystrap' ),
-							'title'			=> __( 'Order by the image\'s title', 'italystrap' ),
-							'post_date'		=> __( 'Sort by date/time', 'italystrap' ),
-							'rand'			=> __( 'Order randomly', 'italystrap' ),
-							'ID'			=> __( 'Order by the image\'s ID', 'italystrap' ),
-						),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'Order',
-				 ),
+		'name'		=> __( 'Order Image By', 'italystrap' ),
+		'desc'		=> __( 'Alternative appearing order of images.', 'italystrap' ),
+		'id'		=> 'orderby',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'menu_order',
+		'options'	=> array(
+			'menu_order'	=> __( 'Menu order (Default)', 'italystrap' ),
+			'title'			=> __( 'Order by the image\'s title', 'italystrap' ),
+			'post_date'		=> __( 'Sort by date/time', 'italystrap' ),
+			'rand'			=> __( 'Order randomly', 'italystrap' ),
+			'ID'			=> __( 'Order by the image\'s ID', 'italystrap' ),
+		),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'Order',
+	),
 
 	/**
 	 * Any name. String will be sanitize to be used as HTML ID. Recomended
@@ -76,81 +79,81 @@ return array(
 	 * Default: italystrap-bootstrap-carousel.
 	 * */
 	'name'				=> array(
-				'name'		=> __( 'Carousel Name', 'italystrap' ),
-				'desc'		=> __( 'Recomended when you want to have more than one carousel in the same page.', 'italystrap' ),
-				'id'		=> 'name',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> 'italystrap-media-carousel-' . rand(),
-				// 'validate'	=> 'alpha_numeric',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Carousel Name', 'italystrap' ),
+		'desc'		=> __( 'Recomended when you want to have more than one carousel in the same page.', 'italystrap' ),
+		'id'		=> 'name',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> 'italystrap-media-carousel-' . rand(),
+		// 'validate'	=> 'alpha_numeric',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Carousel container width, in px or %
 	 */
 	'width'				=> array(
-				'name'		=> __( 'Carousel container width', 'italystrap' ),
-				'desc'		=> __( 'Enter the Carousel container width (optional).', 'italystrap' ),
-				'id'		=> 'width',
-				'type'		=> 'number',
-				'class'		=> 'widefat',
-				'default'	=> '',
-				'validate'	=> 'numeric',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'size',
-				 ),
+		'name'		=> __( 'Carousel container width', 'italystrap' ),
+		'desc'		=> __( 'Enter the Carousel container width (optional).', 'italystrap' ),
+		'id'		=> 'width',
+		'type'		=> 'number',
+		'class'		=> 'widefat',
+		'default'	=> '',
+		'validate'	=> 'numeric',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'size',
+	),
 
 	/**
 	 * Carousel item height, in px or %
 	 */
 	'height'			=> array(
-				'name'		=> __( 'Carousel container height', 'italystrap' ),
-				'desc'		=> __( 'Enter the Carousel container height (optional).', 'italystrap' ),
-				'id'		=> 'height',
-				'type'		=> 'number',
-				'class'		=> 'widefat',
-				'default'	=> '',
-				'validate'	=> 'numeric',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'size',
-				 ),
+		'name'		=> __( 'Carousel container height', 'italystrap' ),
+		'desc'		=> __( 'Enter the Carousel container height (optional).', 'italystrap' ),
+		'id'		=> 'height',
+		'type'		=> 'number',
+		'class'		=> 'widefat',
+		'default'	=> '',
+		'validate'	=> 'numeric',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'size',
+	),
 
 	/**
 	 * Accepted values: before-inner, after-inner, after-control, false.
 	 * Default: before-inner.
 	 * */
 	'indicators'		=> array(
-				'name'		=> __( 'Indicators', 'italystrap' ),
-				'desc'		=> __( 'Indicators.', 'italystrap' ),
-				'id'		=> 'indicators',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'before-inner',
-				'options'	=> array(
-							'before-inner'	=> __( 'Before inner (Default)', 'italystrap' ),
-							'after-inner'	=> __( 'After inner', 'italystrap' ),
-							'after-control'	=> __( 'After control', 'italystrap' ),
-							'false'			=> __( 'False', 'italystrap' ),
-						),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Indicators', 'italystrap' ),
+		'desc'		=> __( 'Indicators.', 'italystrap' ),
+		'id'		=> 'indicators',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'before-inner',
+		'options'	=> array(
+			'before-inner'	=> __( 'Before inner (Default)', 'italystrap' ),
+			'after-inner'	=> __( 'After inner', 'italystrap' ),
+			'after-control'	=> __( 'After control', 'italystrap' ),
+			'false'			=> __( 'False', 'italystrap' ),
+		),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Enable or disable arrow right and left
 	 * Accepted values: true, false. Default: true.
 	 */
 	'control'			=> array(
-				'name'		=> __( 'Enable control', 'italystrap' ),
-				'desc'		=> __( 'Enable or disable arrow right and left.', 'italystrap' ),
-				'id'		=> 'control',
-				'type'		=> 'checkbox',
-				'default'	=> 1,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Enable control', 'italystrap' ),
+		'desc'		=> __( 'Enable or disable arrow right and left.', 'italystrap' ),
+		'id'		=> 'control',
+		'type'		=> 'checkbox',
+		'default'	=> 1,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Add custom control icon
@@ -177,16 +180,16 @@ return array(
 	 * @link http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/
 	 */
 	'interval'			=> array(
-				'name'		=> __( 'Carousel interval', 'italystrap' ),
-				'desc'		=> __( 'The amount of time to delay between automatically cycling an item in milliseconds.', 'italystrap' ),
-				'id'		=> 'interval',
-				'type'		=> 'number',
-				'class'		=> 'widefat',
-				'default'	=> 0,
-				'validate'	=> 'alpha_dash',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Carousel interval', 'italystrap' ),
+		'desc'		=> __( 'The amount of time to delay between automatically cycling an item in milliseconds.', 'italystrap' ),
+		'id'		=> 'interval',
+		'type'		=> 'number',
+		'class'		=> 'widefat',
+		'default'	=> 0,
+		'validate'	=> 'alpha_dash',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Pauses the cycling of the carousel on mouseenter and resumes the
@@ -194,151 +197,192 @@ return array(
 	 * @type string Default hover.
 	 */
 	'pause'				=> array(
-				'name'		=> __( 'Pause', 'italystrap' ),
-				'desc'		=> __( 'Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.', 'italystrap' ),
-				'id'		=> 'pause',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'hover',
-				'options'	=> array(
-							'false'			=> __( 'none', 'italystrap' ),
-							'hover'			=> __( 'hover (Default)', 'italystrap' ),
-						),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Pause', 'italystrap' ),
+		'desc'		=> __( 'Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.', 'italystrap' ),
+		'id'		=> 'pause',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'hover',
+		'options'	=> array(
+			'false'		=> __( 'none', 'italystrap' ),
+			'hover'		=> __( 'hover (Default)', 'italystrap' ),
+		),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Define tag for image title. Default: h4.
 	 */
 	'titletag'			=> array(
-				'name'		=> __( 'Carousel titletag', 'italystrap' ),
-				'desc'		=> __( 'Define tag for image title. Default: h4.', 'italystrap' ),
-				'id'		=> 'titletag',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> 'h4',
-				// 'validate'	=> 'esc_attr',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Carousel titletag', 'italystrap' ),
+		'desc'		=> __( 'Define tag for image title. Default: h4.', 'italystrap' ),
+		'id'		=> 'titletag',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> 'h4',
+		// 'validate'	=> 'esc_attr',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Show or hide image title. Set false to hide. Default: true.
 	 */
 	'image_title'		=> array(
-				'name'		=> __( 'Image Title', 'italystrap' ),
-				'desc'		=> __( 'Show or hide image title. Set false to hide. Default: true.', 'italystrap' ),
-				'id'		=> 'image_title',
-				'type'		=> 'checkbox',
-				'default'	=> 1,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Image Title', 'italystrap' ),
+		'desc'		=> __( 'Show or hide image title. Set false to hide. Default: true.', 'italystrap' ),
+		'id'		=> 'image_title',
+		'type'		=> 'checkbox',
+		'default'	=> 1,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Type of link to show if "title" is set to true.
 	 * Default Link Parameters file, none, link
 	 */
 	'link'				=> array(
-				'name'		=> __( 'Title link', 'italystrap' ),
-				'desc'		=> __( 'Type of link to show if "title" is set to true.', 'italystrap' ),
-				'id'		=> 'link',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'none',
-				'options'	=> array(
-							'none'			=> __( 'None (Default)', 'italystrap' ),
-							'file'			=> __( 'File', 'italystrap' ),
-							'link'			=> __( 'Link', 'italystrap' ),
-						),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Title link', 'italystrap' ),
+		'desc'		=> __( 'Type of link to show if "title" is set to true. Default: none.', 'italystrap' ),
+		'id'		=> 'link',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'none',
+		'options'	=> array(
+					'none'			=> __( 'None (Default)', 'italystrap' ),
+					'file'			=> __( 'File', 'italystrap' ),
+					'link'			=> __( 'Link', 'italystrap' ),
+				),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Show or hide image text. Set false to hide. Default: true.
+	 * Show or hide image caption text (the excerpt of attachment). Set false to hide. Default: true.
 	 */
 	'text'				=> array(
-				'name'		=> __( 'Text', 'italystrap' ),
-				'desc'		=> __( 'Show or hide image text. Set false to hide. Default: true.', 'italystrap' ),
-				'id'		=> 'text',
-				'type'		=> 'checkbox',
-				'default'	=> 1,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Text', 'italystrap' ),
+		'desc'		=> __( 'Show or hide image caption text (the excerpt of attachment). Set false to hide. Default: true.', 'italystrap' ),
+		'id'		=> 'text',
+		'type'		=> 'checkbox',
+		'default'	=> 1,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Auto-format text. Default: true.
 	 */
 	'wpautop'			=> array(
-				'name'		=> __( 'wpautop', 'italystrap' ),
-				'desc'		=> __( 'Auto-format text. Default: true.', 'italystrap' ),
-				'id'		=> 'wpautop',
-				'type'		=> 'checkbox',
-				'default'	=> 1,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'wpautop', 'italystrap' ),
+		'desc'		=> __( 'Auto-format text. Default: true.', 'italystrap' ),
+		'id'		=> 'wpautop',
+		'type'		=> 'checkbox',
+		'default'	=> 1,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Allow shortcode for text. Default: false.
 	 */
 	'do_shortcode'		=> array(
-				'name'		=> __( 'do_shortcode', 'italystrap' ),
-				'desc'		=> __( 'Auto-format text. Default: false.', 'italystrap' ),
-				'id'		=> 'do_shortcode',
-				'type'		=> 'checkbox',
-				'default'	=> 0,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'do_shortcode', 'italystrap' ),
+		'desc'		=> __( 'Auto-format text. Default: false.', 'italystrap' ),
+		'id'		=> 'do_shortcode',
+		'type'		=> 'checkbox',
+		'default'	=> 0,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
+
+	/**
+	 * Show or hide a link to post, this works only for post_type and for parent of images. Default: false.
+	 */
+	'link_button'				=> array(
+		'name'		=> __( 'Link button', 'italystrap' ),
+		'desc'		=> __( 'Show or hide a link to post, this works only for post_type and for parent of images. Default: false.', 'italystrap' ),
+		'id'		=> 'link_button',
+		'type'		=> 'checkbox',
+		'default'	=> 0,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
+
+	/**
+	 * The text to display in the button link. Default: Read More.
+	 */
+	'link_button_text'				=> array(
+		'name'		=> __( 'Link button text', 'italystrap' ),
+		'desc'		=> __( 'The text to display in the button link. Default: Read More.', 'italystrap' ),
+		'id'		=> 'link_button_text',
+		'class'		=> 'widefat',
+		'type'		=> 'text',
+		'default'	=> __( 'Read more', 'italystrap' ),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
+
+	/**
+	 * You can add custom CSS class to the button. Default: btn btn-ptimary.
+	 */
+	'link_button_css_class'				=> array(
+		'name'		=> __( 'Link button CSS class', 'italystrap' ),
+		'desc'		=> __( 'You can add custom CSS class to the button. Default: btn btn-ptimary.', 'italystrap' ),
+		'id'		=> 'link_button_css_class',
+		'class'		=> 'widefat',
+		'type'		=> 'text',
+		'default'	=> 'btn btn-primary',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'Class',
+	),
 
 	/**
 	 * Extra class for container.
 	 */
 	'containerclass'	=> array(
-				'name'		=> __( 'Container Class', 'italystrap' ),
-				'desc'		=> __( 'Extra class for container.', 'italystrap' ),
-				'id'		=> 'containerclass',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> '',
-				// 'validate'	=> 'alpha_numeric',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'Class',
-				 ),
+		'name'		=> __( 'Container Class', 'italystrap' ),
+		'desc'		=> __( 'Extra class for container.', 'italystrap' ),
+		'id'		=> 'containerclass',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> '',
+		// 'validate'	=> 'alpha_numeric',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'Class',
+	),
 
 	/**
 	 * Extra class for item.
 	 */
 	'itemclass'			=> array(
-				'name'		=> __( 'Item Class', 'italystrap' ),
-				'desc'		=> __( 'Extra class for item.', 'italystrap' ),
-				'id'		=> 'itemclass',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> '',
-				// 'validate'	=> 'alpha_numeric',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'Class',
-				 ),
+		'name'		=> __( 'Item Class', 'italystrap' ),
+		'desc'		=> __( 'Extra class for item.', 'italystrap' ),
+		'id'		=> 'itemclass',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> '',
+		// 'validate'	=> 'alpha_numeric',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'Class',
+	),
 
 	/**
 	 * Extra class for caption.
 	 */
 	'captionclass'		=> array(
-				'name'		=> __( 'Caption Class', 'italystrap' ),
-				'desc'		=> __( 'Extra class for caption.', 'italystrap' ),
-				'id'		=> 'captionclass',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> '',
-				// 'validate'	=> 'alpha_numeric',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'Class',
-				 ),
+		'name'		=> __( 'Caption Class', 'italystrap' ),
+		'desc'		=> __( 'Extra class for caption.', 'italystrap' ),
+		'id'		=> 'captionclass',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> '',
+		// 'validate'	=> 'alpha_numeric',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'Class',
+	),
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -347,30 +391,30 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
-				'name'		=> __( 'Size for images', 'italystrap' ),
-				'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
-				'id'		=> 'size',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'full',
-				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'size',
-				 ),
+		'name'		=> __( 'Size for images', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
+		'id'		=> 'size',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'full',
+		'options'	=> isset( $image_size_media_array ) ? $image_size_media_array : '',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'size',
+	),
 
 	/**
 	 * Activate responsive image. Accepted values: true, false.
 	 * Default false.
 	 */
 	'responsive'		=> array(
-				'name'		=> __( 'Responsive image', 'italystrap' ),
-				'desc'		=> __( 'Activate responsive image.', 'italystrap' ),
-				'id'		=> 'responsive',
-				'type'		=> 'checkbox',
-				'default'	=> 0,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'size',
-				 ),
+		'name'		=> __( 'Responsive image', 'italystrap' ),
+		'desc'		=> __( 'Activate responsive image.', 'italystrap' ),
+		'id'		=> 'responsive',
+		'type'		=> 'checkbox',
+		'default'	=> 0,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'size',
+	),
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -379,16 +423,16 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'sizetablet'		=> array(
-				'name'		=> __( 'Size for images', 'italystrap' ),
-				'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: large.', 'italystrap' ),
-				'id'		=> 'sizetablet',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'large',
-				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'size',
-				 ),
+		'name'		=> __( 'Size for images', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: large.', 'italystrap' ),
+		'id'		=> 'sizetablet',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'large',
+		'options'	=> isset( $image_size_media_array ) ? $image_size_media_array : '',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'size',
+	),
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -397,15 +441,14 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'sizephone'			=> array(
-				'name'		=> __( 'Size for images', 'italystrap' ),
-				'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: medium.', 'italystrap' ),
-				'id'		=> 'sizephone',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'medium',
-				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'size',
-				 ),
-
+		'name'		=> __( 'Size for images', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: medium.', 'italystrap' ),
+		'id'		=> 'sizephone',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'medium',
+		'options'	=> isset( $image_size_media_array ) ? $image_size_media_array : '',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'size',
+	),
 );
