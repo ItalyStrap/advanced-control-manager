@@ -11,7 +11,7 @@
 		render: function() {
 			var $el = this.$el;
 
-			console.log(this.$el);
+			// console.log(this.$el);
 
 			media.view.Settings.prototype.render.apply( this, arguments );
 
@@ -25,7 +25,7 @@
 			// {"ids":false,"type":"","orderby":"","name":"italystrap-bootstrap-carousel","width":"","height":"","indicators":"before-inner","control":"true","interval":0,"pause":"hover","titletag":"h4","image_title":"true","link":"","text":"true","wpautop":"true","containerclass":"","itemclass":"","captionclass":"","size":"full","responsive":false,"sizetablet":"large","sizephone":"medium"}
 			// console.log(JSON.parse(gallery_fields));
 			// console.log(gallery_fields.length);
-			// gallery_fields = JSON.parse( gallery_fields );
+			defaults_fields = JSON.parse( gallery_fields );
 			// var key;
 			// for (var key in gallery_fields) {
 			//		console.log(key, gallery_fields[key]);
@@ -34,6 +34,11 @@
 			//		// this.update.apply( this, [key] );
 			//	}
 			// console.log(media.gallery.defaults);
+
+			/**
+			 * Faccio il merge dei field di default con quelli di WordPress
+			 */
+			// $.extend( media.gallery.defaults, defaults_fields );
 
 			media.gallery.defaults.type = 'default'; // lil hack that lets media know there's a type attribute.
 			media.gallery.defaults.orderby = '';

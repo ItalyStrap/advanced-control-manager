@@ -294,7 +294,10 @@ class ItalyStrapAdminGallerySettings {
 			$this->fields_type->get_field_type( $key, $instance ),
 			$this->get_field_types( $this->fields )
 		);
-
+		printf(
+			'<style>.kint{margin-left: 180px !important;}</style>'
+		);
+		// ddd( $output );
 		echo $output; // XSS ok.
 	}
 
@@ -331,7 +334,7 @@ class ItalyStrapAdminGallerySettings {
 		/**
 		 * Set field id and name
 		 */
-		$key['_id'] = $key['_name'] = $key['data-setting'] = $key['id'];
+		$key['_id'] = $key['_name'] = $key['attributes']['data-setting'] = $key['id'];
 
 		return $this->fields_type->get_field_type( $key, array() );
 

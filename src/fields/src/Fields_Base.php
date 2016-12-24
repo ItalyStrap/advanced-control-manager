@@ -201,6 +201,10 @@ abstract class Fields_Base implements Fields_Interface {
 	 */
 	public function input( array $attr = array(), array $key = array() ) {
 
+		if ( isset( $key['attributes'] ) ) {
+			$attr = wp_parse_args( $attr, (array) $key['attributes'] );
+		}
+
 		$a = wp_parse_args( $attr, array(
 			'type'				=> 'text',
 			'class'				=> esc_attr( isset( $key['class'] ) ? $key['class'] : 'none' ),
