@@ -188,6 +188,10 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	// d( get_option( 'italystrap_widget_area' ) );
 }
 
+if ( ! empty( $options['widget_visibility'] ) ) {
+	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
+}
+
 // if ( ! empty( $options['shortcode_widget'] ) ) {
 	/**
 	 * Instantiate Widget to Shortcode Class
@@ -243,6 +247,16 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
 	// Or just remove them all in one line.
 	// add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
+
+	/**
+	 * @link http://www.wpbeginner.com/plugins/add-excerpts-to-your-pages-in-wordpress/
+	 * @link https://codex.wordpress.org/Function_Reference/add_post_type_support
+	 */
+	// add_action( 'init', __NAMESPACE__ .'\my_add_excerpts_to_pages' );
+	// function my_add_excerpts_to_pages() {
+	// 	add_post_type_support( 'page', 'excerpt' );
+	// }
 
 
 	/*************
