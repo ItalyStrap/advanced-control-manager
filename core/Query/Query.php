@@ -176,4 +176,55 @@ abstract class Query implements Query_Interface {
 	 * @return string The HTML result
 	 */
 	abstract public function output();
+
+	/**
+	 * Get posts id by views.
+	 * This function is forked from Jetpack.
+	 * It functions only if jetpack is actived.
+	 *
+	 * @param  array      $args   The widget arguments.
+	 *
+	 * @return array/null         Return an array of posts id
+	 *                            or null if none are found.
+	 */
+	protected function get_posts_ids_by_views( $args ) {
+
+		if ( ! function_exists( 'stats_get_csv' ) ) {
+			return null;
+		}
+
+		/**
+		 * Filter the number of days used to calculate Top Posts for the Top Posts widget.
+		 * We do not recommend accessing more than 10 days of results at one.
+		 * When more than 10 days of results are accessed at once, results should be cached via the WordPress transients API.
+		 * Querying for -1 days will give results for an infinite number of days.
+		 *
+		 * @module widgets
+		 *
+		 * @since 3.9.3
+		 *
+		 * @param int 2 Number of days. Default is 2.
+		 * @param array $args The widget arguments.
+		 */
+		$days = (int) apply_filters( 'italystrap_top_posts_days', 2, $args );
+
+		/** Handling situations where the number of days makes no sense - allows for unlimited days where $days = -1 */
+		if ( 0 === $days || false === $days ) {
+			$days = 2;
+		}
+
+		$post_view_posts = stats_get_csv( 'postviews', array( 'days' => absint( $days ), 'limit' => 11 ) );
+
+		if ( ! $post_view_posts ) {
+			return array();
+		}
+
+		$post_view_ids = array_filter( wp_list_pluck( $post_view_posts, 'post_id' ) );
+
+		if ( ! $post_view_ids ) {
+			return null;
+		}
+
+		return (array) array_map( 'absint', $post_view_ids );
+	}
 }

@@ -139,6 +139,10 @@ class Posts extends Query {
 			'update_post_meta_cache'	=> false,
 		);
 
+		if ( ! empty( $this->args['most_viewed'] ) ) {
+			$query_args['post__in'] = $this->get_posts_ids_by_views( $this->args );
+		}
+
 		/**
 		 * Display per post/page ID
 		 */
