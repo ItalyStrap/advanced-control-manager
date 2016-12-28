@@ -61,6 +61,15 @@ if ( ! empty( $options['lazyload'] ) ) {
 	$lazy_load_image::init();
 }
 
+if ( ! empty( $options['lazyload_video'] ) ) {
+	/**
+	 * Instantiate lazy_load_video Class
+	 *
+	 * @var lazy_load_video
+	 */
+	$lazy_load_video = $injector->make( 'ItalyStrap\Core\Lazyload\Video' );
+}
+
 /**
  * Register widget
  */
@@ -182,7 +191,7 @@ if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
 /**
  * Set CSS from admin option Script
  */
-Inline_Style::set( isset( $options['custom_css'] ) ? $options['custom_css'] : '' );
+Inline_Style::set( strip_tags( $options['custom_css'] ) );
 
 /**
  * Print inline css in header
