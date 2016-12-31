@@ -224,11 +224,24 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.3.0 =
-Release Date: Dicember 4th, 2016
+Release Date: Dicember 31st, 2016
 
-Dev time: 100h
+Dev time: 200h
 
+* New API for FB pages (only for Beta tester)
+* New wdget for FB pages (only for Beta tester)
+* New widget visibility (only for Beta tester)
+* New lazyload for videos (only for Alpha tester)
+* New option for hiding widget title
 * Added new functionality for the excerpt read more link
+* Added some example files
+* Added most viewed posts for widget posts (uses Jetpack stats)
+* Refactoring: Google Analytics API
+* Refactoring: Inline script and css API
+* Refactoring: Carousel API: Added 'read more' link for post
+* Interal use: new sanitize method
+* Interal use: new fields group (Beta version)
+* Some code refactoring
 
 = 2.2.1 =
 Release Date: Dicember 4th, 2016
