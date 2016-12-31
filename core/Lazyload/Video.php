@@ -3,6 +3,8 @@
  * LazyLoad Video API 
  *
  * Class for lazyloading video embedded
+ * @link https://webdesign.tutsplus.com/tutorials/how-to-lazy-load-embedded-youtube-videos--cms-26743
+ * @link https://github.com/viktorbergehall/lazyframe/blob/master/src/lazyframe.js
  *
  * @link http://italystrap.com
  * @since 2.2.0
@@ -23,6 +25,8 @@ class Video {
 	/**
 	 * [$regex description]
 	 *
+	 * @see WP_oEmbed::$providers in wp-includes/class-oembed.php for more regex
+	 *
 	 * @regex null
 	 */
 	// private $regex = '#https?://(www.)?youtube\.com/(?:v|embed)/([^/]+)#i';
@@ -36,7 +40,7 @@ class Video {
 	function __construct( $argument = null ) {
 		add_filter( 'embed_oembed_html', array( $this, 'get_embed' ), 10, 4 );
 		Inline_Style::set( $this->get_css() );
-		Inline_Script::set( $this->get_js());
+		Inline_Script::set( $this->get_js() );
 	}
 
 	/**
