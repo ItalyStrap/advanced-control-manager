@@ -257,6 +257,23 @@ return array(
 				),
 			),
 			array(
+				'id'		=> 'remove_widget_title',
+				'title'		=> __( 'Remove widget title', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'widget',
+				'args'		=> array(
+						'name'			=> __( 'Remove widget title conditionally', 'italystrap' ),
+						'desc'			=> __( 'Add <code>!!</code> (2 esclamation marks) at the beginning of the widget title to hide it. Example: <code>!!My widget title.</code>', 'italystrap' ),
+						'id'			=> 'remove_widget_title',
+						'type'			=> 'checkbox',
+						'class'			=> 'remove_widget_title easy',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+			),
+			array(
 				'id'		=> 'widget_vcard',
 				'title'		=> __( 'vCard Widget', 'italystrap' ),
 				'callback'	=> 'get_field_type',

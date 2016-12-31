@@ -147,6 +147,13 @@ if ( ! empty( $options['do_shortcode_widget_text'] ) ) {
 	add_filter( 'widget_text', 'do_shortcode' );
 }
 
+if ( ! empty( $options['remove_widget_title'] ) ) {
+	/**
+	 * @see ItalyStrap\Core\remove_widget_title()
+	 */
+	add_filter( 'widget_title', '\ItalyStrap\Core\remove_widget_title', 999 );
+}
+
 if ( ! empty( $options['activate_analytics'] ) ) {
 	/**
 	 * Generate the Google analytics code

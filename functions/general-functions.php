@@ -96,7 +96,8 @@ function get_file_content( $filename ) {
 
 	// Check to see if the file exists at the specified path.
 	if ( ! file_exists( $filename ) ) {
-		throw new Exception( __( 'The file doesn\'t exist.', 'italystrap' ) ); }
+		throw new Exception( __( 'The file doesn\'t exist.', 'italystrap' ) );
+	}
 
 	// Open the file for reading.
 	$file_resource = fopen( $filename, 'r' );
@@ -268,6 +269,26 @@ function register_widget( $widget ) {
 	global $wp_widget_factory;
 
 	$wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
+}
+
+/**
+ * Remove widget title
+ *
+ * @hooked 'widget_title' - 999
+ *
+ * @author Stephen Cronin <http://www.scratch99.com/>
+ *
+ * @param  string      $widget_title The widget title.
+ *
+ * @return string/null               The widget title or null.
+ */
+function remove_widget_title( $widget_title ) {
+
+	if ( substr ( $widget_title, 0, 2 ) === '!!' ) {
+		return;
+	}
+	
+	return $widget_title;
 }
 
 if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
