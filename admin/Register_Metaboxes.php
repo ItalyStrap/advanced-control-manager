@@ -163,16 +163,6 @@ class Register_Metaboxes {
 
 		$cmb->add_field(
 			array(
-				'name'		=> __( 'Background color', 'italystrap' ),
-				'desc'		=> __( 'Choose the color for the backgrount of the widget area.', 'italystrap' ),
-				'id'		=> $this->_prefix . '_background_color',
-				'type'		=> 'colorpicker',
-				'default'	=> '',
-			)
-		);
-
-		$cmb->add_field(
-			array(
 				'name'				=> __( 'Width', 'italystrap' ),
 				'desc'				=> __( 'Select the width of this widget area.', 'italystrap' ),
 				'id'				=> $this->_prefix . '_container_width',
@@ -186,7 +176,31 @@ class Register_Metaboxes {
 			)
 		);
 
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'		=> __( 'Background color', 'italystrap' ),
+		// 		'desc'		=> __( 'Choose the color for the backgrount of the widget area.', 'italystrap' ),
+		// 		'id'		=> $this->_prefix . '_background_color',
+		// 		'type'		=> 'colorpicker',
+		// 		'default'	=> '',
+		// 	)
+		// );
 
+		// $cmb->add_field(
+		// 	array(
+		// 		'name'		=> __( 'Add background image', 'italystrap' ),
+		// 		'desc'		=> __( 'Upload an image.', 'itallystrap' ),
+		// 		'id'		=> $this->_prefix . '_background_image',
+		// 		'type'		=> 'file',
+		// 		// Optional:
+		// 		'options'	=> array(
+		// 			'url'	=> false, // Hide the text input for the url
+		// 		),
+		// 		'text'		=> array(
+		// 			'add_upload_file_text' => __( 'Select image', 'italystrap' ) // Change upload button text. Default: "Add or Upload File"
+		// 		),
+		// 	)
+		// );
 
 
 

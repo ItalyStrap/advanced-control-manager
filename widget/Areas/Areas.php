@@ -12,7 +12,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-// use ItalyStrap\Core\Inline_Style;
+use ItalyStrap\Core;
+use ItalyStrap\Core\Asset\Inline_Style;
 
 /**
  * Widget Areas Class
@@ -49,13 +50,20 @@ class Areas {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function get_style( $style = '' ) {
+	public function get_style( array $style = array() ) {
 
-		$css = '.' . esc_attr( $style['id'] ) . ' > div{';
+		$css = '.' . esc_attr( $style['id'] ) . '{';
 
 		foreach ( $style['style'] as $key => $value ) {
 			if ( '#' === $value ) {
 				$value = 'transparent';
+			}
+			if ( is_numeric( $value ) ) {
+				$value = sprintf(
+					'url(%s)',
+					wp_get_attachment_image_url( $value, '' ) // 4.4.0
+				);
+				$css .= 'background-size:cover;';
 			}
 			$css .= esc_attr( $key ) . ':' . esc_attr( $value ) . ';';
 		}
@@ -64,6 +72,22 @@ class Areas {
 	
 		return $css;
 	
+	}
+
+	/**
+	 * Do style
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function do_style( array $style = array() ) {
+
+		$css = $this->get_style( $style );
+
+		printf(
+			'<style scoped>%s</style>',
+			$this->get_style( $style )
+		);	
 	}
 
 	/**
@@ -81,15 +105,15 @@ class Areas {
 
 		$output = sprintf(
 			'<div %1$s><div %2$s><div %3$s>%4$s</div></div></div>',
-			\ItalyStrap\Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), false ),
-			\ItalyStrap\Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), false ),
-			\ItalyStrap\Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), false ),
+			Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), false ),
+			Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), false ),
+			Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), false ),
 			dynamic_sidebar( $sidebar_id )
 
 		);
 
 		return $output;
-	
+
 	}
 
 	/**
@@ -102,7 +126,7 @@ class Areas {
 
 		$sidebar_id = $this->sidebars[ $id ]['value']['id'];
 		$container_width = $this->sidebars[ $id ]['container_width'];
-
+// d( $this->get_style( $this->sidebars[ $id ] ) );
 		// $css =  $this->get_style( $this->sidebars[ $id ] );
 		/**
 		 * <style scoped><?php echo $css; ?></style>
@@ -112,9 +136,9 @@ class Areas {
 		if ( is_active_sidebar( $sidebar_id ) ) :
 			// $this->get_widget_area( $sidebar_id, $container_width );
 		?>
-		<div <?php \ItalyStrap\Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), true ) ?>>
-			<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), true ) ?>>
-				<div <?php \ItalyStrap\Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), true ) ?>>
+		<div <?php Core\get_attr( $sidebar_id, array( 'class' => 'widget_area ' . $sidebar_id, 'id' => $sidebar_id ), true ) ?>>
+			<div <?php Core\get_attr( $sidebar_id . '_container', array( 'class' => $container_width ), true ) ?>>
+				<div <?php Core\get_attr( $sidebar_id . '_row', array( 'class' => 'row' ), true ) ?>>
 					<?php dynamic_sidebar( $sidebar_id ); ?>
 				</div>
 			</div>
@@ -235,21 +259,15 @@ class Areas {
 		// $background_color = get_post_meta( $post_ID, '_italystrap_background_color', true );
 		// $container_width = get_post_meta( $post_ID, '_italystrap_container_width', true );
 
-		// if ( ! $action ) {
-			$action = isset( $_POST['_italystrap_action'] ) ? wp_unslash( $_POST['_italystrap_action'] ) : '';
-		// }
+		$action = isset( $_POST['_italystrap_action'] ) ? wp_unslash( $_POST['_italystrap_action'] ) : '';
 
-		// if ( ! $background_color ) {
-			$background_color = isset( $_POST['_italystrap_background_color'] ) ? wp_unslash( $_POST['_italystrap_background_color'] ) : '';
-		// }
+		$background_color = isset( $_POST['_italystrap_background_color'] ) ? wp_unslash( $_POST['_italystrap_background_color'] ) : '';
 
-		// if ( ! $container_width ) {
-			$container_width = isset( $_POST['_italystrap_container_width'] ) ? wp_unslash( $_POST['_italystrap_container_width'] ) : '';
-		// }
+		$background_image = isset( $_POST['_italystrap_background_image_id'] ) ? wp_unslash( $_POST['_italystrap_background_image_id'] ) : '';
 
-		// if ( ! $priority ) {
-			$priority = isset( $_POST['_italystrap_priority'] ) ? absint( $_POST['_italystrap_priority'] ) : 10;
-		// }
+		$container_width = isset( $_POST['_italystrap_container_width'] ) ? wp_unslash( $_POST['_italystrap_container_width'] ) : '';
+
+		$priority = isset( $_POST['_italystrap_priority'] ) ? absint( $_POST['_italystrap_priority'] ) : 10;
 
 
 		$this->sidebars[ $post_ID ] = array(
@@ -258,7 +276,8 @@ class Areas {
 			'priotity'			=> $priority,
 			'style'				=> array(
 				'background-color'	=> $background_color,
-				),
+				'background-image'	=> $background_image,
+			),
 			'container_width'	=> $container_width,
 			'value'				=> array(
 				'name'				=> $post->post_title,
