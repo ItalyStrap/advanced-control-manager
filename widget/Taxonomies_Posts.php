@@ -44,7 +44,7 @@ class Taxonomies_Posts extends Widget {
 			// Widget Backend label.
 			'label'				=> __( 'ItalyStrap Taxonomies Posts', 'italystrap' ),
 			// Widget Backend Description.
-			'description'		=> __( 'Displays list of categories with an array of options', 'italystrap' ),
+			'description'		=> __( 'Displays list of categories with their posts with an array of options. This widget is still in ALPHA version.', 'italystrap' ),
 			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/taxonomies-posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 			'widget_options'	=> array( 'customize_selective_refresh' => true ),
@@ -70,7 +70,8 @@ class Taxonomies_Posts extends Widget {
 
 		// $category_posts = new Category_Posts;
 		$category_posts = $injector->make( 'ItalyStrap\Core\Query\Category_Posts' );
-		return $category_posts->render();
+		$category_posts->get_attributes( $instance );
+		return $category_posts->output();
 
 		// $query_posts = Query_Posts::init();
 

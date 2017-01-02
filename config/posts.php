@@ -47,11 +47,11 @@ return array(
 	// 		),
 
 	/**
-	 * Enter the container class name.
+	 * This is the container of the list of posts (the <code>section</code> HTML tag), you can add any CSS class for styling it.
 	 */
 	'container_class'			=> array(
-		'name'		=> __( 'Container Class', 'italystrap' ),
-		'desc'		=> __( 'Enter the container class name.', 'italystrap' ),
+		'name'		=> __( 'Posts container Class', 'italystrap' ),
+		'desc'		=> __( 'This is the container of the list of posts (the <code>section</code> HTML tag), you can add any CSS class for styling it.', 'italystrap' ),
 		'id'		=> 'container_class',
 		'type'		=> 'text',
 		'class'		=> 'widefat container_class',
@@ -653,7 +653,7 @@ return array(
 	 * Insert posts ID separated by comma. Example: 1,2,3
 	 */
 	'post_id'				=> array(
-		'name'		=> __( 'Post/Page Id', 'italystrap' ),
+		'name'		=> __( 'Post/Page ID', 'italystrap' ),
 		'desc'		=> __( 'Insert posts ID separated by comma. Example: 1,2,3', 'italystrap' ),
 		'id'		=> 'post_id',
 		'type'		=> 'text',
@@ -711,13 +711,13 @@ return array(
 		'class'		=> 'widefat orderby',
 		'default'	=> 'date',
 		'options'	=> array(
-				'none'			=> __( 'No order. (Default)', 'italystrap' ),
+				'none'			=> __( 'No order.', 'italystrap' ),
 				'ID'			=> __( 'Order by post id.', 'italystrap' ),
 				'author'		=> __( 'Order by author.', 'italystrap' ),
 				'title'			=> __( 'Title.', 'italystrap' ),
 				'name'			=> __( 'Order by post name (post slug).', 'italystrap' ),
 				'type'			=> __( 'Order by post type (available since Version 4.0).', 'italystrap' ),
-				'date'			=> __( 'Order by date', 'italystrap' ),
+				'date'			=> __( 'Order by date. (Default)', 'italystrap' ),
 				'modified'			=> __( 'Order by last modified date.', 'italystrap' ),
 				'parent'			=> __( 'Order by post/page parent id.', 'italystrap' ),
 				'rand'			=> __( 'Random order.', 'italystrap' ),

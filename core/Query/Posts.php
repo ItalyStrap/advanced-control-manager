@@ -72,7 +72,7 @@ class Posts extends Query {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function get_query_args( $value = '' ) {
+	public function get_query_args( array $args = array() ) {
 	
 		/**
 		 * Get the current post id
@@ -253,6 +253,8 @@ class Posts extends Query {
 			$query_args['offset'] = absint( $this->args['offset'] );
 		}
 
+		$query_args = wp_parse_args( $args, $query_args );
+
 		return apply_filters( "italystrap_{$this->context}_query_arg", $query_args );
 	
 	}
@@ -262,9 +264,9 @@ class Posts extends Query {
 	 *
 	 * @return string The HTML result
 	 */
-	public function output() {
+	public function output( array $query_args = array() ) {
 
-		$this->query->query( $this->get_query_args() );
+		$this->query->query( $this->get_query_args( $query_args ) );
 
 		ob_start();
 
