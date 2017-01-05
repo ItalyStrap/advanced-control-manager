@@ -18,6 +18,8 @@ lang/ItalyStrap.po
 #SVN files
 .svn
 
+future-inclusions/
+
 #Composer
 composer.lock
 vendor/
