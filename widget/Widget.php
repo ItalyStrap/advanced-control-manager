@@ -17,6 +17,8 @@ use ItalyStrap\Fields\Fields;
 use ItalyStrap\Admin\Sanitization;
 use ItalyStrap\Admin\Validation;
 
+use InvalidArgumentException;
+
 /**
  * Core class used to implement some common method to widget.
  *
@@ -86,7 +88,11 @@ abstract class Widget extends WP_Widget {
 	 * @param  array $fields The options array with new fields.
 	 * @return array          Return an array with all fields
 	 */
-	public function get_widget_fields( $fields = array() ) {
+	public function get_widget_fields( array $fields = array() ) {
+
+		if ( empty( $fields ) ) {
+			return $this->title_field();
+		}
 
 		return array_merge( $this->title_field(), $fields );
 
@@ -172,23 +178,23 @@ abstract class Widget extends WP_Widget {
 		/**
 		 * Return the optional widget title with before_title and after_title
 		 */
-		if ( $title ) {
+		if ( ! $title ) {
+			return $title;
+		}
 
-			$output = $args['before_title'];
+		$output .= $args['before_title'];
 
-			if ( ! empty( $this->args['title_link'] ) ) {
+		if ( ! empty( $this->args['title_link'] ) ) {
 
-				$output .= '<a href="' . esc_html( $this->args['title_link'] ) . '">' . $title . '</a>';
+			$output .= '<a href="' . esc_html( $this->args['title_link'] ) . '">' . $title . '</a>';
 
-			} else {
+		} else {
 
-				$output .= $title;
-
-			}
-
-			$output .= $args['after_title'];
+			$output .= $title;
 
 		}
+
+		$output .= $args['after_title'];
 
 		return $output;
 
@@ -201,7 +207,7 @@ abstract class Widget extends WP_Widget {
 	 * @access public
 	 * @param array $args The array with widget configuration.
 	 */
-	public function create_widget( $args ) {
+	public function create_widget( array $args ) {
 
 		/**
 		 * Settings some defaults options.
@@ -214,11 +220,11 @@ abstract class Widget extends WP_Widget {
 		 */
 		$defaults = array(
 			'label'				=> '',
-			'description'		=> '',
+			'description'		=> __( '&rArr; Add a $args[\'description\'] to your widget', 'italystrap' ),
 			'fields'			=> array(),
 			'widget_options'	=> array(),
 			'control_options'	=> array(),
-		 );
+		);
 
 		/**
 		 * Parse and merge args with defaults.
@@ -226,6 +232,9 @@ abstract class Widget extends WP_Widget {
 		 * @var array
 		 */
 		$args = wp_parse_args( (array) $args, (array) $defaults );
+
+		$args['fields'] = $this->get_widget_fields( (array) $args['fields'] );
+		$this->is_valid_args( $args );
 
 		/**
 		 * Convert $args['label'] spaces with dash '-'.
@@ -295,6 +304,26 @@ abstract class Widget extends WP_Widget {
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 
+	}
+
+	/**
+	 * Check if it is valid args before init.
+	 *
+	 * @param  array $args The widget arguments.
+	 */
+	public function is_valid_args( array $args ) {
+
+		if ( empty( $args['label'] ) || ! is_string( $args['label'] ) ) {
+			throw new InvalidArgumentException( 'The $args[\'label\'] must be not empty. Insert the widget title.' );
+		}
+
+		if ( ! is_string( $args['label'] ) ) {
+			throw new InvalidArgumentException( 'The $args[\'label\'] must be a string.' );
+		}
+
+		if ( empty( $args['fields'] ) ) {
+			throw new InvalidArgumentException( 'The $args[\'fields\'] must be not empty.' );
+		}
 	}
 
 	/**
