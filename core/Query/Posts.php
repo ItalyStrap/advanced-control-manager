@@ -160,6 +160,11 @@ class Posts extends Query {
 			 */
 			$query_args['post__in'] = array_map( 'absint', $query_args['post__in'] );
 
+			/**
+			 * If post_id isset than posts_per_page will be override by the number of post ID.
+			 */
+			$query_args['posts_per_page'] = count( $query_args['post__in'] );
+
 		}
 
 		/**

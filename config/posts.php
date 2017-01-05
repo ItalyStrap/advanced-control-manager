@@ -190,11 +190,11 @@ return array(
 	),
 
 	/**
-	 * Insert the number of posts to display.
+	 * Insert the number of posts to display. Be carefully, if is sett to 0 will be displayed all post_type. (Default: 5).
 	 */
 	'posts_number'				=> array(
 		'name'		=> __( 'Number of posts', 'italystrap' ),
-		'desc'		=> __( 'Insert the number of posts to display.', 'italystrap' ),
+		'desc'		=> __( 'Insert the number of posts to display. Be carefully, if is sett to 0 will be displayed all post_type. (Default: 5).', 'italystrap' ),
 		'id'		=> 'posts_number',
 		'type'		=> 'number',
 		'class'		=> 'widefat posts_number',
