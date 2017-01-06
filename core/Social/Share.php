@@ -25,12 +25,16 @@ class Share {
 	 */
 	private $social_url = array();
 
+	private $options = array();
+
 	/**
 	 * [__construct description]
 	 *
 	 * @param [type] $argument [description].
 	 */
 	function __construct( array $options = array() ) {
+
+		$this->options = $options;
 
 		$wpseo_social = get_option( 'wpseo_social' );
 		$this->via = ! empty( $option['twitter_site'] ) ? '&via=' . $option['twitter_site'] : '' ;
@@ -63,34 +67,35 @@ class Share {
 		$get_permalink = get_permalink();
 		$get_the_title = get_the_title();
 		$get_the_excerpt = get_the_content();
-		$thumb_url = wp_get_attachment_thumb_url( get_the_id() );
-	
+		$thumb_url = wp_get_attachment_thumb_url( get_post_thumbnail_id( get_the_id() ) );
+
 		$this->social_url = array(
 			'facebook'	=> sprintf(
-				'http://www.facebook.com/sharer.php?u=%s',
-				$get_permalink
+				'//www.facebook.com/sharer.php?u=%s&p[title]=%s',
+				$get_permalink,
+				$get_the_title
 			),
 			'twitter'	=> sprintf(
-				'https://twitter.com/share?url=%s&text=%s%s',
+				'//twitter.com/share?url=%s&text=%s%s',
 				$get_permalink,
 				$get_the_title,
 				$this->via
 			),
 			'gplus'		=> sprintf(
-				'https://plus.google.com/share?url=%s',
+				'//plus.google.com/share?url=%s',
 				$get_permalink
 			),
-			'linkedin'	=> sprintf(
-				'http://www.linkedin.com/shareArticle?mini=true&url=%s&title=%s',
+			// 'linkedin'	=> sprintf(
+			// 	'//www.linkedin.com/shareArticle?mini=true&url=%s&title=%s',
+			// 	$get_permalink,
+			// 	$get_the_title
+			// ),
+			'pinterest'	=> sprintf(
+				'//pinterest.com/pin/create/button/?url=%s&media=%s&description=%s',
 				$get_permalink,
+				$thumb_url,
 				$get_the_title
 			),
-			// 'pinterest'	=> sprintf(
-			// 	'https://pinterest.com/pin/create/button/?url=%s&media=%s&description=%s',
-			// 	$thumb_url,
-			// 	$get_the_title,
-			// 	''
-			// ),
 		);
 	
 	}
@@ -109,31 +114,22 @@ class Share {
 
 		$output = '<ul class="social-button list-inline">';
 
-		$format_array = array(
-			'href'		=> '%s',
-			'class'		=> 'btn btn-default',
+		$link_attr = array(
+			'href'		=> '%1$s',
+			'class'		=> 'btn btn-default btn-sm',
 			'target'	=> 'popup',
-			'onclick'	=> '%s return false;',
+			'onclick'	=> 'window.open("%1$s","popup","width=600,height=600"); return false;',
 			'rel'		=> 'nofollow',
-			'title'		=> '%s',
+			'title'		=> __( 'Share on %2$s', 'italystrap' ),
 		);
 
 		foreach ( $this->social_url as $key => $url ) {
 
-			$format = \ItalyStrap\Core\get_attr( $key, $format_array );
+			$format = \ItalyStrap\Core\get_attr( $key, $link_attr );
 
 			$output .= sprintf(
-				'<li><a ' . $format . '><span class="font-icon icon-%s">%s</span></a></li>',
+				'<li><a ' . $format . '><span class="font-icon icon-%2$s">%2$s</span></a></li>',
 				$url,
-				sprintf(
-					'window.open("%s","popup","width=600,height=600");',
-					$url
-				),
-				sprintf(
-					__( 'Share on %s', 'italystrap' ),
-					$key
-				),
-				$key,
 				$key
 			);
 		}
@@ -142,5 +138,30 @@ class Share {
 
 		return $output;
 	
+	}
+
+	/**
+	 * Add social share
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function add_social_button( $content ) {
+
+		if ( ! is_singular() ) {
+			return $content;
+		}
+
+		$positions = array(
+			'before'	=> '%2$s%1$s',
+			'after'		=> '%1$s%2$s',
+			'both'		=> '%2$s%1$s%2$s',
+		);
+
+		return sprintf(
+			$positions[ $this->options['social_button_position'] ],
+			$content,
+			$this->get_social_button()
+		);
 	}
 }

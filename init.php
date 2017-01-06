@@ -178,12 +178,9 @@ if ( ! empty( $options['menu_cache'] ) && version_compare( PHP_VERSION, '5.4.0',
 }
 
 if ( ! empty( $options['activate_social_share'] ) && is_beta() ) {
-	$social_share = new Share();
 
-	add_filter( 'the_content', function ( $content ) use ( $social_share ) {
-		$content = $content . $social_share->get_social_button();
-		return $content;
-	}, 999, 1 );
+	$social_share = $injector->make( 'ItalyStrap\Core\Social\Share' );
+	add_filter( 'the_content', array( $social_share, 'add_social_button' ), 9999, 1 );
 }
 
 if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
