@@ -154,6 +154,10 @@ abstract class Settings_Base implements Settings_Interface{
 
 		foreach ( (array) $this->args['submenu_pages'] as $submenu ) {
 
+			if ( isset( $submenu['show_on'] ) && ! $this->show_on( $submenu['show_on'] ) ) {
+				continue;
+			}
+
 			add_submenu_page(
 				$submenu['parent_slug'],
 				$submenu['page_title'],
@@ -166,6 +170,25 @@ abstract class Settings_Base implements Settings_Interface{
 
 		}
 
+	}
+
+	/**
+	 * Show on page
+	 *
+	 * @param  string/array $condition The config array.
+	 * @return bool         Return true if conditions are resolved.
+	 */
+	public function show_on( $condition ) {
+
+		if ( is_bool( $condition ) ) {
+			return $condition;
+		}
+
+		if ( is_callable( $condition ) ) {
+			return (bool) call_user_func( $condition );
+		}
+
+		return false;
 	}
 
 	/**
@@ -182,7 +205,6 @@ abstract class Settings_Base implements Settings_Interface{
 			: __DIR__ . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'italystrap-settings.php';
 
 		require( $file_path );
-
 	}
 
 	/**

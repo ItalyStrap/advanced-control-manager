@@ -64,5 +64,14 @@ return array(
 		// 	'menu_slug'		=> 'italystrap-import-export',
 		// 	// 'function_cb'	=> array( $this, 'get_admin_view' ),
 		// ),
+		array(
+			'parent_slug'	=> 'italystrap-dashboard',
+			'page_title'	=> __( 'Migrations', 'italystrap' ),
+			'menu_title'	=> __( 'Migrations', 'italystrap' ),
+			// 'capability'	=> $this->capability,
+			'menu_slug'		=> 'italystrap-migrations',
+			// 'function_cb'	=> array( $this, 'get_admin_view' ),
+			'show_on'		=> ( get_option( 'template' ) === 'ItalyStrap' ),
+		),
 	),
 );
