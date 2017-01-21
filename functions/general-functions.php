@@ -458,6 +458,38 @@ function apply_lazyload( $content ) {
 }
 
 /**
+ * Retrieves the attachment ID from the file URL
+ *
+ * @link https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+ *
+ * @param  string $image_url The src of the image.
+ *
+ * @return int               Return the ID of the image
+ */
+function get_image_id_from_url( $image_url ) {
+
+	$attachment = wp_cache_get( 'get_image_id' . $image_url );
+
+	if ( false === $attachment ) {
+
+		global $wpdb;
+		$attachment = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT ID
+				FROM $wpdb->posts
+				WHERE guid='%s';",
+				$image_url
+			)
+		);
+		wp_cache_set( 'get_image_id' . $image_url, $attachment );
+	}
+
+	$attachment[0] = isset( $attachment[0] ) ? $attachment[0] : null;
+
+	return absint( $attachment[0] );
+}
+
+/**
  * Cambio il testo per il link al post successivo
  *
  * @param  array $args Argomenti per le funzioni di paginazione.
@@ -490,13 +522,19 @@ function _display_config( $atts ) {
 
 	$get_settings = require( ITALYSTRAP_PLUGIN_PATH . 'config/' . $atts['file'] . '.php' );
 
-	$output = '<ul>';
+	$output = '<ul class="list-unstyled">';
+	$output .= sprintf(
+		'<h3>%s</h3>',
+		__( 'Options', 'italystrap' )
+	);
 
 	foreach ( (array) $get_settings as $key => $setting ) {
 		$output .= sprintf(
-			'<li><strong>%s</strong><br>%s</li>',
-			$setting['name'],
-			$setting['desc']
+			'<li><h4>%s</h4><p>Attribute: <code>%s</code><br>Default: <code>%s</code><br>%s</p></li>',
+			esc_attr( $setting['name'] ),
+			esc_attr( $setting['id'] ),
+			esc_attr( $setting['default'] ),
+			wp_kses_post( $setting['desc'] )
 			);
 	}
 

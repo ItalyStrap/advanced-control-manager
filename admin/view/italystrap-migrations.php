@@ -13,7 +13,6 @@
 			<?php // do_action( 'italystrap_before_settings_form', $this ); ?>
 			<form action="#" method="post">
 				<?php
-				do_action( 'admin_notices' );
 
 				$injector = new \Auryn\Injector;
 				$migrations = $injector->make( '\ItalyStrap\Migrations\Migrations_Factory' );
