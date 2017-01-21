@@ -53,11 +53,11 @@ return array(
 	),
 
 	/**
-	 * Alternative appearing order of images.
+	 * Alternative order for your images.
 	 */
 	'orderby'			=> array(
 		'name'		=> __( 'Order Image By', 'italystrap' ),
-		'desc'		=> __( 'Alternative appearing order of images.', 'italystrap' ),
+		'desc'		=> __( 'Alternative order for your images.', 'italystrap' ),
 		'id'		=> 'orderby',
 		'type'		=> 'select',
 		'class'		=> 'widefat',
@@ -74,13 +74,12 @@ return array(
 	),
 
 	/**
-	 * Any name. String will be sanitize to be used as HTML ID. Recomended
-	 * when you want to have more than one carousel in the same page.
+	 * String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page.
 	 * Default: italystrap-bootstrap-carousel.
 	 * */
 	'name'				=> array(
 		'name'		=> __( 'Carousel Name', 'italystrap' ),
-		'desc'		=> __( 'Recomended when you want to have more than one carousel in the same page.', 'italystrap' ),
+		'desc'		=> __( 'String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page.', 'italystrap' ),
 		'id'		=> 'name',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -91,11 +90,11 @@ return array(
 	),
 
 	/**
-	 * Carousel container width, in px or %
+	 * Carousel container width, in px or % (optional).
 	 */
 	'width'				=> array(
 		'name'		=> __( 'Carousel container width', 'italystrap' ),
-		'desc'		=> __( 'Enter the Carousel container width (optional).', 'italystrap' ),
+		'desc'		=> __( 'Carousel container width, in px or % (optional).', 'italystrap' ),
 		'id'		=> 'width',
 		'type'		=> 'number',
 		'class'		=> 'widefat',
@@ -106,11 +105,11 @@ return array(
 	),
 
 	/**
-	 * Carousel item height, in px or %
+	 * Carousel item height, in px or % (optional).
 	 */
 	'height'			=> array(
 		'name'		=> __( 'Carousel container height', 'italystrap' ),
-		'desc'		=> __( 'Enter the Carousel container height (optional).', 'italystrap' ),
+		'desc'		=> __( 'Carousel item height, in px or % (optional).', 'italystrap' ),
 		'id'		=> 'height',
 		'type'		=> 'number',
 		'class'		=> 'widefat',
@@ -121,12 +120,12 @@ return array(
 	),
 
 	/**
-	 * Accepted values: before-inner, after-inner, after-control, false.
+	 * Indicators position. Accepted values: before-inner, after-inner, after-control, false (hides indicators).
 	 * Default: before-inner.
 	 * */
 	'indicators'		=> array(
 		'name'		=> __( 'Indicators', 'italystrap' ),
-		'desc'		=> __( 'Indicators.', 'italystrap' ),
+		'desc'		=> __( 'Indicators position. Accepted values: before-inner, after-inner, after-control, false (hides indicators).', 'italystrap' ),
 		'id'		=> 'indicators',
 		'type'		=> 'select',
 		'class'		=> 'widefat',
@@ -142,12 +141,11 @@ return array(
 	),
 
 	/**
-	 * Enable or disable arrow right and left
-	 * Accepted values: true, false. Default: true.
+	 * Enable or disable arrow right and left. Accepted values: true, false. Default: true.
 	 */
 	'control'			=> array(
 		'name'		=> __( 'Enable control', 'italystrap' ),
-		'desc'		=> __( 'Enable or disable arrow right and left.', 'italystrap' ),
+		'desc'		=> __( 'Enable or disable arrow right and left. Accepted values: true, false. Default: true.', 'italystrap' ),
 		'id'		=> 'control',
 		'type'		=> 'checkbox',
 		'default'	=> 1,
@@ -173,15 +171,12 @@ return array(
 	 */
 
 	/**
-	 * The amount of time to delay between automatically
-	 * cycling an item in milliseconds.
-	 * @type integer Example 5000 = 5 seconds.
-	 * Default 0, carousel will not automatically cycle.
+	 * The amount of time to delay between automatically cycling an item in milliseconds. Example 5000 = 5 seconds. Default 0, carousel will not automatically cycle.
 	 * @link http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/
 	 */
 	'interval'			=> array(
 		'name'		=> __( 'Carousel interval', 'italystrap' ),
-		'desc'		=> __( 'The amount of time to delay between automatically cycling an item in milliseconds.', 'italystrap' ),
+		'desc'		=> __( 'The amount of time to delay between automatically cycling an item in milliseconds. Example 5000 = 5 seconds. Default 0, carousel will not automatically cycle.', 'italystrap' ),
 		'id'		=> 'interval',
 		'type'		=> 'number',
 		'class'		=> 'widefat',
@@ -192,8 +187,7 @@ return array(
 	),
 
 	/**
-	 * Pauses the cycling of the carousel on mouseenter and resumes the
-	 * cycling of the carousel on mouseleave.
+	 * Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.
 	 * @type string Default hover.
 	 */
 	'pause'				=> array(
@@ -212,11 +206,11 @@ return array(
 	),
 
 	/**
-	 * Define tag for image title. Default: h4.
+	 * Define HTML tag for image title. Default: h4.
 	 */
 	'titletag'			=> array(
 		'name'		=> __( 'Carousel titletag', 'italystrap' ),
-		'desc'		=> __( 'Define tag for image title. Default: h4.', 'italystrap' ),
+		'desc'		=> __( 'Define HTML tag for image title. Default: h4.', 'italystrap' ),
 		'id'		=> 'titletag',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -240,12 +234,11 @@ return array(
 	),
 
 	/**
-	 * Type of link to show if "title" is set to true.
-	 * Default Link Parameters file, none, link
+	 * Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.
 	 */
 	'link'				=> array(
 		'name'		=> __( 'Title link', 'italystrap' ),
-		'desc'		=> __( 'Type of link to show if "title" is set to true. Default: none.', 'italystrap' ),
+		'desc'		=> __( 'Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.', 'italystrap' ),
 		'id'		=> 'link',
 		'type'		=> 'select',
 		'class'		=> 'widefat',
@@ -273,11 +266,11 @@ return array(
 	),
 
 	/**
-	 * Auto-format text. Default: true.
+	 * Auto-format text. Changes double line-breaks in the text into HTML paragraphs (<p>...</p>). Default: true.
 	 */
 	'wpautop'			=> array(
 		'name'		=> __( 'wpautop', 'italystrap' ),
-		'desc'		=> __( 'Auto-format text. Default: true.', 'italystrap' ),
+		'desc'		=> __( 'Auto-format text. Changes double line-breaks in the text into HTML paragraphs (<p>...</p>). Default: true.', 'italystrap' ),
 		'id'		=> 'wpautop',
 		'type'		=> 'checkbox',
 		'default'	=> 1,
@@ -340,11 +333,11 @@ return array(
 	),
 
 	/**
-	 * Extra class for container.
+	 * Extra CSS class for carousel container.
 	 */
 	'containerclass'	=> array(
 		'name'		=> __( 'Container Class', 'italystrap' ),
-		'desc'		=> __( 'Extra class for container.', 'italystrap' ),
+		'desc'		=> __( 'Extra CSS class for carousel container.', 'italystrap' ),
 		'id'		=> 'containerclass',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -355,11 +348,11 @@ return array(
 	),
 
 	/**
-	 * Extra class for item.
+	 * Extra CSS class for carousel item.
 	 */
 	'itemclass'			=> array(
 		'name'		=> __( 'Item Class', 'italystrap' ),
-		'desc'		=> __( 'Extra class for item.', 'italystrap' ),
+		'desc'		=> __( 'Extra CSS class for carousel item.', 'italystrap' ),
 		'id'		=> 'itemclass',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -370,11 +363,11 @@ return array(
 	),
 
 	/**
-	 * Extra class for caption.
+	 * Extra CSS class for carousel caption.
 	 */
 	'captionclass'		=> array(
 		'name'		=> __( 'Caption Class', 'italystrap' ),
-		'desc'		=> __( 'Extra class for caption.', 'italystrap' ),
+		'desc'		=> __( 'Extra CSS class for carousel caption.', 'italystrap' ),
 		'id'		=> 'captionclass',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -385,14 +378,13 @@ return array(
 	),
 
 	/**
-	 * Size for image attachment. Accepted values: thumbnail, medium,
-	 * large, full or own custom name added in add_image_size function.
+	 * Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full. See <a href="http://codex.WordPress.org/Function_Reference/wp_get_attachment_image_src">wp_get_attachment_image_src()</a> for further reference.
 	 * Default: full.
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
 		'name'		=> __( 'Size for images', 'italystrap' ),
-		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full. See <a href="http://codex.WordPress.org/Function_Reference/wp_get_attachment_image_src">wp_get_attachment_image_src()</a> for further reference.', 'italystrap' ),
 		'id'		=> 'size',
 		'type'		=> 'select',
 		'class'		=> 'widefat',
@@ -403,12 +395,11 @@ return array(
 	),
 
 	/**
-	 * Activate responsive image. Accepted values: true, false.
-	 * Default false.
+	 * Activate responsive image. Accepted values: true, false. Default false. It works only if you add sizetablet and sizephone attribute. See below.
 	 */
 	'responsive'		=> array(
 		'name'		=> __( 'Responsive image', 'italystrap' ),
-		'desc'		=> __( 'Activate responsive image.', 'italystrap' ),
+		'desc'		=> __( 'Activate responsive image. Default false. It works only if you add sizetablet and sizephone attribute. See below.', 'italystrap' ),
 		'id'		=> 'responsive',
 		'type'		=> 'checkbox',
 		'default'	=> 0,
@@ -417,14 +408,12 @@ return array(
 	),
 
 	/**
-	 * Size for image attachment. Accepted values: thumbnail, medium,
-	 * large, full or own custom name added in add_image_size function.
-	 * Default: large.
+	 * Size for image attachment for tablet device. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: large.
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'sizetablet'		=> array(
 		'name'		=> __( 'Size for images', 'italystrap' ),
-		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: large.', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment for tablet device. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: large.', 'italystrap' ),
 		'id'		=> 'sizetablet',
 		'type'		=> 'select',
 		'class'		=> 'widefat',
@@ -435,14 +424,12 @@ return array(
 	),
 
 	/**
-	 * Size for image attachment. Accepted values: thumbnail, medium,
-	 * large, full or own custom name added in add_image_size function.
-	 * Default: medium.
+	 * Size for image attachment for phone device. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: medium.
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'sizephone'			=> array(
 		'name'		=> __( 'Size for images', 'italystrap' ),
-		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: medium.', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment for phone device. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: medium.', 'italystrap' ),
 		'id'		=> 'sizephone',
 		'type'		=> 'select',
 		'class'		=> 'widefat',
