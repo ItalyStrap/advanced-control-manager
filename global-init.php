@@ -183,6 +183,7 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
 	add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 2 );
 	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
+	add_action( 'widgets_admin_page', array( $widget_areas, 'print_add_button' ) );
 
 	// delete_option( 'italystrap_widget_area' );
 	// d( get_option( 'italystrap_widget_area' ) );
@@ -247,6 +248,8 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
 	// Or just remove them all in one line.
 	// add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+	// 
+	$search_box_item = new Search_Box_Item();
 
 
 	/**
