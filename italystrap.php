@@ -175,6 +175,13 @@ $theme_mods = (array) get_theme_mods();
  */
 $injector->defineParam( 'theme_mods', $theme_mods );
 
+/**
+ * The new events manager in ALPHA vesrion.
+ *
+ * @var Event_Manager
+ */
+$events_manager = $injector->make( '\ItalyStrap\Events\Manager' );
+
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**
 	 * Instantiate Customizer_Manager Class
