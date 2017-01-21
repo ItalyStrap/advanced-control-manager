@@ -367,4 +367,25 @@ class Areas {
 		);
 		register_post_type( 'sidebar', $args );
 	} // End register_post_type()
+
+	/**
+	 * Print add button in widgets.php.
+	 *
+	 * @hooked 'widgets_admin_page' - 10
+	 */
+	public function print_add_button() {
+	
+		echo sprintf(
+			'<div><a %s>%s</a></div>',
+			Core\get_attr(
+				'widget_add_sidebar',
+				array(
+					'href'	=> 'edit.php?post_type=sidebar',
+					'class'	=> 'button button-primary sidebar-chooser-add',
+				),
+				false
+			),
+			__( 'Add new widgets area', 'italystrap' )
+		);
+	}
 }
