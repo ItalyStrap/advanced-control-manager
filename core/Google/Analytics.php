@@ -229,7 +229,7 @@ class Analytics {
 
 		$output .= $this->maybe_anonimize_ip();
 
-		return $output;
+		return apply_filters( 'italystrap_ga_commands_queue_output', $output );
 	}
 
 	/**
