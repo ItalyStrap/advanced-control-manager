@@ -728,7 +728,7 @@ module.exports = function(grunt) {
 								'github-release',
 								]);
 
-	grunt.registerTask('dep-update', [
+	grunt.registerTask('composer-update', [
 								'composer:update',
 								'composer:dump-autoload -o',
 								]);
