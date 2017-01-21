@@ -63,9 +63,11 @@ class Share {
 	 * @return string        [description]
 	 */
 	public function set_social_url() {
+		global $post;
 
 		$get_permalink = get_permalink();
-		$get_the_title = get_the_title();
+		// $get_the_title = get_the_title();
+		$get_the_title = esc_attr( $post->post_title );
 		$get_the_excerpt = get_the_content();
 		$thumb_url = wp_get_attachment_thumb_url( get_post_thumbnail_id( get_the_id() ) );
 
@@ -116,7 +118,7 @@ class Share {
 
 		$link_attr = array(
 			'href'		=> '%1$s',
-			'class'		=> 'btn btn-default btn-sm',
+			'class'		=> '%2$s btn btn-default btn-xs',
 			'target'	=> 'popup',
 			'onclick'	=> 'window.open("%1$s","popup","width=600,height=600"); return false;',
 			'rel'		=> 'nofollow',
