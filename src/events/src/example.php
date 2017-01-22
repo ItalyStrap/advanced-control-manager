@@ -35,8 +35,8 @@ $events = array(
 	'italystrap_after_entry_content'	=> array(
 		array(
 			'function_to_add'	=> array( $template_settings, 'title' ),
-			// 'priority'			=> 10,
-			// 'accepted_args'		=> null,
+			'priority'			=> 10,
+			'accepted_args'		=> null,
 		),
 		array(
 			'function_to_add'	=> array( $template_settings, 'content' ),

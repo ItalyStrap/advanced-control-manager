@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 interface Subscriber_Interface {
     /**
-     * Returns an array of hooks that this subscriber wants to register with
-     * the WordPress plugin API.
+     * Returns an array of events (hooks) that this subscriber wants to register with
+     * the Events Manager API.
      *
      * The array key is the name of the hook. The value can be:
      *
@@ -28,11 +28,20 @@ interface Subscriber_Interface {
      *
      * For instance:
      *
-     *  * array('hook_name' => 'method_name')
-     *  * array('hook_name' => array('method_name', $priority))
-     *  * array('hook_name' => array('method_name', $priority, $accepted_args))
+     * array(
+     *     // 'event_name'              => 'method_name',
+     *     'italystrap_before_header'  => 'render',
+     * )
+     * array(
+     *     // 'event_name'                      => 'method_name',
+     *     'italystrap_before_entry_content'   => array(
+     *         'function_to_add'   => 'render',
+     *         'priority'          => 30, // Default 10
+     *         'accepted_args'     => 1 // Default 1
+     *     ),
+     * );
      *
      * @return array
      */
-    public static function get_subscribed_hooks();
+    public static function get_subscribed_events();
 }

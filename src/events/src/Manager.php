@@ -23,7 +23,7 @@ class Manager {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	function add_event( $tag, $controller ) {
+	private function add_event( $tag, $controller ) {
 
 		/**
 		 * 'function_name_callable'
@@ -48,6 +48,25 @@ class Manager {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
+	public function add_events( Subscriber_Interface $class ) {
+
+		foreach ( $class->get_subscribed_events() as $tag => $controller ) {
+
+			if ( is_array( $controller ) && isset( $controller['function_to_add'] ) ) {
+				$controller['function_to_add'] = array( $class, $controller['function_to_add'] );
+				$this->add_event( $tag, $controller );
+			} elseif ( is_string( $controller ) ) {
+				$this->add_event( $tag, array( $class, $controller ) );
+			}
+		}
+	}
+
+	/**
+	 * Add events
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
 	public function add_events_old( array $events ) {
 
 		foreach ( $events as $tag => $controller ) {
@@ -60,35 +79,6 @@ class Manager {
 			}
 
 			$this->add_event( $tag, $controller );
-		}
-	}
-
-	/**
-	 * Add events
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function add_events( Subscriber_Interface $class ) {
-
-		foreach ( $class::get_subscribed_hooks() as $tag => $controller ) {
-
-			if ( is_string( $controller ) ) {
-				$this->add_event( $tag, array( $class, $controller ) );
-				continue;
-			}
-
-			if ( is_array( $controller ) ) {
-				$controller['function_to_add'] = array( $class, $controller['function_to_add'] );
-				// echo "<pre>";
-				// print_r($controller['function_to_add'] = array( $class, $controller['function_to_add'] ) );
-				// echo "</pre>";
-				$this->add_event( $tag, $controller );
-				// foreach ( $controller as $value ) {
-					// $this->add_event( $tag, $value );
-				// }
-				continue;
-			}
 		}
 	}
 }
