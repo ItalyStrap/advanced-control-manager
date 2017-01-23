@@ -180,7 +180,7 @@ $injector->defineParam( 'theme_mods', $theme_mods );
  *
  * @var Event_Manager
  */
-$events_manager = $injector->make( '\ItalyStrap\Events\Manager' );
+$events_manager = $injector->make( '\ItalyStrap\Event\Manager' );
 
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**

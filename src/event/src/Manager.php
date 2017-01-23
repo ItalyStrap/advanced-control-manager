@@ -10,7 +10,7 @@
  * @package ItalyStrap
  */
 
-namespace ItalyStrap\Events;
+namespace ItalyStrap\Event;
 
 /**
  * Class description

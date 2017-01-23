@@ -12,7 +12,7 @@
 
 namespace ItalyStrap\Core\Example;
 
-use ItalyStrap\Events\Manager as Event_Manager;
+use ItalyStrap\Event\Manager as Event_Manager;
 
 /**
  * Template object
