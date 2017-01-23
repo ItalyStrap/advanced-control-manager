@@ -29,11 +29,11 @@ interface Subscriber_Interface {
      * For instance:
      *
      * array(
-     *     // 'event_name'              => 'method_name',
+     *     // 'event_name'             => 'method_name',
      *     'italystrap_before_header'  => 'render',
      * )
      * array(
-     *     // 'event_name'                      => 'method_name',
+     *     // 'event_name'                     => 'method_name',
      *     'italystrap_before_entry_content'   => array(
      *         'function_to_add'   => 'render',
      *         'priority'          => 30, // Default 10
