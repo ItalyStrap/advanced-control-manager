@@ -223,6 +223,25 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.4.0 =
+Release Date: January 23rd, 2017
+
+Dev time: 100h
+
+* New Event Manager API
+* Added counts by ID inserted for Posts API
+* Added some example for Widget Creation
+* Added migration strategy for the ItalyStrap theme framework user
+* Added new filter for google analytics output
+* Added some example for google analytics API
+* Added button for widget area only for the ItalyStrap theme framework user
+* Refactoring: Some changes for Taxonomies list API (Only for beta tester)
+* Refactoring: Some changes in Widget API
+* Refactoring: Some changes in Social Share API (Only for beta tester)
+* Fixed issue in share button with EDD actived
+* Improved media carousel description
+
+
 = 2.3.0 =
 Release Date: Dicember 31st, 2016
 
@@ -239,8 +258,8 @@ Dev time: 200h
 * Refactoring: Google Analytics API
 * Refactoring: Inline script and css API
 * Refactoring: Carousel API: Added 'read more' link for post
-* Interal use: new sanitize method
-* Interal use: new fields group (Beta version)
+* Internal use: new sanitize method
+* Internal use: new fields group (Beta version)
 * Some code refactoring
 
 = 2.2.1 =
