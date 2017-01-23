@@ -249,7 +249,7 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	// Or just remove them all in one line.
 	// add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 	// 
-	$search_box_item = new Search_Box_Item();
+	// $search_box_item = new Search_Box_Item();
 
 
 	/**
