@@ -40,7 +40,7 @@ class Old_Hooks {
 		'content_container_closed'	=> '',
 		'footer_open'				=> 'italystrap_before_footer',
 		'footer_closed'				=> 'italystrap_after_footer',
-		'wrapper_closed'			=> '',
+		'wrapper_closed'			=> 'italystrap_after',
 		'body_closed'				=> '',
 	);
 
@@ -58,6 +58,10 @@ class Old_Hooks {
 				continue;
 			}
 			add_action( $new, function () use ( $new, $old ) {
+				if ( ! has_filter( $old ) ) {
+					return;
+				}
+
 				_deprecated_hook(
 					$old,
 					'4.0.0',
