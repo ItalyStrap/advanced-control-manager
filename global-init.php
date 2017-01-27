@@ -100,13 +100,15 @@ class Init {
 	public function widgets_init() {
 
 		$widget_list = array(
-			'vcardwidget'			=> 'Vcard_Widget', // Deprecated
-			'post_widget'			=> 'Widget_Posts2', // Deprecated
-			'media_carousel_widget'	=> 'Carousel',
-			'widget_posts'			=> 'Posts',
-			'widget_vcard'			=> 'VCard', // New
-			'widget_image'			=> 'Image', // New
-			'widget_facebook_page'	=> 'Facebook_Page', // New
+			'vcardwidget'				=> 'Vcard_Widget', // Deprecated
+			'post_widget'				=> 'Widget_Posts2', // Deprecated
+			'media_carousel_widget'		=> 'Carousel',
+			'widget_posts'				=> 'Posts',
+			'widget_vcard'				=> 'VCard', // New
+			'widget_image'				=> 'Image', // New
+			'widget_facebook_page'		=> 'Facebook_Page', // New
+			'widget_breadcrumbs'		=> 'Breadcrumbs', // Beta
+			'widget_taxonomies_posts'	=> 'Taxonomies_Posts', // Beta
 		);
 
 		foreach ( (array) $widget_list as $key => $value ) {
@@ -114,21 +116,6 @@ class Init {
 				\register_widget( 'ItalyStrap\\Widget\\' . $value );
 			}
 		}
-
-		if ( defined( 'ITALYSTRAP_BETA' ) ) {
-
-			\register_widget( 'ItalyStrap\Widget\Breadcrumbs' );
-
-			// if ( isset( $this->options['widget_product'] ) ) {
-				// $widget_product = new Widget_Product;
-				\register_widget( 'ItalyStrap\Widget\Products' );
-				// register_widget( $widget_product );
-			// }
-
-			\register_widget( 'ItalyStrap\Widget\Taxonomies_Posts' );
-
-		}
-
 	}
 
 	/**
