@@ -22,77 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * Define some costant for internal use
- */
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) ) {
-	define( 'ITALYSTRAP_PLUGIN', true );
-}
-
-/**
- * Define some costant for internal use
- */
-if ( ! defined( 'ITALYSTRAP_PLUGIN_VERSION' ) ) {
-	define( 'ITALYSTRAP_PLUGIN_VERSION', '2.4.0' );
-}
-
-/**
- * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended\italystrap.php
- */
-if ( ! defined( 'ITALYSTRAP_FILE' ) ) {
-	define( 'ITALYSTRAP_FILE', __FILE__ );
-}
-
-/**
- * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended/
- */
-if ( ! defined( 'ITALYSTRAP_PLUGIN_PATH' ) ) {
-	define( 'ITALYSTRAP_PLUGIN_PATH', plugin_dir_path( ITALYSTRAP_FILE ) );
-}
-
-/**
- * Example: 'http://192.168.1.10/italystrap/wp-content/plugins/italystrap-extended/'
- */
-if ( ! defined( 'ITALYSTRAP_PLUGIN_URL' ) ) {
-	define( 'ITALYSTRAP_PLUGIN_URL', plugin_dir_url( ITALYSTRAP_FILE ) );
-}
-
-/**
- * Example = italystrap-extended/italystrap.php
- */
-if ( ! defined( 'ITALYSTRAP_BASENAME' ) ) {
-	define( 'ITALYSTRAP_BASENAME', plugin_basename( ITALYSTRAP_FILE ) );
-}
-
-/**
- * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended/
- */
-if ( ! defined( 'ITALYSTRAP_CONFIG_PATH' ) ) {
-	define( 'ITALYSTRAP_CONFIG_PATH', ITALYSTRAP_PLUGIN_PATH . 'config/' );
-}
-
-/**
- * Define Bog Name constant
- */
-if ( ! defined( 'GET_BLOGINFO_NAME' ) ) {
-	define( 'GET_BLOGINFO_NAME', get_option( 'blogname' ) );
-}
-
-/**
- * Define Blog Description Constant
- */
-if ( ! defined( 'GET_BLOGINFO_DESCRIPTION' ) ) {
-	define( 'GET_BLOGINFO_DESCRIPTION', get_option( 'blogdescription' ) );
-}
-
-/**
- * Define HOME_URL
- */
-if ( ! defined( 'HOME_URL' ) ) {
-	define( 'HOME_URL', get_home_url( null, '/' ) );
-}
-
-require( ITALYSTRAP_PLUGIN_PATH . 'vendor/overclokk/minimum-requirements/minimum-requirements.php' );
+require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.php' );
 
 /**
  * Instantiate the class
@@ -104,7 +34,7 @@ require( ITALYSTRAP_PLUGIN_PATH . 'vendor/overclokk/minimum-requirements/minimum
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '5.3', '4' );
+$requirements = new Minimum_Requirements( '5.3', '4.6', 'ItalyStrap' );
 
 /**
  * Check compatibility on install
@@ -113,100 +43,33 @@ $requirements = new Minimum_Requirements( '5.3', '4' );
 register_activation_hook( __FILE__, array( $requirements, 'check_compatibility_on_install' ) );
 
 /**
- * If it is already installed and activated check if example new version is compatible, if is not don't load plugin code and prin admin_notice
+ * If it is already installed and activated check if example new version is compatible, if is not don't load plugin code and print admin_notice
  * This part need more test
  */
 if ( ! $requirements->is_compatible_version() ) {
 
 	add_action( 'admin_notices', array( $requirements, 'load_plugin_admin_notices' ) );
 	return;
-
 }
 
 /**
- * Require PHP autoload
+ * Init plugin default constant
  */
-require( ITALYSTRAP_PLUGIN_PATH . 'vendor/autoload.php' );
+require( __DIR__ . '/functions/default-constants.php' );
+italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
 
-/**
- * Load CMB2
- */
-require( ITALYSTRAP_PLUGIN_PATH . 'vendor/webdevstudios/cmb2/init.php' );
+$autoload_plugin_files = array(
+	'/vendor/autoload.php',
+	'/vendor/webdevstudios/cmb2/init.php',
+	'/functions/general-functions.php',
+	'/bootstrap.php',
+	'/_init.php',
+	'/_init-admin.php',
+);
 
-/**
- * Load general function before init
- */
-require( ITALYSTRAP_PLUGIN_PATH . 'functions/general-functions.php' );
-
-/**
- * Initialize the IOC
- *
- * @var Auryn\Injector
- */
-$injector = new \Auryn\Injector;
-
-$args = require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
-
-$injector->defineParam( 'args', $args );
-
-/**
- * Get the plugin options
- *
- * @var array
- */
-$options = (array) get_option( $args['options_name'] );
-
-$options = wp_parse_args( $options, \ItalyStrap\Core\get_default_from_config( require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' ) ) );
-
-/**
- * Define options parmeter
- */
-$injector->defineParam( 'options', $options );
-
-/**
- * Get the theme mods
- *
- * @var array
- */
-$theme_mods = (array) get_theme_mods();
-
-/**
- * Define theme_mods parmeter
- */
-$injector->defineParam( 'theme_mods', $theme_mods );
-
-/**
- * The new events manager in ALPHA vesrion.
- *
- * @var Event_Manager
- */
-$events_manager = $injector->make( '\ItalyStrap\Event\Manager' );
-
-if ( defined( 'ITALYSTRAP_BETA' ) ) {
-	/**
-	 * Instantiate Customizer_Manager Class
-	 * Questa deve essere eseguita sia in admin che in front-end
-	 *
-	 * @var Customizer_Manager
-	 */
-	$customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
-	add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
+foreach ( $autoload_plugin_files as $file ) {
+	require( __DIR__ . $file );
 }
-
-/**
- * Init the plugin
- */
-require( ITALYSTRAP_PLUGIN_PATH . 'bootstrap.php' );
-
-/**
- * Init the plugin
- */
-require( ITALYSTRAP_PLUGIN_PATH . '_init.php' );
-
-/**
- * Init the plugin
- */
-require( ITALYSTRAP_PLUGIN_PATH . '_init-admin.php' );
 
 /**
  * Require Debug file, this file is only for internal development

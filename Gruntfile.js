@@ -239,7 +239,7 @@ module.exports = function(grunt) {
 				options: {
 					prefix: 'ITALYSTRAP_PLUGIN_VERSION\', \''
 				},
-				src: [ 'italystrap.php' ],
+				src: [ 'functions/default-constants.php' ],
 			},
 			readme: {
 				options: {

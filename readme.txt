@@ -2,7 +2,7 @@
 Contributors: overclokk
 Donate link: http://www.italystrap.com/
 Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
-Requires at least: 4.1
+Requires at least: 4.6
 Tested up to: 4.7
 Stable tag: 2.4.0
 License: GPLv2 or later

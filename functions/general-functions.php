@@ -265,11 +265,11 @@ function kill_emojis_tinymce( $plugins ) {
  *
  * @param  object $widget [description].
  */
-function register_widget( $widget ) {
-	global $wp_widget_factory;
+// function register_widget( $widget ) {
+// 	global $wp_widget_factory;
 
-	$wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
-}
+// 	$wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
+// }
 
 /**
  * Remove widget title

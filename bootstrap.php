@@ -8,154 +8,66 @@
 
 namespace ItalyStrap\Core;
 
-use ItalyStrap\Core\Asset\Inline_Style;
-use ItalyStrap\Core\Asset\Inline_Script;
-
-use ItalyStrap\Shortcode\Gallery;
-
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
 /**
- * Define HOME_URL
+ * Initialize the IOC
+ *
+ * @var Auryn\Injector
  */
-if ( ! defined( 'HOME_URL' ) ) {
-	define( 'HOME_URL', get_home_url( null, '/' ) );
-}
+$injector = new \Auryn\Injector;
+
+$args = require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
+
+$injector->defineParam( 'args', $args );
 
 /**
- * Init Class for ItalyStrap Core
+ * Get the plugin options
+ *
+ * @var array
  */
-class Init {
+$options = (array) get_option( $args['options_name'] );
 
+$options = wp_parse_args( $options, \ItalyStrap\Core\get_default_from_config( require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' ) ) );
+
+/**
+ * Define options parmeter
+ */
+$injector->defineParam( 'options', $options );
+
+/**
+ * Get the theme mods
+ *
+ * @var array
+ */
+$theme_mods = (array) get_theme_mods();
+
+/**
+ * Define theme_mods parmeter
+ */
+$injector->defineParam( 'theme_mods', $theme_mods );
+
+/**
+ * The new events manager in ALPHA vesrion.
+ *
+ * @var Event_Manager
+ */
+$event_manager = $injector->make( '\ItalyStrap\Event\Manager' );
+$events_manager = $event_manager; // Deprecated $events_manager.
+
+
+if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**
-	 * The plugin's options
+	 * Instantiate Customizer_Manager Class
+	 * Questa deve essere eseguita sia in admin che in front-end
 	 *
-	 * @var string
+	 * @var Customizer_Manager
 	 */
-	private $options = '';
-
-	/**
-	 * Fire the construct
-	 */
-	public function __construct( array $options = array() ) {
-		// delete_option( 'italystrap_settings' );
-		$this->options = $options;
-		// $this->options = (array) get_option( 'italystrap_settings' );
-		// var_dump( $this->options );
-	}
-
-	/**
-	 * Get Options
-	 *
-	 * @since 2.0.0
-	 * @return array        Get options
-	 */
-	public function get_options() {
-		return $this->options;
-	}
-
-	/**
-	 * Init functions
-	 */
-	public function on_load() {
-
-		/**
-		 * Load po file
-		 */
-		load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
-	}
-
-	/**
-	 * Add type Carousel to built-in gallery shortcode
-	 */
-	public function add_carousel_to_gallery_shortcode() {
-	
-		/**
-		 * Istantiate Shortcode_Carousel only if [gallery] shortcode exist
-		 *
-		 * @link http://wordpress.stackexchange.com/questions/103549/wp-deregister-register-and-enqueue-dequeue
-		 */
-		$post = get_post();
-		$gallery = false;
-
-		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) ) {
-			$gallery = true; // A http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
-		}
-
-		if ( ! $gallery ) {
-			$shortcode_carousel = new Gallery();
-			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 3 );
-			add_filter( 'jetpack_gallery_types', array( $shortcode_carousel, 'gallery_types' ) );
-			// add_filter( 'ItalyStrap_gallery_types', array( $shortcode_carousel, 'gallery_types' ), 999 );
-		}
-	
-	}
-
-	/**
-	 * Add action to widget_init
-	 * Initialize widget
-	 */
-	public function widgets_init() {
-
-		$widget_list = array(
-			'vcardwidget'				=> 'Vcard_Widget', // Deprecated
-			'post_widget'				=> 'Widget_Posts2', // Deprecated
-			'media_carousel_widget'		=> 'Carousel',
-			'widget_posts'				=> 'Posts',
-			'widget_vcard'				=> 'VCard', // New
-			'widget_image'				=> 'Image', // New
-			'widget_facebook_page'		=> 'Facebook_Page', // New
-			'widget_breadcrumbs'		=> 'Breadcrumbs', // Beta
-			'widget_taxonomies_posts'	=> 'Taxonomies_Posts', // Beta
-		);
-
-		foreach ( (array) $widget_list as $key => $value ) {
-			if ( ! empty( $this->options[ $key ] ) ) {
-				\register_widget( 'ItalyStrap\\Widget\\' . $value );
-			}
-		}
-	}
-
-	/**
-	 * Print inline script in footer after all and before shotdown hook.
-	 *
-	 * @todo Creare un sistema che appenda regolarmente dopo gli script
-	 *       e tenga presente delle dipendenze da jquery
-	 */
-	public function print_inline_script_in_footer() {
-
-		$script = apply_filters( 'italystrap_custom_inline_script', Inline_Script::get() );
-
-		if ( ! $script ) {
-			return;
-		}
-
-		printf(
-			'<script type="text/javascript">/*<![CDATA[*/%s/*]]>*/</script>',
-			$script
-		);
-
-	}
-
-	/**
-	 * Print inline css.
-	 */
-	public function print_inline_css_in_header() {
-
-		$css = apply_filters( 'italystrap_custom_inline_style', Inline_Style::get() );
-
-		if ( empty( $css ) ) {
-			return;
-		}
-
-		printf(
-			'<style type="text/css" id="custom-inline-css">%s</style>',
-			wp_strip_all_tags( $css )
-		);
-	}
-} // End Init
+	$customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
+	add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
+}
 
 /**
  * Instantiate Init Class
@@ -167,7 +79,7 @@ $init = $injector->make( 'ItalyStrap\Core\Init' );
 /**
  * Register widget
  */
-add_action( 'widgets_init', array( $init, 'widgets_init' ) );
+$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Widget\Widget_Factory' ) );
 
 if ( ! empty( $options['widget_areas'] ) ) {
 	/**
@@ -266,27 +178,6 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	 ************/
 
 	/**
-	 * Widget Logic Functionality for admin
-	 *
-	 * @var Widget_Logic_Admin
-	 */
-	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic_Admin' );
-
-	/**
-	 * Widget changes submitted by ajax method.
-	 */
-	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
-	/**
-	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
-	/**
-	 * Add Widget Logic specific options on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
-	// 
-
-	/**
 	 * FRONTEND INIT
 	 */
 
@@ -322,26 +213,4 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	
 	// }
 	// add_action( 'italystrap_before_content', __NAMESPACE__ . '\add_to_top' );
-
-
-	/**
-	 * Widget Logic Functionality for admin
-	 *
-	 * @var Widget_Logic_Admin
-	 */
-	// $widget_logic_admin = $injector->make( 'ItalyStrap\Widget\Widget_Logic' );
-
-	/**
-	 * Widget changes submitted by ajax method.
-	 */
-	// add_filter( 'widget_update_callback', array( $widget_logic_admin, 'widget_update_callback' ), 10, 4 );
-	/**
-	 * Before any HTML output save widget changes and add controls to each widget on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_setup', array( $widget_logic_admin, 'expand_control' ) );
-	/**
-	 * Add Widget Logic specific options on the widget admin page.
-	 */
-	// add_action( 'sidebar_admin_page', array( $widget_logic_admin, 'options_control' ) );
-
 }

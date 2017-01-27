@@ -25,18 +25,6 @@ if ( is_admin() ) {
 }
 
 /**
- * Instantiate Init Class
- *
- * @var Init
- */
-// $init = $injector->make( 'ItalyStrap\Core\Init' );
-
-/**
- * Register widget
- */
-// add_action( 'widgets_init', array( $init, 'widgets_init' ) );
-
-/**
  * Adjust priority to make sure this runs
  */
 add_action( 'init', array( $init, 'on_load' ), 100 );
@@ -198,12 +186,6 @@ if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
 Inline_Style::set( strip_tags( $options['custom_css'] ) );
 
 /**
- * Print inline css in header
+ * Print the inline assets
  */
-add_action( 'wp_head', array( $init, 'print_inline_css_in_header' ), 999999 );
-
-/**
- * Print inline script in footer
- * Load after all and before shotdown hook
- */
-add_action( 'wp_print_footer_scripts', array( $init, 'print_inline_script_in_footer' ), 999 );
+$event_manager->add_subscriber( $injector->make( 'ItalyStrap\Core\Asset\Inline_Asset_Factory' ) );

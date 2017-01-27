@@ -6,12 +6,10 @@
  * @since   2.1.0
  */
 
-namespace ItalyStrap\Core;
-
 /**
  * Set default constant for the plugin.
  */
-function set_plugin_default_constant() {
+function italystrap_set_default_constant( $_FILE, $name = '' ) {
 
 	/**
 	 * Define some costant for internal use
@@ -24,14 +22,14 @@ function set_plugin_default_constant() {
 	 * Define some costant for internal use
 	 */
 	if ( ! defined( 'ITALYSTRAP_PLUGIN_VERSION' ) ) {
-		define( 'ITALYSTRAP_PLUGIN_VERSION', '2.0.0' );
+		define( 'ITALYSTRAP_PLUGIN_VERSION', '2.4.0' );
 	}
 
 	/**
 	 * Example = F:\xampp\htdocs\italystrap\wp-content\plugins\italystrap-extended\italystrap.php
 	 */
 	if ( ! defined( 'ITALYSTRAP_FILE' ) ) {
-		define( 'ITALYSTRAP_FILE', __FILE__ );
+		define( 'ITALYSTRAP_FILE', $_FILE );
 	}
 
 	/**
@@ -82,5 +80,4 @@ function set_plugin_default_constant() {
 	if ( ! defined( 'HOME_URL' ) ) {
 		define( 'HOME_URL', get_home_url( null, '/' ) );
 	}
-
 }

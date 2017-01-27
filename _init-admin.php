@@ -24,18 +24,6 @@ add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
 add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
 /**
- * Instantiate Init Class
- *
- * @var Init
- */
-// $init = $injector->make( 'ItalyStrap\Core\Init' );
-
-/**
- * Register widget
- */
-// add_action( 'widgets_init', array( $init, 'widgets_init' ) );
-
-/**
  * Istantiate this class only if is admin
  */
 
