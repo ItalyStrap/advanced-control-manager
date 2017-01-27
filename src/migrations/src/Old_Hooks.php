@@ -24,9 +24,9 @@ class Old_Hooks {
 	 */
 	private $hooks = array(
 		'body_open'					=> '',
-		'wrapper_open'				=> '',
-		'header_open'				=> '',
-		'header_closed'				=> '',
+		'wrapper_open'				=> 'italystrap_before',
+		'header_open'				=> 'italystrap_before_header',
+		'header_closed'				=> 'italystrap_after_header',
 		'nav_open'					=> '',
 		'before_wp_nav_menu'		=> '',
 		'after_wp_nav_menu'			=> '',
