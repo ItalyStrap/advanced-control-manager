@@ -2,6 +2,8 @@
 /**
  * Widget Areas API: Widget Areas class
  *
+ * @forked from woosidebars
+ *
  * @package ItalyStrap
  * @since 2.0.0
  */
@@ -326,44 +328,47 @@ class Areas {
 
 		$page = 'themes.php';
 
-		$singular = __( 'Widget Area', 'woosidebars' );
-		$plural = __( 'Widget Areas', 'woosidebars' );
+		$singular = __( 'Widget Area', 'italystrap' );
+		$plural = __( 'Widget Areas', 'italystrap' );
 		$rewrite = array( 'slug' => 'sidebars' );
 		$supports = array( 'title', 'excerpt' );
 
-		if ( $rewrite == '' ) { $rewrite = 'sidebar'; }
+		if ( '' === $rewrite ) {
+			$rewrite = 'sidebar';
+		}
 
 		$labels = array(
-			'name' => _x( 'Widget Areas', 'post type general name', 'woosidebars' ),
-			'singular_name' => _x( 'Widget Area', 'post type singular name', 'woosidebars' ),
-			'add_new' => _x( 'Add New', 'Widget Area' ),
-			'add_new_item' => sprintf( __( 'Add New %s', 'woosidebars' ), $singular ),
-			'edit_item' => sprintf( __( 'Edit %s', 'woosidebars' ), $singular ),
-			'new_item' => sprintf( __( 'New %s', 'woosidebars' ), $singular ),
-			'all_items' => sprintf( __( 'Widget Areas', 'woosidebars' ), $plural ),
-			'view_item' => sprintf( __( 'View %s', 'woosidebars' ), $singular ),
-			'search_items' => sprintf( __( 'Search %a', 'woosidebars' ), $plural ),
-			'not_found' =>  sprintf( __( 'No %s Found', 'woosidebars' ), $plural ),
-			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'woosidebars' ), $plural ),
-			'parent_item_colon' => '',
-			'menu_name' => $plural
+			'name'					=> _x( 'Widget Areas', 'post type general name', 'italystrap' ),
+			'singular_name'			=> _x( 'Widget Area', 'post type singular name', 'italystrap' ),
+			'add_new'				=> _x( 'Add New', $singular ),
+			'add_new_item'			=> sprintf( __( 'Add New %s', 'italystrap' ), $singular ),
+			'edit_item'				=> sprintf( __( 'Edit %s', 'italystrap' ), $singular ),
+			'new_item'				=> sprintf( __( 'New %s', 'italystrap' ), $singular ),
+			'all_items'				=> sprintf( __( 'Widget Areas', 'italystrap' ), $plural ),
+			'view_item'				=> sprintf( __( 'View %s', 'italystrap' ), $singular ),
+			'search_items'			=> sprintf( __( 'Search %a', 'italystrap' ), $plural ),
+			'not_found'				=> sprintf( __( 'No %s Found', 'italystrap' ), $plural ),
+			'not_found_in_trash'	=> sprintf( __( 'No %s Found In Trash', 'italystrap' ), $plural ),
+			'parent_item_colon'		=> '',
+			'menu_name'				=> $plural
 
 		);
 		$args = array(
-			'labels' => $labels,
-			'public' => false,
-			'publicly_queryable' => true,
-			'show_ui' => true,
-			'show_in_nav_menus' => false,
-			'show_in_admin_bar' => false,
-			'show_in_menu' => $page,
-			'query_var' => true,
-			'rewrite' => $rewrite,
-			'capability_type' => 'post',
-			'has_archive' => 'sidebars',
-			'hierarchical' => false,
-			'menu_position' => null,
-			'supports' => $supports
+			'labels'				=> $labels,
+			'public'				=> false,
+			'publicly_queryable'	=> true,
+			'show_ui'				=> true,
+			'show_in_nav_menus'		=> false,
+			'show_in_admin_bar'		=> false,
+			'show_in_menu'			=> $page,
+			'show_in_rest'			=> false,
+			'query_var'				=> true,
+			'rewrite'				=> $rewrite,
+			'capability_type'		=> 'post',
+			'has_archive'			=> 'sidebars',
+			'hierarchical'			=> false,
+			'menu_position'			=> null,
+			'supports'				=> $supports
 		);
 		register_post_type( 'sidebar', $args );
 	} // End register_post_type()
