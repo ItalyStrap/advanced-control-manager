@@ -157,6 +157,18 @@ class Init {
 	}
 } // End Init
 
+/**
+ * Instantiate Init Class
+ *
+ * @var Init
+ */
+$init = $injector->make( 'ItalyStrap\Core\Init' );
+
+/**
+ * Register widget
+ */
+add_action( 'widgets_init', array( $init, 'widgets_init' ) );
+
 if ( ! empty( $options['widget_areas'] ) ) {
 	/**
 	 * Instantiate Widget Areas Class

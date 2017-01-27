@@ -196,17 +196,17 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 /**
  * Init the plugin
  */
-require( ITALYSTRAP_PLUGIN_PATH . 'global-init.php' );
+require( ITALYSTRAP_PLUGIN_PATH . 'bootstrap.php' );
 
 /**
  * Init the plugin
  */
-require( ITALYSTRAP_PLUGIN_PATH . 'init.php' );
+require( ITALYSTRAP_PLUGIN_PATH . '_init.php' );
 
 /**
  * Init the plugin
  */
-require( ITALYSTRAP_PLUGIN_PATH . 'admin-init.php' );
+require( ITALYSTRAP_PLUGIN_PATH . '_init-admin.php' );
 
 /**
  * Require Debug file, this file is only for internal development

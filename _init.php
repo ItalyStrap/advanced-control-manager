@@ -29,7 +29,12 @@ if ( is_admin() ) {
  *
  * @var Init
  */
-$init = $injector->make( 'ItalyStrap\Core\Init' );
+// $init = $injector->make( 'ItalyStrap\Core\Init' );
+
+/**
+ * Register widget
+ */
+// add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 
 /**
  * Adjust priority to make sure this runs
@@ -69,11 +74,6 @@ if ( ! empty( $options['lazyload_video'] ) ) {
 	 */
 	$lazy_load_video = $injector->make( 'ItalyStrap\Core\Lazyload\Video' );
 }
-
-/**
- * Register widget
- */
-add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 
 /**
  * This filter render HTML in widget title parsing {{}}

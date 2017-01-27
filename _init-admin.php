@@ -28,12 +28,12 @@ add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
  *
  * @var Init
  */
-$init = $injector->make( 'ItalyStrap\Core\Init' );
+// $init = $injector->make( 'ItalyStrap\Core\Init' );
 
 /**
  * Register widget
  */
-add_action( 'widgets_init', array( $init, 'widgets_init' ) );
+// add_action( 'widgets_init', array( $init, 'widgets_init' ) );
 
 /**
  * Istantiate this class only if is admin
