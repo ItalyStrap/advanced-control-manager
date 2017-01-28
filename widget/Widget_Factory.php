@@ -72,6 +72,7 @@ class Widget_Factory implements Subscriber_Interface {
 			'widget_facebook_page'		=> 'Facebook_Page', // New
 			'widget_breadcrumbs'		=> 'Breadcrumbs', // Beta
 			'widget_taxonomies_posts'	=> 'Taxonomies_Posts', // Beta
+			'widget_monster'			=> 'Monster', // Debug
 		);
 
 		foreach ( (array) $widget_list as $key => $value ) {

@@ -363,9 +363,17 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 function is_beta() {
 
 	return (bool) defined( 'ITALYSTRAP_BETA' );
-
 }
 
+/**
+ * Is Beta version
+ *
+ * @return bool Return true if ITALYSTRAP_BETA version is declared
+ */
+function is_debug() {
+
+	return (bool) defined( 'WP_DEBUG' ) && WP_DEBUG ;
+}
 /**
  * Get the Breadcrumbs
  *
