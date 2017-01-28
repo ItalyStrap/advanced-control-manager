@@ -53,8 +53,9 @@ class Visual_Hook implements Subscriber_Interface {
 	/**
 	 * 
 	 */
-	public function __construct( Hooked $hooked ) {
+	public function __construct( Hooked $hooked, array $options = array() ) {
 		$this->hooked = $hooked;
+		$this->options = $options;
 		$this->theme_hooks = array(
 			'italystrap_before',
 
@@ -136,7 +137,7 @@ class Visual_Hook implements Subscriber_Interface {
 		printf(
 			'<div class="filter-container"><p class="filter-name">%s</p>%s</div>',
 			current_filter(),
-			$this->hooked->get_hooked_list( current_filter(), false )
+			empty( $this->options['show_hooked_callable'] ) ? '' : $this->hooked->get_hooked_list( current_filter(), false )
 		);
 	}
 
@@ -147,6 +148,9 @@ class Visual_Hook implements Subscriber_Interface {
 	 * @return string      Print an HTML tag with border and hooks name
 	 */
 	public function render() {
+		if ( ! current_user_can( 'install_themes' ) ) {
+			return;
+		}
 		foreach ( $this->theme_hooks as $value ) {
 			add_action( $value, array( $this, 'get_visual_hook' ), 99 );
 		}
