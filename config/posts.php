@@ -628,7 +628,7 @@ return array(
 		'type'		=> 'multiple_select',
 		'class'		=> 'widefat post_types',
 		'default'	=> 'post',
-		'options'	=> ( ( isset( $get_post_types ) ) ? $get_post_types : null ),
+		'options'	=> isset( $get_post_types ) ? $get_post_types : array( 'post' => 'post' ),
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_select_multiple',
 		'section'	=> 'filter',

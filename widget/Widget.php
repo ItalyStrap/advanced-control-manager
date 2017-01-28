@@ -626,23 +626,18 @@ abstract class Widget extends WP_Widget {
 	/**
 	 * Get cached widget.
 	 *
-	 * @param  array $args The argument of widget class.
 	 * @return bool true   If the widget is cached otherwise false
 	 */
-	public function get_cached_widget( $args ) {
+	public function get_cached_widget() {
 
-		if ( ! isset( $args['widget_id'] ) ) {
-			$args['widget_id'] = null;
-		}
-
-		$cache = wp_cache_get( apply_filters( 'italystrap_cached_widget_id', $args['widget_id'] ), 'widget' );
+		$cache = wp_cache_get( apply_filters( "italystrap_cached_{$this->id}", $this->id ), 'widget' );
 
 		if ( ! is_array( $cache ) ) {
 			$cache = array();
 		}
 
-		if ( isset( $cache[ $args['widget_id'] ] ) ) {
-			echo $cache[ $args['widget_id'] ]; // XSS ok.
+		if ( isset( $cache[ $this->id ] ) ) {
+			echo $cache[ $this->id ]; // XSS ok.
 			return true;
 		}
 
@@ -658,14 +653,9 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function cache_widget( $args, $content ) {
 
-		if ( ! isset( $args['widget_id'] ) ) {
-			$args['widget_id'] = null;
-		}
-
-		wp_cache_set( apply_filters( 'italystrap_cached_widget_id', $args['widget_id'] ), array( $args['widget_id'] => $content ), 'widget' );
+		wp_cache_set( apply_filters( "italystrap_cached_{$this->id}", $this->id ), array( $this->id => $content ), 'widget' );
 
 		return $content;
-
 	}
 
 	/**
@@ -673,12 +663,7 @@ abstract class Widget extends WP_Widget {
 	 */
 	public function flush_widget_cache() {
 
-		if ( ! isset( $args['widget_id'] ) ) {
-			$args['widget_id'] = null;
-		}
-
-		wp_cache_delete( apply_filters( 'italystrap_cached_widget_id', $args['widget_id'] ), 'widget' );
-
+		wp_cache_delete( apply_filters( "italystrap_cached_{$this->id}", $this->id ), 'widget' );
 	}
 
 	/**
