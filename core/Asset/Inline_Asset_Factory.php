@@ -33,11 +33,11 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 		return array(
 			// 'hook_name'				=> 'method_name',
 			'wp_head'	=> array(
-				'function_to_add'	=> 'print_inline_css_in_header',
+				'function_to_add'	=> 'inline_css',
 				'priority'			=> 999999,
 			),
 			'wp_print_footer_scripts'	=> array(
-				'function_to_add'	=> 'print_inline_script_in_footer',
+				'function_to_add'	=> 'inline_javascript',
 				'priority'			=> 999999,
 			),
 		);
@@ -49,7 +49,7 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 	 * @todo Creare un sistema che appenda regolarmente dopo gli script
 	 *       e tenga presente delle dipendenze da jquery
 	 */
-	public function print_inline_script_in_footer() {
+	public function inline_javascript() {
 
 		$script = apply_filters( 'italystrap_custom_inline_script', Inline_Script::get() );
 
@@ -67,7 +67,7 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 	/**
 	 * Print inline css.
 	 */
-	public function print_inline_css_in_header() {
+	public function inline_css() {
 
 		$css = apply_filters( 'italystrap_custom_inline_style', Inline_Style::get() );
 
