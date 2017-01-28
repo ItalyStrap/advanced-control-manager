@@ -31,7 +31,8 @@
 			"ItalyStrap\\Widget\\": "widget/",
 			"ItalyStrap\\Shortcode\\": "shortcode/",
 			"ItalyStrap\\Migrations\\": "src/migrations/src/",
-			"ItalyStrap\\Event\\": "src/event/src/"
+			"ItalyStrap\\Event\\": "src/event/src/",
+			"ItalyStrap\\Debug\\": "src/debug/src/"
 		}
 	},
 	"autoload-dev": {

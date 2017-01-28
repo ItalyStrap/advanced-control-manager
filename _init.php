@@ -185,6 +185,10 @@ if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
  */
 Inline_Style::set( strip_tags( $options['custom_css'] ) );
 
+if ( ! empty( $options['show_theme_hooks'] ) ) {
+	$event_manager->add_subscriber( $injector->make( 'ItalyStrap\Debug\Visual_Hook' ) );
+}
+
 /**
  * Print the inline assets
  */
