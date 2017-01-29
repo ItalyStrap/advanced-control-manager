@@ -525,7 +525,7 @@ function _display_config( $atts ) {
 	}
 
 	if ( ! file_exists( ITALYSTRAP_PLUGIN_PATH . 'config/' . $atts['file'] . '.php' ) ) {
-		return;
+		return __( 'No file founded', 'italystrap' );
 	}
 
 	$get_settings = require( ITALYSTRAP_PLUGIN_PATH . 'config/' . $atts['file'] . '.php' );
@@ -543,7 +543,7 @@ function _display_config( $atts ) {
 			esc_attr( $setting['id'] ),
 			esc_attr( $setting['default'] ),
 			wp_kses_post( $setting['desc'] )
-			);
+		);
 	}
 
 	$output .= '</ul>';
@@ -552,6 +552,36 @@ function _display_config( $atts ) {
 }
 
 add_shortcode( 'display_config', __NAMESPACE__ . '\_display_config' );
+
+/**
+ * This shortcode is only for intarnal use
+ *
+ * @param  array $atts Shortcode attributes.
+ *
+ * @return string      The shortcode output
+ */
+function _display_example( $atts ) {
+
+	if ( ! isset( $atts['file'] ) ) {
+		return;
+	}
+
+	if ( ! file_exists( ITALYSTRAP_PLUGIN_PATH . $atts['file'] . '.md' ) ) {
+		return __( 'No file founded', 'italystrap' );
+	}
+
+	static $parsedown = null;
+
+	if ( ! $parsedown ) {
+		$parsedown = new \Parsedown();
+	}
+
+	$get_example = \ItalyStrap\Core\get_file_content( ITALYSTRAP_PLUGIN_PATH . $atts['file'] . '.md' );
+
+	return $parsedown->text( $get_example );
+}
+
+add_shortcode( 'display_example', __NAMESPACE__ . '\_display_example' );
 
 /**
  * ItalyStrap plugin on activation

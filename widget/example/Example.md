@@ -1,3 +1,6 @@
+## Widget Code example
+
+```php
 <?php
 /**
  * Example for creating a new Widget with the ItalyStrap Widget API
@@ -36,7 +39,7 @@ class Example extends Widget {
 	 * $example = new \Vendor\Widget\Example( new Example_CLass[, $var, $another_var] );
 	 * register_widget( $example );
 	 */
-	function __construct() {
+	public function __construct() {
 
 		/**
 		 * In case yuo have $example_class injected to the constructor.
@@ -52,7 +55,7 @@ class Example extends Widget {
 			/**
 			 * Widget Backend label. (Required).
 			 */
-			'label'				=> __( 'eForHum Vetrina', 'italystrap' ),
+			'label'				=> __( 'Widget Title', 'italystrap' ),
 			/**
 			 * Widget Backend Description. (Optional).
 			 */
@@ -102,15 +105,16 @@ class Example extends Widget {
 		/**
 		 * If you have a template file with html you can use this snippet.
 		 */
-		// $output = '';
+		$output = '';
 
-		// ob_start();
+		ob_start();
 
-		// require( 'template/output.php' );
+		require( 'template/output.php' );
 
-		// $output = ob_get_contents();
-		// ob_end_clean();
+		$output = ob_get_contents();
+		ob_end_clean();
 
-		// return $output;
+		return $output;
 	}
 }
+```

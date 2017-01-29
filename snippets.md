@@ -2,7 +2,7 @@ Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
 
 # Sidebars
 
-```
+```php
 add_filter ( 'dynamic_sidebar_params' , 'widget_params');
 
 function widget_params( $params ) {
