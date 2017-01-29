@@ -63,7 +63,7 @@ class Hooked {
 					if ( is_array( $properties['function'] ) ) {
 
 						if ( is_object( $properties['function'][0] ) ) {
-							$output .= "\t\t" . get_class( $properties['function'][0] ) . "(Object)\n";
+							$output .= "\t\t" . get_class( $properties['function'][0] ) . " (Object)\n";
 						}
 
 					} elseif ( is_object( $properties['function'] ) && $properties['function'] instanceof \Closure ) {
@@ -74,9 +74,9 @@ class Hooked {
 						$reflection = new \ReflectionFunction( $properties['function'] );
 						$reflection->getClosureScopeClass();
 
-						$output .= "\t\t" . get_class( $reflection->getClosureThis() ) . "(Closure)\n";
+						$output .= "\t\t" . get_class( $reflection->getClosureThis() ) . " (Closure)\n";
 					} else {
-						$output .= "\t\t(Function)\n";
+						$output .= "\t\t (Function)\n";
 					}
 
 					$output .= "\n";

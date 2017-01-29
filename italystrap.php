@@ -2,7 +2,6 @@
 /**
  *	Plugin Name:	ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
- *	Description:	Make your web site more powerful with ItalyStrap. (Requires PHP 5.3 >= and Developers skills). The version 2 is a new and complete rebuild of this plugin. Always make a backup before upgrading.
  *	Version:		2.4.0
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
@@ -72,20 +71,11 @@ foreach ( $autoload_plugin_files as $file ) {
 }
 
 /**
- * Require Debug file, this file is only for internal development
- */
-if ( defined( 'ITALYSTRAP_DEV' ) ) {
-	add_action( 'plugins_loaded', function () use ( $injector ) {
-		require( ITALYSTRAP_PLUGIN_PATH . 'debug/debug.php' );
-	}, 9999 );
-}
-
-/**
  * Fires once ItalyStrap plugin has loaded.
  *
  * @since 2.0.0
  */
-do_action( 'italystrap_plugin_loaded', $injector );
+do_action( 'italystrap_plugin_loaded', null );
 
 /**
  * This filter is used to load your php file right after ItalyStrap plugin is loaded.
@@ -141,7 +131,7 @@ if ( ! empty( $plugin_files_path ) ) {
 	 *
 	 * @since 2.0.0
 	 */
-	do_action( 'italystrap_child_plugin_loaded', $injector );
+	do_action( 'italystrap_child_plugin_loaded', null );
 }
 
 /**
