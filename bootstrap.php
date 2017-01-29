@@ -102,6 +102,7 @@ if ( ! empty( $options['widget_areas'] ) ) {
 
 if ( ! empty( $options['widget_visibility'] ) ) {
 	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
+	add_action( 'admin_init', array( 'ItalyStrap\Widget\Visibility\Visibility_Admin', 'init' ) );
 }
 
 // if ( ! empty( $options['shortcode_widget'] ) ) {
@@ -146,14 +147,10 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 		if ( is_cart() || is_checkout() || is_account_page() ) {
 
 			return $enqueue_styles;
-
 		} else {
 
 			return false;
-
 		}
-
-
 	}
 	// add_filter( 'woocommerce_enqueue_styles', __NAMESPACE__ . '\dequeue_unused_styles' );
 
