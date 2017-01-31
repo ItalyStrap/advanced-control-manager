@@ -1,4 +1,4 @@
-## Widget Code example
+### Widget Code example
 
 ```php
 <?php
@@ -22,7 +22,7 @@ namespace Vendor\Widget;
 /**
  * Do not delete this line of code.
  */
-use ItalyStrap\Widget\Widget;
+use Vendor\Widget\Widget;
 
 /**
  * The class name mast reflect the file name if you use psr-4 syntax.
@@ -52,14 +52,17 @@ class Example extends Widget {
 		 * @var array
 		 */
 		$args = array(
+
 			/**
 			 * Widget Backend label. (Required).
 			 */
-			'label'				=> __( 'Widget Title', 'italystrap' ),
+			'label'				=> __( 'Widget Title. (Required)', 'Vendor' ),
+
 			/**
 			 * Widget Backend Description. (Optional).
 			 */
-			'description'		=> __( 'Vetrina slider per la home page', 'italystrap' ),
+			'description'		=> __( 'Widget Backend Description. (Optional).', 'Vendor' ),
+
 			/**
 			 * Widget fields. (Required).
 			 * The field for the widget title is already setted.
@@ -67,10 +70,12 @@ class Example extends Widget {
 			 * @see example-config.php 
 			 */
 			'fields'			=> require( __DIR__ . '/example-config.php' ),
+
 			/**
 			 * Widget control options. (Optional)
 			 */
 			'control_options'	=> array( 'width' => 450 ),
+
 			/**
 			 * Widget options. (Optional)
 			 */
