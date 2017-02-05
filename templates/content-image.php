@@ -17,7 +17,7 @@ if ( ! empty( $this->args['add_figure_container'] ) ) {
 
 	$attr = array(
 		'class'	=> 'widget-image-figure ' . esc_attr( $this->args['container_css_class'] ),
-		);
+	);
 	$output .= sprintf( '<figure %s>', get_attr( 'widget_image_figure', $attr ) );
 }
 
@@ -38,6 +38,7 @@ if ( ! empty( $this->args['link'] ) ) {
  * Get the image
  */
 $output .= $this->get_attachment_image();
+$output .= $this->get_the_icon();
 
 if ( ! empty( $this->args['link'] ) ) {
 	$output .= '</a>';
@@ -48,17 +49,17 @@ if ( ! empty( $this->args['link'] ) ) {
  */
 $output .= $this->get_the_title();
 
-/**
- * Get the description
- */
-$output .= $this->get_the_description();
-
-
 if ( ! empty( $this->args['add_figure_container'] ) ) {
 
 	$output .= $this->get_the_caption();
+	$output .= $this->get_the_description();
 
 	$output .= '</figure>';
+} else {
+	/**
+	 * Get the description
+	 */
+	$output .= $this->get_the_description();
 }
 
 echo $output;

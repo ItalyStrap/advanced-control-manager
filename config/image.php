@@ -24,57 +24,73 @@ $image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => _
 return array(
 
 	/**
-	 * Ids for the images to use.
+	 * Enter a font icon css class. Example:<code>fa fa-wordpress</code>. This works only if you have font icons loaded with your theme. If you use an icon the image will not be loaded.
+	 */
+	'icon'				=> array(
+		'name'		=> __( 'Font icon', 'italystrap' ),
+		'desc'		=> __( 'Enter a font icon css class. Example:<code>fa fa-wordpress</code>. This works only if you have font icons loaded with your theme. If you use an icon the image will not be loaded.', 'italystrap' ),
+		'id'		=> 'icon',
+		'type'		=> 'text',
+		'class'		=> 'widefat icon',
+		// 'class-p'	=> 'hidden',
+		'default'	=> false,
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
+
+	/**
+	 * Enter the media or post type ID or select an image above.
 	 */
 	'id'				=> array(
-				'name'		=> __( 'Enter Images ID', 'italystrap' ),
-				'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
-				'id'		=> 'id',
-				'type'		=> 'media',
-				'class'		=> 'widefat ids',
-				// 'class-p'	=> 'hidden',
-				'default'	=> false,
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Enter Images ID', 'italystrap' ),
+		'desc'		=> __( 'Enter the media or post type ID or select an image above.', 'italystrap' ),
+		'id'		=> 'id',
+		'type'		=> 'media',
+		'class'		=> 'widefat ids',
+		// 'class-p'	=> 'hidden',
+		'default'	=> false,
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Enter a title. this will be visualized below the image.
 	 */
 	'image_title'			=> array(
-				'name'		=> __( 'Image title', 'italystrap' ),
-				'desc'		=> __( 'Enter the image title.', 'italystrap' ),
-				'id'		=> 'image_title',
-				'type'		=> 'text',
-				'class'		=> 'widefat image_title',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Title', 'italystrap' ),
+		'desc'		=> __( 'Enter a title. this will be visualized below the image.', 'italystrap' ),
+		'id'		=> 'image_title',
+		'type'		=> 'text',
+		'class'		=> 'widefat image_title',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Define tag for image title. Default: h4.
+	 * Define tag for the title. Default: h4.
 	 */
 	'image_title_tag'			=> array(
-				'name'		=> __( 'Image title tag', 'italystrap' ),
-				'desc'		=> __( 'Define tag for image title. Default: h4.', 'italystrap' ),
-				'id'		=> 'image_title_tag',
-				'type'		=> 'text',
-				'class'		=> 'widefat',
-				'default'	=> 'h4',
-				// 'validate'	=> 'esc_attr',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Title tag', 'italystrap' ),
+		'desc'		=> __( 'Define tag for the title. Default: h4.', 'italystrap' ),
+		'id'		=> 'image_title_tag',
+		'type'		=> 'text',
+		'class'		=> 'widefat',
+		'default'	=> 'h4',
+		// 'validate'	=> 'esc_attr',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Define CSS class for image title. Default: h4.
+	 * Enter a CSS class for the title. Default: widget-image-title.
 	 */
 	'image_title_class'			=> array(
-		'name'		=> __( 'Image title CSS class', 'italystrap' ),
-		'desc'		=> __( 'Define CSS class for image title. Default: widget-image-title.', 'italystrap' ),
+		'name'		=> __( 'Title CSS class', 'italystrap' ),
+		'desc'		=> __( 'Enter a CSS class for the title. Default: widget-image-title.', 'italystrap' ),
 		'id'		=> 'image_title_class',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -85,62 +101,63 @@ return array(
 	),
 
 	/**
-	 * Ids for the images to use.
+	 * Enter a caption for the image
 	 */
 	'caption'			=> array(
-				'name'		=> __( 'Image caption', 'italystrap' ),
-				'desc'		=> __( 'Enter the image caption.', 'italystrap' ),
-				'id'		=> 'caption',
-				'type'		=> 'textarea',
-				'class'		=> 'widefat caption',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Image caption', 'italystrap' ),
+		'desc'		=> __( 'Enter a caption for the image', 'italystrap' ),
+		'id'		=> 'caption',
+		'type'		=> 'textarea',
+		'class'		=> 'widefat caption',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Enter a description for the image. You can also insert a shortcode.
 	 */
 	'description'		=> array(
-				'name'		=> __( 'Image description', 'italystrap' ),
-				'desc'		=> __( 'Enter the image description.', 'italystrap' ),
-				'id'		=> 'description',
-				'type'		=> 'textarea',
-				'class'		=> 'widefat description',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Image description', 'italystrap' ),
+		'desc'		=> __( 'Enter a description for the image. You can also insert a <code>[shortcode]</code>.', 'italystrap' ),
+		'id'		=> 'description',
+		'type'		=> 'textarea',
+		'class'		=> 'widefat description',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'wp_kses_post',
+		// 'sanitize'	=> 'trim',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Add paragraphs.
+	 * Automatically add paragraphs.
 	 */
 	'wpautop'		=> array(
-				'name'		=> __( 'Add paragraphs', 'italystrap' ),
-				'desc'		=> __( 'Automatically add paragraphs.', 'italystrap' ),
-				'id'		=> 'wpautop',
-				'type'		=> 'checkbox',
-				'class'		=> 'wpautop',
-				'default'	=> 0,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Add paragraphs', 'italystrap' ),
+		'desc'		=> __( 'Automatically add paragraphs.', 'italystrap' ),
+		'id'		=> 'wpautop',
+		'type'		=> 'checkbox',
+		'class'		=> 'wpautop',
+		'default'	=> 0,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Do shortcode in image description.
 	 */
 	'do_shortcode'		=> array(
-				'name'		=> __( 'Do Shortcode', 'italystrap' ),
-				'desc'		=> __( '.', 'italystrap' ),
-				'id'		=> 'do_shortcode',
-				'type'		=> 'checkbox',
-				'class'		=> 'do_shortcode',
-				'default'	=> 0,
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Do Shortcode', 'italystrap' ),
+		'desc'		=> __( 'Do shortcode in image description.', 'italystrap' ),
+		'id'		=> 'do_shortcode',
+		'type'		=> 'checkbox',
+		'class'		=> 'do_shortcode',
+		'default'	=> 0,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
 	 * Size for image attachment. Accepted values: thumbnail, medium,
@@ -150,110 +167,109 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
-				'name'		=> __( 'Size for images', 'italystrap' ),
-				'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
-				'id'		=> 'size',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'full',
-				'options'	=> ( ( isset( $image_size_media_array ) ) ? $image_size_media_array : '' ),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Image size', 'italystrap' ),
+		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
+		'id'		=> 'size',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'full',
+		'options'	=> isset( $image_size_media_array ) ? $image_size_media_array : '',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Alignment for image
+	 * Alignment for image.
 	 */
 	'alignment'				=> array(
-				'name'		=> __( 'Alignment', 'italystrap' ),
-				'desc'		=> __( 'Alignment for image', 'italystrap' ),
-				'id'		=> 'alignment',
-				'type'		=> 'select',
-				'class'		=> 'widefat',
-				'default'	=> 'none',
-				'options'	=> array(
-					'alignnone'		=> 'none',
-					'aligncenter'	=> 'center',
-					'alignleft'		=> 'left',
-					'alignright'	=> 'right',
-					),
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Alignment', 'italystrap' ),
+		'desc'		=> __( 'Alignment for image.', 'italystrap' ),
+		'id'		=> 'alignment',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'none',
+		'options'	=> array(
+			'alignnone'		=> 'none',
+			'aligncenter'	=> 'center',
+			'alignleft'		=> 'left',
+			'alignright'	=> 'right',
+			),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for img container.
 	 */
 	'add_figure_container'		=> array(
-				'name'		=> esc_html__( 'Add container "figure"', 'italystrap' ),
-				'desc'		=> __( 'Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for img container.', 'italystrap' ),
-				'id'		=> 'add_figure_container',
-				'type'		=> 'checkbox',
-				'class'		=> 'add_figure_container',
-				'default'	=> 1,
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'style',
-				 ),
+		'name'		=> esc_html__( 'Add container "figure"', 'italystrap' ),
+		'desc'		=> __( 'Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for img container.', 'italystrap' ),
+		'id'		=> 'add_figure_container',
+		'type'		=> 'checkbox',
+		'class'		=> 'add_figure_container',
+		'default'	=> 1,
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'style',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Enter the Container CSS class (optional).
 	 */
 	'container_css_class'		=> array(
-				'name'		=> __( 'Container CSS class', 'italystrap' ),
-				'desc'		=> __( 'Enter the image css class (optional).', 'italystrap' ),
-				'id'		=> 'container_css_class',
-				'type'		=> 'text',
-				'class'		=> 'widefat container_css_class',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'style',
-				 ),
+		'name'		=> __( 'Container CSS class', 'italystrap' ),
+		'desc'		=> __( 'Enter the Container CSS class (optional).', 'italystrap' ),
+		'id'		=> 'container_css_class',
+		'type'		=> 'text',
+		'class'		=> 'widefat container_css_class',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'style',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Enter the image css class (optional).
 	 */
 	'image_css_class'		=> array(
-				'name'		=> __( 'Image CSS class', 'italystrap' ),
-				'desc'		=> __( 'Enter the image css class (optional).', 'italystrap' ),
-				'id'		=> 'image_css_class',
-				'type'		=> 'text',
-				'class'		=> 'widefat image_css_class',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'style',
-				 ),
+		'name'		=> __( 'Image CSS class', 'italystrap' ),
+		'desc'		=> __( 'Enter the image css class (optional).', 'italystrap' ),
+		'id'		=> 'image_css_class',
+		'type'		=> 'text',
+		'class'		=> 'widefat image_css_class',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'style',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Insert a URL for the image.
 	 */
 	'link'		=> array(
-				'name'		=> __( 'Link URL', 'italystrap' ),
-				'desc'		=> __( 'When you click on image.', 'italystrap' ),
-				'id'		=> 'link',
-				'type'		=> 'text',
-				'class'		=> 'widefat link',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
+		'name'		=> __( 'Link URL', 'italystrap' ),
+		'desc'		=> __( 'Insert a URL for the image.', 'italystrap' ),
+		'id'		=> 'link',
+		'type'		=> 'text',
+		'class'		=> 'widefat link',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 
 	/**
-	 * Ids for the images to use.
+	 * Check if you want to open in a new tab/windows.
 	 */
 	'link_target_blank'		=> array(
-				'name'		=> __( 'Open in a new windows', 'italystrap' ),
-				'desc'		=> __( 'Check if you want to open in a new tab/windows.', 'italystrap' ),
-				'id'		=> 'link_target_blank',
-				'type'		=> 'checkbox',
-				'class'		=> 'link_target_blank',
-				'default'	=> '',
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
-
+		'name'		=> __( 'Open in a new windows', 'italystrap' ),
+		'desc'		=> __( 'Check if you want to open in a new tab/windows.', 'italystrap' ),
+		'id'		=> 'link_target_blank',
+		'type'		=> 'checkbox',
+		'class'		=> 'link_target_blank',
+		'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 );

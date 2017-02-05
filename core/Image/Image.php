@@ -40,7 +40,6 @@ class Image {
 		$args = apply_filters( 'italystrap_{$context}_args', $args );
 
 		$this->args = $args;
-
 	}
 
 	/**
@@ -58,7 +57,37 @@ class Image {
 		ob_end_clean();
 
 		return $output;
+	}
 
+	/**
+	 * Get the icon
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_the_icon() {
+
+		$output = '';
+
+		/**
+		 * Image alignement
+		 *
+		 * @var string
+		 */
+		$align = esc_attr( $this->args['alignment'] );
+
+		$icon = esc_attr( $this->args['icon'] );
+
+		$attr = array(
+			'class'		=> $icon . ' ' . $align,
+		);
+
+		$output .= sprintf(
+			'<span %s></span>',
+			\ItalyStrap\Core\get_attr( 'widget_image_icon', $attr )
+		);
+
+		return $output;
 	}
 
 	/**
@@ -103,7 +132,6 @@ class Image {
 		$output .= wp_get_attachment_image( $this->args['id'] , $size, false, $attr );
 
 		return $output;
-	
 	}
 
 	/**
@@ -123,7 +151,6 @@ class Image {
 			esc_attr( $this->args['image_title'] ),
 			esc_attr( $this->args['image_title_class'] )
 		);
-	
 	}
 
 	/**
@@ -137,7 +164,7 @@ class Image {
 			return;
 		}
 
-		$output = esc_attr( $this->args['description'] );
+		$output = wp_kses_post( $this->args['description'] );
 
 		if ( ! empty( $this->args['wpautop'] ) ) {
 			$output = wpautop( $output );
@@ -147,8 +174,10 @@ class Image {
 			$output = do_shortcode( $output );
 		}
 	
-		return sprintf( '<div>%s</div>', $output );
-	
+		return sprintf(
+			'<div>%s</div>',
+			$output
+		);
 	}
 
 	/**
