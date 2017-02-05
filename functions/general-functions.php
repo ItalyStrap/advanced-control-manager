@@ -96,7 +96,7 @@ function get_file_content( $filename ) {
 
 	// Check to see if the file exists at the specified path.
 	if ( ! file_exists( $filename ) ) {
-		throw new Exception( __( 'The file doesn\'t exist.', 'italystrap' ) );
+		throw new \Exception( __( 'The file doesn\'t exist.', 'italystrap' ) );
 	}
 
 	// Open the file for reading.
@@ -329,7 +329,7 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 
 			if ( true === $value ) {
 
-				$html .= esc_html( $key ) . ' ';
+				$html .= ' ' . esc_html( $key );
 			} else {
 
 				$html .= sprintf(
