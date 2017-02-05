@@ -11,6 +11,9 @@
 
 namespace ItalyStrap\Core\Social;
 
+use ItalyStrap\Core\Asset\Inline_Script;
+use ItalyStrap\Core\Asset\Inline_Style;
+
 /**
  * The vCard Class
  *
@@ -40,6 +43,11 @@ class Share {
 		$this->via = ! empty( $option['twitter_site'] ) ? '&via=' . $option['twitter_site'] : '' ;
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999999 );
+
+		/**
+		 * Append css in static variable and print in front-end footer
+		 */
+		// Inline_Style::set( \ItalyStrap\Core\get_file_content( ITALYSTRAP_PLUGIN_PATH . 'css/social.css' ) );
 	}
 
 	/**
@@ -117,7 +125,7 @@ class Share {
 		$output = '<ul class="social-button list-inline">';
 
 		$link_attr = array(
-			'href'		=> '%1$s',
+			// Not use href because will not be escaped right.
 			'class'		=> '%2$s btn btn-default btn-xs',
 			'target'	=> 'popup',
 			'onclick'	=> 'window.open("%1$s","popup","width=600,height=600"); return false;',
@@ -130,7 +138,7 @@ class Share {
 			$format = \ItalyStrap\Core\get_attr( $key, $link_attr );
 
 			$output .= sprintf(
-				'<li><a ' . $format . '><span class="font-icon icon-%2$s">%2$s</span></a></li>',
+				'<li><a href="%1$s" ' . $format . '><span class="font-icon icon-%2$s">%2$s</span></a></li>',
 				$url,
 				$key
 			);
@@ -151,6 +159,12 @@ class Share {
 	public function add_social_button( $content ) {
 
 		if ( ! is_singular() ) {
+			return $content;
+		}
+
+		$display_social_share_button = (array) get_post_meta( get_the_ID(), '_italystrap_template_settings', true );
+
+		if ( in_array( 'hide_social', $display_social_share_button ) ) {
 			return $content;
 		}
 
