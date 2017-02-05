@@ -10,6 +10,16 @@
  * @package ItalyStrap
  */
 
+/**
+ * Example:
+ */
+// add_action( 'wp_footer', function () {
+
+// 	$debug_asset = new \ItalyStrap\Debug\Asset_Queued();
+// 	$debug_asset->debug_styles();
+// 	$debug_asset->debug_scripts();
+// }, 100000 );
+
 namespace ItalyStrap\Debug;
 
 /**
@@ -21,46 +31,62 @@ class Asset_Queued {
 		// add_action('wp_head', 'debug_scripts_queued');
 		// add_action('wp_head', 'debug_styles_queued');
 		// add_action('init', 'debug_styles_queued');
-	public function debug_scripts_queued() {
+	public function debug_scripts() {
 		global $wp_scripts;
-		var_dump( $wp_scripts->in_footer );
-		// echo "<style>pre{display:none;}</style>";
-		echo '<pre> Script trovati in coda'."\r\n";
-		foreach ( $wp_scripts->queue as $script ) {
-			echo "\r\nScript: ".$script."\r\n";
-			$deps = $wp_scripts->registered[ $script ]->deps;
-			if ( $deps ) {
-				echo 'Dipende da: ';
-				print_r( $deps );
-			} else {
-				echo "Non dipende da nessuno\r\n";
-			}
-		}
-		echo "\r\n</pre>";
+		// var_dump( $wp_scripts->in_footer );
+		// // echo "<style>pre{display:none;}</style>";
+
+		echo $this->make_output( $wp_scripts, 'Scripts'  );
 	}
 
-	public function debug_styles_queued() {
+	public function debug_styles() {
 		global $wp_styles;
+		// wp_styles();
 		// var_dump($wp_styles->in_footer);
-		var_dump( $wp_styles );
+		// echo "<pre>";
+		// print_r( $wp_styles->registered );
+		// print_r( $wp_styles->queue );
+		// print_r( $wp_styles->done );
+		// print_r( $wp_styles->groups );
+		// echo "</pre>";
 		// echo "<style>pre{display:none;}</style>";
-		echo '<pre> Script trovati in coda'."\r\n";
-		foreach ( $wp_styles->queue as $script ) {
-			echo "\r\nScript: ".$script."\r\n";
-			$deps = $wp_styles->registered[ $script ]->deps;
-			if ( $deps ) {
-				echo 'Dipende da: ';
-				print_r( $deps );
-			} else {
-				echo "Non dipende da nessuno\r\n";
-			}
-		}
-		echo "\r\n</pre>";
+
+		echo $this->make_output( $wp_styles, 'Styles' );
 	}
 
+	/**
+	 * Make the list assets output.
+	 *
+	 * @param  WP_Style|WP_Script $assets WP_Style or WP_Script object.
+	 * @return string                     Return the list of asset enqueued.
+	 */
+	private function make_output( $assets, $type ) {
 
-	// var_dump();
-	// var_dump($wpdb->queries);
-	// global $wp_filter;
-	// var_dump($wp_filter);
+		$output = '';
+	
+		$output .= '<pre>' . $type . ' trovati in coda'."\r\n";
+		foreach ( $assets->queue as $asset ) {
+
+			if ( ! isset( $assets->registered[ $asset ] ) ) {
+				continue;
+			}
+
+			$output .= "\r\nHandle: <strong>" . $asset . "</strong>\n";
+			$output .= "<i class='small'>URL: " . $assets->registered[ $asset ]->src . "</i class='small'>\r\n";
+			$deps = $assets->registered[ $asset ]->deps;
+			if ( $deps ) {
+				$output .= 'Dipende da >>>>>>> ';
+				// $output .= print_r( $deps, true );
+				foreach ( $deps as $dep ) {
+					$output .= '<strong>' . $dep . '</strong>, ';
+				}
+				$output .= "\r\n";
+			} else {
+				$output .= "Non dipende da nessuno\r\n";
+			}
+		}
+		$output .= "\r\n</pre>";
+
+		return $output;
+	}
 }
