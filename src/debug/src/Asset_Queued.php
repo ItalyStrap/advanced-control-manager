@@ -16,8 +16,8 @@
 // add_action( 'wp_footer', function () {
 
 // 	$debug_asset = new \ItalyStrap\Debug\Asset_Queued();
-// 	$debug_asset->debug_styles();
-// 	$debug_asset->debug_scripts();
+// 	$debug_asset->styles();
+// 	$debug_asset->scripts();
 // }, 100000 );
 
 namespace ItalyStrap\Debug;
@@ -28,10 +28,10 @@ namespace ItalyStrap\Debug;
 class Asset_Queued {
 
 	// Funzione per vedere dipendenze e script caricati nel WP-HEAD http://www.targetweb.it/eliminare-script-caricati-nel-wp-head-di-wordpress/
-		// add_action('wp_head', 'debug_scripts_queued');
-		// add_action('wp_head', 'debug_styles_queued');
-		// add_action('init', 'debug_styles_queued');
-	public function debug_scripts() {
+		// add_action('wp_head', 'scripts_queued');
+		// add_action('wp_head', 'styles_queued');
+		// add_action('init', 'styles_queued');
+	public function scripts() {
 		global $wp_scripts;
 		// var_dump( $wp_scripts->in_footer );
 		// // echo "<style>pre{display:none;}</style>";
@@ -39,7 +39,7 @@ class Asset_Queued {
 		echo $this->make_output( $wp_scripts, 'Scripts'  );
 	}
 
-	public function debug_styles() {
+	public function styles() {
 		global $wp_styles;
 		// wp_styles();
 		// var_dump($wp_styles->in_footer);

@@ -152,7 +152,7 @@ class Visual_Hook implements Subscriber_Interface {
 			return;
 		}
 		foreach ( $this->theme_hooks as $value ) {
-			add_action( $value, array( $this, 'get_visual_hook' ), 99 );
+			add_action( $value, array( $this, 'get_visual_hook' ), 10 );
 		}
 	}
 }
