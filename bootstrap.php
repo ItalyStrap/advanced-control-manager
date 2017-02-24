@@ -89,7 +89,8 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	 * @var Areas
 	 */
 	$widget_areas = $injector->make( 'ItalyStrap\Widget\Areas\Areas' );
-	$widget_areas->register_sidebars();
+	// $widget_areas->register_sidebars();
+	add_action( 'widgets_init', array( $widget_areas, 'register_sidebars' ) );
 	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
 	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
 	add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 2 );
