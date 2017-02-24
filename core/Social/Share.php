@@ -48,6 +48,56 @@ class Share {
 		 * Append css in static variable and print in front-end footer
 		 */
 		// Inline_Style::set( \ItalyStrap\Core\get_file_content( ITALYSTRAP_PLUGIN_PATH . 'css/social.css' ) );
+		Inline_Style::set( $this->style() );
+	}
+
+	/**
+	 * Set CSS style
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function style() {
+
+		$rules = array(
+			'facebook'	=> array(
+				'background-color'	=> '#465f9e',
+				'border-color'		=> '#465f9e',
+				'color'				=> '#fff',
+			),
+		);
+
+		$style = '';
+
+		foreach ( $rules as $key => $value ) {
+			$style .= sprintf(
+				'.%s{%s}',
+				$key,
+				$this->get_props( $value )
+			);
+		}
+	
+		return $style;
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_props( array $props = array() ) {
+
+		$output = '';
+	
+		foreach ( $props as $prop => $prop_value ) {
+			$output .= sprintf(
+				'%s:%s;',
+				$prop,
+				$prop_value
+			);
+		}
+		return $output;
 	}
 
 	/**
@@ -77,7 +127,7 @@ class Share {
 		// $get_the_title = get_the_title();
 		$get_the_title = esc_attr( $post->post_title );
 		$get_the_excerpt = get_the_content();
-		$thumb_url = wp_get_attachment_thumb_url( get_post_thumbnail_id( get_the_id() ) );
+		$thumb_url = wp_get_attachment_url( get_post_thumbnail_id( get_the_id() ) );
 
 		$this->social_url = array(
 			'facebook'	=> sprintf(
