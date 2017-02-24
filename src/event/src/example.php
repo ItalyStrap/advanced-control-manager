@@ -47,9 +47,10 @@ $events = array(
 
 );
 
-$events_manager = new Event_Manager();
-$events_manager->add_events( $events );
-
+$event_manager = new Event_Manager();
+$event_manager->add_subscriber( $class );
+$event_manager->remove_subscriber( $class );
+$event_manager->hard_remove_subscriber( 'some_hook', 'some_method_name', 10 );
 // $events = array(
 
 // 	// 'italystrap_before_entry_content' => 'the_content',
