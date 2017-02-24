@@ -32,7 +32,7 @@
 			 *
 			 * @var string
 			 */
-			$current_post = ( $this->post && $this->post->ID === $this->current_post_id && is_single() ) ? ' active' : '';
+			$current_post = get_the_id() === $this->current_post_id && is_single() ? ' active' : '';
 
 			$post_class = ( ! empty( $this->args['post_class'] ) ) ? ' ' . $this->args['post_class'] : '' ;
 
