@@ -385,8 +385,9 @@ class Areas {
 			Core\get_attr(
 				'widget_add_sidebar',
 				array(
-					'href'	=> 'edit.php?post_type=sidebar',
+					'href'	=> 'post-new.php?post_type=sidebar',
 					'class'	=> 'button button-primary sidebar-chooser-add',
+					'style'	=> 'margin:1em 0;',
 				),
 				false
 			),
