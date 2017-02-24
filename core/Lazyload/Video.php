@@ -46,6 +46,9 @@ class Video {
 	/**
 	 * Get embed
 	 *
+	 * @todo Problema con gli embed da link di siti WordPress, controllare $matches[1]
+	 *       Provare con questa url nell'editor https://css-tricks.com/moving-to-https-on-wordpress/
+	 *
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
