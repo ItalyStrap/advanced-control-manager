@@ -569,7 +569,7 @@ abstract class Carousel {
 		 		$post_title = sprintf(
 		 			'<a href="%s" itemprop="url">%s</a>',
 		 			esc_url( $link_file ),
-		 			esc_attr( $post['post_title'] )
+		 			wp_kses_post( $post['post_title'] )
 		 		);
 		 		break;
 
@@ -582,7 +582,7 @@ abstract class Carousel {
 		 		$post_title = sprintf(
 		 			'<a href="%s" itemprop="url">%s</a>',
 		 			esc_url( get_permalink( $post['ID'] ) ),
-		 			esc_attr( $post['post_title'] )
+		 			wp_kses_post( $post['post_title'] )
 		 		);
 		 		break;
 
