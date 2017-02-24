@@ -61,7 +61,7 @@ abstract class Widget extends WP_Widget {
 	 *
 	 * @var array
 	 */
-	private $config = array();
+	protected $config = array();
 
 	/**
 	 * Set the title field
@@ -86,9 +86,9 @@ abstract class Widget extends WP_Widget {
 	 * Get the fields for widget
 	 *
 	 * @param  array $fields The options array with new fields.
-	 * @return array          Return an array with all fields
+	 * @return array         Return an array with all fields
 	 */
-	public function get_widget_fields( array $fields = array() ) {
+	protected function get_widget_fields( array $fields = array() ) {
 
 		if ( empty( $fields ) ) {
 			return $this->title_field();
@@ -159,7 +159,7 @@ abstract class Widget extends WP_Widget {
 	 * @param  array $instance The settings for the particular instance of the widget.
 	 * @return string          Return the optional title
 	 */
-	public function widget_title( $args, $instance ) {
+	protected function widget_title( $args, $instance ) {
 
 		$output = '';
 
@@ -207,7 +207,7 @@ abstract class Widget extends WP_Widget {
 	 * @access public
 	 * @param array $args The array with widget configuration.
 	 */
-	public function create_widget( array $args ) {
+	protected function create_widget( array $args ) {
 
 		/**
 		 * Settings some defaults options.
@@ -300,10 +300,17 @@ abstract class Widget extends WP_Widget {
 		 */
 		parent::__construct( $id_base, $name, $widget_options, $control_options );
 
+		$this->init_events();
+
+	}
+
+	/**
+	 * Init events.
+	 */
+	protected function init_events() {
 		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
-
 	}
 
 	/**
@@ -311,7 +318,7 @@ abstract class Widget extends WP_Widget {
 	 *
 	 * @param  array $args The widget arguments.
 	 */
-	public function is_valid_args( array $args ) {
+	protected function is_valid_args( array $args ) {
 
 		if ( empty( $args['label'] ) || ! is_string( $args['label'] ) ) {
 			throw new InvalidArgumentException( 'The $args[\'label\'] must be not empty. Insert the widget title.' );
@@ -415,7 +422,7 @@ abstract class Widget extends WP_Widget {
 	 *
 	 * @access public
 	 */
-	public function before_update_fields() {
+	protected function before_update_fields() {
 		return;
 	}
 
@@ -428,7 +435,7 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $instance The $instance of widget.
 	 * @return string           Return the $instance of widget
 	 */
-	public function after_validate_fields( $instance ) {
+	protected function after_validate_fields( $instance ) {
 
 		return $instance;
 
@@ -458,7 +465,6 @@ abstract class Widget extends WP_Widget {
 		}
 
 		return $sections;
-
 	}
 
 	/**
@@ -470,7 +476,6 @@ abstract class Widget extends WP_Widget {
 	private function get_sections_keys( array $sections ) {
 
 		return array_keys( $sections );
-
 	}
 
 	/**
@@ -492,7 +497,6 @@ abstract class Widget extends WP_Widget {
 		$tabs .= '</div>';
 
 		return $tabs;
-
 	}
 
 	/**
@@ -523,7 +527,6 @@ abstract class Widget extends WP_Widget {
 		}
 
 		return $out;
-
 	}
 
 	/**
@@ -600,7 +603,6 @@ abstract class Widget extends WP_Widget {
 		}
 
 		return $out;
-
 	}
 
 	/**
@@ -620,7 +622,6 @@ abstract class Widget extends WP_Widget {
 		$key['_name'] = $this->get_field_name( $key['id'] );
 
 		return $this->fields_type->get_field_type( $key, $this->instance );
-
 	}
 
 	/**
@@ -628,7 +629,7 @@ abstract class Widget extends WP_Widget {
 	 *
 	 * @return bool true   If the widget is cached otherwise false
 	 */
-	public function get_cached_widget() {
+	protected function get_cached_widget() {
 
 		$cache = wp_cache_get( apply_filters( "italystrap_cached_{$this->id}", $this->id ), 'widget' );
 
@@ -651,7 +652,7 @@ abstract class Widget extends WP_Widget {
 	 * @param  string $content The content of the widget to display.
 	 * @return string          The content that was cached
 	 */
-	public function cache_widget( $args, $content ) {
+	protected function cache_widget( $args, $content ) {
 
 		wp_cache_set( apply_filters( "italystrap_cached_{$this->id}", $this->id ), array( $this->id => $content ), 'widget' );
 
@@ -718,6 +719,5 @@ abstract class Widget extends WP_Widget {
 		}
 
 		self::$method_loaded = true;
-
 	}
 }
