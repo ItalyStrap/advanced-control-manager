@@ -39,10 +39,20 @@ class Migrations_Factory {
 	public function run() {
 
 		printf(
-			'<h2>%s</h2><p>%s</p>',
+			'<h2>%s</h2><p>%s</p><p>Option template name: %s</p><p>Option stylesheet name: %s</p>',
 			__( 'Migration page for ItalyStrap theme framework', 'italystrap' ),
-			__( 'Before upgrading to new version of the ItalyStrap theme framework (4.x) you need to migrate the old settings and rename the old directory of the theme to the new format "italystrap", update the style.css in your child theme to point to the correct parent directory and update the option "template" to the new format name.<br>To do so you can use the below migrate button.<br>Make a backup of all files and database before migration and than click on "Migrate" button, this will run the migration functionality.', 'italystrap' )
+			__( 'Before upgrading to new version of the ItalyStrap theme framework (4.x) you need to migrate the old settings and rename the old directory of the theme to the new format "italystrap", update the style.css in your child theme to point to the correct parent directory and update the option "template" to the new format name.<br>To do so you can use the below migrate button.<br>Make a backup of all files and database before migration and than click on "Migrate" button, this will run the migration functionality.', 'italystrap' ),
+			esc_attr( get_option( 'template' ) ),
+			esc_attr( get_option( 'stylesheet' ) )
 		);
+
+		echo "<h3>Directory founded</h3>";
+
+		foreach ( search_theme_directories() as $key => $value ) {
+			echo "<pre>";
+			print_r( $key );
+			echo "</pre>";
+		}
 
 		if ( ! isset( $_POST['submit'] ) ) {
 			return null;
