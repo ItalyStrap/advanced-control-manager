@@ -116,6 +116,35 @@ class Manager {
 	}
  
 	/**
+	 * Hard removing a method registerd by an anonimous object.
+	 *
+	 * From an idea of Tonia Mork of KnowTheCode
+	 * @link https://knowthecode.io/
+	 *
+	 * @example
+	 * $event_manager->hard_remove_subscriber( 'wp', 'schedule_events', 10 );
+	 *
+	 * @param  string $event_name    The event name.
+	 * @param  string $method_name   The method name callback to remove.
+	 * @param  int    $priority      The priority of the callback.
+	 * @param  int    $accepted_args The number of the accepted args.
+	 */
+	public function hard_remove_subscriber( $event_name, $method_name, $priority, $accepted_args = null ) {
+
+		global $wp_filter;
+
+		if ( ! isset( $wp_filter[ $event_name ][ $priority ] ) ) {
+			return;
+		}
+
+		foreach ( (array) $wp_filter[ $event_name ][ $priority ] as $method_name_regstered => $value ) {
+			if ( strpos( $method_name_regstered, $method_name ) !== false ) {
+				remove_filter( $event_name, $method_name_regstered, $priority );
+			}
+		}
+	}
+ 
+	/**
 	 * Removes an event subscriber.
 	 *
 	 * The event manager removes the given subscriber from the list of event listeners 
