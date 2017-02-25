@@ -98,6 +98,12 @@ if (  ! empty( $options['activate_custom_css'] )  ) {
 	add_filter( 'post_class', array( $post_meta, 'post_class' ) );
 }
 
+// if (  ! empty( $options['activate_custom_script'] )  ) {
+// 	add_action( 'wp_footer', function () {
+// 		echo apply_filters( 'italystrap_footer_scripts', $options['custom_script'] );
+// 	});
+// }
+
 if ( ! empty( $options['web_font_loading'] ) ) {
 	/**
 	 * Load the Web_Font_Loading classes

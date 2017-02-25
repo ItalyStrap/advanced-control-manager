@@ -613,7 +613,7 @@ return array(
 						'_name'			=> 'italystrap_settings[custom_css]',
 						'_id'			=> 'italystrap_settings[custom_css]',
 						'name'			=> __( 'Custom CSS', 'italystrap' ),
-						'desc'			=> __( 'Enter your custom CSS, this styles will be included verbatim in <style> tags in the <head> element of your html. The code will appear before styles that were registered individually and after your styles enqueued with the WordPress API.', 'italystrap' ),
+						'desc'			=> __( 'Enter your custom CSS, this styles will be included verbatim in <style> tags in the <code>&lt;head&gt;</code> element of your html. The code will appear before styles that were registered individually and after your styles enqueued with the WordPress API.', 'italystrap' ),
 						'id'			=> 'custom_css',
 						'type'			=> 'textarea',
 						'class'			=> 'custom_css medium',
@@ -666,6 +666,60 @@ return array(
 			),
 		),
 	),
+	/**
+	 * This is the Script configuration
+	 */
+	// 'script'	=> array(
+	// 	'tab_title'			=> __( 'Script', 'italystrap' ),
+	// 	'id'				=> 'script',
+	// 	'title'				=> __( 'ItalyStrap options page for script purpose', 'italystrap' ),
+	// 	'callback'			=> 'render_section_cb',
+	// 	'desc'				=> __( 'This is the tab for adding custom script of your site. Code entered here will be included in every page of the front-end of your site in the footer of the page.', 'italystrap' ),
+	// 	'page'				=> 'italystrap_options_group',
+	// 	'settings_fields'	=> array(
+	// 		array(
+	// 			'id'		=> 'activate_custom_script',
+	// 			'title'		=> __( 'Activate Custom Script', 'italystrap' ),
+	// 			'callback'	=> 'get_field_type',
+	// 			'page'		=> 'italystrap_options_group',
+	// 			'section'	=> 'script',
+	// 			'args'		=> array(
+	// 					'name'			=> __( 'Custom Script', 'italystrap' ),
+	// 					'desc'			=> __( 'This will add new fields in the wp editor for adding custom Script to post/page and also let you use the new functionality below.', 'italystrap' ),
+	// 					'id'			=> 'activate_custom_script',
+	// 					'type'			=> 'checkbox',
+	// 					'class'			=> 'activate_custom_css medium',
+	// 					'default'		=> '',
+	// 					// 'validate'	=> 'ctype_alpha',
+	// 					'sanitize'		=> 'sanitize_text_field',
+	// 					'option_type'	=> 'theme_mod',
+	// 			),
+	// 		),
+	// 		array(
+	// 			'id'			=> 'custom_script',
+	// 			'title'			=> __( 'Custom Script', 'italystrap' ),
+	// 			'callback'		=> 'get_field_type',
+	// 			'page'			=> 'italystrap_options_group',
+	// 			'section'		=> 'script',
+	// 			'args'			=> array(
+	// 					'_name'			=> 'italystrap_settings[custom_script]',
+	// 					'_id'			=> 'italystrap_settings[custom_script]',
+	// 					'name'			=> __( 'Custom Script', 'italystrap' ),
+	// 					'desc'			=> __( 'Enter your custom Script, this scripts will be included verbatim before the <code>&lt;/body&gt;</code> element of your html.', 'italystrap' ),
+	// 					'id'			=> 'custom_script',
+	// 					'type'			=> 'textarea',
+	// 					'class'			=> 'custom_script medium',
+	// 					'rows'			=> 20,
+	// 					'cols'			=> 100,
+	// 					'placeholder'	=> '',
+	// 					'default'		=> '',
+	// 					// 'validate'		=> 'ctype_alpha',
+	// 					'sanitize'		=> 'sanitize_text_field',
+	// 					'option_type'	=> 'theme_mod',
+	// 			),
+	// 		),
+	// 	),
+	// ),
 	/**
 	 * This is the Script configuration
 	 */

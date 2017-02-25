@@ -144,7 +144,7 @@ module.exports = function(grunt) {
 				src: [
 					// '*.php',
 					// 'admin/*.php',
-					// 'classes/*.php',
+					'core/**/*.php',
 					'classes/class-italystrap-posts-widget.php',
 					]
 			},
