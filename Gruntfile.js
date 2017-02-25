@@ -276,6 +276,7 @@ module.exports = function(grunt) {
 						'*.txt',
 						'*.md',
 						'*.php',
+						'functions/default-constants.php',
 						'*.js',
 					]
 				}
