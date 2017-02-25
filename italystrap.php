@@ -3,7 +3,7 @@
  *	Plugin Name:	ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
  *	Description:	{Requires PHP5.3 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
- *	Version:		2.4.0
+ *	Version:		2.4.1
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
  *	Text Domain:	italystrap
