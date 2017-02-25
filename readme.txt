@@ -223,6 +223,26 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.4.1 =
+Release Date: February 25th, 2017
+
+Dev time: 100h
+
+* New Plugin description
+* New Widget Monster for internal widgets in ALPHA version
+* New Classes for internal debugging
+* New internal shortcode for displaying docs
+* New directory for docs
+* New input for icon name in Widget Image
+* New method for forcing remove filters
+* Allow HTML in Widget Carousel title
+* Allow HTML in Widget Image description
+* Refactoring: the bootstrap application
+* Refactoring: Widget registering
+* Refactoring: Widget Class (method visibility)
+* Refactoring: Some internal refactoring
+* Fixed PHP error on \Excpetion
+
 = 2.4.0 =
 Release Date: January 23rd, 2017
 

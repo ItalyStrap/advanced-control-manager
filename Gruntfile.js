@@ -720,6 +720,7 @@ module.exports = function(grunt) {
 								'gitcheckout:mastertodev',
 								'gitmerge:frommaster',
 								'gitpush',
+								'update-no-dev',
 								]);
 
 	grunt.registerTask('release', [
