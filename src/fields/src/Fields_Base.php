@@ -127,13 +127,18 @@ abstract class Fields_Base implements Fields_Interface {
 		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
 
 		if ( isset( $instance[ $key['id'] ] ) ) {
+			/**
+			 * Non ricordo perché ho fatto la if else sotto ad ogni modo il valore è già escaped quando è stampato dal metodo dedicato quindi non serve ma lo tengo per fare ulteriori test in futuro.
+			 * Con la text area il valore deve essere passato senza nessuna validazione se no non stampa l'html.
+			 */
+			$key['value'] = $instance[ $key['id'] ];
 
-			if ( is_array( $instance[ $key['id'] ] ) ) {
-				$key['value'] = $instance[ $key['id'] ];
+			// if ( is_array( $instance[ $key['id'] ] ) ) {
+			// 	$key['value'] = $instance[ $key['id'] ];
 
-			} else {
-				$key['value'] = strip_tags( $instance[ $key['id'] ] );
-			}
+			// } else {
+			// 	$key['value'] = strip_tags( $instance[ $key['id'] ] );
+			// }
 		} else {
 			$key['value'] = null;
 		}

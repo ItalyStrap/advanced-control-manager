@@ -397,7 +397,9 @@ abstract class Widget extends WP_Widget {
 				}
 			}
 
-			if ( isset( $field['sanitize'] ) ) {
+			if ( isset( $field['capability'] ) && true === $field['capability'] ) {
+				$instance[ $field['id'] ] = $instance[ $field['id'] ];
+			} elseif ( isset( $field['sanitize'] ) ) {
 				$instance[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $instance[ $field['id'] ] );
 			} else {
 				$instance[ $field['id'] ] = strip_tags( $instance[ $field['id'] ] );

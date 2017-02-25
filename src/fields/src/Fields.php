@@ -321,7 +321,7 @@ class Fields extends Fields_Base {
 
 		$value = isset( $key['value'] ) ? $key['value'] : $key['default'];
 
-		$out .= 'id="'. esc_attr( $key['_id'] ) .'" name="' . esc_attr( $key['_name'] ) . '">' . esc_html( $value );
+		$out .= 'id="'. esc_attr( $key['_id'] ) .'" name="' . esc_attr( $key['_name'] ) . '">' . esc_textarea( $value );
 
 		$out .= '</textarea>';
 

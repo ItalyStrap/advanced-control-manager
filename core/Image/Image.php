@@ -164,7 +164,7 @@ class Image {
 			return;
 		}
 
-		$output = wp_kses_post( $this->args['description'] );
+		$output = $this->args['description'];
 
 		if ( ! empty( $this->args['wpautop'] ) ) {
 			$output = wpautop( $output );

@@ -120,14 +120,15 @@ return array(
 	 */
 	'description'		=> array(
 		'name'		=> __( 'Image description', 'italystrap' ),
-		'desc'		=> __( 'Enter a description for the image. You can also insert a <code>[shortcode]</code>.', 'italystrap' ),
+		'desc'		=> __( 'Enter a description for the image. You can also insert a <code>[shortcode]</code> or <code>HTML tags</code>. To use shortcodes you also have to check "Doo Shortcode" below,', 'italystrap' ),
 		'id'		=> 'description',
 		'type'		=> 'textarea',
 		'class'		=> 'widefat description',
 		'default'	=> '',
 		// 'validate'	=> 'numeric_comma',
+		'capability'=> current_user_can( 'unfiltered_html' ),
 		'sanitize'	=> 'wp_kses_post',
-		// 'sanitize'	=> 'trim',
+		'sanitize'	=> 'trim',
 		'section'	=> 'general',
 	),
 

@@ -80,7 +80,9 @@ class Update implements Update_Interface{
 			 *       Altre possibilità sono gli array con valori boleani o float e int
 			 *       Per ora sanitizza come fossero stringhe.
 			 */
-			if ( isset( $field['sanitize'] ) ) {
+			if ( isset( $field['capability'] ) && true === $field['capability'] ) {
+				$instance[ $field['id'] ] = $instance[ $field['id'] ];
+			} elseif ( isset( $field['sanitize'] ) ) {
 				$instance[ $field['id'] ] = $this->sanitization->sanitize( $field['sanitize'], $instance[ $field['id'] ] );
 			} else {
 				$instance[ $field['id'] ] = strip_tags( $instance[ $field['id'] ] );

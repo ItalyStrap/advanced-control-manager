@@ -270,7 +270,7 @@ return array(
 	 */
 	'wpautop'			=> array(
 		'name'		=> __( 'wpautop', 'italystrap' ),
-		'desc'		=> __( 'Auto-format text. Changes double line-breaks in the text into HTML paragraphs (<p>...</p>). Default: true.', 'italystrap' ),
+		'desc'		=> __( 'Auto-format text. Changes double line-breaks in the text into HTML paragraphs <code>&lt;p&gt;...&lt;/p&gt;</code>. Default: true.', 'italystrap' ),
 		'id'		=> 'wpautop',
 		'type'		=> 'checkbox',
 		'default'	=> 1,
