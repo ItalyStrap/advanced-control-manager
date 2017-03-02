@@ -33,6 +33,10 @@ if ( isset( $options['media_carousel_shortcode'] ) ) {
 	$init->add_carousel_to_gallery_shortcode();
 }
 
+if ( ! empty( $options['widget_visibility'] ) ) {
+	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
+}
+
 /**
  * Instantiate Init Class
  *

@@ -50,7 +50,7 @@ $theme_mods = (array) get_theme_mods();
 $injector->defineParam( 'theme_mods', $theme_mods );
 
 /**
- * The new events manager in ALPHA vesrion.
+ * The new events manager in ALPHA version.
  *
  * @var Event_Manager
  */
@@ -101,10 +101,10 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	// d( get_option( 'italystrap_widget_area' ) );
 }
 
-if ( ! empty( $options['widget_visibility'] ) ) {
-	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
-	add_action( 'admin_init', array( 'ItalyStrap\Widget\Visibility\Visibility_Admin', 'init' ) );
-}
+// if ( ! empty( $options['widget_visibility'] ) ) {
+// 	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
+// 	add_action( 'admin_init', array( 'ItalyStrap\Widget\Visibility\Visibility_Admin', 'init' ) );
+// }
 
 // if ( ! empty( $options['shortcode_widget'] ) ) {
 	/**

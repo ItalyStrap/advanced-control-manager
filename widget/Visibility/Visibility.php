@@ -40,22 +40,26 @@ class Visibility extends Visibility_Base {
 		$settings = array();
 
 		foreach ( $widget_areas as $widget_area => $widgets ) {
-			if ( empty( $widgets ) )
-				continue;
 
-			if ( ! is_array( $widgets ) )
+			if ( empty( $widgets ) ) {
 				continue;
+			}
 
-			if ( 'wp_inactive_widgets' == $widget_area )
+			if ( ! is_array( $widgets ) ) {
 				continue;
+			}
+
+			if ( 'wp_inactive_widgets' === $widget_area ) {
+				continue;
+			}
 
 			foreach ( $widgets as $position => $widget_id ) {
+
 				// Find the conditions for this widget.
 				if ( preg_match( '/^(.+?)-(\d+)$/', $widget_id, $matches ) ) {
 					$id_base = $matches[1];
 					$widget_number = intval( $matches[2] );
-				}
-				else {
+				} else {
 					$id_base = $widget_id;
 					$widget_number = null;
 				}
@@ -66,8 +70,12 @@ class Visibility extends Visibility_Base {
 
 				// New multi widget (WP_Widget)
 				if ( ! is_null( $widget_number ) ) {
-					if ( isset( $settings[$id_base][$widget_number] ) && false === self::filter_widget( $settings[$id_base][$widget_number] ) ) {
-						unset( $widget_areas[$widget_area][$position] );
+
+					if (
+						isset( $settings[ $id_base ][ $widget_number ] )
+						&& false === self::filter_widget( $settings[ $id_base ][ $widget_number ] ) ) {
+
+						unset( $widget_areas[ $widget_area ][ $position ] );
 					}
 				}
 

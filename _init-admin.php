@@ -1,8 +1,8 @@
 <?php
 /**
- * ItalyStrap init file
+ * ItalyStrap init admin file
  *
- * Init the plugin front-end functionality
+ * Init the plugin admin functionality
  *
  * @link www.italystrap.com
  * @since 4.0.0
@@ -23,9 +23,9 @@ if ( ! is_admin() ) {
 add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
 add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
-/**
- * Istantiate this class only if is admin
- */
+if ( ! empty( $options['widget_visibility'] ) ) {
+	add_action( 'admin_init', array( 'ItalyStrap\Widget\Visibility\Visibility_Admin', 'init' ) );
+}
 
 /**
  * Add ID to post_type table
