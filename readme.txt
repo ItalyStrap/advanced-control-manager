@@ -231,7 +231,7 @@ Dev time: 20h
 * Added class obj to the 'italystrap_ga_commands_queue_output' filter in Analytics class
 * Added 'add_permalink_wrapper' for title and image in Widget Posts
 * Better tabs organization in Widget Image
-* Fixed widget visibility error on wp-admin/widgets.php
+* Fixed widget visibility error on wp-admin/widgets.php (When visibility selected the widget disappeared from the admin.)
 
 = 2.4.1 =
 Release Date: February 25th, 2017
