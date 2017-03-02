@@ -36,7 +36,7 @@ return array(
 		'default'	=> false,
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'icon',
 	),
 
 	/**
@@ -52,15 +52,15 @@ return array(
 		'default'	=> false,
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'image',
 	),
 
 	/**
-	 * Enter a title. this will be visualized below the image.
+	 * Enter a title. this will be visualized below the image. (This is not the widget title).
 	 */
 	'image_title'			=> array(
 		'name'		=> __( 'Title', 'italystrap' ),
-		'desc'		=> __( 'Enter a title. this will be visualized below the image.', 'italystrap' ),
+		'desc'		=> __( 'Enter a title. this will be visualized below the image. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title',
 		'type'		=> 'text',
 		'class'		=> 'widefat image_title',
@@ -71,11 +71,11 @@ return array(
 	),
 
 	/**
-	 * Define tag for the title. Default: h4.
+	 * Define tag for the title. Default: h4. (This is not the widget title).
 	 */
 	'image_title_tag'			=> array(
 		'name'		=> __( 'Title tag', 'italystrap' ),
-		'desc'		=> __( 'Define tag for the title. Default: h4.', 'italystrap' ),
+		'desc'		=> __( 'Define tag for the title. Default: h4. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title_tag',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -86,11 +86,11 @@ return array(
 	),
 
 	/**
-	 * Enter a CSS class for the title. Default: widget-image-title.
+	 * Enter a CSS class for the title. Default: widget-image-title. (This is not the widget title).
 	 */
 	'image_title_class'			=> array(
 		'name'		=> __( 'Title CSS class', 'italystrap' ),
-		'desc'		=> __( 'Enter a CSS class for the title. Default: widget-image-title.', 'italystrap' ),
+		'desc'		=> __( 'Enter a CSS class for the title. Default: widget-image-title. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title_class',
 		'type'		=> 'text',
 		'class'		=> 'widefat',
@@ -112,7 +112,7 @@ return array(
 		'default'	=> '',
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'image',
 	),
 
 	/**
@@ -176,7 +176,7 @@ return array(
 		'default'	=> 'full',
 		'options'	=> isset( $image_size_media_array ) ? $image_size_media_array : '',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'image',
 	),
 
 	/**
@@ -196,7 +196,7 @@ return array(
 			'alignright'	=> 'right',
 			),
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'style',
 	),
 
 	/**
