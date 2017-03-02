@@ -205,6 +205,21 @@ return array(
 	),
 
 	/**
+	 * This adds the post_type permalink to the title and the image if they are displayed.
+	 */
+	'add_permalink_wrapper'				=> array(
+		'name'		=> __( 'Add Permalink wrapper', 'italystrap' ),
+		'desc'		=> __( 'This adds the post_type permalink to the title and the image if they are displayed.', 'italystrap' ),
+		'id'		=> 'add_permalink_wrapper',
+		'type'		=> 'checkbox',
+		// 'class'		=> 'widefat add_permalink_wrapper',
+		'default'	=> '1',
+		'validate'	=> 'is_numeric',
+		'sanitize'	=> 'esc_attr',
+		'section'	=> 'display',
+	),
+
+	/**
 	 * Check if you want to show the title.
 	 */
 	'show_title'				=> array(
