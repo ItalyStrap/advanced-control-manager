@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.6  
 **Tested up to:** 4.8  
-**Stable tag:** 2.4.1  
+**Stable tag:** 2.4.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -254,6 +254,16 @@ If you have any problem please open a ticket :-)
 
 
 ## Changelog ##
+
+### 2.4.2 ###
+Release Date: February 25th, 2017
+
+Dev time: 20h
+
+* Added class obj to the 'italystrap_ga_commands_queue_output' filter in Analytics class
+* Added 'add_permalink_wrapper' for title and image in Widget Posts
+* Better tabs organization in Widget Image
+* Fixed widget visibility error on wp-admin/widgets.php
 
 ### 2.4.1 ###
 Release Date: February 25th, 2017
