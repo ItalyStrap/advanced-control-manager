@@ -223,6 +223,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.5.0 =
+Release Date: February 25th, 2017
+
+Dev time: 20h
+
+* Added New Shortcodes for column in editor.
+
 = 2.4.2 =
 Release Date: February 25th, 2017
 
