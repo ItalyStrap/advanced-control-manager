@@ -317,6 +317,10 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 		/**
 		 * This filters the array with html attributes.
 		 *
+		 * @param  array  $attr    The array with all HTML attributes to render.
+		 * @param  string $context The context in wich this functionis called.
+		 * @param  null   $args    Optional. Extra arguments in case is needed.
+		 *
 		 * @var array
 		 */
 		$attr = (array) apply_filters( "italystrap_{$context}_attr", $attr, $context, $args );
@@ -341,7 +345,12 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 		}
 
 		/**
-		 * This filters the output of the html attributes. 
+		 * This filters the output of the html attributes.
+		 *
+		 * @param  string $html    The HTML attr output.
+		 * @param  array  $attr    The array with all HTML attributes to render.
+		 * @param  string $context The context in wich this functionis called.
+		 * @param  null   $args    Optional. Extra arguments in case is needed.
 		 *
 		 * @var string
 		 */

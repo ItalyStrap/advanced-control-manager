@@ -49,6 +49,8 @@ $theme_mods = (array) get_theme_mods();
  */
 $injector->defineParam( 'theme_mods', $theme_mods );
 
+$config = $injector->make( '\ItalyStrap\Config\Config' );
+
 /**
  * The new events manager in ALPHA version.
  *
@@ -80,6 +82,11 @@ $init = $injector->make( 'ItalyStrap\Core\Init' );
  * Register widget
  */
 $event_manager->add_subscriber( $injector->make( '\ItalyStrap\Widget\Widget_Factory' ) );
+
+$shortcode_factory = $injector->make( '\ItalyStrap\Shortcode\Shortcode_Factory' );
+// $shortcode_factory->register();
+// add_action( 'wp_loaded', array( $shortcode_factory, 'register' ) );
+add_action( 'plugins_loaded', array( $shortcode_factory, 'register' ) );
 
 if ( ! empty( $options['widget_areas'] ) ) {
 	/**

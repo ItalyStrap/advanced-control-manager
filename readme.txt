@@ -233,6 +233,7 @@ Dev time: 20h
 * Better name for future Grouped Posts Widget
 * Some refactoring for the Carousel Class
 * Some refactoring for the Social Share Class
+* Other refactoring for general files
 
 = 2.4.2 =
 Release Date: February 25th, 2017

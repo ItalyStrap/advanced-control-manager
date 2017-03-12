@@ -169,6 +169,7 @@ class Register_Metaboxes {
 				'type'				=> 'select',
 				'default'			=> 'container-fluid',
 				'options'			=> array(
+					// 'none'				=> __( 'None', 'italystrap' ),
 					'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
 					'container'			=> __( 'Standard width', 'italystrap' ),
 				),
