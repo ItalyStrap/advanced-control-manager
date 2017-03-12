@@ -65,14 +65,14 @@ class Widget_Factory implements Subscriber_Interface {
 
 		$this->widget_list = array(
 			'vcardwidget'				=> 'Vcard_Widget', // Deprecated
-			'post_widget'				=> 'Widget_Posts2', // Deprecated
+			// 'post_widget'				=> 'Widget_Posts2', // Deprecated
 			'media_carousel_widget'		=> 'Carousel',
 			'widget_posts'				=> 'Posts',
 			'widget_vcard'				=> 'VCard', // New
 			'widget_image'				=> 'Image', // New
 			'widget_facebook_page'		=> 'Facebook_Page', // New
 			'widget_breadcrumbs'		=> 'Breadcrumbs', // Beta
-			'widget_taxonomies_posts'	=> 'Taxonomies_Posts', // Beta
+			'widget_grouped_posts'		=> 'Grouped_Posts', // Beta
 			'widget_monster'			=> 'Monster', // Debug
 		);
 	}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget API: Widget_Taxonomies_Posts class
+ * Widget API: Widget_Grouped_Posts class
  *
  * @package ItalyStrap
  * @since 2.0.0
@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 /**
- * Widget Class for displaying Taxonomies_Posts
+ * Widget Class for displaying Posts Grouped by Taxonomies
  */
-class Taxonomies_Posts extends Widget {
+class Grouped_Posts extends Widget {
 
 	/**
 	 * Init the constructor
@@ -42,10 +42,10 @@ class Taxonomies_Posts extends Widget {
 		 */
 		$args = array(
 			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap Taxonomies Posts', 'italystrap' ),
+			'label'				=> __( 'ItalyStrap Grouped Posts', 'italystrap' ),
 			// Widget Backend Description.
 			'description'		=> __( 'Displays list of categories with their posts with an array of options. This widget is still in ALPHA version.', 'italystrap' ),
-			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/taxonomies-posts.php' ) ),
+			'fields'			=> $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/grouped-posts.php' ) ),
 			'control_options'	=> array( 'width' => 450 ),
 			'widget_options'	=> array( 'customize_selective_refresh' => true ),
 		 );
@@ -69,7 +69,7 @@ class Taxonomies_Posts extends Widget {
 		global $injector;
 
 		// $category_posts = new Category_Posts;
-		$category_posts = $injector->make( 'ItalyStrap\Core\Query\Category_Posts' );
+		$category_posts = $injector->make( 'ItalyStrap\Core\Query\Grouped_Posts' );
 		$category_posts->get_attributes( $instance );
 		return $category_posts->output();
 

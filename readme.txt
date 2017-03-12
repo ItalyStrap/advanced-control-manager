@@ -230,6 +230,7 @@ Dev time: 20h
 
 * Added New Shortcodes for column in editor.
 * Added New Config class for internal use.
+* Better name for future Grouped Posts Widget
 
 = 2.4.2 =
 Release Date: February 25th, 2017

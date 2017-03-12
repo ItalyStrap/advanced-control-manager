@@ -26,7 +26,7 @@ foreach ( array(
 	unset( $config_posts[ $value ] );
 }
 
-$config_taxonomies_posts = array(
+$config_grouped_posts = array(
 
 	/**
 	 * This is the container of the list of taxonomies, you can add any CSS class for styling it. (Example: <code>row</code>)
@@ -97,4 +97,4 @@ $config_taxonomies_posts = array(
  * module which must be called by an include (setoptions).
  */
 
-return wp_parse_args( $config_posts, $config_taxonomies_posts );
+return wp_parse_args( $config_posts, $config_grouped_posts );

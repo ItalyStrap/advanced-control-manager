@@ -5,7 +5,7 @@ use \WP_Query;
 /**
  * Classe per la documentazione
  */
-class Category_Posts {
+class Grouped_Posts {
 
 	/**
 	 * Pluin options
@@ -38,7 +38,7 @@ class Category_Posts {
 		/**
 		 * Define data by given attributes.
 		 */
-		$instance = \ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/taxonomies-posts.php' ), $instance, 'query_posts' );
+		$instance = \ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/grouped-posts.php' ), $instance, 'query_posts' );
 
 		$instance = apply_filters( 'italystrap_query_posts_args', $instance );
 
