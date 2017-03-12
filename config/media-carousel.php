@@ -16,11 +16,11 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 return array(
 
 	/**
-	 * Ids for the images to use.
+	 * You can insert the ID of the media images or the ID of every post type (post, page, attachment, custom post type and so on) all separated by comma. Example: <code>1,2,3,4</code>
 	 */
 	'ids'				=> array(
-		'name'		=> __( 'Images ID', 'italystrap' ),
-		'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
+		'name'		=> __( 'Media or Post Type ID', 'italystrap' ),
+		'desc'		=> __( 'You can insert the ID of the media images or the ID of every post type (post, page, attachment, custom post type and so on) all separated by comma. Example: <code>1,2,3,4</code>', 'italystrap' ),
 		'id'		=> 'ids',
 		'type'		=> 'media_list',
 		'class'		=> 'widefat ids',
@@ -70,7 +70,7 @@ return array(
 			'ID'			=> __( 'Order by the image\'s ID', 'italystrap' ),
 		),
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'Order',
+		'section'	=> 'general',
 	),
 
 	/**
@@ -206,6 +206,19 @@ return array(
 	),
 
 	/**
+	 * Show or hide image or post title. This is not the widget title. Set false to hide. Default: true.
+	 */
+	'image_title'		=> array(
+		'name'		=> __( 'Show Title', 'italystrap' ),
+		'desc'		=> __( 'Show or hide image or post title. This is not the widget title. Set false to hide. Default: true.', 'italystrap' ),
+		'id'		=> 'image_title',
+		'type'		=> 'checkbox',
+		'default'	=> 1,
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'content',
+	),
+
+	/**
 	 * Define HTML tag for image title. Default: h4.
 	 */
 	'titletag'			=> array(
@@ -217,56 +230,24 @@ return array(
 		'default'	=> 'h4',
 		// 'validate'	=> 'esc_attr',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'content',
 	),
 
 	/**
-	 * Show or hide image title. Set false to hide. Default: true.
-	 */
-	'image_title'		=> array(
-		'name'		=> __( 'Image Title', 'italystrap' ),
-		'desc'		=> __( 'Show or hide image title. Set false to hide. Default: true.', 'italystrap' ),
-		'id'		=> 'image_title',
-		'type'		=> 'checkbox',
-		'default'	=> 1,
-		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
-	),
-
-	/**
-	 * Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.
-	 */
-	'link'				=> array(
-		'name'		=> __( 'Title link', 'italystrap' ),
-		'desc'		=> __( 'Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.', 'italystrap' ),
-		'id'		=> 'link',
-		'type'		=> 'select',
-		'class'		=> 'widefat',
-		'default'	=> 'none',
-		'options'	=> array(
-					'none'			=> __( 'None (Default)', 'italystrap' ),
-					'file'			=> __( 'File', 'italystrap' ),
-					'link'			=> __( 'Link', 'italystrap' ),
-				),
-		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
-	),
-
-	/**
-	 * Show or hide image caption text (the excerpt of attachment). Set false to hide. Default: true.
+	 * Show or hide image caption text (the excerpt of attachment) or the excerpt of the post. Set false to hide. Default: true.
 	 */
 	'text'				=> array(
 		'name'		=> __( 'Text', 'italystrap' ),
-		'desc'		=> __( 'Show or hide image caption text (the excerpt of attachment). Set false to hide. Default: true.', 'italystrap' ),
+		'desc'		=> __( 'Show or hide image caption text (the excerpt of attachment) or the excerpt of the post. Set false to hide. Default: true.', 'italystrap' ),
 		'id'		=> 'text',
 		'type'		=> 'checkbox',
 		'default'	=> 1,
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'content',
 	),
 
 	/**
-	 * Auto-format text. Changes double line-breaks in the text into HTML paragraphs (<p>...</p>). Default: true.
+	 * Auto-format text. Changes double line-breaks in the text into HTML paragraphs <code>&lt;p&gt;...&lt;/p&gt;</code>. Default: true.
 	 */
 	'wpautop'			=> array(
 		'name'		=> __( 'wpautop', 'italystrap' ),
@@ -275,7 +256,7 @@ return array(
 		'type'		=> 'checkbox',
 		'default'	=> 1,
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'content',
 	),
 
 	/**
@@ -283,25 +264,45 @@ return array(
 	 */
 	'do_shortcode'		=> array(
 		'name'		=> __( 'do_shortcode', 'italystrap' ),
-		'desc'		=> __( 'Auto-format text. Default: false.', 'italystrap' ),
+		'desc'		=> __( 'Allow shortcode for text. Default: false.', 'italystrap' ),
 		'id'		=> 'do_shortcode',
 		'type'		=> 'checkbox',
 		'default'	=> 0,
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'content',
 	),
 
 	/**
-	 * Show or hide a link to post, this works only for post_type and for parent of images. Default: false.
+	 * Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.
+	 */
+	'link'				=> array(
+		'name'		=> __( 'Post or Image link', 'italystrap' ),
+		'desc'		=> __( 'Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.', 'italystrap' ),
+		'id'		=> 'link',
+		'type'		=> 'select',
+		'class'		=> 'widefat',
+		'default'	=> 'none',
+		'options'	=> array(
+					'none'			=> __( 'No link for the title (Default)', 'italystrap' ),
+					'file'			=> __( 'Link to the file media', 'italystrap' ),
+					'parent'		=> __( 'Link to the parent post', 'italystrap' ),
+					'link'			=> __( 'Link to the attachment', 'italystrap' ),
+				),
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'content',
+	),
+
+	/**
+	 * Show or hide a link to post, this works only for post_type and for parent of images, it works only with the selection of the link above. Default: false.
 	 */
 	'link_button'				=> array(
 		'name'		=> __( 'Link button', 'italystrap' ),
-		'desc'		=> __( 'Show or hide a link to post, this works only for post_type and for parent of images. Default: false.', 'italystrap' ),
+		'desc'		=> __( 'Show or hide a link to post, this works only for post_type and for parent of images, it works only with the selection of the link above. Default: false.', 'italystrap' ),
 		'id'		=> 'link_button',
 		'type'		=> 'checkbox',
 		'default'	=> 0,
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'content',
 	),
 
 	/**
@@ -315,7 +316,7 @@ return array(
 		'type'		=> 'text',
 		'default'	=> __( 'Read more', 'italystrap' ),
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'general',
+		'section'	=> 'content',
 	),
 
 	/**
@@ -329,7 +330,7 @@ return array(
 		'type'		=> 'text',
 		'default'	=> 'btn btn-primary',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'Class',
+		'section'	=> 'class',
 	),
 
 	/**
@@ -344,7 +345,7 @@ return array(
 		'default'	=> '',
 		// 'validate'	=> 'alpha_numeric',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'Class',
+		'section'	=> 'class',
 	),
 
 	/**
@@ -359,7 +360,7 @@ return array(
 		'default'	=> '',
 		// 'validate'	=> 'alpha_numeric',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'Class',
+		'section'	=> 'class',
 	),
 
 	/**
@@ -374,7 +375,7 @@ return array(
 		'default'	=> '',
 		// 'validate'	=> 'alpha_numeric',
 		'sanitize'	=> 'sanitize_text_field',
-		'section'	=> 'Class',
+		'section'	=> 'class',
 	),
 
 	/**

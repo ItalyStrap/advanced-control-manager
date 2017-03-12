@@ -573,6 +573,14 @@ abstract class Carousel {
 		 		);
 		 		break;
 
+		 	case 'parent':
+		 		$post_title = sprintf(
+		 			'<a href="%s" itemprop="url">%s</a>',
+		 			esc_url( get_permalink( $post['post_parent'] ) ),
+		 			wp_kses_post( $post['post_title'] )
+		 		);
+		 		break;
+
 		 	case 'none':
 		 		// $post_title = esc_attr( $post['post_title'] );
 		 		$post_title = wp_kses_post( $post['post_title'] );
