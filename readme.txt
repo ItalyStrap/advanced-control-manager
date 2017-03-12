@@ -232,6 +232,7 @@ Dev time: 20h
 * Added New Config class for internal use.
 * Better name for future Grouped Posts Widget
 * Some refactoring for the Carousel Class
+* Some refactoring for the Social Share Class
 
 = 2.4.2 =
 Release Date: February 25th, 2017

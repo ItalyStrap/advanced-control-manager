@@ -65,6 +65,26 @@ class Share {
 				'border-color'		=> '#465f9e',
 				'color'				=> '#fff',
 			),
+			'twitter'	=> array(
+				'background-color'	=> '#1DA1F2',
+				'border-color'		=> '#1DA1F2',
+				'color'				=> '#fff',
+			),
+			'gplus'	=> array(
+				'background-color'	=> '#DB4437',
+				'border-color'		=> '#DB4437',
+				'color'				=> '#fff',
+			),
+			'linkedin'	=> array(
+				'background-color'	=> '#0077B5',
+				'border-color'		=> '#0077B5',
+				'color'				=> '#fff',
+			),
+			'pinterest'	=> array(
+				'background-color'	=> '#B4091C',
+				'border-color'		=> '#B4091C',
+				'color'				=> '#fff',
+			),
 		);
 
 		$style = '';
@@ -112,7 +132,7 @@ class Share {
 	function enqueue_scripts() {
 		wp_enqueue_style( 'fontello', ITALYSTRAP_PLUGIN_URL . 'css/social.css', null, null, null );
 	}
-	
+
 
 	/**
 	 * Set social url
@@ -124,9 +144,11 @@ class Share {
 		global $post;
 
 		$get_permalink = get_permalink();
-		// $get_the_title = get_the_title();
 		$get_the_title = esc_attr( $post->post_title );
-		$get_the_excerpt = get_the_content();
+		// $get_the_content = get_the_content();
+		// $get_the_excerpt = get_the_excerpt();
+		$get_the_excerpt = '';
+		// $get_the_excerpt = $this->content;
 		$thumb_url = wp_get_attachment_url( get_post_thumbnail_id( get_the_id() ) );
 
 		$this->social_url = array(
@@ -145,11 +167,14 @@ class Share {
 				'//plus.google.com/share?url=%s',
 				$get_permalink
 			),
-			// 'linkedin'	=> sprintf(
-			// 	'//www.linkedin.com/shareArticle?mini=true&url=%s&title=%s',
-			// 	$get_permalink,
-			// 	$get_the_title
-			// ),
+			/**
+			 * https://developer.linkedin.com/docs/share-on-linkedin#
+			 */
+			'linkedin'	=> sprintf(
+				'//www.linkedin.com/shareArticle?mini=true&url=%s&title=%s',
+				$get_permalink,
+				$get_the_title
+			),
 			'pinterest'	=> sprintf(
 				'//pinterest.com/pin/create/button/?url=%s&media=%s&description=%s',
 				$get_permalink,
@@ -217,6 +242,8 @@ class Share {
 		if ( in_array( 'hide_social', $display_social_share_button ) ) {
 			return $content;
 		}
+
+		$this->content = $content;
 
 		$positions = array(
 			'before'	=> '%2$s%1$s',
