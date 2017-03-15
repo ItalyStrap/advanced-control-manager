@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use WP_Customize_Manager;
 use \ItalyStrap\Core\Web_Font_Loading;
+use ItalyStrap\Core\Google\Fonts;
 
 /**
  * Contains methods for customizing the theme customization screen.
@@ -46,53 +47,15 @@ class Customizer_Manager {
 	/**
 	 * Init the class
 	 */
-	function __construct( array $options = array(), Web_Font_Loading $web_fonts ) {
+	function __construct( array $options = array(), Fonts $web_fonts ) {
 
 		$this->options = $options;
 
 		$this->web_fonts = $web_fonts;
 
 		$this->fonts = $this->web_fonts->get_remote_fonts();
-
-		$this->variants = array(
-			'100'		=> __( '100', 'italystrap' ),
-			'100italic'	=> __( '100italic', 'italystrap' ),
-			'200'		=> __( '200', 'italystrap' ),
-			'200italic'	=> __( '200italic', 'italystrap' ),
-			'300'		=> __( '300', 'italystrap' ),
-			'300italic'	=> __( '300italic', 'italystrap' ),
-			'regular'	=> __( 'Regular 400', 'italystrap' ),
-			'italic'	=> __( 'Italic 400', 'italystrap' ),
-			'500'		=> __( '500', 'italystrap' ),
-			'500italic'	=> __( '500italic', 'italystrap' ),
-			'600'		=> __( '600', 'italystrap' ),
-			'600italic'	=> __( '600italic', 'italystrap' ),
-			'700'		=> __( '700', 'italystrap' ),
-			'700italic'	=> __( '700italic', 'italystrap' ),
-			'800'		=> __( '800', 'italystrap' ),
-			'800italic'	=> __( '800italic', 'italystrap' ),
-			'900'		=> __( '900', 'italystrap' ),
-			'900italic'	=> __( '900italic', 'italystrap' ),
-		);
-
-		$this->subsets = array(
-			'bengali'		=> __( 'Bengali', 'italystrap' ),
-			'cyrillic'		=> __( 'Cyrillic', 'italystrap' ),
-			'cyrillic-ext'	=> __( 'Cyrillic Extended', 'italystrap' ),
-			'devanagari'	=> __( 'Devanagari', 'italystrap' ),
-			'greek'			=> __( 'Greek', 'italystrap' ),
-			'greek-ext'		=> __( 'Greek Extended', 'italystrap' ),
-			'gujarati'		=> __( 'Gujarati', 'italystrap' ),
-			'hebrew'		=> __( 'Hebrew', 'italystrap' ),
-			'khmer'			=> __( 'Khmer', 'italystrap' ),
-			'latin'			=> __( 'Latin', 'italystrap' ),
-			'latin-ext'		=> __( 'Latin Extended', 'italystrap' ),
-			'tamil'			=> __( 'Tamil', 'italystrap' ),
-			'telugu'		=> __( 'Telugu', 'italystrap' ),
-			'thai'			=> __( 'Thai', 'italystrap' ),
-			'vietnamese'	=> __( 'Vietnamese', 'italystrap' ),
-		);
-
+		$this->variants = $this->web_fonts->get_property( 'variants' );
+		$this->subsets = $this->web_fonts->get_property( 'subsets' );
 	}
 
 	/**
@@ -132,7 +95,7 @@ class Customizer_Manager {
 				'default'			=> '',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'postMessage',
+				'transport'			=> 'refresh',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -162,7 +125,7 @@ class Customizer_Manager {
 				'default'			=> '',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'postMessage',
+				'transport'			=> 'refresh',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -192,7 +155,7 @@ class Customizer_Manager {
 				'default'			=> '',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'postMessage',
+				'transport'			=> 'refresh',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -210,6 +173,30 @@ class Customizer_Manager {
 					'default'		=> 'latin',
 					'choices'		=> $this->subsets,
 				)
+			)
+		);
+
+		/**
+		 * Select the menus_width of navbar
+		 */
+		$wp_customize->add_setting(
+			'first_typography',
+			array(
+				'default'			=> '',
+				'type'				=> 'theme_mod',
+				'capability'		=> $this->capability,
+				'transport'			=> 'refresh',
+				'sanitize_callback'	=> 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'first_typography',
+			array(
+				'settings'	=> 'first_typography',
+				'label'			=> __( 'Typography for the first font', 'italystrap' ),
+				'description'	=> __( 'Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,.widget-title</code>', 'italystrap' ),
+				'section'		=> 'fonts',
+				'type'			=> 'input',
 			)
 		);
 
@@ -300,6 +287,30 @@ class Customizer_Manager {
 					'default'		=> 'regular',
 					'choices'		=> $this->subsets,
 				)
+			)
+		);
+
+		/**
+		 * Select the menus_width of navbar
+		 */
+		$wp_customize->add_setting(
+			'second_typography',
+			array(
+				'default'			=> '',
+				'type'				=> 'theme_mod',
+				'capability'		=> $this->capability,
+				'transport'			=> 'refresh',
+				'sanitize_callback'	=> 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'second_typography',
+			array(
+				'settings'	=> 'second_typography',
+				'label'			=> __( 'Typography for the second font', 'italystrap' ),
+				'description'	=> __( 'Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,.widget-title</code>', 'italystrap' ),
+				'section'		=> 'fonts',
+				'type'			=> 'input',
 			)
 		);
 

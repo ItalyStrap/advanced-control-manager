@@ -114,7 +114,7 @@ if ( ! empty( $options['web_font_loading'] ) ) {
 	 *
 	 * @var Web_Font_loading
 	 */
-	$web_font_loading = $injector->make( 'ItalyStrap\Core\Web_Font_Loading' );
+	$web_font_loading = $injector->make( 'ItalyStrap\Core\Lazyload\Fonts' );
 	add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
 }
 

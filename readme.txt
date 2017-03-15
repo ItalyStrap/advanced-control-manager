@@ -235,6 +235,7 @@ Dev time: 20h
 * Some refactoring for the Carousel Class
 * Some refactoring for the Social Share Class
 * Refactoring of the widget loader
+* Refactoring of the Web Fonts Lazy Loading
 * Other refactoring for general files
 * Fixed array to string conversion in Carousel.php
 
