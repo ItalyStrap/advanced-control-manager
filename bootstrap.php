@@ -84,9 +84,10 @@ $init = $injector->make( 'ItalyStrap\Core\Init' );
 $event_manager->add_subscriber( $injector->make( '\ItalyStrap\Widget\Widget_Factory' ) );
 
 $shortcode_factory = $injector->make( '\ItalyStrap\Shortcode\Shortcode_Factory' );
+$event_manager->add_subscriber( $shortcode_factory );
 // $shortcode_factory->register();
 // add_action( 'wp_loaded', array( $shortcode_factory, 'register' ) );
-add_action( 'plugins_loaded', array( $shortcode_factory, 'register' ) );
+// add_action( 'plugins_loaded', array( $shortcode_factory, 'register' ) );
 
 if ( ! empty( $options['widget_areas'] ) ) {
 	/**

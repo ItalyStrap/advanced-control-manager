@@ -224,16 +224,19 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.5.0 =
-Release Date: February 25th, 2017
+Release Date: March 14th, 2017
 
 Dev time: 20h
 
-* Added New Shortcodes for column in editor.
+* Added New Shortcodes for column in editor only for beta version (do not use it).
+* Added New Shortcode Factory Class
 * Added New Config class for internal use.
 * Better name for future Grouped Posts Widget
 * Some refactoring for the Carousel Class
 * Some refactoring for the Social Share Class
+* Refactoring of the widget loader
 * Other refactoring for general files
+* Fixed array to string conversion in Carousel.php
 
 = 2.4.2 =
 Release Date: February 25th, 2017

@@ -35,9 +35,8 @@ class Shortcode_Factory implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
-			'init'	=> array(
+			'plugins_loaded'	=> array(
 				'function_to_add'	=> 'register',
-				'priority'			=> 10,
 			),
 		);
 	}
@@ -63,8 +62,8 @@ class Shortcode_Factory implements Subscriber_Interface {
 		$this->options = $options;
 
 		$this->shortcodes_list = array(
-			'shortcode_row'			=> 'Row',
-			'shortcode_column'		=> 'Column',
+			'shortcode_row'			=> 'ItalyStrap\\Shortcode\\Row',
+			'shortcode_column'		=> 'ItalyStrap\\Shortcode\\Column',
 		);
 	}
 
@@ -75,13 +74,12 @@ class Shortcode_Factory implements Subscriber_Interface {
 	public function register() {
 
 		foreach ( (array) $this->shortcodes_list as $shortcode_option => $shortcode_class ) {
-			$shortcode_name = lcfirst( $shortcode_class );
+			$shortcode_name = str_replace( 'shortcode_', '', $shortcode_option );
 			if ( ! empty( $this->options[ $shortcode_option ] ) ) {
-				$shortcode_class = 'ItalyStrap\\Shortcode\\' . $shortcode_class;
 				$$shortcode_name =  new $shortcode_class;
 				add_shortcode( $shortcode_name, array( $$shortcode_name, 'render' ) );
 				if ( function_exists( '\shortcode_ui_register_for_shortcode' ) ) {
-					\shortcode_ui_register_for_shortcode( $shortcode_name, $$shortcode_name->shortcode_ui );
+					shortcode_ui_register_for_shortcode( $shortcode_name, $$shortcode_name->shortcode_ui );
 				}
 			}
 		}
