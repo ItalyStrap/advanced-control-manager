@@ -481,13 +481,18 @@ abstract class Carousel {
 		);
 
 		foreach ( $imgmeta as $key => $value ) {
-			if ( ! empty( $value ) ) {
-				$metadata .= sprintf(
-					'<meta  itemprop="exifData" content="%s: %s"/>',
-					esc_attr( $key ),
-					esc_attr( $value )
-				);
+			if ( empty( $value ) ) {
+				continue;
 			}
+			/**
+			 * 14/03/2017 Ho aggiunto is_array perché in caso dovesse esistere
+			 * una $key = 'keyword' allora questa sarà probabilmente un array. 
+			 */
+			$metadata .= sprintf(
+				'<meta  itemprop="exifData" content="%s: %s"/>',
+				esc_attr( $key ),
+				is_array( $value ) ? esc_attr( $value[0] ) : esc_attr( $value )
+			);
 		}
 
 		return $metadata;
