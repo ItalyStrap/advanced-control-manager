@@ -64,16 +64,16 @@ class Widget_Factory implements Subscriber_Interface {
 		$this->options = $options;
 
 		$this->widget_list = array(
-			'vcardwidget'				=> 'Vcard_Widget', // Deprecated
+			'vcardwidget'				=> 'ItalyStrap\\Widget\\Vcard_Widget', // Deprecated
 			// 'post_widget'				=> 'Widget_Posts2', // Deprecated
-			'media_carousel_widget'		=> 'Carousel',
-			'widget_posts'				=> 'Posts',
-			'widget_vcard'				=> 'VCard', // New
-			'widget_image'				=> 'Image', // New
-			'widget_facebook_page'		=> 'Facebook_Page', // New
-			'widget_breadcrumbs'		=> 'Breadcrumbs', // Beta
-			'widget_grouped_posts'		=> 'Grouped_Posts', // Beta
-			'widget_monster'			=> 'Monster', // Debug
+			'media_carousel_widget'		=> 'ItalyStrap\\Widget\\Carousel',
+			'widget_posts'				=> 'ItalyStrap\\Widget\\Posts',
+			'widget_vcard'				=> 'ItalyStrap\\Widget\\VCard', // New
+			'widget_image'				=> 'ItalyStrap\\Widget\\Image', // New
+			'widget_facebook_page'		=> 'ItalyStrap\\Widget\\Facebook_Page', // New
+			'widget_breadcrumbs'		=> 'ItalyStrap\\Widget\\Breadcrumbs', // Beta
+			'widget_grouped_posts'		=> 'ItalyStrap\\Widget\\Grouped_Posts', // Beta
+			'widget_monster'			=> 'ItalyStrap\\Widget\\Monster', // Debug
 		);
 	}
 
@@ -83,9 +83,9 @@ class Widget_Factory implements Subscriber_Interface {
 	 */
 	public function widgets_init() {
 
-		foreach ( (array) $this->widget_list as $key => $value ) {
-			if ( ! empty( $this->options[ $key ] ) ) {
-				\register_widget( 'ItalyStrap\\Widget\\' . $value );
+		foreach ( (array) $this->widget_list as $option_name => $class_name ) {
+			if ( ! empty( $this->options[ $option_name ] ) ) {
+				\register_widget( new $class_name );
 			}
 		}
 	}
