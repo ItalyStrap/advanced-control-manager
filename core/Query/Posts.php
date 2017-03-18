@@ -82,7 +82,9 @@ class Posts extends Query {
 		$this->current_post_id = is_object( $this->post ) ? $this->post->ID : '';
 
 		if ( ! empty( $this->args['exclude_current_post'] ) ) {
-			$this->posts_to_exclude[] = (int) $this->current_post_id;
+			if ( is_single() ) {
+				$this->posts_to_exclude[] = (int) $this->current_post_id;
+			}
 		}
 
 		/**
