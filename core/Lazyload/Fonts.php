@@ -15,7 +15,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
-use ItalyStrap\Core\Google\Fonts;
+use ItalyStrap\Core\Google\Fonts as Google_Fonts;
 
 /**
  * Web Font Loading class
@@ -26,12 +26,14 @@ class Fonts {
 
 	private	$theme_mods = array();
 
+	protected $css = '';
+
 	/**
 	 * Init the class.
 	 *
 	 * @param array $options The plugin options.
 	 */
-	function __construct( array $options = array(), array $theme_mods, Fonts $fonts_obj ) {
+	function __construct( array $options = array(), array $theme_mods, Google_Fonts $fonts_obj ) {
 
 		$this->options = $options;
 
@@ -54,11 +56,12 @@ class Fonts {
 	 * @param  string $value [description]
 	 * @return string        The CSS generated
 	 */
-	public function generate_css( $value, array $fonts  ) {
+	public function generate_css( $value, $font_key, array $fonts  ) {
 
 		$css = '';
 
 		$typographyes = explode( ',', $this->theme_mods[ $value . '_typography'] );
+
 		$count = count( $typographyes ) - 1;
 
 		$i = 1;
@@ -73,7 +76,7 @@ class Fonts {
 
 		$css .= sprintf(
 			'{font-family:"%s";}',
-			esc_attr( $fonts[0]['family'] )
+			esc_attr( $fonts[ $font_key ]['family'] )
 		);
 
 		return $css;
@@ -90,6 +93,7 @@ class Fonts {
 
 		$fonts = array();
 
+		$i = 0;
 		foreach ( $template_part as $key => $part ) {
 
 			if ( empty( $this->fonts ) ) {
@@ -136,7 +140,8 @@ class Fonts {
 				$this->fonts[ $font_family ]->subsets
 			);
 
-			$this->css = $this->generate_css( $part, $fonts );
+			$this->css .= $this->generate_css( $part, $i, $fonts );
+			$i++;
 		}
 
 		/**
