@@ -359,7 +359,6 @@ class Areas {
 			'publicly_queryable'	=> true,
 			'show_ui'				=> true,
 			'show_in_nav_menus'		=> false,
-			// 'show_in_admin_bar'		=> false,
 			'show_in_admin_bar'     => true,
 			'show_in_menu'			=> $page,
 			'show_in_rest'			=> false,
