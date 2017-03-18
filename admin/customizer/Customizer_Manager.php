@@ -92,10 +92,10 @@ class Customizer_Manager {
 		$wp_customize->add_setting(
 			'first_font_family',
 			array(
-				'default'			=> '',
+				'default'			=> apply_filters( 'italystrap_first_font_family', '' ),
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'refresh',
+				'transport'			=> 'postMessage',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -105,12 +105,11 @@ class Customizer_Manager {
 				$wp_customize,
 				'first_font_family',
 				array(
-					'label'			=> __( 'The first font family', 'italystrap' ),
-					'description'	=> __( 'Select the first font family with weight and subsets', 'italystrap' ),
+					'label'			=> __( 'The first font family to load', 'italystrap' ),
+					'description'	=> __( 'Select the first font family you want to load. Example: "Open Sans"', 'italystrap' ),
 					'section'		=> 'fonts',
 					'settings'		=> 'first_font_family',
 					'priority'		=> 10,
-					'default'		=> '',
 					'choices'		=> $this->fonts,
 				)
 			)
@@ -122,10 +121,10 @@ class Customizer_Manager {
 		$wp_customize->add_setting(
 			'first_font_variants',
 			array(
-				'default'			=> '',
+				'default'			=> 'regular',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'refresh',
+				'transport'			=> 'postMessage',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -136,11 +135,10 @@ class Customizer_Manager {
 				'first_font_variants',
 				array(
 					'label'			=> __( 'Weight of the first font family', 'italystrap' ),
-					'description'	=> __( 'Chose the weight of the font family, multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'description'	=> __( 'Chose carefully the weight of the font family, multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font weights.', 'italystrap' ),
 					'section'		=> 'fonts',
 					'settings'		=> 'first_font_variants',
 					'priority'		=> 10,
-					'default'		=> 'regular',
 					'choices'		=> $this->variants,
 				)
 			)
@@ -152,10 +150,10 @@ class Customizer_Manager {
 		$wp_customize->add_setting(
 			'first_font_subsets',
 			array(
-				'default'			=> '',
+				'default'			=> 'latin',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'refresh',
+				'transport'			=> 'postMessage',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -166,11 +164,10 @@ class Customizer_Manager {
 				'first_font_subsets',
 				array(
 					'label'			=> __( 'Subsets of the first font family', 'italystrap' ),
-					'description'	=> __( 'Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'description'	=> __( 'Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font subsets.', 'italystrap' ),
 					'section'		=> 'fonts',
 					'settings'		=> 'first_font_subsets',
 					'priority'		=> 10,
-					'default'		=> 'latin',
 					'choices'		=> $this->subsets,
 				)
 			)
@@ -185,7 +182,7 @@ class Customizer_Manager {
 				'default'			=> '',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'refresh',
+				'transport'			=> 'postMessage',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -194,7 +191,7 @@ class Customizer_Manager {
 			array(
 				'settings'	=> 'first_typography',
 				'label'			=> __( 'Typography for the first font', 'italystrap' ),
-				'description'	=> __( 'Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,.widget-title</code>', 'italystrap' ),
+				'description'	=> __( 'Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>', 'italystrap' ),
 				'section'		=> 'fonts',
 				'type'			=> 'input',
 			)
@@ -206,7 +203,7 @@ class Customizer_Manager {
 		$wp_customize->add_setting(
 			'second_font_family',
 			array(
-				'default'			=> '',
+				'default'			=> apply_filters( 'italystrap_second_font_family', '' ),
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
 				'transport'			=> 'postMessage',
@@ -219,12 +216,11 @@ class Customizer_Manager {
 				$wp_customize,
 				'second_font_family',
 				array(
-					'label'			=> __( 'The Second font family', 'italystrap' ),
-					'description'	=> __( 'Select the second font family with weight and subsets', 'italystrap' ),
+					'label'			=> __( 'The Second font family to load', 'italystrap' ),
+					'description'	=> __( 'Select the second font family you want to load. Example: "Open Sans"', 'italystrap' ),
 					'section'		=> 'fonts',
 					'settings'		=> 'second_font_family',
 					'priority'		=> 10,
-					'default'		=> '',
 					'choices'		=> $this->fonts,
 				)
 			)
@@ -236,7 +232,7 @@ class Customizer_Manager {
 		$wp_customize->add_setting(
 			'second_font_variants',
 			array(
-				'default'			=> '',
+				'default'			=> 'regular',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
 				'transport'			=> 'postMessage',
@@ -250,11 +246,10 @@ class Customizer_Manager {
 				'second_font_variants',
 				array(
 					'label'			=> __( 'Weight of the second font family', 'italystrap' ),
-					'description'	=> __( 'Chose the weight of the font family, multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'description'	=> __( 'Chose carefully the weight of the font family, multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font weights.', 'italystrap' ),
 					'section'		=> 'fonts',
 					'settings'		=> 'second_font_variants',
 					'priority'		=> 10,
-					'default'		=> 'regular',
 					'choices'		=> $this->variants,
 				)
 			)
@@ -266,7 +261,7 @@ class Customizer_Manager {
 		$wp_customize->add_setting(
 			'second_font_subsets',
 			array(
-				'default'			=> '',
+				'default'			=> 'latin',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
 				'transport'			=> 'postMessage',
@@ -280,11 +275,10 @@ class Customizer_Manager {
 				'second_font_subsets',
 				array(
 					'label'			=> __( 'Subsets of the second font family', 'italystrap' ),
-					'description'	=> __( 'Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click)', 'italystrap' ),
+					'description'	=> __( 'Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font subsets.', 'italystrap' ),
 					'section'		=> 'fonts',
 					'settings'		=> 'second_font_subsets',
 					'priority'		=> 10,
-					'default'		=> 'regular',
 					'choices'		=> $this->subsets,
 				)
 			)
@@ -299,7 +293,7 @@ class Customizer_Manager {
 				'default'			=> '',
 				'type'				=> 'theme_mod',
 				'capability'		=> $this->capability,
-				'transport'			=> 'refresh',
+				'transport'			=> 'postMessage',
 				'sanitize_callback'	=> 'sanitize_text_field',
 			)
 		);
@@ -308,7 +302,7 @@ class Customizer_Manager {
 			array(
 				'settings'	=> 'second_typography',
 				'label'			=> __( 'Typography for the second font', 'italystrap' ),
-				'description'	=> __( 'Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,.widget-title</code>', 'italystrap' ),
+				'description'	=> __( 'Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>', 'italystrap' ),
 				'section'		=> 'fonts',
 				'type'			=> 'input',
 			)
