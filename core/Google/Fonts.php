@@ -95,6 +95,14 @@ class Fonts {
 	}
 
 	/**
+	 * Flush transient
+	 * Maybe flush at the 'update_option_' . $args['options_name'] ?
+	 */
+	public function flush_transient() {
+		delete_transient( 'italystrap_google_fonts' );
+	}
+
+	/**
 	 * Get the google fonts from the API or in the cache
 	 *
 	 * @return String
@@ -105,7 +113,7 @@ class Fonts {
 			return array();
 		}
 
-		// delete_transient( 'italystrap_google_fonts' );
+		// $this->flush_transient();
 
 		if ( false === ( $fonts = get_transient( 'italystrap_google_fonts' ) ) ) {
 
@@ -124,7 +132,11 @@ class Fonts {
 			return $fonts->items;
 		}
 
-		return $fonts['items'];
+		if ( ! isset( $fonts['items'] ) ) {
+			return array();
+		}
+
+		return (array) $fonts['items'];
 	}
 
 	/**
