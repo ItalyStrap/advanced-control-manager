@@ -2,6 +2,12 @@
 /**
  * Widget API: Widget class
  *
+ * Some interesting tickets:
+ * https://core.trac.wordpress.org/ticket/28216
+ * https://core.trac.wordpress.org/ticket/33473
+ * https://core.trac.wordpress.org/ticket/35669
+ * https://github.com/xwp/wp-js-widgets/blob/efcfd5c7e8dd4e679a81660d90e99cead6309c7b/php/class-js-widgets-plugin.php#L255-L268
+ *
  * @package ItalyStrap
  * @since 2.0.0
  */
