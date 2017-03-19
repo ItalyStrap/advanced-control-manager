@@ -35,7 +35,7 @@ class VCard {
 		/**
 		 * Define data by given attributes.
 		 */
-		$args = shortcode_atts_multidimensional_array( $default, $args, $context );
+		$args = \ItalyStrap\Core\shortcode_atts_multidimensional_array( $default, $args, $context );
 
 		$args = apply_filters( 'italystrap_{$context}_args', $args );
 
