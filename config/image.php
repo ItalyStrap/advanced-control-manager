@@ -127,8 +127,7 @@ return array(
 		'default'	=> '',
 		// 'validate'	=> 'numeric_comma',
 		'capability'=> current_user_can( 'unfiltered_html' ),
-		'sanitize'	=> 'wp_kses_post',
-		'sanitize'	=> 'trim',
+		'sanitize'	=> 'wp_kses_post|trim',
 		'section'	=> 'general',
 	),
 

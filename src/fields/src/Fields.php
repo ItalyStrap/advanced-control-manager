@@ -579,6 +579,38 @@ class Fields extends Fields_Base {
 	}
 
 	/**
+	 * Create the Field Editor
+	 *
+	 * @access public
+	 * @param  array  $key The key of field's array to create the HTML field.
+	 * @param  string $out The HTML form output.
+	 * @return string      Return the HTML Field Editor
+	 */
+	public function field_type_editor( array $key, $out = '' ) {
+
+		$attr = array();
+
+		ob_start();
+
+		wp_editor(
+			$key['value'],
+			$key['_id'],
+			array(
+				'textarea_name' => $key['_name'],
+				// 'media_buttons' => false,
+				// 'textarea_rows' => 5,
+				// 'editor_css'    => '<style>#wp-italy_cookie_choices_text-wrap{max-width:520px}</style>',
+				'teeny' => true
+			)
+		);
+
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		return $this->field_type_label( $key['name'], $key['_id'] ) . $output;
+	}
+
+	/**
 	 * Create the field image_size
 	 *
 	 * @access public

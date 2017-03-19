@@ -73,6 +73,7 @@ class Widget_Factory implements Subscriber_Interface {
 			'widget_facebook_page'		=> 'ItalyStrap\\Widget\\Facebook_Page', // New
 			'widget_breadcrumbs'		=> 'ItalyStrap\\Widget\\Breadcrumbs', // Beta
 			'widget_grouped_posts'		=> 'ItalyStrap\\Widget\\Grouped_Posts', // Beta
+			'widget_editor'				=> 'ItalyStrap\\Widget\\Editor', // _Beta
 			'widget_monster'			=> 'ItalyStrap\\Widget\\Monster', // Debug
 		);
 	}
