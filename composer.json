@@ -25,7 +25,7 @@
 		],
 		"psr-4": {
 			"ItalyStrap\\Core\\": "core/",
-			"ItalyStrap\\": "_src/"
+			"ItalyStrap\\": "src/"
 		}
 	},
 	"autoload-dev": {
