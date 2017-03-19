@@ -6,7 +6,7 @@
  * @since 4.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Customizer;
 
 use WP_Customize_Control;
 use WP_Customize_Manager;
@@ -88,7 +88,7 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control {
 	public function enqueue() {
 		wp_enqueue_script(
 			'customizer-select-multiple',
-			ITALYSTRAP_PLUGIN_URL . '/admin/js/customizer-select-multiple.min.js',
+			ITALYSTRAP_PLUGIN_URL . '/src/Customizer/js/customizer-select-multiple.min.js',
 			array( 'jquery' ),
 			// array( 'jquery', 'customize-preview' ), // Con customize-preview si blocca il "torna indietro"
 			null,

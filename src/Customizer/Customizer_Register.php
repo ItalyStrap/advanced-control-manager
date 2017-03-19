@@ -8,14 +8,13 @@
  */
 
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Customizer;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
 use WP_Customize_Manager;
-use \ItalyStrap\Core\Web_Font_Loading;
 use ItalyStrap\Google\Fonts;
 
 /**
@@ -28,7 +27,7 @@ use ItalyStrap\Google\Fonts;
  * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @since ItalyStrap 1.0
  */
-class Customizer_Manager {
+class Customizer_Register {
 
 	/**
 	 * $capability

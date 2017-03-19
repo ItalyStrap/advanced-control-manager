@@ -6,7 +6,7 @@
  * @since 4.0.0
  */
 
-namespace ItalyStrap\Admin;
+namespace ItalyStrap\Customizer;
 
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {

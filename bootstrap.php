@@ -67,7 +67,7 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	 *
 	 * @var Customizer_Manager
 	 */
-	$customizer_manager = $injector->make( 'ItalyStrap\Admin\Customizer_Manager' );
+	$customizer_manager = $injector->make( 'ItalyStrap\Customizer\Customizer_Register' );
 	add_action( 'customize_register', array( $customizer_manager, 'register' ), 11 );
 }
 
