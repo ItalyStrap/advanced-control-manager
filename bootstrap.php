@@ -72,18 +72,11 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 }
 
 /**
- * Instantiate Init Class
- *
- * @var Init
- */
-$init = $injector->make( 'ItalyStrap\Core\Init' );
-
-/**
  * Register widget
  */
-$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Widget\Widget_Factory' ) );
+$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Widgets\Widget_Factory' ) );
 
-$shortcode_factory = $injector->make( '\ItalyStrap\Shortcode\Shortcode_Factory' );
+$shortcode_factory = $injector->make( '\ItalyStrap\Shortcodes\Shortcode_Factory' );
 $event_manager->add_subscriber( $shortcode_factory );
 // $shortcode_factory->register();
 // add_action( 'wp_loaded', array( $shortcode_factory, 'register' ) );
@@ -96,7 +89,7 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	 *
 	 * @var Areas
 	 */
-	$widget_areas = $injector->make( 'ItalyStrap\Widget\Areas\Areas' );
+	$widget_areas = $injector->make( 'ItalyStrap\Widgets\Areas\Areas' );
 	// $widget_areas->register_sidebars();
 	add_action( 'widgets_init', array( $widget_areas, 'register_sidebars' ) );
 	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
@@ -110,8 +103,8 @@ if ( ! empty( $options['widget_areas'] ) ) {
 }
 
 // if ( ! empty( $options['widget_visibility'] ) ) {
-// 	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
-// 	add_action( 'admin_init', array( 'ItalyStrap\Widget\Visibility\Visibility_Admin', 'init' ) );
+// 	add_action( 'init', array( 'ItalyStrap\Widgets\Visibility\Visibility', 'init' ) );
+// 	add_action( 'admin_init', array( 'ItalyStrap\Widgets\Visibility\Visibility_Admin', 'init' ) );
 // }
 
 // if ( ! empty( $options['shortcode_widget'] ) ) {
@@ -119,9 +112,9 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	 * Instantiate Widget to Shortcode Class
 	 * Questa deve essere eseguita sia in admin che in front-end
 	 *
-	 * @var ItalyStrap\Shortcode\Widget
+	 * @var ItalyStrap\Shortcodes\Widget
 	 */
-	// $shortcode_widget = $injector->make( 'ItalyStrap\Shortcode\Widget' );
+	// $shortcode_widget = $injector->make( 'ItalyStrap\Shortcodes\Widget' );
 
 	// add_shortcode( 'widget', array( $shortcode_widget, 'shortcode' ) );
 

@@ -15,7 +15,7 @@ if ( ! class_exists( 'ItalyStrapLazyload' ) ){
 		private static $unveilpath = '';
 
 		public function __construct() {
-			_deprecated_function( __CLASS__, '2.0', 'ItalyStrap\\\Core\\\Lazy_Load_Image' );
+			_deprecated_function( __CLASS__, '2.0', 'ItalyStrap\\\Lazy_Load\\\Image' );
 		}
 
 		static function init() {

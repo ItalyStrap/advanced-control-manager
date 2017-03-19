@@ -12,9 +12,7 @@
 
 namespace ItalyStrap\Core;
 
-use ItalyStrap\Core\Asset\Inline_Style;
-use ItalyStrap\Core\Cache\Menu as Menu_Cache;
-use ItalyStrap\Core\Social\Share;
+use ItalyStrap\Asset\Inline_Style;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
@@ -24,17 +22,12 @@ if ( is_admin() ) {
 	return;
 }
 
-/**
- * Adjust priority to make sure this runs
- */
-add_action( 'init', array( $init, 'on_load' ), 100 );
-
 if ( isset( $options['media_carousel_shortcode'] ) ) {
-	$init->add_carousel_to_gallery_shortcode();
+	$shortcode_factory->add_carousel_to_gallery_shortcode();
 }
 
 if ( ! empty( $options['widget_visibility'] ) ) {
-	add_action( 'init', array( 'ItalyStrap\Widget\Visibility\Visibility', 'init' ) );
+	add_action( 'init', array( 'ItalyStrap\Widgets\Visibility\Visibility', 'init' ) );
 }
 
 /**
@@ -54,7 +47,7 @@ if ( ! empty( $options['lazyload'] ) ) {
 	 *
 	 * @var lazy_load_image
 	 */
-	$lazy_load_image = $injector->make( 'ItalyStrap\Core\Lazyload\Lazy_Load_Image' );
+	$lazy_load_image = $injector->make( 'ItalyStrap\Lazyload\Image' );
 	$lazy_load_image::init();
 }
 
@@ -64,7 +57,17 @@ if ( ! empty( $options['lazyload_video'] ) ) {
 	 *
 	 * @var lazy_load_video
 	 */
-	$lazy_load_video = $injector->make( 'ItalyStrap\Core\Lazyload\Video' );
+	$lazy_load_video = $injector->make( 'ItalyStrap\Lazyload\Video' );
+}
+
+if ( ! empty( $options['web_font_loading'] ) ) {
+	/**
+	 * Load the Web_Font_Loading classes
+	 *
+	 * @var Web_Font_loading
+	 */
+	$web_font_loading = $injector->make( 'ItalyStrap\Lazyload\Fonts' );
+	add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
 }
 
 /**
@@ -88,11 +91,11 @@ add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
 
 if (  ! empty( $options['activate_custom_css'] )  ) {
 	/**
-	 * Instantiate Post_Meta Class
+	 * Instantiate Custom_Css Class
 	 *
-	 * @var Post_Meta
+	 * @var Custom_Css
 	 */
-	$post_meta = $injector->make( 'ItalyStrap\Core\Postmeta\Post_Meta' );
+	$post_meta = $injector->make( 'ItalyStrap\Asset\Custom_Css' );
 
 	/**
 	 * Get metaboxes value
@@ -108,24 +111,14 @@ if (  ! empty( $options['activate_custom_css'] )  ) {
 // 	});
 // }
 
-if ( ! empty( $options['web_font_loading'] ) ) {
-	/**
-	 * Load the Web_Font_Loading classes
-	 *
-	 * @var Web_Font_loading
-	 */
-	$web_font_loading = $injector->make( 'ItalyStrap\Core\Lazyload\Fonts' );
-	add_action( 'wp_footer', array( $web_font_loading, 'lazy_load_fonts'), 9999 );
-}
-
 if ( ! empty( $options['widget_attributes'] ) ) {
 	/**
 	 * Init the Widget_Attributes
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
-	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
+	$injector->define( 'ItalyStrap\Widgets\Attributes\Attributes', array( 'fields_type' => 'ItalyStrap\Fields\Fields' ) );
+	$widget_attributes = $injector->make( 'ItalyStrap\Widgets\Attributes\Attributes' );
 	// add_action( 'widgets_init', array( 'Widget_Attributes', 'setup' ) );
 	add_filter( 'dynamic_sidebar_params', array( $widget_attributes, 'insert_attributes' ) );
 }
@@ -158,7 +151,7 @@ if ( ! empty( $options['activate_analytics'] ) ) {
 	 *
 	 * @var Generate_Analytics
 	 */
-	$analytics = $injector->make( 'ItalyStrap\Core\Google\Analytics' );
+	$analytics = $injector->make( 'ItalyStrap\Google\Analytics' );
 	add_action( 'wp_footer', array( $analytics, 'render_analytics' ), 99999 );
 }
 
@@ -167,7 +160,7 @@ if ( ! empty( $options['activate_analytics'] ) ) {
  */
 if ( ! empty( $options['menu_cache'] ) && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 
-	$cache = new Menu_Cache();
+	$cache = $injector->make( 'ItalyStrap\Cache\Menu' );
 
 	add_filter( 'pre_wp_nav_menu', array( $cache, 'get_menu' ), 10, 2 );
 
@@ -177,13 +170,13 @@ if ( ! empty( $options['menu_cache'] ) && version_compare( PHP_VERSION, '5.4.0',
 
 if ( ! empty( $options['activate_social_share'] ) && is_beta() ) {
 
-	$social_share = $injector->make( 'ItalyStrap\Core\Social\Share' );
+	$social_share = $injector->make( 'ItalyStrap\Social\Share' );
 	add_filter( 'the_content', array( $social_share, 'add_social_button' ), 9999, 1 );
 }
 
 if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
 
-	$excerpt = $injector->make( 'ItalyStrap\Core\Excerpt\Excerpt' );
+	$excerpt = $injector->make( 'ItalyStrap\Excerpt\Excerpt' );
 	add_filter( 'get_the_excerpt', array( $excerpt, 'custom_excerpt_more') );
 	add_filter( 'excerpt_more', array( $excerpt, 'read_more_link') );
 	add_filter( 'excerpt_length', array( $excerpt, 'excerpt_length') );
@@ -202,4 +195,4 @@ if ( ! empty( $options['show_theme_hooks'] ) ) {
 /**
  * Print the inline assets
  */
-$event_manager->add_subscriber( $injector->make( 'ItalyStrap\Core\Asset\Inline_Asset_Factory' ) );
+$event_manager->add_subscriber( $injector->make( 'ItalyStrap\Asset\Inline_Asset_Factory' ) );

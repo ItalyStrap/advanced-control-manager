@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use WP_Customize_Manager;
 use \ItalyStrap\Core\Web_Font_Loading;
-use ItalyStrap\Core\Google\Fonts;
+use ItalyStrap\Google\Fonts;
 
 /**
  * Contains methods for customizing the theme customization screen.

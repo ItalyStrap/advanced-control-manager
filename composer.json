@@ -24,7 +24,6 @@
 			"deprecated"
 		],
 		"psr-4": {
-			"ItalyStrap\\Core\\": "core/",
 			"ItalyStrap\\": "src/"
 		}
 	},

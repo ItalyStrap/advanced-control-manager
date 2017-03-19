@@ -24,7 +24,7 @@ add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
 add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
 if ( ! empty( $options['widget_visibility'] ) ) {
-	add_action( 'admin_init', array( 'ItalyStrap\Widget\Visibility\Visibility_Admin', 'init' ) );
+	add_action( 'admin_init', array( 'ItalyStrap\Widgets\Visibility\Visibility_Admin', 'init' ) );
 }
 
 /**
@@ -173,8 +173,8 @@ if ( ! empty( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widget\Attributes\Attributes', $fields_type );
-	$widget_attributes = $injector->make( 'ItalyStrap\Widget\Attributes\Attributes' );
+	$injector->define( 'ItalyStrap\Widgets\Attributes\Attributes', $fields_type );
+	$widget_attributes = $injector->make( 'ItalyStrap\Widgets\Attributes\Attributes' );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
 	add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );
 }

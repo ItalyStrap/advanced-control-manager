@@ -392,7 +392,7 @@ function is_debug() {
  */
 function get_breadcrumbs( array $args = array() ) {
 
-	$breadcrumbs = new Breadcrumbs();
+	$breadcrumbs = new \ItalyStrap\Breadcrumbs\Breadcrumbs();
 
 	if ( ! is_object( $breadcrumbs ) ) {
 		return;
@@ -459,8 +459,7 @@ function get_template( $template_names ) {
  */
 function get_apply_lazyload( $content ) {
 
-	return Lazy_Load_Image::add_image_placeholders( $content );
-
+	return \ItalyStrap\Lazyload\Image::add_image_placeholders( $content );
 }
 
 /**
@@ -470,8 +469,7 @@ function get_apply_lazyload( $content ) {
  */
 function apply_lazyload( $content ) {
 
-	echo Lazy_Load_Image::add_image_placeholders( $content );
-
+	echo get_apply_lazyload( $content );
 }
 
 /**

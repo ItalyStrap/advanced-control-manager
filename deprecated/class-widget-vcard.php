@@ -1,6 +1,6 @@
-<?php namespace ItalyStrap\Widget;
+<?php namespace ItalyStrap\Widgets;
 
-use \ItalyStrap\Widget\Widget;
+use \ItalyStrap\Widgets\Widget;
 /**
  * @link http://codex.wordpress.org/Function_Reference/the_widget
  * @link https://core.trac.wordpress.org/browser/tags/3.9.2/src/wp-includes/default-widgets.php#L0

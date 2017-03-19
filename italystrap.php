@@ -58,6 +58,16 @@ if ( ! $requirements->is_compatible_version() ) {
 require( __DIR__ . '/functions/default-constants.php' );
 italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
 
+/**
+ * Adjust priority to make sure this runs
+ */
+add_action( 'init', function () {
+	/**
+	 * Load po file
+	 */
+	load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
+}, 100 );
+
 $autoload_plugin_files = array(
 	'/vendor/autoload.php',
 	'/vendor/webdevstudios/cmb2/init.php',
