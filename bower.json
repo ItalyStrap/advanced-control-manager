@@ -28,6 +28,7 @@
     "susy": "~2.2.12"
   },
   "dependencies": {
-    "fontfaceobserver": "~1.7.1"
+    "fontfaceobserver": "~1.7.1",
+    "font-awesome": "fontawesome#~4.7.0"
   }
 }
