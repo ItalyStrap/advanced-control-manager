@@ -78,7 +78,7 @@ class Settings extends Settings_Base {
 			wp_enqueue_script(
 				$this->pagenow,
 				plugins_url( 'js/' . $this->pagenow . '.min.js', __FILE__ ),
-				array( 'jquery-ui-tabs' ),
+				array( 'jquery-ui-tabs', 'jquery-form' ),
 				false,
 				false,
 				true

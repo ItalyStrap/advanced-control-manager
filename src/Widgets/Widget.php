@@ -20,8 +20,8 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 
 use \WP_Widget;
 use ItalyStrap\Fields\Fields;
-use ItalyStrap\Admin\Sanitization;
-use ItalyStrap\Admin\Validation;
+use ItalyStrap\Update\Sanitization;
+use ItalyStrap\Update\Validation;
 
 use InvalidArgumentException;
 
@@ -712,15 +712,18 @@ abstract class Widget extends WP_Widget {
 
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
-		$js_file = ( WP_DEBUG ) ? 'admin/js/src/widget.js' : 'admin/js/widget.min.js';
+		$js_file = ( WP_DEBUG ) ? 'assets/js/src/widget.js' : 'assets/js/widget.min.js';
 
 		if ( ! wp_script_is( 'italystrap-widget' ) ) {
 
-			wp_enqueue_style( 'italystrap-widget', ITALYSTRAP_PLUGIN_URL . 'admin/css/widget.css' );
+			wp_enqueue_style(
+				'italystrap-widget',
+				plugins_url( 'assets/css/widget.css', __FILE__ )
+			);
 
 			wp_enqueue_script(
 				'italystrap-widget',
-				ITALYSTRAP_PLUGIN_URL . $js_file,
+				plugins_url( $js_file, __FILE__ ),
 				array( 'jquery', 'jquery-ui-sortable' )
 			);
 

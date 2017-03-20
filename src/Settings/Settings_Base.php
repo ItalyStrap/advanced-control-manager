@@ -5,7 +5,7 @@
  * This class make simple the plugins admin panel creations,
  * you only have to write the array with the plugin configuration and that's it.
  *
- * @link http://codex.wordpress.org/Adding_Administration_Menus
+ * @link http://codex.wordpress.org/Adding_Updateistration_Menus
  * @link http://code.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options--wp-24902
  *
  * @since 2.2.0
@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Fields\Fields_Interface;
-use ItalyStrap\Admin\Validation;
-use ItalyStrap\Admin\Sanitization;
+use ItalyStrap\Update\Validation;
+use ItalyStrap\Update\Sanitization;
 
 /**
  * Class for admin area

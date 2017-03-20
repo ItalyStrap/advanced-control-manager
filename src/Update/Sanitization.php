@@ -1,10 +1,12 @@
-<?php namespace ItalyStrap\Admin;
+<?php
 /**
  * Sanitization API: Sanitization Class
  *
  * @package ItalyStrap
  * @since 2.0.0
  */
+
+namespace ItalyStrap\Update;
 
 if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
