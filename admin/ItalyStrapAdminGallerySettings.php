@@ -35,7 +35,9 @@ class ItalyStrapAdminGallerySettings {
 
 	private $instance_old = array();
 
-	function __construct( Fields_Interface $fields_type ) {
+	function __construct( Fields_Interface $fields_type, ItalyStrap\Image\Size $image_size ) {
+
+		$this->image_size_media = $image_size;
 
 		$this->fields_type = $fields_type;
 
@@ -152,8 +154,8 @@ class ItalyStrapAdminGallerySettings {
 		 * Instance of list of image sizes
 		 * @var ItalyStrapAdminMediaSettings
 		 */
-		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+		// $image_size_media = new ItalyStrapAdminMediaSettings;
+		$image_size_media_array = $this->image_size_media->get_image_sizes();
 
 		foreach ( $this->fields_old as $key => $label ) {
 

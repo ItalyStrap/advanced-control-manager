@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Image\Image as Image_Base;
-use \ItalyStrapAdminMediaSettings;
+// use \ItalyStrapAdminMediaSettings;
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/

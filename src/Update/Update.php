@@ -12,9 +12,6 @@
 
 namespace ItalyStrap\Update;
 
-use ItalyStrap\Admin\Validation;
-use ItalyStrap\Admin\Sanitization;
-
 /**
  * Class description
  */

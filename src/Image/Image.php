@@ -1,6 +1,6 @@
 <?php
 /**
- * Class API for custom query
+ * Class API for Image
  *
  * @since 2.0.0
  *

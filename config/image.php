@@ -14,8 +14,9 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  *
  * @var ItalyStrapAdminMediaSettings
  */
-$image_size_media = new ItalyStrapAdminMediaSettings;
-$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+// $image_size_media = new ItalyStrapAdminMediaSettings;
+$image_size_media = new \ItalyStrap\Image\Size;
+$image_size_media_array = $image_size_media->get_image_sizes();
 
 /**
  * Definition array() with all the options connected to the

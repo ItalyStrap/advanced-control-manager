@@ -120,6 +120,14 @@ add_action( 'admin_init', array( $import_export, 'export' ) );
 add_action( 'admin_init', array( $import_export, 'import' ) );
 
 /**
+ * Instanziate the ItalyStrap\Image\Size
+ *
+ * @var ItalyStrap\Image\Size
+ */
+$image_size_media = $injector->make( 'ItalyStrap\Image\Size' );
+add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
+
+/**
  * Instanziate the ItalyStrapAdminGallerySettings
  */
 $injector->define( 'ItalyStrapAdminGallerySettings', $fields_type );
@@ -132,14 +140,6 @@ $gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
  * $gallery_settings = new Gallery_Settings;
  * add_action( 'admin_init', array( $gallery_settings, 'admin_init' ) );
  */
-
-/**
- * Instanziate the ItalyStrapAdminMediaSettings
- *
- * @var ItalyStrapAdminMediaSettings
- */
-$image_size_media = $injector->make( 'ItalyStrapAdminMediaSettings' );
-add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
 
 /**
  * Option for jpeg_quality
@@ -160,7 +160,7 @@ if ( ! empty( $options['jpeg_quality'] ) ) {
  *
  * @var Register_Metaboxes
  */
-$register_metabox = $injector->make( 'ItalyStrap\Admin\Register_Metaboxes' );
+$register_metabox = $injector->make( 'ItalyStrap\Custom\Metaboxes\Register_Metaboxes' );
 
 if ( ! empty( $options['activate_custom_css'] ) ) {
 

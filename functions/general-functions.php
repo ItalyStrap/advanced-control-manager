@@ -8,8 +8,6 @@
 
 namespace ItalyStrap\Core;
 
-use \ItalyStrapAdminMediaSettings;
-
 /**
  * Combine user attributes with known attributes and fill in defaults when needed.
  *
@@ -157,12 +155,10 @@ function get_image_size_array( $custom_size = array() ) {
 	 *
 	 * @var ItalyStrapAdminMediaSettings
 	 */
-	$image_size_media = new ItalyStrapAdminMediaSettings;
+	// $image_size_media = new ItalyStrapAdminMediaSettings;
+	$image_size_media = new \ItalyStrap\Image\Size;
 
-	$image_size_media_array = (array) $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
-
-	return $image_size_media_array;
-
+	return (array) $image_size_media->get_image_sizes();
 }
 
 /**

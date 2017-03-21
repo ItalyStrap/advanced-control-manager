@@ -8,7 +8,11 @@
  */
 if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 
-	class ItalyStrapAdminMediaSettings {
+	class ItalyStrapAdminMediaSettings extends ItalyStrap\Image\Size {
+
+		public function __construct() {
+			_deprecated_function( __CLASS__, '2.5', 'ItalyStrap\\\Image\\\Size' );
+		}
 
 		/**
 		 * Add list of all image size to administrators in the WordPress Media Library
@@ -23,7 +27,7 @@ if ( ! class_exists( 'ItalyStrapAdminMediaSettings' ) ) {
 		 * @param  array $args Default WordPres image list ('thumbnail', 'medium', 'large').
 		 * @return array       New list with custom and standard thumb
 		 */
-		function get_image_sizes( $args = array() ) {
+		function get_image_sizes( array $args = array() ) {
 
 			global $_wp_additional_image_sizes;
 

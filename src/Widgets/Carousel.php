@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use \ItalyStrap\Carousel\Bootstrap;
-use \ItalyStrapAdminMediaSettings;
+// use \ItalyStrapAdminMediaSettings;
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
@@ -38,8 +38,9 @@ class Carousel extends Widget {
 		 * Instance of list of image sizes
 		 * @var ItalyStrapAdminMediaSettings
 		 */
-		$image_size_media = new ItalyStrapAdminMediaSettings;
-		$image_size_media_array = $image_size_media->get_image_sizes( array( 'full' => __( 'Real size', 'italystrap' ) ) );
+		// $image_size_media = new ItalyStrapAdminMediaSettings;
+		$image_size_media = new \ItalyStrap\Image\Size;
+		$image_size_media_array = $image_size_media->get_image_sizes();
 
 		$fields = array_merge( $this->title_field(), require( ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php' ) );
 
