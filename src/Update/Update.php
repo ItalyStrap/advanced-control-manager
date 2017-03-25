@@ -15,7 +15,7 @@ namespace ItalyStrap\Update;
 /**
  * Class description
  */
-class Update implements Update_Interface{
+class Update implements Update_Interface {
 
 	/**
 	 * Validation object
@@ -87,6 +87,5 @@ class Update implements Update_Interface{
 		}
 
 		return $instance;
-	
 	}
 }
