@@ -266,10 +266,112 @@ class Grouped_Posts {
 	}
 
 	/**
+	 * Gets all of the posts grouped by terms for the specified
+	 * post type and taxonomy.
+	 *
+	 * Results are grouped by terms and ordered by the term and post IDs.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $post_type_name Post type to limit query to
+	 * @param string $taxonomy_name Taxonomy to limit query to
+	 *
+	 * @return array|false
+	 */
+	public function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
+		$records = $this->get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name );
+		$groupings = array();
+		foreach ( $records as $record ) {
+			$term_id = (int) $record->term_id;
+			$post_id = (int) $record->post_id;
+			if ( ! array_key_exists( $term_id, $groupings ) ) {
+				$groupings[ $term_id ] = array(
+					'term_id'   => $term_id,
+					'term_name' => $record->term_name,
+					'term_slug' => $record->term_slug,
+					'posts'     => array(),
+				);
+			}
+			$groupings[ $term_id ]['posts'][ $post_id ] = array(
+				'post_id'      => $post_id,
+				'post_title'   => $record->post_title,
+				'post_content' => $record->post_content,
+				'menu_order'   => $record->menu_order,
+			);
+		}
+		return $groupings;
+	}
+	/**
+	 * Gets all of the posts grouped by terms for the specified
+	 * post type and taxonomy.
+	 *
+	 * Results are grouped by terms and ordered by the term and post IDs.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $post_type_name Post type to limit query to
+	 * @param string $taxonomy_name Taxonomy to limit query to
+	 *
+	 * @return array|false
+	 */
+	protected function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
+		global $wpdb;
+		$sql_query =
+			"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, p.ID AS post_id, p.post_title, p.post_content, p.menu_order
+	FROM {$wpdb->term_taxonomy} AS tt
+	INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
+	INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
+	INNER JOIN {$wpdb->posts} AS p ON (tr.object_id = p.ID)
+	WHERE p.post_status = 'publish' AND p.post_type = %s AND tt.taxonomy = %s
+	GROUP BY t.term_id, p.ID
+	ORDER BY t.term_id, p.menu_order ASC;";
+		$sql_query = $wpdb->prepare( $sql_query, $post_type_name, $taxonomy_name );
+		$results = $wpdb->get_results( $sql_query );
+		if ( ! $results || ! is_array( $results ) ) {
+			return false;
+		}
+		return $results;
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function output( $atts = null ) {
+		$output = '';
+		$categories = $this->get_posts_grouped_by_term( 'post', 'category' );
+
+		d( $categories );
+
+		foreach ( (array) $categories as $category ) {
+			$count = count( $category['posts'] );
+			$output .= sprintf(
+				'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
+				! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
+				'', // esc_url( get_term_link( $category ) ),
+				$category['term_name'],
+				sprintf(
+					_n( '%1$s Article', '%1$s Articles', $count, 'italystrap' ),
+					number_format_i18n( $count )
+				),
+				'', //$category->description,
+				'', //$this->get_categories( $category->term_id ),
+				// ''
+				// $this->get_posts( $category->term_id )
+				'' //$query_posts->output( $query_args )
+			);
+		}
+
+		return $output;
+	}
+
+	/**
 	 * Aggiungo lo shortcode per mostrare il loop dei plus
 	 * @param  array $atts Attributi dello shortcode.
 	 */
-	public function output( $atts = null ) {
+	public function outputs( $atts = null ) {
 
 		$query_posts = Posts::init();
 
