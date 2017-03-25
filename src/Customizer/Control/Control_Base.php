@@ -83,10 +83,10 @@ class Control_Base extends WP_Customize_Control {
 	 */
 	public function enqueue() {
 		$ver = null;
-		$min = '';
+		$min = '.min';
 
-		if ( WP_DEBUG ) {
-			$min = '.min';
+		if ( defined( WP_DEBUG ) && WP_DEBUG ) {
+			$min = '';
 			$ver = rand( 0, 100000 );
 		}
 
