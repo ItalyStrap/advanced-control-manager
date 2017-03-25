@@ -73,7 +73,6 @@ class Areas {
 		$css .= '}';
 	
 		return $css;
-	
 	}
 
 	/**
@@ -115,7 +114,6 @@ class Areas {
 		);
 
 		return $output;
-
 	}
 
 	/**
@@ -185,7 +183,6 @@ class Areas {
 				$areas_obj->add_widget_area( $sidebar_key );
 			}, absint( $sidebar['priotity'] ) );
 		}
-	
 	}
 
 	/**
@@ -295,7 +292,6 @@ class Areas {
 		update_option( 'italystrap_widget_area', $this->sidebars );
 
 		return $post_ID;
-	
 	}
 
 	/**
@@ -313,7 +309,6 @@ class Areas {
 		unset( $this->sidebars[ $post_id ] );
 
 		update_option( 'italystrap_widget_area', $this->sidebars );
-	
 	}
 
 	/**
@@ -324,7 +319,9 @@ class Areas {
 	 */
 	public function register_post_type() {
 		// Allow only users who can adjust the theme to view the WooSidebars admin.
-		if ( ! current_user_can( 'edit_theme_options' ) ) return;
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			return;
+		}
 
 		$page = 'themes.php';
 
@@ -338,17 +335,38 @@ class Areas {
 		}
 
 		$labels = array(
-			'name'					=> _x( 'Widget Areas', 'post type general name', 'italystrap' ),
-			'singular_name'			=> _x( 'Widget Area', 'post type singular name', 'italystrap' ),
+			'name'					=> _x( $plural, 'post type general name', 'italystrap' ),
+			'singular_name'			=> _x( $singular, 'post type singular name', 'italystrap' ),
 			'add_new'				=> _x( 'Add New', $singular ),
-			'add_new_item'			=> sprintf( __( 'Add New %s', 'italystrap' ), $singular ),
-			'edit_item'				=> sprintf( __( 'Edit %s', 'italystrap' ), $singular ),
-			'new_item'				=> sprintf( __( 'New %s', 'italystrap' ), $singular ),
-			'all_items'				=> sprintf( __( 'Widget Areas', 'italystrap' ), $plural ),
-			'view_item'				=> sprintf( __( 'View %s', 'italystrap' ), $singular ),
-			'search_items'			=> sprintf( __( 'Search %a', 'italystrap' ), $plural ),
-			'not_found'				=> sprintf( __( 'No %s Found', 'italystrap' ), $plural ),
-			'not_found_in_trash'	=> sprintf( __( 'No %s Found In Trash', 'italystrap' ), $plural ),
+			'add_new_item'			=> sprintf(
+				__( 'Add New %s', 'italystrap' ),
+				$singular
+			),
+			'edit_item'				=> sprintf(
+				__( 'Edit %s', 'italystrap' ),
+				$singular
+			),
+			'new_item'				=> sprintf(
+				__( 'New %s', 'italystrap' ),
+				$singular
+			),
+			'all_items'				=> $plural,
+			'view_item'				=> sprintf(
+				__( 'View %s', 'italystrap' ),
+				$singular
+			),
+			'search_items'			=> sprintf(
+				__( 'Search %a', 'italystrap' ),
+				$plural
+			),
+			'not_found'				=> sprintf(
+				__( 'No %s Found', 'italystrap' ),
+				$plural
+			),
+			'not_found_in_trash'	=> sprintf(
+				__( 'No %s Found In Trash', 'italystrap' ),
+				$plural
+			),
 			'parent_item_colon'		=> '',
 			'menu_name'				=> $plural
 
@@ -380,7 +398,7 @@ class Areas {
 	 */
 	public function print_add_button() {
 	
-		echo sprintf(
+		printf(
 			'<div><a %s>%s</a></div>',
 			Core\get_attr(
 				'widget_add_sidebar',
