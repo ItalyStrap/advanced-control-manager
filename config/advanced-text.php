@@ -19,15 +19,14 @@ return array(
 	 * Ids for the images to use.
 	 */
 	'ids'				=> array(
-				'name'		=> __( 'Images ID', 'italystrap' ),
-				'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
-				'id'		=> 'ids',
-				'type'		=> 'media_list',
-				'class'		=> 'widefat ids',
-				'default'	=> false,
-				// 'validate'	=> 'numeric_comma',
-				'sanitize'	=> 'sanitize_text_field',
-				'section'	=> 'general',
-				 ),
-
+		'name'		=> __( 'Images ID', 'italystrap' ),
+		'desc'		=> __( 'Enter the media or post type ID.', 'italystrap' ),
+		'id'		=> 'ids',
+		'type'		=> 'media_list',
+		'class'		=> 'widefat ids',
+		'default'	=> false,
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
 );
