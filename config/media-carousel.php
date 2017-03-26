@@ -90,31 +90,31 @@ return array(
 	),
 
 	/**
-	 * Carousel container width, in px or % (optional).
+	 * Carousel container width, in px or % (optional). Default: empty. Example: 500px or 100%
 	 */
 	'width'				=> array(
 		'name'		=> __( 'Carousel container width', 'italystrap' ),
-		'desc'		=> __( 'Carousel container width, in px or % (optional).', 'italystrap' ),
+		'desc'		=> __( 'Carousel container width, in px or % (optional). Default: empty. Example: 500px or 100%', 'italystrap' ),
 		'id'		=> 'width',
-		'type'		=> 'number',
+		'type'		=> 'text',
 		'class'		=> 'widefat',
 		'default'	=> '',
-		'validate'	=> 'numeric',
+		// 'validate'	=> 'numeric',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'size',
 	),
 
 	/**
-	 * Carousel item height, in px or % (optional).
+	 * Carousel item height, in px(optional). Default: empty. Example: 500px
 	 */
 	'height'			=> array(
 		'name'		=> __( 'Carousel container height', 'italystrap' ),
-		'desc'		=> __( 'Carousel item height, in px or % (optional).', 'italystrap' ),
+		'desc'		=> __( 'Carousel item height, in px(optional). Default: empty. Example: 500px', 'italystrap' ),
 		'id'		=> 'height',
-		'type'		=> 'number',
+		'type'		=> 'text',
 		'class'		=> 'widefat',
 		'default'	=> '',
-		'validate'	=> 'numeric',
+		// 'validate'	=> 'numeric',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'size',
 	),

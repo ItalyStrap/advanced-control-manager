@@ -198,7 +198,8 @@ abstract class Carousel {
 		$container_style = '';
 
 		if ( $this->args['width'] ) {
-			$container_style = 'style="width:' . esc_attr( $this->args['width'] ) . 'px;"'; }
+			$container_style = 'style="width:' . esc_attr( $this->args['width'] ) . ';"';
+		}
 
 		$container_style = apply_filters( 'italystrap_carousel_container_style', $container_style, $this->args );
 
@@ -216,7 +217,8 @@ abstract class Carousel {
 		$item_style = '';
 
 		if ( $this->args['height'] ) {
-			$item_style = 'style="height:' . esc_attr( $this->args['height'] ) . 'px;"' ; }
+			$item_style = 'style="height:' . esc_attr( $this->args['height'] ) . ';"' ;
+		}
 
 		$item_style = apply_filters( 'italystrap_carousel_item_style', $item_style, $this->attributtes );
 
