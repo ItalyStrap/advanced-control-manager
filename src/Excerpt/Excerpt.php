@@ -27,6 +27,34 @@ namespace ItalyStrap\Excerpt;
 class Excerpt {
 
 	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked italystrap_entry_content - 20
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'italystrap_entry_content'	=> array(
+				'function_to_add'	=> 'render',
+				'priority'			=> apply_filters( 'italystrap_title_priority', 20 ),
+			),
+		);
+		// add_filter( 'get_the_excerpt', array( $excerpt, 'custom_excerpt_more') );
+		// /**
+		//  * @todo Facendolo caricare su the_excerpt read-more su una nuova riga.
+		//  * Creare opzione selezionabile in admin.
+		//  */
+		// // add_filter( 'the_excerpt', array( $excerpt, 'custom_excerpt_more') );
+		// add_filter( 'excerpt_more', array( $excerpt, 'read_more_link') );
+		// add_filter( 'excerpt_length', array( $excerpt, 'excerpt_length') );
+		// add_filter( 'wp_trim_words', array( $excerpt, 'excerpt_end_with_punctuation' ), 10, 4 );
+	}
+
+	/**
 	 * Theme settings
 	 *
 	 * @var array

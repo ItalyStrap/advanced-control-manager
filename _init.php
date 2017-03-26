@@ -177,10 +177,26 @@ if ( ! empty( $options['activate_social_share'] ) && is_beta() ) {
 if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
 
 	$excerpt = $injector->make( 'ItalyStrap\Excerpt\Excerpt' );
-	add_filter( 'get_the_excerpt', array( $excerpt, 'custom_excerpt_more') );
-	add_filter( 'excerpt_more', array( $excerpt, 'read_more_link') );
+
 	add_filter( 'excerpt_length', array( $excerpt, 'excerpt_length') );
-	add_filter( 'wp_trim_words', array( $excerpt, 'excerpt_end_with_punctuation' ), 10, 4 );
+	add_filter( 'wp_trim_words', array( $excerpt, 'excerpt_end_with_punctuation' ), 98, 4 );
+
+	/**
+	 * Inside the <p> of the excerpt.
+	 */
+	if ( 'append' === $options['read_more_position'] ) {
+		add_filter( 'get_the_excerpt', array( $excerpt, 'custom_excerpt_more') );
+		add_filter( 'excerpt_more', array( $excerpt, 'read_more_link') );
+	} 
+	/**
+	 * Outside the <p> of the excerpt on anew line.
+	 */
+	elseif ( 'after' === $options['read_more_position'] ) {
+		add_filter( 'the_excerpt', array( $excerpt, 'custom_excerpt_more') );
+		add_filter( 'excerpt_more', '__return_empty_string' );
+		add_filter( 'wp_trim_words', array( $excerpt, 'read_more_link' ), 99 );
+	}
+	
 }
 
 /**

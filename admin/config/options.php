@@ -939,6 +939,27 @@ return array(
 						'option_type'	=> 'theme_mod',
 				),
 			),
+			array(
+				'id'		=> 'read_more_position',
+				'title'		=> __( 'Read more position', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'content',
+				'args'		=> array(
+						'name'			=> __( 'Read more position', 'italystrap' ),
+						'desc'			=> __( 'Select the position to display read more link. With <code>Append</code> the read more link will be appended just after the text inside the HTML paragraph, with <code>After</code> it will be added after and outside the last HTML paragraph on a new line.</code>', 'italystrap' ),
+						'id'			=> 'read_more_position',
+						'type'			=> 'select',
+						'options'		=> array(
+							'append'	=> __( 'Append to the excerpt', 'italystrap' ),
+							'after'		=> __( 'After the excerpt', 'italystrap' ),
+						),
+						'class'			=> 'read_more_position easy',
+						'default'		=> 'append',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',				
+				),
+			),
 		),
 	),
 	/**
