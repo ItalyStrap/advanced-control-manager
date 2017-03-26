@@ -270,7 +270,7 @@ class Grouped_Posts {
 	 * post type and taxonomy.
 	 *
 	 * Results are grouped by terms and ordered by the term and post IDs.
-	 *
+	 * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
 	 * @since 1.0.0
 	 *
 	 * @param string $post_type_name Post type to limit query to
@@ -281,22 +281,26 @@ class Grouped_Posts {
 	public function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
 		$records = $this->get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name );
 		$groupings = array();
+
 		foreach ( $records as $record ) {
 			$term_id = (int) $record->term_id;
 			$post_id = (int) $record->post_id;
 			if ( ! array_key_exists( $term_id, $groupings ) ) {
 				$groupings[ $term_id ] = array(
-					'term_id'   => $term_id,
-					'term_name' => $record->term_name,
-					'term_slug' => $record->term_slug,
-					'posts'     => array(),
+					'term_id'			=> $term_id,
+					'term_name'			=> $record->term_name,
+					'term_slug'			=> $record->term_slug,
+					'term_description'	=> $record->term_description,
+					'posts'				=> array(),
 				);
 			}
 			$groupings[ $term_id ]['posts'][ $post_id ] = array(
-				'post_id'      => $post_id,
-				'post_title'   => $record->post_title,
-				'post_content' => $record->post_content,
-				'menu_order'   => $record->menu_order,
+				'post_id'		=> $post_id,
+				'post_title'	=> $record->post_title,
+				'post_content'	=> $record->post_content,
+				'post_parent'	=> $record->post_parent,
+				'menu_order'	=> $record->menu_order,
+				'guid'			=> $record->guid,
 			);
 		}
 		return $groupings;
@@ -306,7 +310,7 @@ class Grouped_Posts {
 	 * post type and taxonomy.
 	 *
 	 * Results are grouped by terms and ordered by the term and post IDs.
-	 *
+	 * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
 	 * @since 1.0.0
 	 *
 	 * @param string $post_type_name Post type to limit query to
@@ -317,7 +321,7 @@ class Grouped_Posts {
 	protected function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
 		global $wpdb;
 		$sql_query =
-			"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, p.ID AS post_id, p.post_title, p.post_content, p.menu_order
+			"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid
 	FROM {$wpdb->term_taxonomy} AS tt
 	INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 	INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
@@ -339,27 +343,73 @@ class Grouped_Posts {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
+	public function get_the_grouped_posts( array $posts = array(), $limit = 5 ) {
+		$output = '';
+		$i = 0;
+
+		$output .= '<ul class="list-unstyled">';
+
+		foreach ( $posts as $post_key => $post ) {
+
+			if ( $i >= $limit ) {
+				continue;
+			}
+
+			$output .= '<li>';
+
+			$output .= '<i class="fa fa-file-text-o"></i> ';
+
+			// $output .= get_the_post_thumbnail( $post['post_id'], 'thumbnail' );
+
+			// $output .= '<a href="' . get_the_permalink( $post['post_id'] ) . '">' . $post['post_title'] . '</a>';
+			$output .= '<a href="' . $post['guid'] . '">' . $post['post_title'] . '</a>';
+
+			$output .= '</li>';
+
+			$i++;
+		}
+
+		$output .= '</ul>';
+
+		return $output;
+	}
+
+	/**
+	 * Function description
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
 	public function output( $atts = null ) {
 		$output = '';
 		$categories = $this->get_posts_grouped_by_term( 'post', 'category' );
-
 		d( $categories );
-
+		$term = (object) array();
 		foreach ( (array) $categories as $category ) {
+
+			$term->taxonomy = 'category';
+			$term->term_id = $category['term_id'];
+			$term->slug = $category['term_slug'];
+
 			$count = count( $category['posts'] );
 			$output .= sprintf(
 				'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
 				! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
-				'', // esc_url( get_term_link( $category ) ),
-				$category['term_name'],
+				home_url( '/' ) . $category['term_slug'], // esc_url( get_term_link( $category['term_id'] ) ),
+				// esc_url( \get_permalink_by_slug( $category['term_slug'] ) ),
+				// esc_url( get_term_link( $category['term_id'] ), 'category' ),
+				// esc_url( get_term_link( $category['term_id'] ) ),
+				// esc_url( get_term_link( $term ) ),
+				esc_html( $category['term_name'] ),
 				sprintf(
 					_n( '%1$s Article', '%1$s Articles', $count, 'italystrap' ),
 					number_format_i18n( $count )
 				),
-				'', //$category->description,
-				'', //$this->get_categories( $category->term_id ),
+				$category['term_description'],
+				$this->get_categories( $category['term_id'] ),
 				// ''
-				// $this->get_posts( $category->term_id )
+				// $this->get_posts( $category['term_id'] ),
+				$this->get_the_grouped_posts( $category['posts'] ),
 				'' //$query_posts->output( $query_args )
 			);
 		}
