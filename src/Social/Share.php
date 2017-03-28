@@ -202,6 +202,7 @@ class Share {
 	 * Render Sharing button
 	 *
 	 * Alcune idee https://www.google.it/search?site=&source=hp&q=twitter+url+share&oq=twitter+url+share&gs_l=hp.3.0.0i19l3j0i22i10i30i19j0i22i30i19l6.1898.11624.0.13381.18.18.0.0.0.0.2152.4618.0j13j0j1j1j9-1.16.0....0...1c.1.64.hp..2.15.4160.0.93FpzCXhTCY
+	 * https://gist.github.com/chrisjlee/5196139
 	 *
 	 * @param  string $value [description]
 	 * @return string        [description]

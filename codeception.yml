@@ -13,7 +13,7 @@ modules:
         Db:
             dsn: 'mysql:host=localhost;dbname=test'
             user: root
-            password: m1ch3l480
+            password: password
             dump: tests/_data/dump.sql
         WPBrowser:
             url: 'http://192.168.1.10/italystrap/'
@@ -23,7 +23,7 @@ modules:
         WPDb:
             dsn: 'mysql:host=localhost;dbname=test'
             user: root
-            password: m1ch3l480
+            password: password
             dump: tests/_data/dump.sql
             populate: true
             cleanup: true
@@ -34,7 +34,7 @@ modules:
             dbName: test
             dbHost: localhost
             dbUser: root
-            dbPassword: m1ch3l480
+            dbPassword: password
             wpDebug: true
             dbCharset: utf8
             dbCollate: ''
