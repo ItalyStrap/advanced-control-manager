@@ -224,20 +224,30 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.5.0 =
-Release Date: March 14th, 2017
+Release Date: April 1st, 2017
 
-Dev time: 20h
+Dev time: 100h
 
-* Added New Shortcodes for column in editor only for beta version (do not use it).
+* Added New Shortcodes for column in editor only for beta version (do not use it)
 * Added New Shortcode Factory Class
-* Added New Config class for internal use.
+* Added New Config class for internal use
+* Added New Widget Editor in alpha version (do not use it)
+* Added New Customizer controllers (Multicheckbox)
 * Better name for future Grouped Posts Widget
+* Improvements of the CSS Class Generator
+* Improvements of the Font selector for customizer
 * Some refactoring for the Carousel Class
 * Some refactoring for the Social Share Class
 * Refactoring of the widget loader
 * Refactoring of the Web Fonts Lazy Loading
+* Refactoring of the entire plugin file structure (Big changes)
+* Refactoring of the Widgets and Shortcodes Factory
 * Other refactoring for general files
 * Fixed array to string conversion in Carousel.php
+* Fixed post exclusion on archi page for Post.php (Widget and Shortcode)
+* Fixed undefined index in Fonts.php
+* Fixed empy value for width and height in Carousel
+* Deprecated old Widget namespace, now it is ItalyStrap\Widgets;
 
 = 2.4.2 =
 Release Date: February 25th, 2017
@@ -382,16 +392,19 @@ Dev time: over a year
 Make backup first ;-)
 
 **DEPRECATED**
+
 * Deprecated class `ItalyStrapBreadcrumbs()`, use `ItalyStrap\Core\breadcrumbs()` instead.
 * Deprecated title attribute (`$atts['title']`) in `gallery` shortcode, use `image_title` instead.
 * Deprecated vCard Widget (there's a new version for this widget, see below)
 * Deprecated `italystrap_get_apply_lazyload( $content );` and `italystrap_apply_lazyload( $content );` use `ItalyStrap\Core\get_apply_lazyload( $content );` and `ItalyStrap\Core\apply_lazyload( $content );`
 
 **FIX**
+
 * **All filters and actions** start with `italistrap_` **lowercase** (if you find some in CamelCase or some without a prefix please let me know).
 * Fix front page and posts page visualization for breadcrumbs.
 
 **ENHANCEMENTS**
+
 * New API for settings options
 * New API for settings options
 * New API for fields

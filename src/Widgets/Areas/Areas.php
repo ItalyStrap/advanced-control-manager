@@ -16,11 +16,42 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use ItalyStrap\Core;
 use ItalyStrap\Core\Asset\Inline_Style;
+use ItalyStrap\Event\Subscriber_Interface;
 
 /**
  * Widget Areas Class
  */
-class Areas {
+class Areas implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'widgets_init' - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'				=> 'method_name',
+			'widgets_init'			=> 'register_sidebars',
+			'init'					=> array(
+				'function_to_add'		=> 'register_post_type',
+				'priority'				=> 20,
+			),
+			'save_post'				=> array(
+				'function_to_add'		=> 'add_sidebar',
+				'accepted_args'     	=> 3
+			),
+			'edit_post'				=> array(
+				'function_to_add'		=> 'add_sidebar',
+				'accepted_args'     	=> 2
+			),
+			'delete_post'			=> 'delete_sidebar',
+			'widgets_admin_page'	=> 'print_add_button',
+		);
+	}
 
 	/**
 	 * [$var description]
@@ -44,6 +75,8 @@ class Areas {
 	function __construct( array $options = array() ) {
 		// $this->sidebars = $options;
 		$this->sidebars = get_option( 'italystrap_widget_area' );
+		// delete_option( 'italystrap_widget_area' );
+		// d( get_option( 'italystrap_widget_area' ) );
 	}
 
 	/**

@@ -13,7 +13,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 /**
- * Initialize the IOC
+ * Initialize the DIC
  *
  * @var Auryn\Injector
  */
@@ -72,15 +72,16 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 }
 
 /**
- * Register widget
+ * Register widgets
  */
-$event_manager->add_subscriber( $injector->make( '\ItalyStrap\Widgets\Widget_Factory' ) );
+$widget_factory = new \ItalyStrap\Widgets\Widget_Factory( $options, $injector );
+$event_manager->add_subscriber( $widget_factory );
 
-$shortcode_factory = $injector->make( '\ItalyStrap\Shortcodes\Shortcode_Factory' );
+/**
+ * Register shortcodes
+ */
+$shortcode_factory = new \ItalyStrap\Shortcodes\Shortcode_Factory( $options, $injector );
 $event_manager->add_subscriber( $shortcode_factory );
-// $shortcode_factory->register();
-// add_action( 'wp_loaded', array( $shortcode_factory, 'register' ) );
-// add_action( 'plugins_loaded', array( $shortcode_factory, 'register' ) );
 
 if ( ! empty( $options['widget_areas'] ) ) {
 	/**
@@ -90,16 +91,7 @@ if ( ! empty( $options['widget_areas'] ) ) {
 	 * @var Areas
 	 */
 	$widget_areas = $injector->make( 'ItalyStrap\Widgets\Areas\Areas' );
-	// $widget_areas->register_sidebars();
-	add_action( 'widgets_init', array( $widget_areas, 'register_sidebars' ) );
-	add_action( 'init', array( $widget_areas, 'register_post_type' ), 20 );
-	add_action( 'save_post', array( $widget_areas, 'add_sidebar' ), 10, 3 );
-	add_action( 'edit_post', array( $widget_areas, 'add_sidebar' ), 10, 2 );
-	add_action( 'delete_post', array( $widget_areas, 'delete_sidebar' ) );
-	add_action( 'widgets_admin_page', array( $widget_areas, 'print_add_button' ) );
-
-	// delete_option( 'italystrap_widget_area' );
-	// d( get_option( 'italystrap_widget_area' ) );
+	$event_manager->add_subscriber( $widget_areas );
 }
 
 // if ( ! empty( $options['widget_visibility'] ) ) {
@@ -179,13 +171,8 @@ if ( defined( 'ITALYSTRAP_BETA' ) ) {
 	/**
 	 * FRONTEND INIT
 	 */
-
-	if ( isset( $options['category_posts_shortcode'] ) ) {
-		$shortcode_docs = new Shortcode_Docs;
-		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
-	}
-
-	if ( isset( $options['category_posts_widget'] ) ) {
+	
+	if ( ! empty( $options['category_posts_shortcode'] ) || ! empty( $options['category_posts_widget'] ) ) {
 		$shortcode_docs = new Shortcode_Docs;
 		add_shortcode( 'docs', array( $shortcode_docs, 'docs' ) );
 	}

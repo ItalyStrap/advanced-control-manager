@@ -36,7 +36,7 @@ class Widget_Factory implements Subscriber_Interface {
 		return array(
 			// 'hook_name'				=> 'method_name',
 			'widgets_init'	=> array(
-				'function_to_add'	=> 'widgets_init',
+				'function_to_add'	=> 'register',
 				'priority'			=> 10,
 			),
 			'monster-widget-config'	=> 'monster_widget',
@@ -58,10 +58,18 @@ class Widget_Factory implements Subscriber_Interface {
 	private $widget_list = array();
 
 	/**
+	 * Injector object
+	 *
+	 * @var null
+	 */
+	private $injector = null;
+
+	/**
 	 * Fire the construct
 	 */
-	public function __construct( array $options = array() ) {
+	public function __construct( array $options = array(), $injector = null ) {
 		$this->options = $options;
+		$this->injector = $injector;
 
 		$this->widget_list = array(
 			'vcardwidget'				=> 'ItalyStrap\\Widgets\\Vcard_Widget', // Deprecated
@@ -82,12 +90,14 @@ class Widget_Factory implements Subscriber_Interface {
 	 * Add action to widget_init
 	 * Initialize widget
 	 */
-	public function widgets_init() {
+	public function register() {
 
 		foreach ( (array) $this->widget_list as $option_name => $class_name ) {
-			if ( ! empty( $this->options[ $option_name ] ) ) {
-				\register_widget( new $class_name );
+			if ( empty( $this->options[ $option_name ] ) ) {
+				continue;
 			}
+
+			\register_widget( $this->injector->make( $class_name ) );
 		}
 	}
 

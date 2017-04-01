@@ -102,10 +102,15 @@ class Column extends Shortcode {
 	/**
 	 * Render the output
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  array  $attr    The attribute for the shortcode.
+	 * @param  array  $content The content for the shortcode.
+	 *
+	 * @return string          The output of the shortcode.
 	 */
-	public function render( array $attr = array(), $content = "" ) {
+	public function render( $attr = array(), $content = "" ) {
+
+		$this->attr = shortcode_atts( $this->default, $attr, 'column' );
+		$this->content = $content;
 
 		/**
 		 * Filters the default column shortcode output.
@@ -121,16 +126,10 @@ class Column extends Shortcode {
 		 * @param array  $attr     Attributes of the column shortcode.
 		 * @param int    $instance Unique numeric ID of this column shortcode instance.
 		 */
-		$html = apply_filters( 'italystrap_shortcode_column', '', $attr, self::$instance );
+		$html = apply_filters( 'italystrap_shortcode_column', '', $this->attr, self::$instance );
 		if ( '' !== $html ) {
 			return $html;
 		}
-
-		$this->attr = $attr;
-
-		$this->content = $content;
-
-		$this->attr = shortcode_atts( $this->default, $this->attr, 'column' );
 
 		$html = sprintf(
 			'<div %1$s>%2$s</div>',

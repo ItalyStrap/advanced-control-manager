@@ -56,10 +56,18 @@ class Shortcode_Factory implements Subscriber_Interface {
 	private $shortcodes_list = array();
 
 	/**
+	 * Injector object
+	 *
+	 * @var null
+	 */
+	private $injector = null;
+
+	/**
 	 * Fire the construct
 	 */
-	public function __construct( array $options = array() ) {
+	public function __construct( array $options = array(), $injector = null ) {
 		$this->options = $options;
+		$this->injector = $injector;
 
 		$this->shortcodes_list = array(
 			'shortcode_row'			=> 'ItalyStrap\\Shortcodes\\Row',
@@ -73,14 +81,16 @@ class Shortcode_Factory implements Subscriber_Interface {
 	 */
 	public function register() {
 
-		foreach ( (array) $this->shortcodes_list as $shortcode_option => $shortcode_class ) {
-			$shortcode_name = str_replace( 'shortcode_', '', $shortcode_option );
-			if ( ! empty( $this->options[ $shortcode_option ] ) ) {
-				$$shortcode_name =  new $shortcode_class;
-				add_shortcode( $shortcode_name, array( $$shortcode_name, 'render' ) );
-				if ( function_exists( '\shortcode_ui_register_for_shortcode' ) ) {
-					shortcode_ui_register_for_shortcode( $shortcode_name, $$shortcode_name->shortcode_ui );
-				}
+		foreach ( (array) $this->shortcodes_list as $option_name => $class_name ) {
+			if ( empty( $this->options[ $option_name ] ) ) {
+				continue;
+			}
+
+			$shortcode_name = str_replace( 'shortcode_', '', $option_name );
+			$$shortcode_name =  $this->injector->make( $class_name );
+			add_shortcode( $shortcode_name, array( $$shortcode_name, 'render' ) );
+			if ( function_exists( '\shortcode_ui_register_for_shortcode' ) ) {
+				shortcode_ui_register_for_shortcode( $shortcode_name, $$shortcode_name->shortcode_ui );
 			}
 		}
 	}

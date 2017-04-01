@@ -102,10 +102,15 @@ class Row extends Shortcode {
 	/**
 	 * Render the output
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  array  $attr    The attribute for the shortcode.
+	 * @param  array  $content The content for the shortcode.
+	 *
+	 * @return string          The output of the shortcode.
 	 */
-	public function render( array $attr = array(), $content = "" ) {
+	public function render( $attr = array(), $content = "" ) {
+
+		$this->attr = shortcode_atts( $this->default, $attr, 'row' );
+		$this->content = $content;
 
 		/**
 		 * Filters the default row shortcode output.
@@ -121,16 +126,10 @@ class Row extends Shortcode {
 		 * @param array  $attr     Attributes of the row shortcode.
 		 * @param int    $instance Unique numeric ID of this row shortcode instance.
 		 */
-		$html = apply_filters( 'italystrap_shortcode_row', '', $attr, self::$instance );
+		$html = apply_filters( 'italystrap_shortcode_row', '', $this->attr, self::$instance );
 		if ( '' !== $html ) {
 			return $html;
 		}
-
-		$this->attr = $attr;
-
-		$this->content = $content;
-
-		$this->attr = shortcode_atts( $this->default, $this->attr, 'row' );
 
 		$html = sprintf(
 			'<div %1$s>%2$s</div>',
