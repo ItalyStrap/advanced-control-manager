@@ -22,7 +22,7 @@ function italystrap_set_default_constant( $_FILE, $name = '' ) {
 	 * Define some costant for internal use
 	 */
 	if ( ! defined( 'ITALYSTRAP_PLUGIN_VERSION' ) ) {
-		define( 'ITALYSTRAP_PLUGIN_VERSION', '2.4.2' );
+		define( 'ITALYSTRAP_PLUGIN_VERSION', '2.5.0' );
 	}
 
 	/**
