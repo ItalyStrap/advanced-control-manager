@@ -124,6 +124,10 @@ class Register_Metaboxes {
 	public function register_widget_areas_fields() {
 
 		/**
+		 * @see Widgets\Area\config.php
+		 */
+
+		/**
 		 * Sample metabox to demonstrate each field type included
 		 */
 		$cmb = new_cmb2_box(
@@ -177,31 +181,31 @@ class Register_Metaboxes {
 			)
 		);
 
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'		=> __( 'Background color', 'italystrap' ),
-		// 		'desc'		=> __( 'Choose the color for the backgrount of the widget area.', 'italystrap' ),
-		// 		'id'		=> $this->_prefix . '_background_color',
-		// 		'type'		=> 'colorpicker',
-		// 		'default'	=> '',
-		// 	)
-		// );
+		$cmb->add_field(
+			array(
+				'name'		=> __( 'Background color', 'italystrap' ),
+				'desc'		=> __( 'Choose the color for the backgrount of the widget area.', 'italystrap' ),
+				'id'		=> $this->_prefix . '_background_color',
+				'type'		=> 'colorpicker',
+				'default'	=> '',
+			)
+		);
 
-		// $cmb->add_field(
-		// 	array(
-		// 		'name'		=> __( 'Add background image', 'italystrap' ),
-		// 		'desc'		=> __( 'Upload an image.', 'itallystrap' ),
-		// 		'id'		=> $this->_prefix . '_background_image',
-		// 		'type'		=> 'file',
-		// 		// Optional:
-		// 		'options'	=> array(
-		// 			'url'	=> false, // Hide the text input for the url
-		// 		),
-		// 		'text'		=> array(
-		// 			'add_upload_file_text' => __( 'Select image', 'italystrap' ) // Change upload button text. Default: "Add or Upload File"
-		// 		),
-		// 	)
-		// );
+		$cmb->add_field(
+			array(
+				'name'		=> __( 'Add background image', 'italystrap' ),
+				'desc'		=> __( 'Upload an image.', 'itallystrap' ),
+				'id'		=> $this->_prefix . '_background_image',
+				'type'		=> 'file',
+				// Optional:
+				'options'	=> array(
+					'url'	=> false, // Hide the text input for the url
+				),
+				'text'		=> array(
+					'add_upload_file_text' => __( 'Select image', 'italystrap' ) // Change upload button text. Default: "Add or Upload File"
+				),
+			)
+		);
 
 
 
