@@ -90,6 +90,10 @@ class Areas implements Subscriber_Interface {
 		$this->prefix = 'italystrap';
 
 		$this->_prefix = '_' . $this->prefix;
+
+		$default = require( __DIR__ . DIRECTORY_SEPARATOR . 'config.php' );
+
+		$this->default = $default['fields'];
 	}
 
 	/**
@@ -167,19 +171,43 @@ class Areas implements Subscriber_Interface {
 	}
 
 	/**
-	 * Function description
+	 * Get Sidebar ID
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  int    $id The numeric ID of the single sidebar registered.
+	 *
+	 * @return string     The ID of the sidebar to load on front-end
+	 */
+	protected function get_the_id( $id ) {
+		return $this->sidebars[ $id ]['value']['id'];
+	}
+
+	/**
+	 * Add widget area to the front-end
+	 *
+	 * @param  int    $id The numeric ID of the single sidebar registered.
 	 */
 	public function add_widget_area( $id ) {
 
-		if ( ! is_active_sidebar( $this->sidebars[ $id ]['value']['id'] ) ) {
+		$sidebar_id = esc_attr( $this->get_the_id( $id ) );
+
+		if ( ! is_active_sidebar( $sidebar_id ) ) {
 			return;
 		}
 
-		$sidebar_id = $this->sidebars[ $id ]['value']['id'];
+		// foreach ( array( 'container_width', 'widget_area_class' ) as $value ) {
+		// 	if ( ! isset( $this->sidebars[ $id ][ $value ] ) ) {
+		// 		$this->sidebars[ $id ][ $value ] = $this->default[ $value ]['default'];
+		// 	}
+		// }
+
+		foreach ( $this->default as $key => $value ) {
+			if ( ! isset( $this->sidebars[ $id ][ $key ] ) ) {
+				$this->sidebars[ $id ][ $key ] = $this->default[ $key ]['default'];
+			}
+		}
+
 		$container_width = $this->sidebars[ $id ]['container_width'];
+		$widget_area_class = $this->sidebars[ $id ]['widget_area_class'];
 
 		// d( $this->get_style( $this->sidebars[ $id ] ) );
 		// $css =  $this->get_style( $this->sidebars[ $id ] );
@@ -196,7 +224,7 @@ class Areas implements Subscriber_Interface {
 		$this->style( $this->sidebars[ $id ] );
 
 		$widget_area_attr = array(
-			'class' => 'widget_area ' . $sidebar_id,
+			'class' => 'widget_area ' . $sidebar_id . ' ' . esc_attr( $widget_area_class ),
 			'id'	=> $sidebar_id,
 		);
 
@@ -210,10 +238,7 @@ class Areas implements Subscriber_Interface {
 	}
 
 	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * Register the sidebars
 	 */
 	public function register_sidebars() {
 
@@ -238,7 +263,6 @@ class Areas implements Subscriber_Interface {
 				continue;
 			}
 
-			// d( $sidebar );
 			register_sidebar( $sidebar['value'] );
 
 			add_action( $sidebar['action'], function() use ( $sidebar_key, $areas_obj ) {
@@ -273,7 +297,7 @@ class Areas implements Subscriber_Interface {
 
 		// delete_option( 'italystrap_widget_area' );
 
-		$fields = require( __DIR__ . DIRECTORY_SEPARATOR . 'config.php' );
+		$fields = $this->default;
 
 		$fields['background_image']['id'] = $this->_prefix . '_background_image_id';
 
@@ -291,6 +315,7 @@ class Areas implements Subscriber_Interface {
 				'background-color'	=> $instance[ $this->_prefix . '_background_color'],
 				'background-image'	=> (int) $instance[ $this->_prefix . '_background_image_id'],
 			),
+			'widget_area_class'	=> $instance[ $this->_prefix . '_widget_area_class'],
 			'container_width'	=> $instance[ $this->_prefix . '_container_width'],
 			'value'				=> array(
 				'name'				=> $post->post_title,
