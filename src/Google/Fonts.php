@@ -50,7 +50,7 @@ class Fonts {
 
 		$this->theme_mods = $theme_mods;
 
-		$this->google_api_url = '//www.googleapis.com/webfonts/v1/webfonts';
+		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
 		$this->google_api_key = isset( $options['google_api_key'] ) ? '?key=' . esc_attr( $options['google_api_key'] ) : '';
 
@@ -119,6 +119,14 @@ class Fonts {
 
 			$font_content = wp_remote_get( $this->google_api_url . $this->google_api_key, array( 'sslverify' => false ) );
 
+			/**
+			 * In case the url of the google fonts is wrong
+			 * For example when is missing 'https:'
+			 */
+			if ( is_wp_error( $font_content ) ) {
+				return array();
+			}
+
 			$fonts = wp_remote_retrieve_body( $font_content );
 
 			$fonts = (array) json_decode( $fonts );
@@ -127,6 +135,10 @@ class Fonts {
 
 			set_transient( 'italystrap_google_fonts', $fonts, MONTH_IN_SECONDS );
 		}
+
+		/**
+		 * $fonts->items or $fonts['items'] have to always return an array
+		 */
 
 		if ( is_object( $fonts ) ) {
 			return $fonts->items;
@@ -161,6 +173,10 @@ class Fonts {
 	 * @return array        Return the new array
 	 */
 	protected function rename_key_by_font_family_name( array $items = array() ) {
+
+		if ( empty( $items['items'] ) ) {
+			return $items;
+		}
 
 		$i = 0;
 		foreach ( $items['items'] as $key => $object ) {
