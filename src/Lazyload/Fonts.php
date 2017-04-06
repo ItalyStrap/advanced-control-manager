@@ -60,6 +60,12 @@ class Fonts {
 
 		$css = '';
 
+		/**
+		 * Testare se $this->theme_mods[ $value . '_typography'] è settato correttamente anche quando il plugin è appena installato.
+		 *
+		 * @var [type]
+		 */
+		$type = isset( $this->theme_mods[ $value . '_typography'] ) ? $this->theme_mods[ $value . '_typography'] : '';
 		$typographyes = explode( ',', $this->theme_mods[ $value . '_typography'] );
 
 		$count = count( $typographyes ) - 1;
