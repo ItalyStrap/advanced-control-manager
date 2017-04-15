@@ -21,6 +21,8 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
  */
 class CMB2_Adapter {
 
+	private $cmb = null;
+
 	/**
 	 * CMB prefix
 	 *
@@ -59,6 +61,16 @@ class CMB2_Adapter {
 		$this->prefix = 'italystrap';
 
 		$this->_prefix = '_' . $this->prefix;
+
+		$this->default = array(
+			'name'		=> '',
+			'desc'		=> '',
+			'id'		=> '',
+			'type'		=> 'text',
+			'default'	=> '',
+			'sanitize'	=> 'sanitize_text_field',
+			'show_on'	=> true,
+		);
 	}
 
 	/**
@@ -79,7 +91,7 @@ class CMB2_Adapter {
 		$this->configs = (array) apply_filters( 'italystrap_cmb2_configurations_array', $this->configs );
 
 		foreach ( $this->configs as $config ) {
-			$this->cmb2( $config );
+			$this->load_cmb2( $config );
 		}
 	}
 
@@ -88,11 +100,35 @@ class CMB2_Adapter {
 	 *
 	 * @param  array $config Configuration array for CMB2
 	 */
-	public function cmb2( array $config ) {
-		$cmb = new_cmb2_box( $config );
+	public function load_cmb2( array $config ) {
 
-		foreach ( $config['fields'] as $field ) {
-			$cmb->add_field( $field );
+		/**
+		 * This prevents that the CMB2 autoload the fields itself.
+		 */
+		$fields = $config['fields'];
+		unset( $config['fields'] );
+
+		$this->cmb = new_cmb2_box( $config );
+
+		$this->add_fields( $fields );
+	}
+
+	/**
+	 * Add fields
+	 *
+	 * @param  array $fields An array with fields configuration.
+	 */
+	public function add_fields( array $fields ) {
+
+		foreach ( $fields as $field ) {
+
+			$field = array_merge( $this->default, $field );
+
+			if ( ! $field['show_on'] ) {
+				continue;
+			}
+
+			$this->cmb->add_field( $field );
 		}
 	}
 }

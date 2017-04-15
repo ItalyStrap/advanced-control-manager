@@ -109,11 +109,13 @@ class Visibility_Admin extends Visibility_Base {
 	 * @param $return unused.
 	 * @param array $instance The widget settings.
 	 */
-	public static function widget_conditions_admin( $widget, $return, $instance ) {
+	public static function widget_conditions_admin( $widget, $return, array $instance = array() ) {
+
 		$conditions = array();
 
-		if ( isset( $instance['conditions'] ) )
+		if ( isset( $instance['conditions'] ) ) {
 			$conditions = $instance['conditions'];
+		}
 
 		if ( ! isset( $conditions['action'] ) )
 			$conditions['action'] = 'show';
