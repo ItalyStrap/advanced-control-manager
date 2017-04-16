@@ -14,12 +14,29 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Fields\Fields_Interface;
 
 /**
  * Class for adding field attributes for widget
  */
-class Attributes {
+class Attributes implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked dynamic_sidebar_params - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'dynamic_sidebar_params'	=> 'insert_attributes',
+		);
+	}
 
 	/**
 	 * Variable to store field object.

@@ -18,13 +18,34 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Generate script
  *
  * @todo A quick WordPress template tag to create Google Analytics Event Tracking on links. Built on behalf of CFO Publishing.
  * @link https://gist.github.com/AramZS/8930496
  */
-class Analytics {
+class Analytics implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked wp_footer - 99999
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_footer'	=> array(
+				'function_to_add'	=> 'render_analytics',
+				'priority'			=> 99999,
+			),
+		);
+	}
 
 	/**
 	 * Plugin options settings.

@@ -15,12 +15,32 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Google\Fonts as Google_Fonts;
 
 /**
  * Web Font Loading class
  */
-class Fonts {
+class Fonts implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'wp_footer' - 20
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_footer'	=> array(
+				'function_to_add'	=> 'lazy_load_fonts',
+				'priority'			=> 9999,
+			),
+		);
+	}
 
 	private	$options = array();
 

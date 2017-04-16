@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Config\Config_Interface as Config;
 use WP_Customize_Manager;
 use ItalyStrap\Google\Fonts;
 
@@ -27,7 +29,26 @@ use ItalyStrap\Google\Fonts;
  * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/
  * @since ItalyStrap 1.0
  */
-class Customizer_Register {
+class Customizer_Register implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked customize_register - 11
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'customize_register'	=> array(
+				'function_to_add'	=> 'register',
+				'priority'			=> 11,
+			),
+		);
+	}
 
 	/**
 	 * $capability
@@ -37,19 +58,18 @@ class Customizer_Register {
 	private $capability = 'edit_theme_options';
 
 	/**
-	 * The plugin options
+	 * The plugin config
 	 *
 	 * @var array
 	 */
-	private $options = array();
+	private $config = array();
 
 	/**
 	 * Init the class
 	 */
-	function __construct( array $options = array(), Fonts $web_fonts ) {
+	function __construct( Config $config, Fonts $web_fonts ) {
 
-		$this->options = $options;
-
+		$this->config = $config;
 		$this->web_fonts = $web_fonts;
 
 		$this->fonts = $this->web_fonts->get_remote_fonts();

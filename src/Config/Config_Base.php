@@ -42,33 +42,46 @@ class Config_Base extends ArrayObject implements Config_Interface {
 	 *
 	 * @return array
 	 */
-	public function all() {}
+	public function all() {
+		return $this->config;
+	}
 
 	/**
 	 * Get the specified configuration value.
 	 *
-	 * @param  string  $parameter_key
+	 * @param  string  $key
 	 * @param  mixed   $default
 	 * @return mixed
 	 */
-	public function get( $parameter_key, $default = null ) {}
+	public function get( $key, $default = null ) {
+		return $this->config[ $key ];
+	}
 
 	/**
 	 * Determine if the given configuration value exists.
 	 *
-	 * @param  string  $parameter_key
+	 * @param  string  $key
 	 * @return bool
 	 */
-	public function has( $parameter_key ) {}
+	public function has( $key ) {
+
+		if ( ! array_key_exists( $key, $this->config ) ) {
+			return false;
+		}
+
+		return true;
+	}
 
 	/**
 	 * Push a configuration in via the key
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $parameter_key Key to be assigned, which also becomes the property
+	 * @param string $key Key to be assigned, which also becomes the property
 	 * @param mixed $value Value to be assigned to the parameter key
 	 * @return null
 	 */
-	public function push( $parameter_key, $value ) {}
+	public function push( $key, $value ) {
+
+	}
 }

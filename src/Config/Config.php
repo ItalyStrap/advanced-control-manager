@@ -23,13 +23,15 @@ class Config extends Config_Base {
 	 * @var array
 	 */
 	protected $config = array();
+	protected $default = array();
 
 	/**
 	 * [__construct description]
 	 *
 	 * @param [type] $config [description].
 	 */
-	function __construct( $config = array() ) {
+	function __construct( array $config = array(), array $default = array() ) {
 		$this->config = $config;
+		$this->default = $default;
 	}
 }

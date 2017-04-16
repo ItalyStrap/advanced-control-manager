@@ -14,13 +14,33 @@
 
 namespace ItalyStrap\Lazyload;
 
+use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
 
 /**
  * Class description
  */
-class Video {
+class Video implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked embed_oembed_html - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'embed_oembed_html'	=> array(
+				'function_to_add'	=> 'get_embed',
+				'accepted_args'		=> 4,
+			),
+		);
+	}
 
 	/**
 	 * [$regex description]
@@ -38,7 +58,6 @@ class Video {
 	 * @param [type] $argument [description].
 	 */
 	function __construct( $argument = null ) {
-		add_filter( 'embed_oembed_html', array( $this, 'get_embed' ), 10, 4 );
 		Inline_Style::set( $this->get_css() );
 		Inline_Script::set( $this->get_js() );
 	}
@@ -53,9 +72,12 @@ class Video {
 	 * @return string        [description]
 	 */
 	public function get_embed( $cache, $url, $attr, $post_ID ) {
-		// d( $url );
+
 		preg_match( $this->regex, $url, $matches );
-	// d( $matches );
+		
+		if ( ! isset( $matches[1] ) ) {
+			return $cache;
+		}
 
 		$html = sprintf(
 			'<div class="youtube" data-embed="%s"><div class="play-button"></div></div>',
@@ -63,7 +85,7 @@ class Video {
 		);
 
 		return $html;
-		return $cache;
+		// return $cache;
 	
 	}
 

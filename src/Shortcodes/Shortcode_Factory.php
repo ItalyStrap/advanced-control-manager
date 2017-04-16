@@ -94,30 +94,4 @@ class Shortcode_Factory implements Subscriber_Interface {
 			}
 		}
 	}
-
-	/**
-	 * Add type Carousel to built-in gallery shortcode
-	 */
-	public function add_carousel_to_gallery_shortcode() {
-
-		/**
-		 * Istantiate Shortcode_Carousel only if [gallery] shortcode exist
-		 *
-		 * @link http://wordpress.stackexchange.com/questions/103549/wp-deregister-register-and-enqueue-dequeue
-		 */
-		$post = get_post();
-		$gallery = false;
-
-		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) ) {
-			$gallery = true; // A http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
-		}
-
-		if ( ! $gallery ) {
-			$shortcode_carousel = new Gallery();
-			add_filter( 'post_gallery', array( $shortcode_carousel, 'gallery_shortcode' ), 10, 3 );
-			add_filter( 'jetpack_gallery_types', array( $shortcode_carousel, 'gallery_types' ) );
-			// add_filter( 'ItalyStrap_gallery_types', array( $shortcode_carousel, 'gallery_types' ), 999 );
-		}
-	
-	}
 }

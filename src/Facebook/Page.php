@@ -36,6 +36,8 @@ class Page {
 	function __construct( $argument = null ) {
 		// Code...
 	}
+	// add_action( 'wp_footer', array( $facebook_page, 'script_2' ), 99 );
+	// add_action( 'italystrap_sidebar', array( $facebook_page, 'output' ) );
 
 	/**
 	 * Function description

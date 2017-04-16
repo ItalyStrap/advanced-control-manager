@@ -20,6 +20,19 @@ if ( ! is_admin() ) {
 	return;
 }
 
+$autoload_concrete = array_merge( $autoload_concrete, array(
+		// 'option_name'			=> 'Class\Name',
+		'media_carousel_shortcode'	=> 'ItalyStrapAdminGallerySettings',
+	)
+);
+
+foreach ( $autoload_concrete as $option_name => $concrete ) {
+	if ( empty( $options[ $option_name ] ) ) {
+		continue;
+	}
+	$event_manager->add_subscriber( $injector->make( $concrete ) );
+}
+
 add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
 add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
@@ -53,37 +66,11 @@ if ( ! empty( $options['show-thumb'] ) ) {
 }
 
 /**
- * Define admin settings parmeter
+ * Define admin settings parmeter and Instantiate Admin Settings Class
  */
 $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/config/options.php' );
 $injector->defineParam( 'settings', $admin_settings );
-// d( $admin_settings['general']['settings_fields'][0] );
-// get_admin_default_settings( $admin_settings );
-
-// echo "<pre>";
-// print_r(get_theme_mods());
-// echo "</pre>";
-
-$fields_type = array( 'fields_type' => 'ItalyStrap\Fields\Fields' );
-
-/**
- * Instantiate Admin Class
- *
- * @param array    $options     Plugin options
- * @param I_Fields $fields_type Fields object
- * @param array    $settings    Admin settings
- *
- * @var Admin
- */
-$injector->define( 'ItalyStrap\Settings\Settings', $fields_type );
-$admin = $injector->make( 'ItalyStrap\Settings\Settings' );
-$admin->init();
-// $admin->delete_option();
-add_action( 'update_option', array( $admin, 'save' ), 10, 3 );
-
-/**
- * Import Export
- */
+$event_manager->add_subscriber( $injector->make( 'ItalyStrap\Settings\Settings' ) );
 
 /**
  * Import/Export configuration
@@ -108,7 +95,6 @@ $imp_exp_args = array(
 );
 $injector->defineParam( 'imp_exp_args', $imp_exp_args );
 
-$injector->define( 'ItalyStrap\Import_Export\Import_Export', $fields_type );
 /**
  * Import Export Object
  *
@@ -126,20 +112,6 @@ add_action( 'admin_init', array( $import_export, 'import' ) );
  */
 $image_size_media = $injector->make( 'ItalyStrap\Image\Size' );
 add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
-
-/**
- * Instanziate the ItalyStrapAdminGallerySettings
- */
-$injector->define( 'ItalyStrapAdminGallerySettings', $fields_type );
-$gallery_settings = $injector->make( 'ItalyStrapAdminGallerySettings' );
-
-/**
- * Da testare
- *
- * Example: new \ItalyStrap\Admin\Gallery_Settings;
- * $gallery_settings = new Gallery_Settings;
- * add_action( 'admin_init', array( $gallery_settings, 'admin_init' ) );
- */
 
 /**
  * Option for jpeg_quality
@@ -173,7 +145,6 @@ if ( ! empty( $options['widget_attributes'] ) ) {
 	 *
 	 * @var Widget_Attributes
 	 */
-	$injector->define( 'ItalyStrap\Widgets\Attributes\Attributes', $fields_type );
 	$widget_attributes = $injector->make( 'ItalyStrap\Widgets\Attributes\Attributes' );
 	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
 	add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );

@@ -11,13 +11,30 @@
 
 namespace ItalyStrap\Lazyload;
 
+use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
 
 /**
  *
  */
-class Image {
+class Image implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked plugins_loaded - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'plugins_loaded'	=> '\ItalyStrap\Lazyload\Image::init',
+		);
+	}
 
 	/**
 	 * Path for the unveil.js

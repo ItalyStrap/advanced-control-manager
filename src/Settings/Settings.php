@@ -18,10 +18,32 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Class for admin area
  */
-class Settings extends Settings_Base {
+class Settings extends Settings_Base implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked update_option - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'update_option'	=> array(
+				'function_to_add'	=> 'save',
+				'accepted_args'		=> 3,
+			),
+			'plugins_loaded'	=> 'init',
+		);
+	}
 
 	/**
 	 * Initialize admin area with those hooks

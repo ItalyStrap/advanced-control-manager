@@ -11,6 +11,8 @@
 
 namespace ItalyStrap\Social;
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
 
@@ -19,7 +21,27 @@ use ItalyStrap\Asset\Inline_Style;
  *
  * @todo This class need more improvements
  */
-class Share {
+class Share implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked the_content - 9999
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'the_content'	=> array(
+				'function_to_add'	=> 'add_social_button',
+				'priority'			=> 9999,
+				'accepted_args'		=> 1,
+			),
+		);
+	}
 
 	/**
 	 * [$var description]

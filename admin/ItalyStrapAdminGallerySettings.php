@@ -9,8 +9,25 @@
  */
 
 use ItalyStrap\Fields\Fields_Interface;
+use ItalyStrap\Event\Subscriber_Interface;
 
-class ItalyStrapAdminGallerySettings {
+class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked admin_init - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'admin_init'	=> 'admin_init',
+		);
+	}
 
 	/**
 	 * Array with default value
@@ -75,7 +92,7 @@ class ItalyStrapAdminGallerySettings {
 
 		$this->randID = rand(2, 5);
 
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		// add_action( 'admin_init', array( $this, 'admin_init' ) );
 	}
 
 	/**

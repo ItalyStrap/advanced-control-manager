@@ -11,12 +11,29 @@
 
 namespace ItalyStrap\Shortcodes;
 
+use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Carousel\Bootstrap;
 
 /**
  * Add Bootstrap Carousel to gallery shortcode
  */
-class Gallery {
+class Gallery implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked plugins_loaded - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'plugins_loaded'	=> 'add_carousel_to_gallery_shortcode',
+		);
+	}
 
 	/**
 	 * Modify the gallery shortcode with Bootstrap Carousel functionality.
@@ -26,7 +43,7 @@ class Gallery {
 	 * @param  int    $instance Unique numeric ID of this gallery shortcode instance.
 	 * @return string           Return the new Bootstrap carousel
 	 */
-	function gallery_shortcode( $output, array $atts, $instance = null ) {
+	public function gallery_shortcode( $output, array $atts, $instance = null ) {
 
 		/**
 		 * If type is not set return the output.
@@ -35,26 +52,12 @@ class Gallery {
 			return $output;
 		}
 
-		/**
-		 * Deprecated title attribute for shortcode.
-		 *
-		 * @deprecated 1.4.0 Deprecated title attribute for shortcode, use image_title instead
-		 */
-		if ( ! empty( $atts['title'] ) ) {
-			_deprecated_argument( __FUNCTION__, '1.4.0', __( 'Use $atts[\'image_title\'] instead of $atts[\'title\']', 'italystrap' ) ); // WPCS: XSS OK.
-		}
-
-		if ( ! isset( $atts['image_title'] ) && isset( $atts['title'] ) ) {
-			$atts['image_title'] = $atts['title'];
-		}
-
 		if ( 'carousel' === $atts['type'] ) {
 			$carousel_bootstrap = new Bootstrap( $atts );
 			return $carousel_bootstrap->__get( 'output' );
 		}
 
 		return $output;
-
 	}
 
 	/**
@@ -63,10 +66,37 @@ class Gallery {
 	 * @param  array $gallery_types The array with gallery type.
 	 * @return array                Return the new array
 	 */
-	function gallery_types( $gallery_types ) {
+	public function gallery_types( $gallery_types ) {
 
 		$gallery_types['carousel'] = 'Bootstrap Carousel';
 		return $gallery_types;
+	}
 
+
+
+	/**
+	 * Add type Carousel to built-in gallery shortcode
+	 */
+	public function add_carousel_to_gallery_shortcode() {
+
+		/**
+		 * Istantiate Shortcode_Carousel only if [gallery] shortcode exist
+		 *
+		 * @link http://wordpress.stackexchange.com/questions/103549/wp-deregister-register-and-enqueue-dequeue
+		 */
+		$post = get_post();
+		$gallery = false;
+
+		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'gallery' ) ) {
+			$gallery = true; // A http://dannyvankooten.com/3935/only-load-contact-form-7-scripts-when-needed/ .
+		}
+
+		if ( ! $gallery ) {
+			// $shortcode_carousel = new Gallery();
+			add_filter( 'post_gallery', array( $this, 'gallery_shortcode' ), 10, 3 );
+			add_filter( 'jetpack_gallery_types', array( $this, 'gallery_types' ) );
+			// add_filter( 'ItalyStrap_gallery_types', array( $this, 'gallery_types' ), 999 );
+		}
+	
 	}
 }

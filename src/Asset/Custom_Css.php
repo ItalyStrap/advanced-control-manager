@@ -15,10 +15,30 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * The Post Meta Class
  */
-class Custom_Css extends Custom_Css_Base {
+class Custom_Css extends Custom_Css_Base implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked customize_register - 11
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp'			=> 'add_post_type_custom_css',
+			'body_class'	=> 'body_class',
+			'post_class'	=> 'post_class',
+		);
+	}
 
 	/**
 	 * Init the constructor

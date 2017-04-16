@@ -647,3 +647,21 @@ function _notice_plugin_update() {
 	wp_redirect( 'plugins.php', 301 );
 	exit;
 }
+
+if ( ! function_exists( 'd' ) ) {
+	function d( $value = '' ) {
+		add_action( 'plugins_loaded', function () use ( $value ) {
+			\d( $value );
+		});
+	
+	}
+}
+
+if ( ! function_exists( 'ddd' ) ) {
+	function ddd( $value = '' ) {
+		add_action( 'plugins_loaded', function () use ( $value ) {
+			\d( $value );
+		});
+	
+	}
+}
