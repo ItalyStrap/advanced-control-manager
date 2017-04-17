@@ -21,7 +21,7 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
 
 		$this->fields_array = require( ITALYSTRAP_PLUGIN_PATH . 'config/posts.php' );
 
-		$this->fields_type = new \ItalyStrap\Admin\Fields;
+		$this->fields_type = new \ItalyStrap\Fields\Fields;
 
 		$this->dom = new \DOMDocument();
 
@@ -113,7 +113,7 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
      * it should be instantiatable
      */
     public function it_should_be_instantiatable() {
-        $this->assertInstanceOf( 'ItalyStrap\Admin\Fields', $this->fields_type );
+        $this->assertInstanceOf( 'ItalyStrap\Fields\Fields', $this->fields_type );
     }
 
     /**
@@ -121,7 +121,7 @@ class FieldsTest extends \Codeception\TestCase\WPTestCase {
      * it_should_be_instance_of_I_Fields
      */
     public function it_should_be_instance_of_I_Fields() {
-        $this->assertInstanceOf( 'ItalyStrap\Admin\I_Fields', $this->fields_type );
+        $this->assertInstanceOf( 'ItalyStrap\Fields\Fields_Interface', $this->fields_type );
     }
 
     /**

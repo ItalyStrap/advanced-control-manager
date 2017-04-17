@@ -1,7 +1,5 @@
 <?php
 
-use ItalyStrap\Admin\Sanitization;
-
 class SanitizationTest extends \Codeception\TestCase\WPTestCase
 {
 
@@ -14,7 +12,7 @@ class SanitizationTest extends \Codeception\TestCase\WPTestCase
         // before
         parent::setUp();
 
-        $this->sanitization = new Sanitization;
+        $this->sanitization = new \ItalyStrap\Update\Sanitization;
 
         $this->instance = '<h1>Test</h1><!-- Comment --><script>alert("Hack");</script>';
 
@@ -34,7 +32,7 @@ class SanitizationTest extends \Codeception\TestCase\WPTestCase
      * it should be instantiatable
      */
     public function it_should_be_instantiatable() {
-        $this->assertInstanceOf( 'ItalyStrap\Admin\Sanitization', $this->sanitization );
+        $this->assertInstanceOf( 'ItalyStrap\Update\Sanitization', $this->sanitization );
     }
 
     /**

@@ -1,6 +1,4 @@
-<?php namespace ItalyStrap\Core;
-
-use ItalyStrap\Admin\Validation;
+<?php
 
 class ValidationTest extends \Codeception\TestCase\WPTestCase
 {
@@ -10,7 +8,7 @@ class ValidationTest extends \Codeception\TestCase\WPTestCase
         // before
         parent::setUp();
 
-        $this->validation = new Validation;
+        $this->validation = new \ItalyStrap\Update\Validation;
 
         // your set up methods here
     }
@@ -28,7 +26,7 @@ class ValidationTest extends \Codeception\TestCase\WPTestCase
      * it should be instantiatable
      */
     public function it_should_be_instantiatable() {
-        $this->assertInstanceOf( 'ItalyStrap\Admin\Validation', $this->validation );
+        $this->assertInstanceOf( 'ItalyStrap\Update\Validation', $this->validation );
     }
 
     public function it_should_be_validate_return_true()

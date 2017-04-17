@@ -4,7 +4,9 @@
  */
 // namespace ItalyStrap\Core;
 
-// use \WP_Query;
+use \WP_Query;
+use ItalyStrap\Excerpt\Excerpt;
+use ItalyStrap\Config\Config;
 
 class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 
@@ -22,7 +24,8 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 		// Before.
 		parent::setUp();
 
-		$this->query = ItalyStrap\Core\Query\Posts::init();
+		$this->query = ItalyStrap\Query\Posts::init();
+		$this->dom = new \DOMDocument();
 
 		// Your set up methods here.
 	}
@@ -32,6 +35,8 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function tearDown() {
 		// Your tear down methods here.
+		// 
+		$this->query = new ItalyStrap\Query\Posts( new WP_Query(), new Excerpt( new Config() ), new Config(), 'test'  );
 
 		// Then.
 		parent::tearDown();
@@ -39,20 +44,39 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * @test
-	 * it should be instantiatable
+	 * it should be instantiatable with_static_method
 	 */
-	public function it_should_be_instantiatable() {
-		$this->assertInstanceOf( 'ItalyStrap\Core\Query\Posts', $this->query );
+	public function it_should_be_instantiatable_with_static_method() {
+		$this->query = ItalyStrap\Query\Posts::init();
+		$this->assertInstanceOf( 'ItalyStrap\Query\Posts', $this->query );
 	}
 
 	/**
 	 * @test
-	 * it should be post_object_from_WP
+	 * it should be instantiatable
 	 */
-	// public function it_should_be_post_object_from_WP() {
+	public function it_should_be_instantiatable() {
+		$this->query = new ItalyStrap\Query\Posts( new WP_Query(), new Excerpt( new Config() ), new Config(), 'test'  );
+		$this->assertInstanceOf( 'ItalyStrap\Query\Posts', $this->query );
+	}
 
-	// 	$isset = $this->query->get_global_post();
+	/**
+	 * @test
+	 * it should be echo_read_more_link
+	 */
+	public function it_should_be_echo_read_more_link() {
 
-	// 	$this->assertTrue( isset( $isset ) );
-	// }
+		ob_start();
+		$this->query->read_more_link();
+		$out = ob_end_clean();
+
+		$this->dom->loadHTML( $out );
+		$elements = $this->dom->getElementsByTagName( 'a' );
+		$this->assertNotEmpty( $elements, 'message' );
+
+		foreach ( $elements as $key => $element ) {
+			$this->assertNotNull( $element->getAttribute( 'class' ), 'Attribute class is empty' );
+			$this->assertTrue( strpos( $element, 'more-link' ), 'Class more-link is empty' );
+		}
+	}
 }

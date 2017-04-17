@@ -46,7 +46,7 @@ class test_widgetTest extends \Codeception\TestCase\WPTestCase
 	 */
 	function test_italystrap_widget_media_carousel() {
 
-		$widget = new ItalyStrap\Widget\Carousel( 'foo', 'Foo' );
+		$widget = new ItalyStrap\Widgets\Carousel( 'foo', 'Foo' );
 		ob_start();
 		$args = array(
 			'before_widget' => '<section>',
