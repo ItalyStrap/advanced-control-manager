@@ -857,7 +857,7 @@ return array(
 				'section'	=> 'content',
 				'args'		=> array(
 						'name'			=> __( 'Activate excerpt more mods', 'italystrap' ),
-						'desc'			=> __( 'Activate the excerpt more mods for this theme.', 'italystrap' ),
+						'desc'			=> __( 'Activate the excerpt more mods for this theme. This functionality will be saved to the <code>theme_mods();</code>. It also works for the Widget Post if you select "Use global readmore" in the widget itself.', 'italystrap' ),
 						'id'			=> 'activate_excerpt_more_mods',
 						'type'			=> 'checkbox',
 						'class'			=> 'activate_excerpt_more_mods easy',

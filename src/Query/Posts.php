@@ -45,7 +45,7 @@ class Posts extends Query {
 	 */
 	public static function init( $context = null ) {
 
-		return new self( new WP_Query(), new Excerpt( new Config() ), $context );
+		return new self( new WP_Query(), new Excerpt( new Config() ), new Config(), $context );
 
 	}
 
@@ -357,7 +357,7 @@ class Posts extends Query {
 		$attr = array();
 		$link_text = '';
 
-		if ( empty( $this->args['use_global_read_more'] ) ) {
+		if ( empty( $this->args['use_global_read_more'] ) || empty( $this->config->get( 'activate_excerpt_more_mods' ) ) ) {
 			$attr['class'] = 'more-link';
 			$link_text = $this->args['excerpt_readmore'];
 		}

@@ -71,10 +71,11 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @param WP_Query $query The standard query of WordPress.
 	 */
-	function __construct( WP_Query $query, Excerpt $excerpt, $context = null ) {
+	function __construct( WP_Query $query, Excerpt $excerpt, Config $config, $context = null ) {
 
 		$this->excerpt = $excerpt;
 		$this->query = $query;
+		$this->config = $config;
 
 		global $post;
 		$this->post = $post;
@@ -104,7 +105,7 @@ abstract class Query implements Query_Interface {
 	 */
 	public static function init( $context = null ) {
 
-		return new self( new WP_Query(), new Excerpt( new Config() ), $context );
+		return new self( new WP_Query(), new Excerpt( new Config() ), new Config(), $context );
 
 	}
 

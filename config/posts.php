@@ -359,7 +359,7 @@ return array(
 	 */
 	'use_global_read_more'				=> array(
 		'name'		=> __( 'Use global readmore', 'italystrap' ),
-		'desc'		=> __( 'Check if you want to use the plugin setting for readmore tag configuration.', 'italystrap' ),
+		'desc'		=> __( 'Check if you want to use the <a href="admin.php?page=italystrap-settings">plugin setting</a> for readmore tag configuration.', 'italystrap' ),
 		'id'		=> 'use_global_read_more',
 		'type'		=> 'checkbox',
 		// 'class'		=> 'widefat use_global_read_more',

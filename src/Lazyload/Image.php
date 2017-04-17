@@ -32,7 +32,8 @@ class Image implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'plugins_loaded'	=> '\ItalyStrap\Lazyload\Image::init',
+			// 'plugins_loaded'	=> 'ItalyStrap\Lazyload\Image::init',
+			'plugins_loaded'	=> 'init',
 		);
 	}
 
@@ -86,7 +87,7 @@ class Image implements Subscriber_Interface {
 		 */
 		add_filter( 'post_gallery', array( __CLASS__, 'add_image_placeholders' ), 9 );
 
-		if ( ! empty( $options['lazyload_widget_text'] ) ) {
+		if ( ! empty( self::$options['lazyload_widget_text'] ) ) {
 			/**
 			 * Experimental
 			 * Da testare ed eventualmente mettere sotto opzione attivabile
