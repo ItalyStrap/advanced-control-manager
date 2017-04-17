@@ -10,6 +10,8 @@
 namespace ItalyStrap\Query;
 
 use \WP_Query;
+use ItalyStrap\Excerpt\Excerpt;
+use ItalyStrap\Config\Config;
 
 /**
  * Query Class for widget and shortcode
@@ -43,7 +45,7 @@ class Posts extends Query {
 	 */
 	public static function init( $context = null ) {
 
-		return new self( new WP_Query(), new Excerpt, $context );
+		return new self( new WP_Query(), new Excerpt( new Config() ), $context );
 
 	}
 
