@@ -20,9 +20,18 @@ use \ItalyStrap\Query\Posts as Posts_Base;
 class Posts extends Widget {
 
 	/**
+	 * Instance of ItalyStrap\Query\Posts
+	 *
+	 * @var ItalyStrap\Query\Posts
+	 */
+	private $query_posts = null;
+
+	/**
 	 * Init the constructor
 	 */
-	function __construct() {
+	function __construct( Posts_Base $post ) {
+
+		$this->query_posts = $post;
 
 		/**
 		 * I don't like this and I have to find a better solution for loading script and style for widgets.
@@ -68,10 +77,10 @@ class Posts extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		$query_posts = Posts_Base::init();
+		// $query_posts = Posts_Base::init();
 
-		$query_posts->get_widget_args( $instance );
+		$this->query_posts->get_widget_args( $instance );
 
-		return $query_posts->output();
+		return $this->query_posts->output();
 	}
 } // Class.

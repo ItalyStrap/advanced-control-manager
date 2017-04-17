@@ -43,7 +43,8 @@ $injector->defineParam( 'options', $options );
  * Autoload Shared Classes
  *======================*/
 $autoload_sharing = array(
-	'ItalyStrap\Config\Config'
+	'ItalyStrap\Config\Config',
+	'ItalyStrap\Excerpt\Excerpt',
 );
 
 /**=============================

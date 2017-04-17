@@ -14,6 +14,7 @@
 namespace ItalyStrap\Query;
 
 use \WP_Query;
+use ItalyStrap\Excerpt\Excerpt;
 
 /**
  * Query Class for widget and shortcode
@@ -62,13 +63,16 @@ abstract class Query implements Query_Interface {
 	 */
 	protected $context;
 
+	protected $excerpt;
+
 	/**
 	 * Constructor.
 	 *
 	 * @param WP_Query $query The standard query of WordPress.
 	 */
-	function __construct( WP_Query $query, $context = null ) {
+	function __construct( WP_Query $query, Excerpt $excerpt, $context = null ) {
 
+		$this->excerpt = $excerpt;
 		$this->query = $query;
 
 		global $post;
@@ -99,7 +103,7 @@ abstract class Query implements Query_Interface {
 	 */
 	public static function init( $context = null ) {
 
-		return new self( new WP_Query(), $context );
+		return new self( new WP_Query(), new Excerpt, $context );
 
 	}
 

@@ -91,27 +91,13 @@
 					<?php if ( $this->args['show_excerpt'] ) : ?>
 						<div class="entry-summary">
 							<p itemprop="text">
-								<?php
-
-								// echo esc_attr( get_the_excerpt() );
-								echo esc_attr( wp_trim_words( get_the_excerpt(), $this->args['excerpt_length'], '' ) );
-								/**
-								 * Echo echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
-								 */
-								?>
-								<?php if ( $this->args['show_readmore'] ) : ?>
-								<a <?php
-								$array = array(
-									'class'	=> 'more-link',
-									'href'	=> get_permalink(),
-									'rel'	=> 'prefetch',
-									);
-								ItalyStrap\Core\get_attr( 'widget_post_read_more', $array, true ) ?>><?php echo esc_attr( $this->args['excerpt_readmore'] ); ?></a>
-								<?php endif; ?>
+								<?php echo esc_attr( wp_trim_words( get_the_excerpt(), $this->args['excerpt_length'], '' ) ); ?>
+								<?php $this->read_more_link(); ?>
 							</p>
 						</div>
 					<?php elseif ( $this->args['show_content'] ) : ?>
 						<div class="entry-content" itemprop="text">
+							<?php // echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) ); ?>
 							<?php the_content() ?>
 						</div>
 					<?php endif; ?>

@@ -43,7 +43,7 @@ class Posts extends Query {
 	 */
 	public static function init( $context = null ) {
 
-		return new self( new WP_Query(), $context );
+		return new self( new WP_Query(), new Excerpt, $context );
 
 	}
 
@@ -341,5 +341,25 @@ class Posts extends Query {
 		<?php
 		endif;
 
+	}
+
+	/**
+	 * Read More Link
+	 */
+	public function read_more_link() {
+
+		if ( empty( $this->args['show_readmore'] ) ) {
+			return;
+		}
+
+		$attr = array();
+		$link_text = '';
+
+		if ( empty( $this->args['use_global_read_more'] ) ) {
+			$attr['class'] = 'more-link';
+			$link_text = $this->args['excerpt_readmore'];
+		}
+
+		echo $this->excerpt->read_more_link( 'widget_post_read_more', $attr, $link_text );
 	}
 }

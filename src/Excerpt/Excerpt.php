@@ -14,6 +14,7 @@ namespace ItalyStrap\Excerpt;
 
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Core;
 
 /**
  * New Class to set excerpt lenght and show "more link"
@@ -98,7 +99,7 @@ class Excerpt implements Subscriber_Interface {
 	 *
 	 * @return string Return link to post in read more.
 	 */
-	public function read_more_link() {
+	public function read_more_link( $context = 'excerpt_read_more', array $attr = array(), $link_text = '' ) {
 
 		/**
 		 * CSS class for read more link. Default 'none'.
@@ -107,11 +108,20 @@ class Excerpt implements Subscriber_Interface {
 		 */
 		$class = apply_filters( 'italystrap_read_more_class', $this->options['read_more_class'] );
 
+		$link_text = '' === $link_text ? $this->options['read_more_link_text'] : $link_text;
+
+		$default = array(
+			'class'	=> $class,
+			'href'	=> get_permalink(),
+			'rel'	=> 'prefetch',
+		);
+
+		$attr = array_merge( $default, $attr );
+
 		return sprintf(
-			apply_filters( 'read_more_link', ' <a href="%1$s" class="%2$s">%3$s</a>' ),
-			esc_url( get_permalink( get_the_id() ) ),
-			esc_attr( $class ),
-			esc_html( $this->options['read_more_link_text'] )
+			apply_filters( 'italystrap_read_more_link_pattern', ' <a %1$s>%2$s</a>' ),
+			Core\get_attr( $context, $attr, false ),
+			esc_html( $link_text )
 		);
 	}
 
