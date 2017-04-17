@@ -11,6 +11,8 @@
 
 namespace ItalyStrap\Image;
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Renders extra controls for image dimension in the new media UI.
  *
@@ -19,7 +21,26 @@ namespace ItalyStrap\Image;
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
 
-class Size {
+class Size implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked image_size_names_choose - 999
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'image_size_names_choose'	=> array(
+				'function_to_add'	=> 'get_image_sizes',
+				'priority'			=> 999,
+			),
+		);
+	}
 
 	/**
 	 * Add list of all image size to administrators in the WordPress Media Library

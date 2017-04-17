@@ -875,7 +875,7 @@ return array(
 				'section'	=> 'content',
 				'args'		=> array(
 						'name'			=> __( 'Read more link', 'italystrap' ),
-						'desc'			=> __( 'Customize the read more link pattern.', 'italystrap' ),
+						'desc'			=> __( 'Customize the read more link pattern. Default: <code>&hellip;Read more</code>', 'italystrap' ),
 						'id'			=> 'read_more_link_text',
 						'type'			=> 'text',
 						'class'			=> 'read_more_link_text easy',
@@ -893,7 +893,7 @@ return array(
 				'section'	=> 'content',
 				'args'		=> array(
 						'name'			=> __( 'Read more CSS class', 'italystrap' ),
-						'desc'			=> __( 'Customize the read more link with adding a CSS class.', 'italystrap' ),
+						'desc'			=> __( 'Customize the style of the read more link with your custom CSS class. Default: <code>read-more</code>. Example: <code>read-more btn btn-primary btn-lg</code>.', 'italystrap' ),
 						'id'			=> 'read_more_class',
 						'type'			=> 'text',
 						'class'			=> 'read_more_class easy',
@@ -910,12 +910,12 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'content',
 				'args'		=> array(
-						'name'			=> __( 'Excerpt length', 'italystrap' ),
-						'desc'			=> __( 'Excerpt length by default is 50 words.', 'italystrap' ),
+						'name'			=> __( 'Auto-generated Excerpt length', 'italystrap' ),
+						'desc'			=> __( 'The default length for auto-generated excerpts is 55 words. It works only if the excerpt field is empty.', 'italystrap' ),
 						'id'			=> 'excerpt_length',
 						'type'			=> 'number',
 						'class'			=> 'excerpt_length easy',
-						'default'		=> '50',
+						'default'		=> '55',
 						'validate'		=> 'is_numeric|is_int',
 						'sanitize'		=> 'sanitize_text_field',
 						'option_type'	=> 'theme_mod',
@@ -928,8 +928,8 @@ return array(
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'content',
 				'args'		=> array(
-						'name'			=> __( 'Excerpt ends with punctuation', 'italystrap' ),
-						'desc'			=> __( 'Excerpt ends with punctuation (by default . or ? or !).', 'italystrap' ),
+						'name'			=> __( 'Auto-generated Excerpt ends with punctuation', 'italystrap' ),
+						'desc'			=> __( 'Auto-generated Excerpt ends with punctuation (by default . or ? or !). It works only if the excerpt field is empty.', 'italystrap' ),
 						'id'			=> 'end_with_punctuation',
 						'type'			=> 'checkbox',
 						'class'			=> 'end_with_punctuation easy',
@@ -947,7 +947,7 @@ return array(
 				'section'	=> 'content',
 				'args'		=> array(
 						'name'			=> __( 'Read more position', 'italystrap' ),
-						'desc'			=> __( 'Select the position to display read more link. With <code>Append</code> the read more link will be appended just after the text inside the HTML paragraph, with <code>After</code> it will be added after and outside the last HTML paragraph on a new line.</code>', 'italystrap' ),
+						'desc'			=> __( 'Select the position to display read more link. With <code>Append</code> the read more link will be appended just after the text inside the HTML paragraph, with <code>After</code> it will be added after and outside the last HTML paragraph on a new line, this is useful if you add a button style to the "Read more".', 'italystrap' ),
 						'id'			=> 'read_more_position',
 						'type'			=> 'select',
 						'options'		=> array(

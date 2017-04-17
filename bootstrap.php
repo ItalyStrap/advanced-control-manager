@@ -30,7 +30,7 @@ $injector->defineParam( 'args', $args );
  */
 $theme_mods = (array) get_theme_mods();
 $options = (array) get_option( $args['options_name'] );
-$options = wp_parse_args( $options, \ItalyStrap\Core\get_default_from_config( require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' ) ) );
+$options = wp_parse_args( $options, get_default_from_config( require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' ) ) );
 
 /**
  * Define theme_mods  and options parmeter
@@ -39,16 +39,16 @@ $options = wp_parse_args( $options, \ItalyStrap\Core\get_default_from_config( re
 $injector->defineParam( 'theme_mods', $theme_mods );
 $injector->defineParam( 'options', $options );
 
-/**============================================
- * Autoload Classes that they have to be shared
- *===========================================*/
+/**=======================
+ * Autoload Shared Classes
+ *======================*/
 $autoload_sharing = array(
 	'ItalyStrap\Config\Config'
 );
 
 /**=============================
  * Autoload Classes definitions
- =============================*/
+ *============================*/
 $fields_type = array( 'fields_type' => 'ItalyStrap\Fields\Fields' );
 $autoload_definitions = array(
 	'ItalyStrap\Widgets\Attributes\Attributes'	=> $fields_type,
@@ -60,21 +60,10 @@ $autoload_definitions = array(
 
 /**======================
  * Autoload Aliases Class
- ======================*/
-$aliases = array(
+ *=====================*/
+$autoload_aliases = array(
 	'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
 );
-
-
-foreach ( $autoload_sharing as $class ) {
-	$injector->share( $class );
-}
-foreach ( $autoload_definitions as $class_name => $class_args ) {
-	$injector->define( $class_name, $class_args );
-}
-foreach ( $aliases as $interface => $implementation ) {
-	$injector->alias( $interface, $implementation );
-}
 
 /**=============================
  * Autoload Concrete Classes
@@ -84,10 +73,15 @@ $autoload_concrete = array(
 	'widget_areas'			=> 'ItalyStrap\Widgets\Areas\Areas',
 );
 
-/**
- * Instantiate Config
- */
-// $injector->make( 'ItalyStrap\Config\Config' );
+foreach ( $autoload_sharing as $class ) {
+	$injector->share( $class );
+}
+foreach ( $autoload_definitions as $class_name => $class_args ) {
+	$injector->define( $class_name, $class_args );
+}
+foreach ( $autoload_aliases as $interface => $implementation ) {
+	$injector->alias( $interface, $implementation );
+}
 
 /**
  * The new events manager in ALPHA version.

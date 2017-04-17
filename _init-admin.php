@@ -111,7 +111,7 @@ add_action( 'admin_init', array( $import_export, 'import' ) );
  * @var ItalyStrap\Image\Size
  */
 $image_size_media = $injector->make( 'ItalyStrap\Image\Size' );
-add_filter( 'image_size_names_choose', array( $image_size_media, 'get_image_sizes' ), 999 );
+$event_manager->add_subscriber( $image_size_media );
 
 /**
  * Option for jpeg_quality

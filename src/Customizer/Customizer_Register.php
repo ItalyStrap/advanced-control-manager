@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\Config\Config_Interface as Config;
+use ItalyStrap\Config\Config_Interface;
 use WP_Customize_Manager;
 use ItalyStrap\Google\Fonts;
 
@@ -67,7 +67,7 @@ class Customizer_Register implements Subscriber_Interface {
 	/**
 	 * Init the class
 	 */
-	function __construct( Config $config, Fonts $web_fonts ) {
+	function __construct( Config_Interface $config, Fonts $web_fonts ) {
 
 		$this->config = $config;
 		$this->web_fonts = $web_fonts;
