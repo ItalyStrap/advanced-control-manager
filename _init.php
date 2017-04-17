@@ -32,6 +32,7 @@ $autoload_concrete = array_merge( $autoload_concrete, array(
 		'activate_social_share'		=> 'ItalyStrap\Social\Share',
 		'show_theme_hooks'			=> 'ItalyStrap\Debug\Visual_Hook',
 		'media_carousel_shortcode'	=> 'ItalyStrap\Shortcodes\Gallery',
+		'activate_excerpt_more_mods'=> 'ItalyStrap\Excerpt\Excerpt',
 	)
 );
 
@@ -102,31 +103,6 @@ if ( ! empty( $options['menu_cache'] ) && version_compare( PHP_VERSION, '5.4.0',
 
 	// Unfortunately, there is no appropriate action, so we have to (mis)use a filter here. Almost as last as possible.
 	add_filter( 'wp_nav_menu', array( $cache, 'cache_menu' ), PHP_INT_MAX - 1, 2 );
-}
-
-if ( ! empty( $options['activate_excerpt_more_mods'] ) ) {
-
-	$excerpt = $injector->make( 'ItalyStrap\Excerpt\Excerpt' );
-
-	add_filter( 'excerpt_length', array( $excerpt, 'excerpt_length') );
-	add_filter( 'wp_trim_words', array( $excerpt, 'excerpt_end_with_punctuation' ), 98, 4 );
-
-	/**
-	 * Inside the <p> of the excerpt.
-	 */
-	if ( 'append' === $options['read_more_position'] ) {
-		add_filter( 'get_the_excerpt', array( $excerpt, 'custom_excerpt_more') );
-		add_filter( 'excerpt_more', array( $excerpt, 'read_more_link') );
-	} 
-	/**
-	 * Outside the <p> of the excerpt on anew line.
-	 */
-	elseif ( 'after' === $options['read_more_position'] ) {
-		add_filter( 'the_excerpt', array( $excerpt, 'custom_excerpt_more') );
-		add_filter( 'excerpt_more', '__return_empty_string' );
-		add_filter( 'wp_trim_words', array( $excerpt, 'read_more_link' ), 99 );
-	}
-	
 }
 
 /**

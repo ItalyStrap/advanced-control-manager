@@ -12,6 +12,9 @@
 
 namespace ItalyStrap\Excerpt;
 
+use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Config\Config_Interface;
+
 /**
  * New Class to set excerpt lenght and show "more link"
  * @link http://stackoverflow.com/questions/10081129/why-cant-i-override-wps-excerpt-more-filter-via-my-child-theme-functions
@@ -24,34 +27,42 @@ namespace ItalyStrap\Excerpt;
  * it works only with the_content and get_the_content
  * Use the box excerpt inside admin panel
  */
-class Excerpt {
+class Excerpt implements Subscriber_Interface {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
 	 * the WordPress plugin API.
 	 *
-	 * @hooked italystrap_entry_content - 20
+	 * @hooked excerpt_length - 10
 	 *
 	 * @return array
 	 */
 	public static function get_subscribed_events() {
 
-		return array(
+		$options = self::$config->all();
+
+		$events = array(
 			// 'hook_name'							=> 'method_name',
-			'italystrap_entry_content'	=> array(
-				'function_to_add'	=> 'render',
-				'priority'			=> apply_filters( 'italystrap_title_priority', 20 ),
+			'excerpt_length'	=> 'excerpt_length',
+			'excerpt_more'		=> '__return_empty_string',
+			'wp_trim_words'	=> array(
+				'function_to_add'	=> 'excerpt_end_with_punctuation',
+				'priority'			=> 98,
+				'accepted_args'		=> 4,
 			),
 		);
-		// add_filter( 'get_the_excerpt', array( $excerpt, 'custom_excerpt_more') );
-		// /**
-		//  * @todo Facendolo caricare su the_excerpt read-more su una nuova riga.
-		//  * Creare opzione selezionabile in admin.
-		//  */
-		// // add_filter( 'the_excerpt', array( $excerpt, 'custom_excerpt_more') );
-		// add_filter( 'excerpt_more', array( $excerpt, 'read_more_link') );
-		// add_filter( 'excerpt_length', array( $excerpt, 'excerpt_length') );
-		// add_filter( 'wp_trim_words', array( $excerpt, 'excerpt_end_with_punctuation' ), 10, 4 );
+
+		$filter = '';
+
+		if ( 'append' === $options['read_more_position'] ) {
+			$filter = 'get_the_excerpt';
+		} elseif ( 'after' === $options['read_more_position'] ) {
+			$filter = 'the_excerpt';
+		}
+
+		$events[ $filter ] = 'custom_excerpt_more';
+
+		return $events;
 	}
 
 	/**
@@ -62,13 +73,22 @@ class Excerpt {
 	private $options = array();
 
 	/**
+	 * Configuration object
+	 *
+	 * @var Config
+	 */
+	private static $config;
+
+	/**
 	 * Init the class
 	 *
 	 * @param $options $argument [description].
 	 */
-	function __construct( array $options = array() ) {
+	function __construct( Config_Interface $config ) {
 
-		$this->options = $options;
+		self::$config = $config;
+
+		$this->options = self::$config->all();
 	}
 
 	/**
@@ -80,21 +100,19 @@ class Excerpt {
 	 */
 	public function read_more_link() {
 
-			global $post;
+		/**
+		 * CSS class for read more link. Default 'none'.
+		 *
+		 * @var string
+		 */
+		$class = apply_filters( 'italystrap_read_more_class', $this->options['read_more_class'] );
 
-			/**
-			 * CSS class for read more link. Default 'none'.
-			 *
-			 * @var string
-			 */
-			$class = apply_filters( 'italystrap_read_more_class', $this->options['read_more_class'] );
-
-			return sprintf(
-				apply_filters( 'read_more_link', ' <a href="%1$s" class="%2$s">%3$s</a>' ),
-				get_permalink( $post->ID ),
-				$class,
-				$this->options['read_more_link_text']
-			);
+		return sprintf(
+			apply_filters( 'read_more_link', ' <a href="%1$s" class="%2$s">%3$s</a>' ),
+			esc_url( get_permalink( get_the_id() ) ),
+			esc_attr( $class ),
+			esc_html( $this->options['read_more_link_text'] )
+		);
 	}
 
 	/**
@@ -109,11 +127,13 @@ class Excerpt {
 	 */
 	public function custom_excerpt_more( $output ) {
 
-			if ( has_excerpt() && ! is_attachment() ) {
-				$output .= $this->read_more_link();
-			}
-
+		if ( is_attachment() ) {
 			return $output;
+		}
+
+		$output .= $this->read_more_link();
+
+		return $output;
 	}
 
 	/**
@@ -123,15 +143,15 @@ class Excerpt {
 	 *
 	 * @hoocked excerpt_length - 10
 	 *
-	 * @return int         Return words numer for excerpt
+	 * @return int         Return words number for excerpt
 	 */
 	public function excerpt_length( $length ) {
 
-			if ( is_home() || is_front_page() || is_archive() ) {
-				$length = (int) $this->options['excerpt_length'];
-			}
+		if ( is_home() || is_front_page() || is_archive() ) {
+			$length = (int) $this->options['excerpt_length'];
+		}
 
-			return $length;
+		return $length;
 	}
 
 	/**
@@ -186,5 +206,14 @@ class Excerpt {
 		}
 
 		return $text . $more;
+	}
+
+	/**
+	 * Return empty string
+	 *
+	 * @return null        Return empty string
+	 */
+	public function __return_empty_string( $content = '' ) {
+		return '';
 	}
 }
