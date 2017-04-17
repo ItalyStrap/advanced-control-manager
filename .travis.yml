@@ -69,9 +69,10 @@ before_script:
   - cd $PLUGIN_DIR
 
 script:
-  - codecept run unit -vvv
-  - codecept run integration -vvv
-  - codecept run functional -vvv
-  - codecept run acceptance -vvv
+#  - codecept run unit -vvv
+#  - codecept run integration -vvv
+#  - codecept run functional -vvv
+#  - codecept run acceptance -vvv
+ - codecept run wpunit -vvv
 
 
