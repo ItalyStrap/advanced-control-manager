@@ -4,7 +4,7 @@
 **Tags:** italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo  
 **Requires at least:** 4.6  
 **Tested up to:** 4.8  
-**Stable tag:** 2.5.0  
+**Stable tag:** 2.6.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -254,6 +254,19 @@ If you have any problem please open a ticket :-)
 
 
 ## Changelog ##
+
+### 2.6.0 ###
+Release Date: April 18th, 2017
+
+Dev time: 100h
+
+* Refactoring of the Widget Areas functionality (beta)
+* Refactoring of the plugin bootstrapping
+* New Adapter for CMB2
+* Read more link from options available also for Widget Post
+* Fixed some little error
+* Fixed empty excerpt for auto-generate excerpt
+* Updated test files
 
 ### 2.5.0 ###
 Release Date: April 1st, 2017
