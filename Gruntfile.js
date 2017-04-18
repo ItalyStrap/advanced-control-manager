@@ -700,40 +700,48 @@ module.exports = function(grunt) {
 	 * dx mouse e +add
 	 * dx mouse e commit
 	 */
-	grunt.registerTask('update-no-dev', [
-								'composer:update:no-dev',
-								'composer:dump-autoload -o',
-								]);
+	grunt.registerTask('update-no-dev',
+		[
+		'composer:update:no-dev',
+		'composer:dump-autoload -o',
+		]
+	);
 
-	grunt.registerTask('deploy', [
-								'gitcommit:first',
-								'gitcheckout:devtomaster',
-								'gitmerge:fromdev',
-								'version',
-								'wp_readme_to_markdown',
-								'gitcommit:version',
-								'gitpush',
-								'prompt',
-								'compress:main',
-								'github-release',
-								'clean',
-								'copy',
-								'gitcheckout:mastertodev',
-								'gitmerge:frommaster',
-								'gitpush',
-								'update-no-dev',
-								]);
+	grunt.registerTask('deploy',
+		[
+		'gitcommit:first',
+		'gitcheckout:devtomaster',
+		'gitmerge:fromdev',
+		'version',
+		'wp_readme_to_markdown',
+		'gitcommit:version',
+		'gitpush',
+		'prompt',
+		'compress:main',
+		'github-release',
+		'clean',
+		'copy',
+		'gitcheckout:mastertodev',
+		'gitmerge:frommaster',
+		'gitpush',
+		'update-no-dev',
+		]
+	);
 
-	grunt.registerTask('release', [
-								'prompt',
-								'compress',
-								'github-release',
-								]);
+	grunt.registerTask('release',
+		[
+		'prompt',
+		'compress',
+		'github-release',
+		]
+	);
 
-	grunt.registerTask('composer-update', [
-								'composer:update',
-								'composer:dump-autoload -o',
-								]);
+	grunt.registerTask('composer-update',
+		[
+		'composer:update',
+		'composer:dump-autoload -o',
+		]
+	);
 
 	grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
 	grunt.registerTask('testjsbuild', ['jshint', 'uglify']);

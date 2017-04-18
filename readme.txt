@@ -223,6 +223,19 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.6.0 =
+Release Date: April 18th, 2017
+
+Dev time: 100h
+
+* Refactoring of the Widget Areas functionality (beta)
+* Refactoring of the plugin bootstrapping
+* New Adapter for CMB2
+* Read more link from options available also for Widget Post
+* Fixed some little error
+* Fixed empty excerpt for auto-generate excerpt
+* Updated test files
+
 = 2.5.0 =
 Release Date: April 1st, 2017
 
