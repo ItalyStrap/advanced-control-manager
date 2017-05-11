@@ -40,9 +40,9 @@ class Analytics implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'wp_footer'	=> array(
+			self::$position	=> array(
 				'function_to_add'	=> 'render_analytics',
-				'priority'			=> 99999,
+				'priority'			=> 999999,
 			),
 		);
 	}
@@ -54,6 +54,8 @@ class Analytics implements Subscriber_Interface {
 	 */
 	private $options = null;
 
+	private static $position = '';
+
 	/**
 	 * Init the constructor.
 	 *
@@ -61,6 +63,7 @@ class Analytics implements Subscriber_Interface {
 	 */
 	function __construct( array $options = array() ) {
 		$this->options = $options;
+		self::$position = $this->options['google_analytics_position'];
 		// add_filter( 'body_class', array( $this, 'render_tag_manager' ), 10000, 2 );
 	}
 
