@@ -234,3 +234,22 @@ function debug( $log ) {
 	// 	error_log( $log );
 	// }
 }
+
+
+// add_action( 'wp_enqueue_scripts', function () {
+// 	global $wp_filter;
+// 	d( $wp_filter['wp_head'] );
+// 	remove_action( 'wp_head', 'wp_print_styles', 8 );
+// 	remove_action( 'wp_head', 'wp_print_scripts' );
+// 	remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+// 	remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
+// 	d( $wp_filter['wp_head'] );
+// });
+
+// $event_manager->remove_subscriber( $italystrap_title );
+// $injector->execute(function( $args ) use ( $injector ) { d( $injector ); } );
+// add_action( 'wp_footer', function () {
+// 	$debug_asset = new \ItalyStrap\Debug\Asset_Queued();
+// 	$debug_asset->styles();
+// 	$debug_asset->scripts();
+// }, 100000 );
