@@ -27,6 +27,8 @@ use ItalyStrap\Core;
  * The quicktag <!--more--> doesn't work with the_excerpt() and get_the_excerpt(),
  * it works only with the_content and get_the_content
  * Use the box excerpt inside admin panel
+ *
+ * @todo Generating auto description from content https://gist.github.com/palimadra/3023928
  */
 class Excerpt implements Subscriber_Interface {
 
