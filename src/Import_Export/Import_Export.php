@@ -16,10 +16,30 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Import Export Class
  */
-class Import_Export extends Import_Export_Base {
+class Import_Export extends Import_Export_Base implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked italystrap_after_settings_page - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'italystrap_after_settings_page'	=> 'get_view',
+			'admin_init'						=> 'export',
+			'admin_init'						=> 'import',
+		);
+	}
 
 	/**
 	 * Process a settings export from config
