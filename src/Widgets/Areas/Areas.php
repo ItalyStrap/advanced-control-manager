@@ -49,6 +49,10 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 				'accepted_args'     	=> 2
 			),
 			'delete_post'			=> 'delete_sidebar',
+			'wp_import_post_meta'	=> array(
+				'function_to_add'		=> 'import_postmeta',
+				'accepted_args'     	=> 3
+			),
 			'widgets_admin_page'	=> 'print_add_button',
 		);
 	}
@@ -134,12 +138,39 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 	}
 
 	/**
-	 * Function description
+	 * Import post_meta
 	 *
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function add_sidebar( $post_ID, $post, $update = false ) {
+	public function import_postmeta( $postmeta, $post_id, $post ) {
+
+		// global $wp_import;
+		// error_log( print_r( $wp_import, true ) );
+		// error_log( print_r( new \WP_Import(), true ) );
+
+		$new_postmeta = array();
+
+		foreach ( $postmeta as $array ) {
+			$new_postmeta[ $array['key'] ] = $array['value'];
+		}
+
+		$post = (object) $post;
+
+		$this->add_sidebar( $post_id, $post, null, $new_postmeta );
+
+		return $postmeta;
+	}
+
+	/**
+	 * Add new sidebar to database
+	 *
+	 * @param int            $post_ID  The post ID.
+	 * @param WP_Post|stdObj $post     WP_Post object also used by $this->import_postmeta();.
+	 * @param bool   $update           Is post update or not.
+	 * @param array  $postmeta         Postmeta data used only by $this->import_postmeta().
+	 */
+	public function add_sidebar( $post_ID, $post, $update = false, $postmeta = array() ) {
 
 		if ( 'sidebar' !== $post->post_type ) {
 			return $post_ID;
@@ -158,10 +189,12 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 		}
 
 		static $run_once = false;
-		if ( $run_once ) {
-			return $post_ID;
-		}
-
+		/**
+		 * Run only once and when is not an update
+		 */
+		// if ( $run_once ) {
+		// 	return $post_ID;
+		// }
 		// error_log( print_r( $run_once, true ) );
 
 		// delete_option( 'italystrap_widget_area' );
@@ -172,17 +205,26 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 
 		$instance = array();
 
-		$instance = $this->update->update( $_POST, $fields );
+		/**
+		 * Is is an import use $postmeta otherwise use $_POST
+		 *
+		 * @var array
+		 */
+		$postmeta = empty( $postmeta ) ? $_POST : $postmeta;
+		// $postmeta = $update ? $postmeta : $_POST;
+		// $postmeta = $_POST;
 
-		// error_log( print_r( $instance, true ) );
+		$instance = $this->update->update( $postmeta, $fields );
 
 		$this->sidebars[ $post_ID ] = array(
 			'id'				=> $post->post_name,
 			'action'			=> $instance[ $this->_prefix . '_action' ],
 			'priotity'			=> (int) $instance[ $this->_prefix . '_priority' ],
 			'style'				=> array(
-				'background-color'	=> $instance[ $this->_prefix . '_background_color' ],
-				'background-image'	=> (int) $instance[ $this->_prefix . '_background_image_id'],
+				'background-color'		=> $instance[ $this->_prefix . '_background_color' ],
+				'background-image'		=> (int) $instance[ $this->_prefix . '_background_image_id'],
+				// 'background-size'		=> 'cover',
+				// 'background-position'	=> 'center',
 			),
 			'widget_area_class'	=> $instance[ $this->_prefix . '_widget_area_class' ],
 			'container_width'	=> $instance[ $this->_prefix . '_container_width' ],

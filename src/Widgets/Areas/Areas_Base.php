@@ -61,7 +61,8 @@ class Areas_Base {
 		// $this->sidebars = $options;
 		$this->sidebars = get_option( 'italystrap_widget_area' );
 		// delete_option( 'italystrap_widget_area' );
-		// d( get_option( 'italystrap_widget_area' ) );
+		// error_log( print_r( get_option( 'italystrap_widget_area' ), true ) );
+		
 		$this->update = $update;
 		$this->css = $css;
 

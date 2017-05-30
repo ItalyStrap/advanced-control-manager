@@ -48,7 +48,10 @@ class CSS_Generator implements Subscriber_Interface {
 	 */
 	protected function is_valid_value( $value ) {
 
-		if ( empty( $value ) ) {
+		/**
+		 * Because "0" is empty and this is a better check
+		 */
+		if ( '' === $value ) {
 			return false;
 		}
 
@@ -75,13 +78,21 @@ class CSS_Generator implements Subscriber_Interface {
 				continue;
 			}
 
-			if ( is_numeric( $value ) ) {
+			/**
+			 * Sometimes the value could be:
+			 * a integer (thumb ID)
+			 * a numeric value (opacity: "0.1" or opacity: "1" )
+			 * a percent like "100%"
+			 */
+			if ( is_int( $value ) ) {
 
 				$value = sprintf(
 					'url(%s)',
 					wp_get_attachment_image_url( $value, '' ) // 4.4.0
 				);
 				$output .= 'background-size:cover;';
+				$output .= 'background-position:center;';
+				$output .= 'position:relative;';
 			}
 
 			$output .= $property . ':' . $value . ';';
@@ -100,11 +111,19 @@ class CSS_Generator implements Subscriber_Interface {
 	 */
 	protected function generate_rule( $selector, array $declarations = array() ) {
 
-		if ( empty( $get_declarations = $this->parse_declaration( $declarations ) ) ) {
+		/**
+		 * php5.4 compat
+		 */
+		$get_declarations = $this->parse_declaration( $declarations );
+
+		if ( empty( $get_declarations ) ) {
 			return null;
 		}
 
-		return esc_attr(
+		/**
+		 * stip_tags allows "" quotes
+		 */
+		return strip_tags(
 			sprintf(
 				'.%s{%s}',
 				$selector,
@@ -120,9 +139,27 @@ class CSS_Generator implements Subscriber_Interface {
 	 */
 	public function style( array $style = array() ) {
 
-		if ( ! $rules = $this->generate_rule( $style['id'], $style['style'] ) ) {
+		$rules = $this->generate_rule( $style['id'], $style['style'] );
+
+		if ( ! $rules ) {
 			return;
 		}
+
+		// $overlay = array(
+		// 	'content'			=> '" "',
+		// 	'display'			=> 'block',
+		// 	'background-color'	=> '#000',
+		// 	'position'			=> 'absolute',
+		// 	'width'				=> '100%',
+		// 	'height'			=> '100%',
+		// 	'top'				=> '0',
+		// 	'left'				=> '0',
+		// 	'opacity'			=> '0.2',
+		// );
+
+		// if ( $overlay ) {
+		// 	$rules .= $this->generate_rule( $style['id'] . '::before', $overlay );
+		// }
 
 		printf(
 			'<style scoped>%s</style>',

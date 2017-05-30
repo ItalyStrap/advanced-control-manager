@@ -61,7 +61,7 @@ return array(
 		),
 		'background_color'			=> array(
 			'name'		=> __( 'Background color', 'italystrap' ),
-			'desc'		=> __( 'Choose the color for the backgrount of the widget area.', 'italystrap' ),
+			'desc'		=> __( 'Choose the color for the background of the widget area.', 'italystrap' ),
 			'id'		=> $this->_prefix . '_background_color',
 			'type'		=> 'colorpicker',
 			'default'	=> '',
@@ -81,6 +81,30 @@ return array(
 			'text'		=> array(
 				'add_upload_file_text' => __( 'Select image', 'italystrap' ) // Change upload button text. Default: "Add or Upload File"
 			),
+		),
+		'background_overlay_color'			=> array(
+			'name'		=> __( 'Background overlay color', 'italystrap' ),
+			'desc'		=> __( 'Choose the color for the background overlay of the widget area.', 'italystrap' ),
+			'id'		=> $this->_prefix . '_background_overlay_color',
+			'type'		=> 'colorpicker',
+			'default'	=> '',
+			'sanitize'	=> 'sanitize_text_field',
+		),
+		/**
+		 * numeric CMB2 fields
+		 * @link https://gist.github.com/jtsternberg/c09f5deb7d818d0d170b
+		 */
+		'background_overlay_color_opacity'			=> array(
+			'name'		=> __( 'Background overlay color opacity', 'italystrap' ),
+			'desc'		=> __( 'Choose the background overlay opacity of the widget area.', 'italystrap' ),
+			'id'		=> $this->_prefix . '_background_overlay_color_opacity',
+			'type'		=> 'text',
+			'attributes' => array(
+				'type'		=> 'number',
+				'pattern'	=> '\d*',
+			),
+			'default'	=> '',
+			'sanitize'	=> 'sanitize_text_field',
 		),
 		'widget_area_class'			=> array(
 			'name'		=> __( 'Widget Area Class', 'italystrap' ),
