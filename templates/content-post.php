@@ -13,7 +13,7 @@
 	</div>
 <?php endif; ?>
 
-<section class="post-widget hfeed <?php echo esc_attr( $this->args['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
+<section class="post-widget <?php echo esc_attr( $this->args['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
 
 	<?php
 
