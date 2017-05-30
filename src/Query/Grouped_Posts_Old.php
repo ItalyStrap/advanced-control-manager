@@ -14,8 +14,6 @@ class Grouped_Posts {
 	 */
 	private $options = array();
 
-	protected $term = null;
-
 	/**
 	 * Inizializzo il costruttore
 	 */
@@ -24,6 +22,9 @@ class Grouped_Posts {
 		$this->options = $options;
 
 		$this->query = $query;
+
+		// add_shortcode( 'docs', array( $this, 'docs' ) );
+
 	}
 
 	/**
@@ -277,10 +278,52 @@ class Grouped_Posts {
 	 *
 	 * @return array|false
 	 */
+	public function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
+		$records = $this->get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name );
+		// d( $records );
+		$groupings = array();
+
+		foreach ( $records as $record ) {
+			$term_id = (int) $record->term_id;
+			$post_id = (int) $record->post_id;
+			if ( ! array_key_exists( $term_id, $groupings ) ) {
+				$groupings[ $term_id ] = array(
+					'term_id'			=> $term_id,
+					'term_name'			=> $record->term_name,
+					'term_slug'			=> $record->term_slug,
+					'term_description'	=> $record->term_description,
+					'term_parent'		=> $record->term_parent,
+					'posts'				=> array(),
+				);
+			}
+			$groupings[ $term_id ]['posts'][ $post_id ] = array(
+				'post_id'		=> $post_id,
+				'post_title'	=> $record->post_title,
+				'post_content'	=> $record->post_content,
+				'post_parent'	=> $record->post_parent,
+				'menu_order'	=> $record->menu_order,
+				'guid'			=> $record->guid,
+			);
+		}
+		return $groupings;
+	}
+	/**
+	 * Gets all of the posts grouped by terms for the specified
+	 * post type and taxonomy.
+	 *
+	 * Results are grouped by terms and ordered by the term and post IDs.
+	 * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
+	 * @since 1.0.0
+	 *
+	 * @param string $post_type_name Post type to limit query to
+	 * @param string $taxonomy_name Taxonomy to limit query to
+	 *
+	 * @return array|false
+	 */
 	protected function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
 		global $wpdb;
 		$sql_query =
-	"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid, p.post_name, p.post_date
+	"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid
 	FROM {$wpdb->term_taxonomy} AS tt
 	INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 	INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
@@ -300,56 +343,6 @@ class Grouped_Posts {
 	}
 
 	/**
-	 * Gets all of the posts grouped by terms for the specified
-	 * post type and taxonomy.
-	 *
-	 * Results are grouped by terms and ordered by the term and post IDs.
-	 * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
-	 * @since 1.0.0
-	 *
-	 * @param string $post_type_name Post type to limit query to
-	 * @param string $taxonomy_name Taxonomy to limit query to
-	 *
-	 * @return array|false
-	 */
-	public function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
-		$records = $this->get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name );
-		// ddd( $records );
-		$groupings = array();
-
-		foreach ( $records as $record ) {
-			$term_id = (int) $record->term_id;
-			$post_id = (int) $record->post_id;
-			$term_parent = (int) $record->term_parent;
-			if ( ! array_key_exists( $term_id, $groupings ) ) {
-				$groupings[ $term_id ] = array(
-					'term_id'			=> $term_id,
-					'term_name'			=> $record->term_name,
-					'term_slug'			=> $record->term_slug,
-					'term_description'	=> $record->term_description,
-					'term_parent'		=> $term_parent,
-					'posts'				=> array(),
-				);
-			}
-			$groupings[ $term_id ]['posts'][ $post_id ] = array(
-				'post_id'		=> $post_id,
-				'post_title'	=> $record->post_title,
-				'post_content'	=> $record->post_content,
-				'post_parent'	=> $record->post_parent,
-				'post_name'		=> $record->post_name,
-				'post_date'		=> $record->post_date,
-				'menu_order'	=> $record->menu_order,
-				'guid'			=> $record->guid,
-				'term_id'		=> $term_id,
-			);
-		}
-
-		// d( $groupings );
-
-		return $groupings;
-	}
-
-	/**
 	 * Function description
 	 *
 	 * @param  string $value [description]
@@ -357,47 +350,37 @@ class Grouped_Posts {
 	 */
 	public function output( $atts = null ) {
 		$output = '';
-		$this->categories = $this->get_posts_grouped_by_term( 'post', 'category' );
-
+		$categories = $this->get_posts_grouped_by_term( 'post', 'category' );
+		d( $categories );
 		$term = (object) array();
-		foreach ( (array) $this->categories as $category ) {
-			$output .= $this->build_output( $category, $term );
+		foreach ( (array) $categories as $category ) {
+
+			$term->taxonomy = 'category';
+			$term->term_id = $category['term_id'];
+			$term->slug = $category['term_slug'];
+
+			$count = count( $category['posts'] );
+			$output .= sprintf(
+				'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
+				! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
+				home_url( '/' ) . $category['term_slug'], // esc_url( get_term_link( $category['term_id'] ) ),
+				// esc_url( \get_permalink_by_slug( $category['term_slug'] ) ),
+				// esc_url( get_term_link( $category['term_id'] ), 'category' ),
+				// esc_url( get_term_link( $category['term_id'] ) ),
+				// esc_url( get_term_link( $term ) ),
+				esc_html( $category['term_name'] ),
+				sprintf(
+					_n( '%1$s Article', '%1$s Articles', $count, 'italystrap' ),
+					number_format_i18n( $count )
+				),
+				$category['term_description'],
+				$this->get_categories( $category['term_id'] ),
+				// '',
+				// $this->get_posts( $category['term_id'] ),
+				$this->get_the_grouped_posts( $category['posts'] ),
+				'' //$query_posts->output( $query_args )
+			);
 		}
-
-		return $output;
-	}
-
-	/**
-	 * Build the output
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function build_output( $category, $term ) {
-		$output = '';
-
-		$count = count( $category['posts'] );
-
-		$output .= sprintf(
-			'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
-			! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
-			// home_url( '/' ) . $category['term_slug'], // esc_url( get_term_link( $category['term_id'] ) ),
-			// esc_url( \get_permalink_by_slug( $category['term_slug'] ) ),
-			esc_url( $this->get_term_link( $category['term_id'] ), 'category' ),
-			// esc_url( get_term_link( $category['term_id'] ) ),
-			// esc_url( get_term_link( $term ) ),
-			esc_html( $category['term_name'] ),
-			sprintf(
-				_n( '%1$s Article', '%1$s Articles', $count, 'italystrap' ),
-				number_format_i18n( $count )
-			),
-			$category['term_description'],
-			$this->get_categories( $category['term_id'] ),
-			// '',
-			// $this->get_posts( $category['term_id'] ),
-			$this->get_the_grouped_posts( $category['posts'] ),
-			'' //$query_posts->output( $query_args )
-		);
 
 		return $output;
 	}
@@ -411,7 +394,7 @@ class Grouped_Posts {
 	public function get_the_grouped_posts( array $posts = array(), $limit = 5 ) {
 		$output = '';
 		$i = 0;
-// d( $posts );
+
 		$output .= '<ul class="list-unstyled">';
 
 		foreach ( $posts as $post_key => $post ) {
@@ -420,13 +403,16 @@ class Grouped_Posts {
 				continue;
 			}
 
+			$this->get_the_permalink( $post );
+
 			$output .= '<li>';
 
 			$output .= '<i class="fa fa-file-text-o"></i> ';
 
 			// $output .= get_the_post_thumbnail( $post['post_id'], 'thumbnail' );
 
-			$output .= '<a href="' . esc_url( $this->get_permalink( $post ) ) . '">' . esc_html( $post['post_title'] ) . '</a>';
+			// $output .= '<a href="' . get_the_permalink( $post['post_id'] ) . '">' . $post['post_title'] . '</a>';
+			$output .= '<a href="' . $post['guid'] . '">' . $post['post_title'] . '</a>';
 
 			$output .= '</li>';
 
@@ -439,111 +425,39 @@ class Grouped_Posts {
 	}
 
 	/**
-	 * Generate a permalink for a taxonomy term archive.
-	 *
-	 * @since 2.5.0
-	 *
-	 * @global WP_Rewrite $wp_rewrite
-	 *
-	 * @param object|int|string $term     The term object, ID, or slug whose link will be retrieved.
-	 * @param string            $taxonomy Optional. Taxonomy. Default empty.
-	 * @return string|WP_Error HTML link to taxonomy term archive on success, WP_Error if term does not exist.
-	 */
-	public function get_term_link( $term, $taxonomy = '' ) {
-		global $wp_rewrite;
-
-		if ( !is_object($term) ) {
-			if ( is_int( $term ) ) {
-				$term = get_term( $term, $taxonomy );
-			} else {
-				$term = get_term_by( 'slug', $term, $taxonomy );
-			}
-		}
-
-		if ( !is_object($term) )
-			$term = new WP_Error('invalid_term', __('Empty Term'));
-
-		if ( is_wp_error( $term ) )
-			return $term;
-
-		$taxonomy = $term->taxonomy;
-
-		$termlink = $wp_rewrite->get_extra_permastruct($taxonomy);
-
-		$slug = $term->slug;
-		$t = get_taxonomy($taxonomy);
-
-		if ( empty($termlink) ) {
-			if ( 'category' == $taxonomy )
-				$termlink = '?cat=' . $term->term_id;
-			elseif ( $t->query_var )
-				$termlink = "?$t->query_var=$slug";
-			else
-				$termlink = "?taxonomy=$taxonomy&term=$slug";
-			$termlink = home_url($termlink);
-		} else {
-			if ( $t->rewrite['hierarchical'] ) {
-				$hierarchical_slugs = array();
-				$ancestors = get_ancestors( $term->term_id, $taxonomy, 'taxonomy' );
-				foreach ( (array)$ancestors as $ancestor ) {
-					$ancestor_term = get_term($ancestor, $taxonomy);
-					$hierarchical_slugs[] = $ancestor_term->slug;
-				}
-				$hierarchical_slugs = array_reverse($hierarchical_slugs);
-				$hierarchical_slugs[] = $slug;
-				$termlink = str_replace("%$taxonomy%", implode('/', $hierarchical_slugs), $termlink);
-			} else {
-				$termlink = str_replace("%$taxonomy%", $slug, $termlink);
-			}
-			$termlink = home_url( user_trailingslashit($termlink, 'category') );
-		}
-
-		/**
-		 * Filters the term link.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param string $termlink Term link URL.
-		 * @param object $term     Term object.
-		 * @param string $taxonomy Taxonomy slug.
-		 */
-		return apply_filters( 'term_link', $termlink, $term, $taxonomy );
-	}
-
-	/**
 	 * Get the post permalink
-	 * This is a modified get_permalink from core
-	 * It does not use of the WP_Term
-	 *
-	 * @see get_permalink() wp-includes/link-template.php#L118
 	 *
 	 * @param  array  $post The post array.
 	 *
 	 * @return string      Return the permalink of the post.
 	 */
-	public function get_permalink( array $post, $leavename = false  ) {
+	public function get_the_permalink( array $post ) {
 
-		static $permalink_structure = null;
+		static $permalink = null;
 
-		if ( ! isset( $permalink_structure ) ) {
-			$permalink_structure = get_option( 'permalink_structure' );
+		if ( ! isset( $permalink ) ) {
+			$permalink = get_option('permalink_structure');
 		}
 
 		$link = '';
 
+		return $link;
+
 		// if they're not using the fancy permalink option
-		if ( '' === $permalink_structure ) {
+		if ( '' !== $permalink ) {
 			return home_url( '?p=' . $post['post_id'] );
 		}
 
-		$category = '';
-		if ( strpos( $permalink_structure, '%category%' ) !== false ) {
-			$cats = $this->get_the_category( $post['term_id'] );
 
+		$unixtime = strtotime($post->post_date);
+
+		$category = '';
+		if ( strpos($permalink, '%category%') !== false ) {
+			$cats = get_the_category($post->ID);
 			if ( $cats ) {
-				// $cats = wp_list_sort( $cats, array(
-				// 	'term_id' => 'ASC',
-				// ) );
+				$cats = wp_list_sort( $cats, array(
+					'term_id' => 'ASC',
+				) );
 
 				/**
 				 * Filters the category that gets used in the %category% permalink token.
@@ -554,18 +468,16 @@ class Grouped_Posts {
 				 * @param array    $cats Array of all categories (WP_Term objects) associated with the post.
 				 * @param WP_Post  $post The post in question.
 				 */
-				// $category_object = apply_filters( 'post_link_category', $cats[0], $cats, $post );
+				$category_object = apply_filters( 'post_link_category', $cats[0], $cats, $post );
 
-				// $category_object = get_term( $category_object, 'category' );
-				// $category = $category_object->slug;
-				$category = $cats['term_slug'];
-				if ( $parent = $cats['term_parent'] ) {
-					$category = $this->get_category_parents( $parent ) . '/' . $category;
-				}
+				$category_object = get_term( $category_object, 'category' );
+				$category = $category_object->slug;
+				if ( $parent = $category_object->parent )
+					$category = get_category_parents($parent, false, '/', true) . $category;
 			}
 			// show default category in permalinks, without
 			// having to assign it explicitly
-			if ( empty( $category ) ) {
+			if ( empty($category) ) {
 				$default_category = get_term( get_option( 'default_category' ), 'category' );
 				if ( $default_category && ! is_wp_error( $default_category ) ) {
 					$category = $default_category->slug;
@@ -574,29 +486,12 @@ class Grouped_Posts {
 		}
 
 		$author = '';
-		// if ( strpos( $permalink_structure, '%author%' ) !== false ) {
-		// 	$authordata = get_userdata( $post->post_author );
-		// 	$author = $authordata->user_nicename;
-		// }
+		if ( strpos($permalink, '%author%') !== false ) {
+			$authordata = get_userdata($post->post_author);
+			$author = $authordata->user_nicename;
+		}
 
-		$unixtime = strtotime( $post['post_date'] );
-
-		$date = explode( " ", date( 'Y m d H i s', $unixtime ) );
-
-		$rewritecode = array(
-			'%year%',
-			'%monthnum%',
-			'%day%',
-			'%hour%',
-			'%minute%',
-			'%second%',
-			$leavename? '' : '%postname%',
-			'%post_id%',
-			'%category%',
-			'%author%',
-			$leavename? '' : '%pagename%',
-		);
-
+		$date = explode(" ",date('Y m d H i s', $unixtime));
 		$rewritereplace =
 		array(
 			$date[0],
@@ -605,41 +500,81 @@ class Grouped_Posts {
 			$date[3],
 			$date[4],
 			$date[5],
-			$post['post_name'],
-			$post['post_id'],
+			$post->post_name,
+			$post->ID,
 			$category,
 			$author,
-			$post['post_name'],
+			$post->post_name,
 		);
-		$permalink = '';
-		$permalink = home_url( str_replace( $rewritecode, $rewritereplace, $permalink_structure ) );
-		$permalink = user_trailingslashit( $permalink, 'single' );
-
-		return $permalink;
+		$permalink = home_url( str_replace($rewritecode, $rewritereplace, $permalink) );
+		$permalink = user_trailingslashit($permalink, 'single');
 	}
 
 	/**
-	 * Get hte category
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * Aggiungo lo shortcode per mostrare il loop dei plus
+	 * @param  array $atts Attributi dello shortcode.
 	 */
-	public function get_the_category( $id ) {
-		return $this->categories[ $id ];
-	}
+	public function outputs( $atts = null ) {
 
-	/**
-	 * Get the parent category
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_category_parents( $id ) {
+		$query_posts = Posts::init();
 
-		if ( ! $this->categories[ $id ]['term_parent'] ) {
-			return '';
-		}
+		$query_posts->get_widget_args( $this->args );
 
-		return $this->categories[ $this->categories[ $id ]['term_parent'] ]['term_slug'];
+		$output = '';
+
+		/**
+		 * Array delle categorie
+		 * @todo Mettere a posto la cache per le varie query, leggere 10up su github
+		 * @var array
+		 */
+		$categories = $this->get_category_array();
+
+		$output .= sprintf(
+			'<div class="%s">',
+			! empty( $this->args['tax_container_class'] ) ? esc_attr( $this->args['tax_container_class'] ) : ''
+		);
+
+		foreach ( (array) $categories as $category ) :
+
+			if ( 0 === $category->count ) {
+				continue;
+			}
+
+			/**
+			 * @see http://wordpress.stackexchange.com/questions/169469/get-posts-from-child-categories-with-parent-category-id
+			 */
+			$query_args = array(
+				'category__in' 			=> $category->term_id,
+				// 'tax_query' 			=> array(
+				// 	array(
+				// 		'taxonomy'	=> 'category',
+				// 		'field'		=> 'term_id',
+				// 		'terms'		=> $category->term_id,
+				// 	),
+				// ),
+				'update_post_term_cache' => true
+			);
+
+			$output .= sprintf(
+				'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
+				! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
+				esc_url( get_term_link( $category ) ),
+				$category->name,
+				sprintf(
+					_n( '%1$s Article', '%1$s Articles', $category->count, 'italystrap' ),
+					number_format_i18n( $category->count )
+				),
+				$category->description,
+				$this->get_categories( $category->term_id ),
+				// ''
+				// $this->get_posts( $category->term_id )
+				$query_posts->output( $query_args )
+			);
+
+		endforeach;
+
+		$output .= '</div>';
+
+		return $output;
 	}
 }

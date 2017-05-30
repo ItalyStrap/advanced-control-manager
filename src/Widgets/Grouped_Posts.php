@@ -12,15 +12,26 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Query\Grouped_Posts as Grouped;
+
 /**
  * Widget Class for displaying Posts Grouped by Taxonomies
  */
 class Grouped_Posts extends Widget {
 
 	/**
+	 * Grouped Posts Object
+	 *
+	 * @var Grouped_Posts
+	 */
+	protected $grouped = null;
+
+	/**
 	 * Init the constructor
 	 */
-	function __construct() {
+	function __construct( Grouped $grouped  ) {
+
+		$this->grouped = $grouped;
 
 		/**
 		 * I don't like this and I have to find a better solution for loading script and style for widgets.
@@ -66,17 +77,7 @@ class Grouped_Posts extends Widget {
 	 */
 	public function widget_render( $args, $instance ) {
 
-		global $injector;
-
-		// $category_posts = new Category_Posts;
-		$category_posts = $injector->make( 'ItalyStrap\Query\Grouped_Posts' );
-		$category_posts->get_attributes( $instance );
-		return $category_posts->output();
-
-		// $query_posts = Query_Posts::init();
-
-		// $query_posts->get_widget_args( $instance );
-
-		// return $query_posts->output();
+		$this->grouped->get_attributes( $instance );
+		return $this->grouped->output();
 	}
 } // Class.

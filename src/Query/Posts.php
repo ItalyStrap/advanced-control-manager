@@ -357,7 +357,12 @@ class Posts extends Query {
 		$attr = array();
 		$link_text = '';
 
-		if ( empty( $this->args['use_global_read_more'] ) || empty( $this->config->get( 'activate_excerpt_more_mods' ) ) ) {
+		/**
+		 * Compat with php5.4 and 5.3
+		 */
+		$activate_excerpt_more_mods = $this->config->get( 'activate_excerpt_more_mods' );
+
+		if ( empty( $this->args['use_global_read_more'] ) || empty( $activate_excerpt_more_mods ) ) {
 			$attr['class'] = 'more-link';
 			$link_text = $this->args['excerpt_readmore'];
 		}
