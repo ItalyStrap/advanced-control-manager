@@ -56,9 +56,69 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 = Features included: =
 
-* **[Breadcrumbs](http://docs.italystrap.com/breadcrumbs-wordpress-theme/)** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs ;-) ).
+== General feature ==
 
-* **[Carousel](http://docs.italystrap.com/the-carousel-shortcode/)** Forked from [Agnosia Bootstrap Carousel by AuSoft](https://wordpress.org/plugins/agnosia-bootstrap-carousel/) with my many improvements. Add Bootstrap carousel in `[gallery]` shortcode with attribute `type="carousel"` and many functionality, it works only if you have Twitter Bootstrap CSS and JS or [ItalyStrap framework](http://www.italystrap.com/) installed. It will not include the files for you, so if they are not present, the carousel will not work. The carousel is provided by shortcode and widget.
+* Show Post Type IDs in edit screen
+* Show Post Type thumbnails in edit screen
+* Remove Emojis
+* Social Sharing Button {Only for Beta tester}
+* Web font loading (Google fonts and font lazy loading) {Only for Beta tester}
+* ItalyStrap theme hook (Only for ItalyStrap Theme Framework)
+* ItalyStrap theme hooked callable (Only for ItalyStrap Theme Framework)
+
+== Widget ==
+
+* Widget Areas custom {Only for Beta tester and for ItalyStrap Theme Framework}
+* Widget Visibility
+* HTML attributes for widget (You can add a css ID and class to widget)
+* HTML in Widget Title
+* Remove widget title
+* Posts Widget (Display loops of post with many options)
+* Grouped Posts Widget (Posts grouped by taxonomy) {Only for Beta tester}
+* Carousel Widget (Only for Twitter Bootstrap Carousel with many options. It will not include the files for you, so if they are not present, the carousel will not work.)
+* vCard Widget (Display vCard with Schema.org)
+* Image Widget {{BETA VERSION}}
+* Breadcrumbs Widget with Schema.org markup {{BETA VERSION}}
+* Facebook Page Widget {{BETA VERSION}}
+* TinyMCE Editor Widget {{BETA VERSION}}
+* Monster Widget by ItalyStrap {{Only for debug}}
+
+== Shortcodes ==
+
+* Do ShortCode in Widget Text
+* Shortcode for Media Carousel (Only for Twitter Bootstrap Carousel with many options. It will not include the files for you, so if they are not present, the carousel will not work.)
+
+== Style ==
+
+* Activate Custom CSS (This will give you the possibility to add custom css style and css Body/Post class for entire site and for single post type)
+* Custom CSS (Textarea for custom css)
+* Body Class (css class)
+* Post Class (css class)
+
+== Analytics ==
+
+* Activate Google Analytics (Insert the universal google analytics code)
+* Add Google Analytics ID
+* Anonymize Google Analytics IP
+* Google Analytics position
+
+== Content ==
+
+* Activate excerpt more mods
+* Read more link text
+* Read more CSS class
+* Auto-generated Excerpt length
+* Excerpt ends with punctuation
+* Read more position
+
+== Media ==
+
+* Jpeg quality
+* Lazy Loading of images
+* Custom Placeholder for image lazyloading
+* Lazy Loading of embedded video
+
+* **[Breadcrumbs](http://docs.italystrap.com/breadcrumbs-wordpress-theme/)** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs ;-) ).
 
 * **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel, srcset and sizes.
 
