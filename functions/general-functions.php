@@ -536,7 +536,7 @@ function _display_config( $atts ) {
 	$output = '<ul class="list-unstyled">';
 	$output .= sprintf(
 		'<h3>%s</h3>',
-		__( 'Options', 'italystrap' )
+		__( 'Options available:', 'italystrap' )
 	);
 
 	foreach ( (array) $get_settings as $key => $setting ) {
@@ -544,7 +544,7 @@ function _display_config( $atts ) {
 			'<li><h4>%s</h4><p>Attribute: <code>%s</code><br>Default: <code>%s</code><br>%s</p></li>',
 			esc_attr( $setting['name'] ),
 			esc_attr( $setting['id'] ),
-			esc_attr( $setting['default'] ),
+			empty( $setting['default'] ) ? __( 'empty', 'italystrap' ) : esc_attr( $setting['default'] ),
 			wp_kses_post( $setting['desc'] )
 		);
 	}
@@ -660,7 +660,7 @@ if ( ! function_exists( 'd' ) ) {
 if ( ! function_exists( 'ddd' ) ) {
 	function ddd( $value = '' ) {
 		add_action( 'plugins_loaded', function () use ( $value ) {
-			\d( $value );
+			\ddd( $value );
 		});
 	
 	}

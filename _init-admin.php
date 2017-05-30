@@ -96,14 +96,10 @@ $imp_exp_args = array(
 $injector->defineParam( 'imp_exp_args', $imp_exp_args );
 
 /**
- * Import Export Object
- *
- * @var Import_Export
+ * Import Export
  */
 $import_export = $injector->make( 'ItalyStrap\Import_Export\Import_Export' );
-add_action( 'italystrap_after_settings_page', array( $import_export, 'get_view' ) );
-add_action( 'admin_init', array( $import_export, 'export' ) );
-add_action( 'admin_init', array( $import_export, 'import' ) );
+$event_manager->add_subscriber( $import_export );
 
 /**
  * Instanziate the ItalyStrap\Image\Size
