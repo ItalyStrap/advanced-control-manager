@@ -5,7 +5,7 @@ use \WP_Query;
 /**
  * Classe per la documentazione
  */
-class Grouped_Posts {
+class Grouped_Posts_Old {
 
 	/**
 	 * Pluin options

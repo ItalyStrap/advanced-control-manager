@@ -99,7 +99,6 @@ class Custom_Css extends Custom_Css_Base implements Subscriber_Interface {
 		}
 
 		return $classes;
-
 	}
 
 	/**

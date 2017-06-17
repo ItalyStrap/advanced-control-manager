@@ -22,6 +22,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+/**
+ * Back compat with 5.2
+ */
+if ( ! defined( '__DIR__' ) ) {
+	define( '__DIR__', dirname( __FILE__ ) );
+}
+
 require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.php' );
 
 /**

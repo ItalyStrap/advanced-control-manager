@@ -451,7 +451,7 @@ class Breadcrumbs {
 	 * @param  int $num Optional, a number for coming count position.
 	 * @return string A meta tag for Schema.org markup
 	 */
-	private function meta( $count, $num = '' ) {
+	private function meta( $count, $num = 0 ) {
 
 		$count = $count + $num;
 		return '<meta itemprop="position" content="' . $count . '" />';

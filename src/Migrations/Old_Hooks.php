@@ -12,10 +12,28 @@
 
 namespace ItalyStrap\Migrations;
 
+use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Old_Hooks
  */
-class Old_Hooks {
+class Old_Hooks implements Subscriber_Interface  {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'after_setup_theme' - 10
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'after_setup_theme'	=> 'convert',
+		);
+	}
 
 	/**
 	 * Hooks from version <4.0.0

@@ -82,7 +82,7 @@ class Widget_Factory implements Subscriber_Interface {
 			'widget_breadcrumbs'		=> 'ItalyStrap\\Widgets\\Breadcrumbs', // Beta
 			'widget_grouped_posts'		=> 'ItalyStrap\\Widgets\\Grouped_Posts', // Beta
 			'widget_editor'				=> 'ItalyStrap\\Widgets\\Editor', // _Beta
-			'widget_nav_menu'			=> 'ItalyStrap\\Widgets\\Nav_Menu', // _Beta
+			// 'widget_nav_menu'			=> 'ItalyStrap\\Widgets\\Nav_Menu', // _Beta
 			'widget_monster'			=> 'ItalyStrap\\Widgets\\Monster', // Debug
 		);
 	}

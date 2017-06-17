@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Core\Navbar\Bootstrap_Nav_Menu;
+use ItalyStrap\Navbar\Bootstrap_Nav_Menu;
 
 /**
  * Widget Class for post type
