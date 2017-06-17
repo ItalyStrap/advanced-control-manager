@@ -1,6 +1,6 @@
 <?php
 /**
- *	Plugin Name:	ItalyStrap
+ *	Plugin Name:	Advanced Control Manager for WordPress by ItalyStrap
  *	Plugin URI:		http://www.italystrap.it
  *	Description:	{Requires PHP5.3 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
  *	Version:		2.6.0
