@@ -33,6 +33,7 @@ if ( is_multisite() ) {
 	 */
 
 	delete_option( 'italystrap_settings' );
+	delete_option( 'italystrap_widget_area' );
 
 	if ( $blogs ) {
 		foreach ( $blogs as $blog ) {
@@ -46,6 +47,7 @@ if ( is_multisite() ) {
 			 */
 
 			delete_option( 'italystrap_settings' );
+			delete_option( 'italystrap_widget_area' );
 			// delete_post_meta_by_key( '_italystrap_layout_settings' );
 
 			restore_current_blog();
@@ -61,6 +63,7 @@ if ( is_multisite() ) {
 	 */
 
 	delete_option( 'italystrap_settings' );
+	delete_option( 'italystrap_widget_area' );
 	// delete_post_meta_by_key( '_italystrap_layout_settings' );
 
 

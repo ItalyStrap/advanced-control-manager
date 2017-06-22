@@ -98,6 +98,16 @@ $events_manager = $event_manager; // Deprecated $events_manager.
 $event_manager->add_subscriber( new Widget_Factory( $options, $injector ) );
 $event_manager->add_subscriber( new Shortcode_Factory( $options, $injector ) );
 
+/**
+ * Adjust priority to make sure this runs
+ */
+add_action( 'init', function () {
+	/**
+	 * Load po file
+	 */
+	load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
+}, 100 );
+
 if ( defined( 'ITALYSTRAP_BETA' ) ) {
 
 	/**

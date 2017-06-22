@@ -588,6 +588,8 @@ add_shortcode( 'display_example', __NAMESPACE__ . '\_display_example' );
 
 /**
  * ItalyStrap plugin on activation
+ * @see _init_admin.php#36
+ * @see _init_admin.php#37
  */
 function plugin_on_activation() {
 

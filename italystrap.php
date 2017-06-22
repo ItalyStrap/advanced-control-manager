@@ -1,8 +1,8 @@
 <?php
 /**
- *	Plugin Name:	Advanced Control Manager for WordPress by ItalyStrap
+ *	Plugin Name:	Advanced Control Manager
  *	Plugin URI:		http://www.italystrap.it
- *	Description:	{Requires PHP5.3 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
+ *	Description:	Advanced Control Manager for WordPress by ItalyStrap {Requires PHP5.3 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
  *	Version:		2.6.0
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
@@ -65,16 +65,6 @@ if ( ! $requirements->is_compatible_version() ) {
 require( __DIR__ . '/functions/default-constants.php' );
 italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
 
-/**
- * Adjust priority to make sure this runs
- */
-add_action( 'init', function () {
-	/**
-	 * Load po file
-	 */
-	load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
-}, 100 );
-
 $autoload_plugin_files = array(
 	'/vendor/autoload.php',
 	'/vendor/webdevstudios/cmb2/init.php',
@@ -83,6 +73,10 @@ $autoload_plugin_files = array(
 	'/_init.php',
 	'/_init-admin.php',
 );
+
+if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {
+	$autoload_plugin_files = array();
+}
 
 foreach ( $autoload_plugin_files as $file ) {
 	require( __DIR__ . $file );
