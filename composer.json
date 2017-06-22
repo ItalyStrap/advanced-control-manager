@@ -1,6 +1,6 @@
 {
-    "name": "overclokk/italystrap-extended",
-    "description": "Make your site more powerful",
+    "name": "ItalyStrap/advanced-control-manager",
+    "description": "Make your web site more powerful",
     "type": "wordpress-plugin",
     "license": "GPL 2.0",
 	"require": {
