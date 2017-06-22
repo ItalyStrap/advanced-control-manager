@@ -76,6 +76,39 @@ class Areas_Base {
 	}
 
 	/**
+	 * Get joined posts and postmeta
+	 *
+	 * https://kuttler.eu/en/code/custom-wordpress-sql-query-for-multiple-meta-values/
+	 * https://stackoverflow.com/questions/26319613/improving-a-query-using-a-lot-of-inner-joins-to-wp-postmeta-a-key-value-table
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_joined_post_and_postmeta_from_db() {
+
+		$post_type = 'sidebar';
+
+		global $wpdb;
+		$sql_query =
+	"SELECT p.ID AS post_id, p.post_title, p.post_excerpt, p.post_parent, p.menu_order, p.post_name, m1.meta_key, m1.meta_value
+	FROM {$wpdb->posts} AS p
+	INNER JOIN {$wpdb->postmeta} AS m1 ON ( p.ID = m1.post_id )
+	INNER JOIN {$wpdb->postmeta} AS m2 ON ( p.ID = m2.post_id )
+	WHERE p.post_type = %s AND p.post_status = 'publish'
+	GROUP BY p.ID
+	ORDER BY p.menu_order ASC;";
+
+		$sql_query = $wpdb->prepare( $sql_query, $post_type );
+		$results = $wpdb->get_results( $sql_query );
+
+		if ( ! $results || ! is_array( $results ) ) {
+			return false;
+		}
+
+		return $results;
+	}
+
+	/**
 	 * Generate HTML attributes
 	 * Helper method for the get_attr();
 	 * Build list of attributes into a string and apply contextual filter on string.
