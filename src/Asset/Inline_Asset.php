@@ -3,6 +3,7 @@
  * Abstract class API for inline style and script
  *
  * This class define method for printing style and script inline.
+ *
  * @link  http://coderrr.com/php-passing-data-between-classes/
  *
  * @since 2.0.0
@@ -31,7 +32,7 @@ abstract class Inline_Asset implements Inline_Asset_Interface {
 	 *
 	 * @param string $data The data static variable.
 	 */
-	public static function set( $data ){
+	public static function set( $data ) {
 
 		return static::$data .= $data;
 
@@ -40,7 +41,7 @@ abstract class Inline_Asset implements Inline_Asset_Interface {
 	/**
 	 * This return the data variable.
 	 */
-	public static function get(){
+	public static function get() {
 
 		return static::$data;
 

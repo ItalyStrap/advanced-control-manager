@@ -33,7 +33,7 @@ class Minify {
 		"\n",
 		"\r",
 		"\t",
-		"&nbsp;",
+		'&nbsp;',
 		'&amp;nbsp;',
 	);
 
@@ -47,7 +47,7 @@ class Minify {
 		';}'	=> '}', // Strip optional semicolons.
 		",\n"	=> ',', // Don't wrap multiple selectors.
 		"\n}"	=> '}', // Don't wrap closing braces.
-		'} '	=> "}", // Put each rule on it's own line.
+		'} '	=> '}', // Put each rule on it's own line.
 	);
 
 	/**
@@ -72,6 +72,6 @@ class Minify {
 		$search = array_keys( $this->replace );
 		$subject = str_replace( $search, $this->replace, $subject );
 
-		return trim($subject);
+		return trim( $subject );
 	}
 }

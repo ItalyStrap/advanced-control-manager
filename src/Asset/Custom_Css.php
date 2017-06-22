@@ -33,7 +33,7 @@ class Custom_Css extends Custom_Css_Base implements Subscriber_Interface {
 	public static function get_subscribed_events() {
 
 		return array(
-			// 'hook_name'							=> 'method_name',
+			// 'hook_name'                          => 'method_name',
 			'wp'			=> 'add_post_type_custom_css',
 			'body_class'	=> 'body_class',
 			'post_class'	=> 'post_class',

@@ -31,7 +31,7 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 	public static function get_subscribed_events() {
 
 		return array(
-			// 'hook_name'				=> 'method_name',
+			// 'hook_name'              => 'method_name',
 			'wp_head'	=> array(
 				'function_to_add'	=> 'inline_css',
 				'priority'			=> 999999,
