@@ -9,6 +9,25 @@ var index_php_text = [
 	'\n',
 ].join("\n");
 
+// '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
+var acm_plugin = [
+	'**',
+	'!.git/**',
+	'!.sass-cache/**',
+	'!node_modules/**',
+	'!bower_components/**',
+	'!tests/**',
+	'!future-inclusions/**',
+	'!bower.json',
+	'!Gruntfile.js',
+	'!package.json',
+	'!.gitattributes',
+	'!.gitignore',
+	'!*.yml',
+	'!snippets.md',
+	'!*.zip',
+];
+
 /**
  * @link https://github.com/fshost/node-dir
  * http://stackoverflow.com/questions/7041638/walking-a-directory-with-node-js
@@ -144,12 +163,12 @@ module.exports = function(grunt) {
 				src: [
 					// '*.php',
 					// 'admin/*.php',
-					'core/**/*.php',
-					'classes/class-italystrap-posts-widget.php',
+					'src/**/*.php',
+					// 'src/Asset/*.php',
 					]
 			},
 			options: {
-				bin: 'C:/Users/fisso/AppData/Roaming/Composer/vendor/bin/phpcs',
+				// bin: 'C:/Users/fisso/AppData/Roaming/Composer/vendor/bin/phpcs',
 				standard: 'WordPress',
 				// standard: 'Zend',
 				verbose: true,
@@ -165,11 +184,11 @@ module.exports = function(grunt) {
 				src: [
 					// '*.php',
 					// 'index.php',
-					'classes/class-italystrap-posts-widget.php',
+					'src/Asset/*.php',
 					]
 			},
 			options: {
-				bin: 'C:/Users/fisso/AppData/Roaming/Composer/vendor/bin/phpcbf',
+				// bin: 'C:/Users/fisso/AppData/Roaming/Composer/vendor/bin/phpcbf',
 				standard: 'WordPress',
 				// noPatch: '--no-patch',
 				// standard: 'Zend',
@@ -336,20 +355,8 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src: [
-							'**' ,
-							'!.git/**',
-							'!.sass-cache/**',
-							'!bower_components/**',
-							'!node_modules/**',
-							'!.gitattributes',
-							'!.gitignore',
-							// '!bower.json',
-							// '!Gruntfile.js',
-							// '!package.json',
-							'!*.zip'], // What should be included in the zip
-						// dest: '<%= pkg.name %>/',        // Where the zipfile should go
-						dest: 'italystrap/',        // Where the zipfile should go
+						src: acm_plugin, // What should be included in the zip
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -360,20 +367,9 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src: [
-							'**' ,
-							'!.git/**',
-							'!.sass-cache/**',
-							'!bower_components/**',
-							'!node_modules/**',
-							'!.gitattributes',
-							'!.gitignore',
-							// '!bower.json',
-							// '!Gruntfile.js',
-							// '!package.json',
-							'!*.zip'], // What should be included in the zip
-						dest: 'italystrap/',        // Where the zipfile should go
-						// dest: 'italystrap/',        // Where the zipfile should go
+						src: acm_plugin, // What should be included in the zip
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
+						// dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -405,7 +401,7 @@ module.exports = function(grunt) {
 							'!tests/**',
 							'!future-inclusions/**',
 							'!*.zip'], // What should be included in the zip
-						dest: 'italystrap/',        // Where the zipfile should go
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
 				]
@@ -414,10 +410,10 @@ module.exports = function(grunt) {
 
 		"github-release": { // https://github.com/dolbyzerr/grunt-github-releaser
 			options: {
-				repository: 'overclokk/italystrap-extended', // Path to repository
+				repository: 'ItalyStrap/<%= pkg.name %>', // Path to repository
 				release: {
-					name: 'ItalyStrap plugin v.<%= pkg.version %>',
-					body: '## New release of <%= pkg.name %> <%= pkg.version %> \nSee the **[changelog](https://github.com/overclokk/italystrap-extended#changelog)**',
+					name: '<%= pkg.title %> v.<%= pkg.version %>',
+					body: '## New release of <%= pkg.title %> <%= pkg.version %> \nSee the **[changelog](https://github.com/ItalyStrap/<%= pkg.name %>#changelog)**',
 				}
 			},
 			files: {
@@ -430,70 +426,15 @@ module.exports = function(grunt) {
 			tosvn: {
 				expand: true,
 				// cwd: 'src',
-				src: [
-					'**',
-					'!node_modules/**',
-					'!bower_components/**',
-					'!tests/**',
-					'!future-inclusions/**',
-					'!bower.json',
-					// '!composer.json',
-					'!Gruntfile.js',
-					'!package.json',
-					'!*.yml',
-					// '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
-					'!snippets.md',
-					// '!composer.lock',
-					// '!vendor/mobiledetect/**'
-					],
-				dest: 'E:/Dropbox/svn-wordpress/italystrap/trunk/',
+				src: acm_plugin,
+				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/',
 				filter: 'isFile',
 			},
 			totag: {
 				expand: true,
 				// cwd: 'src',
-				src: [
-					'**',
-					'!node_modules/**',
-					'!bower_components/**',
-					'!tests/**',
-					'!future-inclusions/**',
-					'!bower.json',
-					// '!composer.json',
-					'!Gruntfile.js',
-					'!package.json',
-					'!*.yml',
-					// '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
-					'!snippets.md',
-					// '!composer.lock',
-					// '!vendor/mobiledetect/**'
-					],
-				dest: 'E:/Dropbox/svn-wordpress/italystrap/tags/<%= pkg.version %>/',
-				filter: 'isFile',
-			},
-			/**
-			 * This task is only for copy files in new project site
-			 * In "dest" insert the destination of new site that I have to develope
-			 * Comment this code if I'm developing in this directory
-			 */
-			test: {
-				expand: true,
-				// cwd: 'src',
-				src: [
-					'**',
-					'!node_modules/**',
-					'!bower_components/**',
-					'!tests/**',
-					'!sass/**',
-					'!*.json',
-					'!*.js',
-					'!*.lock',
-					'!*.yml',
-					// '!*.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
-					],
-				// dest: 'E:/WEB progetti/ItalyStrap/italystrap-extended-<%= pkg.version %>/',
-				dest: 'E:/xampp/htdocs/test/wp-content/plugins/italystrap/',
-				// dest: 'E:/vagrant-local/www/gjav/htdocs/wp-content/plugins/italystrap/',
+				src: acm_plugin,
+				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/tags/<%= pkg.version %>/',
 				filter: 'isFile',
 			},
 		},
@@ -504,7 +445,7 @@ module.exports = function(grunt) {
 				// 'no-write': true
 			},
 			// clean: ['../ItalyStrap']
-			trunk: ['E:/Dropbox/svn-wordpress/italystrap/trunk/*']
+			trunk: ['E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/*']
 
 		},
 
