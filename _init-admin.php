@@ -33,8 +33,8 @@ foreach ( $autoload_concrete as $option_name => $concrete ) {
 	$event_manager->add_subscriber( $injector->make( $concrete ) );
 }
 
-add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
-add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
+// add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
+// add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
 if ( ! empty( $options['widget_visibility'] ) ) {
 	add_action( 'admin_init', array( 'ItalyStrap\Widgets\Visibility\Visibility_Admin', 'init' ) );
