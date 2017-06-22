@@ -11,6 +11,9 @@
 use ItalyStrap\Fields\Fields_Interface;
 use ItalyStrap\Event\Subscriber_Interface;
 
+/**
+ * ItalyStrapAdminGallerySettings
+ */
 class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 	/**
@@ -31,6 +34,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 	/**
 	 * Array with default value
+	 *
 	 * @var array
 	 */
 	private $fields_old = array();
@@ -39,16 +43,17 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 	/**
 	 * Default option
+	 *
 	 * @var array
 	 */
 	private $carousel_options = array();
 
 	private $indicators = array(
-							'before-inner',
-							'after-inner',
-							'after-control',
-							'false',
-							);
+		'before-inner',
+		'after-inner',
+		'after-control',
+		'false',
+	);
 
 	private $instance_old = array();
 
@@ -90,7 +95,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 			'responsive'	=> false,
 		);
 
-		$this->randID = rand(2, 5);
+		$this->randID = rand( 2, 5 );
 
 		// add_action( 'admin_init', array( $this, 'admin_init' ) );
 	}
@@ -130,7 +135,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 		}
 
-		$translation_array = json_encode( require( ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php' ) );
+		$translation_array = wp_json_encode( require( ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php' ) );
 		// var_dump( $translation_array ); die();
 		wp_localize_script( 'italystrap-gallery-settings', 'gallery_fields', $translation_array );
 
@@ -169,6 +174,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 		<?php
 		/**
 		 * Instance of list of image sizes
+		 *
 		 * @var ItalyStrapAdminMediaSettings
 		 */
 		// $image_size_media = new ItalyStrapAdminMediaSettings;
@@ -180,11 +186,12 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 			/**
 			 * Save select in widget
+			 *
 			 * @link https://wordpress.org/support/topic/wordpress-custom-widget-select-options-not-saving
+			 *
 			 * Display select only if is schema
 			 */
 			if ( 'ids' === $key || 'type' === $key || 'size' === $key ) {
-
 
 			} elseif ( 'sizetablet' === $key || 'sizephone' === $key ) {
 
@@ -200,11 +207,11 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 						foreach ( $image_size_media_array as $k => $v ) {
 
-							$option .= '<option ' . ( selected( $k, $saved_option ) ) . ' value="' . $k . '">' . $v . '</option>';
+							$option .= '<option ' . ( selected( $k, $saved_option ) ) . ' value="' . esc_attr( $k ) . '">' . esc_html( $v ) . '</option>';
 
 						}
 
-						echo $option;
+						echo $option; // XSS ok.
 						?>
 					</select>
 				</label>
@@ -236,9 +243,9 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 				<?php elseif ( isset( $this->carousel_options[ $key ] ) ) :
 
-					if ( 'true' === $instance_old[ $key ] ) {
-						$instance_old[ $key ] = true;
-					}
+	if ( 'true' === $instance_old[ $key ] ) {
+		$instance_old[ $key ] = true;
+	}
 				?>
 					<label class="setting" for="<?php echo esc_attr( $key ); ?>">
 						<input type="checkbox" name="<?php echo esc_attr( $key ); ?>" value='1' data-setting="<?php echo esc_attr( $key ); ?>" <?php checked( $instance_old[ $key ], true ); ?>>
@@ -254,8 +261,8 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 				<?php endif; ?>
 
-			<?php } //!- else
-		}//!- foreach
+			<?php } //!- else.
+		}//!- foreach.
 
 		?>
 				<!-- <p><?php esc_attr_e( 'For more informations about the options below see the <a href="admin.php?page=italystrap-documentation#carousel" target="_blank">documentation.</a>', 'italystrap' ); ?></p>
@@ -316,7 +323,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 		printf(
 			'<style>.kint{margin-left: 180px !important;}</style>'
 		);
-		// ddd( $output );
+
 		echo $output; // XSS ok.
 	}
 
@@ -359,228 +366,3 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 	}
 }
-
-
-
-
-/**
- * http://shibashake.com/wordpress-theme/how-to-expand-the-wordpress-media-manager-interface
- */
-
-
-// add_filter( 'media_view_settings', 'my_media_view_settings', 10, 2 );
-
-function my_media_view_settings( $settings, $post ) {
-
-	// var_dump($post);
-	// var_dump($settings);
-
-	$post_types = get_post_types( array( 'public' => true ) );
-
-	// Add in post types.
-	foreach ( $post_types as $slug => $label ) {
-
-		// if ( 'uploaded' === $slug ) {
-		// 	unset( $settings['postTypes'][ $slug ] );
-		// }
-
-		if ( 'attachment' === $slug ) {
-			continue;
-		}
-		$settings['postTypes'][ $slug ] = ucfirst( $label );
-
-	}
-
-	return $settings;
-}
-
-// Override relevant media manager javascript functions
-// add_action( 'admin_print_footer_scripts', 'override_the_filter_object', 51 );
-function override_the_filter_object() { ?>
-	<script type="text/javascript">
-	// Add custom post type filters
-	l10n = wp.media.view.l10n = typeof _wpMediaViewsL10n === 'undefined' ? {} : _wpMediaViewsL10n;
-	wp.media.view.AttachmentFilters.Uploaded.prototype.createFilters = function() {
-		var type = this.model.get('type'),
-			types = wp.media.view.settings.mimeTypes,
-			text;
-		if ( types && type )
-			text = types[ type ];
- 
-		filters = {
-			all: {
-				text:  text || l10n.allMediaItems,
-				props: {
-					uploadedTo: null,
-					orderby: 'date',
-					order:   'DESC'
-				},
-				priority: 10
-			},
- 
-			uploaded: {
-				text:  l10n.uploadedToThisPost,
-				props: {
-					uploadedTo: wp.media.view.settings.post.id,
-					orderby: 'menuOrder',
-					order:   'ASC'
-				},
-				priority: 20
-			}
-		};
-		console.log(this.options.controller._state);
-		// Add post types only for gallery
-		if (this.options.controller._state.indexOf('gallery') !== -1) {
-			console.log(filters);
-			console.log(filters.all);
-			delete(filters.all);
-			filters.image = {
-				text:  'Images',
-				props: {
-					type:    'image',
-					// uploadedTo: null,
-					orderby: 'date',
-					order:   'DESC'
-				},
-				priority: 10
-			};
-			_.each( wp.media.view.settings.postTypes || {}, function( text, key ) {
-				filters[ key ] = {
-					text: text,
-					props: {
-						type:    key,
-						// uploadedTo: null,
-						orderby: 'date',
-						order:   'DESC'
-					}
-				};
-			});
-		}
-		this.filters = filters;
-		 
-	}; // End create filters
-// Add to my_override_filter_object function
-wp.media.view.MediaFrame.Post.prototype.mainGalleryToolbar = function( view ) {
-    var controller = this;
- 
-    this.selectionStatusToolbar( view );
- 
-    view.set( 'gallery', {
-        style:    'primary',
-        text:     l10n.createNewGallery,
-        priority: 60,
-        requires: { selection: true },
- 
-        click: function() {
-            var selection = controller.state().get('selection'),
-                edit = controller.state('gallery-edit');
-//              models = selection.where({ type: 'image' });
- 
-            // Don't filter based on type
-            edit.set( 'library', selection);
-/*          edit.set( 'library', new wp.media.model.Selection( selection, {
-                props:    selection.props.toJSON(),
-                multiple: true
-            }) );
-*/                  
-            this.controller.setState('gallery-edit');
-        }
-    });
-};
-	</script>
-<?php }
-
-// add_action( 'wp_ajax_query-attachments', 'my_wp_ajax_query_attachments', 1 );
-function my_wp_ajax_query_attachments() {
-	if ( ! current_user_can( 'upload_files' ) )
-		wp_send_json_error();
- 
-	$query = isset( $_REQUEST['query'] ) ? (array) $_REQUEST['query'] : array();
-	$query = array_intersect_key( $query, array_flip( array(
-		's', 'order', 'orderby', 'posts_per_page', 'paged', 'post_mime_type',
-		'post_parent', 'post__in', 'post__not_in',
-	) ) );
- 
-	if (isset($query['post_mime_type']) && ($query['post_mime_type'] != "image")) {
-		// post type
-		$query['post_type'] = $query['post_mime_type'];
-		$query['post_status'] = 'publish';
-		unset($query['post_mime_type']);
-	} else { 
-		// image
-		$query['post_type'] = 'attachment';
-		$query['post_status'] = 'inherit';
-		if ( current_user_can( get_post_type_object( 'attachment' )->cap->read_private_posts ) )
-			$query['post_status'] .= ',private';
-	}
-	 
-	$query = apply_filters( 'ajax_query_attachments_args', $query );
-	$query = new WP_Query( $query );
- 
-	// $posts = array_map( 'wp_prepare_attachment_for_js', $query->posts );
-	$posts = array_map( 'my_prepare_items_for_js', $query->posts );
-	$posts = array_filter( $posts );
- 
-	wp_send_json_success( $posts );
-}
-
-function my_prepare_items_for_js($item) {
-	switch($item->post_type) {
-	case 'attachment':
-		return wp_prepare_attachment_for_js($item);
-	case 'post':
-	case 'page':
-	case 'gallery':
-	default:
-		return my_prepare_post_for_js($item);
-	}
-}
- 
-function my_prepare_post_for_js( $post ) {
-	if ( ! $post = get_post( $post ) )
-		return;
- 
-	$attachment_id = get_post_thumbnail_id( $post->ID );
-	$attachment = get_post($attachment_id);
-	$post_link = get_permalink( $post->ID );
- 
-	$type = $post->post_type; $subtype = 'none';
-	if ($attachment) {
-		$url = wp_get_attachment_url( $attachment->ID );
-	} else { // Show default image
-		$url = includes_url('images/crystal/default.png');
-	}
-	 
-	$response = array(
-		'id'          => $post->ID,
-		'title'       => $post->post_title, 
-		'filename'    => wp_basename( $post_link ), 
-		'url'         => $url,
-		'link'        => $post_link,
-		'alt'         => '',
-		'author'      => $post->post_author,
-		'description' => $post->post_content,
-		'caption'     => $post->post_excerpt,
-		'name'        => $post->post_name,
-		'status'      => $post->post_status,
-		'uploadedTo'  => $post->post_parent,
-		'date'        => strtotime( $post->post_date_gmt ) * 1000,
-		'modified'    => strtotime( $post->post_modified_gmt ) * 1000,
-		'menuOrder'   => '', // $attachment->menu_order,
-		'mime'        => '', // $attachment->post_mime_type,
-		'type'        => $type,
-		'subtype'     => $subtype,
-		'icon'        => $url, // wp_mime_type_icon( $attachment_id ),
-		'dateFormatted' => mysql2date( get_option('date_format'), $post->post_date ),
-		'nonces'      => array(
-			'update' => false,
-			'delete' => false,
-		),
-		'editLink'   => false,
-	);
- 
-	// Don't allow delete or update for posts. So don't create nonces.
-	 
-	return apply_filters( 'wp_prepare_post_for_js', $response, $post );
-}
-
