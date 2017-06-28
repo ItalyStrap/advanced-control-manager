@@ -48,18 +48,22 @@ class Visibility_Admin extends Visibility_Base {
 			return $instance;
 		}
 
+		$post_conditions = $_POST['conditions'];
+
 		$conditions = array();
-		$conditions['action'] = $_POST['conditions']['action'];
+		$conditions['action'] = sanitize_text_field( $post_conditions['action'] );
 		$conditions['rules'] = array();
 
-		foreach ( $_POST['conditions']['rules_major'] as $index => $major_rule ) {
-			if ( ! $major_rule )
+		foreach ( $post_conditions['rules_major'] as $index => $major_rule ) {
+
+			if ( ! $major_rule ) {
 				continue;
+			}
 
 			$conditions['rules'][] = array(
-				'major' => $major_rule,
-				'minor' => isset( $_POST['conditions']['rules_minor'][$index] ) ? $_POST['conditions']['rules_minor'][$index] : '',
-				'has_children' => isset( $_POST['conditions']['page_children'][$index] ) ? true : false,
+				'major' => sanitize_text_field( $major_rule ),
+				'minor' => isset( $post_conditions['rules_minor'][ $index ] ) ? sanitize_text_field( $post_conditions['rules_minor'][ $index ] ) : '',
+				'has_children' => isset( $post_conditions['page_children'][ $index ] ) ? true : false,
 			);
 		}
 
@@ -117,19 +121,42 @@ class Visibility_Admin extends Visibility_Base {
 			$conditions = $instance['conditions'];
 		}
 
-		if ( ! isset( $conditions['action'] ) )
+		if ( ! isset( $conditions['action'] ) ) {
 			$conditions['action'] = 'show';
+		}
 
-		if ( empty( $conditions['rules'] ) )
+		if ( empty( $conditions['rules'] ) ) {
 			$conditions['rules'][] = array( 'major' => '', 'minor' => '', 'has_children' => '' );
+		}
 
+		$widget_conditional = '';
+		if ( empty( $_POST['widget-conditions-visible'] ) || '0' == $_POST['widget-conditions-visible'] ) {
+
+			$widget_conditional = 'widget-conditional-hide';
+		}
+
+		$widget_conditions_visible_value = 0;
+		if ( isset( $_POST['widget-conditions-visible'] ) ) {
+			$widget_conditions_visible_value = (int) $_POST['widget-conditions-visible'];
+		}
 		?>
-		<div class="widget-conditional <?php if ( empty( $_POST['widget-conditions-visible'] ) || $_POST['widget-conditions-visible'] == '0' ) { ?>widget-conditional-hide<?php } ?>">
-			<input type="hidden" name="widget-conditions-visible" value="<?php if ( isset( $_POST['widget-conditions-visible'] ) ) { echo esc_attr( $_POST['widget-conditions-visible'] ); } else { ?>0<?php } ?>" />
-			<?php if ( ! isset( $_POST['widget-conditions-visible'] ) ) { ?><a href="#" class="button display-options"><?php _e( 'Visibility', 'italystrap' ); ?></a><?php } ?>
+		<div class="widget-conditional <?php echo $widget_conditional; // XSS ok. ?>">
+
+			<input type="hidden" name="widget-conditions-visible" value="<?php echo $widget_conditions_visible_value; // XSS ok. ?>" />
+
+			<?php
+			if ( ! isset( $_POST['widget-conditions-visible'] ) ) {
+
+				?><a href="#" class="button display-options"><?php _e( 'Visibility', 'italystrap' ); ?></a><?php
+
+			}
+			?>
 			<div class="widget-conditional-inner">
 				<div class="condition-top">
-					<?php printf( _x( '%s if:', 'placeholder: dropdown menu to select widget visibility; hide if or show if', 'italystrap' ), '<select name="conditions[action]"><option value="show" ' . selected( $conditions['action'], 'show', false ) . '>' . esc_html_x( 'Show', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option><option value="hide" ' . selected( $conditions['action'], 'hide', false ) . '>' . esc_html_x( 'Hide', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option></select>' ); ?>
+					<?php printf(
+					_x( '%s if:', 'placeholder: dropdown menu to select widget visibility; hide if or show if', 'italystrap' ),
+					'<select name="conditions[action]"><option value="show" ' . selected( $conditions['action'], 'show', false ) . '>' . esc_html_x( 'Show', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option><option value="hide" ' . selected( $conditions['action'], 'hide', false ) . '>' . esc_html_x( 'Hide', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option></select>'
+					); ?>
 				</div><!-- .condition-top -->
 
 				<div class="conditions">
@@ -398,7 +425,7 @@ class Visibility_Admin extends Visibility_Base {
 	 * This is the AJAX endpoint for the second level of conditions.
 	 */
 	public static function widget_conditions_options() {
-		self::widget_conditions_options_echo( $_REQUEST['major'], isset( $_REQUEST['minor'] ) ? $_REQUEST['minor'] : '' );
+		self::widget_conditions_options_echo( esc_attr( $_REQUEST['major'] ), isset( $_REQUEST['minor'] ) ? esc_attr( $_REQUEST['minor'] ) : '' );
 		die;
 	}
 
@@ -434,7 +461,7 @@ class Visibility_Admin extends Visibility_Base {
 	 * This is the AJAX endpoint for the has_children input.
 	 */
 	public static function widget_conditions_has_children() {
-		self::widget_conditions_has_children_echo( $_REQUEST['major'], isset( $_REQUEST['minor'] ) ? $_REQUEST['minor'] : '', isset( $_REQUEST['has_children'] ) ? $_REQUEST['has_children'] : false );
+		self::widget_conditions_has_children_echo( esc_attr( $_REQUEST['major'] ), isset( $_REQUEST['minor'] ) ? esc_attr( $_REQUEST['minor'] ) : '', isset( $_REQUEST['has_children'] ) ? esc_attr( $_REQUEST['has_children'] ) : false );
 		die;
 	}
 }
