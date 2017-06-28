@@ -1,14 +1,13 @@
 <div class="wrap">
-	<h1><?php _e( 'ItalyStrap Dashboard', 'italystrap' ); ?></h1>
 	<div class="welcome-panel" id="welcome-panel">
 		<div class="welcome-panel-content">
-			<h2><?php _e( 'Welcome to ItalyStrap', 'italystrap' ); ?></h2>
+			<h2><?php _e( 'Welcome to Advanced Control Manager by ItalyStrap', 'italystrap' ); ?></h2>
 			<p class="about-description"><?php _e( 'Here you can find some link to get you started', 'italystrap' ); ?></p>
 			<div class="welcome-panel-column-container">
 				<div class="welcome-panel-column">
 					<h3><?php _e( 'Get Started', 'italystrap' ); ?></h3>
 					<a href="<?php echo get_admin_url(NULL, 'admin.php?page=italystrap-settings'); ?>" class="button button-primary button-hero load-customize hide-if-no-customize"><?php _e( 'Go to the settings page', 'italystrap' ); ?></a>
-					<h4 style="font-size:24px;"><?php _e( 'But first of all you can read the ', 'italystrap' ); ?><a href="http://docs.italystrap.com/" target="_blank"><?php _e( 'documentation', 'italystrap' ); ?></a></h4>
+					<h4 style="font-size:24px;"><?php _e( 'But first of all you can read the ', 'italystrap' ); ?><a href="http://docs.italystrap.com/" target="_blank"><?php _e( 'documentation', 'italystrap' ); ?></a> {Beta}</h4>
 				</div>
 <!-- 				<div class="welcome-panel-column">
 					<h3>Passi successivi</h3>

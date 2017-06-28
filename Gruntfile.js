@@ -380,27 +380,7 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						src: [
-							'**' ,
-							'!.git/**',
-							'!.sass-cache/**',
-							'!bower_components/**',
-							'!node_modules/**',
-							'!.gitattributes',
-							'!.gitignore',
-							'!bower.json',
-							'!Gruntfile.js',
-							'!package.json',
-							'!codeception.yml',
-							'!composer.json',
-							'!composer.lock',
-							'!phpunit.xml',
-							'!test_italystrap.php',
-							'!wp-tests-config.php',
-							'!snippets.md',
-							'!tests/**',
-							'!future-inclusions/**',
-							'!*.zip'], // What should be included in the zip
+						src: acm_plugin, // What should be included in the zip
 						dest: '<%= pkg.name %>/',        // Where the zipfile should go
 						filter: 'isFile',
 					},
@@ -423,14 +403,14 @@ module.exports = function(grunt) {
 		},
 
 		copy: { // https://github.com/gruntjs/grunt-contrib-copy
-			tosvn: {
+			trunk: {
 				expand: true,
 				// cwd: 'src',
 				src: acm_plugin,
 				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/',
 				filter: 'isFile',
 			},
-			totag: {
+			tag: {
 				expand: true,
 				// cwd: 'src',
 				src: acm_plugin,
@@ -444,9 +424,7 @@ module.exports = function(grunt) {
 				force: true,
 				// 'no-write': true
 			},
-			// clean: ['../ItalyStrap']
 			trunk: ['E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/*']
-
 		},
 
 		sync: { // https://www.npmjs.com/package/grunt-sync

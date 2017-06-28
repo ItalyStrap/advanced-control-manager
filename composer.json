@@ -10,11 +10,11 @@
 		"overclokk/minimum-requirements": "dev-master",
 		"rdlowrey/auryn": "^1.4",
         "erusev/parsedown": "^1.6",
-        "leafo/scssphp": "^0.6.5",
         "inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
 		"lucatume/wp-browser": "^1.9",
+        "leafo/scssphp": "^0.6.5",
 		"raveren/kint": "~1.0",
 		"filp/whoops": "~2.1.0"
 	},

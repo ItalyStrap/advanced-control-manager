@@ -26,9 +26,9 @@ return array(
 	'general'	=> array(
 		'tab_title'			=> __( 'General', 'italystrap' ),
 		'id'				=> 'general',
-		'title'				=> __( 'ItalyStrap options page for general', 'italystrap' ),
+		'title'				=> __( 'General options page', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
-		'desc'				=> __( 'General setting for ItalyStrap plugin', 'italystrap' ),
+		// 'desc'				=> __( 'General setting for ItalyStrap plugin', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
@@ -241,7 +241,7 @@ return array(
 	'widget'	=> array(
 		'tab_title'			=> __( 'Widgets', 'italystrap' ),
 		'id'				=> 'widget',
-		'title'				=> __( 'ItalyStrap options page for widgets', 'italystrap' ),
+		'title'				=> __( 'Options page for widgets', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'Select the widgets you want to use.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
@@ -551,7 +551,7 @@ return array(
 	'shortcode'	=> array(
 		'tab_title'			=> __( 'Shortcodes', 'italystrap' ),
 		'id'				=> 'shortcode',
-		'title'				=> __( 'ItalyStrap options page for shortcodes', 'italystrap' ),
+		'title'				=> __( 'Options page for shortcodes', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'Select the shortcodes you want to use.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
@@ -652,7 +652,7 @@ return array(
 	'style'	=> array(
 		'tab_title'			=> __( 'Style', 'italystrap' ),
 		'id'				=> 'style',
-		'title'				=> __( 'ItalyStrap options page for style purpose', 'italystrap' ),
+		'title'				=> __( 'Options page for style purpose', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'This is the tab for changing the style of your site. Code entered here will be included in every page of the front-end of your site.', 'italystrap' ),
 		'page'				=> 'italystrap_options_group',
@@ -798,7 +798,7 @@ return array(
 	'analytics'	=> array(
 		'tab_title'			=> __( 'G. Analytics', 'italystrap' ),
 		'id'				=> 'analytics',
-		'title'				=> __( 'ItalyStrap options page for Google Analytics', 'italystrap' ),
+		'title'				=> __( 'Options page for Google Analytics', 'italystrap' ),
 		'desc'				=> __( 'Here you can configure google analytics settings and activate the GA tracking code in your site.', 'italystrap' ),
 		'callback'			=> 'render_section_cb',
 		'page'				=> 'italystrap_options_group',

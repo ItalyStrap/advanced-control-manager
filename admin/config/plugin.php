@@ -23,16 +23,16 @@ return array(
 	'plugin_action_links'	=> array(
 		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
 		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Doc','italystrap' ) . '</a>',
-		'<a href="http://www.italystrap.it" target="_blank">ItalyStrap</a>',
+		'<a href="https://italystrap.com/" target="_blank">ItalyStrap</a>',
 		),
 	'plugin_row_meta'		=> array(
 		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
 		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Doc','italystrap' ) . '</a>',
-		'<a href="http://www.italystrap.it" target="_blank">ItalyStrap</a>',
+		'<a href="https://italystrap.com/" target="_blank">ItalyStrap</a>',
 		),
 	'menu_page'				=> array(
-		'page_title'		=> __( 'ItalyStrap Dashboard', 'italystrap' ),
-		'menu_title'		=> 'ItalyStrap',
+		'page_title'		=> __( 'ACM by ItalyStrap Dashboard', 'italystrap' ),
+		'menu_title'		=> 'ACM by ItalyStrap',
 		// 'capability'		=> $this->capability,
 		'menu_slug'			=> 'italystrap-dashboard',
 		// 'function'		=> array( $this, 'get_admin_view' ),
