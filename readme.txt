@@ -1,6 +1,6 @@
-=== ItalyStrap ===
+=== Advanced Control Manager ===
 Contributors: overclokk
-Donate link: http://www.italystrap.com/
+Donate link: https://italystrap.com/
 Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
 Requires at least: 4.6
 Tested up to: 4.9
@@ -8,7 +8,7 @@ Stable tag: 2.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make your web site more powerful with ItalyStrap
+Make your web site more powerful with Advanced Control Manager
 
 (Requires PHP 5.3 >= and Developers skills)
 
@@ -20,34 +20,34 @@ Always make a backup before install it and always test it in a dev enviroment.
 
 Make shure you have PHP 5.3 >=, better if you have PHP >= 7.0 (PHP 7 is awesome ;-) ).
 
-If you have any trouble [open a ticket](http://wordpress.org/support/plugin/italystrap).
+If you have any trouble [open a ticket](http://wordpress.org/support/plugin/advanced-control-manager).
 
-If you have any feature requests or code issue [open a ticket on github](https://github.com/overclokk/italystrap-extended/issues).
+If you have any feature requests or code issue [open a ticket on github](https://github.com/ItalyStrap/advanced-control-manager/issues).
 
-[ItalyStrap](http://www.italystrap.com/) will add powerful features to your WordPress site.
+[ItalyStrap](https://italystrap.com/) will add powerful features to your WordPress site.
 
-[ItalyStrap](https://github.com/overclokk/italystrap-extended) is also on github.
+[Advanced Control Manager](https://github.com/ItalyStrap/advanced-control-manager) is also on github.
 
 = Purpose =
 
 I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
 
-Think about ItalyStrap like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options and so on, see above for the full list of featured.
+Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options and so on, see above for the full list of featured.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
 
 = Skills required =
 
-Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add your own CSS style to make it look like your site (you can add it in ItalyStrap > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
+Some functionalities need to be personalized with lines of code, for example if you use the new widget for displaying posts you have to add your own CSS style to make it look like your site (you can add it in ACM > settings > Style > Custom CSS or in your theme style.css), I'm working on building some basic code snippets and documentation, but I need a lot of time to do it, please be patient with me :-).
 
-= ItalyStrap will always be free =
+= Advanced Control Manager will always be free =
 
 This is my thanks for what WordPress has given to me.
 
 = Get involved =
 
-If you want to contribute [click here](https://github.com/overclokk/italystrap-extended) do a fork and do a pull request to the Dev branch :-)
+If you want to contribute [click here](https://github.com/ItalyStrap/advanced-control-manager) do a fork and do a pull request to the Dev branch :-)
 
 = Want to try the beta functionality? =
 To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php` file, **REMEMBER** that you have to do this in a development enviroment, **do not do this in a production site** and do always a backup.
@@ -124,7 +124,7 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 * **[Schema.org Local Business](http://docs.italystrap.com/widget-italystrap-vcard-local-business/)** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
 This widget will add microdata information about your  site for SEO purposes.
-This widget was present in my [ItalyStrap starter theme](http://www.italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus.
+This widget was present in my [ItalyStrap theme framework](https://italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus.
 
 * **Posts Widget** This adds a widget for displaying posts with a lot of options, you can create a related posts, posts from any taxonomies, pages, and mmore, in a future release you have also the power to change the template.
 
@@ -138,33 +138,33 @@ This widget was present in my [ItalyStrap starter theme](http://www.italystrap.c
 
 = Upload =
 
-1. Download the latest [tagged archive](https://github.com/overclokk/italystrap-extended/releases) (choose the "zip" option) or the [latest from WP.org](https://wordpress.org/plugins/italystrap/).
+1. Download the latest [tagged archive](https://github.com/ItalyStrap/advanced-control-manager/releases) (choose the "zip" option) or the [latest from WP.org](https://wordpress.org/plugins/advanced-control-manager/).
 2. Go to the Plugins -> Add New screen and click the Upload tab.
 3. Upload the zipped archive directly.
 4. Go to the Plugins screen and click Activate.
 
 = Manual =
 
-1. Download the latest [tagged archive](https://github.com/overclokk/italystrap-extended/releases) (choose the "zip" option) or the [latest from WP.org](https://wordpress.org/plugins/italystrap/).
+1. Download the latest [tagged archive](https://github.com/ItalyStrap/advanced-control-manager/releases) (choose the "zip" option) or the [latest from WP.org](https://wordpress.org/plugins/advanced-control-manager/).
 2. Unzip the archive.
 3. Copy the folder to your /wp-content/plugins/ directory.
 4. Go to the Plugins screen and click Activate.
 
 = WP.org =
 
-1. Install ItalyStrap either via the WordPress.org plugin directory, or by uploading the files to the `/wp-content/plugins/` directory in your server.
+1. Install Advanced Control Manager either via the WordPress.org plugin directory, or by uploading the files to the `/wp-content/plugins/` directory in your server.
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Activate your desired functionality from ItalyStrap option page.
-4. After activating ItalyStrap, read the documentation for any kind of customization.
+3. Activate your desired functionality from ACM option page.
+4. After activating Advanced Control Manager, read the documentation for any kind of customization.
 5. That's it.  You're ready to go!
 
 = Git =
 
 Using git, browse to your `/wp-content/plugins/` directory and clone this repository:
 
-`git clone https://github.com/overclokk/italystrap-extended.git italystrap`
+`git clone https://github.com/ItalyStrap/advanced-control-manager.git advanced-control-manager`
 
-`cd italystrap`
+`cd advanced-control-manager`
 
 `composer install --no-dev`
 
@@ -190,7 +190,7 @@ Add attribute `type="carousel"` at gallery shortcode, this will show Bootstrap C
 
 = How to activate Lazy Load for images =
 
-For activate Lazy Load there is new page "Option" in ItalyStrap panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
+For activate Lazy Load there is new page "Option" in Advanced Control Manager panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
 
 = How do I change the placeholder image in Lazy Load functionality =
 
@@ -251,11 +251,11 @@ Put the code below in your file js and type your Bootstrap Carousell ID in place
 
 = I'm using an external carousel, will Lazy Load work with it? =
 
-I tried only with ItalyStrap Bootstrap Carousel, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
+I tried only with the Bootstrap Carousel integrated, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
 
 = How can I use Local Business widget =
 
-Simply activate functionality from ItalyStrap option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input
+Simply activate functionality from Advanced Control Manager option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input
 
 For more informations read the documentation
 
@@ -271,17 +271,31 @@ If you have any problem please open a ticket :-)
 6. Gallery shortcode with type="carousel" for Bootstrap Carousel
 7. Example of Carousel in article page (740x370)
 8. Example of Lazy Loading for image
-9. ItalyStrap Local Business widget in admin panel
-10. ItalyStrap Local Business widget in widgetized themes (sidebar, footer, ...)
-11. ItalyStrap Local Business widget HTML markup example
-12. ItalyStrap admin settings
-13. ItalyStrap admin settings
-14. ItalyStrap admin settings
-15. ItalyStrap admin settings
-16. ItalyStrap admin settings
+9. Advanced Control Manager Local Business widget in admin panel
+10. Advanced Control Manager Local Business widget in widgetized themes (sidebar, footer, ...)
+11. Advanced Control Manager Local Business widget HTML markup example
+12. Advanced Control Manager admin settings
+13. Advanced Control Manager admin settings
+14. Advanced Control Manager admin settings
+15. Advanced Control Manager admin settings
+16. Advanced Control Manager admin settings
 
 
 == Changelog ==
+
+= 2.7.0 =
+Release Date: June 28th, 2017
+
+Dev time: 200h
+
+* New Plugin Name: Advanced Control Manager formerly ItalyStrap
+* New Minify API
+* New option for positioning analytics code (wp_footer or wp_header)
+* New Widget Nav_Menu only for BETA tester
+* Improvement of the Widget Area import
+* Improvement of the autoload of Import/Export
+* Improvement of the settings array
+* Fixed hfeed mcrodata issue
 
 = 2.6.0 =
 Release Date: April 18th, 2017
