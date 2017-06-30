@@ -23,9 +23,9 @@ future-inclusions/
 #Composer
 composer.lock
 vendor/
-#/vendor/**/.git
-#/vendor/**/test*
-*.yml
+
+# local configuration files
+codeception.yml
 
 #Tests
 #tests
