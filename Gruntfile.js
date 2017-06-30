@@ -18,6 +18,8 @@ var acm_plugin = [
 	'!bower_components/**',
 	'!tests/**',
 	'!future-inclusions/**',
+	'!sass/**',
+	'!docs/**',
 	'!bower.json',
 	'!Gruntfile.js',
 	'!package.json',
@@ -650,7 +652,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('release',
 		[
 		'prompt',
-		'compress',
+		'compress:main',
 		'github-release',
 		]
 	);

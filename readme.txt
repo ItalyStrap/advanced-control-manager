@@ -1,4 +1,4 @@
-=== Advanced Control Manager ===
+=== Advanced Control Manager for WordPress by ItalyStrap ===
 Contributors: overclokk
 Donate link: https://italystrap.com/
 Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
