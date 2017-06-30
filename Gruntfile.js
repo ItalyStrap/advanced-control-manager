@@ -297,8 +297,8 @@ module.exports = function(grunt) {
 						'*.txt',
 						'*.md',
 						'*.php',
-						'functions/default-constants.php',
 						'*.js',
+						'functions/default-constants.php'
 					]
 				}
 			},
@@ -308,22 +308,13 @@ module.exports = function(grunt) {
 				},
 				files: {
 					src: [
-						'*.js',
+						'*.json',
 						'*.txt',
+						'*.md',
 						'*.php',
-						'*.json'
+						'*.js'
 						]
 				}
-			},
-			composer:{ // Questa non funziona, non prende i file nelle sottodirectory
-				options: {
-					message: 'Composer update'
-				},
-				files: [{
-					expand: true,
-					cwd: 'vendor/',
-					src: '**/*'
-				}]
 			}
 		},
 
