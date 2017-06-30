@@ -599,7 +599,7 @@ module.exports = function(grunt) {
 	 * Change version only in package.json
 	 *
 	 * Open Git Bash and type:
-	 * $ grunt update-no-dev
+	 * $ grunt postDeploy
 	 *
 	 * Poi a mano commit su eventuali aggiornamenti, quindi:
 	 * 
@@ -612,10 +612,16 @@ module.exports = function(grunt) {
 	 * dx mouse e +add
 	 * dx mouse e commit
 	 */
-	grunt.registerTask('update-no-dev',
+	grunt.registerTask('preDeploy',
 		[
 		'composer:update:no-dev',
-		'composer:dump-autoload -o',
+		'composer:dumpautoload -o',
+		]
+	);
+	grunt.registerTask('postDeploy',
+		[
+		'composer:update',
+		'composer:dumpautoload',
 		]
 	);
 
@@ -636,7 +642,7 @@ module.exports = function(grunt) {
 		'gitcheckout:mastertodev',
 		'gitmerge:frommaster',
 		'gitpush',
-		'update-no-dev',
+		'postDeploy',
 		]
 	);
 
