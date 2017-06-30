@@ -44,6 +44,8 @@ modules:
             title: 'WP Tests'
             phpBinary: php
             language: ''
+            plugins: ["advanced-control-manager/italystrap.php"]
+            activatePlugins: ["advanced-control-manager/italystrap.php"]
         WPWebDriver:
             url: 'http://192.168.1.10/italystrap/'
             browser: phantomjs
