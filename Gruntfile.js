@@ -28,6 +28,7 @@ var acm_plugin = [
 	'!*.yml',
 	'!snippets.md',
 	'!*.zip',
+	'!*.bat',
 ];
 
 /**
@@ -627,6 +628,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('deploy',
 		[
+		'preDeploy',
 		'gitcommit:first',
 		'gitcheckout:devtomaster',
 		'gitmerge:fromdev',
