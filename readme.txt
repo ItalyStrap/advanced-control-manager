@@ -87,6 +87,7 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 * Do ShortCode in Widget Text
 * Shortcode for Media Carousel (Only for Twitter Bootstrap Carousel with many options. It will not include the files for you, so if they are not present, the carousel will not work.)
+* Posts Shortcode (Display loops of post with many options)
 
 == Style ==
 
@@ -282,6 +283,13 @@ If you have any problem please open a ticket :-)
 
 
 == Changelog ==
+
+= 2.8.0 =
+Release Date: July 20th, 2017
+
+Dev time: 200h
+
+* New Posts Shortcode (the widget version)
 
 = 2.7.0 =
 Release Date: June 28th, 2017

@@ -75,7 +75,7 @@ class Posts extends Query {
 	 * @return string        [description]
 	 */
 	public function get_query_args( array $args = array() ) {
-	
+
 		/**
 		 * Get the current post id
 		 *

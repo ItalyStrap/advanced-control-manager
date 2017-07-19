@@ -151,6 +151,7 @@ return array(
 		// 'validate'	=> 'alpha_dash',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'general',
+		'show_on'	=> \ItalyStrap\Core\is_beta(),
 	),
 
 	/**
@@ -171,6 +172,7 @@ return array(
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'display',
+		'show_on'	=> \ItalyStrap\Core\is_beta(),
 	),
 
 	/**
@@ -187,6 +189,7 @@ return array(
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'display',
+		'show_on'	=> \ItalyStrap\Core\is_beta(),
 	),
 
 	/**
@@ -565,7 +568,7 @@ return array(
 		'type'		=> 'taxonomy_multiple_select',
 		'class'		=> 'widefat tags',
 		'show_option_none' => __( 'No selection', 'italystrap' ),
-		'default'	=> 'none',
+		'default'	=> '0',
 		'taxonomy'	=> 'post_tag',
 		// 'options'	=> ( ( is_admin() ) ? get_taxonomies_list_array( 'post_tag' ) : null ),
 		// 'validate'	=> 'numeric_comma',
