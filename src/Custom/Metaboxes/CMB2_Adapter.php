@@ -16,62 +16,40 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+use CMB2;
+
 /**
  * Add some metaboxes in admin area with CMB2
  */
 class CMB2_Adapter {
 
-	private $cmb = null;
-
-	/**
-	 * CMB prefix
-	 *
-	 * @var string
-	 */
-	private $prefix;
-
-	/**
-	 * CMB _prefix
-	 *
-	 * @var string
-	 */
-	private $_prefix;
+	protected $cmb = null;
 
 	/**
 	 * The plugin options
 	 *
 	 * @var array
 	 */
-	private $options = array();
+	protected $options = array();
 
 	protected $configs = array();
+
+	protected $default = array(
+		'name'		=> '',
+		'desc'		=> '',
+		'id'		=> '',
+		'type'		=> 'text',
+		'default'	=> '',
+		'sanitize'	=> 'sanitize_text_field',
+		'show_on'	=> true,
+	);
 
 	/**
 	 * Init the constructor
 	 *
 	 * @param array $options The plugin options
 	 */
-	function __construct( array $options = array() ) {
-
-		/**
-		 * Start with an underscore to hide fields from custom fields list
-		 *
-		 * @var string
-		 */
-		$this->prefix = 'italystrap';
-
-		$this->_prefix = '_' . $this->prefix;
-
-		$this->default = array(
-			'name'		=> '',
-			'desc'		=> '',
-			'id'		=> '',
-			'type'		=> 'text',
-			'default'	=> '',
-			'sanitize'	=> 'sanitize_text_field',
-			'show_on'	=> true,
-		);
-	}
+	public function __construct( array $options = array() ) {}
 
 	/**
 	 * Merge config in configs
@@ -108,9 +86,36 @@ class CMB2_Adapter {
 		$fields = $config['fields'];
 		unset( $config['fields'] );
 
-		$this->cmb = new_cmb2_box( $config );
+		$config_default = array(
+			'id'			=> '',
+			'title'			=> '',
+			'object_types'	=> array(),
+			'context'		=> 'normal',
+			'priority'		=> 'low',
+		);
 
-		$this->add_fields( $fields );
+		$this->cmb = new_cmb2_box( array_merge( $config_default, $config ) );
+
+		$this->generate_fields( $this->cmb, $fields );
+	}
+
+	/**
+	 * Generate fields
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function generate_fields( CMB2 $cmb, array $fields ) {
+
+		foreach ( $fields as $field ) {
+			$field = $this->add_field( $field );
+
+			if ( isset( $field['group'] ) ) {
+				foreach ( $field['group'] as $group_field ) {
+					$this->add_group_field( $field, $group_field );
+				}
+			}
+		}
 	}
 
 	/**
@@ -118,17 +123,31 @@ class CMB2_Adapter {
 	 *
 	 * @param  array $fields An array with fields configuration.
 	 */
-	public function add_fields( array $fields ) {
+	public function add_field( array $field ) {
 
-		foreach ( $fields as $field ) {
+		$field = array_merge( $this->default, $field );
 
-			$field = array_merge( $this->default, $field );
-
-			if ( ! $field['show_on'] ) {
-				continue;
-			}
-
-			$this->cmb->add_field( $field );
+		if ( ! $field['show_on'] ) {
+			return false;
 		}
+
+		$this->cmb->add_field( $field );
+	}
+
+	/**
+	 * Add group fields
+	 *
+	 * @param  string $id     The parent field id of the group field to add the field.
+	 * @param  array  $fields An array with fields configuration.
+	 */
+	public function add_group_field( $id, array $field ) {
+
+		$field = array_merge( $this->default, $field );
+
+		if ( ! $field['show_on'] ) {
+			return false;
+		}
+
+		$this->cmb->add_group_field( $id, $field );
 	}
 }
