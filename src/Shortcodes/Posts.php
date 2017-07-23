@@ -91,16 +91,71 @@ class Posts extends Shortcode {
 				'description'	=> $value['desc'],
 				'attr'			=> $key,
 				'type'			=> $value['type'],
-				'value'			=> $default,
+				// 'value'			=> $default,
 			);
+
+			if ( isset( $value['default'] ) && false != $value['default'] ) {
+				/**
+				 * Il problema:
+				 * Per settare la checkbox l'unico valore accettato è 'true'
+				 * con le virgolette e a causa di questo non comprende tutti
+				 * gli altri casi tipo, true (senza virgolette), 1, '1', 'y', 'yes'
+				 *
+				 * Inoltre se viene tolta la spunta non setta il valore almeno su false
+				 *
+				 * 'value' va settata solo se dafault è true altrimenti stampa
+				 * tutti i parametri nello shortcode e questo diventa un problema
+				 * per shortcode con molt parametri.
+				 *
+				 * Altro problema potrebbe essere che togliendo la spunta
+				 * o il valore da una input e questo viene tolto anche dallo shortcode
+				 * quando viene renderizzato nel front-end viene utilizzato
+				 * comunque il valore di default impostato in config quindi
+				 * se non si vuole renderizzare quel parametro deve essere presente
+				 * e deve essere impostato su un valore false.
+				 *
+				 * Sostituisco la checkbox con una select per risolvere il problema
+				 * indicato sopra ma solo per i valori di default imostati su true
+				 * in modo da mantenere il valore anche nello shortcode.
+				 */
+				if ( 'checkbox' === $value['type'] ) {
+					$new_attr['type'] = 'select';
+					$new_attr['options'] = array(
+						'1'	=> 'True',
+						'0'	=> 'False',
+					);
+					$new_attr['value'] = $value['default'];
+					// $new_attr['value'] = '1';
+					// $new_attr['value'] = 'true';
+					// $new_attr['default'] = $value['default'];
+				} else {
+					$new_attr['value'] = $value['default'];
+					// $new_attr['default'] = $value['default'];
+				}
+			}
+
+			/**
+			 * Al momento mettu una fallback su text siccome le multiselect non
+			 * esistono in shortcake
+			 */
+			if ( 'multiple_select' === $value['type'] || 'taxonomy_multiple_select' === $value['type'] ) {
+				$new_attr['type'] = 'text';
+			}
+
+			if ( 'media' === $value['type'] ) {
+				$new_attr['type'] = 'attachment';
+				$new_attr['libraryType'] = array( 'image' );
+				$new_attr['addButton'] = esc_html__( 'Select Image', 'italystrap' );
+				$new_attr['frameTitle'] = esc_html__( 'Select Image', 'italystrap' );
+			}
 
 			if ( isset( $value['options'] ) ) {
 				$new_attr['options'] = $value['options'];
 			}
 
-			$this->shortcode_ui['attrs'][] = $new_attr;
-
 			$this->default[ $key ] = $default;
+
+			$this->shortcode_ui['attrs'][] = $new_attr;
 		}
 	}
 
