@@ -78,6 +78,10 @@ if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {
 	$autoload_plugin_files = array();
 }
 
+if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+	$autoload_plugin_files[] = '/src/Debug/debug.php';
+}
+
 foreach ( $autoload_plugin_files as $file ) {
 	require( __DIR__ . $file );
 }

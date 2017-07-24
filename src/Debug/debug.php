@@ -1,4 +1,64 @@
 <?php
+/**
+ * File for debuggind purpose.
+ *
+ * It is loaded only if WP_DEBUG is defined && true
+ *
+ * @link https://ttalystrap.com
+ *
+ * @package ItalyStrap
+ */
+
+/**
+ * Print style for kint and pre wp-admin > pre
+ */
+function add_style_for_pre_tag_var_dump_and_kint_debugger() {
+	echo '<style>.wp-admin > pre, .kint{margin-left: 170px;}</style>';
+}
+add_action( 'admin_head', 'add_style_for_pre_tag_var_dump_and_kint_debugger' );
+
+/**
+ * Rimuovo lo stile alla admin bar creato da UpDevTools
+ */
+remove_filter( 'get_user_option_admin_color', 'KnowTheCode\UpDevTools\Admin\set_local_development_admin_color_scheme', 5 );
+remove_action( 'admin_head', __NAMESPACE__ . 'KnowTheCode\UpDevTools\Admin\render_admin_bar_css', 9999 );
+remove_action( 'wp_head', __NAMESPACE__ . 'KnowTheCode\UpDevTools\Admin\render_admin_bar_css', 9999 );
+
+/**
+ * Per sicurezza ricarico lo stile predefinito
+ */
+add_filter( 'get_user_option_admin_color', function ( $color ) {
+	return 'fresh';
+}, 5 );
+
+/**
+ * Print debug output on debug.log file
+ *
+ * @param mixed $log The input value.
+ */
+function debug( $log ) {
+	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+		return;
+	}
+
+	error_log( print_r( $log, true ) );
+
+	// if ( is_array( $log ) || is_object( $log ) ) {
+	// 	error_log( print_r( $log, true ) );
+	// } else {
+	// 	error_log( $log );
+	// }
+}
+
+/**
+ * Log
+ *
+ * @param mixed $log The input value.
+ */
+function the_log( $log ) {
+	debug( $log );
+}
+
 
 // var_dump(get_option( 'stylesheet' ));
 // var_dump(get_option( "theme_mods_ItalyStrap" ));
@@ -77,13 +137,6 @@ function render_column( $content ) {
 // http://php.net/manual/en/function.get-defined-constants.php
 // get_defined_constants();
 // 
-/**
- * Print style for kint and pre wp-admin > pre
- */
-function add_style_for_pre_tag_var_dump_and_kint_debugger() {
-	echo '<style>.wp-admin > pre, .kint{margin-left: 170px;}</style>';
-}
-add_action( 'admin_head', 'add_style_for_pre_tag_var_dump_and_kint_debugger' );
 
 // http://codex.wordpress.org/Function_Reference/wp_get_theme
 // $my_theme = wp_get_theme( 'italystrap' );
@@ -215,25 +268,6 @@ return $output;
 // 		return null;
 // 	}
 // }
-/**
- * Function description
- *
- * @param  string $value [description]
- * @return string        [description]
- */
-function debug( $log ) {
-	if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
-		return;
-	}
-
-	error_log( print_r( $log, true ) );
-
-	// if ( is_array( $log ) || is_object( $log ) ) {
-	// 	error_log( print_r( $log, true ) );
-	// } else {
-	// 	error_log( $log );
-	// }
-}
 
 
 // add_action( 'wp_enqueue_scripts', function () {
