@@ -34,6 +34,7 @@ test_italystrap.php
 phpunit.xml
 tests/_output/*
 *.bat
+codecept
 
 #todo.md
 **/todo.md
