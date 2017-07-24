@@ -71,11 +71,13 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @param WP_Query $query The standard query of WordPress.
 	 */
-	function __construct( WP_Query $query, Excerpt $excerpt, Config $config, $context = null ) {
+	function __construct( WP_Query $query, Excerpt $excerpt, Config $config, $context = 'posts' ) {
 
 		$this->excerpt = $excerpt;
 		$this->query = $query;
 		$this->config = $config;
+
+		$this->theme_mod = $this->config->all();
 
 		global $post;
 		$this->post = $post;
@@ -103,7 +105,7 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @return self
 	 */
-	public static function init( $context = null ) {
+	public static function init( $context = 'posts' ) {
 
 		return new self( new WP_Query(), new Excerpt( new Config() ), new Config(), $context );
 
@@ -172,8 +174,7 @@ abstract class Query implements Query_Interface {
 
 		}
 
-		return apply_filters( 'italystrap_query_posts_template_path', $template_path, $this->args );
-
+		return apply_filters( "italystrap_{$this->context}_template_path", $template_path, $this->args );
 	}
 
 	/**

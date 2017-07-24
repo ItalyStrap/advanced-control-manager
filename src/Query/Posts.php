@@ -264,6 +264,13 @@ class Posts extends Query {
 
 		$query_args = wp_parse_args( $args, $query_args );
 
+		/**
+		 * Back compat with old filter name
+		 *
+		 * @var array
+		 */
+		$query_args = apply_filters( 'italystrap_main_query_arg', $query_args );
+
 		return apply_filters( "italystrap_{$this->context}_query_arg", $query_args );
 	
 	}
@@ -279,8 +286,9 @@ class Posts extends Query {
 
 		ob_start();
 
-		// include $this->get_template_part();
+		// include $this->get_template_part( 'content-post.php' );
 		include \ItalyStrap\Core\get_template( '/templates/content-post.php' );
+		// include \ItalyStrap\Core\get_template( '/templates/posts/loop.php' );
 
 		wp_reset_postdata();
 
