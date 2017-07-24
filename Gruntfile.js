@@ -583,7 +583,8 @@ module.exports = function(grunt) {
 	
 	/**
 	 * Tests with codeception and wp-browser
-	 * $ vendor/bin/wpcept
+	 * {@link http://www.theaveragedev.com/wp-browser-is-now-compatible-with-codeception-2-3/}
+	 * $ vendor/bin/codecept
 	 * $ vendor/bin/codecept run
 	 * $ vendor/bin/codecept run wpunit
 	 * $ vendor/bin/wpcept generate:wpunit wpunit MyTestClass

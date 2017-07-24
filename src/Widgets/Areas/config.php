@@ -50,7 +50,7 @@ return array(
 			'desc'				=> __( 'Select the width of this widget area.', 'italystrap' ),
 			'id'				=> $this->_prefix . '_container_width',
 			'type'				=> 'select',
-			'default'			=> 'container-fluid',
+			'default'			=> 'container',
 			'sanitize'			=> 'sanitize_text_field',
 			'options'			=> array(
 				'none'				=> __( 'None', 'italystrap' ),
@@ -65,7 +65,7 @@ return array(
 			'id'		=> $this->_prefix . '_background_color',
 			'type'		=> 'colorpicker',
 			'default'	=> '',
-			'sanitize'	=> 'sanitize_text_field',
+			'sanitize'	=> 'sanitize_hex_color',
 		),
 		'background_image'			=> array(
 			'name'		=> __( 'Add background image', 'italystrap' ),
@@ -88,7 +88,7 @@ return array(
 			'id'		=> $this->_prefix . '_background_overlay_color',
 			'type'		=> 'colorpicker',
 			'default'	=> '',
-			'sanitize'	=> 'sanitize_text_field',
+			'sanitize'	=> 'sanitize_hex_color',
 		),
 		/**
 		 * numeric CMB2 fields

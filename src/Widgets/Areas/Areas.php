@@ -223,6 +223,7 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 			'style'				=> array(
 				'background-color'		=> $instance[ $this->_prefix . '_background_color' ],
 				'background-image'		=> (int) $instance[ $this->_prefix . '_background_image_id'],
+				'background-image-id'	=> (int) $instance[ $this->_prefix . '_background_image_id'],
 				// 'background-size'		=> 'cover',
 				// 'background-position'	=> 'center',
 			),

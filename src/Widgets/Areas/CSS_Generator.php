@@ -46,16 +46,11 @@ class CSS_Generator implements Subscriber_Interface {
 	 * @param  string|int|empty $value The value to check.
 	 * @return bool                    Return true if is a valid value
 	 */
-	protected function is_valid_value( $value ) {
+	protected function is_not_empty_value( $value ) {
 
-		/**
-		 * Because "0" is empty and this is a better check
-		 */
-		if ( '' === $value ) {
-			return false;
-		}
+		$value = ltrim( $value, '#' );
 
-		if ( '#' === $value ) {
+		if ( empty( $value ) ) {
 			return false;
 		}
 
@@ -74,7 +69,7 @@ class CSS_Generator implements Subscriber_Interface {
 
 		foreach ( $declarations as $property => $value ) {
 
-			if ( ! $this->is_valid_value( $value ) ) {
+			if ( ! $this->is_not_empty_value( $value ) ) {
 				continue;
 			}
 
@@ -109,7 +104,7 @@ class CSS_Generator implements Subscriber_Interface {
 	 *
 	 * @return string               Return the generated rule-set.
 	 */
-	protected function generate_rule( $selector, array $declarations = array() ) {
+	public function generate_rule( $selector, array $declarations = array() ) {
 
 		/**
 		 * php5.4 compat
