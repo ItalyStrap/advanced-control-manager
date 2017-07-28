@@ -16,6 +16,8 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+use ItalyStrap\Config\Config_Interface;
+
 /**
  * Web Font Loading class
  */
@@ -26,33 +28,36 @@ class Fonts {
 	 *
 	 * @var string
 	 */
-	private $google_api_url = '';
+	protected $google_api_url = '';
 
 	/**
 	 * Google API Key
 	 *
 	 * @var string
 	 */
-	private $google_api_key = '';
+	protected $google_api_key = '';
 
-	private	$options = array();
-
-	private	$theme_mods = array();
+	/**
+	 * relative path to the file json with all fonts preloaded
+	 *
+	 * @var string
+	 */
+	protected $api_fallback_file = '';
 
 	/**
 	 * Init the class.
 	 *
-	 * @param array $options The plugin options.
+	 * @param Config_Interface $config The class configuration.
 	 */
-	function __construct( array $options = array(), array $theme_mods = array() ) {
+	function __construct( Config_Interface $config ) {
 
-		$this->options = $options;
-
-		$this->theme_mods = $theme_mods;
+		$this->config = $config->all();
 
 		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
-		$this->google_api_key = isset( $options['google_api_key'] ) ? '?key=' . esc_attr( $options['google_api_key'] ) : '';
+		$this->google_api_key = isset( $this->config['google_api_key'] ) ? '?key=' . esc_attr( $this->config['google_api_key'] ) : '';
+
+		$this->api_fallback_file = __DIR__ . DS . 'fonts/fonts.json';
 
 		$this->variants = array(
 			'100'		=> __( '100', 'italystrap' ),
@@ -109,8 +114,8 @@ class Fonts {
 	 */
 	public function get_remote_fonts() {
 
-		if ( empty( $this->options['google_api_key'] ) ) {
-			return array();
+		if ( empty( $this->google_api_key ) ) {
+			return (array) $this->get_api_fallback()->items;
 		}
 
 		// $this->flush_transient();
@@ -124,7 +129,7 @@ class Fonts {
 			 * For example when is missing 'https:'
 			 */
 			if ( is_wp_error( $font_content ) ) {
-				return array();
+				return (array) $this->get_api_fallback()->items;
 			}
 
 			$fonts = wp_remote_retrieve_body( $font_content );
@@ -134,6 +139,10 @@ class Fonts {
 			$fonts = $this->rename_key_by_font_family_name( $fonts );
 
 			set_transient( 'italystrap_google_fonts', $fonts, MONTH_IN_SECONDS );
+			/**
+			 * Commented for better test in future
+			 */
+			// $this->set_api_fallback( $fonts );
 		}
 
 		/**
@@ -149,6 +158,32 @@ class Fonts {
 		}
 
 		return (array) $fonts['items'];
+	}
+
+	/**
+	 * If the we don't have a Google API key, or the request fails,
+	 * use the contents of this file instead.
+	 * 
+	 * @author Paul Clark
+	 * @link http://stylesplugin.com
+	 * @file styles/styles-font-menu/classes/sfm-group-google.php
+	 */
+	public function get_api_fallback() {
+		return json_decode( file_get_contents( $this->api_fallback_file ) );
+	}
+
+	/**
+	 * Save Google Fonts API response to file for cases where we
+	 * don't have an API key or the API request fails
+	 * 
+	 * @author Paul Clark
+	 * @link http://stylesplugin.com
+	 * @file styles/styles-font-menu/classes/sfm-group-google.php
+	 */
+	public function set_api_fallback( $fonts ) {
+		if ( ! file_exists( $this->api_fallback_file ) || is_writable( $this->api_fallback_file ) ) {
+			file_put_contents( $this->api_fallback_file, json_encode( $fonts ) );
+		}
 	}
 
 	/**
