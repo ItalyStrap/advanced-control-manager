@@ -14,6 +14,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 
 use ItalyStrap\Widgets\Widget_Factory;
 use ItalyStrap\Shortcodes\Shortcode_Factory;
+use ItalyStrap\Blocks\Block_Factory;
 
 /**
  * Initialize the DIC
@@ -93,10 +94,11 @@ $event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
 $events_manager = $event_manager; // Deprecated $events_manager.
 
 /**
- * Register widgets and shortcodes
+ * Register widgets, shortcodes and bloks
  */
 $event_manager->add_subscriber( new Widget_Factory( $options, $injector ) );
 $event_manager->add_subscriber( new Shortcode_Factory( $options, $injector ) );
+// $event_manager->add_subscriber( new Block_Factory( $options, $injector ) );
 
 /**
  * Adjust priority to make sure this runs
