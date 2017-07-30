@@ -45,6 +45,15 @@ class Fonts {
 	protected $api_fallback_file = '';
 
 	/**
+	 * Configuration for google http query params.
+	 *
+	 * @var array
+	 */
+	protected $http_query = array();
+
+	protected static $fonts = array();
+
+	/**
 	 * Init the class.
 	 *
 	 * @param Config_Interface $config The class configuration.
@@ -55,7 +64,11 @@ class Fonts {
 
 		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
-		$this->google_api_key = isset( $this->config['google_api_key'] ) ? '?key=' . esc_attr( $this->config['google_api_key'] ) : '';
+		$this->google_api_key = isset( $this->config['google_api_key'] ) ? esc_attr( $this->config['google_api_key'] ) : '';
+
+		$this->http_query = array(
+			'key'	=> $this->google_api_key,
+		);
 
 		$this->api_fallback_file = __DIR__ . DS . 'fonts/fonts.json';
 
@@ -115,49 +128,55 @@ class Fonts {
 	public function get_remote_fonts() {
 
 		if ( empty( $this->google_api_key ) ) {
-			return (array) $this->get_api_fallback()->items;
+			// return (array) $this->get_api_fallback()->items;
+			return array();
 		}
 
 		// $this->flush_transient();
+		
+		if ( ! self::$fonts ) {
+			self::$fonts = get_transient( 'italystrap_google_fonts' );
+		}
 
-		if ( false === ( $fonts = get_transient( 'italystrap_google_fonts' ) ) ) {
+		if ( false === self::$fonts ) {
 
-			$font_content = wp_remote_get( $this->google_api_url . $this->google_api_key, array( 'sslverify' => false ) );
+			$font_content = wp_remote_get( $this->google_api_url . '?' . http_build_query( $this->http_query ), array( 'sslverify' => false ) );
 
 			/**
 			 * In case the url of the google fonts is wrong
 			 * For example when is missing 'https:'
 			 */
 			if ( is_wp_error( $font_content ) ) {
-				return (array) $this->get_api_fallback()->items;
+				// return (array) $this->get_api_fallback()->items;
+				return array();
 			}
 
-			$fonts = wp_remote_retrieve_body( $font_content );
+			self::$fonts = wp_remote_retrieve_body( $font_content );
 
-			$fonts = (array) json_decode( $fonts );
+			self::$fonts = (array) json_decode( self::$fonts );
 
-			$fonts = $this->rename_key_by_font_family_name( $fonts );
+			self::$fonts = $this->rename_key_by_font_family_name( self::$fonts );
 
-			set_transient( 'italystrap_google_fonts', $fonts, MONTH_IN_SECONDS );
+			set_transient( 'italystrap_google_fonts', self::$fonts, MONTH_IN_SECONDS );
 			/**
 			 * Commented for better test in future
 			 */
-			// $this->set_api_fallback( $fonts );
+			// $this->set_api_fallback( self::$fonts );
 		}
 
 		/**
-		 * $fonts->items or $fonts['items'] have to always return an array
+		 * self::$fonts->items or self::$fonts['items'] have to always return an array
 		 */
 
-		if ( is_object( $fonts ) ) {
-			return $fonts->items;
+		if ( is_object( self::$fonts ) ) {
+			return self::$fonts->items;
 		}
 
-		if ( ! isset( $fonts['items'] ) ) {
+		if ( ! isset( self::$fonts['items'] ) ) {
 			return array();
 		}
 
-		return (array) $fonts['items'];
+		return (array) self::$fonts['items'];
 	}
 
 	/**
