@@ -79,3 +79,84 @@ $event_manager->hard_remove_subscriber( 'some_hook', 'some_method_name', 10 );
 
 $events_manager = new Event_Manager();
 // $events_manager->add_events( $events );
+
+use ItalyStrap\Event\Subscriber_Interface;
+
+/**
+ * Class description
+ */
+class ClassName extends AnotherClass implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'wp_footer' - 20
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_footer'	=> array(
+				'function_to_add'	=> 'lazy_load_fonts',
+				'priority'			=> 9999, // Optional
+				'accepted_args'		=> null, // Optional
+			),
+		);
+	}
+}
+
+use ItalyStrap\Event\Subscriber_Interface;
+
+/**
+ * Class description
+ */
+class ClassName extends AnotherClass implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'wp_footer' - 20
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_footer'	=> 'lazy_load_fonts',
+		);
+	}
+}
+
+use ItalyStrap\Event\Subscriber_Interface;
+
+/**
+ * Class description
+ */
+class ClassName extends AnotherClass implements Subscriber_Interface {
+
+	/**
+	 * Returns an array of hooks that this subscriber wants to register with
+	 * the WordPress plugin API.
+	 *
+	 * @hooked 'wp_footer' - 20
+	 *
+	 * @return array
+	 */
+	public static function get_subscribed_events() {
+
+		return array(
+			// 'hook_name'							=> 'method_name',
+			'wp_footer'	=> array(
+				'function_to_add'	=> 'lazy_load_fonts',
+				'priority'			=> 9999, // Optional
+				'accepted_args'		=> null, // Optional
+			),
+			'wp_footer'	=> 'lazy_load_fonts',
+		);
+	}
+}
