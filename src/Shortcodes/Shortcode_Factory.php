@@ -35,7 +35,7 @@ class Shortcode_Factory implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'				=> 'method_name',
-			'plugins_loaded'	=> array(
+			'after_setup_theme'	=> array(
 				'function_to_add'	=> 'register',
 			),
 		);

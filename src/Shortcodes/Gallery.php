@@ -31,7 +31,7 @@ class Gallery implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
-			'plugins_loaded'	=> 'add_carousel_to_gallery_shortcode',
+			'wp_loaded'	=> 'add_carousel_to_gallery_shortcode',
 		);
 	}
 

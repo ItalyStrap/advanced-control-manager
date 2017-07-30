@@ -70,8 +70,6 @@ $autoload_plugin_files = array(
 	'/vendor/webdevstudios/cmb2/init.php',
 	'/functions/general-functions.php',
 	'/bootstrap.php',
-	'/_init.php',
-	'/_init-admin.php',
 );
 
 if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {

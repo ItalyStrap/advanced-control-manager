@@ -33,7 +33,7 @@ class Image implements Subscriber_Interface {
 		return array(
 			// 'hook_name'							=> 'method_name',
 			// 'plugins_loaded'	=> 'ItalyStrap\Lazyload\Image::init',
-			'plugins_loaded'	=> 'init',
+			'wp_loaded'	=> 'init',
 		);
 	}
 

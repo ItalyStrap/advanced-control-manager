@@ -20,18 +20,24 @@ if ( ! is_admin() ) {
 	return;
 }
 
-$autoload_concrete = array_merge( $autoload_concrete, array(
+$autoload_subscribers = array_merge( $autoload_subscribers, array(
 		// 'option_name'			=> 'Class\Name',
 		'media_carousel_shortcode'	=> 'ItalyStrapAdminGallerySettings',
+		'ItalyStrap\Custom\Metaboxes\CMB2_Factory',
 	)
 );
 
-foreach ( $autoload_concrete as $option_name => $concrete ) {
-	if ( empty( $options[ $option_name ] ) ) {
-		continue;
-	}
-	$event_manager->add_subscriber( $injector->make( $concrete ) );
-}
+// $autoload_concretes = array_merge( $autoload_concretes, array(
+// 		'ItalyStrap\Custom\Metaboxes\CMB2_Factory',
+// 	)
+// );
+
+// foreach ( $autoload_subscribers as $option_name => $concrete ) {
+// 	if ( empty( $options[ $option_name ] ) ) {
+// 		continue;
+// 	}
+// 	$event_manager->add_subscriber( $injector->make( $concrete ) );
+// }
 
 // add_action( 'plugins_loaded', 'ItalyStrap\Core\plugin_on_activation' );
 // add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
@@ -129,19 +135,4 @@ if ( ! empty( $options['jpeg_quality'] ) ) {
  * @var Register_Metaboxes
  */
 $register_metabox = $injector->make( 'ItalyStrap\Custom\Metaboxes\Register_Metaboxes' );
-
-if ( ! empty( $options['activate_custom_css'] ) ) {
-
-	add_action( 'cmb2_admin_init', array( $register_metabox, 'register_style_fields_in_wp_editor' ) );
-}
-
-if ( ! empty( $options['widget_attributes'] ) ) {
-	/**
-	 * Init the Widget_Attributes
-	 *
-	 * @var Widget_Attributes
-	 */
-	$widget_attributes = $injector->make( 'ItalyStrap\Widgets\Attributes\Attributes' );
-	add_action( 'in_widget_form', array( $widget_attributes, 'input_fields' ), 10, 3 );
-	add_filter( 'widget_update_callback', array( $widget_attributes, 'save_attributes' ), 10, 4 );
-}
+$event_manager->add_subscriber( $register_metabox );
