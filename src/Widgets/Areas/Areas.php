@@ -54,7 +54,24 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 				'accepted_args'     	=> 3
 			),
 			'widgets_admin_page'	=> 'print_add_button',
+			'italystrap_cmb2_configurations_array'	=> array(
+				'function_to_add'	=> 'register_metaboxes',
+				'priority'			=> 10,
+			),
 		);
+	}
+
+	/**
+	 * Register Metaboxes
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function register_metaboxes( array $cmb2_configs ) {
+
+		$cmb2_configs[] = $this->cmb2_config;
+
+		return $cmb2_configs;
 	}
 
 	/**

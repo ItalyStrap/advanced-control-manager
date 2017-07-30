@@ -52,6 +52,8 @@ class Areas_Base {
 	 */
 	protected $css = null;
 
+	protected $cmb2_config = array();
+
 	/**
 	 * [__construct description]
 	 *
@@ -70,9 +72,9 @@ class Areas_Base {
 
 		$this->_prefix = '_' . $this->prefix;
 
-		$default = require( __DIR__ . DIRECTORY_SEPARATOR . 'config.php' );
+		$this->cmb2_config = (array) require( __DIR__ . DIRECTORY_SEPARATOR . 'config/metaboxes.php' );
 
-		$this->default = $default['fields'];
+		$this->default = $this->cmb2_config['fields'];
 	}
 
 	/**
