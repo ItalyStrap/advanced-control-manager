@@ -32,6 +32,22 @@ class Attributes implements Subscriber_Interface {
 	 */
 	public static function get_subscribed_events() {
 
+		if ( is_admin() ) {
+			return array(
+				// 'hook_name'							=> 'method_name',
+				'in_widget_form'			=> array(
+					'function_to_add'	=> 'input_fields',
+					'priority'			=> 10, // Optional
+					'accepted_args'		=> 3, // Optional
+				),
+				'widget_update_callback'	=> array(
+					'function_to_add'	=> 'save_attributes',
+					'priority'			=> 10, // Optional
+					'accepted_args'		=> 4, // Optional
+				),
+			);
+		}
+
 		return array(
 			// 'hook_name'							=> 'method_name',
 			'dynamic_sidebar_params'	=> 'insert_attributes',
@@ -59,22 +75,6 @@ class Attributes implements Subscriber_Interface {
 
 		$this->new_input_fields = array( 'widget_css_id', 'widget_css_css' );
 
-	}
-
-	/**
-	 * Initialize plugin
-	 */
-	public function setup() {
-		if ( is_admin() ) {
-			// Add necessary input on widget configuration form.
-			add_action( 'in_widget_form', array( __CLASS__, 'input_fields' ), 10, 3 );
-
-			// Save widget attributes.
-			add_filter( 'widget_update_callback', array( __CLASS__, 'save_attributes' ), 10, 4 );
-		} else {
-			// Insert attributes into widget markup.
-			add_filter( 'dynamic_sidebar_params', array( __CLASS__, 'insert_attributes' ) );
-		}
 	}
 
 	/**
@@ -165,14 +165,14 @@ class Attributes implements Subscriber_Interface {
 	 *
 	 * @return array
 	 */
-	private function get_attributes( $instance ) {
+	protected function get_attributes( $instance ) {
 
-		$instance = wp_parse_args(
-			$instance,
+		$instance = array_merge(
 			array(
 				'widget_css_id'    => '',
 				'widget_css_class' => '',
-			)
+			),
+			$instance
 		);
 
 		return $instance;
