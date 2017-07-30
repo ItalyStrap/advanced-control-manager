@@ -4,7 +4,9 @@
  *
  * Factory class for registering all Blocks
  *
- * @link [URL]
+ * @link https://github.com/WordPress/gutenberg
+ * @link https://github.com/nylen/gutenberg-examples
+ * @link http://gutenberg-devdoc.surge.sh/
  * @since [x.x.x (if available)]
  *
  * @package [Plugin/Theme/Etc]
