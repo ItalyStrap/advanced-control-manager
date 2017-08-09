@@ -453,7 +453,7 @@ class Breadcrumbs {
 	 */
 	private function meta( $count, $num = 0 ) {
 
-		$count = $count + $num;
+		$count = (int) $count + (int) $num;
 		return '<meta itemprop="position" content="' . $count . '" />';
 	}
 
