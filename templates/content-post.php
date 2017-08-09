@@ -101,32 +101,34 @@
 							<?php the_content() ?>
 						</div>
 					<?php endif; ?>
-					
-					<footer class="entry-footer">
-					
-						<?php
-						$categories = get_the_term_list( $this->query->post->ID, 'category', '', ', ' );
-						if ( $this->args['show_cats'] && $categories ) :
-							?>
-						<div class="entry-categories">
-							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'italystrap' ); ?>:</strong>
-							<span class="entry-cats-list"><?php echo $categories; // XSS ok.?></span>
-						</div>
-						<?php endif; ?>
-					
-						<?php
-						$tags = get_the_term_list( $this->query->post->ID, 'post_tag', '', ', ' );
 
-						if ( $this->args['show_tags'] && $tags ) :
-						?>
-						<div class="entry-tags">
-							<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'italystrap' ); ?>:</strong>
-							<span class="entry-tags-list" itemprop="keywords"><?php echo $tags; // XSS ok. ?></span>
-						</div>
-						<?php endif; ?>
-					
-						<?php $this->get_custom_fields(); ?>
-					</footer>
+					<?php if ( $this->args['show_cats'] || $this->args['show_tags'] ) : ?>
+						<footer class="entry-footer">
+						
+							<?php
+							$categories = get_the_term_list( $this->query->post->ID, 'category', '', ', ' );
+							if ( $this->args['show_cats'] && $categories ) :
+								?>
+							<div class="entry-categories">
+								<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'italystrap' ); ?>:</strong>
+								<span class="entry-cats-list"><?php echo $categories; // XSS ok.?></span>
+							</div>
+							<?php endif; ?>
+						
+							<?php
+							$tags = get_the_term_list( $this->query->post->ID, 'post_tag', '', ', ' );
+
+							if ( $this->args['show_tags'] && $tags ) :
+							?>
+							<div class="entry-tags">
+								<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'italystrap' ); ?>:</strong>
+								<span class="entry-tags-list" itemprop="keywords"><?php echo $tags; // XSS ok. ?></span>
+							</div>
+							<?php endif; ?>
+						
+							<?php $this->get_custom_fields(); ?>
+						</footer>
+					<?php endif; ?>
 				</section>
 		</article>
 
