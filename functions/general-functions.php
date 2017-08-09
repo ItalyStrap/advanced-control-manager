@@ -366,7 +366,6 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
  * @return bool Return true if ITALYSTRAP_BETA version is declared
  */
 function is_beta() {
-
 	return (bool) defined( 'ITALYSTRAP_BETA' );
 }
 
@@ -376,9 +375,27 @@ function is_beta() {
  * @return bool Return true if ITALYSTRAP_BETA version is declared
  */
 function is_debug() {
-
-	return (bool) defined( 'WP_DEBUG' ) && WP_DEBUG ;
+	return (bool) defined( 'WP_DEBUG' ) && WP_DEBUG;
 }
+
+/**
+ * Is Beta version
+ *
+ * @return bool Return true if ITALYSTRAP_BETA version is declared
+ */
+function is_script_debug() {
+	return (bool) defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+}
+
+/**
+ * is_p2p_register_connection_type_exists
+ *
+ * @return bool Return true if is_p2p_register_connection_type_exists
+ */
+function is_p2p_register_connection_type_exists() {
+	return (bool) function_exists( 'p2p_register_connection_type' );
+}
+
 /**
  * Get the Breadcrumbs
  *

@@ -262,6 +262,12 @@ class Posts extends Query {
 			$query_args['offset'] = absint( $this->args['offset'] );
 		}
 
+		if ( ! empty( $this->args['connected_type'] ) ) {
+			$query_args['connected_type'] = $this->args['connected_type'];
+			$query_args['connected_items'] = get_queried_object();
+			$query_args['nopaging'] = true;
+		}
+
 		$query_args = wp_parse_args( $args, $query_args );
 
 		/**

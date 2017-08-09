@@ -799,9 +799,29 @@ return array(
 		'options'	=> array(
 			'DESC'	=> __( 'Descending', 'italystrap' ),
 			'ASC'	=> __( 'Ascending', 'italystrap' ),
-			),
+		),
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'order',
+	),
+
+	/**
+	 * How posts have to be ordered.
+	 */
+	'connected_type'					=> array(
+		'name'				=> __( 'P2P connection type', 'italystrap' ),
+		'desc'				=> __( 'Select the connection type for displaying this loop.', 'italystrap' ),
+		'id'				=> 'connected_type',
+		'type'				=> 'select',
+		'class'				=> 'widefat connected_type',
+		// 'default'			=> 'none',
+		'show_option_none'	=> __( 'No selection', 'italystrap' ),
+		'options'			=> apply_filters( 'italystrap_p2p_registered_connection_types', array() ),
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'			=> 'sanitize_text_field',
+		'section'			=> 'filter',
+		// 'section'			=> 'general',
+		'show_on_cb'		=> 'ItalyStrap\Core\is_p2p_register_connection_type_exists',
+		// 'show_on'	=> false,
 	),
 );
