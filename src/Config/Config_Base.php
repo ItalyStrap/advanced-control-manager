@@ -22,17 +22,19 @@ class Config_Base extends ArrayObject implements Config_Interface {
 	/**
 	 * [$var description]
 	 *
-	 * @var null
+	 * @var array
 	 */
-	private $var = null;
+	protected $config = array();
+	protected $default = array();
 
 	/**
 	 * [__construct description]
 	 *
-	 * @param [type] $argument [description].
+	 * @param [type] $config [description].
 	 */
-	function __construct( $argument = null ) {
-		// Code...
+	function __construct( array $config = array(), array $default = array() ) {
+		$this->config = $config;
+		$this->default = $default;
 	}
 
 	/**
