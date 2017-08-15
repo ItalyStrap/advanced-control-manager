@@ -125,6 +125,8 @@ class Loader {
 			return;
 		}
 
+		do_action( 'italystrap_before_injector_loaded' );
+
 		$app = $this->get_app();
 
 		$this->init( $app );
@@ -158,9 +160,10 @@ class Loader {
 		/**
 		 * Fires once ItalyStrap plugin has loaded.
 		 *
-		 * @since 2.0.0
+		 * @since 2.7.0
 		 */
 		do_action( 'italystrap_plugin_app_loaded' );
+		do_action( 'italystrap_after_injector_loaded' );
 	}
 
 	/**
