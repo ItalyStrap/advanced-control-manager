@@ -19,6 +19,7 @@ lang/ItalyStrap.po
 .svn
 
 future-inclusions/
+_shortcodes
 
 #Composer
 composer.lock
