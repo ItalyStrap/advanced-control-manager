@@ -740,6 +740,21 @@ return array(
 	),
 
 	/**
+	 * Select if you want to show sticky posts or not.
+	 */
+	'context'				=> array(
+		'name'		=> __( 'Context', 'italystrap' ),
+		'desc'		=> __( 'This is the context in wich this instance is used, by default it is set to "posts" (the name of the class lowercase), if you are not a developer do not worry about it, if you are a developer you can filter the query_args by the context.', 'italystrap' ),
+		'id'		=> 'context',
+		'type'		=> 'text',
+		'class'		=> 'widefat context',
+		// 'default'	=> '',
+		// 'validate'	=> 'numeric_comma',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'filter',
+	),
+
+	/**
 	 * How posts have to be ordered.
 	 */
 	'orderby'					=> array(
