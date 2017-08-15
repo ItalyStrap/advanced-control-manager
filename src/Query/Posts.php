@@ -242,6 +242,52 @@ class Posts extends Query {
 			}
 		}
 
+
+	// d( get_taxonomies() );
+	// d( $query_args['post_type'] );
+	// d( get_object_taxonomies( $query_args['post_type'] ) );
+
+		// $query_args['tax_query'] = array(
+		// 	// 'relation'	=> 'OR',
+		// 	array(
+		// 		'taxonomy'	=> 'team-groups',
+		// 		'field'		=> 'slug',
+		// 		'terms'		=> 'consiglio-direttivo',
+		// 	),
+		// 	// array(
+		// 	// 	'taxonomy'	=> 'team-groups',
+		// 	// 	'field'		=> 'term_id',
+		// 	// 	'terms'		=> [6],
+		// 	// ),
+		// 	// array(
+		// 	// 	'taxonomy'	=> 'post_format',
+		// 	// 	'field'		=> 'slug',
+		// 	// 	'terms'		=> array( 'post-format-quote' ),
+		// 	// ),
+		// );
+
+		// $query_args['tax_query'] = array(
+		// 	'relation'	=> 'OR',
+		// 	array(
+		// 		'taxonomy'	=> 'category',
+		// 		'field'		=> 'slug',
+		// 		'terms'		=> array( 'quotes' ),
+		// 	),
+		// 	array(
+		// 		'relation'	=> 'AND',
+		// 		array(
+		// 			'taxonomy'	=> 'post_format',
+		// 			'field'		=> 'slug',
+		// 			'terms'		=> array( 'post-format-quote' ),
+		// 		),
+		// 		array(
+		// 			'taxonomy'	=> 'category',
+		// 			'field'		=> 'slug',
+		// 			'terms'		=> array( 'wisdom' ),
+		// 		),
+		// 	),
+		// );
+
 		/**
 		 * Show posts only from current user.
 		 */
@@ -277,7 +323,15 @@ class Posts extends Query {
 		 */
 		$query_args = apply_filters( 'italystrap_main_query_arg', $query_args );
 
-		return apply_filters( "italystrap_{$this->context}_query_arg", $query_args );
+		/**
+		 * The context for this instance
+		 * usefull for filter the query_args in a specific "context"
+		 *
+		 * @var string
+		 */
+		$context = empty( $this->args['context'] ) ? $this->context : $this->args['context'];
+
+		return apply_filters( "italystrap_{$context}_query_args", $query_args );
 	
 	}
 
@@ -287,14 +341,21 @@ class Posts extends Query {
 	 * @return string The HTML result
 	 */
 	public function output( array $query_args = array() ) {
+		return $this->render( $query_args );
+	}
+
+	/**
+	 * Render the query result
+	 *
+	 * @return string The HTML result
+	 */
+	public function render( array $query_args = array() ) {
 
 		$this->query->query( $this->get_query_args( $query_args ) );
 
 		ob_start();
 
-		// include $this->get_template_part( 'content-post.php' );
-		include \ItalyStrap\Core\get_template( '/templates/content-post.php' );
-		// include \ItalyStrap\Core\get_template( '/templates/posts/loop.php' );
+		include $this->get_template_part( '/templates/content-post.php' );
 
 		wp_reset_postdata();
 
@@ -302,7 +363,6 @@ class Posts extends Query {
 		ob_end_clean();
 
 		return $output;
-
 	}
 
 	/**

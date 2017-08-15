@@ -147,34 +147,40 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @return string Return the path
 	 */
-	public function get_template_part() {
+	public function get_template_part( $path = '' ) {
 
-		$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
+		// d( $this->config );
+		// d( $this->args['template'] );
 
-		if ( 'custom' === $this->args['template'] ) {
+		// $template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
 
-			$custom_template_path = '/templates/' . $this->args['template_custom'] . '.php';
+		// if ( 'custom' === $this->args['template'] ) {
 
-			if ( locate_template( $custom_template_path ) ) {
+		// 	$custom_template_path = '/templates/' . $this->args['template_custom'] . '.php';
 
-				$template_path = STYLESHEETPATH . $custom_template_path;
+		// 	if ( locate_template( $custom_template_path ) ) {
 
-			} else {
+		// 		$template_path = STYLESHEETPATH . $custom_template_path;
 
-				$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+		// 	} else {
 
-			}
-		} elseif ( 'standard' === $this->args['template'] ) {
+		// 		$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
 
-			$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+		// 	}
+		// } elseif ( 'standard' === $this->args['template'] ) {
 
-		} else {
+		// 	$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
 
-			$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
+		// } else {
 
-		}
+		// 	$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
 
-		return apply_filters( "italystrap_{$this->context}_template_path", $template_path, $this->args );
+		// }
+
+		// return apply_filters( "italystrap_{$this->context}_template_path", $template_path, $this->args );
+		// include \ItalyStrap\Core\get_template( '/templates/content-post.php' );
+		// include \ItalyStrap\Core\get_template( '/templates/posts/loop.php' );
+		return \ItalyStrap\Core\get_template( '/templates/content-post.php' );
 	}
 
 	/**
@@ -183,6 +189,13 @@ abstract class Query implements Query_Interface {
 	 * @return string The HTML result
 	 */
 	abstract public function output();
+
+	/**
+	 * Render the query result
+	 *
+	 * @return string The HTML result
+	 */
+	public function render(){}
 
 	/**
 	 * Get posts id by views.

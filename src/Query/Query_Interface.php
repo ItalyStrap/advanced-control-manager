@@ -19,5 +19,5 @@ interface Query_Interface {
 	 *
 	 * @return string The HTML result
 	 */
-	public function output();
+	public function render();
 }
