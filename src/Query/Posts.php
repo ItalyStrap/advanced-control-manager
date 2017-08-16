@@ -351,9 +351,9 @@ class Posts extends Query {
 	 */
 	public function render( array $query_args = array() ) {
 
-		$this->query->query( $this->get_query_args( $query_args ) );
-
 		ob_start();
+
+		$this->query->query( $this->get_query_args( $query_args ) );
 
 		include $this->get_template_part( '/templates/content-post.php' );
 
