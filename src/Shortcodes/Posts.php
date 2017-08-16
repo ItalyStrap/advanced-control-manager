@@ -128,10 +128,11 @@ class Posts extends Shortcode {
 					// $new_attr['value'] = '1';
 					// $new_attr['value'] = 'true';
 					// $new_attr['default'] = $value['default'];
-				} else {
-					$new_attr['value'] = $value['default'];
-					// $new_attr['default'] = $value['default'];
 				}
+				// else {
+				// 	$new_attr['value'] = $value['default'];
+				// 	// $new_attr['default'] = $value['default'];
+				// }
 			}
 
 			/**
