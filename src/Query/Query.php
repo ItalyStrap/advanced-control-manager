@@ -149,6 +149,91 @@ abstract class Query implements Query_Interface {
 	 */
 	public function get_template_part( $path = '' ) {
 
+		$template_dir_name = apply_filters( 'italystrap_template_dir_name', 'templates' );
+
+		/**
+		 * Standard
+		 * Legacy
+		 * Card
+		 * Masonry
+		 *
+		 * Da gestire
+		 * Template standard per posts + eventuali altri template preimpostati
+		 * Possibilità di poter aggiungere template anche da plugin
+		 *
+		 * Possibilità
+		 */
+
+		// d( $this->config );
+		// d( $this->args['template'] );
+		// 'thematic-areas-home'
+
+		$templates = array(
+			// 'name'	=> 'fullpath/of/the/template.php'
+			'standard'	=> $template_dir_name . DS . 'posts/standard.php',
+			'legacy'	=> $template_dir_name . DS . 'posts/legacy.php',
+			'custom'	=> null,
+		);
+
+		$context = 'posts';
+
+		// $templates = apply_filters( "italystrap_{$context}_templates_name_registered", $templates );
+		$templates = apply_filters( 'italystrap_posts_templates_name_registered', $templates );
+
+		$templates = array_merge( $templates, array(
+			'loop'	=> $template_dir_name . DS . 'posts/loop.php',
+		) );
+
+		// d( locate_template( $templates['standard'] ) );
+		// d( $templates['loop'] );
+		// d( locate_template( $templates['legacy'] ) );
+		// d( locate_template( $templates[ $this->args['template'] ] ) );
+	
+		// $this->args['template'] = 'thematic-areas-home';
+		
+		$locate_template = array(
+			$templates[ $this->args['template'] ],
+		);
+
+		// d( file_exists( 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/standard.php' ) );
+
+		// $locate_template = 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/standard.php';
+		// d( 'Cerco nel tema', $templates[ $this->args['template'] ] );
+		/**
+		 * Cerca se è presente il file nel tema figlio e poi nel tema genitore
+		 * Se lo trova restituisce il full path del file da caricare.
+		 *
+		 * @var string
+		 */
+		if ( $template_file_full_path = locate_template( $locate_template ) ) {
+			return $template_file_full_path;
+		}
+		// d( 'Nel tema not found, continuo a cercare', $templates[ $this->args['template'] ] );
+		/**
+		 * Posso registrare un file template anche da plugin e
+		 * verifico qui dopo la verifica del tema
+		 * Il file deve essere registrato con il full path
+		 * Però non potrà essere sovrascritto dal tema
+		 */
+		if ( file_exists( $templates[ $this->args['template'] ] ) ) {
+			return $templates[ $this->args['template'] ];
+		}
+
+		/**
+		 * Se non c'è nessun file in temi o plugin
+		 * ritorno il file selezionato dal widget e presente
+		 * nel plugin e ritorno il full path
+		 */
+		if ( file_exists( ITALYSTRAP_PLUGIN_PATH . $templates[ $this->args['template'] ] ) ) {
+			return ITALYSTRAP_PLUGIN_PATH . $templates[ $this->args['template'] ];
+		}
+
+		/**
+		 * Se nessuno dei controlli precedenti ha funzionato
+		 * ritorno il valore di default
+		 */
+		return ITALYSTRAP_PLUGIN_PATH . DS . $templates['standard'];
+
 		// d( $this->config );
 		// d( $this->args['template'] );
 
@@ -188,7 +273,7 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @return string The HTML result
 	 */
-	abstract public function output();
+	public function output() {}
 
 	/**
 	 * Render the query result

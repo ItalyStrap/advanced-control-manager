@@ -353,11 +353,11 @@ class Posts extends Query {
 
 		ob_start();
 
-		$this->query->query( $this->get_query_args( $query_args ) );
+		// $this->query->query( $this->get_query_args( $query_args ) );
 
 		include $this->get_template_part( '/templates/content-post.php' );
 
-		wp_reset_postdata();
+		// wp_reset_postdata();
 
 		$output = ob_get_contents();
 		ob_end_clean();

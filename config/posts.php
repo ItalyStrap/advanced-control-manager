@@ -163,7 +163,7 @@ return array(
 		'id'		=> 'template',
 		'type'		=> 'select',
 		'class'		=> 'widefat template',
-		'class-p'	=> 'template hidden',
+		'class-p'	=> 'template',
 		'default'	=> 'standard',
 		'options'	=> array(
 			'standard'	=> __( 'Standard template (Default)', 'italystrap' ),
@@ -184,7 +184,7 @@ return array(
 		'id'		=> 'template_custom',
 		'type'		=> 'text',
 		'class'		=> 'widefat template_custom',
-		'class-p'	=> 'template_custom hidden',
+		'class-p'	=> 'template_custom',
 		'default'	=> '',
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
