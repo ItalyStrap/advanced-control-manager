@@ -165,7 +165,7 @@ class Post_Title extends Shortcode {
 			\ItalyStrap\Core\get_attr( 'post_title', array( 'class' => $attr['class'], 'id' => $attr['id'] ) )
 		);
 
-		$after = '</' . $attr['html_tag'] . '>';
+		$after = '</' . esc_attr( $attr['html_tag'] ) . '>';
 
 		return esc_html( $attr['before'] ) . $before . get_the_title( $attr['post_id'] ) . $after . esc_html( $attr['after'] );
 	}
