@@ -403,8 +403,10 @@ class Fields extends Fields_Base {
 		}
 
 		if ( isset( $key['show_option_none'] ) ) {
-			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+			$none = is_string( $key['show_option_none'] ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
+			// $key['options'] = array_merge( array( 'none' => $none ), $key['options'] );
+			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
+			// $out .= '<option  disabled selected> ' . esc_html( $none ) . '</option>';
 		}
 
 		foreach ( (array) $key['options'] as $field => $option ) {
@@ -446,11 +448,14 @@ class Fields extends Fields_Base {
 
 		$out .= 'size="6" multiple> ';
 
-		$selected = ! empty( $key['value'] ) ? $key['value'] : array();
+		$default = empty( $key['default'] ) ? array() : array( $key['default'] );
+		$selected = ! empty( $key['value'] ) ? $key['value'] : $default;
 
 		if ( isset( $key['show_option_none'] ) ) {
 			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ), $key['options'] );
+			// $key['options'] = array_merge( array( 'none' => $none ), $key['options'] );
+			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
+			// $out .= '<option  disabled selected> ' . esc_html( $none ) . '</option>';
 		}
 
 		foreach ( (array) $key['options'] as $field => $option ) {
@@ -549,7 +554,9 @@ class Fields extends Fields_Base {
 
 		if ( isset( $key['show_option_none'] ) ) {
 			$none = ( is_string( $key['show_option_none'] ) ) ? $key['show_option_none'] : __( 'None', 'italystrap' ) ;
-			$key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+			// $key['options'] = array_merge( array( 'none' => $none ),$key['options'] );
+			$out .= '<option value="0"> ' . esc_html( $none ) . '</option>';
+			// $out .= '<option  disabled selected> ' . esc_html( $none ) . '</option>';
 		}
 
 		foreach ( (array) $key['options'] as $group => $options ) {
