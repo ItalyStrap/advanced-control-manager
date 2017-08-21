@@ -7,13 +7,13 @@
 
 ?>
 
-<?php if ( isset( $this->args['before_posts'] ) ) : ?>
+<?php if ( isset( $this->config['before_posts'] ) ) : ?>
 	<div class="post-widget-before">
-		<?php echo wpautop( esc_attr( $this->args['before_posts'] ) ); // XSS ok.?>
+		<?php echo wpautop( esc_attr( $this->config['before_posts'] ) ); // XSS ok.?>
 	</div>
 <?php endif; ?>
 
-<section class="post-widget hfeed <?php echo esc_attr( $this->args['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
+<section class="post-widget hfeed <?php echo esc_attr( $this->config['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
 
 	<?php
 
@@ -34,7 +34,7 @@
 			 */
 			$current_post = ( $this->post && $this->post->ID === $this->current_post_id && is_single() ) ? ' active' : '';
 
-			$post_class = ( ! empty( $this->args['post_class'] ) ) ? ' ' . $this->args['post_class'] : '' ;
+			$post_class = ( ! empty( $this->config['post_class'] ) ) ? ' ' . $this->config['post_class'] : '' ;
 
 			$classes = 'post-number-' . $this->query->current_post . $current_post . esc_attr( $post_class );
 
@@ -43,34 +43,34 @@
 			<article id="widget-post-<?php the_ID(); ?>"  <?php post_class( $classes ); ?>>
 
 				<?php
-				if ( 0 === $this->query->current_post && $this->args['show_first_thumbnail_bigger'] ) {
-					$thumb_size = $this->args['first_thumb_size'];
+				if ( 0 === $this->query->current_post && $this->config['show_first_thumbnail_bigger'] ) {
+					$thumb_size = $this->config['first_thumb_size'];
 				} else {
-					$thumb_size = $this->args['thumb_size'];
+					$thumb_size = $this->config['thumb_size'];
 				}
 
-				if ( current_theme_supports( 'post-thumbnails' ) && $this->args['show_thumbnail'] && has_post_thumbnail() ) : ?>
+				if ( current_theme_supports( 'post-thumbnails' ) && $this->config['show_thumbnail'] && has_post_thumbnail() ) : ?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
 							<?php the_post_thumbnail(
 								$thumb_size,
 								array(
-									'class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->args['image_class'],
+									'class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->config['image_class'],
 									'alt'   => trim( strip_tags( get_post_meta( get_post_thumbnail_id( $this->post->ID ), '_wp_attachment_image_alt', true ) ) ),
 									'itemprop'	=> 'image',
 								)
 							); ?>
 						</a>
 					</figure>
-				<?php elseif ( $this->args['show_thumbnail'] && $this->args['thumb_url'] ) :?>
+				<?php elseif ( $this->config['show_thumbnail'] && $this->config['thumb_url'] ) :?>
 					<figure class="entry-image">
 						<a href="<?php the_permalink(); ?>" rel="bookmark">
 							<?php 
 							$attr = array(
 								'itemprop'	=> 'image',
-								'class' => $this->args['image_class'],
+								'class' => $this->config['image_class'],
 							);
-							$the_post_thumbnail = wp_get_attachment_image( $this->args['thumb_url'] , $thumb_size, false, $attr );
+							$the_post_thumbnail = wp_get_attachment_image( $this->config['thumb_url'] , $thumb_size, false, $attr );
 							echo apply_filters( 'italystrap_widget_the_post_thumbnail', $the_post_thumbnail );
 							?>
 						</a>
@@ -79,32 +79,32 @@
 
 				<section class="entry-body">
 					<header class="entry-header">
-						<?php if ( get_the_title() && $this->args['show_title'] ) : ?>
-						<<?php echo esc_attr( $this->args['entry_title'] ); ?> class="entry-title">
+						<?php if ( get_the_title() && $this->config['show_title'] ) : ?>
+						<<?php echo esc_attr( $this->config['entry_title'] ); ?> class="entry-title">
 							<a itemprop="url" href="<?php the_permalink(); ?>" rel="bookmark">
 								<span itemprop="name">
 									<?php the_title(); ?>
 								</span>
 							</a>
-						</<?php echo esc_attr( $this->args['entry_title'] ); ?>>
+						</<?php echo esc_attr( $this->config['entry_title'] ); ?>>
 						<?php endif; ?>
 					
-						<?php if ( $this->args['show_date'] || $this->args['show_author'] || $this->args['show_comments_number'] ) : ?>
+						<?php if ( $this->config['show_date'] || $this->config['show_author'] || $this->config['show_comments_number'] ) : ?>
 					
 						<div class="entry-meta">
 					
 							<?php
-							if ( $this->args['show_date'] ) : ?>
-								<time class="published" datetime="<?php echo get_the_time( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_time( $this->args['date_format'] ); ?></time>
+							if ( $this->config['show_date'] ) : ?>
+								<time class="published" datetime="<?php echo get_the_time( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_time( $this->config['date_format'] ); ?></time>
 							<?php
 							endif;
 
-							if ( $this->args['show_date'] && $this->args['show_author'] ) : ?>
+							if ( $this->config['show_date'] && $this->config['show_author'] ) : ?>
 							<span class="sep"><?php esc_attr_e( '|', 'italystrap' ); ?></span>
 							<?php
 							endif; ?>
 					
-							<?php if ( $this->args['show_author'] ) : ?>
+							<?php if ( $this->config['show_author'] ) : ?>
 								<span class="author vcard" itemprop="author">
 									<?php esc_attr_e( 'By', 'italystrap' ); ?>
 									<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" rel="author" class="fn">
@@ -113,11 +113,11 @@
 								</span>
 							<?php endif; ?>
 					
-							<?php if ( $this->args['show_author'] && $this->args['show_comments_number'] ) : ?>
+							<?php if ( $this->config['show_author'] && $this->config['show_comments_number'] ) : ?>
 								<span class="sep"><?php esc_attr_e( '|', 'italystrap' ); ?></span>
 							<?php endif; ?>
 					
-							<?php if ( $this->args['show_comments_number'] ) : ?>
+							<?php if ( $this->config['show_comments_number'] ) : ?>
 								<a class="comments" href="<?php comments_link(); ?>">
 									<?php comments_number( __( 'No comments', 'italystrap' ), __( 'One comment', 'italystrap' ), __( '% comments', 'italystrap' ) ); ?>
 								</a>
@@ -129,26 +129,26 @@
 					
 					</header>
 					
-					<?php if ( $this->args['show_excerpt'] ) : ?>
+					<?php if ( $this->config['show_excerpt'] ) : ?>
 						<div class="entry-summary">
 							<p itemprop="text">
 								<?php
 
 								echo get_the_excerpt();
-								// echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) );
+								// echo esc_attr( wp_trim_words( get_the_content(), $this->config['excerpt_length'], '' ) );
 								?>
-								<?php if ( $this->args['show_readmore'] ) : ?>
+								<?php if ( $this->config['show_readmore'] ) : ?>
 								<a <?php
 								$array = array(
 									'class'	=> 'more-link',
 									'href'	=> get_permalink(),
 									'rel'	=> 'prefetch',
 									);
-								ItalyStrap\Core\get_attr( 'widget_post_read_more', $array, true ) ?>><?php echo esc_attr( $this->args['excerpt_readmore'] ); ?></a>
+								ItalyStrap\Core\get_attr( 'widget_post_read_more', $array, true ) ?>><?php echo esc_attr( $this->config['excerpt_readmore'] ); ?></a>
 								<?php endif; ?>
 							</p>
 						</div>
-					<?php elseif ( $this->args['show_content'] ) : ?>
+					<?php elseif ( $this->config['show_content'] ) : ?>
 						<div class="entry-content" itemprop="text">
 							<?php the_content() ?>
 						</div>
@@ -158,7 +158,7 @@
 					
 						<?php
 						$categories = get_the_term_list( $this->query->post->ID, 'category', '', ', ' );
-						if ( $this->args['show_cats'] && $categories ) :
+						if ( $this->config['show_cats'] && $categories ) :
 							?>
 						<div class="entry-categories">
 							<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'italystrap' ); ?>:</strong>
@@ -169,7 +169,7 @@
 						<?php
 						$tags = get_the_term_list( $this->query->post->ID, 'post_tag', '', ', ' );
 
-						if ( $this->args['show_tags'] && $tags ) :
+						if ( $this->config['show_tags'] && $tags ) :
 						?>
 						<div class="entry-tags">
 							<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'italystrap' ); ?>:</strong>
@@ -189,9 +189,9 @@
 
 						// var_dump($_product->get_regular_price());
 
-						if ( $this->args['custom_fields'] ) :
+						if ( $this->config['custom_fields'] ) :
 
-							$custom_field_name = explode( ',', $this->args['custom_fields'] );
+							$custom_field_name = explode( ',', $this->config['custom_fields'] );
 
 							?>
 
@@ -252,8 +252,8 @@
 
 </section>
 
-<?php if ( isset( $this->args['after_posts'] ) ) : ?>
+<?php if ( isset( $this->config['after_posts'] ) ) : ?>
 	<div class="post-widget-after">
-		<?php echo wpautop( esc_attr( $this->args['after_posts'] ) ); // XSS ok. ?>
+		<?php echo wpautop( esc_attr( $this->config['after_posts'] ) ); // XSS ok. ?>
 	</div>
 <?php endif;

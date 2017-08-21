@@ -163,10 +163,10 @@ return array(
 		'id'		=> 'template',
 		'type'		=> 'select',
 		'class'		=> 'widefat template',
-		'class-p'	=> 'template',
-		'default'	=> 'standard',
+		'class-p'	=> 'template hidden',
+		'default'	=> 'default',
 		'options'	=> array(
-			'standard'	=> __( 'Standard template (Default)', 'italystrap' ),
+			'default'	=> __( 'Default template for this instance.', 'italystrap' ),
 			'custom'	=> __( 'Custom template', 'italystrap' ),
  		),
 		// 'validate'	=> 'numeric_comma',
@@ -180,11 +180,9 @@ return array(
 	 */
 	'template_custom'			=> array(
 		'name'		=> __( 'Template custom name', 'italystrap' ),
-		'desc'		=> __( 'Insert your template custom name.', 'italystrap' ),
 		'id'		=> 'template_custom',
 		'type'		=> 'text',
 		'class'		=> 'widefat template_custom',
-		'class-p'	=> 'template_custom',
 		'default'	=> '',
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
@@ -362,7 +360,6 @@ return array(
 	 */
 	'use_global_read_more'				=> array(
 		'name'		=> __( 'Use global readmore', 'italystrap' ),
-		'desc'		=> __( 'Check if you want to use the <a href="admin.php?page=italystrap-settings">plugin setting</a> for readmore tag configuration.', 'italystrap' ),
 		'id'		=> 'use_global_read_more',
 		'type'		=> 'checkbox',
 		// 'class'		=> 'widefat use_global_read_more',

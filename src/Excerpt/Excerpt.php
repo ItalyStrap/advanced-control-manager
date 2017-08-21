@@ -92,6 +92,16 @@ class Excerpt implements Subscriber_Interface {
 		self::$config = $config;
 
 		$this->options = self::$config->all();
+
+	}
+
+	/**
+	 * Is Read More global check
+	 *
+	 * @return bool Return true if the global read more is active from settings.
+	 */
+	public function is_global_read_more_active() {
+		return (bool) $this->options['activate_excerpt_more_mods'];
 	}
 
 	/**

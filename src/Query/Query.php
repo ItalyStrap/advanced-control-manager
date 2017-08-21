@@ -71,13 +71,10 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @param WP_Query $query The standard query of WordPress.
 	 */
-	function __construct( WP_Query $query, Excerpt $excerpt, Config $config, $context = 'posts' ) {
+	function __construct( WP_Query $query, Excerpt $excerpt, $context = 'posts' ) {
 
 		$this->excerpt = $excerpt;
 		$this->query = $query;
-		$this->config = $config;
-
-		$this->theme_mod = $this->config->all();
 
 		global $post;
 		$this->post = $post;
@@ -127,7 +124,7 @@ abstract class Query implements Query_Interface {
 	 */
 	public function get_widget_args( $args ) {
 
-		$this->args = $this->get_attributes( $args );
+		$this->config = $this->get_attributes( $args );
 
 	}
 
@@ -138,8 +135,19 @@ abstract class Query implements Query_Interface {
 	 */
 	public function get_shortcode_args( $args ) {
 
-		$this->args = $this->get_attributes( $args );
+		$this->config = $this->get_attributes( $args );
 
+	}
+
+	/**
+	 * Get custom template
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function get_custom_template_path() {
+		d($this->config['template_custom']);
+		return ITALYSTRAP_PLUGIN_PATH . DS . $templates['standard'];
 	}
 
 	/**
@@ -148,6 +156,9 @@ abstract class Query implements Query_Interface {
 	 * @return string Return the path
 	 */
 	public function get_template_part( $path = '' ) {
+
+		// d( $this->config['template'] );
+		// d( $this->config['template_custom'] );
 
 		$template_dir_name = apply_filters( 'italystrap_template_dir_name', 'templates' );
 
@@ -162,43 +173,59 @@ abstract class Query implements Query_Interface {
 		 * Possibilità di poter aggiungere template anche da plugin
 		 *
 		 * Possibilità
+		 *
+		 * Possibile percorso
+		 *
+		 * File inserito nel plugin
+		 * Possibilità di sovrascriverlo dal tema chile e dal tema parent
+		 * quindi devo avere il path relativo per fare il check con locate template
+		 *
+		 * Se io registro dei template da un plugin devo fornire il path completo del plugin
+		 * e deve fare il check con locate_template denteo il plugin stesso
 		 */
 
-		// d( $this->config );
-		// d( $this->args['template'] );
+		// d( $this->config['template'] );
 		// 'thematic-areas-home'
 
 		$templates = array(
 			// 'name'	=> 'fullpath/of/the/template.php'
-			'standard'	=> $template_dir_name . DS . 'posts/standard.php',
+			'default'	=> $template_dir_name . DS . 'posts/default.php',
 			'legacy'	=> $template_dir_name . DS . 'posts/legacy.php',
 			'custom'	=> null,
 		);
+			// 'default'	=> $template_dir_name . DS . 'posts/test.php',
 
 		$context = 'posts';
 
 		// $templates = apply_filters( "italystrap_{$context}_templates_name_registered", $templates );
-		$templates = apply_filters( 'italystrap_posts_templates_name_registered', $templates );
+		$templates = apply_filters( 'italystrap_templates_posts_name_registered', $templates );
 
 		$templates = array_merge( $templates, array(
 			'loop'	=> $template_dir_name . DS . 'posts/loop.php',
 		) );
 
-		// d( locate_template( $templates['standard'] ) );
+		// d( locate_template( $templates['default'] ) );
 		// d( $templates['loop'] );
 		// d( locate_template( $templates['legacy'] ) );
-		// d( locate_template( $templates[ $this->args['template'] ] ) );
+		// d( locate_template( $templates[ $this->config['template'] ] ) );
 	
-		// $this->args['template'] = 'thematic-areas-home';
+		// $this->config['template'] = 'thematic-areas-home';
+
+		/**
+		 * For back compat.
+		 */
+		if ( 'standard' === $this->config['template'] ) {
+			$this->config['template'] = 'default';
+		}
 		
 		$locate_template = array(
-			$templates[ $this->args['template'] ],
+			$templates[ $this->config['template'] ],
 		);
 
-		// d( file_exists( 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/standard.php' ) );
+		// d( file_exists( 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/default.php' ) );
 
-		// $locate_template = 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/standard.php';
-		// d( 'Cerco nel tema', $templates[ $this->args['template'] ] );
+		// $locate_template = 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/default.php';
+		// d( 'Cerco nel tema', $templates[ $this->config['template'] ] );
 		/**
 		 * Cerca se è presente il file nel tema figlio e poi nel tema genitore
 		 * Se lo trova restituisce il full path del file da caricare.
@@ -208,15 +235,15 @@ abstract class Query implements Query_Interface {
 		if ( $template_file_full_path = locate_template( $locate_template ) ) {
 			return $template_file_full_path;
 		}
-		// d( 'Nel tema not found, continuo a cercare', $templates[ $this->args['template'] ] );
+		// d( 'Nel tema not found, continuo a cercare', $templates[ $this->config['template'] ] );
 		/**
 		 * Posso registrare un file template anche da plugin e
 		 * verifico qui dopo la verifica del tema
 		 * Il file deve essere registrato con il full path
 		 * Però non potrà essere sovrascritto dal tema
 		 */
-		if ( file_exists( $templates[ $this->args['template'] ] ) ) {
-			return $templates[ $this->args['template'] ];
+		if ( file_exists( $templates[ $this->config['template'] ] ) ) {
+			return $templates[ $this->config['template'] ];
 		}
 
 		/**
@@ -224,24 +251,23 @@ abstract class Query implements Query_Interface {
 		 * ritorno il file selezionato dal widget e presente
 		 * nel plugin e ritorno il full path
 		 */
-		if ( file_exists( ITALYSTRAP_PLUGIN_PATH . $templates[ $this->args['template'] ] ) ) {
-			return ITALYSTRAP_PLUGIN_PATH . $templates[ $this->args['template'] ];
+		if ( file_exists( ITALYSTRAP_PLUGIN_PATH . $templates[ $this->config['template'] ] ) ) {
+			return ITALYSTRAP_PLUGIN_PATH . $templates[ $this->config['template'] ];
 		}
 
 		/**
 		 * Se nessuno dei controlli precedenti ha funzionato
 		 * ritorno il valore di default
 		 */
-		return ITALYSTRAP_PLUGIN_PATH . DS . $templates['standard'];
+		return ITALYSTRAP_PLUGIN_PATH . DS . $templates['default'];
 
-		// d( $this->config );
-		// d( $this->args['template'] );
+		// d( $this->config['template'] );
 
 		// $template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/legacy.php';
 
-		// if ( 'custom' === $this->args['template'] ) {
+		// if ( 'custom' === $this->config['template'] ) {
 
-		// 	$custom_template_path = '/templates/' . $this->args['template_custom'] . '.php';
+		// 	$custom_template_path = '/templates/' . $this->config['template_custom'] . '.php';
 
 		// 	if ( locate_template( $custom_template_path ) ) {
 
@@ -249,12 +275,12 @@ abstract class Query implements Query_Interface {
 
 		// 	} else {
 
-		// 		$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+		// 		$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/default.php';
 
 		// 	}
-		// } elseif ( 'standard' === $this->args['template'] ) {
+		// } elseif ( 'default' === $this->config['template'] ) {
 
-		// 	$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/standard.php';
+		// 	$template_path = ITALYSTRAP_PLUGIN_PATH . '/templates/default.php';
 
 		// } else {
 
@@ -262,7 +288,7 @@ abstract class Query implements Query_Interface {
 
 		// }
 
-		// return apply_filters( "italystrap_{$this->context}_template_path", $template_path, $this->args );
+		// return apply_filters( "italystrap_{$this->context}_template_path", $template_path, $this->config );
 		// include \ItalyStrap\Core\get_template( '/templates/content-post.php' );
 		// include \ItalyStrap\Core\get_template( '/templates/posts/loop.php' );
 		return \ItalyStrap\Core\get_template( '/templates/content-post.php' );
@@ -273,7 +299,7 @@ abstract class Query implements Query_Interface {
 	 *
 	 * @return string The HTML result
 	 */
-	public function output() {}
+	public function output(){}
 
 	/**
 	 * Render the query result

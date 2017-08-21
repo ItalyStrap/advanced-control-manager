@@ -7,17 +7,15 @@
 
 ?>
 
-<?php if ( isset( $this->args['before_posts'] ) ) : ?>
+<?php if ( isset( $this->config['before_posts'] ) ) : ?>
 	<div class="post-widget-before">
-		<?php echo wpautop( esc_attr( $this->args['before_posts'] ) ); // XSS ok.?>
+		<?php echo wpautop( esc_attr( $this->config['before_posts'] ) ); // XSS ok.?>
 	</div>
 <?php endif; ?>
 
-<section class="post-widget <?php echo esc_attr( $this->args['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
+<section class="post-widget <?php echo esc_attr( $this->config['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
 
 	<?php
-
-	$this->query->query( $this->get_query_args( $query_args ) );
 
 	if ( $this->query->have_posts() ) :
 
@@ -36,13 +34,13 @@
 			 */
 			$current_post = get_the_id() === $this->current_post_id && is_single() ? ' active' : '';
 
-			$post_class = ( ! empty( $this->args['post_class'] ) ) ? ' ' . $this->args['post_class'] : '' ;
+			$post_class = ! empty( $this->config['post_class'] ) ? ' ' . $this->config['post_class'] : '' ;
 
 			$classes = 'post-number-' . $this->query->current_post . $current_post . esc_attr( $post_class );
 
 			?>
 
-			<article id="widget-post-<?php the_ID(); ?>"  <?php post_class( $classes ); ?>>
+			<article id="widget-post-<?php the_ID(); ?>"  <?php post_class( $classes, $this->query->post, true ); ?>>
 
 				<?php include \ItalyStrap\Core\get_template( '/templates/posts/thumbnail.php' ); ?>
 
@@ -50,22 +48,22 @@
 					<header class="entry-header">
 						<?php include \ItalyStrap\Core\get_template( '/templates/posts/title.php' ); ?>
 
-						<?php if ( $this->args['show_date'] || $this->args['show_author'] || $this->args['show_comments_number'] ) : ?>
+						<?php if ( $this->config['show_date'] || $this->config['show_author'] || $this->config['show_comments_number'] ) : ?>
 
 						<div class="entry-meta">
 
 							<?php
-							if ( $this->args['show_date'] ) : ?>
-								<time class="published" datetime="<?php echo get_the_time( 'c' ); // XSS ok. ?>" itemprop="datePublished"><?php echo get_the_time( $this->args['date_format'] ); // XSS ok.?></time>
+							if ( $this->config['show_date'] ) : ?>
+								<time class="published" datetime="<?php echo get_the_time( 'c' ); // XSS ok. ?>" itemprop="datePublished"><?php echo get_the_time( $this->config['date_format'] ); // XSS ok.?></time>
 							<?php
 							endif;
 
-							if ( $this->args['show_date'] && $this->args['show_author'] ) : ?>
+							if ( $this->config['show_date'] && $this->config['show_author'] ) : ?>
 							<span class="sep"><?php esc_attr_e( '|', 'italystrap' ); ?></span>
 							<?php
 							endif; ?>
 
-							<?php if ( $this->args['show_author'] ) : ?>
+							<?php if ( $this->config['show_author'] ) : ?>
 								<span class="author vcard" itemprop="author">
 									<?php esc_attr_e( 'By', 'italystrap' ); ?>
 									<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author" class="fn">
@@ -74,11 +72,11 @@
 								</span>
 							<?php endif; ?>
 
-							<?php if ( $this->args['show_author'] && $this->args['show_comments_number'] ) : ?>
+							<?php if ( $this->config['show_author'] && $this->config['show_comments_number'] ) : ?>
 								<span class="sep"><?php esc_attr_e( '|', 'italystrap' ); ?></span>
 							<?php endif; ?>
 
-							<?php if ( $this->args['show_comments_number'] ) : ?>
+							<?php if ( $this->config['show_comments_number'] ) : ?>
 								<a class="comments" href="<?php comments_link(); ?>">
 									<?php comments_number( __( 'No comments', 'italystrap' ), __( 'One comment', 'italystrap' ), __( '% comments', 'italystrap' ) ); ?>
 								</a>
@@ -90,26 +88,26 @@
 
 					</header>
 
-					<?php if ( $this->args['show_excerpt'] ) : ?>
+					<?php if ( $this->config['show_excerpt'] ) : ?>
 						<div class="entry-summary">
 							<p itemprop="text">
-								<?php echo esc_attr( wp_trim_words( get_the_excerpt(), $this->args['excerpt_length'], '' ) ); ?>
+								<?php echo esc_attr( wp_trim_words( get_the_excerpt(), $this->config['excerpt_length'], '' ) ); ?>
 							</p>
 							<?php $this->read_more_link(); ?>
 						</div>
-					<?php elseif ( $this->args['show_content'] ) : ?>
+					<?php elseif ( $this->config['show_content'] ) : ?>
 						<div class="entry-content" itemprop="text">
-							<?php // echo esc_attr( wp_trim_words( get_the_content(), $this->args['excerpt_length'], '' ) ); ?>
+							<?php // echo esc_attr( wp_trim_words( get_the_content(), $this->config['excerpt_length'], '' ) ); ?>
 							<?php the_content() ?>
 						</div>
 					<?php endif; ?>
 
-					<?php if ( $this->args['show_cats'] || $this->args['show_tags'] ) : ?>
+					<?php if ( $this->config['show_cats'] || $this->config['show_tags'] ) : ?>
 						<footer class="entry-footer">
 
 							<?php
 							$categories = get_the_term_list( $this->query->post->ID, 'category', '', ', ' );
-							if ( $this->args['show_cats'] && $categories ) :
+							if ( $this->config['show_cats'] && $categories ) :
 								?>
 							<div class="entry-categories">
 								<strong class="entry-cats-label"><?php esc_attr_e( 'Posted in', 'italystrap' ); ?>:</strong>
@@ -120,7 +118,7 @@
 							<?php
 							$tags = get_the_term_list( $this->query->post->ID, 'post_tag', '', ', ' );
 
-							if ( $this->args['show_tags'] && $tags ) :
+							if ( $this->config['show_tags'] && $tags ) :
 							?>
 							<div class="entry-tags">
 								<strong class="entry-tags-label"><?php esc_attr_e( 'Tagged', 'italystrap' ); ?>:</strong>
@@ -142,14 +140,12 @@
 				<?php esc_attr_e( 'No posts found.', 'italystrap' ); ?>
 			</p>
 
-		<?php endif;
-		wp_reset_postdata();
-		?>
+		<?php endif; ?>
 
 </section>
 
-<?php if ( isset( $this->args['after_posts'] ) ) : ?>
+<?php if ( isset( $this->config['after_posts'] ) ) : ?>
 	<div class="post-widget-after">
-		<?php echo wpautop( esc_attr( $this->args['after_posts'] ) ); // XSS ok. ?>
+		<?php echo wpautop( esc_attr( $this->config['after_posts'] ) ); // XSS ok. ?>
 	</div>
 <?php endif;

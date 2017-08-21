@@ -43,11 +43,11 @@ class Posts extends Query {
 	 *
 	 * @return self
 	 */
-	public static function init( $context = null ) {
+	// public static function init( $context = null ) {
 
-		return new self( new WP_Query(), new Excerpt( new Config() ), new Config(), $context );
+	// 	return new self( new WP_Query(), new Excerpt( new Config() ), new Config(), $context );
 
-	}
+	// }
 
 	/**
 	 * Get shortcode attributes.
@@ -83,7 +83,7 @@ class Posts extends Query {
 		 */
 		$this->current_post_id = is_object( $this->post ) ? $this->post->ID : '';
 
-		if ( ! empty( $this->args['exclude_current_post'] ) ) {
+		if ( ! empty( $this->config['exclude_current_post'] ) ) {
 			if ( is_single() ) {
 				$this->posts_to_exclude[] = (int) $this->current_post_id;
 			}
@@ -109,22 +109,22 @@ class Posts extends Query {
 		// };
 		// add_filter( 'excerpt_more', $new_excerpt_more );
 
-		// $excerpt_length = $this->args['excerpt_length'];
+		// $excerpt_length = $this->config['excerpt_length'];
 
 		/**
 		 * Excerpt length filter
 		 *
 		 * @var functions
 		 */
-		// if ( $this->args['excerpt_length'] > 0 ) {
+		// if ( $this->config['excerpt_length'] > 0 ) {
 		// 	add_filter( 'excerpt_length', function ( $length ) use ( $excerpt_length ) {
 		// 		return $excerpt_length;
 		// 	} );
 		// }
 
 		/**
-		 * $class = $this->args['widget_class'];
-		 * var_dump($this->args['post_types']);
+		 * $class = $this->config['widget_class'];
+		 * var_dump($this->config['post_types']);
 		 * var_dump(get_users());
 		 */
 
@@ -134,25 +134,25 @@ class Posts extends Query {
 		 * @var array
 		 */
 		$query_args = array(
-			'posts_per_page'			=> $this->args['posts_number'] + count( $this->posts_to_exclude ),
-			'order'						=> $this->args['order'],
-			'orderby'					=> $this->args['orderby'],
-			'post_type'					=> ( empty( $this->args['post_types'] ) ? 'post' : ( is_array( $this->args['post_types'] ) ? $this->args['post_types'] : explode( ',', $this->args['post_types'] ) ) ),
+			'posts_per_page'			=> $this->config['posts_number'] + count( $this->posts_to_exclude ),
+			'order'						=> $this->config['order'],
+			'orderby'					=> $this->config['orderby'],
+			'post_type'					=> ( empty( $this->config['post_types'] ) ? 'post' : ( is_array( $this->config['post_types'] ) ? $this->config['post_types'] : explode( ',', $this->config['post_types'] ) ) ),
 			'no_found_rows'				=> true,
 			'update_post_term_cache'	=> false,
 			'update_post_meta_cache'	=> false,
 		);
 
-		if ( ! empty( $this->args['most_viewed'] ) ) {
-			$query_args['post__in'] = $this->get_posts_ids_by_views( $this->args );
+		if ( ! empty( $this->config['most_viewed'] ) ) {
+			$query_args['post__in'] = $this->get_posts_ids_by_views( $this->config );
 		}
 
 		/**
 		 * Display per post/page ID
 		 */
-		if ( ! empty( $this->args['post_id'] ) ) {
+		if ( ! empty( $this->config['post_id'] ) ) {
 
-			$query_args['post__in'] = explode( ',', $this->args['post_id'] );
+			$query_args['post__in'] = explode( ',', $this->config['post_id'] );
 
 			/**
 			 * This delete last comma in case the input is like 1,2,
@@ -174,11 +174,11 @@ class Posts extends Query {
 		/**
 		 * Sticky posts.
 		 */
-		if ( 'only' === $this->args['sticky_post'] ) {
+		if ( 'only' === $this->config['sticky_post'] ) {
 
 			$query_args['post__in'] = self::$sticky_posts;
 
-		} elseif ( 'hide' === $this->args['sticky_post'] ) {
+		} elseif ( 'hide' === $this->config['sticky_post'] ) {
 
 			$query_args['ignore_sticky_posts'] = true;
 
@@ -191,8 +191,8 @@ class Posts extends Query {
 		/**
 		 * Show the posts with tags selected
 		 */
-		if ( ! empty( $this->args['tags'] ) ) {
-			$query_args['tag__in'] = $this->args['tags'];
+		if ( ! empty( $this->config['tags'] ) ) {
+			$query_args['tag__in'] = $this->config['tags'];
 			$query_args['update_post_term_cache'] = true;
 		}
 
@@ -200,7 +200,7 @@ class Posts extends Query {
 		 * Show related posts by tags
 		 * You can also select more tags to filter other than the tags assigned to post.
 		 */
-		if ( ! empty( $this->args['related_by_tags'] ) ) {
+		if ( ! empty( $this->config['related_by_tags'] ) ) {
 
 			$tags = wp_get_post_terms( $this->current_post_id );
 
@@ -209,7 +209,7 @@ class Posts extends Query {
 				for ( $i = 0; $i < $count; $i++ ) {
 					$first_tag[] = $tags[ $i ]->term_id;
 				}
-				$query_args['tag__in'] = array_merge( $first_tag, (array) $this->args['tags'] );
+				$query_args['tag__in'] = array_merge( $first_tag, (array) $this->config['tags'] );
 				$query_args['tag__in'] = array_flip( array_flip( $query_args['tag__in'] ) );
 				$query_args['update_post_term_cache'] = true;
 			}
@@ -218,8 +218,8 @@ class Posts extends Query {
 		/**
 		 * Show the posts with cats selected
 		 */
-		if ( ! empty( $this->args['cats'] ) ) {
-			$query_args['category__in'] = $this->args['cats'];
+		if ( ! empty( $this->config['cats'] ) ) {
+			$query_args['category__in'] = $this->config['cats'];
 			$query_args['update_post_term_cache'] = true;
 		}
 
@@ -227,7 +227,7 @@ class Posts extends Query {
 		 * Show related posts by cats
 		 * You can also select more cats to filter other than the cats assigned to post.
 		 */
-		if ( ! empty( $this->args['related_by_cats'] ) ) {
+		if ( ! empty( $this->config['related_by_cats'] ) ) {
 
 			$cats = wp_get_post_terms( $this->current_post_id, 'category' );
 
@@ -236,7 +236,7 @@ class Posts extends Query {
 				for ( $i = 0; $i < $count; $i++ ) {
 					$first_cat[] = $cats[ $i ]->term_id;
 				}
-				$query_args['category__in'] = array_merge( $first_cat, (array) $this->args['cats'] );
+				$query_args['category__in'] = array_merge( $first_cat, (array) $this->config['cats'] );
 				$query_args['category__in'] = array_flip( array_flip( $query_args['category__in'] ) );
 				$query_args['update_post_term_cache'] = true;
 			}
@@ -291,7 +291,7 @@ class Posts extends Query {
 		/**
 		 * Show posts only from current user.
 		 */
-		if ( ! empty( $this->args['from_current_user'] ) ) {
+		if ( ! empty( $this->config['from_current_user'] ) ) {
 
 			$current_user = wp_get_current_user();
 
@@ -300,16 +300,16 @@ class Posts extends Query {
 			}
 		}
 
-		if ( 'meta_value' === $this->args['orderby'] ) {
-			$query_args['meta_key'] = $this->args['meta_key'];
+		if ( 'meta_value' === $this->config['orderby'] ) {
+			$query_args['meta_key'] = $this->config['meta_key'];
 		}
 
-		if ( ! empty( $this->args['offset'] ) ) {
-			$query_args['offset'] = absint( $this->args['offset'] );
+		if ( ! empty( $this->config['offset'] ) ) {
+			$query_args['offset'] = absint( $this->config['offset'] );
 		}
 
-		if ( ! empty( $this->args['connected_type'] ) ) {
-			$query_args['connected_type'] = $this->args['connected_type'];
+		if ( ! empty( $this->config['connected_type'] ) ) {
+			$query_args['connected_type'] = $this->config['connected_type'];
 			$query_args['connected_items'] = get_queried_object();
 			$query_args['nopaging'] = true;
 		}
@@ -329,7 +329,7 @@ class Posts extends Query {
 		 *
 		 * @var string
 		 */
-		$context = empty( $this->args['context'] ) ? $this->context : $this->args['context'];
+		$context = empty( $this->config['context'] ) ? $this->context : $this->config['context'];
 
 		return apply_filters( "italystrap_{$context}_query_args", $query_args );
 	
@@ -351,16 +351,16 @@ class Posts extends Query {
 	 */
 	public function render( array $query_args = array() ) {
 
+		$this->query->query( $this->get_query_args( $query_args ) );
+
 		ob_start();
 
-		// $this->query->query( $this->get_query_args( $query_args ) );
-
-		include $this->get_template_part( '/templates/content-post.php' );
-
-		// wp_reset_postdata();
+		include $this->get_template_part();
 
 		$output = ob_get_contents();
 		ob_end_clean();
+
+		wp_reset_postdata();
 
 		return $output;
 	}
@@ -373,9 +373,9 @@ class Posts extends Query {
 	 */
 	public function get_custom_fields( $value = '' ) {
 	
-		if ( $this->args['custom_fields'] ) :
+		if ( $this->config['custom_fields'] ) :
 
-			$custom_field_name = explode( ',', $this->args['custom_fields'] ); ?>
+			$custom_field_name = explode( ',', $this->config['custom_fields'] ); ?>
 
 			<div class="entry-custom-fields">
 			<?php
@@ -424,21 +424,18 @@ class Posts extends Query {
 	 */
 	public function read_more_link() {
 
-		if ( empty( $this->args['show_readmore'] ) ) {
+		if ( empty( $this->config['show_readmore'] ) ) {
 			return;
 		}
 
-		$attr = array();
-		$link_text = '';
+		$attr = array(
+			'class'	=> 'more-link',
+		);
+		$link_text = $this->config['excerpt_readmore'];
 
-		/**
-		 * Compat with php5.4 and 5.3
-		 */
-		$activate_excerpt_more_mods = $this->config->get( 'activate_excerpt_more_mods' );
-
-		if ( empty( $this->args['use_global_read_more'] ) || empty( $activate_excerpt_more_mods ) ) {
-			$attr['class'] = 'more-link';
-			$link_text = $this->args['excerpt_readmore'];
+		if ( $this->config['use_global_read_more'] && $this->excerpt->is_global_read_more_active() ) {
+			$attr['class'] = '';
+			$link_text = '';
 		}
 
 		echo $this->excerpt->read_more_link( 'widget_post_read_more', $attr, $link_text );
