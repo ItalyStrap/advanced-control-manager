@@ -24,7 +24,7 @@ use ItalyStrap\Event\Subscriber_Interface;
 class Minify {
 
 	/**
-	 * The style output.
+	 * Search pattern.
 	 *
 	 * @var array
 	 */
@@ -37,6 +37,11 @@ class Minify {
 		'&amp;nbsp;',
 	);
 
+	/**
+	 * Replace pattern.
+	 *
+	 * @var array
+	 */
 	private $replace = array(
 		': '	=> ':',
 		'; '	=> ';',
@@ -54,6 +59,8 @@ class Minify {
 	 * Minify the subject output
 	 *
 	 * @link https://www.progclub.org/blog/2012/01/10/compressing-css-in-php-no-comments-or-whitespace/ The used pattern.
+	 *
+	 * @link http://php.net/manual/en/function.ob-start.php Ci sono diversi esempi fra i commenti basta cercare in pagina "CSS"
 	 *
 	 * @param  string $subject The subject output.
 	 *
