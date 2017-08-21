@@ -172,6 +172,7 @@ return array(
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'display',
+		// 'section'	=> 'template',
 		'show_on'	=> \ItalyStrap\Core\is_beta(),
 	),
 
@@ -180,13 +181,16 @@ return array(
 	 */
 	'template_custom'			=> array(
 		'name'		=> __( 'Template custom name', 'italystrap' ),
+		'desc'		=> __( 'Insert your template custom name, separate directory name and file nema by "/", you have to insert your custom file in your theme in the "templates" directory. If the directory doesn\'t exist you have to create it. If no file is found it will be loaded the default query file. Example: post/my-custom-loop-file', 'italystrap' ),
 		'id'		=> 'template_custom',
 		'type'		=> 'text',
 		'class'		=> 'widefat template_custom',
+		'class-p'	=> 'template_custom hidden',
 		'default'	=> '',
 		// 'validate'	=> 'numeric_comma',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'display',
+		// 'section'	=> 'template',
 		'show_on'	=> \ItalyStrap\Core\is_beta(),
 	),
 
@@ -360,6 +364,7 @@ return array(
 	 */
 	'use_global_read_more'				=> array(
 		'name'		=> __( 'Use global readmore', 'italystrap' ),
+		'desc'		=> __( 'Check if you want to use the <a href="admin.php?page=italystrap-settings">plugin setting</a> for readmore tag configuration. If in global settings Read More is not active it will be used the below value.', 'italystrap' ),
 		'id'		=> 'use_global_read_more',
 		'type'		=> 'checkbox',
 		// 'class'		=> 'widefat use_global_read_more',
