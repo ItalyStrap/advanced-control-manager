@@ -133,7 +133,7 @@ class Excerpt implements Subscriber_Interface {
 		return sprintf(
 			apply_filters( 'italystrap_read_more_link_pattern', ' <a %1$s>%2$s</a>' ),
 			Core\get_attr( $context, $attr, false ),
-			esc_html( $link_text )
+			esc_html( apply_filters( 'italystrap_read_more_link_text', $link_text ) )
 		);
 	}
 
@@ -214,7 +214,7 @@ class Excerpt implements Subscriber_Interface {
 		 *
 		 * @var array
 		 */
-		$needles = apply_filters( 'italystrap_excerpt_end_punctuation', array( '. ', '? ', '! ' ) );
+		$needles = apply_filters( 'italystrap_excerpt_end_punctuation_pattern', array( '. ', '? ', '! ' ) );
 
 		$found = false;
 
