@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  * 		Optional. An array of HTML tags
  * 		BC = BreadCrumbs
  *
- * 		@type string 'home' BC home. Default '$bloginfo_name'. Accepts 'string', 'HTML tags'.
+ * 		@type string 'home' BC home. Default '$this->bloginfo_name'. Accepts 'string', 'HTML tags'.
  *
  * 		@type string 'open_wrapper' Open wrapper tag of BC. Default '<ol class="breadcrumb"  itemscope itemtype="http://schema.org/BreadcrumbList">'. Accepts 'string', 'HTML tags'.
  *
@@ -66,12 +66,20 @@ class Breadcrumbs {
 	private $count;
 
 	/**
+	 * The blog info name
+	 *
+	 * @var string
+	 */
+	protected $bloginfo_name;
+
+	/**
 	 * Dispay breadcrumbs when a class is instantiated
 	 *
 	 * @param array
 	 */
-	// function __construct( $args = array() ) {
-	// }
+	public function __construct() {
+		$this->bloginfo_name = esc_attr( GET_BLOGINFO_NAME );
+	}
 
 	/**
 	 * Retrieve the breadcrumbs.
@@ -83,12 +91,7 @@ class Breadcrumbs {
 	 */
 	public function get_the_breadcrumbs( $args = array() ) {
 
-		/**
-		 * Cache the bloginfo name if is not cached before
-		 *
-		 * @var string
-		 */
-		if ( ! isset( $bloginfo_name ) ) { $bloginfo_name = esc_attr( GET_BLOGINFO_NAME ); }
+		$this->bloginfo_name = esc_attr( GET_BLOGINFO_NAME );
 
 		/**
 		 * Default argument for method get_the_breadcrumbs()
@@ -97,9 +100,8 @@ class Breadcrumbs {
 		 * @uses wp_parse_args() Parsifica $args in entrata in un array e lo combina con l'array di default
 		 * @link http://codex.wordpress.org/it:Riferimento_funzioni/wp_parse_args
 		 */
-		$args = wp_parse_args( $args, array(
-
-			'home'					=> $bloginfo_name,
+		$default = array(
+			'home'					=> $this->bloginfo_name,
 			'open_wrapper'			=> '<ol class="breadcrumb"  itemscope itemtype="http://schema.org/BreadcrumbList">',
 			'closed_wrapper'		=> '</ol>',
 			'before_element'		=> '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">',
@@ -107,9 +109,9 @@ class Breadcrumbs {
 			'after_element'			=> '</li>',
 			'wrapper_name'			=> '<span itemprop="name">',
 			'close_wrapper_name'	=> '</span>',
-
-			)
 		);
+
+		$args = apply_filters( 'italystrap_breadcrumbs_args', array_merge( $default, $args ) );
 
 		/**
 		* Dichiara ogni elemento in $args come sua propria variabile, es. $home, $delimiter.
@@ -131,20 +133,20 @@ class Breadcrumbs {
 			/**
 			 * This will display only in home page, static or not
 			 */
-			$breadcrumb .= $before_element_active . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /><meta itemprop="position" content="1" />'. $after_element;
+			$breadcrumb .= $before_element_active . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /><meta itemprop="position" content="1" />'. $after_element;
 
 		} else if ( is_home() && ! is_front_page() ) {
 
 			/**
 			 * This will display only in blog static page
 			 */
-			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $this->bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
 
 			$breadcrumb .= $before_element_active . $wrapper_name . get_the_title( get_option( 'page_for_posts' ) ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 		} else {
 
-			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $this->bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
 
 		}
 
