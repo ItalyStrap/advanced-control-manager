@@ -159,15 +159,21 @@ class Post_Title extends Shortcode {
 	 */
 	public function shortcode_render( array $attr = array(), $content = "" ) {
 
-		$before = sprintf(
-			'<%s%s>',
-			esc_attr( $attr['html_tag'] ),
-			\ItalyStrap\Core\get_attr( 'post_title', array( 'class' => $attr['class'], 'id' => $attr['id'] ) )
+		$post_title_attr = array(
+			'class'	=> $attr['class'],
+			'id'	=> $attr['id'],
+			'style'	=> $attr['style'],
 		);
 
-		$after = '</' . esc_attr( $attr['html_tag'] ) . '>';
+		$tag_before = sprintf(
+			'<%s%s>',
+			esc_attr( $attr['html_tag'] ),
+			\ItalyStrap\Core\get_attr( 'post_title', $post_title_attr )
+		);
 
-		return esc_html( $attr['before'] ) . $before . get_the_title( $attr['post_id'] ) . $after . esc_html( $attr['after'] );
+		$tag_after = '</' . esc_attr( $attr['html_tag'] ) . '>';
+
+		return $tag_before . esc_html( $attr['before'] ) . get_the_title( $attr['post_id'] ) . esc_html( $attr['after'] ) . $tag_after;
 	}
 
 	/**

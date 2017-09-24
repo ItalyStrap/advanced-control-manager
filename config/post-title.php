@@ -63,6 +63,21 @@ return array(
 	/**
 	 * Custom link for the widget title.
 	 */
+	'style'				=> array(
+		'name'		=> __( 'Post title custom css style', 'italystrap' ),
+		'desc'		=> __( 'You can add some css style. Eg: style="color: #000000;"', 'italystrap' ),
+		'id'		=> 'style',
+		'type'		=> 'text',
+		'class'		=> 'widefat style',
+		'default'	=> '',
+		// 'validate'	=> 'ctype_alpha',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'general',
+	),
+
+	/**
+	 * Custom link for the widget title.
+	 */
 	'post_id'				=> array(
 		'name'		=> __( 'Post title post_id', 'italystrap' ),
 		'desc'		=> __( 'Do you want to display the title of a certain post? Then insert the post ID of that post.', 'italystrap' ),
@@ -104,5 +119,4 @@ return array(
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'general',
 	),
-
 );
