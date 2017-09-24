@@ -2,7 +2,7 @@
 /**
  *	Plugin Name:	Advanced Control Manager for WordPress by ItalyStrap
  *	Plugin URI:		https://italystrap.com/
- *	Description:	{Requires PHP5.3 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
+ *	Description:	{Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
  *	Version:		2.7.0
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
@@ -41,7 +41,7 @@ require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '5.3', '4.6', 'ItalyStrap' );
+$requirements = new Minimum_Requirements( '5.3', '4.8', 'ItalyStrap' );
 
 /**
  * Check compatibility on install
