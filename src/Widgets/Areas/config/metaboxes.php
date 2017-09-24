@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-$position = apply_filters( 'italystrap_widget_area_position', array() );
+$position = apply_filters( 'italystrap_theme_positions', array() );
 
 return array(
 	'id'			=> $this->prefix . '-widget-areas-metabox',
@@ -50,13 +50,13 @@ return array(
 			'desc'				=> __( 'Select the width of this widget area.', 'italystrap' ),
 			'id'				=> $this->_prefix . '_container_width',
 			'type'				=> 'select',
+			'show_option_none'	=> sprintf(
+				__( 'Default width set in %s', 'italystrap' ),
+				''
+			),
 			'default'			=> 'container',
 			'sanitize'			=> 'sanitize_text_field',
-			'options'			=> array(
-				'none'				=> __( 'None', 'italystrap' ),
-				'container-fluid'	=> __( 'Full witdh', 'italystrap' ),
-				'container'			=> __( 'Standard width', 'italystrap' ),
-			),
+			'options'			=> apply_filters( 'italystrap_theme_width', array() ),
 			'attributes'		=> array( 'placeholder' => '' ),
 		),
 		'background_color'			=> array(

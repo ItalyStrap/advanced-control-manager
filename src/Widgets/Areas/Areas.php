@@ -83,6 +83,20 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 
 		$sidebar_id = esc_attr( $this->get_the_id( $id ) );
 
+		/**
+		 * This filters this sidebar configuration before it render to the browser.
+		 *
+		 * Some data passed with this array are already used for registering the widget area, and if you change they nothing happen.
+		 *
+		 * You can use the $sidebar['id'] to check the sidebar name and change the $sidebar['style'] if you need to add some custom background color or image url/id.
+		 *
+		 * The $sidebar['widget_area_class'] and $sidebar['container_width'] are also filtered
+		 * with italystrap_{$sidebar['id']}_widget_area_attr and italystrap_{$sidebar['id']}_container_attr @see view/widget-area.php
+		 *
+		 * @var array
+		 */
+		$sidebar = apply_filters( 'italystrap_before_render_widget_area', $this->sidebars[ $id ] );
+
 		if ( ! is_active_sidebar( $sidebar_id ) ) {
 			return;
 		}
@@ -107,15 +121,15 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 		}
 
 		foreach ( $this->default as $key => $value ) {
-			if ( ! isset( $this->sidebars[ $id ][ $key ] ) ) {
-				$this->sidebars[ $id ][ $key ] = $this->default[ $key ]['default'];
+			if ( ! isset( $sidebar[ $key ] ) ) {
+				$sidebar[ $key ] = $this->default[ $key ]['default'];
 			}
 		}
 
-		$container_width = $this->sidebars[ $id ]['container_width'];
-		$widget_area_class = $this->sidebars[ $id ]['widget_area_class'];
+		$container_width = $sidebar['container_width'];
+		$widget_area_class = $sidebar['widget_area_class'];
 
-		$this->css->style( $this->sidebars[ $id ] );
+		$this->css->style( $sidebar );
 
 		$widget_area_attr = array(
 			'class' => 'widget_area ' . $sidebar_id . ' ' . esc_attr( $widget_area_class ),
@@ -326,7 +340,7 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 		// }
 
 
-		foreach ( apply_filters( 'italystrap_widget_area_position', array() ) as $key => $value ) {
+		foreach ( apply_filters( 'italystrap_theme_positions', array() ) as $key => $value ) {
 			foreach ( $this->sidebars as $id => $config ) {
 				if ( $config['action'] === $key ) {
 					$temp[ $id ] = $config;
@@ -336,6 +350,6 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 
 		// error_log( print_r( $temp, true ) );
 		// error_log( print_r( $post, true ) );
-		// error_log( print_r( apply_filters( 'italystrap_widget_area_position', array() ), true ) );
+		// error_log( print_r( apply_filters( 'italystrap_theme_positions', array() ), true ) );
 	}
 }
