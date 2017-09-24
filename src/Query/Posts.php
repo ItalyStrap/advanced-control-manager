@@ -81,7 +81,17 @@ class Posts extends Query {
 		 *
 		 * @var int
 		 */
-		$this->current_post_id = is_object( $this->post ) ? $this->post->ID : '';
+		// $this->current_post_id = is_object( $this->post ) ? $this->post->ID : '';
+		/**
+		 * Questa è da testare meglio perché in situazioni in cui global $post
+		 * non è settata non ottengo il suo id per esempio se utilizzo
+		 * questo blocco in una posizione fuori dal loop standard (vedi helpcode places)
+		 *
+		 * Per esempio con l'hook After the header o prima
+		 *
+		 * Meglio eseguire ulteriori test
+		 */
+		$this->current_post_id = get_queried_object_id();
 
 		if ( ! empty( $this->config['exclude_current_post'] ) ) {
 			if ( is_single() ) {
@@ -310,7 +320,12 @@ class Posts extends Query {
 
 		if ( ! empty( $this->config['connected_type'] ) ) {
 			$query_args['connected_type'] = $this->config['connected_type'];
-			$query_args['connected_items'] = get_queried_object();
+
+			/**
+			 * This is because if you use Shortcake get_queried_object() is null in the editor
+			 * and then you have to use get_post() instead.
+			 */
+			$query_args['connected_items'] = is_admin() ? get_post() : get_queried_object();
 			$query_args['nopaging'] = true;
 		}
 
@@ -429,8 +444,9 @@ class Posts extends Query {
 		}
 
 		$attr = array(
-			'class'	=> 'more-link',
+			'class'	=> $this->config['read_more_class'],
 		);
+
 		$link_text = $this->config['excerpt_readmore'];
 
 		if ( $this->config['use_global_read_more'] && $this->excerpt->is_global_read_more_active() ) {

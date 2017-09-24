@@ -375,15 +375,30 @@ return array(
 	),
 
 	/**
-	 * Insert the custom "read more" words.
+	 * Insert a custom "read more" label. If "Use global readmore" is selected the global label will be used.
 	 */
 	'excerpt_readmore'			=> array(
-		'name'		=> __( 'Excerpt read more', 'italystrap' ),
-		'desc'		=> __( 'Insert the custom "read more" words.', 'italystrap' ),
+		'name'		=> __( 'Excerpt read more label', 'italystrap' ),
+		'desc'		=> __( 'Insert a custom "read more" label. If "Use global readmore" is selected the global label will be used.', 'italystrap' ),
 		'id'		=> 'excerpt_readmore',
 		'type'		=> 'text',
 		'class'		=> 'widefat excerpt_readmore',
 		'default'	=> __( 'Read more &rarr;', 'italystrap' ),
+		'validate'	=> 'alpha_dash',
+		'sanitize'	=> 'sanitize_text_field',
+		'section'	=> 'display',
+	),
+
+	/**
+	 * Insert a custom CSS class for the read more link. Default read-more. Ex: btn btn-primary.
+	 */
+	'read_more_class'			=> array(
+		'name'		=> __( 'Excerpt read more CSS class', 'italystrap' ),
+		'desc'		=> __( 'Insert a custom CSS class for the read more link. Default read-more. Ex: btn btn-primary.', 'italystrap' ),
+		'id'		=> 'read_more_class',
+		'type'		=> 'text',
+		'class'		=> 'widefat read_more_class',
+		'default'	=> 'more-link',
 		'validate'	=> 'alpha_dash',
 		'sanitize'	=> 'sanitize_text_field',
 		'section'	=> 'display',
