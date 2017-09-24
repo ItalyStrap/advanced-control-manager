@@ -2,7 +2,8 @@
 Contributors: overclokk
 Donate link: https://italystrap.com/
 Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
-Requires at least: 4.6
+Requires at least: 4.8
+Requires PHP: 7.0
 Tested up to: 4.9
 Stable tag: 2.7.0
 License: GPLv2 or later
@@ -10,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Make your web site more powerful with Advanced Control Manager
 
-(Requires PHP 5.3 >= and Developers skills)
+(Requires PHP 7 >= and Developers skills)
 
 The version 2.0.0 is a new and complete rebuild of this plugin.
 
