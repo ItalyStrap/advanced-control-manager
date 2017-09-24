@@ -29,6 +29,7 @@ $autoload_subscribers = array_merge( $autoload_subscribers, array(
 		'web_font_loading'			=> 'ItalyStrap\Lazyload\Fonts', // 404
 		'activate_custom_css'		=> 'ItalyStrap\Asset\Custom_Css',
 		'activate_analytics'		=> 'ItalyStrap\Google\Analytics',
+		'google_tag_manager_id'		=> 'ItalyStrap\Google\Tag_Manager',
 		'activate_social_share'		=> 'ItalyStrap\Social\Share',
 		'show_theme_hooks'			=> 'ItalyStrap\Debug\Visual_Hook',
 		'media_carousel_shortcode'	=> 'ItalyStrap\Shortcodes\Gallery',
@@ -36,6 +37,24 @@ $autoload_subscribers = array_merge( $autoload_subscribers, array(
 		'ItalyStrap\Asset\Inline_Asset_Factory',
 	)
 );
+
+/**
+ * Se ci sono più classi da instanziare con la stessa option valutare se
+ * gestire anche un array oltre che stringa, per esempio:
+ *
+ * [
+ *     'activate_analytics'		=> [
+ *         'ItalyStrap\Google\Analytics',
+ *         'ItalyStrap\Google\Tag_Manager',
+ *     ],
+ * ]
+ *
+ * è possibile anche definire i parametri della classe stessa in un array:
+ *
+ * ItalyStrap\Dir\Some_Class	=> [
+ * 		:arg	=> $some_value
+ * ],
+ */
 
 // foreach ( $autoload_subscribers as $option_name => $concrete ) {
 // 	if ( empty( $options[ $option_name ] ) ) {

@@ -850,7 +850,7 @@ return array(
 	 * This is the Script configuration
 	 */
 	'analytics'	=> array(
-		'tab_title'			=> __( 'G. Analytics', 'italystrap' ),
+		'tab_title'			=> \ItalyStrap\Core\is_beta() ? __( 'GA + GTM', 'italystrap' ) : __( 'GA', 'italystrap' ),
 		'id'				=> 'analytics',
 		'title'				=> __( 'Options page for Google Analytics', 'italystrap' ),
 		'desc'				=> __( 'Here you can configure google analytics settings and activate the GA tracking code in your site.', 'italystrap' ),
@@ -873,6 +873,24 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
+			),
+			array(
+				'id'		=> 'google_tag_manager_id',
+				'title'		=> __( 'Add Google Tag Manager ID', 'italystrap' ),
+				'callback'	=> 'get_field_type',
+				'page'		=> 'italystrap_options_group',
+				'section'	=> 'analytics',
+				'args'		=> array(
+						'name'			=> __( 'Tag Manager ID', 'italystrap' ),
+						'desc'			=> __( 'Insert your google tag manager ID', 'italystrap' ),
+						'id'			=> 'google_tag_manager_id',
+						'type'			=> 'text',
+						'class'			=> 'google_tag_manager_id easy',
+						'default'		=> '',
+						// 'validate'	=> 'ctype_alpha',
+						'sanitize'		=> 'sanitize_text_field',
+				),
+				'show_on'				=> \ItalyStrap\Core\is_beta() && wp_get_theme( 'ItalyStrap' )->exists(),
 			),
 			array(
 				'id'		=> 'google_analytics_id',
