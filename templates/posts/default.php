@@ -15,11 +15,9 @@
 
 <section class="post-widget <?php echo esc_attr( $this->config['container_class'] ); ?>" itemscope itemtype="http://schema.org/CollectionPage">
 
-	<?php
+<?php if ( $this->query->have_posts() ) : ?>
 
-	if ( $this->query->have_posts() ) :
-
-		while ( $this->query->have_posts() ) :
+		<?php while ( $this->query->have_posts() ) :
 
 			$this->query->the_post();
 
@@ -88,20 +86,6 @@
 
 					</header>
 
-					<?php if ( $this->config['show_excerpt'] ) : ?>
-						<div class="entry-summary">
-							<p itemprop="text">
-								<?php echo esc_attr( wp_trim_words( get_the_excerpt(), $this->config['excerpt_length'], '' ) ); ?>
-							</p>
-							<?php $this->read_more_link(); ?>
-						</div>
-					<?php elseif ( $this->config['show_content'] ) : ?>
-						<div class="entry-content" itemprop="text">
-							<?php // echo esc_attr( wp_trim_words( get_the_content(), $this->config['excerpt_length'], '' ) ); ?>
-							<?php the_content() ?>
-						</div>
-					<?php endif; ?>
-
 					<?php if ( $this->config['show_cats'] || $this->config['show_tags'] ) : ?>
 						<footer class="entry-footer">
 
@@ -129,18 +113,33 @@
 							<?php $this->get_custom_fields(); ?>
 						</footer>
 					<?php endif; ?>
+
+					<?php if ( $this->config['show_excerpt'] ) : ?>
+						<div class="entry-summary">
+							<p itemprop="text">
+								<?php echo esc_attr( wp_trim_words( get_the_excerpt(), $this->config['excerpt_length'], '' ) ); ?>
+							</p>
+							<?php $this->read_more_link(); ?>
+						</div>
+					<?php elseif ( $this->config['show_content'] ) : ?>
+						<div class="entry-content" itemprop="text">
+							<?php // echo esc_attr( wp_trim_words( get_the_content(), $this->config['excerpt_length'], '' ) ); ?>
+							<?php the_content() ?>
+						</div>
+					<?php elseif ( $this->config['show_readmore'] ) :
+						$this->read_more_link(); ?>
+					<?php endif; ?>
+
 				</section>
-		</article>
+			</article>
 
 		<?php endwhile; ?>
 
-		<?php else : ?>
-
-			<p class="post-widget-not-found">
-				<?php esc_attr_e( 'No posts found.', 'italystrap' ); ?>
-			</p>
-
-		<?php endif; ?>
+<?php else : ?>
+	<div  class="post-widget-not-found <?php echo esc_attr( $this->config['post_class'] ); ?>">
+		<p><?php esc_attr_e( 'No posts found.', 'italystrap' ); ?></p>
+	</div>
+<?php endif; ?>
 
 </section>
 
