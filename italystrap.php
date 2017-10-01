@@ -23,7 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Back compat with 5.2
+ * Back compat with 5.2 only for running this file
  */
 if ( ! defined( '__DIR__' ) ) {
 	define( '__DIR__', dirname( __FILE__ ) );
@@ -41,7 +41,7 @@ require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '5.3', '4.8', 'ItalyStrap' );
+$requirements = new Minimum_Requirements( '5.3', '4.8', 'ACM - Advanced Control Manager' );
 
 /**
  * Check compatibility on install
@@ -116,9 +116,9 @@ do_action( 'italystrap_plugin_loaded', null );
  * @example
  * Another example:
  * add_filter( 'italystrap_require_plugin_files_path', function ( $files_path ) {
- * 
+ *
  *     $files_path[] = PLUGIN_PATH . 'bootstrap.php';
- * 
+ *
  *     return $files_path;
  * } );
  *
