@@ -361,6 +361,15 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 }
 
 /**
+ * Is dev enviroment
+ *
+ * @return bool Return true if ITALYSTRAP_DEV constant is declared
+ */
+function is_dev() {
+	return (bool) defined( 'ITALYSTRAP_DEV' );
+}
+
+/**
  * Is Beta version
  *
  * @return bool Return true if ITALYSTRAP_BETA version is declared
@@ -666,6 +675,14 @@ function _notice_plugin_update() {
 	wp_redirect( 'plugins.php', 301 );
 	exit;
 }
+
+/**
+ * Remove the notice added from the old plugin ItalyStrap
+ */
+function _remove_italystrap_notice() {
+	remove_action( 'all_admin_notices', 'italystrap_all_admin_notices_discontinued_plugin', 10 );
+}
+add_action( 'after_setup_theme', __NAMESPACE__ . '\_remove_italystrap_notice' );
 
 if ( ! function_exists( 'd' ) ) {
 	function d( $value = '' ) {
