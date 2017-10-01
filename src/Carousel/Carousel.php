@@ -72,18 +72,16 @@ abstract class Carousel {
 
 		$this->args = $this->get_attributes( $args );
 
-		if ( ! $this->validate_data() ) {
+		if ( ! $this->can_i_run() ) {
 			return '';
 		}
 
-		// if ( $this->validate_data() ) {
 		do_action( 'italystrap_carousel_before_init' );
 		$this->container_style = $this->get_container_style();
 		$this->item_style      = $this->get_item_style();
 		$this->posts           = $this->get_posts();
 		$this->output          = $this->get_output();
 		do_action( 'italystrap_carousel_init' );
-		// }
 
 		/**
 		 * Append javascript in static variable and print in front-end footer
@@ -146,24 +144,8 @@ abstract class Carousel {
 	 *
 	 * @return boolean
 	 */
-	public function validate_data() {
-		/**
-		 * Initialize boolean
-		 *
-		 * @var bool
-		 */
-		$bool = false;
-
-		/**
-		 * Validate for necessary data
-		 */
-		if ( ! empty( $this->args['ids'] ) && isset( $this->args['type'] ) && 'carousel' === $this->args['type']
-		) {
-			$bool = true;
-		}
-
-		return $bool;
-
+	public function can_i_run() {
+		return ! empty( $this->args['ids'] ) && isset( $this->args['type'] ) && 'carousel' === $this->args['type'];
 	}
 
 	/**
