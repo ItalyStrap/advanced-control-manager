@@ -365,7 +365,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
+				'show_on'				=> \ItalyStrap\Core\is_dev(),
 			),
 			array(
 				'id'		=> 'media_carousel_widget',
@@ -435,7 +435,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
+				'show_on'				=> \ItalyStrap\Core\is_dev(),
 			),
 			array(
 				'id'		=> 'widget_facebook_page',
@@ -453,7 +453,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
+				'show_on'				=> \ItalyStrap\Core\is_dev(),
 			),
 			array(
 				'id'		=> 'widget_editor',
@@ -471,7 +471,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta(),
+				'show_on'				=> \ItalyStrap\Core\is_dev(),
 			),
 			array(
 				'id'		=> 'widget_nav_menu',
@@ -489,7 +489,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta() && wp_get_theme( 'ItalyStrap' )->exists(),
+				'show_on'				=> \ItalyStrap\Core\is_beta() && wp_get_theme( 'italystrap' )->exists(),
 			),
 			array(
 				'id'		=> 'widget_monster',
@@ -646,7 +646,7 @@ return array(
 			),
 			array(
 				'id'		=> 'shortcode_button',
-				'title'		=> __( 'Post Title Shortcode', 'italystrap' ),
+				'title'		=> __( 'Post Button Shortcode', 'italystrap' ),
 				'callback'	=> 'get_field_type',
 				'page'		=> 'italystrap_options_group',
 				'section'	=> 'shortcode',
@@ -660,7 +660,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				// 'show_on'				=> \ItalyStrap\Core\is_beta(),
+				'show_on'				=> \ItalyStrap\Core\is_dev(),
 			),
 			// array(
 			// 	'id'		=> 'shortcode_row',
@@ -890,7 +890,7 @@ return array(
 						// 'validate'	=> 'ctype_alpha',
 						'sanitize'		=> 'sanitize_text_field',
 				),
-				'show_on'				=> \ItalyStrap\Core\is_beta() && wp_get_theme( 'ItalyStrap' )->exists(),
+				'show_on'				=> \ItalyStrap\Core\is_beta() && wp_get_theme( 'italystrap' )->exists(),
 			),
 			array(
 				'id'		=> 'google_analytics_id',
