@@ -1,25 +1,23 @@
 === Advanced Control Manager for WordPress by ItalyStrap ===
 Contributors: overclokk
 Donate link: https://italystrap.com/
-Tags: italystrap, bandwidth, bing, breadcrumbs, breadcrumb, bootstrap, carousel, css, front-end optimization, gallery, google, images, lazy load, lazy loading, local business seo, local business, local seo, media, microdata, optimize, performance, photo, post, posts, responsive, responsive design, rich snippet, schema, schema.org, seo, slider, slideshow, twitter bootstrap, widget, widgets, yahoo
+Tags: custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts
 Requires at least: 4.8
-Requires PHP: 7.0
+Requires PHP: 5.6
 Tested up to: 4.9
 Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make your web site more powerful with Advanced Control Manager
+Make your web site more powerful with ACM - Advanced Control Manager
 
-(Requires PHP 7 >= and Developers skills)
-
-The version 2.0.0 is a new and complete rebuild of this plugin.
+(Requires PHP 5.6 >= and Developers skills)
 
 == Description ==
 
 Always make a backup before install it and always test it in a dev enviroment.
 
-Make shure you have PHP 5.3 >=, better if you have PHP >= 7.0 (PHP 7 is awesome ;-) ).
+Make shure you have PHP 5.6 >=, better if you have PHP >= 7.0 (PHP 7.x is awesome ;-) ).
 
 If you have any trouble [open a ticket](http://wordpress.org/support/plugin/advanced-control-manager).
 
@@ -33,7 +31,7 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
 
-Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options and so on, see above for the full list of featured.
+Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options like popular posts, last posts, related posts and so on, there are a lot of functionality, see above for the full list of featured.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
@@ -286,11 +284,34 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.8.0 =
-Release Date: July 20th, 2017
+Release Date: October 1st, 2017
 
-Dev time: 200h
+Dev time: 400h
 
-* New Posts Shortcode (the widget version)
+* New Posts Shortcode in beta version (the widget version)
+* New Blocks in Alpha version for Gutemberg
+* New Shortcode in beta version fo Post_Title
+* New Shortcode in beta version fo Button
+* New filter for the read_more_link_text
+* New Google Tag Manager in beta version for the ItalyStrap theme framework
+* New CMB2 adapter OOP PHP Class
+* New Shortcake UI integration
+* Changes configuration for widget and shortcode to default for Shortcake
+* Fix for Google fonts
+* Fix for Breadcrumbs::meta()
+* Fix for Posts views for cats and tags
+* Added example for the Event Manager API Class
+* Added Support for post 2 post plugin
+* Better plugin botstrapping
+* Better action hook for the loader plugin
+* Refactoring for the widget area metabox
+* Refactoring for the Posts API
+* Refactoring for the Breadcrumbs API
+* Refactoring for the Video Lazy Load
+* Refactoring for the Bootstrap Carousel validate_data method
+* Refactoring for the plugin main file
+* Bumps up minimum requirements for the ACM
+* Alpha functionality are now in dev mode
 
 = 2.7.0 =
 Release Date: June 28th, 2017

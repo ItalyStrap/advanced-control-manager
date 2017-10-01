@@ -72,6 +72,11 @@ var path = require("path");
 module.exports = function(grunt) {
 	'use strict';
 
+	/**
+	 * https://www.npmjs.com/package/load-grunt-tasks
+	 */
+	require('load-grunt-tasks')(grunt);
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		uglify: {
@@ -514,36 +519,36 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-csslint');
-	grunt.loadNpmTasks('grunt-contrib-compass');
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-fontello');
-	grunt.loadNpmTasks('grunt-phpcs');
-	grunt.loadNpmTasks('grunt-phpcbf');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-sync');
+	// grunt.loadNpmTasks('grunt-contrib-jshint');
+	// grunt.loadNpmTasks('grunt-contrib-uglify');
+	// grunt.loadNpmTasks('grunt-contrib-csslint');
+	// grunt.loadNpmTasks('grunt-contrib-compass');
+	// grunt.loadNpmTasks('grunt-contrib-less');
+	// grunt.loadNpmTasks('grunt-fontello');
+	// grunt.loadNpmTasks('grunt-phpcs');
+	// grunt.loadNpmTasks('grunt-phpcbf');
+	// grunt.loadNpmTasks('grunt-contrib-watch');
+	// grunt.loadNpmTasks('grunt-sync');
 
-	grunt.loadNpmTasks('grunt-file-creator');
+	// grunt.loadNpmTasks('grunt-file-creator');
 
 	/**
 	 * https://www.npmjs.com/package/grunt-composer
 	 */
-	grunt.loadNpmTasks('grunt-composer');
+	// grunt.loadNpmTasks('grunt-composer');
 
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-clean');
+	// grunt.loadNpmTasks('grunt-contrib-copy');
+	// grunt.loadNpmTasks('grunt-contrib-clean');
 
-	grunt.loadNpmTasks('grunt-bump');
+	// grunt.loadNpmTasks('grunt-bump');
 
-	grunt.loadNpmTasks('grunt-version');
-	grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
-	grunt.loadNpmTasks('grunt-git');
-	grunt.loadNpmTasks('grunt-prompt');
-	grunt.loadNpmTasks('grunt-contrib-compress');
-	grunt.loadNpmTasks('grunt-github-releaser');
-	grunt.loadNpmTasks('grunt-exec');
+	// grunt.loadNpmTasks('grunt-version');
+	// grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
+	// grunt.loadNpmTasks('grunt-git');
+	// grunt.loadNpmTasks('grunt-prompt');
+	// grunt.loadNpmTasks('grunt-contrib-compress');
+	// grunt.loadNpmTasks('grunt-github-releaser');
+	// grunt.loadNpmTasks('grunt-exec');
 
 	/**
 	 * Controllare gli aggiornamenti
@@ -570,8 +575,6 @@ module.exports = function(grunt) {
 	 * or
 	 * $ grunt composer:dump-autoload -o
 	 *
-	 * Copiare dalla cartella composer dentro lib il file di interesse
-	 * Eventualmente copiarlo anche nel tema
 	 */
 	
 	/**
@@ -629,7 +632,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('deploy',
 		[
-		'preDeploy',
+		// 'preDeploy',
 		'gitcommit:first',
 		'gitcheckout:devtomaster',
 		'gitmerge:fromdev',
@@ -645,7 +648,7 @@ module.exports = function(grunt) {
 		'gitcheckout:mastertodev',
 		'gitmerge:frommaster',
 		'gitpush',
-		'postDeploy',
+		// 'postDeploy',
 		]
 	);
 
