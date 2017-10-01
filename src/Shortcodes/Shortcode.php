@@ -4,6 +4,8 @@
  *
  * Shortcode Base class
  *
+ * Some ideas http://www.wpbeginner.com/beginners-guide/7-essential-tips-for-using-shortcodes-in-wordpress/
+ *
  * @link www.italystrap.com
  * @since 2.4.0
  *
