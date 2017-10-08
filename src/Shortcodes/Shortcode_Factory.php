@@ -74,7 +74,7 @@ class Shortcode_Factory implements Subscriber_Interface {
 			'shortcode_column'		=> 'ItalyStrap\\Shortcodes\\Column',
 			'shortcode_posts'		=> 'ItalyStrap\\Shortcodes\\Posts',
 			'shortcode_post_title'	=> 'ItalyStrap\\Shortcodes\\Post_Title',
-			'shortcode_button'	=> 'ItalyStrap\\Shortcodes\\Button',
+			'shortcode_button'		=> 'ItalyStrap\\Shortcodes\\Button',
 		);
 	}
 
