@@ -701,3 +701,16 @@ if ( ! function_exists( 'ddd' ) ) {
 	
 	}
 }
+
+/**
+ * I don't want to see other notices in mu plugin admin page
+ * Fuck them all :-)
+ */
+function hide_update_notice_to_all_but_admin_users() {
+	if ( 'acm-by-italystrap_page_italystrap-settings' !== get_current_screen()->id ) {
+		return;
+	}
+
+	remove_all_actions( 'admin_notices' );
+}
+add_action( 'admin_head', __NAMESPACE__ . '\hide_update_notice_to_all_but_admin_users', 1 );
