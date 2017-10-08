@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Core;
 
 /**
  * Minify API Class
@@ -66,7 +67,18 @@ class Minify {
 	 *
 	 * @return string          The subject minified
 	 */
-	public function run( $subject ) {
+	protected function parse( $subject ) {
+
+		/**
+		 * Return the original content if DEBUG is active
+		 */
+		if ( Core\is_script_debug() ) {
+			$is_debug = sprintf(
+				'/** %s */',
+				__( 'The script debug for this site is active, if you want to minify this snippet set the SCRIPT_DEBUG constant in wp-config.php to false.', 'domain' )
+			);
+			return "\n" . $is_debug . "\n" . $subject;
+		}
 
 		$comments = array(
 			'#/\*.*?\*/#s' => '',  // Strip C style comments.
@@ -80,5 +92,38 @@ class Minify {
 		$subject = str_replace( $search, $this->replace, $subject );
 
 		return trim( $subject );
+	}
+
+	/**
+	 * Wrapper for the CLASS::parse();
+	 *
+	 * @param  string $subject The subject output.
+	 *
+	 * @return string          The subject minified
+	 */
+	public function js( $subject ) {
+		return $this->parse( $subject );
+	}
+
+	/**
+	 * Wrapper for the CLASS::parse();
+	 *
+	 * @param  string $subject The subject output.
+	 *
+	 * @return string          The subject minified
+	 */
+	public function css( $subject ) {
+		return $this->parse( $subject );
+	}
+
+	/**
+	 * Wrapper for the CLASS::parse();
+	 *
+	 * @param  string $subject The subject output.
+	 *
+	 * @return string          The subject minified
+	 */
+	public function html( $subject ) {
+		return $this->parse( $subject );
 	}
 }

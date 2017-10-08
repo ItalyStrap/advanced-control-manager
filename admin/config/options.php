@@ -748,7 +748,7 @@ return array(
 						'placeholder'	=> '.my_css{color:#fff;}',
 						'default'		=> '',
 						// 'validate'		=> 'ctype_alpha',
-						'sanitize'		=> 'sanitize_text_field',
+						// 'sanitize'		=> 'sanitize_text_field|strip_tags', // Default: strip_tags
 						'option_type'	=> 'theme_mod',
 				),
 			),

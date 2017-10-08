@@ -30,17 +30,41 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 	 */
 	public static function get_subscribed_events() {
 
+		/**
+		 * With "PHP_INT_MAX - 100" the assets will be added as late as possible
+		 * but for some reason if you need to add your inline asset after this
+		 * with the "- 100" you can have some space to append custom code.
+		 * For example you can use "PHP_INT_MAX - 50" and you code will be appended
+		 * after this asset.
+		 */
 		return array(
 			// 'hook_name'              => 'method_name',
 			'wp_head'	=> array(
 				'function_to_add'	=> 'inline_css',
-				'priority'			=> 999999,
+				'priority'			=> PHP_INT_MAX - 100,
 			),
 			'wp_print_footer_scripts'	=> array(
 				'function_to_add'	=> 'inline_javascript',
-				'priority'			=> 999999,
+				'priority'			=> PHP_INT_MAX - 100,
 			),
 		);
+	}
+
+	/**
+	 * Minify object
+	 *
+	 * @var Minify
+	 */
+	protected $minify;
+
+	/**
+	 * Constructor
+	 *
+	 * @param  string $value [description]
+	 * @return string        [description]
+	 */
+	public function __construct( Minify $minify ) {
+		$this->minify = $minify;
 	}
 
 	/**
@@ -58,10 +82,10 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 		}
 
 		printf(
-			'<script type="text/javascript">/*<![CDATA[*/%s/*]]>*/</script>',
-			$script
+			'<script type="text/javascript" id="custom-inline-js">/*<![CDATA[*/%s/*]]>*/</script>',
+			// strip_tags( $this->minify->js( $script ) )
+			$this->minify->js( $script )
 		);
-
 	}
 
 	/**
@@ -77,7 +101,7 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 
 		printf(
 			'<style type="text/css" id="custom-inline-css">%s</style>',
-			wp_strip_all_tags( $css )
+			strip_tags( $this->minify->css( $css ) )
 		);
 	}
 }
