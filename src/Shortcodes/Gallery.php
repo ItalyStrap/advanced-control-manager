@@ -38,12 +38,19 @@ class Gallery implements Subscriber_Interface {
 	/**
 	 * Modify the gallery shortcode with Bootstrap Carousel functionality.
 	 *
-	 * @param  string $output   The gallery output. Default empty.
-	 * @param  array  $atts     Attributes of the gallery shortcode.
-	 * @param  int    $instance Unique numeric ID of this gallery shortcode instance.
-	 * @return string           Return the new Bootstrap carousel
+	 * @param  string        $output   The gallery output. Default empty.
+	 * @param  array|string  $atts     Attributes of the gallery shortcode.
+	 * @param  int           $instance Unique numeric ID of this gallery shortcode instance.
+	 * @return string                  Return the new Bootstrap carousel
 	 */
-	public function gallery_shortcode( $output, array $atts, $instance = null ) {
+	public function gallery_shortcode( $output, $atts, $instance = null ) {
+
+		/**
+		 * In case the shortcode has no attributes $atts will be a string
+		 */
+		if ( ! is_array( $atts ) ) {
+			return $output;
+		}
 
 		/**
 		 * If type is not set return the output.
@@ -68,7 +75,7 @@ class Gallery implements Subscriber_Interface {
 	 */
 	public function gallery_types( $gallery_types ) {
 
-		$gallery_types['carousel'] = 'Bootstrap Carousel';
+		$gallery_types['carousel'] = __( 'Bootstrap Carousel', 'italystrap' );
 		return $gallery_types;
 	}
 
