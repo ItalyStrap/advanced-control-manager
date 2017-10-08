@@ -36,6 +36,9 @@ class Video implements Subscriber_Interface {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
+			/**
+			 * This run on [embed] shortcode
+			 */
 			'embed_oembed_html'	=> array(
 				'function_to_add'	=> 'get_embed',
 				'accepted_args'		=> 4,
@@ -48,6 +51,13 @@ class Video implements Subscriber_Interface {
 				'function_to_add'	=> 'get_video_shortcode',
 				'accepted_args'		=> 5,
 			),
+			/**
+			 * @todo Future improvements
+			 */
+			// 'embed_defaults'	=> array(
+			// 	'function_to_add'	=> 'embed_defaults',
+			// 	'accepted_args'		=> 2,
+			// ),
 		);
 	}
 
@@ -73,6 +83,21 @@ class Video implements Subscriber_Interface {
 		$this->minify = $minify;
 		Inline_Style::set( $this->get_css() );
 		Inline_Script::set( $this->get_js() );
+	}
+
+	/**
+	 * Filters the default array of embed dimensions.
+	 *
+	 * @since 2.8.0
+	 *
+	 * @see wp-includes/embed.php
+	 *
+	 * @param array  $size An array of embed width and height values
+	 *                     in pixels (in that order).
+	 * @param string $url  The URL that should be embedded.
+	 */
+	public function embed_defaults( $size, $url ) {
+		return $size;
 	}
 
 	/**
@@ -129,7 +154,7 @@ class Video implements Subscriber_Interface {
 		}
 
 		$html = sprintf(
-			'<div class="lazyload-video youtube" data-embed="%s"><div class="play-button"></div></div>',
+			'<div class="lazyload-video-wrap"><div class="lazyload-video youtube" data-embed="%s"><div class="play-button"></div></div></div>',
 			$matches[1]
 		);
 
