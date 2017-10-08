@@ -105,7 +105,7 @@ class Image implements Subscriber_Interface {
 		add_filter( 'get_avatar', array( __CLASS__, 'add_image_placeholders' ), 11 );
 
 		/**
-		 * Filter for custom header image in Italystrap theme
+		 * Filter for custom header image in ItalyStrap theme
 		 */
 		add_filter( 'italystrap_custom_header_image', array( __CLASS__, 'add_image_placeholders' ) );
 
@@ -258,7 +258,23 @@ class Image implements Subscriber_Interface {
 		//Da testare
 		// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$(this).load(function(){$(this).css( "opacity","1");});});});';
 
-		$content .= 'jQuery(document).ready(function($){$("img").unveil(200, function(){$("img").load(function(){this.style.opacity = 1;});});});';
+		$content .= '
+function force_load_img( img ) {
+	var src = img.data("src");
+	if (typeof src !== "undefined" && src !== ""){
+		img.attr("src", src);
+		img.data("src", "");
+	}
+}
+jQuery(document).ready(function($){
+	var img = $("img");
+	img.unveil(200, function(){
+		this.style.opacity = 0;
+		img.load(function(){
+			this.style.opacity = 1;
+		});
+	});
+});';
 
 		return $content;
 
@@ -271,12 +287,19 @@ class Image implements Subscriber_Interface {
 	 */
 	static function custom_css() {
 
-		$custom_css = 'img{opacity:0;transition:opacity .3s ease-in;}';
+		/**
+		 * This apply opacity 0 only for thoose images that have the data-src attributes
+		 * normally added from this plugin.
+		 *
+		 * @var string
+		 */
+		$custom_css = 'img[data-src]{opacity:0;transition:opacity .3s ease-in;}';
+		return $custom_css;
 
 		/**
 		 * return $custom_css;
 		 */
-		return null;
+		// return null;
 
 	}
 }

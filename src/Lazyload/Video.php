@@ -17,7 +17,6 @@ namespace ItalyStrap\Lazyload;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
-use ItalyStrap\Asset\Minify;
 
 /**
  * Class description
@@ -62,7 +61,7 @@ class Video implements Subscriber_Interface {
 	}
 
 	/**
-	 * [$regex description]
+	 * A regex to search for youtube video
 	 *
 	 * @see WP_oEmbed::$providers in wp-includes/class-oembed.php for more regex
 	 * @see wp_video_shortcode() in wp-includes/media.php L#2428
@@ -72,17 +71,12 @@ class Video implements Subscriber_Interface {
 	// private $regex = '#https?://(www.)?youtube\.com/(?:v|embed)/([^/]+)#i';
 	private $regex = '#(?:v=|\/v\/|\.be\/)([a-zA-Z0-9_-]+)#i';
 
-	private $minify = null;
-
 	/**
-	 * [__construct description]
-	 *
-	 * @param Minify $minify Minify object.
+	 * Constructor
 	 */
-	function __construct( Minify $minify ) {
-		$this->minify = $minify;
-		Inline_Style::set( $this->get_css() );
-		Inline_Script::set( $this->get_js() );
+	function __construct() {
+		Inline_Style::set( $this->get_asset( 'style' ) );
+		Inline_Script::set( $this->get_asset( 'script' ) );
 	}
 
 	/**
@@ -162,105 +156,13 @@ class Video implements Subscriber_Interface {
 	}
 
 	/**
-	 * Function description
+	 * Get the style or script asset for the Video Lazy Load
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @return string Return the content of the file
 	 */
-	public function get_css() {
-	
-		$css = '.youtube {
-		    background-color: #000;
-		    margin-bottom: 30px;
-		    position: relative;
-		    padding-top: 56.25%;
-		    overflow: hidden;
-		    cursor: pointer;
-		}
-		.youtube img {
-		    width: 100%;
-		    top: -16.82%;
-		    left: 0;
-		    opacity: 0.7;
-		}
-		.youtube .play-button {
-		    width: 90px;
-		    height: 60px;
-		    background-color: #333;
-		    box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
-		    z-index: 1;
-		    opacity: 0.8;
-		    border-radius: 6px;
-		}
-		.youtube .play-button:before {
-		    content: "";
-		    border-style: solid;
-		    border-width: 15px 0 15px 26.0px;
-		    border-color: transparent transparent transparent #fff;
-		}
-		.youtube img,
-		.youtube .play-button {
-		    cursor: pointer;
-		}
-		.youtube img,
-		.youtube iframe,
-		.youtube .play-button,
-		.youtube .play-button:before {
-		    position: absolute;
-		}
-		.youtube .play-button,
-		.youtube .play-button:before {
-		    top: 50%;
-		    left: 50%;
-		    transform: translate3d( -50%, -50%, 0 );
-		}
-		.youtube iframe {
-		    height: 100%;
-		    width: 100%;
-		    top: 0;
-		    left: 0;
-		}';
-
-		return $this->minify->run( $css );
-	}
-
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_js() {
-	
-		$js = '( function() {
-
-		    var youtube = document.querySelectorAll( ".youtube" );
-		    
-		    for (var i = 0; i < youtube.length; i++) {
-		        
-		        var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
-		        
-		        var image = new Image();
-		                image.src = source;
-		                image.addEventListener( "load", function() {
-		                    youtube[ i ].appendChild( image );
-		                }( i ) );
-		        
-		                youtube[i].addEventListener( "click", function() {
-
-		                    var iframe = document.createElement( "iframe" );
-
-		                            iframe.setAttribute( "frameborder", "0" );
-		                            iframe.setAttribute( "allowfullscreen", "" );
-		                            iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
-
-		                            this.innerHTML = "";
-		                            this.appendChild( iframe );
-		                } );    
-		    };
-		    
-		} )();';
-
-		return $this->minify->run( $js );
+	public function get_asset( $file_type ) {
+		ob_start();
+		require( 'asset/video-' . $file_type . '.php' );
+		return ob_get_clean();
 	}
 }
