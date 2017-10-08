@@ -739,15 +739,33 @@ abstract class Carousel {
 	 */
 	function get_javascript() {
 
-		$pause = ( '1' === $this->args['pause'] ) ? ',pause:"' . esc_js( $this->args['pause'] ) . '"' : '' ;
+		$pause = '1' === $this->args['pause'] ? ',pause:"' . esc_js( $this->args['pause'] ) . '"' : '' ;
 
 		/**
 		 * LazyLoad for Bootstrap carousel
 		 * http://stackoverflow.com/questions/27675968/lazy-load-not-work-in-bootstrap-carousel
 		 * http://jsfiddle.net/51muqdLf/5/
+		 *
+		 *  Old function:
+		 *  var cHeight = 0;
+		 *
+		 * 	var src = $nextImage.data("src");
+		 * 	if (typeof src !== "undefined" && src !== ""){
+		 * 		$nextImage.attr("src", src);
+		 * 	    $nextImage.data("src", "");
+		 * 	}
 		 */
 		$lazyload = sprintf(
-			'var cHeight = 0;$("#%s").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});',
+			'
+$("#%s").on("slide.bs.carousel", function(e){
+	var $img;
+	if ( "left" === e.direction ) {
+		$img = $(".active.item", this).next(".item").find("img");
+	} else {
+		$img = $(".active.item", this).prev(".item").find("img");
+	}
+	force_load_img( $img );
+});',
 			esc_js( $this->args['name'] )
 		);
 

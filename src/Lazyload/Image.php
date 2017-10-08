@@ -108,6 +108,7 @@ class Image implements Subscriber_Interface {
 		 * Filter for custom header image in ItalyStrap theme
 		 */
 		add_filter( 'italystrap_custom_header_image', array( __CLASS__, 'add_image_placeholders' ) );
+		add_filter( 'italystrap_carousel_output', array( __CLASS__, 'add_image_placeholders' ) );
 
 		/**
 		 * Append unveil.js content to globalsjs static variable
@@ -267,9 +268,9 @@ function force_load_img( img ) {
 	}
 }
 jQuery(document).ready(function($){
-	var img = $("img");
+	var img = $("img[data-src]");
 	img.unveil(200, function(){
-		this.style.opacity = 0;
+		// this.style.opacity = 0;
 		img.load(function(){
 			this.style.opacity = 1;
 		});

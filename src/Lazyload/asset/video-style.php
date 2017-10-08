@@ -4,17 +4,27 @@
  */
 ?>.youtube {
 	background-color: #000;
-	margin-bottom: 30px;
+	margin-bottom: 32px;
+	margin-bottom: 2rem;
 	position: relative;
 	padding-top: 56.25%;
 	overflow: hidden;
 	cursor: pointer;
 }
+.youtube::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.3;
+}
 .youtube img {
 	width: 100%;
 	top: -16.82%;
 	left: 0;
-	opacity: 0.7;
 }
 .youtube .play-button {
 	width: 90px;
