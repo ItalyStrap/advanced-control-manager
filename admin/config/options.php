@@ -21,7 +21,7 @@ $beta = ' {{BETA VERSION}}';
 
 return array(
 	/**
-	 * This is the Lazy Load configuration
+	 * Plugin configuration array
 	 */
 	'general'	=> array(
 		'tab_title'			=> __( 'General', 'italystrap' ),
@@ -1211,7 +1211,7 @@ return array(
 				'section'	=> 'media',
 				'args'		=> array(
 						'name'			=> __( 'Lazy Loading of embedded video', 'italystrap' ) . $beta,
-						'desc'			=> __( 'Activate Lazy Loading of embedded video', 'italystrap' ),
+						'desc'			=> __( 'Activate Lazy Loading of embedded video. This only works for youtube video. The with of the container will be the max with of <code>content_width</code> set in your theme. You can use the <code>lazyload-video-wrap</code> CSS class for adding your own style.', 'italystrap' ),
 						'id'			=> 'lazyload_video',
 						'type'			=> 'checkbox',
 						'class'			=> 'lazyload_video easy',
