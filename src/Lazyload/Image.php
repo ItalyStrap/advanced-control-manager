@@ -270,7 +270,6 @@ function force_load_img( img ) {
 jQuery(document).ready(function($){
 	var img = $("img[data-src]");
 	img.unveil(200, function(){
-		// this.style.opacity = 0;
 		img.load(function(){
 			this.style.opacity = 1;
 		});
