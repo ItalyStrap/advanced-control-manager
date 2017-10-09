@@ -283,6 +283,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.9.1 =
+Release Date: October 9th, 2017
+
+Dev time: 30min
+
+* Fixed SyntaxError: missing } after function body for Image Lazy Load
+
 = 2.9.0 =
 Release Date: October 9th, 2017
 
