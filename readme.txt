@@ -283,6 +283,18 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.9.0 =
+Release Date: October 9th, 2017
+
+Dev time: 30h
+
+* Removed other notice on settings page of my plugin
+* Added div wrapper for the view of Video Lazy Load
+* Improvements for the Bootstrap Carousell API
+* Refactoring of the Asset Inline and Minify API
+* Refactoring of the Video and Image Lazy Load API
+* Fixed PHP notice if the gallery shortcode is empty
+
 = 2.8.0 =
 Release Date: October 1st, 2017
 
