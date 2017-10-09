@@ -703,7 +703,7 @@ if ( ! function_exists( 'ddd' ) ) {
 }
 
 /**
- * I don't want to see other notices in mu plugin admin page
+ * I don't want to see other notices in my plugin admin page
  * Fuck them all :-)
  */
 function hide_update_notice_to_all_but_admin_users() {
