@@ -144,10 +144,17 @@ class Posts extends Query {
 		 * @var array
 		 */
 		$query_args = array(
-			'posts_per_page'			=> $this->config['posts_number'] + count( $this->posts_to_exclude ),
+			'posts_per_page'			=> absint( $this->config['posts_number'] ) + count( $this->posts_to_exclude ),
 			'order'						=> $this->config['order'],
 			'orderby'					=> $this->config['orderby'],
-			'post_type'					=> ( empty( $this->config['post_types'] ) ? 'post' : ( is_array( $this->config['post_types'] ) ? $this->config['post_types'] : explode( ',', $this->config['post_types'] ) ) ),
+			'post_type'					=>
+				empty( $this->config['post_types'] )
+				? 'post'
+				: (
+					is_array( $this->config['post_types'] )
+					? $this->config['post_types']
+					: explode( ',', $this->config['post_types'] )
+				),
 			'no_found_rows'				=> true,
 			'update_post_term_cache'	=> false,
 			'update_post_meta_cache'	=> false,
