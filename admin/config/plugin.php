@@ -15,11 +15,14 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
+use ItalyStrap\Core;
+
 return array(
 	'basename'				=> ITALYSTRAP_BASENAME,
-	'options_name'			=> 'italystrap_settings',
+	'options_name'			=> ITALYSTRAP_OPTIONS_NAME,
 	'options_group'			=> 'italystrap_options_group',
 	'admin_view_path'		=> ITALYSTRAP_PLUGIN_PATH . 'admin/view/',
+	'capability'			=> 'manage_options',
 	'plugin_action_links'	=> array(
 		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
 		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Docs','italystrap' ) . '</a>',
@@ -106,7 +109,7 @@ return array(
 			// 'capability'	=> $this->capability,
 			'menu_slug'		=> 'italystrap-migrations',
 			// 'function_cb'	=> array( $this, 'get_admin_view' ),
-			'show_on'		=> ( get_option( 'template' ) === 'ItalyStrap' ),
+			'show_on'		=> get_option( 'template' ) === 'ItalyStrap',
 		),
 	),
 );
