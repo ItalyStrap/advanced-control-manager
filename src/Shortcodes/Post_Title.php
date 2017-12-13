@@ -159,6 +159,12 @@ class Post_Title extends Shortcode {
 	 */
 	public function shortcode_render( array $attr = array(), $content = "" ) {
 
+		$title = get_the_title( $attr['post_id'] );
+
+		if ( empty( $title ) ) {
+			return '';
+		}
+
 		$post_title_attr = array(
 			'class'	=> $attr['class'],
 			'id'	=> $attr['id'],
@@ -173,7 +179,7 @@ class Post_Title extends Shortcode {
 
 		$tag_after = '</' . esc_attr( $attr['html_tag'] ) . '>';
 
-		return $tag_before . esc_html( $attr['before'] ) . get_the_title( $attr['post_id'] ) . esc_html( $attr['after'] ) . $tag_after;
+		return $tag_before . esc_html( $attr['before'] ) . $title . esc_html( $attr['after'] ) . $tag_after;
 	}
 
 	/**
