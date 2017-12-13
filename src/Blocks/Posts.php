@@ -36,6 +36,22 @@ class Posts extends Block {
 	 * @param [type] $argument [description].
 	 */
 	function __construct( Posts_Base $post ) {
-		// Code...
+		$this->query_posts = $post;
 	}
+
+	/**
+	 * Render the output
+	 *
+	 * @param  array  $attr    The attribute for the shortcode.
+	 * @param  array  $content The content for the shortcode.
+	 *
+	 * @return string          The output of the shortcode.
+	 */
+	public function render( array $attributes ) {
+// ddd( $attributes );
+		$this->query_posts->get_widget_args( $attributes );
+
+		return $this->query_posts->output();
+	}
+
 }
