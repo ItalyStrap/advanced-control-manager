@@ -15,6 +15,7 @@ namespace ItalyStrap\Excerpt;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Config\Config_Interface;
 use ItalyStrap\Core;
+use ItalyStrap\I18N\Translatable;
 
 /**
  * New Class to set excerpt lenght and show "more link"
@@ -83,11 +84,20 @@ class Excerpt implements Subscriber_Interface {
 	private static $config;
 
 	/**
+	 * Translator Object
+	 *
+	 * @var Translatable
+	 */
+	private $translator;
+
+	/**
 	 * Init the class
 	 *
 	 * @param $options $argument [description].
 	 */
-	function __construct( Config_Interface $config ) {
+	function __construct( Config_Interface $config, Translatable $translator ) {
+
+		$this->translator = $translator;
 
 		self::$config = $config;
 
@@ -120,7 +130,9 @@ class Excerpt implements Subscriber_Interface {
 		 */
 		$class = apply_filters( 'italystrap_read_more_class', $this->options['read_more_class'] );
 
-		$link_text = '' === $link_text ? $this->options['read_more_link_text'] : $link_text;
+		$link_text = '' === $link_text
+			? $this->translator->get_string( 'read_more_link_text', $this->options['read_more_link_text'] )
+			: $link_text;
 
 		$default = array(
 			'class'	=> $class,
