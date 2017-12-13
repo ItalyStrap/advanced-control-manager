@@ -306,7 +306,7 @@ class Analytics implements Subscriber_Interface {
 	 */
 	public function render_analytics() {
 
-		if ( is_preview() && is_admin() ) {
+		if ( is_customize_preview() || is_preview() || is_admin() ) {
 			return;
 		}
 

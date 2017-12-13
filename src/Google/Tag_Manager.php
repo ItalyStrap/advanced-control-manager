@@ -70,7 +70,7 @@ class Tag_Manager implements Subscriber_Interface {
 	 */
 	public function render() {
 
-		if ( is_preview() && is_admin() ) {
+		if ( is_customize_preview() || is_preview() || is_admin() ) {
 			return;
 		}
 
@@ -113,7 +113,7 @@ class Tag_Manager implements Subscriber_Interface {
      */
 	public function render_tag_manager( $classes, $class ) {
 
-		if ( is_preview() && is_admin() ) {
+		if ( is_customize_preview() || is_preview() || is_admin() ) {
 			return;
 		}
 
