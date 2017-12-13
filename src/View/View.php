@@ -20,6 +20,53 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 class View implements View_Interface {
 
 	/**
+	 * Retrieve the name of the highest priority template file that exists.
+	 *
+	 * Searches in the STYLESHEETPATH before TEMPLATEPATH and wp-includes/theme-compat
+	 * so that themes which inherit from a parent theme can just overload one file.
+	 *
+	 * @param string|array $template_names Template file(s) to search for, in order.
+	 * @param bool         $load           If true the template file will be loaded if it is found.
+	 * @param bool         $require_once   Whether to require_once or require. Default true. Has no effect if $load is false.
+	 *
+	 * @return string The template filename if one is located.
+	 */
+	public function get( $template_names, $load = false, $require_once = true ) {
+		return locate_template( $template_names, $load, $require_once );
+	}
+
+	/**
+	 * Check if the template exists
+	 *
+	 * @param string|array $template_names Template file(s) to search for, in order.
+	 *
+	 * @return bool                        Return true if template exists
+	 */
+	public function has( $template_names ) {
+		return locate_template( $template_names, false, true );
+	}
+
+	/**
+	 * Render a template file
+	 *
+	 * @param  string $template_file Path to the template file.
+	 * @param  array  $data          An array with data for the template.
+	 *
+	 * @return string                Return the template rendered
+	 */
+	protected function render_template( $template_file, array $data = [] ) {
+
+		$object = (object) $data;
+		$renderer = \Closure::bind( function( $template_file ) {
+			ob_start();
+			include $template_file;
+			return ob_get_clean();
+		}, $object );
+
+		return $renderer( $template_file );
+	}
+
+	/**
 	 * Load a template part into a template
 	 *
 	 * Makes it easy for a theme to reuse sections of code in a easy to overload way
@@ -34,8 +81,6 @@ class View implements View_Interface {
 	 *
 	 * For the $name parameter, if the file is called "{slug}-special.php" then specify
 	 * "special".
-	 *
-	 * @since 4.0.0
 	 *
 	 * @see get_template_part() - wp-includes/general-template.php
 	 *
@@ -70,46 +115,8 @@ class View implements View_Interface {
 			return;
 		}
 
-		// ob_start();
-		// require( $this->get( $templates, $load, false ) );
-		// $this->store[ $slug ] = ob_get_clean();
-
 		$this->store[ $slug ] = $this->render_template( $this->get( $templates, $load, false ), $data );
 
 		echo $this->store[ $slug ];
-	}
-
-	public function render_template( $template_file, array $data = [] ) {
-
-		$object = (object) $data;
-		$renderer = \Closure::bind( function( $template_file ) {
-			ob_start();
-			include $template_file;
-			return ob_get_clean();
-		}, $object );
-
-		return $renderer( $template_file );
-	}
-
-	/**
-	 * Retrieve the name of the highest priority template file that exists.
-	 *
-	 * Searches in the STYLESHEETPATH before TEMPLATEPATH and wp-includes/theme-compat
-	 * so that themes which inherit from a parent theme can just overload one file.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param string|array $template_names Template file(s) to search for, in order.
-	 * @param bool         $load           If true the template file will be loaded if it is found.
-	 * @param bool         $require_once   Whether to require_once or require. Default true. Has no effect if $load is false.
-	 *
-	 * @return string The template filename if one is located.
-	 */
-	public function get( $template_names, $load = false, $require_once = true ) {
-		return locate_template( $template_names, $load, $require_once );
-	}
-
-	public function has( $template_names ) {
-		return locate_template( $template_names, false, true );
 	}
 }
