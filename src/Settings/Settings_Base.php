@@ -10,6 +10,8 @@
  *
  * @since 2.2.0
  *
+ * @deprecated 4.0.0 Deprecated Abstract Class
+ *
  * @package ItalyStrap\Settings
  */
 
@@ -19,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Fields\Fields_Interface;
 use ItalyStrap\Update\Validation;
 use ItalyStrap\Update\Sanitization;
 
@@ -84,35 +85,6 @@ abstract class Settings_Base implements Settings_Interface{
 	 * @var array
 	 */
 	protected $fields = array();
-
-	/**
-	 * Initialize Class
-	 *
-	 * @param array            $options        Get the plugin options.
-	 * @param array            $settings       The configuration array plugin fields.
-	 * @param array            $args           The configuration array for plugin.
-	 * @param array            $theme_mods     The theme options.
-	 * @param Fields_Interface $fields_type    The Fields object.
-	 */
-	public function __construct( array $options = array(), array $settings, array $args, array $theme_mods, Fields_Interface $fields_type ) {
-
-		if ( isset( $_GET['page'] ) ) { // Input var okay.
-			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.
-		}
-
-		$this->settings = $settings;
-
-		$this->options = $options;
-
-		$this->args = $args;
-
-		$this->fields_type = $fields_type;
-
-		$this->fields = $this->get_settings_fields();
-
-		$this->theme_mods = $theme_mods;
-
-	}
 
 	/**
 	 * Enqueue Style and Script
@@ -265,7 +237,6 @@ abstract class Settings_Base implements Settings_Interface{
 		$plugin_meta = array_merge( (array) $plugin_meta, (array) $this->args['plugin_row_meta'] );
 
 		return $plugin_meta;
-
 	}
 
 	/**
@@ -318,8 +289,13 @@ abstract class Settings_Base implements Settings_Interface{
 
 		$out = '<ul>';
 
-		foreach ( $this->settings as $key => $value ) {
-			$out .= '<li><a href="#tabs-' . $count . '">' . $value['tab_title'] . '</a></li>';
+		foreach ( $this->settings as $key => $setting ) {
+
+			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
+				continue;
+			}
+
+			$out .= '<li><a href="#tabs-' . $count . '">' . $setting['tab_title'] . '</a></li>';
 			$count++;
 		}
 
@@ -336,6 +312,10 @@ abstract class Settings_Base implements Settings_Interface{
 		$this->add_option();
 
 		foreach ( $this->settings as $key => $setting ) {
+
+			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
+				continue;
+			}
 
 			add_settings_section(
 				$setting['id'],
