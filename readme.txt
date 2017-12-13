@@ -308,7 +308,7 @@ Release Date: October 1st, 2017
 Dev time: 400h
 
 * New Posts Shortcode in beta version (the widget version)
-* New Blocks in Alpha version for Gutemberg
+* New Blocks in Alpha version for Gutenberg
 * New Shortcode in beta version fo Post_Title
 * New Shortcode in beta version fo Button
 * New filter for the read_more_link_text
