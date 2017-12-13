@@ -157,13 +157,14 @@ class Loader {
 
 		$this->loaded = true;
 
+		do_action( 'italystrap_after_injector_loaded', $this->injector, $this->event_manager );
+
 		/**
 		 * Fires once ItalyStrap plugin has loaded.
 		 *
 		 * @since 2.7.0
 		 */
 		do_action( 'italystrap_plugin_app_loaded' );
-		do_action( 'italystrap_after_injector_loaded' );
 	}
 
 	/**
