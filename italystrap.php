@@ -69,6 +69,9 @@ $autoload_plugin_files = array(
 	'/vendor/autoload.php',
 	'/vendor/webdevstudios/cmb2/init.php',
 	'/functions/general-functions.php',
+	'/functions/booleans.php',
+	'/functions/notice.php',
+	'/functions/private.php',
 	'/bootstrap.php',
 );
 
@@ -128,6 +131,8 @@ do_action( 'italystrap_plugin_loaded', null );
  * you will get an error 'You can't redeclare...'.
  *
  * @since 2.0.0
+ *
+ * @deprecated 4.0.0 Do not use this hook
  *
  * @var array
  */

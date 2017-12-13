@@ -13,7 +13,7 @@ if ( ! function_exists( 'italystrap_set_default_constant' ) ) {
 	 *
 	 * @param  string $_file __FILE__ for the root directory of ACM by ItalyStrap.
 	 */
-	function italystrap_set_default_constant( $_file ) {
+	function italystrap_set_default_constant( $_file, $prefix = '' ) {
 
 		/**
 		 * Define some costant for internal use
@@ -101,6 +101,7 @@ if ( ! function_exists( 'italystrap_set_default_constant' ) ) {
 			'ITALYSTRAP_PLUGIN_URL'		=> plugin_dir_url( $_file ),
 			'ITALYSTRAP_BASENAME'		=> plugin_basename( $_file ),
 			'ITALYSTRAP_CONFIG_PATH'	=> $plugin_dir_path . 'config/',
+			'ITALYSTRAP_OPTIONS_NAME'	=> 'italystrap_settings',
 			'GET_BLOGINFO_NAME'			=> get_option( 'blogname' ),
 			'GET_BLOGINFO_DESCRIPTION'	=> get_option( 'blogdescription' ),
 			'HOME_URL'					=> get_home_url( null, '/' ),
