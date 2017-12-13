@@ -59,6 +59,44 @@ function the_log( $log ) {
 	debug( $log );
 }
 
+if ( ! function_exists( 'd' ) ) {
+	function d( $value = '' ) {
+		add_action( 'plugins_loaded', function () use ( $value ) {
+			if ( ! function_exists( 'd' ) ) {
+
+				echo "<pre>";
+				print_r( $value );
+				echo "</pre>";
+
+				debug( $value );
+
+				return;
+			}
+			\d( $value );
+		});
+	
+	}
+}
+
+if ( ! function_exists( 'ddd' ) ) {
+	function ddd( $value = '' ) {
+		add_action( 'plugins_loaded', function () use ( $value ) {
+			if ( ! function_exists( 'd' ) ) {
+
+				echo "<pre>";
+				print_r( $value );
+				echo "</pre>";
+
+				debug( $value );
+
+				die();
+			}
+			\ddd( $value );
+		});
+	
+	}
+}
+
 
 // var_dump(get_option( 'stylesheet' ));
 // var_dump(get_option( "theme_mods_ItalyStrap" ));
