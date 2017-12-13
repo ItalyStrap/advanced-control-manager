@@ -74,7 +74,7 @@ if ( ! empty( $options['show-thumb'] ) ) {
 /**
  * Define admin settings parmeter and Instantiate Admin Settings Class
  */
-$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/config/options.php' );
+// $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/config/options.php' );
 $injector->defineParam( 'settings', $admin_settings );
 $event_manager->add_subscriber( $injector->make( 'ItalyStrap\Settings\Settings' ) );
 

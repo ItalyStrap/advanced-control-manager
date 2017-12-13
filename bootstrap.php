@@ -23,15 +23,17 @@ use ItalyStrap\Blocks\Block_Factory;
  */
 $injector = new \Auryn\Injector;
 
-$args = require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
+$args = (array) require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
 $injector->defineParam( 'args', $args );
+
+$admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' );
 
 /**
  * Get the plugin and theme options
  */
 $theme_mods = (array) get_theme_mods();
-$options = (array) get_option( $args['options_name'] );
-$options = wp_parse_args( $options, get_default_from_config( require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/options.php' ) ) );
+$options = (array) get_option( ITALYSTRAP_OPTIONS_NAME );
+$options = wp_parse_args( $options, get_default_from_config( $admin_settings ) );
 
 $prefix_coonfig = array(
 	'prefix'	=> 'italystrap',
@@ -52,6 +54,7 @@ $injector->defineParam( 'options', $options );
 $autoload_sharing = array(
 	'ItalyStrap\Config\Config',
 	'ItalyStrap\Excerpt\Excerpt',
+	'ItalyStrap\View\View',
 );
 
 /**=============================
@@ -64,6 +67,7 @@ $autoload_definitions = array(
 	'ItalyStrap\Import_Export\Import_Export'	=> $fields_type,
 	'ItalyStrapAdminGallerySettings'			=> $fields_type,
 	'ItalyStrap\Config\Config'					=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig ) ),
+	'ItalyStrap\I18N\Translator'				=> array( ':plugin_name' => 'ItalyStrap' ),
 );
 
 /**======================
@@ -71,6 +75,8 @@ $autoload_definitions = array(
  *=====================*/
 $autoload_aliases = array(
 	'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
+	'ItalyStrap\View\View_Interface'		=> 'ItalyStrap\View\View',
+	'ItalyStrap\I18N\Translatable'			=> 'ItalyStrap\I18N\Translator',
 	// 'ItalyStrap\Fields\Fields_Interface'	=> 'ItalyStrap\Fields\Fields',
 );
 
@@ -120,7 +126,9 @@ $events_manager = $event_manager; // Deprecated $events_manager.
  */
 $event_manager->add_subscriber( new Widget_Factory( $options, $injector ) );
 $event_manager->add_subscriber( new Shortcode_Factory( $options, $injector ) );
-// $event_manager->add_subscriber( new Block_Factory( $options, $injector ) );
+if ( is_dev() ) {
+	$event_manager->add_subscriber( new Block_Factory( $options, $injector ) );
+}
 
 /**
  * Adjust priority to make sure this runs
@@ -131,30 +139,6 @@ add_action( 'init', function () {
 	 */
 	load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
 }, 100 );
-
-// if ( defined( 'ITALYSTRAP_BETA' ) ) {
-
-	/**
-	 * WooCommerce enqueue style
-	 *
-	 * @link https://docs.woothemes.com/document/css-structure/
-	 */
-	// function dequeue_unused_styles( $enqueue_styles ) {
-
-	// 	if ( is_cart() || is_checkout() || is_account_page() ) {
-
-	// 		return $enqueue_styles;
-	// 	} else {
-
-	// 		return false;
-	// 	}
-	// }
-	// add_filter( 'woocommerce_enqueue_styles', __NAMESPACE__ . '\dequeue_unused_styles' );
-
-	// Or just remove them all in one line.
-	// add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-// }
-// 
 
 $autoload_plugin_files_init = array(
 	'/_init.php',
