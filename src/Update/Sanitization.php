@@ -2,6 +2,8 @@
 /**
  * Sanitization API: Sanitization Class
  *
+ * @todo https://github.com/zendframework/zend-escaper/blob/master/src/Escaper.php
+ *
  * @package ItalyStrap
  * @since 2.0.0
  */

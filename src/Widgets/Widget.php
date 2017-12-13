@@ -22,6 +22,7 @@ use \WP_Widget;
 use ItalyStrap\Fields\Fields;
 use ItalyStrap\Update\Sanitization;
 use ItalyStrap\Update\Validation;
+use ItalyStrap\I18N\Translator;
 
 use InvalidArgumentException;
 
@@ -385,11 +386,19 @@ abstract class Widget extends WP_Widget {
 
 		$this->validation = new Validation;
 		$this->sanitization = new Sanitization;
+		$this->translator = new Translator( 'ItalyStrap' );
 
 		foreach ( $this->fields as $field ) {
 
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';
+			}
+
+			/**
+			 * Register string for translation
+			 */
+			if ( isset( $field['translate'] ) && true === $field['translate'] ) {
+				$this->translator->register_string( $field['id'], strip_tags( $instance[ $field['id'] ] ) );
 			}
 
 			/**

@@ -12,6 +12,9 @@
 
 namespace ItalyStrap\Update;
 
+
+use ItalyStrap\I18N\Translator;
+
 /**
  * Class description
  */
@@ -53,6 +56,13 @@ class Update implements Update_Interface {
 
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';
+			}
+
+			/**
+			 * Register string for translation
+			 */
+			if ( isset( $field['translate'] ) && true === $field['translate'] ) {
+				$this->translator->register_string( $field['id'], strip_tags( $instance[ $field['id'] ] ) );
 			}
 
 			/**
