@@ -2,22 +2,22 @@
 Contributors: overclokk
 Donate link: https://italystrap.com/
 Tags: custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts
-Requires at least: 4.8
-Requires PHP: 5.6
-Tested up to: 4.9
+Requires at least: 4.9
+Requires PHP: 5.4
+Tested up to: 5.0
 Stable tag: 2.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Make your web site more powerful with ACM - Advanced Control Manager
 
-(Requires PHP 5.6 >= and Developers skills)
+(Requires PHP 5.4 >= and Developers skills)
 
 == Description ==
 
 Always make a backup before install it and always test it in a dev enviroment.
 
-Make shure you have PHP 5.6 >=, better if you have PHP >= 7.0 (PHP 7.x is awesome ;-) ).
+Make shure you have PHP 5.4 >=, better if you have PHP >= 7.0 (PHP 7.x is awesome ;-) ).
 
 If you have any trouble [open a ticket](http://wordpress.org/support/plugin/advanced-control-manager).
 
