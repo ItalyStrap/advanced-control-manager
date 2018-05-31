@@ -46,7 +46,7 @@ class Loader {
 	 *
 	 * @var array
 	 */
-	private $app;
+	private $app = [];
 
 	/**
 	 * Plugin config
@@ -69,28 +69,28 @@ class Loader {
 		$this->event_manager = $event_manager;
 		$this->config = $config;
 
-		$default = array(
-			'sharing'				=> array(),
-			'aliases'				=> array(),
-			'definitions'			=> array(),
-			'define_param'			=> array(),
-			'delegations'			=> array(),
-			'preparations'			=> array(),
-			'concretes'				=> array(),
-			'options_concretes'		=> array(),
-			'subscribers'			=> array(),
-		);
+		// $default = array(
+		// 	'sharing'				=> array(),
+		// 	'aliases'				=> array(),
+		// 	'definitions'			=> array(),
+		// 	'define_param'			=> array(),
+		// 	'delegations'			=> array(),
+		// 	'preparations'			=> array(),
+		// 	'concretes'				=> array(),
+		// 	'options_concretes'		=> array(),
+		// 	'subscribers'			=> array(),
+		// );
 
-		$this->app = array_merge( $default, $app );
+		// $this->app = array_merge( $default, $app );
+		$this->app = $app;
 
 		$this->loaded = false;
 	}
 
 	/**
-	 * Init
+	 * Init $injector
 	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
+	 * @param  array  $app Array with classes to be initialized.
 	 */
 	public function init( array $app ) {
 		foreach ( $app['sharing'] as $class ) {
@@ -114,6 +114,37 @@ class Loader {
 	}
 
 	/**
+	 * Instantiate classes
+	 *
+	 * @param  array  $app Array with classes to be instantiated.
+	 */
+	public function make( array $app ) {
+
+		foreach ( $app['concretes'] as $concrete ) {
+			$this->event_manager->add_subscriber( $this->injector->make( $concrete ) );
+		}
+		foreach ( $app['options_concretes'] as $option_name => $concrete ) {
+			if ( empty( $this->config[ $option_name ] ) ) {
+				continue;
+			}
+			$this->event_manager->add_subscriber( $this->injector->make( $concrete ) );
+		}
+		foreach ( $app['subscribers'] as $option_name => $subscriber ) {
+
+			if ( is_int( $option_name ) ) {
+				$this->event_manager->add_subscriber( $this->injector->make( $subscriber ) );
+				continue;
+			}
+			
+			if ( empty( $this->config[ $option_name ] ) ) {
+				continue;
+			}
+
+			$this->event_manager->add_subscriber( $this->injector->make( $subscriber ) );
+		}
+	}
+
+	/**
 	 * Load method
 	 *
 	 * @param  string $value [description]
@@ -131,29 +162,7 @@ class Loader {
 
 		$this->init( $app );
 
-		foreach ( $app['concretes'] as $concrete ) {
-			$this->event_manager->add_subscriber( $this->injector->make( $concrete ) );
-		}
-		foreach ( $app['options_concretes'] as $option_name => $concrete ) {
-			if ( empty( $this->config[ $option_name ] ) ) {
-				continue;
-			}
-			$this->event_manager->add_subscriber( $this->injector->make( $concrete ) );
-		}
-
-		foreach ( $app['subscribers'] as $option_name => $subscriber ) {
-
-			if ( is_int( $option_name ) ) {
-				$this->event_manager->add_subscriber( $this->injector->make( $subscriber ) );
-				continue;
-			}
-			
-			if ( empty( $this->config[ $option_name ] ) ) {
-				continue;
-			}
-
-			$this->event_manager->add_subscriber( $this->injector->make( $subscriber ) );
-		}
+		$this->make( $app );
 
 		$this->loaded = true;
 
@@ -173,7 +182,23 @@ class Loader {
 	 * @return array  An array with shared classes
 	 */
 	private function get_app() {
+
+		$default = array(
+			'sharing'				=> array(),
+			'aliases'				=> array(),
+			'definitions'			=> array(),
+			'define_param'			=> array(),
+			'delegations'			=> array(),
+			'preparations'			=> array(),
+			'concretes'				=> array(),
+			'options_concretes'		=> array(),
+			'subscribers'			=> array(),
+		);
+
 		$this->app = (array) apply_filters( 'italystrap_app', $this->app );
+
+		$this->app = array_merge( $default, $this->app );
+
 		return $this->app;
 	}
 
