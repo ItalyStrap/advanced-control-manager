@@ -1,0 +1,1 @@
+require("./posts/index.js");

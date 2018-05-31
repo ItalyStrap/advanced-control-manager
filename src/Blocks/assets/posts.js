@@ -1,114 +1,66 @@
 /**
  * {@link http://gutenberg-devdoc.surge.sh/}
  */
-// const { registerBlockType } = wp.blocks;
-// const blockStyle = { backgroundColor: '#900', color: '#fff', padding: '20px' };
+const { __ } = wp.i18n;
 
-// registerBlockType( 'italystrap/posts', {
-// 	title: 'Posts',
+const {
+	registerBlockType,
+	AlignmentToolbar,
+	BlockControls,
+	InspectorControls,
+	BlockDescription,
+	QueryPanel,
+} = wp.blocks;
 
-// 	icon: 'universal-access-alt',
+const { Spinner } = wp.components;
 
-// 	category: 'widgets',
+const WP_Posts = new wp.api.collections.Posts();
 
-// 	edit() {
-// 		return '<p style={ blockStyle }>Block Posts</p>';
-// 	},
+registerBlockType( 'italystrap/posts', {
 
-// 	save() {
-// 		return '<p style={ blockStyle }>Block Posts</p>';
-// 	},
-// } );
+	title: __( 'ItalyStrap Posts', 'italystrap' ),
+	icon: 'universal-access-alt',
+	category: 'widgets',
+	keywords: [ __( 'posts', 'italystrap' ) ],
 
-( function( blocks, i18n, element, api ) {
-	var registerBlockType = blocks.registerBlockType;
-	var el = element.createElement;
-	var __ = i18n.__;
-	var Editable = wp.blocks.Editable;
-	var AlignmentToolbar = wp.blocks.AlignmentToolbar;
-	var BlockControls = blocks.BlockControls;
-	var InspectorControls = blocks.InspectorControls;
-	var restApi = api;
-
-	function getLatestPosts( postsToShow = 5 ) {
-		const postsCollection = new wp.api.collections.Posts();
-
-		const posts = postsCollection.fetch( {
-			data: {
-				per_page: postsToShow,
-			},
-		} );
-
-		return posts;
-	}
-
-	registerBlockType( 'italystrap/posts', {
-		title: __( 'ItalyStrap Posts', 'italystrap' ),
-		icon: 'universal-access-alt',
-		category: 'widgets',
-
-		attributes: {
-			url: {
-				type: 'string',
-				source: 'attribute',
-				selector: 'img',
-				attribute: 'src',
-			},
-			alt: {
-				type: 'string',
-				source: 'attribute',
-				selector: 'img',
-				attribute: 'alt',
-			},
-			caption: {
-				type: 'array',
-				source: 'children',
-				selector: 'figcaption',
-			},
-			href: {
-				type: 'string',
-				source: 'attribute',
-				selector: 'a',
-				attribute: 'href',
-			},
-			id: {
-				type: 'number',
-			},
-			align: {
-				type: 'string',
-			},
-			width: {
-				type: 'number',
-			},
-			height: {
-				type: 'number',
-			},
+	attributes: {
+		url: {
+			type: 'string',
+			source: 'attribute',
+			selector: 'img',
+			attribute: 'src',
 		},
+	},
 
-		edit: function( props ) {
-			// console.log( props );
-			// return __( 'ItalyStrap Posts.', 'italystrap' );
-			return [
-				!! focus && el(
-					BlockControls,
-					{ key: 'controls' },
-					el(
-						AlignmentToolbar,
-						{
-							// value: alignment,
-							// onChange: onChangeAlignment
-						}
-					)
-				)
-			];
-		},
-		save: function() {
-			return null;
-		},
-	} );
-} )(
-	window.wp.blocks,
-	window.wp.i18n,
-	window.wp.element,
-	window.wp.api
-);
+	edit( props ) {
+		// console.log(props);
+		// console.log(wp);
+		// console.log(wp.api);
+		// console.log(WP_Posts);
+		// console.log(WP_Posts.fetch( {
+		// 	data: {
+		// 		per_page: 5,
+		// 	},
+		// } ));
+
+		// console.log(InspectorControls);
+
+		return [
+			focus && (
+				<div key="container">
+					<InspectorControls key="inspector">
+						<BlockDescription>
+							<p>{ __( 'Shows a list of your site\'s most recent posts.' ) }</p>
+						</BlockDescription>
+						<h3>{ __( 'Latest Posts Settings' ) }</h3>
+					</InspectorControls>
+					{ __( 'ItalyStrap Posts.', 'italystrap' ) }
+				</div>
+			)
+		]
+	},
+
+	save() {
+		return null;
+	},
+} );
