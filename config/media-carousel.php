@@ -294,6 +294,17 @@ return array(
 
 	/**
 	 * Show or hide a link to post, this works only for post_type and for parent of images, it works only with the selection of the link above. Default: false.
+	 *
+	 * Attualmente è già possibile aggiungere una CTA allo slider con i seguenti parametri nello shortcode [gallery]:
+	 *
+	 * link="parent" // Importante per linkare la pagina genitore associata
+	 * link_button="1"
+	 * link_button_text="Questa sarà la CTA"
+	 * link_button_css_class="btn btn-primary"
+	 *
+	 * Funziona solo per le immagini in evidenza poiché inserendo l'ID delle immagini verrà linkata la pagina genitore associata nella CTA.
+	 *
+	 * La CTA sarà uguale per tutte le slide aggiunte, al momento non è possibile personalizzarla per singola slide.
 	 */
 	'link_button'				=> array(
 		'name'		=> __( 'Link button', 'italystrap' ),
