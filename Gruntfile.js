@@ -20,6 +20,13 @@ var acm_plugin = [
 	'!future-inclusions/**',
 	'!sass/**',
 	'!docs/**',
+	'!vendor/mobiledetect/mobiledetectlib/examples/**',
+	'!vendor/mobiledetect/mobiledetectlib/tests/**',
+	'!vendor/overclokk/minimum-requirements/tests/**',
+	'!vendor/rdlowrey/auryn/examples/**',
+	'!vendor/rdlowrey/auryn/test/**',
+	'!vendor/webdevstudios/cmb2/tests/**',
+	'!vendor/webdevstudios/cmb2/*.clover',
 	'!bower.json',
 	'!Gruntfile.js',
 	'!package.json',
@@ -29,6 +36,8 @@ var acm_plugin = [
 	'!snippets.md',
 	'!*.zip',
 	'!*.bat',
+	'!codecept',
+	'!webpack.config.js',
 ];
 
 /**
