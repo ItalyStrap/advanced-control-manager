@@ -12,26 +12,74 @@
 
 namespace ItalyStrap\Config;
 
+use ArrayObject;
 /**
  * Config Class
  */
-class Config extends Config_Base {
+class Config extends ArrayObject implements Config_Interface {
 
 	/**
-	 * [$var description]
-	 *
 	 * @var array
 	 */
-	protected $config = array();
-	protected $default = array();
+	protected $items = array();
 
 	/**
-	 * [__construct description]
+	 * Init object
 	 *
-	 * @param [type] $config [description].
+	 * @param array $config
+	 * @param array $default
 	 */
 	function __construct( array $config = array(), array $default = array() ) {
-		$this->config = $config;
-		$this->default = $default;
+		$this->items = array_merge_recursive( $default, $config );
+	}
+
+	/**
+	 * Retrieves all of the runtime configuration parameters
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array
+	 */
+	public function all() {
+		return $this->items;
+	}
+
+	/**
+	 * Get the specified configuration value.
+	 *
+	 * @param  string  $key
+	 * @param  mixed   $default
+	 * @return mixed
+	 */
+	public function get( $key, $default = null ) {
+		return $this->items[ $key ];
+	}
+
+	/**
+	 * Determine if the given configuration value exists.
+	 *
+	 * @param  string  $key
+	 * @return bool
+	 */
+	public function has( $key ) {
+
+		if ( ! array_key_exists( $key, $this->items ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Push a configuration in via the key
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $key Key to be assigned, which also becomes the property
+	 * @param mixed $value Value to be assigned to the parameter key
+	 * @return null
+	 */
+	public function push( $key, $value ) {
+		$this->items[ $key ] = $value;
 	}
 }
