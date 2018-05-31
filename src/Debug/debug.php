@@ -195,8 +195,8 @@ function render_column( $content ) {
  * shutdown (1) 
  */
 // add_action( 'shutdown', function(){
-// 	var_dump($GLOBALS);
-// 	var_dump($GLOBALS['wp_filter']);
+// 	// var_dump($GLOBALS);
+// 	// var_dump($GLOBALS['wp_filter']);
 // 	var_dump($GLOBALS['wp_actions']);
 // 	foreach( $GLOBALS['wp_actions'] as $action => $count )
 // 		printf( '%s (%d) <br/>' . PHP_EOL, $action, $count );
@@ -325,3 +325,6 @@ return $output;
 // 	$debug_asset->styles();
 // 	$debug_asset->scripts();
 // }, 100000 );
+
+
+

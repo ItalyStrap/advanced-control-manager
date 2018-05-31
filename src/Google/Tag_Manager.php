@@ -82,7 +82,7 @@ class Tag_Manager implements Subscriber_Interface {
 		$file_name = $current_filter
 			? 'head'
 			: 'body';
-	
+
 		echo $this->get_view( $file_name );
 	}
 
