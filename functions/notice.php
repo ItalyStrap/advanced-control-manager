@@ -95,7 +95,17 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\_remove_italystrap_notice' );
  * Fuck them all :-)
  */
 function hide_update_notice_to_all_but_admin_users() {
-	if ( 'acm-by-italystrap_page_italystrap-settings' !== get_current_screen()->id ) {
+	$current_screen = get_current_screen();
+
+	/**
+	 * Risolto problema sorto nella pagina si setup di WooCommerce
+	 * wp-admin/index.php?page=wc-setup
+	 */
+	if ( ! $current_screen ) {
+		return;
+	}
+
+	if ( 'acm-by-italystrap_page_italystrap-settings' !== $current_screen->id ) {
 		return;
 	}
 
