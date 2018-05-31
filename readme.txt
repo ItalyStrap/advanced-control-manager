@@ -280,7 +280,6 @@ If you have any problem please open a ticket :-)
 15. Advanced Control Manager admin settings
 16. Advanced Control Manager admin settings
 
-
 == Changelog ==
 
 = 2.10.0 =
