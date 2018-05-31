@@ -40,7 +40,7 @@ interface View_Interface {
 	 * @param string $slug The slug name for the generic template.
 	 * @param string $name The name of the specialised template.
 	 */
-	public function get( $slug, $name = null, $load = false );
+	public function get( $slug, $name = '', $load = false );
 
 	/**
 	 * Retrieve the name of the highest priority template file that exists.

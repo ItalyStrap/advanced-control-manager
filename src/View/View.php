@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  */
 class View implements View_Interface {
 
+	private $store = [];
+
 	/**
 	 * Retrieve the name of the highest priority template file that exists.
 	 *
@@ -57,11 +59,14 @@ class View implements View_Interface {
 	protected function render_template( $template_file, array $data = [] ) {
 
 		$object = (object) $data;
-		$renderer = \Closure::bind( function( $template_file ) {
-			ob_start();
-			include $template_file;
-			return ob_get_clean();
-		}, $object );
+		$renderer = \Closure::bind(
+			function( $template_file ) {
+				ob_start();
+				include $template_file;
+				return ob_get_clean();
+			},
+			$object
+		);
 
 		return $renderer( $template_file );
 	}
@@ -87,7 +92,7 @@ class View implements View_Interface {
 	 * @param string $slug The slug name for the generic template.
 	 * @param string $name The name of the specialised template.
 	 */
-	public function render( $slug, $name = null, $load = false, array $data = []  ) {
+	public function render( $slug, $name = '', $load = false, array $data = [] ) {
 		/**
 		 * Fires before the specified template part file is loaded.
 		 *
@@ -97,12 +102,11 @@ class View implements View_Interface {
 		 * @since 3.0.0
 		 *
 		 * @param string      $slug The slug name for the generic template.
-		 * @param string|null $name The name of the specialized template.
+		 * @param string      $name The name of the specialized template.
 		 */
 		do_action( "italystrap_get_template_part_{$slug}", $slug, $name );
 
 		$templates = array();
-		$name = (string) $name;
 
 		if ( '' !== $name ) {
 			$templates[] = "{$slug}-{$name}.php";
