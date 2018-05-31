@@ -613,7 +613,7 @@ module.exports = function(grunt) {
 	 * Change version only in package.json
 	 *
 	 * Open Git Bash and type:
-	 * $ grunt postDeploy
+	 * $ grunt preDeploy
 	 *
 	 * Poi a mano commit su eventuali aggiornamenti, quindi:
 	 * 

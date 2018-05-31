@@ -283,6 +283,30 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.10.0 =
+Release Date: May 31st, 2018
+
+Dev time: 100h
+
+* New API Class for I18N strings
+* New API Class for rendering views files
+* New Translator class
+* Fix for A non numeric valus encountered src\Query\Posts.php
+* Fix excerpt in Carousel
+* Better file structure for functions
+* Improved hook on injector autoload
+* Improved Post_Title shortcode
+* Improved Settings API
+* Improved Config API
+* Improved the Loader API
+* Updated the bootstrap files
+* Updated the config file
+* Updated the options file
+* Excluded GA and TM to preview and customizer
+* Only for alpha Some Block improvements
+* Bumps up minimum requirements
+* Security: Delete unsecure files and folder
+
 = 2.9.1 =
 Release Date: October 9th, 2017
 
