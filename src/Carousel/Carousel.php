@@ -610,10 +610,6 @@ abstract class Carousel {
 			return '';
 		}
 
-		if ( 'false' === $this->args['text'] ) {
-			return '';
-		}
-
 		/**
 		 * Da fare.
 		 *
@@ -634,6 +630,8 @@ abstract class Carousel {
 
 			$output = '1' === $this->args['do_shortcode'] ? do_shortcode( $output ) : $output;
 
+		} else {
+			return $output;
 		}
 
 		$output = sprintf(
@@ -644,7 +642,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_excerpt', $output, $this->args, $post );
 
 		return $output;
-
 	}
 
 	/**
