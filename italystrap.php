@@ -67,8 +67,9 @@ italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
 
 $autoload_plugin_files = array(
 	'/vendor/autoload.php',
-	'/vendor/webdevstudios/cmb2/init.php',
+	'/vendor/cmb2/cmb2/init.php',
 	'/functions/general-functions.php',
+	'/functions/breadcrumbs.php',
 	'/functions/booleans.php',
 	'/functions/notice.php',
 	'/functions/private.php',
@@ -77,10 +78,6 @@ $autoload_plugin_files = array(
 
 if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {
 	$autoload_plugin_files = array();
-}
-
-if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-	$autoload_plugin_files[] = '/src/Debug/debug.php';
 }
 
 foreach ( $autoload_plugin_files as $file ) {
