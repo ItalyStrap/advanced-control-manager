@@ -83,7 +83,7 @@ class Block_Factory implements Subscriber_Interface {
 	public function enqueue() {
 		wp_enqueue_script(
 			'italystrap-posts',
-			plugins_url( 'blocks.build.js', __FILE__ ),
+			plugins_url( 'index.build.js', __FILE__ ),
 			array( 'wp-blocks', 'wp-element', 'wp-api' )
 		);
 	}

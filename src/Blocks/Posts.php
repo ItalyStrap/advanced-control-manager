@@ -48,6 +48,9 @@ class Posts extends Block {
 	 * @return string          The output of the shortcode.
 	 */
 	public function render( array $attributes ) {
+
+		return 'Block posts';
+
 // ddd( $attributes );
 		$this->query_posts->get_widget_args( $attributes );
 

@@ -1,12 +1,10 @@
-import PostsBlock from './posts-block.js';
+import edit from './edit';
 
 const { __ } = wp.i18n;
 
-const {
-	registerBlockType,
-} = wp.blocks;
+export const name = 'italystrap/posts';
 
-registerBlockType( 'italystrap/posts', {
+export const settings = {
 
 	title: __( 'ItalyStrap Posts', 'italystrap' ),
 	icon: 'universal-access-alt',
@@ -18,6 +16,15 @@ registerBlockType( 'italystrap/posts', {
 		// customClassName: false,
 	},
 
+	getEditWrapperProps( attributes ) {
+		// console.log("Attributes");
+		// console.log(attributes);
+		// const { align } = attributes;
+		// if ( 'left' === align || 'right' === align || 'wide' === align || 'full' === align ) {
+		// 	return { 'data-align': align };
+		// }
+	},
+
 	attributes: {
 		url: {
 			type: 'string',
@@ -27,9 +34,9 @@ registerBlockType( 'italystrap/posts', {
 		},
 	},
 
-	edit: PostsBlock,
+	edit,
 
 	save() {
 		return null;
 	},
-} );
+};

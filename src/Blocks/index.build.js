@@ -65,9 +65,36 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(1);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__posts_index__ = __webpack_require__(1);
+/**
+ * WordPress dependencies
+ */
+var registerBlockType = wp.blocks.registerBlockType;
+
+/**
+ * Internal dependencies
+ */
+
+
+
+/**
+ * Register blocks
+ */
+var registerItalyStrapBlocks = function registerItalyStrapBlocks() {
+
+  [__WEBPACK_IMPORTED_MODULE_0__posts_index__].forEach(function (_ref) {
+    var name = _ref.name,
+        settings = _ref.settings;
+
+    registerBlockType(name, settings);
+  });
+};
+
+registerItalyStrapBlocks();
 
 /***/ }),
 /* 1 */
@@ -75,14 +102,17 @@ __webpack_require__(1);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__posts_block_js__ = __webpack_require__(2);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit__ = __webpack_require__(2);
 
 
 var __ = wp.i18n.__;
-var registerBlockType = wp.blocks.registerBlockType;
 
 
-registerBlockType('italystrap/posts', {
+var name = 'italystrap/posts';
+
+var settings = {
 
 	title: __('ItalyStrap Posts', 'italystrap'),
 	icon: 'universal-access-alt',
@@ -94,6 +124,16 @@ registerBlockType('italystrap/posts', {
 		// customClassName: false,
 	},
 
+	getEditWrapperProps: function getEditWrapperProps(attributes) {
+		// console.log("Attributes");
+		// console.log(attributes);
+		// const { align } = attributes;
+		// if ( 'left' === align || 'right' === align || 'wide' === align || 'full' === align ) {
+		// 	return { 'data-align': align };
+		// }
+	},
+
+
 	attributes: {
 		url: {
 			type: 'string',
@@ -103,12 +143,12 @@ registerBlockType('italystrap/posts', {
 		}
 	},
 
-	edit: __WEBPACK_IMPORTED_MODULE_0__posts_block_js__["a" /* default */],
+	edit: __WEBPACK_IMPORTED_MODULE_0__edit__["a" /* default */],
 
 	save: function save() {
 		return null;
 	}
-});
+};
 
 /***/ }),
 /* 2 */
@@ -124,85 +164,109 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * wp.blocks
- */
-var _wp$blocks = wp.blocks,
-    AlignmentToolbar = _wp$blocks.AlignmentToolbar,
-    BlockControls = _wp$blocks.BlockControls,
-    InspectorControls = _wp$blocks.InspectorControls,
-    BlockDescription = _wp$blocks.BlockDescription,
-    QueryPanel = _wp$blocks.QueryPanel;
-
-/**
  * wp.element
  */
+var _wp$element = wp.element,
+    Component = _wp$element.Component,
+    Fragment = _wp$element.Fragment;
 
-var Component = wp.element.Component;
+// console.log(wp.element);
+
+/**
+ * wp.blocks
+ */
+// const {
+// 	AlignmentToolbar,
+// 	BlockDescription,
+// 	QueryPanel,
+// } = wp.blocks;
+
+// console.log(wp.blocks);
+
+var InspectorControls = wp.editor.InspectorControls;
+
+// console.log(wp.editor);
+
 var __ = wp.i18n.__;
-var _wp$components = wp.components,
-    Spinner = _wp$components.Spinner,
-    withAPIData = _wp$components.withAPIData;
+var PanelBody = wp.components.PanelBody;
 
+// console.log( "Data:" );
+// console.log( wp.data );
+// console.log( wp );
+// console.log( withAPIData );
+// console.log( wp.data.select( 'core' ) );
 
-console.log(withAPIData);
+var select = wp.data.select;
+
+// console.log( select( 'core' ) );
 
 // const WP_Posts = new wp.api.collections.Posts();
+// console.log(WP_Posts);
 
-var PostsBlock = function (_Component) {
-	_inherits(PostsBlock, _Component);
+var PostsEdit = function (_Component) {
+	_inherits(PostsEdit, _Component);
 
-	function PostsBlock() {
-		_classCallCheck(this, PostsBlock);
+	function PostsEdit() {
+		_classCallCheck(this, PostsEdit);
 
-		// const { attributes, setAttributes, className, focus } = this.props;
+		// console.log(this.props);
+
+		var _this = _possibleConstructorReturn(this, (PostsEdit.__proto__ || Object.getPrototypeOf(PostsEdit)).apply(this, arguments));
+
+		var _this$props = _this.props,
+		    setAttributes = _this$props.setAttributes,
+		    className = _this$props.className,
+		    focus = _this$props.focus;
 
 		// this.onSelectImage = this.onSelectImage.bind( this );
-
-		var _this = _possibleConstructorReturn(this, (PostsBlock.__proto__ || Object.getPrototypeOf(PostsBlock)).apply(this, arguments));
 
 		_this.state = {
 			selectedImage: null
 		};
+
+		setAttributes({
+			key: 'value'
+		});
 		return _this;
 	}
 
 	// toggleSetting: () => 
 
-	_createClass(PostsBlock, [{
-		key: "render",
+	_createClass(PostsEdit, [{
+		key: 'render',
 		value: function render() {
+			var name = this.props.name;
+
+			// console.log("this.props");
+			// console.log(this.props);
 			// const { attributes, setAttributes, className, focus } = this.props;
-			// console.log(setAttributes);
-			return [focus && wp.element.createElement(
-				"div",
-				{ key: "container" },
+			// console.log(attributes);
+
+			return wp.element.createElement(
+				Fragment,
+				null,
 				wp.element.createElement(
 					InspectorControls,
-					{ key: "inspector" },
-					wp.element.createElement(
-						BlockDescription,
-						null,
-						wp.element.createElement(
-							"p",
-							null,
-							__('Shows a list of your site\'s most recent posts.')
-						)
-					),
-					wp.element.createElement(
-						"h3",
-						null,
-						__('Latest Posts Settings')
-					)
+					{ key: 'inspector' },
+					wp.element.createElement(PanelBody, { title: __('Posts Settings', 'italystrap') })
 				),
-				__('ItalyStrap Posts.', 'italystrap')
-			)];
+				wp.element.createElement(
+					'div',
+					{ key: 'container' },
+					wp.element.createElement(
+						'h1',
+						null,
+						name
+					)
+				)
+			);
 		}
 	}]);
 
-	return PostsBlock;
+	return PostsEdit;
 }(Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (PostsBlock);
+/* harmony default export */ __webpack_exports__["a"] = (PostsEdit);
 
 /***/ })
 /******/ ]);

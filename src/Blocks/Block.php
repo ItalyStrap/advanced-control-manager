@@ -24,6 +24,6 @@ abstract class Block {
 	 * @return string        [description]
 	 */
 	public function render( array $attributes ) {
-		return 'Block Posts';
+		return 'Abstract Block';
 	}
 }
