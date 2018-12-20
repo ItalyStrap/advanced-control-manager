@@ -19,7 +19,7 @@ return array(
 	 * Text below the image.
 	 */
 	'text'				=> array(
-				'name'		=> __( 'Text of the image', 'italystrap' ),
+				'label'		=> __( 'Text of the image', 'italystrap' ),
 				'desc'		=> __( 'Enter the text of the image.', 'italystrap' ),
 				'id'		=> 'text',
 				'type'		=> 'textarea',

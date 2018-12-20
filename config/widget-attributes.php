@@ -19,7 +19,7 @@ return array(
 	 * This is the HTML container of the widget. Enter the CSS ID for this container. (Example: <code>col-md-12</code>)
 	 */
 	'widget_css_id'				=> array(
-		'name'		=> __( 'Widget CSS ID', 'italystrap' ),
+		'label'		=> __( 'Widget CSS ID', 'italystrap' ),
 		'desc'		=> __( 'This is the HTML container of the widget. Enter the CSS ID for this container. (Example: <code>my-ID</code>)', 'italystrap' ),
 		'id'		=> 'widget_css_id',
 		'type'		=> 'text',
@@ -34,7 +34,7 @@ return array(
 	 * This is the HTML container of the widget. Enter the CSS class or classes for this container. (Example: <code>col-md-12</code>)
 	 */
 	'widget_css_class'				=> array(
-		'name'		=> __( 'Widget CSS class', 'italystrap' ),
+		'label'		=> __( 'Widget CSS class', 'italystrap' ),
 		'desc'		=> __( 'This is the HTML container of the widget. Enter the CSS class or classes for this container. (Example: <code>col-md-12</code>)', 'italystrap' ),
 		'id'		=> 'widget_css_class',
 		'type'		=> 'text',

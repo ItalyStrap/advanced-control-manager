@@ -28,7 +28,7 @@ return array(
 	 * Enter a font icon css class. Example:<code>fa fa-wordpress</code>. This works only if you have font icons loaded with your theme. If you use an icon the image will not be loaded.
 	 */
 	'icon'				=> array(
-		'name'		=> __( 'Font icon', 'italystrap' ),
+		'label'		=> __( 'Font icon', 'italystrap' ),
 		'desc'		=> __( 'Enter a font icon css class. Example:<code>fa fa-wordpress</code>. This works only if you have font icons loaded with your theme. If you use an icon the image will not be loaded.', 'italystrap' ),
 		'id'		=> 'icon',
 		'type'		=> 'text',
@@ -44,7 +44,7 @@ return array(
 	 * Enter the media or post type ID or select an image above.
 	 */
 	'id'				=> array(
-		'name'		=> __( 'Enter Images ID', 'italystrap' ),
+		'label'		=> __( 'Enter Images ID', 'italystrap' ),
 		'desc'		=> __( 'Enter the media or post type ID or select an image above.', 'italystrap' ),
 		'id'		=> 'id',
 		'type'		=> 'media',
@@ -60,7 +60,7 @@ return array(
 	 * Enter a title. this will be visualized below the image. (This is not the widget title).
 	 */
 	'image_title'			=> array(
-		'name'		=> __( 'Title', 'italystrap' ),
+		'label'		=> __( 'Title', 'italystrap' ),
 		'desc'		=> __( 'Enter a title. this will be visualized below the image. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title',
 		'type'		=> 'text',
@@ -75,7 +75,7 @@ return array(
 	 * Define tag for the title. Default: h4. (This is not the widget title).
 	 */
 	'image_title_tag'			=> array(
-		'name'		=> __( 'Title tag', 'italystrap' ),
+		'label'		=> __( 'Title tag', 'italystrap' ),
 		'desc'		=> __( 'Define tag for the title. Default: h4. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title_tag',
 		'type'		=> 'text',
@@ -90,7 +90,7 @@ return array(
 	 * Enter a CSS class for the title. Default: widget-image-title. (This is not the widget title).
 	 */
 	'image_title_class'			=> array(
-		'name'		=> __( 'Title CSS class', 'italystrap' ),
+		'label'		=> __( 'Title CSS class', 'italystrap' ),
 		'desc'		=> __( 'Enter a CSS class for the title. Default: widget-image-title. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title_class',
 		'type'		=> 'text',
@@ -105,7 +105,7 @@ return array(
 	 * Enter a caption for the image
 	 */
 	'caption'			=> array(
-		'name'		=> __( 'Image caption', 'italystrap' ),
+		'label'		=> __( 'Image caption', 'italystrap' ),
 		'desc'		=> __( 'Enter a caption for the image', 'italystrap' ),
 		'id'		=> 'caption',
 		'type'		=> 'textarea',
@@ -120,7 +120,7 @@ return array(
 	 * Enter a description for the image. You can also insert a shortcode.
 	 */
 	'description'		=> array(
-		'name'		=> __( 'Image description', 'italystrap' ),
+		'label'		=> __( 'Image description', 'italystrap' ),
 		'desc'		=> __( 'Enter a description for the image. You can also insert a <code>[shortcode]</code> or <code>HTML tags</code>. To use shortcodes you also have to check "Doo Shortcode" below,', 'italystrap' ),
 		'id'		=> 'description',
 		'type'		=> 'textarea',
@@ -136,7 +136,7 @@ return array(
 	 * Automatically add paragraphs.
 	 */
 	'wpautop'		=> array(
-		'name'		=> __( 'Add paragraphs', 'italystrap' ),
+		'label'		=> __( 'Add paragraphs', 'italystrap' ),
 		'desc'		=> __( 'Automatically add paragraphs.', 'italystrap' ),
 		'id'		=> 'wpautop',
 		'type'		=> 'checkbox',
@@ -150,7 +150,7 @@ return array(
 	 * Do shortcode in image description.
 	 */
 	'do_shortcode'		=> array(
-		'name'		=> __( 'Do Shortcode', 'italystrap' ),
+		'label'		=> __( 'Do Shortcode', 'italystrap' ),
 		'desc'		=> __( 'Do shortcode in image description.', 'italystrap' ),
 		'id'		=> 'do_shortcode',
 		'type'		=> 'checkbox',
@@ -168,7 +168,7 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
-		'name'		=> __( 'Image size', 'italystrap' ),
+		'label'		=> __( 'Image size', 'italystrap' ),
 		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full.', 'italystrap' ),
 		'id'		=> 'size',
 		'type'		=> 'select',
@@ -183,7 +183,7 @@ return array(
 	 * Alignment for image.
 	 */
 	'alignment'				=> array(
-		'name'		=> __( 'Alignment', 'italystrap' ),
+		'label'		=> __( 'Alignment', 'italystrap' ),
 		'desc'		=> __( 'Alignment for image.', 'italystrap' ),
 		'id'		=> 'alignment',
 		'type'		=> 'select',
@@ -203,7 +203,7 @@ return array(
 	 * Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for img container.
 	 */
 	'add_figure_container'		=> array(
-		'name'		=> esc_html__( 'Add container "figure"', 'italystrap' ),
+		'label'		=> esc_html__( 'Add container "figure"', 'italystrap' ),
 		'desc'		=> __( 'Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for img container.', 'italystrap' ),
 		'id'		=> 'add_figure_container',
 		'type'		=> 'checkbox',
@@ -218,7 +218,7 @@ return array(
 	 * Enter the Container CSS class (optional).
 	 */
 	'container_css_class'		=> array(
-		'name'		=> __( 'Container CSS class', 'italystrap' ),
+		'label'		=> __( 'Container CSS class', 'italystrap' ),
 		'desc'		=> __( 'Enter the Container CSS class (optional).', 'italystrap' ),
 		'id'		=> 'container_css_class',
 		'type'		=> 'text',
@@ -233,7 +233,7 @@ return array(
 	 * Enter the image css class (optional).
 	 */
 	'image_css_class'		=> array(
-		'name'		=> __( 'Image CSS class', 'italystrap' ),
+		'label'		=> __( 'Image CSS class', 'italystrap' ),
 		'desc'		=> __( 'Enter the image css class (optional).', 'italystrap' ),
 		'id'		=> 'image_css_class',
 		'type'		=> 'text',
@@ -248,7 +248,7 @@ return array(
 	 * Insert a URL for the image.
 	 */
 	'link'		=> array(
-		'name'		=> __( 'Link URL', 'italystrap' ),
+		'label'		=> __( 'Link URL', 'italystrap' ),
 		'desc'		=> __( 'Insert a URL for the image.', 'italystrap' ),
 		'id'		=> 'link',
 		'type'		=> 'text',
@@ -263,7 +263,7 @@ return array(
 	 * Check if you want to open in a new tab/windows.
 	 */
 	'link_target_blank'		=> array(
-		'name'		=> __( 'Open in a new windows', 'italystrap' ),
+		'label'		=> __( 'Open in a new windows', 'italystrap' ),
 		'desc'		=> __( 'Check if you want to open in a new tab/windows.', 'italystrap' ),
 		'id'		=> 'link_target_blank',
 		'type'		=> 'checkbox',

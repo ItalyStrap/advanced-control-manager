@@ -19,7 +19,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'html_tag'				=> array(
-		'name'		=> __( 'Post title html tag', 'italystrap' ),
+		'label'		=> __( 'Post title html tag', 'italystrap' ),
 		'desc'		=> __( 'You can change the tag wrapper for the post title, Default h2.', 'italystrap' ),
 		'id'		=> 'html_tag',
 		'type'		=> 'text',
@@ -34,7 +34,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'class'				=> array(
-		'name'		=> __( 'Post title css class', 'italystrap' ),
+		'label'		=> __( 'Post title css class', 'italystrap' ),
 		'desc'		=> __( 'Customize the post title style with your custom css class. Example text-primary', 'italystrap' ),
 		'id'		=> 'class',
 		'type'		=> 'text',
@@ -49,7 +49,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'id'				=> array(
-		'name'		=> __( 'Post title css id', 'italystrap' ),
+		'label'		=> __( 'Post title css id', 'italystrap' ),
 		'desc'		=> __( 'Useful if you want to use it with javascript. It has to be unique.', 'italystrap' ),
 		'id'		=> 'id',
 		'type'		=> 'text',
@@ -64,7 +64,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'style'				=> array(
-		'name'		=> __( 'Post title custom css style', 'italystrap' ),
+		'label'		=> __( 'Post title custom css style', 'italystrap' ),
 		'desc'		=> __( 'You can add some css style. Eg: style="color: #000000;"', 'italystrap' ),
 		'id'		=> 'style',
 		'type'		=> 'text',
@@ -79,7 +79,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'post_id'				=> array(
-		'name'		=> __( 'Post title post_id', 'italystrap' ),
+		'label'		=> __( 'Post title post_id', 'italystrap' ),
 		'desc'		=> __( 'Do you want to display the title of a certain post? Then insert the post ID of that post.', 'italystrap' ),
 		'id'		=> 'post_id',
 		'type'		=> 'number',
@@ -94,7 +94,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'before'				=> array(
-		'name'		=> __( 'Post title before', 'italystrap' ),
+		'label'		=> __( 'Post title before', 'italystrap' ),
 		'desc'		=> __( 'You can insert some content before the title.', 'italystrap' ),
 		'id'		=> 'before',
 		'type'		=> 'text',
@@ -109,7 +109,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'after'				=> array(
-		'name'		=> __( 'Post title after', 'italystrap' ),
+		'label'		=> __( 'Post title after', 'italystrap' ),
 		'desc'		=> __( 'You can insert some content after the title.', 'italystrap' ),
 		'id'		=> 'after',
 		'type'		=> 'text',

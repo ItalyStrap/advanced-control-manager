@@ -24,7 +24,7 @@ return array(
 	 * Page Name or Page URL.
 	 */
 	'href'				=> array(
-		'name'		=> __( 'Page Name or Page URL', 'italystrap' ),
+		'label'		=> __( 'Page Name or Page URL', 'italystrap' ),
 		'desc'		=> __( 'Enter your FB page name or the url of your FB page.', 'italystrap' ),
 		'id'		=> 'href',
 		'type'		=> 'text',
@@ -41,7 +41,7 @@ return array(
 	 * Max width of widget.
 	 */
 	'width'				=> array(
-		'name'		=> __( 'Max width of widget', 'italystrap' ),
+		'label'		=> __( 'Max width of widget', 'italystrap' ),
 		'desc'		=> __( 'Enter the max width of the FB page.', 'italystrap' ),
 		'id'		=> 'width',
 		'type'		=> 'number',
@@ -57,7 +57,7 @@ return array(
 	 * Height of widget.
 	 */
 	'height'				=> array(
-		'name'		=> __( 'Height of widget', 'italystrap' ),
+		'label'		=> __( 'Height of widget', 'italystrap' ),
 		'desc'		=> __( 'Enter the max height of the FB page.', 'italystrap' ),
 		'id'		=> 'height',
 		'type'		=> 'number',
@@ -73,7 +73,7 @@ return array(
 	 * Tab to be visualized.
 	 */
 	'tabs'				=> array(
-		'name'		=> __( 'Tab to be visualized', 'italystrap' ),
+		'label'		=> __( 'Tab to be visualized', 'italystrap' ),
 		'desc'		=> __( 'Select the tab you want to be visualized in your FB widget. Use ctrl + click for multiple selection.', 'italystrap' ),
 		'id'		=> 'tabs',
 		'type'		=> 'multiple_select',
@@ -94,7 +94,7 @@ return array(
 	 * Hide Cover.
 	 */
 	'hide-cover'		=> array(
-		'name'		=> __( 'Hide Cover', 'italystrap' ),
+		'label'		=> __( 'Hide Cover', 'italystrap' ),
 		'desc'		=> __( 'Hide the cover of your FB page.', 'italystrap' ),
 		'id'		=> 'hide-cover',
 		'type'		=> 'select',
@@ -114,7 +114,7 @@ return array(
 	 * Show facepile.
 	 */
 	'show-facepile'		=> array(
-		'name'		=> __( 'Show facepile', 'italystrap' ),
+		'label'		=> __( 'Show facepile', 'italystrap' ),
 		'desc'		=> __( 'Show the profile avatar when click on like button.', 'italystrap' ),
 		'id'		=> 'show-facepile',
 		'type'		=> 'select',
@@ -134,7 +134,7 @@ return array(
 	 * Hide CTA.
 	 */
 	'hide-cta'		=> array(
-		'name'		=> __( 'Hide CTA', 'italystrap' ),
+		'label'		=> __( 'Hide CTA', 'italystrap' ),
 		'desc'		=> __( 'Hide the CTA button if available.', 'italystrap' ),
 		'id'		=> 'hide-cta',
 		'type'		=> 'select',
@@ -154,7 +154,7 @@ return array(
 	 * Small header.
 	 */
 	'small-header'		=> array(
-		'name'		=> __( 'Small header', 'italystrap' ),
+		'label'		=> __( 'Small header', 'italystrap' ),
 		'desc'		=> __( 'Use the small header.', 'italystrap' ),
 		'id'		=> 'small-header',
 		'type'		=> 'select',
@@ -174,7 +174,7 @@ return array(
 	 * Adapt container width.
 	 */
 	'adapt-container-width'		=> array(
-		'name'		=> __( 'Adapt container width', 'italystrap' ),
+		'label'		=> __( 'Adapt container width', 'italystrap' ),
 		'desc'		=> __( 'Try to adapt to the width of the container.', 'italystrap' ),
 		'id'		=> 'adapt-container-width',
 		'type'		=> 'select',
@@ -194,7 +194,7 @@ return array(
 	 * Align of content.
 	 */
 	'align'		=> array(
-		'name'		=> __( 'Align of content', 'italystrap' ),
+		'label'		=> __( 'Align of content', 'italystrap' ),
 		'desc'		=> __( 'Select the align of the widget.', 'italystrap' ),
 		'id'		=> 'align',
 		'type'		=> 'select',

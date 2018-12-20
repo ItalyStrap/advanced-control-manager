@@ -89,47 +89,11 @@ class Attributes implements Subscriber_Interface {
 	 */
 	protected function field_type( $widget, $instance, array $key, $out = '' ) {
 
-		/* Set Defaults */
-		$key['default'] = isset( $key['default'] ) ? ( (string) $key['default'] ) : '';
-
-		if ( isset( $instance[ $key['id'] ] ) ) {
-
-			if ( is_array( $instance[ $key['id'] ] ) ) {
-				$key['value'] = $instance[ $key['id'] ];
-
-			} else {
-				$key['value'] = empty( $instance[ $key['id'] ] ) ? '' : strip_tags( $instance[ $key['id'] ] );
-			}
-		}
-
 		/* Set field id and name  */
-		$key['_id'] = $widget->get_field_id( $key['id'] );
-		$key['_name'] = $widget->get_field_name( $key['id'] );
+		$key['id'] = $widget->get_field_id( $key['id'] );
+		$key['name'] = $widget->get_field_name( $key['id'] );
 
-		/* Set field type */
-		if ( ! isset( $key['type'] ) ) {
-			$key['type'] = 'text';
-		}
-
-		/* Prefix method */
-		$field_method = 'field_type_' . str_replace( '-', '_', $key['type'] );
-
-		/* Check for <p> Class */
-		$p_class = ( isset( $key['class-p'] ) ) ? ' class="' . $key['class-p'] . '"' : '';
-
-		/**
-		 * Run method
-		 */
-		if ( method_exists( $this->fields_type, $field_method ) ) {
-
-			return '<p' . $p_class . '>' . $this->fields_type->$field_method( $key ) . '</p>';
-
-		} else {
-
-			return '<p' . $p_class . '>' . $this->fields_type->field_type_text( $key ) . '</p>';
-
-		}
-
+		return $this->fields_type->render( $key, $instance );
 	}
 
 

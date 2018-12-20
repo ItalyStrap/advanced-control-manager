@@ -19,7 +19,7 @@ return array(
 	 * Arbitrary text or HTML advanced editor WYSIWYG.
 	 */
 	'text'				=> array(
-		'name'		=> __( 'WP Editor', 'italystrap' ),
+		'label'		=> __( 'WP Editor', 'italystrap' ),
 		'desc'		=> __( 'Arbitrary text or HTML advanced editor WYSIWYG.', 'italystrap' ),
 		'id'		=> 'text',
 		'type'		=> 'editor',

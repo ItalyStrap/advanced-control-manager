@@ -32,7 +32,7 @@ $config_grouped_posts = array(
 	 * This is the container of the list of taxonomies, you can add any CSS class for styling it. (Example: <code>row</code>)
 	 */
 	'tax_container_class'			=> array(
-		'name'		=> __( 'Taxonomies Container', 'italystrap' ),
+		'label'		=> __( 'Taxonomies Container', 'italystrap' ),
 		'desc'		=> __( 'This is the container of the list of taxonomies, you can add any CSS class for styling it. (Example: <code>row</code>)', 'italystrap' ),
 		'id'		=> 'tax_container_class',
 		'type'		=> 'text',
@@ -48,7 +48,7 @@ $config_grouped_posts = array(
 	 * This is the container of the single taxonomy, you can add any CSS class for styling it. (Example: <code>col-md-6</code>)
 	 */
 	'tax_class'						=> array(
-		'name'		=> __( 'Taxonomy Container', 'italystrap' ),
+		'label'		=> __( 'Taxonomy Container', 'italystrap' ),
 		'desc'		=> __( 'This is the container of the single taxonomy, you can add any CSS class for styling it. (Example: <code>col-md-6</code>)', 'italystrap' ),
 		'id'		=> 'tax_class',
 		'type'		=> 'text',
@@ -64,7 +64,7 @@ $config_grouped_posts = array(
 	 * Insert comma/space-separated string of term ids to include. (Example: 1,2,3 or 1 2 3)
 	 */
 	'include'				=> array(
-		'name'		=> __( 'Taxonomies ID', 'italystrap' ),
+		'label'		=> __( 'Taxonomies ID', 'italystrap' ),
 		'desc'		=> __( 'Insert comma/space-separated string of term ids to include. (Example: 1,2,3 or 1 2 3)', 'italystrap' ),
 		'id'		=> 'include',
 		'type'		=> 'text',
@@ -79,7 +79,7 @@ $config_grouped_posts = array(
 	 * Insert comma/space-separated string of term ids to exclude. If $include is non-empty, $exclude is ignored. (Example: 1,2,3 or 1 2 3)
 	 */
 	'exclude'				=> array(
-		'name'		=> __( 'Taxonomies ID to exclude', 'italystrap' ),
+		'label'		=> __( 'Taxonomies ID to exclude', 'italystrap' ),
 		'desc'		=> __( 'Insert comma/space-separated string of term ids to exclude. If $include is non-empty, $exclude is ignored. (Example: 1,2,3 or 1 2 3)', 'italystrap' ),
 		'id'		=> 'exclude',
 		'type'		=> 'text',

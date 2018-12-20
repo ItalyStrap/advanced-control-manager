@@ -19,7 +19,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'class'				=> array(
-		'name'		=> __( 'Button css class', 'italystrap' ),
+		'label'		=> __( 'Button css class', 'italystrap' ),
 		'desc'		=> __( 'Customize the Button style with your custom css class. Example text-primary', 'italystrap' ),
 		'id'		=> 'class',
 		'type'		=> 'text',
@@ -34,7 +34,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'id'				=> array(
-		'name'		=> __( 'Button css id', 'italystrap' ),
+		'label'		=> __( 'Button css id', 'italystrap' ),
 		'desc'		=> __( 'Useful if you want to use it with javascript. It has to be unique.', 'italystrap' ),
 		'id'		=> 'id',
 		'type'		=> 'text',
@@ -49,7 +49,7 @@ return array(
 	 * Custom link for the widget title.
 	 */
 	'content'				=> array(
-		'name'		=> __( 'Button content', 'italystrap' ),
+		'label'		=> __( 'Button content', 'italystrap' ),
 		'desc'		=> __( 'You can insert some content content the title.', 'italystrap' ),
 		'id'		=> 'content',
 		'type'		=> 'text',

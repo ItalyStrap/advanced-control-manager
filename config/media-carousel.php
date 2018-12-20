@@ -19,7 +19,7 @@ return array(
 	 * You can insert the ID of the media images or the ID of every post type (post, page, attachment, custom post type and so on) all separated by comma. Example: <code>1,2,3,4</code>
 	 */
 	'ids'				=> array(
-		'name'		=> __( 'Media or Post Type ID', 'italystrap' ),
+		'label'		=> __( 'Media or Post Type ID', 'italystrap' ),
 		'desc'		=> __( 'You can insert the ID of the media images or the ID of every post type (post, page, attachment, custom post type and so on) all separated by comma. Example: <code>1,2,3,4</code>', 'italystrap' ),
 		'id'		=> 'ids',
 		'type'		=> 'media_list',
@@ -34,7 +34,7 @@ return array(
 	 * Type of gallery. If it's not "carousel", nothing will be done.
 	 */
 	'type'				=> array(
-		'name'		=> __( 'Type of gallery', 'italystrap' ),
+		'label'		=> __( 'Type of gallery', 'italystrap' ),
 		'desc'		=> __( 'Enter the type of gallery, if it\'s not "carousel", nothing will be done.', 'italystrap' ),
 		'id'		=> 'type',
 		'type'		=> 'select',
@@ -56,7 +56,7 @@ return array(
 	 * Alternative order for your images.
 	 */
 	'orderby'			=> array(
-		'name'		=> __( 'Order Image By', 'italystrap' ),
+		'label'		=> __( 'Order Image By', 'italystrap' ),
 		'desc'		=> __( 'Alternative order for your images.', 'italystrap' ),
 		'id'		=> 'orderby',
 		'type'		=> 'select',
@@ -78,7 +78,7 @@ return array(
 	 * Default: italystrap-bootstrap-carousel.
 	 * */
 	'name'				=> array(
-		'name'		=> __( 'Carousel Name', 'italystrap' ),
+		'label'		=> __( 'Carousel Name', 'italystrap' ),
 		'desc'		=> __( 'String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page.', 'italystrap' ),
 		'id'		=> 'name',
 		'type'		=> 'text',
@@ -93,7 +93,7 @@ return array(
 	 * Carousel container width, in px or % (optional). Default: empty. Example: 500px or 100%
 	 */
 	'width'				=> array(
-		'name'		=> __( 'Carousel container width', 'italystrap' ),
+		'label'		=> __( 'Carousel container width', 'italystrap' ),
 		'desc'		=> __( 'Carousel container width, in px or % (optional). Default: empty. Example: 500px or 100%', 'italystrap' ),
 		'id'		=> 'width',
 		'type'		=> 'text',
@@ -108,7 +108,7 @@ return array(
 	 * Carousel item height, in px(optional). Default: empty. Example: 500px
 	 */
 	'height'			=> array(
-		'name'		=> __( 'Carousel container height', 'italystrap' ),
+		'label'		=> __( 'Carousel container height', 'italystrap' ),
 		'desc'		=> __( 'Carousel item height, in px(optional). Default: empty. Example: 500px', 'italystrap' ),
 		'id'		=> 'height',
 		'type'		=> 'text',
@@ -124,7 +124,7 @@ return array(
 	 * Default: before-inner.
 	 * */
 	'indicators'		=> array(
-		'name'		=> __( 'Indicators', 'italystrap' ),
+		'label'		=> __( 'Indicators', 'italystrap' ),
 		'desc'		=> __( 'Indicators position. Accepted values: before-inner, after-inner, after-control, false (hides indicators).', 'italystrap' ),
 		'id'		=> 'indicators',
 		'type'		=> 'select',
@@ -144,7 +144,7 @@ return array(
 	 * Enable or disable arrow right and left. Accepted values: true, false. Default: true.
 	 */
 	'control'			=> array(
-		'name'		=> __( 'Enable control', 'italystrap' ),
+		'label'		=> __( 'Enable control', 'italystrap' ),
 		'desc'		=> __( 'Enable or disable arrow right and left. Accepted values: true, false. Default: true.', 'italystrap' ),
 		'id'		=> 'control',
 		'type'		=> 'checkbox',
@@ -175,7 +175,7 @@ return array(
 	 * @link http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/
 	 */
 	'interval'			=> array(
-		'name'		=> __( 'Carousel interval', 'italystrap' ),
+		'label'		=> __( 'Carousel interval', 'italystrap' ),
 		'desc'		=> __( 'The amount of time to delay between automatically cycling an item in milliseconds. Example 5000 = 5 seconds. Default 0, carousel will not automatically cycle.', 'italystrap' ),
 		'id'		=> 'interval',
 		'type'		=> 'number',
@@ -191,7 +191,7 @@ return array(
 	 * @type string Default hover.
 	 */
 	'pause'				=> array(
-		'name'		=> __( 'Pause', 'italystrap' ),
+		'label'		=> __( 'Pause', 'italystrap' ),
 		'desc'		=> __( 'Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.', 'italystrap' ),
 		'id'		=> 'pause',
 		'type'		=> 'select',
@@ -209,7 +209,7 @@ return array(
 	 * Show or hide image or post title. This is not the widget title. Set false to hide. Default: true.
 	 */
 	'image_title'		=> array(
-		'name'		=> __( 'Show Title', 'italystrap' ),
+		'label'		=> __( 'Show Title', 'italystrap' ),
 		'desc'		=> __( 'Show or hide image or post title. This is not the widget title. Set false to hide. Default: true.', 'italystrap' ),
 		'id'		=> 'image_title',
 		'type'		=> 'checkbox',
@@ -222,7 +222,7 @@ return array(
 	 * Define HTML tag for image title. Default: h4.
 	 */
 	'titletag'			=> array(
-		'name'		=> __( 'Carousel titletag', 'italystrap' ),
+		'label'		=> __( 'Carousel titletag', 'italystrap' ),
 		'desc'		=> __( 'Define HTML tag for image title. Default: h4.', 'italystrap' ),
 		'id'		=> 'titletag',
 		'type'		=> 'text',
@@ -237,7 +237,7 @@ return array(
 	 * Show or hide image caption text (the excerpt of attachment) or the excerpt of the post. Set false to hide. Default: true.
 	 */
 	'text'				=> array(
-		'name'		=> __( 'Text', 'italystrap' ),
+		'label'		=> __( 'Text', 'italystrap' ),
 		'desc'		=> __( 'Show or hide image caption text (the excerpt of attachment) or the excerpt of the post. Set false to hide. Default: true.', 'italystrap' ),
 		'id'		=> 'text',
 		'type'		=> 'checkbox',
@@ -250,7 +250,7 @@ return array(
 	 * Auto-format text. Changes double line-breaks in the text into HTML paragraphs <code>&lt;p&gt;...&lt;/p&gt;</code>. Default: true.
 	 */
 	'wpautop'			=> array(
-		'name'		=> __( 'wpautop', 'italystrap' ),
+		'label'		=> __( 'wpautop', 'italystrap' ),
 		'desc'		=> __( 'Auto-format text. Changes double line-breaks in the text into HTML paragraphs <code>&lt;p&gt;...&lt;/p&gt;</code>. Default: true.', 'italystrap' ),
 		'id'		=> 'wpautop',
 		'type'		=> 'checkbox',
@@ -263,7 +263,7 @@ return array(
 	 * Allow shortcode for text. Default: false.
 	 */
 	'do_shortcode'		=> array(
-		'name'		=> __( 'do_shortcode', 'italystrap' ),
+		'label'		=> __( 'do_shortcode', 'italystrap' ),
 		'desc'		=> __( 'Allow shortcode for text. Default: false.', 'italystrap' ),
 		'id'		=> 'do_shortcode',
 		'type'		=> 'checkbox',
@@ -276,7 +276,7 @@ return array(
 	 * Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.
 	 */
 	'link'				=> array(
-		'name'		=> __( 'Post or Image link', 'italystrap' ),
+		'label'		=> __( 'Post or Image link', 'italystrap' ),
 		'desc'		=> __( 'Where your image titles will link to if "title" is set to true. Accepted values: file, none and empty. An empty value will link to your attachment’s page.', 'italystrap' ),
 		'id'		=> 'link',
 		'type'		=> 'select',
@@ -307,7 +307,7 @@ return array(
 	 * La CTA sarà uguale per tutte le slide aggiunte, al momento non è possibile personalizzarla per singola slide.
 	 */
 	'link_button'				=> array(
-		'name'		=> __( 'Link button', 'italystrap' ),
+		'label'		=> __( 'Link button', 'italystrap' ),
 		'desc'		=> __( 'Show or hide a link to post, this works only for post_type and for parent of images, it works only with the selection of the link above. Default: false.', 'italystrap' ),
 		'id'		=> 'link_button',
 		'type'		=> 'checkbox',
@@ -320,7 +320,7 @@ return array(
 	 * The text to display in the button link. Default: Read More.
 	 */
 	'link_button_text'				=> array(
-		'name'		=> __( 'Link button text', 'italystrap' ),
+		'label'		=> __( 'Link button text', 'italystrap' ),
 		'desc'		=> __( 'The text to display in the button link. Default: Read More.', 'italystrap' ),
 		'id'		=> 'link_button_text',
 		'class'		=> 'widefat',
@@ -334,7 +334,7 @@ return array(
 	 * You can add custom CSS class to the button. Default: btn btn-ptimary.
 	 */
 	'link_button_css_class'				=> array(
-		'name'		=> __( 'Link button CSS class', 'italystrap' ),
+		'label'		=> __( 'Link button CSS class', 'italystrap' ),
 		'desc'		=> __( 'You can add custom CSS class to the button. Default: btn btn-ptimary.', 'italystrap' ),
 		'id'		=> 'link_button_css_class',
 		'class'		=> 'widefat',
@@ -348,7 +348,7 @@ return array(
 	 * Extra CSS class for carousel container.
 	 */
 	'containerclass'	=> array(
-		'name'		=> __( 'Container Class', 'italystrap' ),
+		'label'		=> __( 'Container Class', 'italystrap' ),
 		'desc'		=> __( 'Extra CSS class for carousel container.', 'italystrap' ),
 		'id'		=> 'containerclass',
 		'type'		=> 'text',
@@ -363,7 +363,7 @@ return array(
 	 * Extra CSS class for carousel item.
 	 */
 	'itemclass'			=> array(
-		'name'		=> __( 'Item Class', 'italystrap' ),
+		'label'		=> __( 'Item Class', 'italystrap' ),
 		'desc'		=> __( 'Extra CSS class for carousel item.', 'italystrap' ),
 		'id'		=> 'itemclass',
 		'type'		=> 'text',
@@ -378,7 +378,7 @@ return array(
 	 * Extra CSS class for carousel caption.
 	 */
 	'captionclass'		=> array(
-		'name'		=> __( 'Caption Class', 'italystrap' ),
+		'label'		=> __( 'Caption Class', 'italystrap' ),
 		'desc'		=> __( 'Extra CSS class for carousel caption.', 'italystrap' ),
 		'id'		=> 'captionclass',
 		'type'		=> 'text',
@@ -395,7 +395,7 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'size'				=> array(
-		'name'		=> __( 'Size for images', 'italystrap' ),
+		'label'		=> __( 'Size for images', 'italystrap' ),
 		'desc'		=> __( 'Size for image attachment. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: full. See <a href="http://codex.WordPress.org/Function_Reference/wp_get_attachment_image_src">wp_get_attachment_image_src()</a> for further reference.', 'italystrap' ),
 		'id'		=> 'size',
 		'type'		=> 'select',
@@ -410,7 +410,7 @@ return array(
 	 * Activate responsive image. Accepted values: true, false. Default false. It works only if you add sizetablet and sizephone attribute. See below.
 	 */
 	'responsive'		=> array(
-		'name'		=> __( 'Responsive image', 'italystrap' ),
+		'label'		=> __( 'Responsive image', 'italystrap' ),
 		'desc'		=> __( 'Activate responsive image. Default false. It works only if you add sizetablet and sizephone attribute. See below.', 'italystrap' ),
 		'id'		=> 'responsive',
 		'type'		=> 'checkbox',
@@ -424,7 +424,7 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'sizetablet'		=> array(
-		'name'		=> __( 'Size for images', 'italystrap' ),
+		'label'		=> __( 'Size for images', 'italystrap' ),
 		'desc'		=> __( 'Size for image attachment for tablet device. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: large.', 'italystrap' ),
 		'id'		=> 'sizetablet',
 		'type'		=> 'select',
@@ -440,7 +440,7 @@ return array(
 	 * @see wp_get_attachment_image_src() for further reference.
 	 */
 	'sizephone'			=> array(
-		'name'		=> __( 'Size for images', 'italystrap' ),
+		'label'		=> __( 'Size for images', 'italystrap' ),
 		'desc'		=> __( 'Size for image attachment for phone device. Accepted values: thumbnail, medium, large, full or own custom name added in add_image_size function. Default: medium.', 'italystrap' ),
 		'id'		=> 'sizephone',
 		'type'		=> 'select',

@@ -19,7 +19,7 @@ return array(
 	 * The type of schema.
 	 */
 	'schema'				=> array(
-		'name'		=> __( 'Select your business', 'italystrap' ),
+		'label'		=> __( 'Select your business', 'italystrap' ),
 		'desc'		=> __( 'Select your kind of activity.', 'italystrap' ),
 		'id'		=> 'schema',
 		'type'		=> 'select',
@@ -124,7 +124,7 @@ return array(
 	 * CSS class for the container of this widget.
 	 */
 	'container_class'			=> array(
-		'name'		=> __( 'Container CSS class', 'italystrap' ),
+		'label'		=> __( 'Container CSS class', 'italystrap' ),
 		'desc'		=> __( 'CSS class for the container of this widget.', 'italystrap' ),
 		'id'		=> 'container_class',
 		'type'		=> 'text',
@@ -139,7 +139,7 @@ return array(
 	 * Your company name.
 	 */
 	'company_name'			=> array(
-		'name'		=> __( 'Company name', 'italystrap' ),
+		'label'		=> __( 'Company name', 'italystrap' ),
 		'desc'		=> __( 'Your company name.', 'italystrap' ),
 		'id'		=> 'company_name',
 		'type'		=> 'text',
@@ -154,7 +154,7 @@ return array(
 	 * Check if you want to show the logo in the widget section.
 	 */
 	'show_logo'				=> array(
-		'name'		=> __( 'Show Logo image', 'italystrap' ),
+		'label'		=> __( 'Show Logo image', 'italystrap' ),
 		'desc'		=> __( 'Check if you want to show the logo in the widget section.', 'italystrap' ),
 		'id'		=> 'show_logo',
 		'type'		=> 'checkbox',
@@ -168,7 +168,7 @@ return array(
 	 * Logo size.
 	 */
 	'logo_size'			=> array(
-		'name'		=> __( 'Logo size', 'italystrap' ),
+		'label'		=> __( 'Logo size', 'italystrap' ),
 		'desc'		=> __( 'Select the thumbnail size to display in posts list.', 'italystrap' ),
 		'id'		=> 'logo_size',
 		'type'		=> 'select',
@@ -184,7 +184,7 @@ return array(
 	 * Logo class.
 	 */
 	'logo_class'				=> array(
-		'name'		=> __( 'Logo css class', 'italystrap' ),
+		'label'		=> __( 'Logo css class', 'italystrap' ),
 		'desc'		=> __( 'Enter logo css class.', 'italystrap' ),
 		'id'		=> 'logo_class',
 		'type'		=> 'text',
@@ -200,7 +200,7 @@ return array(
 	 * The url of your logo.
 	 */
 	'logo_url'				=> array(
-		'name'		=> __( 'Logo URL (DEPRECATED)', 'italystrap' ),
+		'label'		=> __( 'Logo URL (DEPRECATED)', 'italystrap' ),
 		'desc'		=> __( 'The url of your logo. (DEPRECATED)', 'italystrap' ),
 		'id'		=> 'logo_url',
 		'type'		=> 'text',
@@ -215,7 +215,7 @@ return array(
 	 * The ID of your logo.
 	 */
 	'logo_id'				=> array(
-		'name'		=> __( 'Logo image ID', 'italystrap' ),
+		'label'		=> __( 'Logo image ID', 'italystrap' ),
 		'desc'		=> __( 'Add your logo image.', 'italystrap' ),
 		'id'		=> 'logo_id',
 		'type'		=> 'media',
@@ -231,7 +231,7 @@ return array(
 	 * Your street address.
 	 */
 	'street_address'		=> array(
-		'name'		=> __( 'Street Address', 'italystrap' ),
+		'label'		=> __( 'Street Address', 'italystrap' ),
 		'desc'		=> __( 'Your street address.', 'italystrap' ),
 		'id'		=> 'street_address',
 		'type'		=> 'text',
@@ -246,7 +246,7 @@ return array(
 	 * Your postal code.
 	 */
 	'postal_code'			=> array(
-		'name'		=> __( 'Zipcode/Postal Code', 'italystrap' ),
+		'label'		=> __( 'Zipcode/Postal Code', 'italystrap' ),
 		'desc'		=> __( 'Your postal code.', 'italystrap' ),
 		'id'		=> 'postal_code',
 		'type'		=> 'text',
@@ -261,7 +261,7 @@ return array(
 	 * Your city or locality.
 	 */
 	'locality'				=> array(
-		'name'		=> __( 'City/Locality', 'italystrap' ),
+		'label'		=> __( 'City/Locality', 'italystrap' ),
 		'desc'		=> __( 'Your city or locality.', 'italystrap' ),
 		'id'		=> 'locality',
 		'type'		=> 'text',
@@ -276,7 +276,7 @@ return array(
 	 * Your State / Region.
 	 */
 	'region'				=> array(
-		'name'		=> __( 'State/Region', 'italystrap' ),
+		'label'		=> __( 'State/Region', 'italystrap' ),
 		'desc'		=> __( 'Your State / Region.', 'italystrap' ),
 		'id'		=> 'region',
 		'type'		=> 'text',
@@ -291,7 +291,7 @@ return array(
 	 * Your Country.
 	 */
 	'country'				=> array(
-		'name'		=> __( 'Country', 'italystrap' ),
+		'label'		=> __( 'Country', 'italystrap' ),
 		'desc'		=> __( 'Your Country.', 'italystrap' ),
 		'id'		=> 'country',
 		'type'		=> 'text',
@@ -306,7 +306,7 @@ return array(
 	 * Your telephone number.
 	 */
 	'tel'					=> array(
-		'name'		=> __( 'Telephone number', 'italystrap' ),
+		'label'		=> __( 'Telephone number', 'italystrap' ),
 		'desc'		=> __( 'Your telephone number.', 'italystrap' ),
 		'id'		=> 'tel',
 		'type'		=> 'tel',
@@ -321,7 +321,7 @@ return array(
 	 * Your mobile number.
 	 */
 	'mobile'				=> array(
-		'name'		=> __( 'Mobile number', 'italystrap' ),
+		'label'		=> __( 'Mobile number', 'italystrap' ),
 		'desc'		=> __( 'Your mobile number.', 'italystrap' ),
 		'id'		=> 'mobile',
 		'type'		=> 'tel',
@@ -336,7 +336,7 @@ return array(
 	 * Your fax number.
 	 */
 	'fax'					=> array(
-		'name'		=> __( 'Fax number', 'italystrap' ),
+		'label'		=> __( 'Fax number', 'italystrap' ),
 		'desc'		=> __( 'Your fax number.', 'italystrap' ),
 		'id'		=> 'fax',
 		'type'		=> 'tel',
@@ -351,7 +351,7 @@ return array(
 	 * Your email.
 	 */
 	'email'					=> array(
-		'name'		=> __( 'Email', 'italystrap' ),
+		'label'		=> __( 'Email', 'italystrap' ),
 		'desc'		=> __( 'Your email.', 'italystrap' ),
 		'id'		=> 'email',
 		'type'		=> 'email',
@@ -366,7 +366,7 @@ return array(
 	 * Your taxID.
 	 */
 	'taxID'					=> array(
-		'name'		=> __( 'TaxID', 'italystrap' ),
+		'label'		=> __( 'TaxID', 'italystrap' ),
 		'desc'		=> __( 'Your taxID.', 'italystrap' ),
 		'id'		=> 'taxID',
 		'type'		=> 'text',
@@ -381,7 +381,7 @@ return array(
 	 * Your Facebook page url (hidden).
 	 */
 	'facebook'				=> array(
-		'name'		=> __( 'Facebook page (hidden)', 'italystrap' ),
+		'label'		=> __( 'Facebook page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your Facebook page url (hidden).', 'italystrap' ),
 		'id'		=> 'facebook',
 		'type'		=> 'url',
@@ -396,7 +396,7 @@ return array(
 	 * Your twitter page url (hidden).
 	 */
 	'twitter'				=> array(
-		'name'		=> __( 'Twitter page (hidden)', 'italystrap' ),
+		'label'		=> __( 'Twitter page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your twitter page url (hidden).', 'italystrap' ),
 		'id'		=> 'twitter',
 		'type'		=> 'url',
@@ -412,7 +412,7 @@ return array(
 	 * Your googleplus page url (hidden).
 	 */
 	'googleplus'				=> array(
-		'name'		=> __( 'Googleplus page (hidden)', 'italystrap' ),
+		'label'		=> __( 'Googleplus page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your googleplus page url (hidden).', 'italystrap' ),
 		'id'		=> 'googleplus',
 		'type'		=> 'url',
@@ -427,7 +427,7 @@ return array(
 	 * Your pinterest page url (hidden).
 	 */
 	'pinterest'				=> array(
-		'name'		=> __( 'Pinterest page (hidden)', 'italystrap' ),
+		'label'		=> __( 'Pinterest page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your pinterest page url (hidden).', 'italystrap' ),
 		'id'		=> 'pinterest',
 		'type'		=> 'url',
@@ -442,7 +442,7 @@ return array(
 	 * Your instagram page url (hidden).
 	 */
 	'instagram'				=> array(
-		'name'		=> __( 'Instagram page (hidden)', 'italystrap' ),
+		'label'		=> __( 'Instagram page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your instagram page url (hidden).', 'italystrap' ),
 		'id'		=> 'instagram',
 		'type'		=> 'url',
@@ -457,7 +457,7 @@ return array(
 	 * Your youtube page url (hidden).
 	 */
 	'youtube'				=> array(
-		'name'		=> __( 'YouTube page (hidden)', 'italystrap' ),
+		'label'		=> __( 'YouTube page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your youtube page url (hidden).', 'italystrap' ),
 		'id'		=> 'youtube',
 		'type'		=> 'url',
@@ -472,7 +472,7 @@ return array(
 	 * Your linkedin page url (hidden).
 	 */
 	'linkedin'				=> array(
-		'name'		=> __( 'Linkedin page (hidden)', 'italystrap' ),
+		'label'		=> __( 'Linkedin page (hidden)', 'italystrap' ),
 		'desc'		=> __( 'Your linkedin page url (hidden).', 'italystrap' ),
 		'id'		=> 'linkedin',
 		'type'		=> 'url',

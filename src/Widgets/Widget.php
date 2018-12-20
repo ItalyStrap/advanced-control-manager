@@ -77,7 +77,7 @@ abstract class Widget extends WP_Widget {
 
 		return array(
 			'title'	=> array(
-				'name'		=> __( 'Title', 'italystrap' ),
+				'label'		=> __( 'Title', 'italystrap' ),
 				'desc'		=> __( 'Enter the widget title.', 'italystrap' ),
 				'id'		=> 'title',
 				'type'		=> 'text',
@@ -635,8 +635,8 @@ abstract class Widget extends WP_Widget {
 		/**
 		 * Set field id and name
 		 */
-		$key['_id'] = $this->get_field_id( $key['id'] );
-		$key['_name'] = $this->get_field_name( $key['id'] );
+		$key['id'] = $this->get_field_id( $key['id'] );
+		$key['name'] = $this->get_field_name( $key['id'] );
 
 		return $this->fields_type->get_field_type( $key, $this->instance );
 	}

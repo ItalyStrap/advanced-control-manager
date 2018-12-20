@@ -30,7 +30,7 @@ return array(
 	 * Enter a font icon css class. Example:<code>fa fa-wordpress</code>. This works only if you have font icons loaded with your theme. If you use an icon the image will not be loaded.
 	 */
 	'nav_menu'				=> array(
-		'name'		=> __( 'Select Menu', 'italystrap' ),
+		'label'		=> __( 'Select Menu', 'italystrap' ),
 		'desc'		=> __( '.', 'italystrap' ),
 		'id'		=> 'nav_menu',
 		'type'		=> 'select',

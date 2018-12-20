@@ -119,7 +119,7 @@ class Settings implements Subscriber_Interface {
 	 * @param array            $theme_mods     The theme options.
 	 * @param Fields_Interface $fields_type    The Fields object.
 	 */
-	public function __construct( array $options = array(), array $settings, array $args, array $theme_mods, Fields_Interface $fields_type ) {
+	public function __construct( array $options, array $settings, array $args, array $theme_mods, Fields_Interface $fields_type ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
 			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.
@@ -362,7 +362,7 @@ class Settings implements Subscriber_Interface {
 		// If the theme options doesn't exist, create them.
 		$this->add_option();
 
-		foreach ( $this->settings as $key => $setting ) {
+		foreach ( $this->settings as $setting ) {
 
 			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
 				continue;
@@ -372,21 +372,25 @@ class Settings implements Subscriber_Interface {
 				$setting['id'],
 				$setting['title'],
 				array( $this, 'render_section_cb' ), //array( $this, $field['callback'] ),
-				$setting['page']
+				$this->args['options_group'] //$setting['page']
 			);
 
-			foreach ( $setting['settings_fields'] as $key2 => $field ) {
+			foreach ( $setting['settings_fields'] as $field ) {
 
 				if ( isset( $field['show_on'] ) && false === $field['show_on'] ) {
 					continue;
+				}
+
+				if ( empty( $field['args']['label'] ) ) {
+					$field['args']['label_for'] = $this->get_field_id( $field['args']['id'] );
 				}
 
 				add_settings_field(
 					$field['id'],
 					$field['title'],
 					array( $this, 'get_field_type' ), //array( $this, $field['callback'] ),
-					$field['page'],
-					empty( $field['section'] ) ? $key : $field['section'],
+					$this->args['options_group'], //$field['page'],
+					$setting['id'],
 					$field['args']
 				);
 			}
@@ -471,18 +475,26 @@ class Settings implements Subscriber_Interface {
 	}
 
 	/**
+	 * Constructs id attributes for use in Settings::class fields.
+	 *
+	 * @param string $field_name Field name.
+	 *
+	 * @return string ID attribute for `$field_name`.
+	 */
+	public function get_field_id( $field_name ) {
+		return $this->args['options_name'] . '[' . trim( $field_name ) . ']';
+	}
+
+	/**
 	 * Get the field type
 	 *
 	 * @param  array $args Array with arguments.
 	 */
 	public function get_field_type( array $args ) {
 
-		/**
-		 * Set field id and name
-		 */
-		$args['_id'] = $args['_name'] = $this->args['options_name'] . '[' . $args['id'] . ']';
+		$args['id'] = $this->get_field_id( $args['id'] );
 
-		echo $this->fields_type->get_field_type( $args, $this->options ); // XSS ok.
+		echo $this->fields_type->render( $args, $this->options ); // XSS ok.
 	}
 
 	/**

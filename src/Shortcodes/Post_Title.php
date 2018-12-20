@@ -76,7 +76,7 @@ class Post_Title extends Shortcode {
 			$default = isset( $value['default'] ) ? $value['default'] : '';
 
 			$new_attr = array(
-				'label'			=> $value['name'],
+				'label'			=> $value['label'],
 				'description'	=> $value['desc'],
 				'attr'			=> $key,
 				'type'			=> $value['type'],

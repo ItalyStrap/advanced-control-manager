@@ -6,7 +6,7 @@
  *
  * @since 2.0.0
  *
- * @package Italystrap
+ * @package ItalyStrap
  */
 
 namespace ItalyStrap\Admin;
@@ -29,18 +29,13 @@ return array(
 		'tab_title'			=> __( 'General', 'italystrap' ),
 		'id'				=> 'general',
 		'title'				=> __( 'General options page', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
 		// 'desc'				=> __( 'General setting for ItalyStrap plugin', 'italystrap' ),
-		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'activate_advanced',
 				'title'		=> __( 'Activate advanced options', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Activate advanced options', 'italystrap' ) . $beta,
+					'label'			=> __( 'Activate advanced options', 'italystrap' ) . $beta,
 					'desc'			=> __( 'If you want to have more advanced options to control', 'italystrap' ),
 					'id'			=> 'activate_advanced',
 					'type'			=> 'checkbox',
@@ -54,11 +49,8 @@ return array(
 			array(
 				'id'		=> 'show-ids',
 				'title'		=> __( 'Show Post Type IDs', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Show Post Type IDs', 'italystrap' ),
+					'label'			=> __( 'Show Post Type IDs', 'italystrap' ),
 					'desc'			=> __( 'Post type edit screen: show post/page IDS', 'italystrap' ),
 					'id'			=> 'show-ids',
 					'type'			=> 'checkbox',
@@ -71,11 +63,8 @@ return array(
 			array(
 				'id'		=> 'show-thumb',
 				'title'		=> __( 'Show Post Type Thumb', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Show the Post Type Thumbnail', 'italystrap' ),
+					'label'			=> __( 'Show the Post Type Thumbnail', 'italystrap' ),
 					'desc'			=> __( 'Post type edit screen: show post/page thumbnail', 'italystrap' ),
 					'id'			=> 'show-thumb',
 					'type'			=> 'checkbox',
@@ -88,16 +77,13 @@ return array(
 			array(
 				'id'		=> 'kill-emojis',
 				'title'		=> __( 'Kill the Emojis', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Kill the Emojis', 'italystrap' ),
+					'label'			=> __( 'Kill the Emojis', 'italystrap' ),
 					'desc'			=> __( 'Avoid loading Emojis support if your does not need it to speed up the website.', 'italystrap' ),
 					'id'			=> 'kill-emojis',
 					'type'			=> 'checkbox',
 					'class'			=> 'kill-emojis easy',
-					'default'		=> '',
+					'default'		=> 'on',
 					// 'validate'	=> 'ctype_alpha',
 					'sanitize'		=> 'sanitize_text_field',
 				),
@@ -105,11 +91,8 @@ return array(
 			array(
 				'id'		=> 'activate_social_share',
 				'title'		=> __( 'Social Sharing Button', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Activate Social Sharing Button', 'italystrap' ) . $beta,
+					'label'			=> __( 'Activate Social Sharing Button', 'italystrap' ) . $beta,
 					'desc'			=> __( 'This are a simple social sharing links', 'italystrap' ),
 					'id'			=> 'activate_social_share',
 					'type'			=> 'checkbox',
@@ -123,12 +106,8 @@ return array(
 			array(
 				'id'		=> 'social_button_position',
 				'title'		=> __( 'Social Sharing Button position', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Social Sharing Button position', 'italystrap' ) . $beta,
-					'desc'			=> __( 'Select the position to display buttons', 'italystrap' ),
+					'desc'			=> __( 'Select the position to display buttons', 'italystrap' ) . $beta,
 					'id'			=> 'social_button_position',
 					'type'			=> 'select',
 					'options'		=> array(
@@ -146,12 +125,8 @@ return array(
 			array(
 				'id'		=> 'google_api_key',
 				'title'		=> __( 'Google API Key', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Google API Key', 'italystrap' ) . $beta,
-					'desc'			=> __( 'Insert here the google API key.', 'italystrap' ),
+					'desc'			=> __( 'Insert here the google API key.', 'italystrap' ) . $beta,
 					'id'			=> 'google_api_key',
 					'type'			=> 'text',
 					'class'			=> 'google_api_key easy',
@@ -164,11 +139,8 @@ return array(
 			array(
 				'id'		=> 'web_font_loading',
 				'title'		=> __( 'Web font Loading', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Web font Loading', 'italystrap' ) . $beta,
+					'label'			=> __( 'Web font Loading', 'italystrap' ) . $beta,
 					'desc'			=> __( 'Activate it for using the web fonts loader (lazyload for the web fonts), then you have to go to the <strong>customizer</strong> and select the font, weight and subsets you want to use in this site, then in the customizer below the selected font you can add in the dedicated text input the HTML tags or CSS selector you want to bind to the font selected, all separated by comma. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6</code> or <code>.widget-title</code>. Otherwise you can add some css to the Custom CSS area of this plugin (Settings > Style > Custom CSS) or in your style.css like this:
 						<br>
 						<pre>.fonts-loaded body{ font-family: "Open Sans"; }<br>.fonts-loaded h1{ font-family: "Lato"; }</pre>', 'italystrap' ),
@@ -184,11 +156,8 @@ return array(
 			array(
 				'id'		=> 'show_theme_hooks',
 				'title'		=> __( 'Theme Hooks', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Show Theme Hooks', 'italystrap' ),
+					'label'			=> __( 'Show Theme Hooks', 'italystrap' ),
 					'desc'			=> __( 'Only fof ItalyStrap theme framework. This is only for getting a visual of the ItalyStrap theme framework hooks registered.', 'italystrap' ),
 					'id'			=> 'show_theme_hooks',
 					'type'			=> 'checkbox',
@@ -202,11 +171,8 @@ return array(
 			array(
 				'id'		=> 'show_hooked_callable',
 				'title'		=> __( 'Hooked callable', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Show Hooked callable', 'italystrap' ),
+					'label'			=> __( 'Show Hooked callable', 'italystrap' ),
 					'desc'			=> __( 'This will show callable with hook.', 'italystrap' ),
 					'id'			=> 'show_hooked_callable',
 					'type'			=> 'checkbox',
@@ -220,11 +186,8 @@ return array(
 			array(
 				'id'		=> 'menu_cache',
 				'title'		=> __( 'Cache the menu output', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'general',
 				'args'		=> array(
-					'name'			=> __( 'Cache the menu output', 'italystrap' ) . $beta,
+					'label'			=> __( 'Cache the menu output', 'italystrap' ) . $beta,
 					'desc'			=> __( 'This will put in cache the menu output only if server cache is active.', 'italystrap' ),
 					'id'			=> 'menu_cache',
 					'type'			=> 'checkbox',
@@ -244,18 +207,13 @@ return array(
 		'tab_title'			=> __( 'Widgets', 'italystrap' ),
 		'id'				=> 'widget',
 		'title'				=> __( 'Options page for widgets', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'Select the widgets you want to use.', 'italystrap' ),
-		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'widget_areas',
 				'title'		=> __( 'Widget Areas', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Activate new settings page for widget areas', 'italystrap' ) . $beta,
+					'label'			=> __( 'Activate new settings page for widget areas', 'italystrap' ) . $beta,
 					'desc'			=> __( 'This will add new settings page on Appearance where you can create new widget area to append on theme action hook.', 'italystrap' ),
 					'id'			=> 'widget_areas',
 					'type'			=> 'checkbox',
@@ -269,11 +227,8 @@ return array(
 			array(
 				'id'		=> 'widget_visibility',
 				'title'		=> __( 'Widget Visibility', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Add Widget Visibility to any widget.', 'italystrap' ),
+					'label'			=> __( 'Add Widget Visibility to any widget.', 'italystrap' ),
 					'desc'			=> __( 'This will add the possibility to choice the widget visibility for front-end.', 'italystrap' ),
 					'id'			=> 'widget_visibility',
 					'type'			=> 'checkbox',
@@ -286,11 +241,8 @@ return array(
 			array(
 				'id'		=> 'widget_attributes',
 				'title'		=> __( 'HTML attributes for widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Activate two new input HTML attributes for every widget', 'italystrap' ),
+					'label'			=> __( 'Activate two new input HTML attributes for every widget', 'italystrap' ),
 					'desc'			=> __( 'This will add two new input in every widget that allow for custom <code>id</code> and <code>class</code> attributes in the widget container.', 'italystrap' ),
 					'id'			=> 'widget_attributes',
 					'type'			=> 'checkbox',
@@ -303,11 +255,8 @@ return array(
 			array(
 				'id'		=> 'render_html_in_widget_title',
 				'title'		=> __( 'HTML in Widget Title', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Render HTML in Widget Title', 'italystrap' ),
+					'label'			=> __( 'Render HTML in Widget Title', 'italystrap' ),
 					'desc'			=> __( 'Activate this if you want to add an HTML tag to Widget title: replace the opening and closing tags with <code>{{</code> and <code>}}</code>. E.g.: <code>&lt;strong&gt;Widget Title&lt;/strong&gt;</code> <strong>becomes</strong> <code>{{strong}}Widget Title{{/strong}}</code>', 'italystrap' ),
 					'id'			=> 'render_html_in_widget_title',
 					'type'			=> 'checkbox',
@@ -320,11 +269,8 @@ return array(
 			array(
 				'id'		=> 'remove_widget_title',
 				'title'		=> __( 'Remove widget title', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Remove widget title conditionally', 'italystrap' ),
+					'label'			=> __( 'Remove widget title conditionally', 'italystrap' ),
 					'desc'			=> __( 'Add <code>!!</code> (2 exclamation marks) at the beginning of the widget title to hide it. Example: <code>!!My widget title.</code>', 'italystrap' ),
 					'id'			=> 'remove_widget_title',
 					'type'			=> 'checkbox',
@@ -337,11 +283,8 @@ return array(
 			array(
 				'id'		=> 'widget_posts',
 				'title'		=> __( 'Posts Widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Widget for custom loop of posts , pages and custom post types', 'italystrap' ),
+					'label'			=> __( 'Widget for custom loop of posts , pages and custom post types', 'italystrap' ),
 					'desc'			=> __( 'This widget allow you to create a custom loop of posts/page/CPT with a lot of options like "Recent Posts" or "Posts more comented" or "Related posts" ecc and place it in your sidebars. (This plugin does not provide any style, you have to add it in the style.css of your theme)', 'italystrap' ),
 					'id'			=> 'widget_posts',
 					'type'			=> 'checkbox',
@@ -355,10 +298,10 @@ return array(
 			// 	'id'		=> 'widget_grouped_posts',
 			// 	'title'		=> __( 'Grouped Posts Widget', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'widget',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Posts Grouped by Taxonomies (cats, tags and custom tax)', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'Posts Grouped by Taxonomies (cats, tags and custom tax)', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'This widget allow you to create a lists of custom loop of any posts type regrouped by taxonomies with a lot of options. (This plugin does not provide any style, you have to add it in the style.css of your theme)', 'italystrap' ),
 			// 			'id'			=> 'widget_grouped_posts',
 			// 			'type'			=> 'checkbox',
@@ -372,11 +315,8 @@ return array(
 			array(
 				'id'		=> 'media_carousel_widget',
 				'title'		=> __( 'Carousel Widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Widget for Media Carousel', 'italystrap' ),
+					'label'			=> __( 'Widget for Media Carousel', 'italystrap' ),
 					'desc'			=> __( 'This will activate a Bootstrap media Carousel with a ton of options, make shure you have a Twitter Bootstrap CSS in your site.', 'italystrap' ),
 					'id'			=> 'media_carousel_widget',
 					'type'			=> 'checkbox',
@@ -389,11 +329,8 @@ return array(
 			array(
 				'id'		=> 'widget_vcard',
 				'title'		=> __( 'vCard Widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'vCard Local Business', 'italystrap' ),
+					'label'			=> __( 'vCard Local Business', 'italystrap' ),
 					'desc'			=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area. (This plugin does not provide any style, you have to add it in the style.css of your theme).', 'italystrap' ),
 					'id'			=> 'widget_vcard',
 					'type'			=> 'checkbox',
@@ -406,11 +343,8 @@ return array(
 			array(
 				'id'		=> 'widget_image',
 				'title'		=> __( 'Image Widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Image Widget', 'italystrap' ) . $beta,
+					'label'			=> __( 'Image Widget', 'italystrap' ) . $beta,
 					'desc'			=> __( 'Activate image widget and displays an image from media with an array of options. (This plugin does not provide any style, you have to add it in the style.css of your theme).', 'italystrap' ),
 					'id'			=> 'widget_image',
 					'type'			=> 'checkbox',
@@ -425,10 +359,10 @@ return array(
 			// 	'id'		=> 'widget_breadcrumbs',
 			// 	'title'		=> __( 'Breadcrumbs Widget', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'widget',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Breadcrumbs Widget with Schema.org markup', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'Breadcrumbs Widget with Schema.org markup', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'Activate Breadcrumbs widget with Schema.org markup. (This plugin does not provide any style, you have to add it in the style.css of your theme)', 'italystrap' ),
 			// 			'id'			=> 'widget_breadcrumbs',
 			// 			'type'			=> 'checkbox',
@@ -443,10 +377,10 @@ return array(
 			// 	'id'		=> 'widget_facebook_page',
 			// 	'title'		=> __( 'Facebook Page Widget', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'widget',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Facebook Page Widget', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'Facebook Page Widget', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'Embed a Facebook Page on your site with a widget.', 'italystrap' ),
 			// 			'id'			=> 'widget_facebook_page',
 			// 			'type'			=> 'checkbox',
@@ -461,10 +395,10 @@ return array(
 			// 	'id'		=> 'widget_editor',
 			// 	'title'		=> __( 'Editor Widget', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'widget',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'TinyMCE Editor Widget', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'TinyMCE Editor Widget', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'Adds the TinyMCE visual editor widget.', 'italystrap' ),
 			// 			'id'			=> 'widget_editor',
 			// 			'type'			=> 'checkbox',
@@ -478,11 +412,8 @@ return array(
 			array(
 				'id'		=> 'widget_nav_menu',
 				'title'		=> __( 'Nav Menu Widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Nav Menu Widget', 'italystrap' ) . $beta,
+					'label'			=> __( 'Nav Menu Widget', 'italystrap' ) . $beta,
 					'desc'			=> __( 'Add an advanced custom menu to your sidebar. Available only for ItalyStrap theme framework.', 'italystrap' ),
 					'id'			=> 'widget_nav_menu',
 					'type'			=> 'checkbox',
@@ -496,11 +427,8 @@ return array(
 			array(
 				'id'		=> 'widget_monster',
 				'title'		=> __( 'Monster Widget', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'widget',
 				'args'		=> array(
-					'name'			=> __( 'Monster Widget by ItalyStrap {{Only for debug}}', 'italystrap' ),
+					'label'			=> __( 'Monster Widget by ItalyStrap {{Only for debug}}', 'italystrap' ),
 					'desc'			=> __( 'Test multiple widgets by ItalyStrap at the same time.', 'italystrap' ),
 					'id'			=> 'widget_monster',
 					'type'			=> 'checkbox',
@@ -515,10 +443,10 @@ return array(
 			// 	'id'		=> 'vcardwidget',
 			// 	'title'		=> __( 'vCard Widget (DEPRECATED)', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'widget',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'ItalyStrap vCard Widget for Local Business (DEPRECATED)', 'italystrap' ),
+			// 			'label'			=> __( 'ItalyStrap vCard Widget for Local Business (DEPRECATED)', 'italystrap' ),
 			// 			'desc'			=> __( 'Activate a widget for vCard Local Business with schema.org markup (DEPRECATED)', 'italystrap' ),
 			// 			'id'			=> 'vcardwidget',
 			// 			'type'			=> 'checkbox',
@@ -532,10 +460,10 @@ return array(
 			// 	'id'		=> 'post_widget',
 			// 	'title'		=> __( 'Posts Widget (DEPRECATED)', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'widget',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Posts Widget for Custom Loop (DEPRECATED)', 'italystrap' ),
+			// 			'label'			=> __( 'Posts Widget for Custom Loop (DEPRECATED)', 'italystrap' ),
 			// 			'desc'			=> __( 'Activate posts widget and displays list of posts with an array of options', 'italystrap' ),
 			// 			'id'			=> 'post_widget',
 			// 			'type'			=> 'checkbox',
@@ -554,18 +482,13 @@ return array(
 		'tab_title'			=> __( 'Shortcodes', 'italystrap' ),
 		'id'				=> 'shortcode',
 		'title'				=> __( 'Options page for shortcodes', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'Select the shortcodes you want to use.', 'italystrap' ),
-		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'do_shortcode_widget_text',
 				'title'		=> __( 'Do ShortCode in Widget Text', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'shortcode',
 				'args'		=> array(
-					'name'			=> __( 'Do ShortCode in Widget Text', 'italystrap' ),
+					'label'			=> __( 'Do ShortCode in Widget Text', 'italystrap' ),
 					'desc'			=> __( 'This get you the possibility to insert any shortcode into a widget text.', 'italystrap' ),
 					'id'			=> 'do_shortcode_widget_text',
 					'type'			=> 'checkbox',
@@ -579,10 +502,10 @@ return array(
 			// 	'id'		=> 'shortcode_widget',
 			// 	'title'		=> __( 'Widget to ShortCode', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'shortcode',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Render Widget to ShortCode', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'Render Widget to ShortCode', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'You can add any widgets in a new shortcode <code>[widget id=""]</code> to show it in your content. (ALPHA VERSION)', 'italystrap' ),
 			// 			'id'			=> 'shortcode_widget',
 			// 			'type'			=> 'checkbox',
@@ -596,11 +519,8 @@ return array(
 			array(
 				'id'		=> 'media_carousel_shortcode',
 				'title'		=> __( 'Carousel Shortcode', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'shortcode',
 				'args'		=> array(
-					'name'			=> __( 'Shortcode for Media Carousel', 'italystrap' ),
+					'label'			=> __( 'Shortcode for Media Carousel', 'italystrap' ),
 					'desc'			=> __( 'This will activate a Bootstrap media Carousel inside built-in WordPress gallery shortcode with a ton of options, make shure you have a Twitter Bootstrap CSS in your site.', 'italystrap' ),
 					'id'			=> 'media_carousel_shortcode',
 					'type'			=> 'checkbox',
@@ -613,11 +533,8 @@ return array(
 			array(
 				'id'		=> 'shortcode_posts',
 				'title'		=> __( 'Posts Shortcode', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'shortcode',
 				'args'		=> array(
-					'name'			=> __( 'Shortcode for custom loop of posts , pages and custom post types', 'italystrap' ) . $beta,
+					'label'			=> __( 'Shortcode for custom loop of posts , pages and custom post types', 'italystrap' ) . $beta,
 					'desc'			=> __( 'This shortcode allow you to create a custom loop of posts/page/CPT with a lot of options like "Recent Posts" or "Posts more comented" or "Related posts" ecc and place it in your sidebars. (This plugin does not provide any style, you have to add it in the style.css of your theme).', 'italystrap' ),
 					'id'			=> 'shortcode_posts',
 					'type'			=> 'checkbox',
@@ -631,16 +548,12 @@ return array(
 			array(
 				'id'		=> 'shortcode_post_title',
 				'title'		=> __( 'Post Title Shortcode', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'shortcode',
 				'args'		=> array(
-					'name'			=> __( 'Shortcode for display post, page or CPT title', 'italystrap' ),
+					'label'			=> __( 'Shortcode for display post, page or CPT title', 'italystrap' ),
 					'desc'			=> __( 'This shortcode allow you to display the title of the post you want to display, If you want to display the title in a different page you have to insert the ID of the post you want to display.', 'italystrap' ),
 					'id'			=> 'shortcode_post_title',
 					'type'			=> 'checkbox',
 					'class'			=> 'shortcode_post_title medium',
-					// 'default'		=> '0',
 					// 'validate'	=> 'ctype_alpha',
 					'sanitize'		=> 'sanitize_text_field',
 				),
@@ -650,10 +563,10 @@ return array(
 			// 	'id'		=> 'shortcode_button',
 			// 	'title'		=> __( 'Post Button Shortcode', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'shortcode',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Shortcode for display post, page or CPT title', 'italystrap' ),
+			// 			'label'			=> __( 'Shortcode for display post, page or CPT title', 'italystrap' ),
 			// 			'desc'			=> __( 'This shortcode allow you to display the title of the post you want to display, If you want to display the title in a different page you have to insert the ID of the post you want to display.', 'italystrap' ),
 			// 			'id'			=> 'shortcode_button',
 			// 			'type'			=> 'checkbox',
@@ -668,10 +581,10 @@ return array(
 			// 	'id'		=> 'shortcode_row',
 			// 	'title'		=> __( 'Row Shortcode', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'shortcode',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Shortcode for a row html container', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'Shortcode for a row html container', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'This shortcode is meant to use with the column shortcode, this is an HTML container, the shortcode renders a div elements and you can add CSS ID, class and style in the shortcode parameters. If you use Twitter Bootstrap you can use <code>row</code>. By default this shortcode doesn\' add any css, use yours theme style.css.', 'italystrap' ),
 			// 			'id'			=> 'shortcode_row',
 			// 			'type'			=> 'checkbox',
@@ -686,10 +599,10 @@ return array(
 			// 	'id'		=> 'shortcode_column',
 			// 	'title'		=> __( 'Column Shortcode', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'shortcode',
 			// 	'args'		=> array(
-			// 			'name'			=> __( 'Shortcode for html columns', 'italystrap' ) . $beta,
+			// 			'label'			=> __( 'Shortcode for html columns', 'italystrap' ) . $beta,
 			// 			'desc'			=> __( 'With this shortcode you can insert as many column as you want, the limits it\'s what you have in your style.css. If you use Twitter Bootstrap you can use <code>col-lg-*</code> <code>col-md-*</code> <code>col-sm-*</code> <code>col-xs-*</code>. By default this shortcode doesn\' add any css, use yours theme style.css.', 'italystrap' ),
 			// 			'id'			=> 'shortcode_column',
 			// 			'type'			=> 'checkbox',
@@ -709,18 +622,13 @@ return array(
 		'tab_title'			=> __( 'Style', 'italystrap' ),
 		'id'				=> 'style',
 		'title'				=> __( 'Options page for style purpose', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'This is the tab for changing the style of your site. Code entered here will be included in every page of the front-end of your site.', 'italystrap' ),
-		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'activate_custom_css',
 				'title'		=> __( 'Activate Custom CSS', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'style',
 				'args'		=> array(
-					'name'			=> __( 'Activate Custom CSS', 'italystrap' ),
+					'label'			=> __( 'Activate Custom CSS', 'italystrap' ),
 					'desc'			=> __( 'This will add new fields in the wp editor for adding custom CSS, ID and class attribute to post/page and also it let you use the new functionality below.', 'italystrap' ),
 					'id'			=> 'activate_custom_css',
 					'type'			=> 'checkbox',
@@ -734,13 +642,7 @@ return array(
 			array(
 				'id'			=> 'custom_css',
 				'title'			=> __( 'Custom CSS', 'italystrap' ),
-				'callback'		=> 'get_field_type',
-				'page'			=> 'italystrap_options_group',
-				'section'		=> 'style',
 				'args'			=> array(
-					'_name'			=> 'italystrap_settings[custom_css]',
-					'_id'			=> 'italystrap_settings[custom_css]',
-					'name'			=> __( 'Custom CSS', 'italystrap' ),
 					'desc'			=> __( 'Enter your custom CSS, this styles will be included verbatim in <style> tags in the <code>&lt;head&gt;</code> element of your html. The code will appear before styles that were registered individually and after your styles enqueued with the WordPress API.', 'italystrap' ),
 					'id'			=> 'custom_css',
 					'type'			=> 'textarea',
@@ -757,11 +659,7 @@ return array(
 			array(
 				'id'			=> 'body_class',
 				'title'			=> __( 'Body Class', 'italystrap' ),
-				'callback'		=> 'get_field_type',
-				'page'			=> 'italystrap_options_group',
-				'section'		=> 'style',
 				'args'			=> array(
-					'name'			=> __( 'Body Class', 'italystrap' ),
 					'desc'			=> __( 'This will add a CSS class to <code>body_class</code> filter in every page.', 'italystrap' ),
 					'id'			=> 'body_class',
 					'type'			=> 'text',
@@ -776,11 +674,7 @@ return array(
 			array(
 				'id'			=> 'post_class',
 				'title'			=> __( 'Post Class', 'italystrap' ),
-				'callback'		=> 'get_field_type',
-				'page'			=> 'italystrap_options_group',
-				'section'		=> 'style',
 				'args'			=> array(
-					'name'			=> __( 'Post Class', 'italystrap' ),
 					'desc'			=> __( 'This will add a CSS class to <code>post_class</code> filter in every page.', 'italystrap' ),
 					'id'			=> 'post_class',
 					'type'			=> 'text',
@@ -803,16 +697,16 @@ return array(
 	// 	'title'				=> __( 'ItalyStrap options page for script purpose', 'italystrap' ),
 	// 	'callback'			=> 'render_section_cb',
 	// 	'desc'				=> __( 'This is the tab for adding custom script of your site. Code entered here will be included in every page of the front-end of your site in the footer of the page.', 'italystrap' ),
-	// 	'page'				=> 'italystrap_options_group',
+//	// 	'page'				=> 'italystrap_options_group',
 	// 	'settings_fields'	=> array(
 	// 		array(
 	// 			'id'		=> 'activate_custom_script',
 	// 			'title'		=> __( 'Activate Custom Script', 'italystrap' ),
 	// 			'callback'	=> 'get_field_type',
-	// 			'page'		=> 'italystrap_options_group',
+//	// 			'page'		=> 'italystrap_options_group',
 	// 			'section'	=> 'script',
 	// 			'args'		=> array(
-	// 					'name'			=> __( 'Custom Script', 'italystrap' ),
+	// 					'label'			=> __( 'Custom Script', 'italystrap' ),
 	// 					'desc'			=> __( 'This will add new fields in the wp editor for adding custom Script to post/page and also let you use the new functionality below.', 'italystrap' ),
 	// 					'id'			=> 'activate_custom_script',
 	// 					'type'			=> 'checkbox',
@@ -832,7 +726,7 @@ return array(
 	// 			'args'			=> array(
 	// 					'_name'			=> 'italystrap_settings[custom_script]',
 	// 					'_id'			=> 'italystrap_settings[custom_script]',
-	// 					'name'			=> __( 'Custom Script', 'italystrap' ),
+	// 					'label'			=> __( 'Custom Script', 'italystrap' ),
 	// 					'desc'			=> __( 'Enter your custom Script, this scripts will be included verbatim before the <code>&lt;/body&gt;</code> element of your html.', 'italystrap' ),
 	// 					'id'			=> 'custom_script',
 	// 					'type'			=> 'textarea',
@@ -856,17 +750,12 @@ return array(
 		'id'				=> 'analytics',
 		'title'				=> __( 'Options page for Google Analytics', 'italystrap' ),
 		'desc'				=> __( 'Here you can configure google analytics settings and activate the GA tracking code in your site.', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
-		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'activate_analytics',
 				'title'		=> __( 'Activate Google Analytics', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'analytics',
 				'args'		=> array(
-					'name'			=> __( 'Activate Google analitycs script', 'italystrap' ),
+					'label'			=> __( 'Activate Google analitycs script', 'italystrap' ),
 					'desc'			=> __( 'This will add the Google analytics script in every page of your site before the <code>&lt;/body&gt;</code> tag. The snippet will be appended to <code>wp_footer</code> hook.', 'italystrap' ),
 					'id'			=> 'activate_analytics',
 					'type'			=> 'checkbox',
@@ -878,13 +767,9 @@ return array(
 			),
 			array(
 				'id'		=> 'google_tag_manager_id',
-				'title'		=> __( 'Add Google Tag Manager ID', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'analytics',
+				'title'		=> __( 'Google Tag Manager ID', 'italystrap' ),
 				'args'		=> array(
-					'name'			=> __( 'Tag Manager ID', 'italystrap' ) . $beta,
-					'desc'			=> __( 'Available only for ItalyStrap theme framework. Insert your google tag manager ID', 'italystrap' ),
+					'desc'			=> __( 'Available only for ItalyStrap theme framework. Insert your google tag manager ID', 'italystrap' ) . $beta,
 					'id'			=> 'google_tag_manager_id',
 					'type'			=> 'text',
 					'class'			=> 'google_tag_manager_id easy',
@@ -896,12 +781,8 @@ return array(
 			),
 			array(
 				'id'		=> 'google_analytics_id',
-				'title'		=> __( 'Add Google Analytics ID', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'analytics',
+				'title'		=> __( 'Google Analytics ID', 'italystrap' ),
 				'args'		=> array(
-					'name'			=> __( 'Analytics ID', 'italystrap' ),
 					'desc'			=> __( 'Insert your google analytics ID', 'italystrap' ),
 					'id'			=> 'google_analytics_id',
 					'type'			=> 'text',
@@ -914,11 +795,8 @@ return array(
 			array(
 				'id'		=> 'google_analytics_anonymizeIp',
 				'title'		=> __( 'Anonymize Google Analytics IP', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'analytics',
 				'args'		=> array(
-					'name'			=> __( 'Anonymize IP', 'italystrap' ),
+					'label'			=> __( 'Anonymize IP', 'italystrap' ),
 					'desc'			=> __( 'Do you want to anonymize Google Analytics IP?', 'italystrap' ),
 					'id'			=> 'google_analytics_anonymizeIp',
 					'type'			=> 'checkbox',
@@ -931,11 +809,7 @@ return array(
 			array(
 				'id'		=> 'google_analytics_position',
 				'title'		=> __( 'Google Analytics position', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'analytics',
 				'args'		=> array(
-					'name'			=> __( 'Google Analytics position', 'italystrap' ),
 					'desc'			=> __( 'Select the position for Google Analytics. Default: <code>wp_footer</code>. Note: If you verify your site in search console you have to set <code>wp_head</code>.', 'italystrap' ),
 					'id'			=> 'google_analytics_position',
 					'type'			=> 'select',
@@ -959,17 +833,12 @@ return array(
 		'id'				=> 'content',
 		'title'				=> __( 'Options page for the content area', 'italystrap' ),
 		'desc'				=> __( 'Here you can configure the content area in your site.', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
-		'page'				=> 'italystrap_options_group',
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'activate_excerpt_more_mods',
 				'title'		=> __( 'Activate excerpt more mods', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'content',
 				'args'		=> array(
-					'name'			=> __( 'Activate excerpt more mods', 'italystrap' ),
+					'label'			=> __( 'Activate excerpt more mods', 'italystrap' ),
 					'desc'			=> __( 'Activate the excerpt more mods for this theme. This functionality will be saved to the <code>theme_mods();</code>. It also works for the Widget Post if you select "Use global readmore" in the widget itself.', 'italystrap' ),
 					'id'			=> 'activate_excerpt_more_mods',
 					'type'			=> 'checkbox',
@@ -983,11 +852,7 @@ return array(
 			array(
 				'id'		=> 'read_more_link_text',
 				'title'		=> __( 'Read more link text', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'content',
 				'args'		=> array(
-					'name'			=> __( 'Read more link text', 'italystrap' ),
 					'desc'			=> __( 'Customize the read more link pattern. Default: <code>&hellip;Read more</code>', 'italystrap' ),
 					'id'			=> 'read_more_link_text',
 					'type'			=> 'text',
@@ -1002,11 +867,7 @@ return array(
 			array(
 				'id'		=> 'read_more_class',
 				'title'		=> __( 'Read more CSS class', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'content',
 				'args'		=> array(
-					'name'			=> __( 'Read more CSS class', 'italystrap' ),
 					'desc'			=> __( 'Customize the style of the read more link with your custom CSS class. Default: <code>read-more</code>. Example: <code>read-more btn btn-primary btn-lg</code>.', 'italystrap' ),
 					'id'			=> 'read_more_class',
 					'type'			=> 'text',
@@ -1019,12 +880,8 @@ return array(
 			),
 			array(
 				'id'		=> 'excerpt_length',
-				'title'		=> __( 'Excerpt length', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'content',
+				'title'		=> __( 'Auto-generated Excerpt length', 'italystrap' ),
 				'args'		=> array(
-					'name'			=> __( 'Auto-generated Excerpt length', 'italystrap' ),
 					'desc'			=> __( 'The default length for auto-generated excerpts is 55 words. It works only if the excerpt field is empty.', 'italystrap' ),
 					'id'			=> 'excerpt_length',
 					'type'			=> 'number',
@@ -1038,11 +895,8 @@ return array(
 			array(
 				'id'		=> 'end_with_punctuation',
 				'title'		=> __( 'Excerpt ends with punctuation', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'content',
 				'args'		=> array(
-					'name'			=> __( 'Auto-generated Excerpt ends with punctuation', 'italystrap' ),
+					'label'			=> __( 'Auto-generated Excerpt ends with punctuation', 'italystrap' ),
 					'desc'			=> __( 'Auto-generated Excerpt ends with punctuation (by default . or ? or !). It works only if the excerpt field is empty.', 'italystrap' ),
 					'id'			=> 'end_with_punctuation',
 					'type'			=> 'checkbox',
@@ -1056,11 +910,7 @@ return array(
 			array(
 				'id'		=> 'read_more_position',
 				'title'		=> __( 'Read more position', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'content',
 				'args'		=> array(
-					'name'			=> __( 'Read more position', 'italystrap' ),
 					'desc'			=> __( 'Select the position to display read more link. With <code>Append</code> the read more link will be appended just after the text inside the HTML paragraph, with <code>After</code> it will be added after and outside the last HTML paragraph on a new line, this is useful if you add a button style to the "Read more".', 'italystrap' ),
 					'id'			=> 'read_more_position',
 					'type'			=> 'select',
@@ -1083,19 +933,12 @@ return array(
 		'tab_title'			=> __( 'Media', 'italystrap' ),
 		'id'				=> 'media',
 		'title'				=> __( 'Settings page for media add-on functionality', 'italystrap' ),
-		'callback'			=> 'render_section_cb',
 		'desc'				=> __( 'In this section you can customize the way your WordPress handles media.', 'italystrap' ),
-		'page'				=> 'italystrap_options_group',
-		// 'show_on'			=> false,
 		'settings_fields'	=> array(
 			array(
 				'id'		=> 'jpeg_quality',
 				'title'		=> __( 'Jpeg quality', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'media',
 				'args'		=> array(
-					'name'			=> __( 'Jpeg quality for images', 'italystrap' ),
 					'desc'			=> __( 'Select the jpeg quality for images. Best value: 100, worse value: 75, default: 82', 'italystrap' ),
 					'id'			=> 'jpeg_quality',
 					'type'			=> 'number',
@@ -1109,11 +952,8 @@ return array(
 			array(
 				'id'		=> 'lazyload',
 				'title'		=> __( 'Lazy Loading for images', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'media',
 				'args'		=> array(
-					'name'			=> __( 'Lazy Loading for images', 'italystrap' ),
+					'label'			=> __( 'Lazy Loading for images', 'italystrap' ),
 					'desc'			=> __( 'Activate Lazy Loading for images', 'italystrap' ),
 					'id'			=> 'lazyload',
 					'type'			=> 'checkbox',
@@ -1127,11 +967,7 @@ return array(
 			array(
 				'id'			=> 'lazyload-custom-placeholder',
 				'title'			=> __( 'Custom Placeholder', 'italystrap' ),
-				'callback'		=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'media',
 				'args'			=> array(
-					'name'			=> __( 'Custom Placeholder (Optional)', 'italystrap' ),
 					'desc'			=> sprintf(
 						__( 'Insert here your custom placeholder for image lazyloading from your media file, this is the src attribute of the img tag.
 						%1$sExample: %2$s %1$sDefault (transparent): %3$s %1$sFor more info: %4$s', 'italystrap' ),
@@ -1154,16 +990,16 @@ return array(
 			// 	'id'		=> 'image_size',
 			// 	'title'		=> __( 'Image Size', 'italystrap' ),
 			// 	'callback'	=> 'get_field_type',
-			// 	'page'		=> 'italystrap_options_group',
+//			// 	'page'		=> 'italystrap_options_group',
 			// 	'section'	=> 'media',
 			// 	'args'		=> array(
-			// 		'name'			=> __( 'Add Image Size', 'italystrap' ) . $beta,
+			// 		'label'			=> __( 'Add Image Size', 'italystrap' ) . $beta,
 			// 		'desc'			=> __( 'Add Image Size for this theme', 'italystrap' ),
 			// 		'id'			=> 'image_size',
 			// 		'type'			=> 'group',
 			// 		'group_field'	=> array(
 			// 			array(
-			// 				'name'			=> __( 'Image Size Name', 'italystrap' ),
+			// 				'label'			=> __( 'Image Size Name', 'italystrap' ),
 			// 				'desc'			=> '',
 			// 				'id'			=> 'image_size_name',
 			// 				'type'			=> 'text',
@@ -1172,7 +1008,7 @@ return array(
 			// 				'sanitize'		=> 'sanitize_text_field',
 			// 			),
 			// 			array(
-			// 				'name'			=> __( 'Image Size Width', 'italystrap' ),
+			// 				'label'			=> __( 'Image Size Width', 'italystrap' ),
 			// 				'desc'			=> '',
 			// 				'id'			=> 'image_size_width',
 			// 				'type'			=> 'number',
@@ -1181,7 +1017,7 @@ return array(
 			// 				'sanitize'		=> 'sanitize_text_field',
 			// 			),
 			// 			array(
-			// 				'name'			=> __( 'Image Size Height', 'italystrap' ),
+			// 				'label'			=> __( 'Image Size Height', 'italystrap' ),
 			// 				'desc'			=> '',
 			// 				'id'			=> 'image_size_height',
 			// 				'type'			=> 'number',
@@ -1190,7 +1026,7 @@ return array(
 			// 				'sanitize'		=> 'sanitize_text_field',
 			// 			),
 			// 			array(
-			// 				'name'			=> __( 'Image Size Crop', 'italystrap' ),
+			// 				'label'			=> __( 'Image Size Crop', 'italystrap' ),
 			// 				'desc'			=> '',
 			// 				'id'			=> 'image_size_crop',
 			// 				'type'			=> 'checkbox',
@@ -1210,11 +1046,8 @@ return array(
 			array(
 				'id'		=> 'lazyload_video',
 				'title'		=> __( 'Lazy Loading for embedded video', 'italystrap' ),
-				'callback'	=> 'get_field_type',
-				'page'		=> 'italystrap_options_group',
-				'section'	=> 'media',
 				'args'		=> array(
-					'name'			=> __( 'Lazy Loading for embedded video', 'italystrap' ) . $beta,
+					'label'			=> __( 'Lazy Loading for embedded video', 'italystrap' ) . $beta,
 					'desc'			=> __( 'Activate Lazy Loading for embedded video. This only works for youtube video. The with of the container will be the max with of <code>content_width</code> set in your theme. You can use the <code>lazyload-video-wrap</code> CSS class for adding your own style.', 'italystrap' ),
 					'id'			=> 'lazyload_video',
 					'type'			=> 'checkbox',
