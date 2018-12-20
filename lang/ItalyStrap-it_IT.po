@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Italystrap\n"
-"POT-Creation-Date: 2016-10-20 17:43+0200\n"
-"PO-Revision-Date: 2016-10-20 17:44+0200\n"
+"POT-Creation-Date: 2018-11-21 10:27+0100\n"
+"PO-Revision-Date: 2018-11-21 10:29+0100\n"
 "Last-Translator: Enea Overclokk <info@overclokk.net>\n"
 "Language-Team: Overclokk <info@overclokk.net>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,330 +20,271 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: .sass-cache\n"
 "X-Poedit-SearchPathExcluded-3: bower_components\n"
 
-#: admin/ItalyStrapAdminGallerySettings.php:45 config/media-carousel.php:63
+#: admin/ItalyStrapAdminGallerySettings.php:75 config/media-carousel.php:66
 msgid "Menu order (Default)"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:46 config/media-carousel.php:64
+#: admin/ItalyStrapAdminGallerySettings.php:76 config/media-carousel.php:67
 msgid "Order by the image's title"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:47 config/media-carousel.php:65
+#: admin/ItalyStrapAdminGallerySettings.php:77 config/media-carousel.php:68
 msgid "Sort by date/time"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:48 config/media-carousel.php:66
+#: admin/ItalyStrapAdminGallerySettings.php:78 config/media-carousel.php:69
 msgid "Order randomly"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:49 config/media-carousel.php:67
+#: admin/ItalyStrapAdminGallerySettings.php:79 config/media-carousel.php:70
 msgid "Order by the image's ID"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:52
+#: admin/ItalyStrapAdminGallerySettings.php:82
 msgid "before-inner"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:53
+#: admin/ItalyStrapAdminGallerySettings.php:83
 msgid "after-inner"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:54
+#: admin/ItalyStrapAdminGallerySettings.php:84
 msgid "after-control"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:55
+#: admin/ItalyStrapAdminGallerySettings.php:85
 msgid "false"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:59 config/media-carousel.php:204
+#: admin/ItalyStrapAdminGallerySettings.php:89 config/media-carousel.php:201
 msgid "none"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:60
+#: admin/ItalyStrapAdminGallerySettings.php:90
 msgid "hover"
 msgstr ""
 
-#: admin/ItalyStrapAdminGallerySettings.php:81
+#: admin/ItalyStrapAdminGallerySettings.php:111
 msgid "Standard gallery"
 msgstr "Galleria standard"
 
-#: admin/ItalyStrapAdminGallerySettings.php:82
+#: admin/ItalyStrapAdminGallerySettings.php:112 src/Shortcodes/Gallery.php:78
+#: src/Widgets/Widget_Factory.php:117
 msgid "Bootstrap Carousel"
 msgstr "Bootstrap Carousel"
 
-#: admin/ItalyStrapAdminGallerySettings.php:154 config/image.php:18
-#: functions/general-functions.php:139 widget/Carousel.php:42
-msgid "Real size"
-msgstr ""
+#: admin/ItalyStrapAdminGallerySettings.php:304
+msgid "Type"
+msgstr "Tipo"
 
-#: admin/class-import-export.php:131
-msgid "Please upload a valid .json file"
-msgstr ""
-
-#: admin/class-import-export.php:131
-msgid "No valid json file"
-msgstr ""
-
-#: admin/class-import-export.php:138
-msgid "The json file can't be empty"
-msgstr ""
-
-#: admin/class-import-export.php:138
-msgid "Empty file"
-msgstr ""
-
-#: admin/class-import-export.php:147
-msgid "Please upload a file to import"
-msgstr ""
-
-#: admin/class-import-export.php:147
-msgid "No file import"
-msgstr ""
-
-#: admin/class-register-metabox.php:76
-msgid "CSS and JavaScript settings"
-msgstr ""
-
-#: admin/class-register-metabox.php:85 admin/config/options.php:374
-#: admin/config/options.php:387 admin/config/options.php:394
-#: config/posts.php:144 config/taxonomies-posts.php:144
-msgid "Custom CSS"
-msgstr ""
-
-#: admin/class-register-metabox.php:86
-msgid ""
-"This code will be included verbatim in style tag before </head> tag of your "
-"page or post"
-msgstr ""
-
-#: admin/class-register-metabox.php:95
-msgid "Body Classes"
-msgstr ""
-
-#: admin/class-register-metabox.php:96
-msgid ""
-"These class names will be added to the body_class() function (provided your "
-"theme uses these functions), separate each one by comma."
-msgstr ""
-
-#: admin/class-register-metabox.php:105
-msgid "Post Classes"
-msgstr ""
-
-#: admin/class-register-metabox.php:106
-msgid ""
-"These class names will be added to the post_class() function (provided your "
-"theme uses these functions), separate each one by comma."
-msgstr ""
-
-#: admin/class-register-metabox.php:132
-msgid "Widget Area settings"
-msgstr ""
-
-#: admin/class-register-metabox.php:140
-msgid "In the header"
-msgstr ""
-
-#: admin/class-register-metabox.php:141
-msgid "Before the Main Content"
-msgstr ""
-
-#: admin/class-register-metabox.php:142
-msgid "Before the Content"
-msgstr ""
-
-#: admin/class-register-metabox.php:144
-msgid "Before the Loop"
-msgstr ""
-
-#: admin/class-register-metabox.php:145
-msgid "After the Loop"
-msgstr ""
-
-#: admin/class-register-metabox.php:147
-msgid "After the Content"
-msgstr ""
-
-#: admin/class-register-metabox.php:148
-msgid "After the Main Content"
-msgstr ""
-
-#: admin/class-register-metabox.php:149
-msgid "In the footer open"
-msgstr ""
-
-#: admin/class-register-metabox.php:150
-msgid "In the footer"
-msgstr ""
-
-#: admin/class-register-metabox.php:151
-msgid "In the footer closed"
-msgstr ""
-
-#: admin/class-register-metabox.php:158
-msgid "Display on"
-msgstr ""
-
-#: admin/class-register-metabox.php:159
-msgid "Select the position to display this widget area."
-msgstr ""
-
-#: admin/class-register-metabox.php:170
-msgid "Priority"
-msgstr ""
-
-#: admin/class-register-metabox.php:171
-msgid ""
-"Type the priority you want to display this widget area, it must be a number, "
-"by default the priority is 10, you can choose a number between 1 and 99999, "
-"this is useful when you want to display more than one widget area in the "
-"same position but in different order."
-msgstr ""
-
-#: admin/class-register-metabox.php:181
-msgid "Background color"
-msgstr ""
-
-#: admin/class-register-metabox.php:182
-msgid "Choose the color for the backgrount of the widget area."
-msgstr ""
-
-#: admin/class-register-metabox.php:191
-msgid "Width"
-msgstr ""
-
-#: admin/class-register-metabox.php:192
-msgid "Select the width of this widget area."
-msgstr ""
-
-#: admin/class-register-metabox.php:197
-msgid "Full witdh"
-msgstr ""
-
-#: admin/class-register-metabox.php:198
-msgid "Standard width"
-msgstr ""
-
-#: admin/config/options.php:25
-msgid "General"
-msgstr ""
-
-#: admin/config/options.php:27
-msgid "ItalyStrap options page for general"
+#: admin/ItalyStrapAdminGallerySettings.php:305 tests/wpunit/FieldsTest.php:30
+#: tests/wpunit/FieldsTest.php:44 tests/wpunit/FieldsTest.php:58
+#: tests/wpunit/FieldsTest.php:70 tests/wpunit/FieldsTest.php:82
+msgid "Enter the widget class name."
 msgstr ""
 
 #: admin/config/options.php:29
-msgid "General setting for ItalyStrap plugin"
+msgid "General"
 msgstr ""
 
-#: admin/config/options.php:34 admin/config/options.php:39
+#: admin/config/options.php:31
+msgid "General options page"
+msgstr ""
+
+#: admin/config/options.php:38 admin/config/options.php:43
+msgid "Activate advanced options"
+msgstr ""
+
+#: admin/config/options.php:44
+msgid "If you want to have more advanced options to control"
+msgstr ""
+
+#: admin/config/options.php:56 admin/config/options.php:61
 msgid "Show Post Type IDs"
 msgstr ""
 
-#: admin/config/options.php:40
+#: admin/config/options.php:62
 msgid "Post type edit screen: show post/page IDS"
 msgstr ""
 
-#: admin/config/options.php:50
+#: admin/config/options.php:73
 msgid "Show Post Type Thumb"
 msgstr ""
 
-#: admin/config/options.php:55
+#: admin/config/options.php:78
 msgid "Show the Post Type Thumbnail"
 msgstr ""
 
-#: admin/config/options.php:56
+#: admin/config/options.php:79
 msgid "Post type edit screen: show post/page thumbnail"
 msgstr ""
 
-#: admin/config/options.php:67 admin/config/options.php:72
+#: admin/config/options.php:90 admin/config/options.php:95
 msgid "Kill the Emojis"
 msgstr ""
 
-#: admin/config/options.php:73
+#: admin/config/options.php:96
 msgid ""
 "Avoid loading Emojis support if your does not need it to speed up the "
 "website."
 msgstr ""
 
-#: admin/config/options.php:84 admin/config/options.php:89
-msgid "Web font Loading"
+#: admin/config/options.php:107
+msgid "Social Sharing Button"
 msgstr ""
 
-#: admin/config/options.php:90
-msgid ""
-"Activate it for using the web fonts loader, then you have to go to the "
-"customizer and select the font, weight and subsets you want to use in this "
-"site, after done that you have to add some CSS to your style, you can put it "
-"under ItalyStrap > Settings > Style > Custom CSS.\n"
-"\t\t\t\t\t\t\t<br>You can apply the font to any HTML5 elements in your page "
-"like body, main, header, footer, hx, p, ecc, remember that for each elements "
-"you have to put first the class <code>.fonts-loaded</code> and then the name "
-"of the single elements at time.\n"
-"\t\t\t\t\t\t\t<br>Example:\n"
-"\t\t\t\t\t\t\t<br><pre><code>.fonts-loaded body{ font-family: \"Open Sans"
-"\"; }<br>.fonts-loaded h1{ font-family: \"Lato\"; }</code></pre>"
+#: admin/config/options.php:112
+msgid "Activate Social Sharing Button"
 msgstr ""
 
-#: admin/config/options.php:105 admin/config/options.php:110
-msgid "Google API Key"
+#: admin/config/options.php:113
+msgid "This are a simple social sharing links"
 msgstr ""
 
-#: admin/config/options.php:111
-msgid "Insert here the google API key."
-msgstr ""
-
-#: admin/config/options.php:127
-msgid "Widgets"
-msgstr ""
-
-#: admin/config/options.php:129
-msgid "ItalyStrap options page for widgets"
+#: admin/config/options.php:125 admin/config/options.php:130
+msgid "Social Sharing Button position"
 msgstr ""
 
 #: admin/config/options.php:131
+msgid "Select the position to display buttons"
+msgstr ""
+
+#: admin/config/options.php:135
+msgid "Before the content"
+msgstr ""
+
+#: admin/config/options.php:136
+msgid "After the content"
+msgstr ""
+
+#: admin/config/options.php:137
+msgid "Before and after the content"
+msgstr ""
+
+#: admin/config/options.php:148 admin/config/options.php:153
+msgid "Google API Key"
+msgstr ""
+
+#: admin/config/options.php:154
+msgid "Insert here the google API key."
+msgstr ""
+
+#: admin/config/options.php:166 admin/config/options.php:171
+msgid "Web font Loading"
+msgstr ""
+
+#: admin/config/options.php:172
+msgid ""
+"Activate it for using the web fonts loader (lazyload for the web fonts), "
+"then you have to go to the <strong>customizer</strong> and select the font, "
+"weight and subsets you want to use in this site, then in the customizer "
+"below the selected font you can add in the dedicated text input the HTML "
+"tags or CSS selector you want to bind to the font selected, all separated by "
+"comma. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,"
+"h6</code> or <code>.widget-title</code>. Otherwise you can add some css to "
+"the Custom CSS area of this plugin (Settings > Style > Custom CSS) or in "
+"your style.css like this:\n"
+"\t\t\t\t\t\t<br>\n"
+"\t\t\t\t\t\t<pre>.fonts-loaded body{ font-family: \"Open Sans\"; }<br>.fonts-"
+"loaded h1{ font-family: \"Lato\"; }</pre>"
+msgstr ""
+
+#: admin/config/options.php:186
+msgid "Theme Hooks"
+msgstr ""
+
+#: admin/config/options.php:191
+msgid "Show Theme Hooks"
+msgstr ""
+
+#: admin/config/options.php:192
+msgid ""
+"Only fof ItalyStrap theme framework. This is only for getting a visual of "
+"the ItalyStrap theme framework hooks registered."
+msgstr ""
+
+#: admin/config/options.php:204
+msgid "Hooked callable"
+msgstr ""
+
+#: admin/config/options.php:209
+msgid "Show Hooked callable"
+msgstr ""
+
+#: admin/config/options.php:210
+msgid "This will show callable with hook."
+msgstr ""
+
+#: admin/config/options.php:222 admin/config/options.php:227
+msgid "Cache the menu output"
+msgstr ""
+
+#: admin/config/options.php:228
+msgid "This will put in cache the menu output only if server cache is active."
+msgstr ""
+
+#: admin/config/options.php:244
+msgid "Widgets"
+msgstr ""
+
+#: admin/config/options.php:246
+msgid "Options page for widgets"
+msgstr ""
+
+#: admin/config/options.php:248
 msgid "Select the widgets you want to use."
 msgstr ""
 
-#: admin/config/options.php:136 widget/Areas/Areas.php:308
-#: widget/Areas/Areas.php:321
+#: admin/config/options.php:253 src/Widgets/Areas/Areas_Base.php:163
 msgid "Widget Areas"
 msgstr ""
 
-#: admin/config/options.php:141
+#: admin/config/options.php:258
 msgid "Activate new settings page for widget areas"
 msgstr ""
 
-#: admin/config/options.php:142
+#: admin/config/options.php:259
 msgid ""
 "This will add new settings page on Appearance where you can create new "
 "widget area to append on theme action hook."
 msgstr ""
 
-#: admin/config/options.php:154
+#: admin/config/options.php:271
+msgid "Widget Visibility"
+msgstr ""
+
+#: admin/config/options.php:276
+msgid "Add Widget Visibility to any widget."
+msgstr ""
+
+#: admin/config/options.php:277
+msgid ""
+"This will add the possibility to choice the widget visibility for front-end."
+msgstr ""
+
+#: admin/config/options.php:288
 msgid "HTML attributes for widget"
 msgstr ""
 
-#: admin/config/options.php:159
+#: admin/config/options.php:293
 msgid "Activate two new input HTML attributes for every widget"
 msgstr ""
 
-#: admin/config/options.php:160
+#: admin/config/options.php:294
 msgid ""
 "This will add two new input in every widget that allow for custom <code>id</"
 "code> and <code>class</code> attributes in the widget container."
 msgstr ""
 
-#: admin/config/options.php:171
+#: admin/config/options.php:305
 msgid "HTML in Widget Title"
 msgstr ""
 
-#: admin/config/options.php:176
+#: admin/config/options.php:310
 msgid "Render HTML in Widget Title"
 msgstr ""
 
-#: admin/config/options.php:177
+#: admin/config/options.php:311
 msgid ""
 "Activate this if you want to add an HTML tag to Widget title: replace the "
 "opening and closing tags with <code>{{</code> and <code>}}</code>. E.g.: "
@@ -351,55 +292,29 @@ msgid ""
 "strong> <code>{{strong}}Widget Title{{/strong}}</code>"
 msgstr ""
 
-#: admin/config/options.php:188
-msgid "vCard Widget"
+#: admin/config/options.php:322
+msgid "Remove widget title"
 msgstr ""
 
-#: admin/config/options.php:193
-msgid "vCard Local Business"
+#: admin/config/options.php:327
+msgid "Remove widget title conditionally"
 msgstr ""
 
-#: admin/config/options.php:194
+#: admin/config/options.php:328
 msgid ""
-"Add a vCard Local Business with Schema.org markup to your theme widgetized "
-"area. (This plugin does not provide any style, you have to add it in the "
-"style.css of your theme)."
+"Add <code>!!</code> (2 exclamation marks) at the beginning of the widget "
+"title to hide it. Example: <code>!!My widget title.</code>"
 msgstr ""
 
-#: admin/config/options.php:205 admin/config/options.php:210
-msgid "Image Widget"
-msgstr ""
-
-#: admin/config/options.php:211
-msgid ""
-"Activate image widget and displays an image from media with an array of "
-"options. (This plugin does not provide any style, you have to add it in the "
-"style.css of your theme)"
-msgstr ""
-
-#: admin/config/options.php:223
-msgid "Carousel Widget"
-msgstr ""
-
-#: admin/config/options.php:228
-msgid "Widget for Media Carousel"
-msgstr ""
-
-#: admin/config/options.php:229
-msgid ""
-"this will activate a Bootstrap media Carousel with a ton of options, make "
-"shure you have a Twitter Bootstrap CSS in your site."
-msgstr ""
-
-#: admin/config/options.php:240
+#: admin/config/options.php:339
 msgid "Posts Widget"
 msgstr ""
 
-#: admin/config/options.php:245
+#: admin/config/options.php:344
 msgid "Widget for custom loop of posts , pages and custom post types"
 msgstr ""
 
-#: admin/config/options.php:246
+#: admin/config/options.php:345
 msgid ""
 "This widget allow you to create a custom loop of posts/page/CPT with a lot "
 "of options like \"Recent Posts\" or \"Posts more comented\" or \"Related "
@@ -407,457 +322,601 @@ msgid ""
 "style, you have to add it in the style.css of your theme)"
 msgstr ""
 
-#: admin/config/options.php:257
-msgid "Product Widget"
+#: admin/config/options.php:374
+msgid "Carousel Widget"
 msgstr ""
 
-#: admin/config/options.php:262
-msgid "Product Widget for Custom Loop"
+#: admin/config/options.php:379
+msgid "Widget for Media Carousel"
 msgstr ""
 
-#: admin/config/options.php:263
+#: admin/config/options.php:380
 msgid ""
-"Activate product widget and displays list of product with an array of "
-"options, this widget will work only if you have WooCommerce installed and "
-"activated. (This plugin does not provide any style, you have to add it in "
-"the style.css of your theme)"
+"This will activate a Bootstrap media Carousel with a ton of options, make "
+"shure you have a Twitter Bootstrap CSS in your site."
 msgstr ""
 
-#: admin/config/options.php:275
-msgid "vCard Widget (DEPRECATED)"
+#: admin/config/options.php:391
+msgid "vCard Widget"
 msgstr ""
 
-#: admin/config/options.php:280
-msgid "ItalyStrap vCard Widget for Local Business (DEPRECATED)"
+#: admin/config/options.php:396
+msgid "vCard Local Business"
 msgstr ""
 
-#: admin/config/options.php:281
+#: admin/config/options.php:397
 msgid ""
-"Activate a widget for vCard Local Business with schema.org markup "
-"(DEPRECATED)"
+"Add a vCard Local Business with Schema.org markup to your theme widgetized "
+"area. (This plugin does not provide any style, you have to add it in the "
+"style.css of your theme)."
 msgstr ""
 
-#: admin/config/options.php:292
-msgid "Posts Widget (DEPRECATED)"
+#: admin/config/options.php:408 admin/config/options.php:413
+msgid "Image Widget"
 msgstr ""
 
-#: admin/config/options.php:297
-msgid "Posts Widget for Custom Loop (DEPRECATED)"
-msgstr ""
-
-#: admin/config/options.php:298
+#: admin/config/options.php:414
 msgid ""
-"Activate posts widget and displays list of posts with an array of options"
+"Activate image widget and displays an image from media with an array of "
+"options. (This plugin does not provide any style, you have to add it in the "
+"style.css of your theme)."
 msgstr ""
 
-#: admin/config/options.php:313
+#: admin/config/options.php:480 admin/config/options.php:485
+msgid "Nav Menu Widget"
+msgstr ""
+
+#: admin/config/options.php:486
+msgid ""
+"Add an advanced custom menu to your sidebar. Available only for ItalyStrap "
+"theme framework."
+msgstr ""
+
+#: admin/config/options.php:498
+msgid "Monster Widget"
+msgstr ""
+
+#: admin/config/options.php:503
+msgid "Monster Widget by ItalyStrap {{Only for debug}}"
+msgstr ""
+
+#: admin/config/options.php:504
+msgid "Test multiple widgets by ItalyStrap at the same time."
+msgstr ""
+
+#: admin/config/options.php:554
 msgid "Shortcodes"
 msgstr ""
 
-#: admin/config/options.php:315
-msgid "ItalyStrap options page for shortcodes"
+#: admin/config/options.php:556
+msgid "Options page for shortcodes"
 msgstr ""
 
-#: admin/config/options.php:317
+#: admin/config/options.php:558
 msgid "Select the shortcodes you want to use."
 msgstr ""
 
-#: admin/config/options.php:322 admin/config/options.php:327
+#: admin/config/options.php:563 admin/config/options.php:568
 msgid "Do ShortCode in Widget Text"
 msgstr ""
 
-#: admin/config/options.php:328
+#: admin/config/options.php:569
 msgid ""
 "This get you the possibility to insert any shortcode into a widget text."
 msgstr ""
 
-#: admin/config/options.php:339
+#: admin/config/options.php:598
 msgid "Carousel Shortcode"
 msgstr ""
 
-#: admin/config/options.php:344
+#: admin/config/options.php:603
 msgid "Shortcode for Media Carousel"
 msgstr ""
 
-#: admin/config/options.php:345
+#: admin/config/options.php:604
 msgid ""
 "This will activate a Bootstrap media Carousel inside built-in WordPress "
 "gallery shortcode with a ton of options, make shure you have a Twitter "
-"Bootstrap CSS in your site"
+"Bootstrap CSS in your site."
 msgstr ""
 
-#: admin/config/options.php:360
+#: admin/config/options.php:615
+msgid "Posts Shortcode"
+msgstr ""
+
+#: admin/config/options.php:620
+msgid "Shortcode for custom loop of posts , pages and custom post types"
+msgstr ""
+
+#: admin/config/options.php:621
+msgid ""
+"This shortcode allow you to create a custom loop of posts/page/CPT with a "
+"lot of options like \"Recent Posts\" or \"Posts more comented\" or \"Related "
+"posts\" ecc and place it in your sidebars. (This plugin does not provide any "
+"style, you have to add it in the style.css of your theme)."
+msgstr ""
+
+#: admin/config/options.php:633
+msgid "Post Title Shortcode"
+msgstr ""
+
+#: admin/config/options.php:638
+msgid "Shortcode for display post, page or CPT title"
+msgstr ""
+
+#: admin/config/options.php:639
+msgid ""
+"This shortcode allow you to display the title of the post you want to "
+"display, If you want to display the title in a different page you have to "
+"insert the ID of the post you want to display."
+msgstr ""
+
+#: admin/config/options.php:709
 msgid "Style"
 msgstr ""
 
-#: admin/config/options.php:362
-msgid "ItalyStrap options page for style purpose"
+#: admin/config/options.php:711
+msgid "Options page for style purpose"
 msgstr ""
 
-#: admin/config/options.php:364
+#: admin/config/options.php:713
 msgid ""
 "This is the tab for changing the style of your site. Code entered here will "
 "be included in every page of the front-end of your site."
 msgstr ""
 
-#: admin/config/options.php:369
+#: admin/config/options.php:718 admin/config/options.php:723
 msgid "Activate Custom CSS"
 msgstr ""
 
-#: admin/config/options.php:375
+#: admin/config/options.php:724
 msgid ""
 "This will add new fields in the wp editor for adding custom CSS, ID and "
-"class attribute to post/page and also let you use the new functionality "
+"class attribute to post/page and also it let you use the new functionality "
 "below."
 msgstr ""
 
-#: admin/config/options.php:395
-msgid ""
-"Enter your custom CSS, this styles will be included verbatim in <style> tags "
-"in the <head> element of your html. The code will appear before styles that "
-"were registered individually and after your styles enqueued with the "
-"WordPress API."
+#: admin/config/options.php:736 admin/config/options.php:743
+#: config/posts.php:144 src/Custom/Metaboxes/config/custom-script-style.php:33
+msgid "Custom CSS"
 msgstr ""
 
-#: admin/config/options.php:410 admin/config/options.php:415
+#: admin/config/options.php:744
+msgid ""
+"Enter your custom CSS, this styles will be included verbatim in <style> tags "
+"in the <code>&lt;head&gt;</code> element of your html. The code will appear "
+"before styles that were registered individually and after your styles "
+"enqueued with the WordPress API."
+msgstr ""
+
+#: admin/config/options.php:759 admin/config/options.php:764
 msgid "Body Class"
 msgstr ""
 
-#: admin/config/options.php:416
-msgid "This will add a CSS class to body_class filter in every page."
+#: admin/config/options.php:765
+msgid ""
+"This will add a CSS class to <code>body_class</code> filter in every page."
 msgstr ""
 
-#: admin/config/options.php:429 admin/config/options.php:434
-#: config/posts.php:69 config/taxonomies-posts.php:69
+#: admin/config/options.php:778 admin/config/options.php:783
+#: config/posts.php:69
 msgid "Post Class"
 msgstr ""
 
-#: admin/config/options.php:435
-msgid "This will add a CSS class to post_class filter in every page."
+#: admin/config/options.php:784
+msgid ""
+"This will add a CSS class to <code>post_class</code> filter in every page."
 msgstr ""
 
-#: admin/config/options.php:501
-#: future-inclusions/white-label-cms/wlcms-plugin.php:548
+#: admin/config/options.php:855
+msgid "GA + GTM"
+msgstr ""
+
+#: admin/config/options.php:855
+msgid "GA"
+msgstr ""
+
+#: admin/config/options.php:857
+msgid "Options page for Google Analytics"
+msgstr ""
+
+#: admin/config/options.php:858
+msgid ""
+"Here you can configure google analytics settings and activate the GA "
+"tracking code in your site."
+msgstr ""
+
+#: admin/config/options.php:864
+msgid "Activate Google Analytics"
+msgstr ""
+
+#: admin/config/options.php:869
+msgid "Activate Google analitycs script"
+msgstr ""
+
+#: admin/config/options.php:870
+msgid ""
+"This will add the Google analytics script in every page of your site before "
+"the <code>&lt;/body&gt;</code> tag. The snippet will be appended to "
+"<code>wp_footer</code> hook."
+msgstr ""
+
+#: admin/config/options.php:881
+msgid "Add Google Tag Manager ID"
+msgstr ""
+
+#: admin/config/options.php:886
+msgid "Tag Manager ID"
+msgstr ""
+
+#: admin/config/options.php:887
+msgid ""
+"Available only for ItalyStrap theme framework. Insert your google tag "
+"manager ID"
+msgstr ""
+
+#: admin/config/options.php:899
+msgid "Add Google Analytics ID"
+msgstr ""
+
+#: admin/config/options.php:904
+msgid "Analytics ID"
+msgstr ""
+
+#: admin/config/options.php:905
+msgid "Insert your google analytics ID"
+msgstr ""
+
+#: admin/config/options.php:916
+msgid "Anonymize Google Analytics IP"
+msgstr ""
+
+#: admin/config/options.php:921
+msgid "Anonymize IP"
+msgstr ""
+
+#: admin/config/options.php:922
+msgid "Do you want to anonymize Google Analytics IP?"
+msgstr ""
+
+#: admin/config/options.php:933 admin/config/options.php:938
+msgid "Google Analytics position"
+msgstr ""
+
+#: admin/config/options.php:939
+msgid ""
+"Select the position for Google Analytics. Default: <code>wp_footer</code>. "
+"Note: If you verify your site in search console you have to set "
+"<code>wp_head</code>."
+msgstr ""
+
+#: admin/config/options.php:943
+msgid "Before the &lt;/body&gt; closed"
+msgstr ""
+
+#: admin/config/options.php:944
+msgid "Before the &lt;/head&gt; closed"
+msgstr ""
+
+#: admin/config/options.php:958
+msgid "Content"
+msgstr ""
+
+#: admin/config/options.php:960
+msgid "Options page for the content area"
+msgstr ""
+
+#: admin/config/options.php:961
+msgid "Here you can configure the content area in your site."
+msgstr ""
+
+#: admin/config/options.php:967 admin/config/options.php:972
+msgid "Activate excerpt more mods"
+msgstr ""
+
+#: admin/config/options.php:973
+msgid ""
+"Activate the excerpt more mods for this theme. This functionality will be "
+"saved to the <code>theme_mods();</code>. It also works for the Widget Post "
+"if you select \"Use global readmore\" in the widget itself."
+msgstr ""
+
+#: admin/config/options.php:985 admin/config/options.php:990
+msgid "Read more link text"
+msgstr ""
+
+#: admin/config/options.php:991
+msgid ""
+"Customize the read more link pattern. Default: <code>&hellip;Read more</code>"
+msgstr ""
+
+#: admin/config/options.php:995
+msgid "&hellip;Read more"
+msgstr ""
+
+#: admin/config/options.php:1004 admin/config/options.php:1009
+msgid "Read more CSS class"
+msgstr ""
+
+#: admin/config/options.php:1010
+msgid ""
+"Customize the style of the read more link with your custom CSS class. "
+"Default: <code>read-more</code>. Example: <code>read-more btn btn-primary "
+"btn-lg</code>."
+msgstr ""
+
+#: admin/config/options.php:1022 config/posts.php:321
+msgid "Excerpt length"
+msgstr ""
+
+#: admin/config/options.php:1027
+msgid "Auto-generated Excerpt length"
+msgstr ""
+
+#: admin/config/options.php:1028
+msgid ""
+"The default length for auto-generated excerpts is 55 words. It works only if "
+"the excerpt field is empty."
+msgstr ""
+
+#: admin/config/options.php:1040
+msgid "Excerpt ends with punctuation"
+msgstr ""
+
+#: admin/config/options.php:1045
+msgid "Auto-generated Excerpt ends with punctuation"
+msgstr ""
+
+#: admin/config/options.php:1046
+msgid ""
+"Auto-generated Excerpt ends with punctuation (by default . or ? or !). It "
+"works only if the excerpt field is empty."
+msgstr ""
+
+#: admin/config/options.php:1058 admin/config/options.php:1063
+msgid "Read more position"
+msgstr ""
+
+#: admin/config/options.php:1064
+msgid ""
+"Select the position to display read more link. With <code>Append</code> the "
+"read more link will be appended just after the text inside the HTML "
+"paragraph, with <code>After</code> it will be added after and outside the "
+"last HTML paragraph on a new line, this is useful if you add a button style "
+"to the \"Read more\"."
+msgstr ""
+
+#: admin/config/options.php:1068
+msgid "Append to the excerpt"
+msgstr ""
+
+#: admin/config/options.php:1069
+msgid "After the excerpt"
+msgstr ""
+
+#: admin/config/options.php:1083
 msgid "Media"
 msgstr ""
 
-#: admin/config/options.php:503
+#: admin/config/options.php:1085
 msgid "Settings page for media add-on functionality"
 msgstr ""
 
-#: admin/config/options.php:505
+#: admin/config/options.php:1087
 msgid "In this section you can customize the way your WordPress handles media."
 msgstr ""
 
-#: admin/config/options.php:510 admin/config/options.php:515
-msgid "Lazy Loading of images"
+#: admin/config/options.php:1093
+msgid "Jpeg quality"
 msgstr ""
 
-#: admin/config/options.php:516
-msgid "Activate Lazy Loading of images"
+#: admin/config/options.php:1098
+msgid "Jpeg quality for images"
 msgstr ""
 
-#: admin/config/options.php:527
+#: admin/config/options.php:1099
+msgid ""
+"Select the jpeg quality for images. Best value: 100, worse value: 75, "
+"default: 82"
+msgstr ""
+
+#: admin/config/options.php:1111 admin/config/options.php:1116
+msgid "Lazy Loading for images"
+msgstr ""
+
+#: admin/config/options.php:1117
+msgid "Activate Lazy Loading for images"
+msgstr ""
+
+#: admin/config/options.php:1129
 msgid "Custom Placeholder"
 msgstr ""
 
-#: admin/config/options.php:532
+#: admin/config/options.php:1134
 msgid "Custom Placeholder (Optional)"
 msgstr ""
 
-#: admin/config/options.php:533
+#: admin/config/options.php:1136
+#, php-format
 msgid ""
-"Insert here your custom placeholder for image lazyloading, this is the src "
-"attribute of the img tag.\n"
-"\t\t\t\t\t\t\t<br>Example:"
+"Insert here your custom placeholder for image lazyloading from your media "
+"file, this is the src attribute of the img tag.\n"
+"\t\t\t\t\t\t%1$sExample: %2$s %1$sDefault (transparent): %3$s %1$sFor more "
+"info: %4$s"
 msgstr ""
 
-#: admin/config/plugin.php:24 admin/config/plugin.php:29
-#: admin/config/plugin.php:53 admin/config/plugin.php:54 admin/view/test.php:7
+#: admin/config/options.php:1212 admin/config/options.php:1217
+msgid "Lazy Loading for embedded video"
+msgstr ""
+
+#: admin/config/options.php:1218
+msgid ""
+"Activate Lazy Loading for embedded video. This only works for youtube video. "
+"The with of the container will be the max with of <code>content_width</code> "
+"set in your theme. You can use the <code>lazyload-video-wrap</code> CSS "
+"class for adding your own style."
+msgstr ""
+
+#: admin/config/plugin.php:27 admin/config/plugin.php:32
+#: admin/config/plugin.php:91 admin/config/plugin.php:92 admin/view/test.php:7
 msgid "Settings"
 msgstr ""
 
-#: admin/config/plugin.php:25 admin/config/plugin.php:30
+#: admin/config/plugin.php:28
+msgid "Docs"
+msgstr ""
+
+#: admin/config/plugin.php:33
 msgid "Doc"
 msgstr ""
 
-#: admin/config/plugin.php:34 admin/view/italystrap-dashboard.php:2
-msgid "ItalyStrap Dashboard"
-msgstr "ItalyStrap Dashboard"
-
-#: admin/customizer/class-customize-manager.php:58
-msgid "100"
+#: admin/config/plugin.php:37
+msgid "ACM by ItalyStrap Dashboard"
 msgstr ""
 
-#: admin/customizer/class-customize-manager.php:59
-msgid "100italic"
+#: admin/config/plugin.php:107 admin/config/plugin.php:108
+msgid "Migrations"
 msgstr ""
 
-#: admin/customizer/class-customize-manager.php:60
-msgid "200"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:61
-msgid "200italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:62
-msgid "300"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:63
-msgid "300italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:64
-msgid "Regular 400"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:65
-msgid "Italic 400"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:66
-msgid "500"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:67
-msgid "500italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:68
-msgid "600"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:69
-msgid "600italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:70
-msgid "700"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:71
-msgid "700italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:72
-msgid "800"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:73
-msgid "800italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:74
-msgid "900"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:75
-msgid "900italic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:79
-msgid "Bengali"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:80
-msgid "Cyrillic"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:81
-msgid "Cyrillic Extended"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:82
-msgid "Devanagari"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:83
-msgid "Greek"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:84
-msgid "Greek Extended"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:85
-msgid "Gujarati"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:86
-msgid "Hebrew"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:87
-msgid "Khmer"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:88
-msgid "Latin"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:89
-msgid "Latin Extended"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:90
-msgid "Tamil"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:91
-msgid "Telugu"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:92
-msgid "Thai"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:93
-msgid "Vietnamese"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:118
-msgid "Fonts"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:119
-msgid ""
-"First of all you have to add the Google API Key in the plugin settings page, "
-"after that you can select the font family you want to use, then you have to "
-"add some CSS to your style.css or in the settings section of this plugin."
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:145
-msgid "The first font family"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:146
-msgid "Select the first font family with weight and subsets"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:175
-msgid "Weight of the first font family"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:176
-#: admin/customizer/class-customize-manager.php:266
-msgid ""
-"Chose the weight of the font family, multiple selection allowed (press CTRL "
-"and click)"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:205
-msgid "Subsets of the first font family"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:206
-#: admin/customizer/class-customize-manager.php:296
-msgid ""
-"Chose the subsets of the font family, default \"latin\", multiple selection "
-"allowed (press CTRL and click)"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:235
-msgid "The Second font family"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:236
-msgid "Select the second font family with weight and subsets"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:265
-msgid "Weight of the second font family"
-msgstr ""
-
-#: admin/customizer/class-customize-manager.php:295
-msgid "Subsets of the second font family"
-msgstr ""
-
-#: admin/fields/class-fields.php:386 admin/fields/class-fields.php:431
-#: admin/fields/class-fields.php:476 admin/fields/class-fields.php:529
-msgid "None"
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:5
-msgid "Welcome to ItalyStrap"
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:6
-msgid "Here you can find some link to get you started"
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:9
-msgid "Get Started"
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:10
-msgid "Go to the settings page"
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:11
-msgid "But first of all you can read the "
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:11
-msgid "documentation"
-msgstr ""
-
-#: admin/view/italystrap-dashboard.php:47
+#: admin/view/_italystrap-settings.php:38 admin/view/italystrap-aside.php:9
+#: admin/view/italystrap-dashboard.php:46
 #: admin/view/italystrap-documentation.php:6
-#: admin/view/italystrap-settings.php:38
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: admin/view/italystrap-dashboard.php:50
+#: admin/view/_italystrap-settings.php:41 admin/view/italystrap-aside.php:12
+msgid "Difficulty level color explanation"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:46 admin/view/italystrap-aside.php:17
+msgid "Easy:"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:47 admin/view/italystrap-aside.php:18
+msgid "Easy to use, no code needed."
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:54 admin/view/italystrap-aside.php:25
+msgid "Medium:"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:55 admin/view/italystrap-aside.php:26
+msgid "Medium difficulty, it may need to code."
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:62 admin/view/italystrap-aside.php:33
+msgid "Hard:"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:63 admin/view/italystrap-aside.php:34
+msgid "Hard to use, you have to add code."
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:75 admin/view/test.php:262
+msgid "Export Settings"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:77 admin/view/test.php:264
+#: src/Import_Export/config/i18n.php:32
+msgid ""
+"Export the plugin settings for this site as a .json file. This allows you to "
+"easily import the configuration into another site."
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:82 admin/view/test.php:269
+#: src/Import_Export/view/italystrap-import-export.php:14
+msgid "Export"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:89 admin/view/test.php:276
+msgid "Import Settings"
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:91 admin/view/test.php:278
+#: src/Import_Export/config/i18n.php:37
+msgid ""
+"Import the plugin settings from a .json file. This file can be obtained by "
+"exporting the settings on another site using the form above."
+msgstr ""
+
+#: admin/view/_italystrap-settings.php:99 admin/view/test.php:286
+#: src/Import_Export/view/italystrap-import-export.php:32
+msgid "Import"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:4
+msgid "Welcome to Advanced Control Manager by ItalyStrap"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:5
+msgid "Here you can find some link to get you started"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:8
+msgid "Get Started"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:9
+msgid "Go to the settings page"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:10
+msgid "But first of all you can read the "
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:10
+msgid "documentation"
+msgstr ""
+
+#: admin/view/italystrap-dashboard.php:49
 msgid "Make your website more powerful"
 msgstr "Rendi il tuo sito più performante"
 
-#: admin/view/italystrap-dashboard.php:53
+#: admin/view/italystrap-dashboard.php:52
 msgid "New Entry"
 msgstr "Ultimo aggiunto"
 
-#: admin/view/italystrap-dashboard.php:62
-#: admin/view/italystrap-dashboard.php:117
+#: admin/view/italystrap-dashboard.php:61
+#: admin/view/italystrap-dashboard.php:116
 msgid ""
 "A simple Widget to add Schema.org Local business in your widgetized themes"
 msgstr ""
 "Un semplice widget per aggiungere il markup per la Local Busines di Schema."
 "org nel tuo sito"
 
-#: admin/view/italystrap-dashboard.php:63
-#: admin/view/italystrap-dashboard.php:118
-#: admin/view/italystrap-dashboard.php:131
-#: admin/view/italystrap-dashboard.php:143
-#: admin/view/italystrap-dashboard.php:154
+#: admin/view/italystrap-dashboard.php:62
+#: admin/view/italystrap-dashboard.php:117
+#: admin/view/italystrap-dashboard.php:130
+#: admin/view/italystrap-dashboard.php:142
+#: admin/view/italystrap-dashboard.php:153
 msgid "Read the documentation"
 msgstr "Leggi la documentazione"
 
-#: admin/view/italystrap-dashboard.php:73
+#: admin/view/italystrap-dashboard.php:72
 msgid "Coming soon"
 msgstr "Prossimamente"
 
-#: admin/view/italystrap-dashboard.php:80
+#: admin/view/italystrap-dashboard.php:79
 msgid "Add shortcode in admin panel, only for Bootstrap Style"
 msgstr "Aggiungi gli shortcode nel pannelo admin, solo per Bootstrap CSS"
 
-#: admin/view/italystrap-dashboard.php:88
+#: admin/view/italystrap-dashboard.php:87
 msgid "Social Button and Markup"
 msgstr "Social Button and Markup"
 
-#: admin/view/italystrap-dashboard.php:96
+#: admin/view/italystrap-dashboard.php:95
 msgid "OpenGraph and Twitter Cards for your social share"
 msgstr "OpenGraph and Twitter Cards per la tua condivisione sui social"
 
-#: admin/view/italystrap-dashboard.php:106
+#: admin/view/italystrap-dashboard.php:105
 msgid "Currently present"
 msgstr "Attualmente presenti"
 
-#: admin/view/italystrap-dashboard.php:130
+#: admin/view/italystrap-dashboard.php:129
 msgid "Activate Lazy Load from Option Page and let the magic begin :-)"
 msgstr "Attiva Lazy Load dalla pagina \"Opzioni\" e che la magia cominci :-)"
 
-#: admin/view/italystrap-dashboard.php:142
+#: admin/view/italystrap-dashboard.php:141
 msgid ""
 "Add attribute <code>type=\"carousel\"</code> at gallery shortcode, this will "
 "show Bootstrap Carousel based on the selected images and their titles and "
@@ -868,75 +927,13 @@ msgstr ""
 "selezionate mostrando anche titoli e descrizioni, altrimenti verrà "
 "visualizzata la galleria standard di WordPress."
 
-#: admin/view/italystrap-dashboard.php:153
+#: admin/view/italystrap-dashboard.php:152
 msgid ""
 "Add breadcrumbs to your site in a simple and fast way and get Google rich "
 "snippet with Schema.org markup"
 msgstr ""
 "Aggiungi i Breadcrumbs nel tuo sito in modo semplice e veloce e ottieni i "
 "Rich Snippet di Google grazie a Schema.org"
-
-#: admin/view/italystrap-import-export.php:4
-#: admin/view/italystrap-settings.php:75 admin/view/test.php:262
-msgid "Export Settings"
-msgstr ""
-
-#: admin/view/italystrap-import-export.php:6
-#: admin/view/italystrap-settings.php:77 admin/view/test.php:264
-msgid ""
-"Export the plugin settings for this site as a .json file. This allows you to "
-"easily import the configuration into another site."
-msgstr ""
-
-#: admin/view/italystrap-import-export.php:11
-#: admin/view/italystrap-settings.php:82 admin/view/test.php:269
-msgid "Export"
-msgstr ""
-
-#: admin/view/italystrap-import-export.php:18
-#: admin/view/italystrap-settings.php:89 admin/view/test.php:276
-msgid "Import Settings"
-msgstr ""
-
-#: admin/view/italystrap-import-export.php:20
-#: admin/view/italystrap-settings.php:91 admin/view/test.php:278
-msgid ""
-"Import the plugin settings from a .json file. This file can be obtained by "
-"exporting the settings on another site using the form above."
-msgstr ""
-
-#: admin/view/italystrap-import-export.php:28
-#: admin/view/italystrap-settings.php:99 admin/view/test.php:286
-msgid "Import"
-msgstr ""
-
-#: admin/view/italystrap-settings.php:41
-msgid "Difficulty level color explanation"
-msgstr ""
-
-#: admin/view/italystrap-settings.php:46
-msgid "Easy:"
-msgstr ""
-
-#: admin/view/italystrap-settings.php:47
-msgid "Easy to use, no code needed."
-msgstr ""
-
-#: admin/view/italystrap-settings.php:54
-msgid "Medium:"
-msgstr ""
-
-#: admin/view/italystrap-settings.php:55
-msgid "Medium difficulty, it may need to code."
-msgstr ""
-
-#: admin/view/italystrap-settings.php:62
-msgid "Hard:"
-msgstr ""
-
-#: admin/view/italystrap-settings.php:63
-msgid "Hard to use, you have to add code."
-msgstr ""
 
 #: admin/view/test.php:8
 msgid "Settings 2"
@@ -946,7 +943,7 @@ msgstr ""
 msgid "Import/Export"
 msgstr ""
 
-#: admin/view/test.php:20 admin/view/test.php:241 config/media-carousel.php:263
+#: admin/view/test.php:20 admin/view/test.php:241 config/media-carousel.php:240
 msgid "Text"
 msgstr ""
 
@@ -1112,11 +1109,11 @@ msgstr ""
 msgid "Plugin Name."
 msgstr ""
 
-#: config/advanced-text.php:22 config/media-carousel.php:22
+#: config/advanced-text.php:22
 msgid "Images ID"
 msgstr ""
 
-#: config/advanced-text.php:23 config/image.php:31 config/media-carousel.php:23
+#: config/advanced-text.php:23
 msgid "Enter the media or post type ID."
 msgstr ""
 
@@ -1128,109 +1125,350 @@ msgstr ""
 msgid "Enter the text of the image."
 msgstr ""
 
-#: config/image.php:30
-msgid "Enter Images ID"
+#: config/button.php:22
+msgid "Button css class"
 msgstr ""
 
-#: config/image.php:46
-msgid "Image title"
+#: config/button.php:23
+msgid ""
+"Customize the Button style with your custom css class. Example text-primary"
+msgstr ""
+
+#: config/button.php:37
+msgid "Button css id"
+msgstr ""
+
+#: config/button.php:38 config/post-title.php:53
+msgid "Useful if you want to use it with javascript. It has to be unique."
+msgstr ""
+
+#: config/button.php:52
+msgid "Button content"
+msgstr ""
+
+#: config/button.php:53
+msgid "You can insert some content content the title."
+msgstr ""
+
+#: config/editor.php:22
+msgid "WP Editor"
+msgstr ""
+
+#: config/editor.php:23
+msgid "Arbitrary text or HTML advanced editor WYSIWYG."
+msgstr ""
+
+#: config/facebook-page.php:27
+msgid "Page Name or Page URL"
+msgstr ""
+
+#: config/facebook-page.php:28
+msgid "Enter your FB page name or the url of your FB page."
+msgstr ""
+
+#: config/facebook-page.php:44
+msgid "Max width of widget"
+msgstr ""
+
+#: config/facebook-page.php:45
+msgid "Enter the max width of the FB page."
+msgstr ""
+
+#: config/facebook-page.php:60
+msgid "Height of widget"
+msgstr ""
+
+#: config/facebook-page.php:61
+msgid "Enter the max height of the FB page."
+msgstr ""
+
+#: config/facebook-page.php:76
+msgid "Tab to be visualized"
+msgstr ""
+
+#: config/facebook-page.php:77
+msgid ""
+"Select the tab you want to be visualized in your FB widget. Use ctrl + click "
+"for multiple selection."
+msgstr ""
+
+#: config/facebook-page.php:84
+msgid "Timeline (Default)"
+msgstr ""
+
+#: config/facebook-page.php:85
+msgid "Events"
+msgstr ""
+
+#: config/facebook-page.php:86
+msgid "Messages"
+msgstr ""
+
+#: config/facebook-page.php:97
+msgid "Hide Cover"
+msgstr ""
+
+#: config/facebook-page.php:98
+msgid "Hide the cover of your FB page."
+msgstr ""
+
+#: config/facebook-page.php:105 config/facebook-page.php:125
+#: config/facebook-page.php:145 config/facebook-page.php:165
+#: config/facebook-page.php:185
+msgid "True"
+msgstr ""
+
+#: config/facebook-page.php:106 config/facebook-page.php:126
+#: config/facebook-page.php:146 config/facebook-page.php:166
+#: config/facebook-page.php:186 config/media-carousel.php:137
+msgid "False"
+msgstr ""
+
+#: config/facebook-page.php:117
+msgid "Show facepile"
+msgstr ""
+
+#: config/facebook-page.php:118
+msgid "Show the profile avatar when click on like button."
+msgstr ""
+
+#: config/facebook-page.php:137
+msgid "Hide CTA"
+msgstr ""
+
+#: config/facebook-page.php:138
+msgid "Hide the CTA button if available."
+msgstr ""
+
+#: config/facebook-page.php:157
+msgid "Small header"
+msgstr ""
+
+#: config/facebook-page.php:158
+msgid "Use the small header."
+msgstr ""
+
+#: config/facebook-page.php:177
+msgid "Adapt container width"
+msgstr ""
+
+#: config/facebook-page.php:178
+msgid "Try to adapt to the width of the container."
+msgstr ""
+
+#: config/facebook-page.php:197
+msgid "Align of content"
+msgstr ""
+
+#: config/facebook-page.php:198
+msgid "Select the align of the widget."
+msgstr ""
+
+#: config/facebook-page.php:205 config/image.php:193 src/Fields/Fields.php:406
+#: src/Fields/Fields.php:455 src/Fields/Fields.php:503
+#: src/Fields/Fields.php:556
+msgid "None"
+msgstr ""
+
+#: config/facebook-page.php:206 config/image.php:195
+msgid "Left"
+msgstr ""
+
+#: config/facebook-page.php:207 config/image.php:194
+msgid "Center"
+msgstr ""
+
+#: config/facebook-page.php:208 config/image.php:196
+msgid "Right"
+msgstr ""
+
+#: config/grouped-posts.php:35
+msgid "Taxonomies Container"
+msgstr ""
+
+#: config/grouped-posts.php:36
+msgid ""
+"This is the container of the list of taxonomies, you can add any CSS class "
+"for styling it. (Example: <code>row</code>)"
+msgstr ""
+
+#: config/grouped-posts.php:51
+msgid "Taxonomy Container"
+msgstr ""
+
+#: config/grouped-posts.php:52
+msgid ""
+"This is the container of the single taxonomy, you can add any CSS class for "
+"styling it. (Example: <code>col-md-6</code>)"
+msgstr ""
+
+#: config/grouped-posts.php:67
+msgid "Taxonomies ID"
+msgstr ""
+
+#: config/grouped-posts.php:68
+msgid ""
+"Insert comma/space-separated string of term ids to include. (Example: 1,2,3 "
+"or 1 2 3)"
+msgstr ""
+
+#: config/grouped-posts.php:82
+msgid "Taxonomies ID to exclude"
+msgstr ""
+
+#: config/grouped-posts.php:83
+msgid ""
+"Insert comma/space-separated string of term ids to exclude. If $include is "
+"non-empty, $exclude is ignored. (Example: 1,2,3 or 1 2 3)"
+msgstr ""
+
+#: config/image.php:31
+msgid "Font icon"
+msgstr ""
+
+#: config/image.php:32
+msgid ""
+"Enter a font icon css class. Example:<code>fa fa-wordpress</code>. This "
+"works only if you have font icons loaded with your theme. If you use an icon "
+"the image will not be loaded."
 msgstr ""
 
 #: config/image.php:47
-msgid "Enter the image title."
+msgid "Enter Images ID"
 msgstr ""
 
-#: config/image.php:61
-msgid "Image title tag"
+#: config/image.php:48
+msgid "Enter the media or post type ID or select an image above."
 msgstr ""
 
-#: config/image.php:62 config/media-carousel.php:216
-msgid "Define tag for image title. Default: h4."
+#: config/image.php:63 src/Widgets/Widget.php:80
+msgid "Title"
 msgstr ""
 
-#: config/image.php:76
+#: config/image.php:64
+msgid ""
+"Enter a title. this will be visualized below the image. (This is not the "
+"widget title)."
+msgstr ""
+
+#: config/image.php:78
+msgid "Title tag"
+msgstr ""
+
+#: config/image.php:79
+msgid "Define tag for the title. Default: h4. (This is not the widget title)."
+msgstr ""
+
+#: config/image.php:93
+msgid "Title CSS class"
+msgstr ""
+
+#: config/image.php:94
+msgid ""
+"Enter a CSS class for the title. Default: widget-image-title. (This is not "
+"the widget title)."
+msgstr ""
+
+#: config/image.php:108
 msgid "Image caption"
 msgstr ""
 
-#: config/image.php:77
-msgid "Enter the image caption."
+#: config/image.php:109
+msgid "Enter a caption for the image"
 msgstr ""
 
-#: config/image.php:91
+#: config/image.php:123
 msgid "Image description"
 msgstr ""
 
-#: config/image.php:92
-msgid "Enter the image description."
+#: config/image.php:124
+msgid ""
+"Enter a description for the image. You can also insert a <code>[shortcode]</"
+"code> or <code>HTML tags</code>. To use shortcodes you also have to check "
+"\"Doo Shortcode\" below,"
 msgstr ""
 
-#: config/image.php:106
+#: config/image.php:139
 msgid "Add paragraphs"
 msgstr ""
 
-#: config/image.php:107
+#: config/image.php:140
 msgid "Automatically add paragraphs."
 msgstr ""
 
-#: config/image.php:120
+#: config/image.php:153
 msgid "Do Shortcode"
 msgstr ""
 
-#: config/image.php:121
-msgid "."
+#: config/image.php:154
+msgid "Do shortcode in image description."
 msgstr ""
 
-#: config/image.php:138 config/media-carousel.php:350
-#: config/media-carousel.php:382 config/media-carousel.php:400
-msgid "Size for images"
+#: config/image.php:171
+msgid "Image size"
 msgstr ""
 
-#: config/image.php:139 config/media-carousel.php:351
+#: config/image.php:172
 msgid ""
 "Size for image attachment. Accepted values: thumbnail, medium, large, full "
 "or own custom name added in add_image_size function. Default: full."
 msgstr ""
 
-#: config/image.php:153
+#: config/image.php:186
 msgid "Alignment"
 msgstr ""
 
-#: config/image.php:154
-msgid "Alignment for image"
+#: config/image.php:187
+msgid "Alignment for image."
 msgstr ""
 
-#: config/image.php:174
+#: config/image.php:207
 msgid ""
 "Check if you want to add <code>&lt;figure&gt;&lt;/figure&gt;</code> tag for "
 "img container."
 msgstr ""
 
-#: config/image.php:188 config/vcard.php:127
+#: config/image.php:221 config/vcard.php:127
 msgid "Container CSS class"
 msgstr ""
 
-#: config/image.php:189 config/image.php:204
-msgid "Enter the image css class (optional)."
+#: config/image.php:222
+msgid "Enter the Container CSS class (optional)."
 msgstr ""
 
-#: config/image.php:203
+#: config/image.php:236
 msgid "Image CSS class"
 msgstr ""
 
-#: config/image.php:218
+#: config/image.php:237
+msgid "Enter the image css class (optional)."
+msgstr ""
+
+#: config/image.php:251
 msgid "Link URL"
 msgstr ""
 
-#: config/image.php:219
-msgid "When you click on image."
+#: config/image.php:252
+msgid "Insert a URL for the image."
 msgstr ""
 
-#: config/image.php:233
+#: config/image.php:266
 msgid "Open in a new windows"
 msgstr ""
 
-#: config/image.php:234
+#: config/image.php:267
 msgid "Check if you want to open in a new tab/windows."
+msgstr ""
+
+#: config/media-carousel.php:22
+msgid "Media or Post Type ID"
+msgstr ""
+
+#: config/media-carousel.php:23
+msgid ""
+"You can insert the ID of the media images or the ID of every post type "
+"(post, page, attachment, custom post type and so on) all separated by comma. "
+"Example: <code>1,2,3,4</code>"
 msgstr ""
 
 #: config/media-carousel.php:37
@@ -1250,436 +1488,611 @@ msgstr ""
 msgid "Carousel (Default)"
 msgstr ""
 
-#: config/media-carousel.php:56
+#: config/media-carousel.php:59
 msgid "Order Image By"
 msgstr ""
 
-#: config/media-carousel.php:57
-msgid "Alternative appearing order of images."
+#: config/media-carousel.php:60
+msgid "Alternative order for your images."
 msgstr ""
 
-#: config/media-carousel.php:79
+#: config/media-carousel.php:81
 msgid "Carousel Name"
 msgstr ""
 
-#: config/media-carousel.php:80
+#: config/media-carousel.php:82
 msgid ""
-"Recomended when you want to have more than one carousel in the same page."
+"String will be sanitize to be used as an HTML ID. Recommended when you want "
+"to have more than one carousel in the same page."
 msgstr ""
 
-#: config/media-carousel.php:94
+#: config/media-carousel.php:96
 msgid "Carousel container width"
 msgstr ""
 
-#: config/media-carousel.php:95
-msgid "Enter the Carousel container width (optional)."
+#: config/media-carousel.php:97
+msgid ""
+"Carousel container width, in px or % (optional). Default: empty. Example: "
+"500px or 100%"
 msgstr ""
 
-#: config/media-carousel.php:109
+#: config/media-carousel.php:111
 msgid "Carousel container height"
 msgstr ""
 
-#: config/media-carousel.php:110
-msgid "Enter the Carousel container height (optional)."
+#: config/media-carousel.php:112
+msgid "Carousel item height, in px(optional). Default: empty. Example: 500px"
 msgstr ""
 
-#: config/media-carousel.php:125
+#: config/media-carousel.php:127
 msgid "Indicators"
 msgstr "Indicatori"
 
-#: config/media-carousel.php:126
-msgid "Indicators."
-msgstr ""
-
-#: config/media-carousel.php:132
-msgid "Before inner (Default)"
-msgstr ""
-
-#: config/media-carousel.php:133
-msgid "After inner"
+#: config/media-carousel.php:128
+msgid ""
+"Indicators position. Accepted values: before-inner, after-inner, after-"
+"control, false (hides indicators)."
 msgstr ""
 
 #: config/media-carousel.php:134
-msgid "After control"
+msgid "Before inner (Default)"
 msgstr ""
 
 #: config/media-carousel.php:135
-msgid "False"
+msgid "After inner"
 msgstr ""
 
-#: config/media-carousel.php:146
-msgid "Enable control"
+#: config/media-carousel.php:136
+msgid "After control"
 msgstr ""
 
 #: config/media-carousel.php:147
-msgid "Enable or disable arrow right and left."
+msgid "Enable control"
 msgstr ""
 
-#: config/media-carousel.php:180
+#: config/media-carousel.php:148
+msgid ""
+"Enable or disable arrow right and left. Accepted values: true, false. "
+"Default: true."
+msgstr ""
+
+#: config/media-carousel.php:178
 msgid "Carousel interval"
 msgstr ""
 
-#: config/media-carousel.php:181
+#: config/media-carousel.php:179
 msgid ""
 "The amount of time to delay between automatically cycling an item in "
-"milliseconds."
+"milliseconds. Example 5000 = 5 seconds. Default 0, carousel will not "
+"automatically cycle."
 msgstr ""
 
-#: config/media-carousel.php:197
+#: config/media-carousel.php:194
 msgid "Pause"
 msgstr ""
 
-#: config/media-carousel.php:198
+#: config/media-carousel.php:195
 msgid ""
 "Pauses the cycling of the carousel on mouseenter and resumes the cycling of "
 "the carousel on mouseleave."
 msgstr ""
 
-#: config/media-carousel.php:205
+#: config/media-carousel.php:202
 msgid "hover (Default)"
 msgstr ""
 
-#: config/media-carousel.php:215
+#: config/media-carousel.php:212
+msgid "Show Title"
+msgstr ""
+
+#: config/media-carousel.php:213
+msgid ""
+"Show or hide image or post title. This is not the widget title. Set false to "
+"hide. Default: true."
+msgstr ""
+
+#: config/media-carousel.php:225
 msgid "Carousel titletag"
 msgstr ""
 
-#: config/media-carousel.php:230
-msgid "Image Title"
+#: config/media-carousel.php:226
+msgid "Define HTML tag for image title. Default: h4."
 msgstr ""
 
-#: config/media-carousel.php:231
-msgid "Show or hide image title. Set false to hide. Default: true."
-msgstr ""
-
-#: config/media-carousel.php:244 config/taxonomies-posts.php:22
-msgid "Title link"
-msgstr ""
-
-#: config/media-carousel.php:245
-msgid "Type of link to show if \"title\" is set to true."
-msgstr ""
-
-#: config/media-carousel.php:251
-msgid "None (Default)"
-msgstr ""
-
-#: config/media-carousel.php:252
-msgid "File"
+#: config/media-carousel.php:241
+msgid ""
+"Show or hide image caption text (the excerpt of attachment) or the excerpt "
+"of the post. Set false to hide. Default: true."
 msgstr ""
 
 #: config/media-carousel.php:253
-msgid "Link"
-msgstr ""
-
-#: config/media-carousel.php:264
-msgid "Show or hide image text. Set false to hide. Default: true."
-msgstr ""
-
-#: config/media-carousel.php:276
 msgid "wpautop"
 msgstr ""
 
-#: config/media-carousel.php:277
-msgid "Auto-format text. Default: true."
+#: config/media-carousel.php:254
+msgid ""
+"Auto-format text. Changes double line-breaks in the text into HTML "
+"paragraphs <code>&lt;p&gt;...&lt;/p&gt;</code>. Default: true."
 msgstr ""
 
-#: config/media-carousel.php:289
+#: config/media-carousel.php:266
 msgid "do_shortcode"
 msgstr ""
 
-#: config/media-carousel.php:290
-msgid "Auto-format text. Default: false."
+#: config/media-carousel.php:267
+msgid "Allow shortcode for text. Default: false."
 msgstr ""
 
-#: config/media-carousel.php:302 config/posts.php:53
-#: config/taxonomies-posts.php:53
+#: config/media-carousel.php:279
+msgid "Post or Image link"
+msgstr ""
+
+#: config/media-carousel.php:280
+msgid ""
+"Where your image titles will link to if \"title\" is set to true. Accepted "
+"values: file, none and empty. An empty value will link to your attachment’s "
+"page."
+msgstr ""
+
+#: config/media-carousel.php:286
+msgid "No link for the title (Default)"
+msgstr ""
+
+#: config/media-carousel.php:287
+msgid "Link to the file media"
+msgstr ""
+
+#: config/media-carousel.php:288
+msgid "Link to the parent post"
+msgstr ""
+
+#: config/media-carousel.php:289
+msgid "Link to the attachment"
+msgstr ""
+
+#: config/media-carousel.php:310
+msgid "Link button"
+msgstr ""
+
+#: config/media-carousel.php:311
+msgid ""
+"Show or hide a link to post, this works only for post_type and for parent of "
+"images, it works only with the selection of the link above. Default: false."
+msgstr ""
+
+#: config/media-carousel.php:323
+msgid "Link button text"
+msgstr ""
+
+#: config/media-carousel.php:324
+msgid "The text to display in the button link. Default: Read More."
+msgstr ""
+
+#: config/media-carousel.php:328
+msgid "Read more"
+msgstr ""
+
+#: config/media-carousel.php:337
+msgid "Link button CSS class"
+msgstr ""
+
+#: config/media-carousel.php:338
+msgid "You can add custom CSS class to the button. Default: btn btn-ptimary."
+msgstr ""
+
+#: config/media-carousel.php:351
 msgid "Container Class"
 msgstr ""
 
-#: config/media-carousel.php:303
-msgid "Extra class for container."
-msgstr ""
-
-#: config/media-carousel.php:317
-msgid "Item Class"
-msgstr ""
-
-#: config/media-carousel.php:318
-msgid "Extra class for item."
-msgstr ""
-
-#: config/media-carousel.php:332
-msgid "Caption Class"
-msgstr ""
-
-#: config/media-carousel.php:333
-msgid "Extra class for caption."
+#: config/media-carousel.php:352
+msgid "Extra CSS class for carousel container."
 msgstr ""
 
 #: config/media-carousel.php:366
-msgid "Responsive image"
+msgid "Item Class"
 msgstr ""
 
 #: config/media-carousel.php:367
-msgid "Activate responsive image."
+msgid "Extra CSS class for carousel item."
 msgstr ""
 
-#: config/media-carousel.php:383
+#: config/media-carousel.php:381
+msgid "Caption Class"
+msgstr ""
+
+#: config/media-carousel.php:382
+msgid "Extra CSS class for carousel caption."
+msgstr ""
+
+#: config/media-carousel.php:398 config/media-carousel.php:427
+#: config/media-carousel.php:443
+msgid "Size for images"
+msgstr ""
+
+#: config/media-carousel.php:399
 msgid ""
 "Size for image attachment. Accepted values: thumbnail, medium, large, full "
-"or own custom name added in add_image_size function. Default: large."
+"or own custom name added in add_image_size function. Default: full. See <a "
+"href=\"http://codex.WordPress.org/Function_Reference/"
+"wp_get_attachment_image_src\">wp_get_attachment_image_src()</a> for further "
+"reference."
 msgstr ""
 
-#: config/media-carousel.php:401
+#: config/media-carousel.php:413
+msgid "Responsive image"
+msgstr ""
+
+#: config/media-carousel.php:414
 msgid ""
-"Size for image attachment. Accepted values: thumbnail, medium, large, full "
-"or own custom name added in add_image_size function. Default: medium."
+"Activate responsive image. Default false. It works only if you add "
+"sizetablet and sizephone attribute. See below."
 msgstr ""
 
-#: config/posts.php:54 config/taxonomies-posts.php:54
-msgid "Enter the container class name."
+#: config/media-carousel.php:428
+msgid ""
+"Size for image attachment for tablet device. Accepted values: thumbnail, "
+"medium, large, full or own custom name added in add_image_size function. "
+"Default: large."
 msgstr ""
 
-#: config/posts.php:70 config/taxonomies-posts.php:70
+#: config/media-carousel.php:444
+msgid ""
+"Size for image attachment for phone device. Accepted values: thumbnail, "
+"medium, large, full or own custom name added in add_image_size function. "
+"Default: medium."
+msgstr ""
+
+#: config/nav-menu.php:18
+msgid "&mdash; Select &mdash;"
+msgstr ""
+
+#: config/nav-menu.php:33
+msgid "Select Menu"
+msgstr ""
+
+#: config/nav-menu.php:34
+msgid "."
+msgstr ""
+
+#: config/post-title.php:22
+msgid "Post title html tag"
+msgstr ""
+
+#: config/post-title.php:23
+msgid "You can change the tag wrapper for the post title, Default h2."
+msgstr ""
+
+#: config/post-title.php:37
+msgid "Post title css class"
+msgstr ""
+
+#: config/post-title.php:38
+msgid ""
+"Customize the post title style with your custom css class. Example text-"
+"primary"
+msgstr ""
+
+#: config/post-title.php:52
+msgid "Post title css id"
+msgstr ""
+
+#: config/post-title.php:67
+msgid "Post title custom css style"
+msgstr ""
+
+#: config/post-title.php:68
+msgid "You can add some css style. Eg: style=\"color: #000000;\""
+msgstr ""
+
+#: config/post-title.php:82
+msgid "Post title post_id"
+msgstr ""
+
+#: config/post-title.php:83
+msgid ""
+"Do you want to display the title of a certain post? Then insert the post ID "
+"of that post."
+msgstr ""
+
+#: config/post-title.php:97
+msgid "Post title before"
+msgstr ""
+
+#: config/post-title.php:98
+msgid "You can insert some content before the title."
+msgstr ""
+
+#: config/post-title.php:112
+msgid "Post title after"
+msgstr ""
+
+#: config/post-title.php:113
+msgid "You can insert some content after the title."
+msgstr ""
+
+#: config/posts.php:53
+msgid "Posts container Class"
+msgstr ""
+
+#: config/posts.php:54
+msgid ""
+"This is the container of the list of posts (the <code>section</code> HTML "
+"tag), you can add any CSS class for styling it."
+msgstr ""
+
+#: config/posts.php:70
 msgid "Enter the post class name."
 msgstr ""
 
-#: config/posts.php:85 config/taxonomies-posts.php:85
+#: config/posts.php:85
 msgid "Image Class"
 msgstr ""
 
-#: config/posts.php:86 config/taxonomies-posts.php:86
+#: config/posts.php:86
 msgid "Enter the image class name."
 msgstr ""
 
-#: config/posts.php:128 config/taxonomies-posts.php:128
+#: config/posts.php:128
 msgid "HTML tag for post title"
 msgstr ""
 
-#: config/posts.php:129 config/taxonomies-posts.php:129
+#: config/posts.php:129
 msgid "Enter the heading tag for title (default is h4)."
 msgstr ""
 
-#: config/posts.php:145 config/taxonomies-posts.php:145
+#: config/posts.php:145
 msgid "Enter your custom CSS."
 msgstr ""
 
-#: config/posts.php:160 config/taxonomies-posts.php:160
+#: config/posts.php:161
 msgid "Template"
 msgstr ""
 
-#: config/posts.php:161 config/taxonomies-posts.php:161
+#: config/posts.php:162
 msgid "Select the template to display posts."
 msgstr ""
 
-#: config/posts.php:168 config/taxonomies-posts.php:167
-msgid "Standard template (Default)"
+#: config/posts.php:169
+msgid "Default template for this instance."
 msgstr ""
 
-#: config/posts.php:169 config/taxonomies-posts.php:168
+#: config/posts.php:170
 msgid "Custom template"
 msgstr ""
 
-#: config/posts.php:180 config/taxonomies-posts.php:179
+#: config/posts.php:183
 msgid "Template custom name"
 msgstr ""
 
-#: config/posts.php:181 config/taxonomies-posts.php:180
-msgid "Insert your template custom name."
+#: config/posts.php:184
+msgid ""
+"Insert your template custom name, separate directory name and file nema by "
+"\"/\", you have to insert your custom file in your theme in the \"templates"
+"\" directory. If the directory doesn't exist you have to create it. If no "
+"file is found it will be loaded the default query file. Example: post/my-"
+"custom-loop-file"
 msgstr ""
 
-#: config/posts.php:196 config/taxonomies-posts.php:195
+#: config/posts.php:201
 msgid "Number of posts"
 msgstr ""
 
-#: config/posts.php:197 config/taxonomies-posts.php:196
-msgid "Insert the number of posts to display."
+#: config/posts.php:202
+msgid ""
+"Insert the number of posts to display. Be carefully, if is sett to 0 will be "
+"displayed all post_type. (Default: 5)."
 msgstr ""
 
-#: config/posts.php:211 config/taxonomies-posts.php:210
+#: config/posts.php:216
+msgid "Add Permalink wrapper"
+msgstr ""
+
+#: config/posts.php:217
+msgid ""
+"This adds the post_type permalink to the title and the image if they are "
+"displayed."
+msgstr ""
+
+#: config/posts.php:231
 msgid "Show the title"
 msgstr ""
 
-#: config/posts.php:212 config/taxonomies-posts.php:211
+#: config/posts.php:232
 msgid "Check if you want to show the title."
 msgstr ""
 
-#: config/posts.php:226 config/taxonomies-posts.php:225
+#: config/posts.php:246
 msgid "Show the date"
 msgstr ""
 
-#: config/posts.php:227 config/posts.php:242 config/taxonomies-posts.php:226
-#: config/taxonomies-posts.php:241
+#: config/posts.php:247 config/posts.php:262
 msgid "Check if you want to show the date."
 msgstr ""
 
-#: config/posts.php:241 config/taxonomies-posts.php:240
+#: config/posts.php:261
 msgid "Date format"
 msgstr ""
 
-#: config/posts.php:256 config/taxonomies-posts.php:255
+#: config/posts.php:276
 msgid "Show post author"
 msgstr ""
 
-#: config/posts.php:257 config/taxonomies-posts.php:256
+#: config/posts.php:277
 msgid "Check if you want to show post's author."
 msgstr ""
 
-#: config/posts.php:271 config/taxonomies-posts.php:270
+#: config/posts.php:291
 msgid "Show comments number"
 msgstr ""
 
-#: config/posts.php:272 config/taxonomies-posts.php:271
+#: config/posts.php:292
 msgid "Check if you want to Show comments number."
 msgstr ""
 
-#: config/posts.php:286 config/taxonomies-posts.php:285
+#: config/posts.php:306
 msgid "Show excerpt"
 msgstr ""
 
-#: config/posts.php:287 config/taxonomies-posts.php:286
+#: config/posts.php:307
 msgid "Check if you want to show excerpt."
 msgstr ""
 
-#: config/posts.php:301 config/taxonomies-posts.php:300
-msgid "Excerpt length"
-msgstr ""
-
-#: config/posts.php:302 config/taxonomies-posts.php:301
+#: config/posts.php:322
 msgid "Insert the numbers of words to display."
 msgstr ""
 
-#: config/posts.php:316 config/taxonomies-posts.php:315
+#: config/posts.php:336
 msgid "Show content"
 msgstr ""
 
-#: config/posts.php:317 config/taxonomies-posts.php:316
+#: config/posts.php:337
 msgid "Check if you want to show content."
 msgstr ""
 
-#: config/posts.php:331 config/taxonomies-posts.php:330
+#: config/posts.php:351
 msgid "Show readmore"
 msgstr ""
 
-#: config/posts.php:332 config/taxonomies-posts.php:331
+#: config/posts.php:352
 msgid "Check if you want to show readmore tag."
 msgstr ""
 
-#: config/posts.php:346 config/taxonomies-posts.php:345
-msgid "Excerpt read more"
+#: config/posts.php:366
+msgid "Use global readmore"
 msgstr ""
 
-#: config/posts.php:347 config/taxonomies-posts.php:346
-msgid "Insert the custom \"read more\" words."
+#: config/posts.php:367
+msgid ""
+"Check if you want to use the <a href=\"admin.php?page=italystrap-settings"
+"\">plugin setting</a> for readmore tag configuration. If in global settings "
+"Read More is not active it will be used the below value."
 msgstr ""
 
-#: config/posts.php:351 config/taxonomies-posts.php:350
-#: deprecated/class-widget-posts2.php:327
+#: config/posts.php:381
+msgid "Excerpt read more label"
+msgstr ""
+
+#: config/posts.php:382
+msgid ""
+"Insert a custom \"read more\" label. If \"Use global readmore\" is selected "
+"the global label will be used."
+msgstr ""
+
+#: config/posts.php:386 deprecated/class-widget-posts2.php:327
 msgid "Read more &rarr;"
 msgstr ""
 
-#: config/posts.php:361 config/taxonomies-posts.php:360
+#: config/posts.php:396
+msgid "Excerpt read more CSS class"
+msgstr ""
+
+#: config/posts.php:397
+msgid ""
+"Insert a custom CSS class for the read more link. Default read-more. Ex: btn "
+"btn-primary."
+msgstr ""
+
+#: config/posts.php:411
 msgid "Show thumbnail"
 msgstr ""
 
-#: config/posts.php:362 config/taxonomies-posts.php:361
+#: config/posts.php:412
 msgid "Check if you want to show thumbnail."
 msgstr ""
 
-#: config/posts.php:376
+#: config/posts.php:426
 msgid "Thumbnail size"
 msgstr ""
 
-#: config/posts.php:377 config/posts.php:407 config/vcard.php:172
+#: config/posts.php:427 config/posts.php:461 config/vcard.php:172
 msgid "Select the thumbnail size to display in posts list."
 msgstr ""
 
-#: config/posts.php:392
+#: config/posts.php:445
 msgid "Show the first thumbnail bigger"
 msgstr ""
 
-#: config/posts.php:393
+#: config/posts.php:446
 msgid "Check if you want to show the firt thumbnail bigger."
 msgstr ""
 
-#: config/posts.php:406
+#: config/posts.php:460
 msgid "The first thumbnail size"
 msgstr ""
 
-#: config/posts.php:422 config/taxonomies-posts.php:391
+#: config/posts.php:479
 msgid "Enter ID of a fall-back thumbnail (optional)"
 msgstr ""
 
-#: config/posts.php:423 config/taxonomies-posts.php:392
+#: config/posts.php:480
 msgid "Add a fall-back thumbnail in case no one is found."
 msgstr ""
 
-#: config/posts.php:438 config/taxonomies-posts.php:407
+#: config/posts.php:495
 msgid "Show post categories"
 msgstr ""
 
-#: config/posts.php:439 config/taxonomies-posts.php:408
-msgid "Check if you want to Show post categories."
+#: config/posts.php:496
+msgid "Check if you want to Show post by categories."
 msgstr ""
 
-#: config/posts.php:453 config/taxonomies-posts.php:422
+#: config/posts.php:510
 msgid "Show post tags"
 msgstr ""
 
-#: config/posts.php:454 config/taxonomies-posts.php:423
-msgid "Check if you want to Show post tags."
+#: config/posts.php:511
+msgid "Check if you want to show post by tags."
 msgstr ""
 
-#: config/posts.php:468 config/taxonomies-posts.php:437
+#: config/posts.php:525
 msgid "Show custom fields"
 msgstr ""
 
-#: config/posts.php:469
+#: config/posts.php:526
 msgid "Insert here the custom fields (comma separated)."
 msgstr ""
 
-#: config/posts.php:498 config/taxonomies-posts.php:467
+#: config/posts.php:555
 msgid "Select Categories"
 msgstr ""
 
-#: config/posts.php:499 config/taxonomies-posts.php:468
-msgid "Select the categories. (Use ctrl for multiple select)"
+#: config/posts.php:556
+msgid "Select the categories. (Use ctrl for multiple select)."
 msgstr ""
 
-#: config/posts.php:503 config/posts.php:536 config/taxonomies-posts.php:472
-#: config/taxonomies-posts.php:505
+#: config/posts.php:560 config/posts.php:593 config/posts.php:850
 msgid "No selection"
 msgstr ""
 
-#: config/posts.php:531 config/taxonomies-posts.php:500
+#: config/posts.php:588
 msgid "Select Tags"
 msgstr ""
 
-#: config/posts.php:532 config/taxonomies-posts.php:501
-msgid "Select the Tag. (Use ctrl for multiple select)"
+#: config/posts.php:589
+msgid "Select the Tags. (Use ctrl for multiple select)."
 msgstr ""
 
-#: config/posts.php:549 config/taxonomies-posts.php:518
+#: config/posts.php:606
 msgid "Show related posts by tags"
 msgstr ""
 
-#: config/posts.php:550 config/taxonomies-posts.php:519
+#: config/posts.php:607
 msgid "Check if you want to Show related posts by tags."
 msgstr ""
 
-#: config/posts.php:564 config/taxonomies-posts.php:533
+#: config/posts.php:621
 msgid "Show related posts by cats"
 msgstr ""
 
-#: config/posts.php:565 config/taxonomies-posts.php:534
+#: config/posts.php:622
 msgid "Check if you want to Show related posts by cats."
 msgstr ""
 
-#: config/posts.php:579
+#: config/posts.php:636
 msgid "Discard posts"
 msgstr ""
 
-#: config/posts.php:580
+#: config/posts.php:637
 msgid ""
 "Number of post to displace or pass over. Warning: Setting the offset "
 "parameter overrides/ignores the paged parameter and breaks pagination <a "
@@ -1689,178 +2102,174 @@ msgid ""
 "\"=>-1 (show all posts) is used."
 msgstr ""
 
-#: config/posts.php:594 config/taxonomies-posts.php:548
+#: config/posts.php:651
 msgid "Esclude current post from loop"
 msgstr ""
 
-#: config/posts.php:595 config/taxonomies-posts.php:549
+#: config/posts.php:652
 msgid "Check if you want to Esclude the current post from loop."
 msgstr ""
 
-#: config/posts.php:609 config/taxonomies-posts.php:563
+#: config/posts.php:666
 msgid "Show posts only from current user"
 msgstr ""
 
-#: config/posts.php:610
-msgid "Select the user you want to display posts."
+#: config/posts.php:667
+msgid "Insert the user ID you want to display posts."
 msgstr ""
 
-#: config/posts.php:624 config/taxonomies-posts.php:578 widget/Products.php:42
+#: config/posts.php:681 src/Widgets/Products.php:42
 msgid "Post type"
 msgstr ""
 
-#: config/posts.php:625 config/taxonomies-posts.php:579
+#: config/posts.php:682
 msgid "Select the post type to show."
 msgstr ""
 
-#: config/posts.php:640 config/taxonomies-posts.php:594
-msgid "Post/Page Id"
+#: config/posts.php:697
+msgid "Most viewed posts"
 msgstr ""
 
-#: config/posts.php:641
-msgid "Insert posts ID separated by comma."
+#: config/posts.php:698
+msgid ""
+"Visualize the most viewed posts. This works only if you have Jetpack stats "
+"installed and actived."
 msgstr ""
 
-#: config/posts.php:671 config/taxonomies-posts.php:625
+#: config/posts.php:712
+msgid "Post/Page ID"
+msgstr ""
+
+#: config/posts.php:713
+msgid "Insert posts ID separated by comma. Example: 1,2,3"
+msgstr ""
+
+#: config/posts.php:743
 msgid "Sticky post"
 msgstr ""
 
-#: config/posts.php:672 config/taxonomies-posts.php:626
+#: config/posts.php:744
 msgid "Select if you want to show sticky posts or not."
 msgstr ""
 
-#: config/posts.php:678 config/taxonomies-posts.php:632
+#: config/posts.php:750
 msgid "Show all posts"
 msgstr ""
 
-#: config/posts.php:679 config/taxonomies-posts.php:633
+#: config/posts.php:751
 msgid "Hide Sticky Posts"
 msgstr ""
 
-#: config/posts.php:680 config/taxonomies-posts.php:634
+#: config/posts.php:752
 msgid "Show Only Sticky Posts"
 msgstr ""
 
-#: config/posts.php:691 config/taxonomies-posts.php:645
+#: config/posts.php:763
+msgid "Context"
+msgstr ""
+
+#: config/posts.php:764
+msgid ""
+"This is the context in wich this instance is used, by default it is set to "
+"\"posts\" (the name of the class lowercase), if you are not a developer do "
+"not worry about it, if you are a developer you can filter the query_args by "
+"the context."
+msgstr ""
+
+#: config/posts.php:778
 msgid "Order by"
 msgstr ""
 
-#: config/posts.php:692 config/posts.php:739 config/taxonomies-posts.php:646
-#: config/taxonomies-posts.php:693
+#: config/posts.php:779 config/posts.php:826
 msgid "How posts have to be ordered."
 msgstr ""
 
-#: config/posts.php:698 config/taxonomies-posts.php:652
-msgid "No order. (Default)"
+#: config/posts.php:785
+msgid "No order."
 msgstr ""
 
-#: config/posts.php:699 config/taxonomies-posts.php:653
+#: config/posts.php:786
 msgid "Order by post id."
 msgstr ""
 
-#: config/posts.php:700 config/taxonomies-posts.php:654
+#: config/posts.php:787
 msgid "Order by author."
 msgstr ""
 
-#: config/posts.php:701 config/taxonomies-posts.php:655
+#: config/posts.php:788
 msgid "Title."
 msgstr ""
 
-#: config/posts.php:702 config/taxonomies-posts.php:656
+#: config/posts.php:789
 msgid "Order by post name (post slug)."
 msgstr ""
 
-#: config/posts.php:703 config/taxonomies-posts.php:657
+#: config/posts.php:790
 msgid "Order by post type (available since Version 4.0)."
 msgstr ""
 
-#: config/posts.php:704 config/taxonomies-posts.php:658
-msgid "Order by date"
+#: config/posts.php:791
+msgid "Order by date. (Default)"
 msgstr ""
 
-#: config/posts.php:705 config/taxonomies-posts.php:659
+#: config/posts.php:792
 msgid "Order by last modified date."
 msgstr ""
 
-#: config/posts.php:706 config/taxonomies-posts.php:660
+#: config/posts.php:793
 msgid "Order by post/page parent id."
 msgstr ""
 
-#: config/posts.php:707 config/taxonomies-posts.php:661
+#: config/posts.php:794
 msgid "Random order."
 msgstr ""
 
-#: config/posts.php:708 config/taxonomies-posts.php:662
+#: config/posts.php:795
 msgid "Order by number of comments."
 msgstr ""
 
-#: config/posts.php:709 config/taxonomies-posts.php:663
+#: config/posts.php:796
 msgid "Order by Page Order."
 msgstr ""
 
-#: config/posts.php:710 config/posts.php:711 config/taxonomies-posts.php:664
-#: config/taxonomies-posts.php:665
+#: config/posts.php:797 config/posts.php:798
 msgid ""
 "Order by value in custom field (\"meta_key=keyname\" must also be present in "
 "the query)"
 msgstr ""
 
-#: config/posts.php:712 config/taxonomies-posts.php:666
+#: config/posts.php:799
 msgid "Preserve post ID order given in the post__in array."
 msgstr ""
 
-#: config/posts.php:723
+#: config/posts.php:810
 msgid "Order by meta key (custom fields)"
 msgstr ""
 
-#: config/posts.php:724
+#: config/posts.php:811
 msgid ""
 "Inser the custom field separated by comma and select \"Order by Value...\" "
 "above."
 msgstr ""
 
-#: config/posts.php:738 config/taxonomies-posts.php:692
+#: config/posts.php:825
 msgid "Order"
 msgstr ""
 
-#: config/posts.php:745 config/taxonomies-posts.php:699
+#: config/posts.php:832
 msgid "Descending"
 msgstr ""
 
-#: config/posts.php:746 config/taxonomies-posts.php:700
+#: config/posts.php:833
 msgid "Ascending"
 msgstr ""
 
-#: config/taxonomies-posts.php:23
-msgid "Enter a custom title link."
+#: config/posts.php:844
+msgid "P2P connection type"
 msgstr ""
 
-#: config/taxonomies-posts.php:375
-msgid "thumb_size"
-msgstr ""
-
-#: config/taxonomies-posts.php:376
-msgid "Select the thumb size to display posts."
-msgstr ""
-
-#: config/taxonomies-posts.php:438
-msgid "Check if you want to Show custom fields (comma separated)."
-msgstr ""
-
-#: config/taxonomies-posts.php:564
-msgid "Check if you want to Show posts only from current user."
-msgstr ""
-
-#: config/taxonomies-posts.php:595
-msgid "Insert post ID separated by comma."
-msgstr ""
-
-#: config/taxonomies-posts.php:677
-msgid "Custom fields"
-msgstr ""
-
-#: config/taxonomies-posts.php:678
-msgid "Inser the custom field separated by comma."
+#: config/posts.php:845
+msgid "Select the connection type for displaying this loop."
 msgstr ""
 
 #: config/vcard.php:22
@@ -2415,53 +2824,68 @@ msgstr ""
 msgid "Widget CSS ID"
 msgstr ""
 
-#: config/widget-attributes.php:23 config/widget-attributes.php:38
-msgid "Enter the CSS ID for this widget."
+#: config/widget-attributes.php:23
+msgid ""
+"This is the HTML container of the widget. Enter the CSS ID for this "
+"container. (Example: <code>my-ID</code>)"
 msgstr ""
 
 #: config/widget-attributes.php:37
 msgid "Widget CSS class"
 msgstr ""
 
-#: core/Breadcrumbs.php:335 deprecated/ItalyStrapBreadcrumbs.php:315
+#: config/widget-attributes.php:38
+msgid ""
+"This is the HTML container of the widget. Enter the CSS class or classes for "
+"this container. (Example: <code>col-md-12</code>)"
+msgstr ""
+
+#: deprecated/Breadcrumbs.php:335 deprecated/ItalyStrapBreadcrumbs.php:315
+#: src/Breadcrumbs/Breadcrumbs.old.php:337 src/Breadcrumbs/Breadcrumbs.php:379
+#: src/Breadcrumbs/Generator.php:291
 msgid "Tag: "
 msgstr "Tag: "
 
-#: core/Breadcrumbs.php:342 deprecated/ItalyStrapBreadcrumbs.php:329
+#: deprecated/Breadcrumbs.php:342 deprecated/ItalyStrapBreadcrumbs.php:329
+#: src/Breadcrumbs/Breadcrumbs.old.php:344 src/Breadcrumbs/Breadcrumbs.php:394
+#: src/Breadcrumbs/Generator.php:310
 msgid "Yearly archive: "
 msgstr "Archivio annuale: "
 
-#: core/Breadcrumbs.php:357 deprecated/ItalyStrapBreadcrumbs.php:343
+#: deprecated/Breadcrumbs.php:357 deprecated/ItalyStrapBreadcrumbs.php:343
+#: src/Breadcrumbs/Breadcrumbs.old.php:359 src/Breadcrumbs/Breadcrumbs.php:409
+#: src/Breadcrumbs/Generator.php:327
 msgid "Monthly archive: "
-msgstr "Archivio mensile"
+msgstr "Archivio mensile: "
 
-#: core/Breadcrumbs.php:381 deprecated/ItalyStrapBreadcrumbs.php:365
+#: deprecated/Breadcrumbs.php:381 deprecated/ItalyStrapBreadcrumbs.php:365
+#: src/Breadcrumbs/Breadcrumbs.old.php:383 src/Breadcrumbs/Breadcrumbs.php:433
+#: src/Breadcrumbs/Generator.php:352
 msgid "Daily archive: "
 msgstr "Archivio giornaliero: "
 
-#: core/Breadcrumbs.php:388 deprecated/ItalyStrapBreadcrumbs.php:372
+#: deprecated/Breadcrumbs.php:388 deprecated/ItalyStrapBreadcrumbs.php:372
+#: src/Breadcrumbs/Breadcrumbs.old.php:390 src/Breadcrumbs/Breadcrumbs.php:440
+#: src/Breadcrumbs/Generator.php:361
 msgid "Author Archives: "
 msgstr "Archivio autore: "
 
-#: core/Breadcrumbs.php:395 deprecated/ItalyStrapBreadcrumbs.php:379
+#: deprecated/Breadcrumbs.php:395 deprecated/ItalyStrapBreadcrumbs.php:379
+#: src/Breadcrumbs/Breadcrumbs.old.php:397 src/Breadcrumbs/Breadcrumbs.php:447
 msgid "Search Results: "
 msgstr "Risultato della ricerca: "
 
-#: core/Breadcrumbs.php:401 deprecated/ItalyStrapBreadcrumbs.php:385
+#: deprecated/Breadcrumbs.php:401 deprecated/ItalyStrapBreadcrumbs.php:385
+#: src/Breadcrumbs/Breadcrumbs.old.php:403 src/Breadcrumbs/Breadcrumbs.php:453
+#: src/Breadcrumbs/Generator.php:379
 msgid "Not Found"
 msgstr "Non trovato"
 
-#: core/Breadcrumbs.php:410 deprecated/ItalyStrapBreadcrumbs.php:394
+#: deprecated/Breadcrumbs.php:410 deprecated/ItalyStrapBreadcrumbs.php:394
+#: src/Breadcrumbs/Breadcrumbs.old.php:412 src/Breadcrumbs/Breadcrumbs.php:462
+#: src/Breadcrumbs/Generator.php:402
 msgid "Page"
 msgstr "Pagina"
-
-#: core/Query/Query.php:86
-msgid "Context name must be a string"
-msgstr ""
-
-#: core/Sitemaps_HTML.php:134
-msgid "Authors:"
-msgstr "Autori:"
 
 #: deprecated/ItalyStrapBreadcrumbs.php:322
 msgid "Tax: "
@@ -2509,222 +2933,875 @@ msgstr "Mostra logo"
 msgid "Youtube page (hidden)"
 msgstr "Pagina di youtube (nascosto)"
 
-#: functions/general-functions.php:77
+#: docs/widget/example-config.php:18
+msgid "Post/Page Id"
+msgstr ""
+
+#: docs/widget/example-config.php:19
+msgid "Insert posts/pages ID separated by comma. Example: 1,2,3"
+msgstr ""
+
+#: functions/general-functions.php:97
 msgid "The file doesn't exist."
 msgstr ""
 
-#: future-inclusions/logic/class-widget-logic-admin.php:46
-#: future-inclusions/logic/class-widget-logic.php:37
-#: future-inclusions/widget-logic-admin.php:17
-#: future-inclusions/widget-logic.php:20
-msgid "when plugin starts (default)"
+#: functions/private.php:38 functions/private.php:82 functions/private.php:121
+msgid "No file founded"
 msgstr ""
 
-#: future-inclusions/logic/class-widget-logic-admin.php:47
-#: future-inclusions/logic/class-widget-logic.php:38
-#: future-inclusions/widget-logic-admin.php:18
-#: future-inclusions/widget-logic.php:21
-msgid "after theme loads"
+#: functions/private.php:46
+msgid "Options available:"
 msgstr ""
 
-#: future-inclusions/logic/class-widget-logic-admin.php:48
-#: future-inclusions/logic/class-widget-logic.php:39
-#: future-inclusions/widget-logic-admin.php:19
-#: future-inclusions/widget-logic.php:22
-msgid "when all PHP loaded"
+#: functions/private.php:54
+msgid "empty"
 msgstr ""
 
-#: future-inclusions/logic/class-widget-logic-admin.php:49
-#: future-inclusions/logic/class-widget-logic.php:40
-#: future-inclusions/widget-logic-admin.php:20
-#: future-inclusions/widget-logic.php:23
-msgid "during page header"
+#: future-inclusions/Search_Box_Item.php:39
+#: future-inclusions/Search_Box_Item.php:50
+msgid "Search Box"
 msgstr ""
 
-#: future-inclusions/logic/class-widget-logic-admin.php:252
-msgid "Widget logic"
+#: future-inclusions/Search_Box_Item.php:503
+msgid "Developer Info"
 msgstr ""
 
-#: future-inclusions/logic/class-widget-logic-admin.php:253
-msgid "Add conditional tag to this widget."
-msgstr ""
-
-#: future-inclusions/logic/class-widget-logic-admin.php:305
-#: future-inclusions/widget-logic-admin.php:70
-msgid "Success! Options file imported"
-msgstr ""
-
-#: future-inclusions/logic/class-widget-logic-admin.php:308
-#: future-inclusions/widget-logic-admin.php:71
-msgid "Invalid options file"
-msgstr ""
-
-#: future-inclusions/logic/class-widget-logic-admin.php:311
-#: future-inclusions/widget-logic-admin.php:73
-msgid "No options file provided"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:2
-#: future-inclusions/widget-logic-admin.php:137
-msgid "Widget Logic options"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:5
-#: future-inclusions/widget-logic-admin.php:140
+#: future-inclusions/Search_Box_Item.php:505
 msgid ""
-"Adds a new WP filter you can use in your own code. Not needed for main "
-"Widget Logic functionality."
+"To edit the html output of the search box use the hook "
+"<strong>get_nav_search_box_form</strong> as you would the hook <a href="
+"\"https://developer.wordpress.org/reference/hooks/get_search_form/"
+"\">get_search_form</a>. The difference between these is that there are three "
+"additional arguments passed to the hook. These are: $form (the current "
+"html), $item (the nav-menu-item), $depth (the current depth of the menu in "
+"the walker), $args (the arguments of the menu as given in the wp_nav_menu "
+"function call). That is, the same arguments as passed to <a href=\"https://"
+"developer.wordpress.org/reference/hooks/walker_nav_menu_start_el/"
+"\">walker_nav_menu_start_el</a> hook."
 msgstr ""
 
-#: future-inclusions/logic/view/widget-logic-admin.php:7
-#: future-inclusions/widget-logic-admin.php:142
-msgid "Add 'widget_content' filter"
+#: future-inclusions/_Shortcodes/Column.php:43 src/Shortcodes/Column.php:43
+msgid "Column settings"
 msgstr ""
 
-#: future-inclusions/logic/view/widget-logic-admin.php:10
-#: future-inclusions/widget-logic-admin.php:145
-msgid "Resets a theme's custom queries before your Widget Logic is checked"
+#: future-inclusions/_Shortcodes/Column.php:60 src/Shortcodes/Column.php:60
+msgid "CSS ID"
 msgstr ""
 
-#: future-inclusions/logic/view/widget-logic-admin.php:12
-#: future-inclusions/widget-logic-admin.php:147
-msgid "Use 'wp_reset_query' fix"
+#: future-inclusions/_Shortcodes/Column.php:69 src/Shortcodes/Column.php:69
+msgid "Enter a CSS ID for the element, this must be unique. (Optional)"
 msgstr ""
 
-#: future-inclusions/logic/view/widget-logic-admin.php:15
-#: future-inclusions/widget-logic-admin.php:150
-msgid ""
-"Delays widget logic code being evaluated til various points in the WP "
-"loading process"
+#: future-inclusions/_Shortcodes/Column.php:75 src/Shortcodes/Column.php:75
+msgid "CSS class"
 msgstr ""
 
-#: future-inclusions/logic/view/widget-logic-admin.php:15
-#: future-inclusions/widget-logic-admin.php:150
-msgid "Load logic"
+#: future-inclusions/_Shortcodes/Column.php:78 src/Shortcodes/Column.php:78
+msgid "Enter CSS classes for the element. (Optional)"
 msgstr ""
 
-#: future-inclusions/logic/view/widget-logic-admin.php:28
-#: future-inclusions/widget-logic-admin.php:163
-msgid "Save WL options"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:32
-#: future-inclusions/widget-logic-admin.php:167
-msgid "Save all WL options to a plain text config file"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:32
-#: future-inclusions/widget-logic-admin.php:167
-msgid "Export options"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:33
-#: future-inclusions/widget-logic-admin.php:168
-msgid "Import options"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:33
-#: future-inclusions/widget-logic-admin.php:168
-msgid "Load all WL options from a plain text config file"
-msgstr ""
-
-#: future-inclusions/logic/view/widget-logic-admin.php:34
-#: future-inclusions/widget-logic-admin.php:169
-msgid "Select file for importing"
-msgstr ""
-
-#: future-inclusions/related_post.php:19
-msgid "Related posts"
-msgstr ""
-
-#: future-inclusions/related_post.php:79
-msgid "Ti potrebbe interessare anche..."
-msgstr ""
-
-#: future-inclusions/related_post.php:117
-msgid "No Responses"
-msgstr ""
-
-#: future-inclusions/related_post.php:117
-msgid "One Response"
-msgstr ""
-
-#: future-inclusions/related_post.php:117
-msgid "% Responses"
-msgstr ""
-
-#: future-inclusions/security.php:7
-msgid "<strong>Login Failed</strong>: please check your username and password."
-msgstr ""
-
-#: future-inclusions/white-label-cms/includes/admin.config.php:46
-#: future-inclusions/white-label-cms/wlcms-plugin.php:70
-msgid "Dashboard"
-msgstr ""
-
-#: future-inclusions/white-label-cms/includes/admin.view.php:329
-msgid ""
-"WARNING! Deleting a role can have severe consequences, proceed only if you "
-"know what you are doing."
-msgstr ""
-
-#: future-inclusions/white-label-cms/wlcms-plugin.php:546
+#: future-inclusions/_Shortcodes/Posts.php:67 src/Shortcodes/Posts.php:66
 msgid "Posts"
 msgstr ""
 
-#: future-inclusions/white-label-cms/wlcms-plugin.php:550
-msgid "Comments"
-msgstr ""
-
-#: future-inclusions/white-label-cms/wlcms-plugin.php:552
-msgid "Tools"
-msgstr ""
-
-#: future-inclusions/white-label-cms/wlcms-plugin.php:554
-msgid "Profile"
-msgstr ""
-
-#: future-inclusions/white-label-cms/wlcms-plugin.php:722
-msgid ""
-"<strong>Error!</strong> During the import process we almost imported a non "
-"White Label CMS setting - please ensure you uploaded the correct file and "
-"try again."
-msgstr ""
-
-#: future-inclusions/widget-logic-admin.php:206
-msgid "Widget logic:"
-msgstr ""
-
-#: future-inclusions/wp-instagram-widget.php:53
-#: future-inclusions/wp-instagram-widget.php:127
-msgid "Instagram"
-msgstr ""
-
-#: future-inclusions/wp-instagram-widget.php:127
-msgid "Follow Me!"
-msgstr ""
-
-#: future-inclusions/wp-instagram-widget.php:228
-msgid "Instagram Image"
+#: future-inclusions/_Shortcodes/Row.php:47 src/Shortcodes/Row.php:43
+msgid "Row container settings"
 msgstr ""
 
 #: hooks/simply-show-thumb.php:23
 msgid "Thumb"
 msgstr ""
 
-#: shortcode/Gallery.php:44
-msgid "Use $atts['image_title'] instead of $atts['title']"
+#: src/Asset/Minify.php:78
+msgid ""
+"The script debug for this site is active, if you want to minify this snippet "
+"set the SCRIPT_DEBUG constant in wp-config.php to false."
 msgstr ""
 
-#: templates/content-post.php:89 templates/standard.php:122
+#: src/Breadcrumbs/Generator.php:370
+msgid "Search Results for: "
+msgstr ""
+
+#: src/Custom/Metaboxes/config/custom-script-style.php:25
+msgid "CSS settings"
+msgstr ""
+
+#: src/Custom/Metaboxes/config/custom-script-style.php:34
+msgid ""
+"This code will be included verbatim in style tag before </head> tag of your "
+"page or post"
+msgstr ""
+
+#: src/Custom/Metaboxes/config/custom-script-style.php:42
+msgid "Body Classes"
+msgstr ""
+
+#: src/Custom/Metaboxes/config/custom-script-style.php:43
+msgid ""
+"These class names will be added to the body_class() function (provided your "
+"theme uses these functions), separate each one by comma."
+msgstr ""
+
+#: src/Custom/Metaboxes/config/custom-script-style.php:51
+msgid "Post Classes"
+msgstr ""
+
+#: src/Custom/Metaboxes/config/custom-script-style.php:52
+msgid ""
+"These class names will be added to the post_class() function (provided your "
+"theme uses these functions), separate each one by comma."
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:100
+msgid "Fonts"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:101
+msgid ""
+"First of all you have to add the Google API Key in the plugin settings page, "
+"after that you can select the font family you want to use, then you have to "
+"add some CSS to your style.css or in the settings section of this plugin."
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:127
+msgid "The first font family to load"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:128
+msgid "Select the first font family you want to load. Example: \"Open Sans\""
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:156
+msgid "Weight of the first font family"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:157
+#: src/Customizer/Customizer_Register.php:268
+msgid ""
+"Chose carefully the weight of the font family, multiple selection allowed "
+"(press CTRL and click). Performance tips: Do not load too much font weights."
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:185
+msgid "Subsets of the first font family"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:186
+#: src/Customizer/Customizer_Register.php:297
+msgid ""
+"Chose the subsets of the font family, default \"latin\", multiple selection "
+"allowed (press CTRL and click). Performance tips: Do not load too much font "
+"subsets."
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:212
+msgid "Typography for the first font"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:213
+#: src/Customizer/Customizer_Register.php:324
+msgid ""
+"Insert here one or more HTML tags or CSS selector separated by comma of the "
+"element you want to display this font. Example: <code>body</code> or "
+"<code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:238
+msgid "The Second font family to load"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:239
+msgid "Select the second font family you want to load. Example: \"Open Sans\""
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:267
+msgid "Weight of the second font family"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:296
+msgid "Subsets of the second font family"
+msgstr ""
+
+#: src/Customizer/Customizer_Register.php:323
+msgid "Typography for the second font"
+msgstr ""
+
+#: src/Facebook/Page.php:97
+msgid "You have to add the name of yor Facebook page in the settings."
+msgstr ""
+
+#: src/Fields/Fields_Base.php:96
+msgid "The _id key is not set"
+msgstr ""
+
+#: src/Fields/Fields_Base.php:100
+msgid "The _name key is not set"
+msgstr ""
+
+#: src/Google/Fonts.php:76
+msgid "100"
+msgstr ""
+
+#: src/Google/Fonts.php:77
+msgid "100italic"
+msgstr ""
+
+#: src/Google/Fonts.php:78
+msgid "200"
+msgstr ""
+
+#: src/Google/Fonts.php:79
+msgid "200italic"
+msgstr ""
+
+#: src/Google/Fonts.php:80
+msgid "300"
+msgstr ""
+
+#: src/Google/Fonts.php:81
+msgid "300italic"
+msgstr ""
+
+#: src/Google/Fonts.php:82
+msgid "Regular 400"
+msgstr ""
+
+#: src/Google/Fonts.php:83
+msgid "Italic 400"
+msgstr ""
+
+#: src/Google/Fonts.php:84
+msgid "500"
+msgstr ""
+
+#: src/Google/Fonts.php:85
+msgid "500italic"
+msgstr ""
+
+#: src/Google/Fonts.php:86
+msgid "600"
+msgstr ""
+
+#: src/Google/Fonts.php:87
+msgid "600italic"
+msgstr ""
+
+#: src/Google/Fonts.php:88
+msgid "700"
+msgstr ""
+
+#: src/Google/Fonts.php:89
+msgid "700italic"
+msgstr ""
+
+#: src/Google/Fonts.php:90
+msgid "800"
+msgstr ""
+
+#: src/Google/Fonts.php:91
+msgid "800italic"
+msgstr ""
+
+#: src/Google/Fonts.php:92
+msgid "900"
+msgstr ""
+
+#: src/Google/Fonts.php:93
+msgid "900italic"
+msgstr ""
+
+#: src/Google/Fonts.php:97
+msgid "Bengali"
+msgstr ""
+
+#: src/Google/Fonts.php:98
+msgid "Cyrillic"
+msgstr ""
+
+#: src/Google/Fonts.php:99
+msgid "Cyrillic Extended"
+msgstr ""
+
+#: src/Google/Fonts.php:100
+msgid "Devanagari"
+msgstr ""
+
+#: src/Google/Fonts.php:101
+msgid "Greek"
+msgstr ""
+
+#: src/Google/Fonts.php:102
+msgid "Greek Extended"
+msgstr ""
+
+#: src/Google/Fonts.php:103
+msgid "Gujarati"
+msgstr ""
+
+#: src/Google/Fonts.php:104
+msgid "Hebrew"
+msgstr ""
+
+#: src/Google/Fonts.php:105
+msgid "Khmer"
+msgstr ""
+
+#: src/Google/Fonts.php:106
+msgid "Latin"
+msgstr ""
+
+#: src/Google/Fonts.php:107
+msgid "Latin Extended"
+msgstr ""
+
+#: src/Google/Fonts.php:108
+msgid "Tamil"
+msgstr ""
+
+#: src/Google/Fonts.php:109
+msgid "Telugu"
+msgstr ""
+
+#: src/Google/Fonts.php:110
+msgid "Thai"
+msgstr ""
+
+#: src/Google/Fonts.php:111
+msgid "Vietnamese"
+msgstr ""
+
+#: src/Image/Size.php:62
+msgid "Real size"
+msgstr ""
+
+#: src/Migrations/Migrations_Factory.php:43
+msgid "Migration page for ItalyStrap theme framework"
+msgstr ""
+
+#: src/Migrations/Migrations_Factory.php:44
+msgid ""
+"Before upgrading to new version of the ItalyStrap theme framework (4.x) you "
+"need to migrate the old settings and rename the old directory of the theme "
+"to the new format \"italystrap\", update the style.css in your child theme "
+"to point to the correct parent directory and update the option \"template\" "
+"to the new format name.<br>To do so you can use the below migrate button."
+"<br>Make a backup of all files and database before migration and than click "
+"on \"Migrate\" button, this will run the migration functionality."
+msgstr ""
+
+#: src/Migrations/Old_Hooks.php:89
+#, php-format
+msgid "%s is deprecated, use %s instead."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:66
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:80
+msgid "Radio 1"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:67
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:81
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:96
+msgid "The plugin is active and ready to start working."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:70
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:135
+msgid "Next"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:95
+msgid "Radio 2"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:99
+msgid "Open Popup"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:108
+msgid "Italy_Cookie_Choices_Pointer for Posts"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:109
+msgid "One more pointer."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:116
+msgid "Italy_Cookie_Choices_Pointer Pages"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:117
+msgid "A pointer for pages."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:123
+msgid "Italy_Cookie_Choices_Pointer Users"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:124
+msgid "A pointer for users."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:130
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:148
+msgid "Italy_Cookie_Choices_Pointer Help"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:131
+msgid "A pointer with action."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer-init.php:149
+msgid ""
+"A pointer for help tab.<br>Go to Posts, Pages or Users for other pointers."
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer.php:70
+msgid "Italy_Cookie_Choices_Pointer Error: post_type is not an array!"
+msgstr ""
+
+#: src/Pointer/class-italy-cookie-choices-admin-pointer.php:93
+msgid "Italy_Cookie_Choices_Pointer Error: pages is not an array!"
+msgstr ""
+
+#: src/Query/Grouped_Posts.php:464
+#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:55
+#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:70
+#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:56
+msgid "Empty Term"
+msgstr ""
+
+#: src/Query/Query.php:91
+msgid "Context name must be a string"
+msgstr ""
+
+#: src/Settings/view/italystrap-settings.php:51
+msgid "Settings Saved Successfully"
+msgstr ""
+
+#: src/Shortcodes/Button.php:55
+msgid "Button"
+msgstr ""
+
+#: src/Shortcodes/Post_Title.php:55
+msgid "Post Title"
+msgstr ""
+
+#: src/Sitemaps/HTML.php:136
+msgid "Authors:"
+msgstr "Autori:"
+
+#: src/Social/Share.php:244
+#, php-format
+msgid "Share on %2$s"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:162
+msgid "Widget Area"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:180
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:184
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:188
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:193
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:197
+msgid "Search %a"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:201
+#, php-format
+msgid "No %s Found"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:205
+#, php-format
+msgid "No %s Found In Trash"
+msgstr ""
+
+#: src/Widgets/Areas/Areas_Base.php:250
+msgid "Add new widgets area"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:23
+msgid "Widget Area settings"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:29
+msgid "Display on"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:30
+msgid "Select the position to display this widget area."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:40
+msgid "Priority"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:41
+msgid ""
+"Type the priority you want to display this widget area, it must be a number, "
+"by default the priority is 10, you can choose a number between 1 and 99999, "
+"this is useful when you want to display more than one widget area in the "
+"same position but in different order."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:49
+msgid "Width"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:50
+msgid "Select the width of this widget area."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:54
+#, php-format
+msgid "Default width set in %s"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:63
+msgid "Background color"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:64
+msgid "Choose the color for the background of the widget area."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:71
+msgid "Add background image"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:72
+msgid "Upload an image."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:82
+msgid "Select image"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:86
+msgid "Background overlay color"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:87
+msgid "Choose the color for the background overlay of the widget area."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:98
+msgid "Background overlay color opacity"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:99
+msgid "Choose the background overlay opacity of the widget area."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:110
+msgid "Widget Area Class"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:111
+msgid "Custom CSS class selector for the Widget Area container."
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:118
+msgid "Before/After Widget"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:119
+msgid ""
+"This is the HTML tag for the Widgets added in this Widget Area/Sidebar. "
+"Default: div"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:126
+msgid "Before/After Widget Title"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:127
+msgid ""
+"This is the HTML tag for the Widget Title added in this Widget Area/Sidebar. "
+"Default: h3"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:134
+msgid "Widget Title Class"
+msgstr ""
+
+#: src/Widgets/Areas/config/metaboxes.php:135
+msgid "Custom CSS class selector for the Widget Title."
+msgstr ""
+
+#: src/Widgets/Breadcrumbs.php:37
+msgid "ItalyStrap Breadcrumbs"
+msgstr ""
+
+#: src/Widgets/Breadcrumbs.php:39
+msgid "Add a Breadcrumbs ti widgetized area"
+msgstr ""
+
+#: src/Widgets/Carousel.php:53
+msgid "ItalyStrap Media Carousel"
+msgstr ""
+
+#: src/Widgets/Carousel.php:55
+msgid ""
+"Add a image carousel for all your media files from any posts type (posts, "
+"pages, attachments and custom post type)"
+msgstr ""
+
+#: src/Widgets/Editor.php:37
+msgid "ItalyStrap Editor"
+msgstr ""
+
+#: src/Widgets/Editor.php:39
+msgid "The visual editor widget."
+msgstr ""
+
+#: src/Widgets/Facebook_Page.php:47
+msgid "ItalyStrap Facebook Page"
+msgstr ""
+
+#: src/Widgets/Facebook_Page.php:49
+msgid "Display the Facebook Page widget"
+msgstr ""
+
+#: src/Widgets/Grouped_Posts.php:56
+msgid "ItalyStrap Grouped Posts"
+msgstr ""
+
+#: src/Widgets/Grouped_Posts.php:58
+msgid ""
+"Displays list of categories with their posts with an array of options. This "
+"widget is still in ALPHA version."
+msgstr ""
+
+#: src/Widgets/Image.php:48 src/Widgets/Widget_Factory.php:137
+msgid "ItalyStrap Image"
+msgstr ""
+
+#: src/Widgets/Image.php:50
+msgid "Add a image with title, url and description"
+msgstr ""
+
+#: src/Widgets/Monster.php:47
+msgid "ItalyStrap Monster Widgets"
+msgstr ""
+
+#: src/Widgets/Monster.php:49
+msgid ""
+"(Don't use this widget because it is in ALPHA version.) Test multiple "
+"widgets by ItalyStrap at the same time."
+msgstr ""
+
+#: src/Widgets/Monster.php:172 src/Widgets/Posts.php:56
+#: src/Widgets/Widget_Factory.php:124 src/Blocks/index.build.js:117
+#: src/Blocks/posts/index.js:9
+msgid "ItalyStrap Posts"
+msgstr ""
+
+#: src/Widgets/Monster.php:178 src/Widgets/Widget_Factory.php:131
+msgid "ItalyStrap VCard"
+msgstr ""
+
+#: src/Widgets/Monster.php:283
+msgid "Large image: Hand Coded"
+msgstr ""
+
+#: src/Widgets/Monster.php:286
+msgid "Large image: linked in a caption"
+msgstr ""
+
+#: src/Widgets/Monster.php:287
+msgid "This image is 960 by 720 pixels."
+msgstr ""
+
+#: src/Widgets/Monster.php:289
+msgid "Meat!"
+msgstr ""
+
+#: src/Widgets/Monster.php:290
+msgid ""
+"Hamburger fatback andouille, ball tip bacon t-bone turkey tenderloin. Ball "
+"tip shank pig, t-bone turducken prosciutto ground round rump bacon pork chop "
+"short loin turkey. Pancetta ball tip salami, hamburger t-bone capicola "
+"turkey ham hock pork belly tri-tip. Biltong bresaola tail, shoulder sausage "
+"turkey cow pork chop fatback. Turkey pork pig bacon short loin meatloaf, "
+"chicken ham hock flank andouille tenderloin shank rump filet mignon. "
+"Shoulder frankfurter shankle pancetta. Jowl andouille short ribs swine "
+"venison, pork loin pork chop meatball jerky filet mignon shoulder tenderloin "
+"chicken pork."
+msgstr ""
+
+#: src/Widgets/Monster.php:292
+msgid "Smile!"
+msgstr ""
+
+#: src/Widgets/Monster.php:295
+msgid "Select Element with long value"
+msgstr ""
+
+#: src/Widgets/Monster.php:299
+msgid "First"
+msgstr ""
+
+#: src/Widgets/Monster.php:300
+msgid "Second"
+msgstr ""
+
+#: src/Widgets/Monster.php:301
+msgid "Third"
+msgstr ""
+
+#: src/Widgets/Nav_Menu.php:45
+msgid "ItalyStrap Nav Menu"
+msgstr ""
+
+#: src/Widgets/Nav_Menu.php:47
+msgid "Add an advanced custom menu to your sidebar."
+msgstr ""
+
+#: src/Widgets/Posts.php:58
+msgid "Displays list of posts with an array of options"
+msgstr ""
+
+#: src/Widgets/Products.php:43
+msgid "Select the post type."
+msgstr ""
+
+#: src/Widgets/Products.php:74
+msgid "ItalyStrap Product"
+msgstr ""
+
+#: src/Widgets/Products.php:76
+msgid "Displays list of WC product with an array of options"
+msgstr ""
+
+#: src/Widgets/VCard.php:75
+msgid "ItalyStrap vCard Local Business"
+msgstr ""
+
+#: src/Widgets/VCard.php:77
+msgid ""
+"Add a vCard Local Business with Schema.org markup to your theme widgetized "
+"area"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:150
+msgid "Visibility"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:229
+msgid "All category pages"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:243
+msgid "Logged In"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:244
+msgid "Logged Out"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:249
+msgid "All author pages"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:269
+msgid "All tag pages"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:283
+msgid "All date archives"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:284
+msgid "Daily archives"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:285
+msgid "Monthly archives"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:286
+msgid "Yearly archives"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:297
+msgid "Front page"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:298
+msgid "Posts page"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:299
+msgid "Archive page"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:300
+msgid "404 error page"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:301
+msgid "Search results"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:326
+msgid "All taxonomy pages"
+msgstr ""
+
+#: src/Widgets/Visibility/Visibility_Admin.php:356
+msgid "All pages"
+msgstr ""
+
+#: src/Widgets/Widget.php:81
+msgid "Enter the widget title."
+msgstr ""
+
+#: src/Widgets/Widget.php:230
+msgid "&rArr; Add a $args['description'] to your widget"
+msgstr ""
+
+#: src/Widgets/Widget_Factory.php:144
+msgid "Facebook_Page"
+msgstr ""
+
+#: src/Widgets/Widget_Factory.php:150
+msgid "Breadcrumbs"
+msgstr ""
+
+#: src/Widgets/Widget_Factory.php:156
+msgid "Taxonomies_Posts"
+msgstr ""
+
+#: templates/content-post.php:81 templates/posts/default.php:79
+#: templates/standard.php:122
 msgid "No comments"
 msgstr ""
 
-#: templates/content-post.php:89 templates/standard.php:122
+#: templates/content-post.php:81 templates/posts/default.php:79
+#: templates/standard.php:122
 msgid "One comment"
 msgstr ""
 
-#: templates/content-post.php:89 templates/standard.php:122
+#: templates/content-post.php:81 templates/posts/default.php:79
+#: templates/standard.php:122
 #, php-format
 msgid "% comments"
 msgstr ""
@@ -3010,12 +4087,6 @@ msgstr ""
 msgid "You are not allowed to delete terms in this taxonomy."
 msgstr ""
 
-#: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:55
-#: tests/phpunit/tests/xmlrpc/wp/editTerm.php:70
-#: tests/phpunit/tests/xmlrpc/wp/getTerm.php:56
-msgid "Empty Term"
-msgstr ""
-
 #: tests/phpunit/tests/xmlrpc/wp/deleteTerm.php:64
 #: tests/phpunit/tests/xmlrpc/wp/editTerm.php:61
 #: tests/phpunit/tests/xmlrpc/wp/getTerm.php:65
@@ -3069,12 +4140,6 @@ msgstr ""
 msgid "Widget Class"
 msgstr ""
 
-#: tests/wpunit/FieldsTest.php:30 tests/wpunit/FieldsTest.php:44
-#: tests/wpunit/FieldsTest.php:58 tests/wpunit/FieldsTest.php:70
-#: tests/wpunit/FieldsTest.php:82
-msgid "Enter the widget class name."
-msgstr ""
-
 #: vendor/overclokk/minimum-requirements/minimum-requirements.php:201
 #, php-format
 msgid "requires %s plugins to work"
@@ -3096,146 +4161,182 @@ msgstr ""
 msgid "Activation of "
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:338
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:406
 #, php-format
 msgid ""
-"The \"%s\" field parameter has been deprecated in favor of the \"%s\" "
+"The \"%1$s\" field parameter has been deprecated in favor of the \"%1$s\" "
 "parameter."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:342
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:410
 #, php-format
 msgid ""
-"Using the \"%s\" field parameter as a callback has been deprecated in favor "
-"of the \"%s\" parameter."
+"Using the \"%1$s\" field parameter as a callback has been deprecated in "
+"favor of the \"%1$s\" parameter."
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:372
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:440
 #, php-format
 msgid ""
 "%1$s was called with a parameter that is <strong>deprecated</strong> since "
 "version %2$s! %3$s"
 msgstr ""
 
-#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:375
+#: vendor/webdevstudios/cmb2/includes/CMB2_Base.php:442
 #, php-format
 msgid ""
 "%1$s was called with a parameter that is <strong>deprecated</strong> since "
 "version %2$s with no alternative available."
 msgstr ""
 
-#: widget/Areas/Areas.php:307
-msgid "Widget Area"
+#: vendor/webdevstudios/cmb2/includes/CMB2_Types.php:231
+msgid "Custom CMB2 field type classes must extend CMB2_Type_Base."
 msgstr ""
 
-#: widget/Areas/Areas.php:318
+#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:279
+msgid "Settings updated."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:281
+msgid "Nothing to update."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/CMB2_hookup.php:503
 #, php-format
-msgid "Add New %s"
+msgid "Toggle panel: %s"
 msgstr ""
 
-#: widget/Areas/Areas.php:319
-#, php-format
-msgid "Edit %s"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller.php:257
+msgid "This box does not have read permissions."
 msgstr ""
 
-#: widget/Areas/Areas.php:320
-#, php-format
-msgid "New %s"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller.php:277
+msgid "This box does not have write permissions."
 msgstr ""
 
-#: widget/Areas/Areas.php:322
-#, php-format
-msgid "View %s"
-msgstr ""
-
-#: widget/Areas/Areas.php:323
-msgid "Search %a"
-msgstr ""
-
-#: widget/Areas/Areas.php:324
-#, php-format
-msgid "No %s Found"
-msgstr ""
-
-#: widget/Areas/Areas.php:325
-#, php-format
-msgid "No %s Found In Trash"
-msgstr ""
-
-#: widget/Breadcrumbs.php:37
-msgid "ItalyStrap Breadcrumbs"
-msgstr ""
-
-#: widget/Breadcrumbs.php:39
-msgid "Add a Breadcrumbs ti widgetized area"
-msgstr ""
-
-#: widget/Carousel.php:52
-msgid "ItalyStrap Media Carousel"
-msgstr ""
-
-#: widget/Carousel.php:54
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller.php:300
 msgid ""
-"Add a image carousel for all your media files from any posts type (posts, "
-"pages, attachments and custom post type)"
+"No box found by that id. A box needs to be registered with the \"show_in_rest"
+"\" parameter configured."
 msgstr ""
 
-#: widget/Image.php:48
-msgid "ItalyStrap Image"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller.php:378
+msgid "A human-readable description of the object."
 msgstr ""
 
-#: widget/Image.php:50
-msgid "Add a image with title, url and description"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller.php:385
+msgid "The id for the object."
 msgstr ""
 
-#: widget/Posts.php:47
-msgid "ItalyStrap Posts"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller.php:392
+msgid "The title for the object."
 msgstr ""
 
-#: widget/Posts.php:49
-msgid "Displays list of posts with an array of options"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:51
+msgid "Includes the registered fields for the box in the response."
 msgstr ""
 
-#: widget/Products.php:43
-msgid "Select the post type."
-msgstr ""
-
-#: widget/Products.php:74
-msgid "ItalyStrap Product"
-msgstr ""
-
-#: widget/Products.php:76
-msgid "Displays list of WC product with an array of options"
-msgstr ""
-
-#: widget/Taxonomies_Posts.php:45
-msgid "ItalyStrap Taxonomies Posts"
-msgstr ""
-
-#: widget/Taxonomies_Posts.php:47
-msgid "Displays list of categories with an array of options"
-msgstr ""
-
-#: widget/VCard.php:75
-msgid "ItalyStrap vCard Local Business"
-msgstr ""
-
-#: widget/VCard.php:77
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:72
 msgid ""
-"Add a vCard Local Business with Schema.org markup to your theme widgetized "
-"area"
+"Includes the fully rendered attributes, 'form_open', 'form_close', as well "
+"as the enqueued 'js_dependencies' script handles, and 'css_dependencies' "
+"stylesheet handles."
 msgstr ""
 
-#: widget/Widget.php:71
-msgid "Title"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:122
+msgid "No boxes found."
 msgstr ""
 
-#: widget/Widget.php:72
-msgid "Enter the widget title."
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:27
+msgid ""
+"Includes the box object which the fields are registered to in the response."
 msgstr ""
 
-#~ msgid "Type"
-#~ msgstr "Tipo"
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:30
+msgid ""
+"When the '_rendered' argument is passed, the renderable field attributes "
+"will be returned fully rendered. By default, the names of the callback "
+"handers for the renderable attributes will be returned."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:33
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:36
+msgid ""
+"To view or modify the field's value, the 'object_id' and 'object_type' "
+"arguments are required."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:236
+#: vendor/webdevstudios/cmb2/tests/test-cmb-rest-controllers.php:247
+msgid ""
+"CMB2 Field value cannot be updated without the value parameter specified."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:297
+#: vendor/webdevstudios/cmb2/tests/test-cmb-rest-controllers.php:258
+#: vendor/webdevstudios/cmb2/tests/test-cmb-rest-controllers.php:269
+msgid ""
+"CMB2 Field value cannot be modified without the object_id and object_type "
+"parameters specified."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:312
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:341
+msgid "No field found by that id."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:415
+#, php-format
+msgid "Value Error for %s"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:24
+msgid "The register_routes() method must be overriden"
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:34
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:46
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:58
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:70
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:82
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:94
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:106
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:118
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:130
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:142
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:154
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:167
+#, php-format
+msgid "Method '%s' not implemented. Must be over-ridden in subclass."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:272
+msgid "Current page of the collection."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:280
+msgid "Maximum number of items to be returned in result set."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:289
+msgid "Limit results to those matching a string."
+msgstr ""
+
+#: vendor/webdevstudios/cmb2/includes/shim/WP_REST_Controller.php:307
+msgid ""
+"Scope under which the request is made; determines fields present in response."
+msgstr ""
+
+#: src/Blocks/index.build.js:120 src/Blocks/posts/index.js:12
+msgid "posts"
+msgstr ""
+
+#: src/Blocks/index.build.js:251 src/Blocks/posts/edit.js:99
+msgid "Posts Settings"
+msgstr ""
+
+#~ msgid "ItalyStrap Dashboard"
+#~ msgstr "ItalyStrap Dashboard"
 
 #~ msgid ""
 #~ "For more informations about the options below see the <a href=\"admin.php?"
