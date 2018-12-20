@@ -2,6 +2,8 @@
 /**
  * Fields API: Fields Class
  *
+ * Idea: https://github.com/Chrico/wp-fields
+ *
  * @package ItalyStrap
  * @since 2.0.0
  */
@@ -347,7 +349,8 @@ class Fields extends Fields_Base {
 			$out .= 'class="' . esc_attr( $key['class'] ) . '" ';
 		}
 
-		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
+		// $out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" value="1" ';
+		$out .= 'id="' . esc_attr( $key['_id'] ) . '" name="' . esc_attr( $key['_name'] ) . '" ';
 
 		// if ( ( isset( $key['value'] ) && '1' === $key['value'] ) || ( ! isset( $key['value'] ) && 1 === $key['default'] ) ) {
 		// 	$out .= ' checked="checked" ';

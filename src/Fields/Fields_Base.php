@@ -91,7 +91,7 @@ abstract class Fields_Base implements Fields_Interface {
 	 * @return string           Return the field html
 	 */
 	public function get_field_type( array $key, array $instance ) {
-
+// d( $key );
 		if ( ! isset( $key['_id'] ) ) {
 			throw new InvalidArgumentException( __( 'The _id key is not set', 'italystrap' ) );
 		}
