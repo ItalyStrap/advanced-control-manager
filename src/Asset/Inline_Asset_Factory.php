@@ -89,6 +89,29 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 	}
 
 	/**
+	 * Print inline script in footer after all and before shotdown hook.
+	 *
+	 * @todo Creare un sistema che appenda regolarmente dopo gli script
+	 *       e tenga presente delle dipendenze da jquery
+	 */
+	public function inline_json() {
+
+		$script = apply_filters( 'italystrap_custom_inline_script', Inline_Script::get() );
+
+		if ( ! $script ) {
+			return;
+		}
+
+		// "<script type='application/ld+json'>" . wp_json_encode( $script ) . '</script>' . "\n"
+
+		printf(
+			'<script type="text/javascript" id="custom-inline-js">/*<![CDATA[*/%s/*]]>*/</script>',
+			// strip_tags( $this->minify->js( $script ) )
+			$this->minify->js( $script )
+		);
+	}
+
+	/**
 	 * Print inline css.
 	 */
 	public function inline_css() {
