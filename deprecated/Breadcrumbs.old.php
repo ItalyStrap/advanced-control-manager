@@ -9,7 +9,7 @@
  * @package ItalyStrap\Core
  */
 
-namespace ItalyStrap\Deprecated;
+namespace ItalyStrap\Old;
 
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
@@ -63,13 +63,6 @@ class Breadcrumbs {
 	 *
 	 * @var int
 	 */
-	private $config;
-
-	/**
-	 * Counter for Schema.org position of breadcrumbs itemlist
-	 *
-	 * @var int
-	 */
 	private $count;
 
 	/**
@@ -79,19 +72,13 @@ class Breadcrumbs {
 	 */
 	protected $bloginfo_name;
 
-	protected $template = [];
-
-	private $args = [];
-
 	/**
 	 * Dispay breadcrumbs when a class is instantiated
 	 *
 	 * @param array
 	 */
 	public function __construct() {
-
-		$this->bloginfo_name = GET_BLOGINFO_NAME;
-		$this->home_url = HOME_URL;
+		$this->bloginfo_name = esc_attr( GET_BLOGINFO_NAME );
 	}
 
 	/**
@@ -104,7 +91,7 @@ class Breadcrumbs {
 	 */
 	public function get_the_breadcrumbs( $args = array() ) {
 
-		return \ItalyStrap\Breadcrumbs\Breadcrumbs_Factory::make( $args, 'html' );
+		$this->bloginfo_name = esc_attr( GET_BLOGINFO_NAME );
 
 		/**
 		 * Default argument for method get_the_breadcrumbs()
@@ -117,14 +104,14 @@ class Breadcrumbs {
 			'home'					=> $this->bloginfo_name,
 			'open_wrapper'			=> '<ol class="breadcrumb"  itemscope itemtype="https://schema.org/BreadcrumbList">',
 			'closed_wrapper'		=> '</ol>',
-			'before_element'		=> '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
-			'before_element_active'	=> '<li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
+			'before_element'		=> '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
+			'before_element_active'	=> '<li class="active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
 			'after_element'			=> '</li>',
 			'wrapper_name'			=> '<span itemprop="name">',
 			'close_wrapper_name'	=> '</span>',
 		);
 
-		$args = apply_filters( 'italystrap_breadcrumbs_args', array_merge( $default, $args, $this->get_template() ) );
+		$args = apply_filters( 'italystrap_breadcrumbs_args', array_merge( $default, $args ) );
 
 		/**
 		* Dichiara ogni elemento in $args come sua propria variabile, es. $home, $delimiter.
@@ -146,28 +133,20 @@ class Breadcrumbs {
 			/**
 			 * This will display only in home page, static or not
 			 */
-			// $breadcrumb .= $before_element_active . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /><meta itemprop="position" content="1" />'. $after_element;
-
-			$breadcrumb .= sprintf(
-				'%s%s<meta itemprop="name" content="%s" /><meta itemprop="position" content="1" />%s',
-				$before_element_active,
-				$home,
-				$this->bloginfo_name,
-				$after_element
-			);
+			$breadcrumb .= $before_element_active . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /><meta itemprop="position" content="1" />'. $after_element;
 
 		} else if ( is_home() && ! is_front_page() ) {
 
 			/**
 			 * This will display only in blog static page
 			 */
-			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( $this->home_url ) . '" title="' . $this->bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $this->bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
 
 			$breadcrumb .= $before_element_active . $wrapper_name . get_the_title( get_option( 'page_for_posts' ) ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 		} else {
 
-			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( $this->home_url ) . '" title="' . $this->bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
+			$breadcrumb .= $before_element .'<a itemprop="item" href="' . esc_attr( HOME_URL ) . '" title="' . $this->bloginfo_name . '">' . $home . '<meta itemprop="name" content="' . $this->bloginfo_name . '" /></a><meta itemprop="position" content="1" />'. $after_element;
 
 		}
 
@@ -210,7 +189,7 @@ class Breadcrumbs {
 			if ( get_the_category() && get_post_type() === 'post' ) {
 
 				$category = get_the_category();
-				$breadcrumb .= $this->get_tax_parents( $category[0], $before_element, $after_element );
+				$breadcrumb .= $this->get_category_parents( $category[0], $before_element, $after_element );
 			}
 
 			/**
@@ -251,7 +230,7 @@ class Breadcrumbs {
 				 */
 				$slug = $post_type->rewrite;
 
-				$breadcrumb .= $before_element . '<a itemprop="item" href="' . esc_attr( $this->home_url ) . $slug['slug'] . '/' . '" title="' . $title . '">' . $wrapper_name . $title . $close_wrapper_name . '</a>' . $this->meta( $this->count, 2 ) . $after_element;
+				$breadcrumb .= $before_element . '<a itemprop="item" href="' . esc_attr( HOME_URL ) . $slug['slug'] . '/' . '" title="' . $title . '">' . $wrapper_name . $title . $close_wrapper_name . '</a>' . $this->meta( $this->count, 2 ) . $after_element;
 
 				/**
 				 * Get array of all anchestor ID
@@ -284,23 +263,6 @@ class Breadcrumbs {
 					$breadcrumb .= $before_element_active . $wrapper_name . get_the_title() . $close_wrapper_name . $this->meta( $this->count ) . $after_element;
 				} else {
 
-					$get_object_taxonomies = get_object_taxonomies( get_post() );
-
-					/**
-					 * https://developer.wordpress.org/reference/functions/get_the_terms/
-					 */
-					$get_the_terms = get_the_terms( get_the_ID(), $get_object_taxonomies[0] );
-
-					$count = 3;
-
-					if ( $get_the_terms && ! is_wp_error( $get_the_terms ) ) {
-
-						$sorted_terms = array();
-						$this->sort_terms_hierarchically( $get_the_terms, $sorted_terms );
-
-						$breadcrumb .= $this->sorted_term_html_output( $sorted_terms, $args, $get_object_taxonomies, $count );
-					}
-
 					/**
 				 * Da fare:
 				 * Verificare che il custom post sia inserito in categoria standard
@@ -311,16 +273,14 @@ class Breadcrumbs {
 				 */
 					// if ( get_the_category() ) {
 					// $category = get_the_category();
-					// $breadcrumb .= $this->get_tax_parents( $category[0], $before_element, $after_element);
+					// $breadcrumb .= $this->get_category_parents( $category[0], $before_element, $after_element);
 					// }
-					$breadcrumb .= $before_element_active . $wrapper_name . get_the_title() . $close_wrapper_name . '<meta itemprop="position" content="' . $count . '" />' . $after_element;
+					$breadcrumb .= $before_element_active . $wrapper_name . get_the_title() . $close_wrapper_name . '<meta itemprop="position" content="3" />' . $after_element;
 				}
-
 			} else {
 
 				$breadcrumb .= $before_element_active . $wrapper_name . get_the_title() . $close_wrapper_name . $this->meta( $this->count, 1 ) . $after_element;
 			}
-
 		} elseif ( is_page() && ( ! is_front_page() ) ) {
 
 			/**
@@ -351,23 +311,7 @@ class Breadcrumbs {
 			 */
 			$breadcrumb .= $before_element_active . $wrapper_name . get_the_title() . $close_wrapper_name . $this->meta( $this->count ) . $after_element;
 
-		} elseif ( is_tax() ) {
-
-			$queried_object = get_queried_object();
-
-			if ( $queried_object instanceof \WP_Term ) {
-
-				/**
-				 * If is category (default archive.php) add Category name
-				 * If category has child add category child too
-				 * Nota per me: togliere solo link su categoria nipote
-				 * e aggiungere &before_element_active
-				 */
-				$breadcrumb .= $this->get_tax_parents( $queried_object->term_id, $before_element, $after_element, array(), $queried_object->taxonomy );
-
-			}
-
-		}  elseif ( is_category() ) {
+		} elseif ( is_category() ) {
 
 			/**
 			 * If is category (default archive.php) add Category name
@@ -375,14 +319,7 @@ class Breadcrumbs {
 			 * Nota per me: togliere solo link su categoria nipote
 			 * e aggiungere &before_element_active
 			 */
-			$breadcrumb .= $this->get_tax_parents( get_query_var( 'cat' ), $before_element, $after_element );
-
-		} elseif ( is_tag() ) {
-
-			/**
-			 * If is tag (default archive.php) add tag title
-			 */
-			$breadcrumb .= $before_element_active . $wrapper_name . __( 'Tag: ', 'italystrap' ) . single_tag_title( '', false ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+			$breadcrumb .= $this->get_category_parents( get_query_var( 'cat' ), $before_element, $after_element );
 
 		} elseif ( is_post_type_archive() ) {
 
@@ -391,6 +328,13 @@ class Breadcrumbs {
 			 * add Post Type Archive Title
 			 */
 			$breadcrumb .= $before_element_active . $wrapper_name . post_type_archive_title( '', false ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
+
+		} elseif ( is_tag() ) {
+
+			/**
+			 * If is tag (default archive.php) add tag title
+			 */
+			$breadcrumb .= $before_element_active . $wrapper_name . __( 'Tag: ', 'italystrap' ) . single_tag_title( '', false ) . $close_wrapper_name . '<meta itemprop="position" content="2" />' . $after_element;
 
 		} elseif ( is_year() ) {
 
@@ -472,13 +416,13 @@ class Breadcrumbs {
 		$breadcrumb .= $closed_wrapper;
 
 		/**
-		 * The breadcrumb
+		 * Filter the breadcrumb
 		 *
 		 * @since 2.1
 		 *
 		 * @param string $breadcrumb the breadcrumb to be displayed.
 		 */
-		return $breadcrumb;
+		return apply_filters( 'italystrap_get_the_breadcrumbs', $breadcrumb );
 	}
 
 	/**
@@ -489,15 +433,15 @@ class Breadcrumbs {
 	 * @param array $args Optional. Content to prepend to the breadcrumbs.
 	 * @see  See description at the top of this page
 	 */
-	public function render( $args = array(), $echo = true ) {
+	public function the_breadcrumbs( $args = array() ) {
 
-		$output = $this->get_the_breadcrumbs( $args );
+		$breadcrumb = $this->get_the_breadcrumbs( $args );
 
-		if ( ! $echo ) {
-			return $output;
+		if ( ! empty( $breadcrumb ) ) {
+
+			echo $breadcrumb;
+
 		}
-
-		echo $output;
 	}
 
 	/**
@@ -519,13 +463,13 @@ class Breadcrumbs {
 	 * Retrieve category parents.
 	 *
 	 * Da fare per le performance:
-	 * Modificare il metodo italystrap_get_tax_parents e creare un loop normale
+	 * Modificare il metodo italystrap_get_category_parents e creare un loop normale
 	 * la ricorsione è una martellata sui maroni
 	 * ma è comunque abbastanza veloce :-P
 	 *
 	 * @since 2.1.0 (From WP core 1.2.0)
 	 *
-	 * @see get_tax_parents
+	 * @see get_category_parents
 	 * @link https://core.trac.wordpress.org/browser/tags/4.1/src/wp-includes/category-template.php#L42 Original function
 	 *
 	 * @param int    $id Category ID.
@@ -534,14 +478,12 @@ class Breadcrumbs {
 	 * @param array  $visited Optional. Already linked to categories to prevent duplicates.
 	 * @return string|WP_Error A list of category parents on success, WP_Error on failure.
 	 */
-	private function get_tax_parents( $id, $before_element, $after_element, $visited = array(), $tax = 'category' ) {
+	private function get_category_parents( $id, $before_element, $after_element, $visited = array() ) {
 
 		$chain = '';
-		$parent = get_term( $id, $tax );
+		$parent = get_term( $id, 'category' );
 
-		if ( is_wp_error( $parent ) ) {
-			return $parent;
-		}
+		if ( is_wp_error( $parent ) ) { return $parent; }
 
 		$name = $parent->name;
 
@@ -556,118 +498,18 @@ class Breadcrumbs {
 		static $i = 2;
 
 		if ( $parent->parent && ( $parent->parent != $parent->term_id ) && ! in_array( $parent->parent, $visited, true ) ) {
-
 			$visited[] = $parent->parent;
-
 			// http://devzone.zend.com/283/recursion-in-php-tapping-unharnessed-power/
-			$chain .= $this->get_tax_parents( $parent->parent, $before_element, $after_element, $visited, $tax );
+			$chain .= $this->get_category_parents( $parent->parent, $before_element, $after_element,  $visited );
 			$i++;
 		}
 
 		$this->count = $i;
 
 		if ( get_category_link( $parent->term_id ) ) {
-			$chain .= $before_element . '<a itemprop="item" href="' . esc_url( get_category_link( $parent->term_id ) ) . '" title="' . $name . '"><span itemprop="name">'. $name .'</span></a><meta itemprop="position" content="' . $i . '" />'. $after_element;
-		} else {
-			$chain .= $before_element . $name . $after_element; 
-		}
+			$chain .= $before_element . '<a itemprop="item" href="' . esc_url( get_category_link( $parent->term_id ) ) . '" title="' . $name . '"><span itemprop="name">'. $name .'</span></a><meta itemprop="position" content="' . $i . '" />'. $after_element; } else {
+			$chain .= $before_element . $name . $after_element; }
 
 			return $chain;
-	}
-
-	/**
-	 * Display the breadcrumbs.
-	 *
-	 * @since 2.1.0
-	 *
-	 * @deprecated [<version>] Use the new method CLASS::render()
-	 */
-	public function the_breadcrumbs( $args = array() ) {
-		_deprecated_function( __METHOD__, '2.0.0', '::render()' );
-		$this->render( $args, true );
-	}
-
-	/**
-	 * Set template
-	 */
-	public function set_template( array $template = [] ) {
-		$this->template = $template;
-	}
-
-	/**
-	 * Set template
-	 */
-	private function get_template() {
-		return $this->template;
-	}
-
-	/**
-	 * https://wordpress.stackexchange.com/a/239935
-	 */
-	private function sort_terms_hierarchically( array &$terms, array &$into, $parent_id = 0 ) {
-		foreach ( $terms as $i => $term ) {
-			if ( $term->parent === $parent_id ) {
-				$into[ $term->term_id ] = $term;
-				unset( $terms[ $i ] );
-			}
-		}
-
-		foreach ( $into as $top_term ) {
-			$top_term->children = array();
-			$this->sort_terms_hierarchically( $terms, $top_term->children, $top_term->term_id );
-		}
-
-	}
-
-	/**
-	 * Get_term_flat
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	private function get_terms_flat( $terms ) {
-
-		static $new_terms = [];
-
-		foreach ( $terms as $term ) {
-			$this->get_terms_flat( $term->children );
-			$new_terms[ $term->term_id ] = $term;
-		}
-
-		return $new_terms;
-	}
-
-	/**
-	 * Sorted term html
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function sorted_term_html_output( array $terms = [], array $args = [], $get_object_taxonomies = null, $count = 0 ) {
-
-		$breadcrumb = '';
-
-		$terms = $this->get_terms_flat( $terms );
-		$terms = array_reverse( $terms );
-
-		foreach ( $terms as $term ) {
-			$term_link = get_term_link( $term, $get_object_taxonomies[0] );
-
-			$breadcrumb .= sprintf(
-				'%s<a href="%s">%s%s%s%s</a>%s',
-				$args['before_element'],
-				esc_url( $term_link ),
-				$args['wrapper_name'],
-				$term->name,
-				$args['close_wrapper_name'],
-				$this->meta( $count ),
-				$args['after_element']
-			);
-
-			$count++;	
-		}
-
-		return $breadcrumb;
-
 	}
 }

@@ -312,100 +312,13 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
 	 */
 	function get_attr( $context, array $attr = array(), $echo = false, $args = null ) {
 
-		$html = '';
-
-		/**
-		 * This filters the array with html attributes.
-		 *
-		 * @param  array  $attr    The array with all HTML attributes to render.
-		 * @param  string $context The context in wich this functionis called.
-		 * @param  null   $args    Optional. Extra arguments in case is needed.
-		 *
-		 * @var array
-		 */
-		$attr = (array) apply_filters( "italystrap_{$context}_attr", $attr, $context, $args );
-
-		foreach ( $attr as $key => $value ) {
-
-			if ( empty( $value ) ) {
-				continue;
-			}
-
-			if ( true === $value ) {
-
-				$html .= ' ' . esc_html( $key );
-			} else {
-
-				$html .= sprintf(
-					' %s="%s"',
-					esc_html( $key ),
-					( 'href' === $key ) ? esc_url( $value ) : esc_attr( $value )
-				);
-			}
-		}
-
-		/**
-		 * This filters the output of the html attributes.
-		 *
-		 * @param  string $html    The HTML attr output.
-		 * @param  array  $attr    The array with all HTML attributes to render.
-		 * @param  string $context The context in wich this functionis called.
-		 * @param  null   $args    Optional. Extra arguments in case is needed.
-		 *
-		 * @var string
-		 */
-		$html = apply_filters( "italystrap_attr_{$context}_output", $html, $attr, $context, $args );
-
 		if ( ! $echo ) {
-			return $html;
+			return \ItalyStrap\HTML\get_attr( $context, $attr, false, $args );
 		}
 
-		echo $html;
+		echo \ItalyStrap\HTML\get_attr( $context, $attr, false, $args );
 	}
 }
-
-/**
- * Get the Breadcrumbs
- *
- * @param  array  $args The breadcrumbs arguments.
- *                      @see class Breadcrumbs for more info.
- * @return string       Return the breadcrumbs html.
- */
-function get_breadcrumbs( array $args = array() ) {
-
-	$breadcrumbs = new \ItalyStrap\Breadcrumbs\Breadcrumbs();
-
-	if ( ! is_object( $breadcrumbs ) ) {
-		return;
-	}
-
-	return $breadcrumbs->get_the_breadcrumbs( $args );
-}
-
-/**
- * Print the Breadcrumbs
- *
- * @param  array  $args The breadcrumbs arguments.
- *                      @see class Breadcrumbs for more info.
- * @return string       Return the breadcrumbs html.
- */
-function breadcrumbs( array $args = array() ) {
-
-	echo get_breadcrumbs( $args );
-}
-
-/**
- * Do breadcrumbs
- *
- * @since 2.2.0
- *
- * @param  array  $args The breadcrumbs arguments.
- */
-function do_breadcrumbs( array $args = array() ) {
-
-	breadcrumbs( $args );
-}
-add_action( 'do_breadcrumbs', __NAMESPACE__ . '\do_breadcrumbs' );
 
 /**
  * Retrieve the name of the highest priority template file that exists.
