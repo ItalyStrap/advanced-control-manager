@@ -282,6 +282,16 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.11.0 =
+Release Date: May 31st, 2018
+
+Dev time: 100h
+
+* Updated composer dependency
+* New API Class for Breadcrumbs
+* New API for Blocks in beta version
+* Changed Fields API
+
 = 2.10.0 =
 Release Date: May 31st, 2018
 
