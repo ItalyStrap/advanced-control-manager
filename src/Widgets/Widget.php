@@ -634,9 +634,12 @@ abstract class Widget extends WP_Widget {
 
 		/**
 		 * Set field id and name
+		 * Non invertire l'ordine di assegnazione per evitare
+		 * che venga passato il field_id del widget al field_name
+		 * inavvertitamente.
 		 */
-		$key['id'] = $this->get_field_id( $key['id'] );
 		$key['name'] = $this->get_field_name( $key['id'] );
+		$key['id'] = $this->get_field_id( $key['id'] );
 
 		return $this->fields_type->get_field_type( $key, $this->instance );
 	}
