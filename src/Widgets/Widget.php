@@ -632,16 +632,11 @@ abstract class Widget extends WP_Widget {
 	 */
 	protected function field_type( array $key ) {
 
-		/**
-		 * Set field id and name
-		 * Non invertire l'ordine di assegnazione per evitare
-		 * che venga passato il field_id del widget al field_name
-		 * inavvertitamente.
-		 */
-		$key['name'] = $this->get_field_name( $key['id'] );
-		$key['id'] = $this->get_field_id( $key['id'] );
+		/* Set field id and name  */
+		$key['_name'] = $this->get_field_name( $key['id'] );
+		$key['_id'] = $this->get_field_id( $key['id'] );
 
-		return $this->fields_type->get_field_type( $key, $this->instance );
+		return $this->fields_type->render( $key, $this->instance );
 	}
 
 	/**
@@ -705,26 +700,26 @@ abstract class Widget extends WP_Widget {
 			return;
 		}
 
-		if ( function_exists( 'wp_enqueue_media' ) ) {
+//		if ( function_exists( 'wp_enqueue_media' ) ) {
+//
+//			wp_enqueue_media();
+//
+//		} else {
+//
+//			if ( ! wp_script_is( 'thickbox', 'enqueued' ) ) {
+//
+//				wp_enqueue_style( 'thickbox' );
+//				wp_enqueue_script( 'thickbox' );
+//
+//			}
+//
+//			if ( ! wp_script_is( 'media-upload', 'enqueued' ) ) {
+//				wp_enqueue_script( 'media-upload' ); }
+//		}
+//
+//		wp_enqueue_script( 'jquery-ui-sortable' );
 
-			wp_enqueue_media();
-
-		} else {
-
-			if ( ! wp_script_is( 'thickbox', 'enqueued' ) ) {
-
-				wp_enqueue_style( 'thickbox' );
-				wp_enqueue_script( 'thickbox' );
-
-			}
-
-			if ( ! wp_script_is( 'media-upload', 'enqueued' ) ) {
-				wp_enqueue_script( 'media-upload' ); }
-		}
-
-		wp_enqueue_script( 'jquery-ui-sortable' );
-
-		$js_file = ( WP_DEBUG ) ? 'assets/js/src/widget.js' : 'assets/js/widget.min.js';
+		$js_file = \ItalyStrap\Core\is_script_debug() ? 'assets/js/src/widget.js' : 'assets/js/widget.min.js';
 
 		if ( ! wp_script_is( 'italystrap-widget' ) ) {
 

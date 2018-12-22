@@ -90,8 +90,8 @@ class Attributes implements Subscriber_Interface {
 	protected function field_type( $widget, $instance, array $key, $out = '' ) {
 
 		/* Set field id and name  */
-		$key['name'] = $this->get_field_name( $key['id'] );
-		$key['id'] = $this->get_field_id( $key['id'] );
+		$key['_name'] = $widget->get_field_name( $key['id'] );
+		$key['_id'] = $widget->get_field_id( $key['id'] );
 
 		return $this->fields_type->render( $key, $instance );
 	}

@@ -93,18 +93,18 @@ module.exports = function(grunt) {
 			// npm install grunt-contrib-uglify --save-dev
 			admin: {
 				files: {
-					'admin/js/italystrap-settings.min.js': [
-						'admin/js/src/italystrap-settings.js'
-						],
+					'src/Settings/js/italystrap-settings.min.js': [
+						'src/Settings/js/src/italystrap-settings.js'
+					],
 					'admin/js/gallery-settings.min.js': [
 						'admin/js/src/gallery-settings.js'
-						],
-					'admin/js/widget.min.js': [
-						'admin/js/src/widget.js'
-						],
+					],
+					'src/Widgets/assets/js/widget.min.js': [
+						'src/Widgets/assets/js/src/widget.js'
+					],
 					'js/unveil.min.js': [
 						'js/src/unveil.js'
-						]
+					]
 				}
 			}
 		},
@@ -115,6 +115,7 @@ module.exports = function(grunt) {
 			]
 		},
 
+		// CSS output mode. Can be: nested, expanded, compact, compressed.
 		compass:{ // https://github.com/gruntjs/grunt-contrib-compass
 			admin:{
 				options: {
@@ -124,6 +125,18 @@ module.exports = function(grunt) {
 					httpPath:['../'], // http://stackoverflow.com/questions/13888978/how-to-out-put-images-for-sprite-in-compass-sass
 					relativeAssets:true,
 					outputStyle: 'compressed'
+				}
+			},
+			widget:{
+				options: {
+					sassDir:['src/Widgets/assets/sass'],
+					cssDir:['src/Widgets/assets/css'],
+					imagesDir:['src/Widgets/assets/img'],
+					httpPath:['../'], // http://stackoverflow.com/questions/13888978/how-to-out-put-images-for-sprite-in-compass-sass
+					relativeAssets:true,
+					outputStyle: 'compressed',
+					// outputStyle: 'expanded',
+					force: true, // Forse rewriting file
 				}
 			},
 			fontello:{
@@ -685,6 +698,9 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test', ['jshint', 'csslint']);
 	grunt.registerTask('build', ['uglify', 'less', 'compass']);
+
+	grunt.registerTask( 'js', [ 'uglify' ] );
+	grunt.registerTask( 'css', [ 'compass' ] );
 
 	grunt.registerTask('php', 'A sample task that logs stuff.', function() {
 		return null;

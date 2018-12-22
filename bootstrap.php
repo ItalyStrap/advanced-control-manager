@@ -33,7 +33,9 @@ $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/option
  */
 $theme_mods = (array) get_theme_mods();
 $options = (array) get_option( ITALYSTRAP_OPTIONS_NAME );
-$options = wp_parse_args( $options, get_default_from_config( $admin_settings ) );
+
+//$options = wp_parse_args( $options, get_default_from_config( $admin_settings ) );
+$options = array_merge( get_default_from_config( $admin_settings ), $options );
 
 $prefix_coonfig = array(
 	'prefix'	=> 'italystrap',

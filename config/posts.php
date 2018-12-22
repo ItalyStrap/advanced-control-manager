@@ -667,7 +667,7 @@ return array(
 		'desc'		=> __( 'Insert the user ID you want to display posts.', 'italystrap' ),
 		'id'		=> 'from_current_user',
 		'type'		=> 'text',
-		// 'class'		=> 'widefat from_current_user',
+		'class'		=> 'widefat from_current_user',
 		'default'	=> '',
 		// 'validate'	=> 'is_numeric',
 		'sanitize'	=> 'esc_attr',

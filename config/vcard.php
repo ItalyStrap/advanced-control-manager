@@ -220,7 +220,7 @@ return array(
 		'id'		=> 'logo_id',
 		'type'		=> 'media',
 		'class'		=> 'widefat ids',
-		'class-p'	=> 'hidden',
+//		'class-p'	=> 'hidden',
 		'default'	=> '',
 		'validate'	=> 'is_numeric',
 		'sanitize'	=> 'sanitize_text_field',

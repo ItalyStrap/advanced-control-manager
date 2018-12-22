@@ -60,7 +60,7 @@ return array(
 	 * Enter a title. this will be visualized below the image. (This is not the widget title).
 	 */
 	'image_title'			=> array(
-		'label'		=> __( 'Title', 'italystrap' ),
+		'label'		=> __( 'Title of the image', 'italystrap' ),
 		'desc'		=> __( 'Enter a title. this will be visualized below the image. (This is not the widget title).', 'italystrap' ),
 		'id'		=> 'image_title',
 		'type'		=> 'text',

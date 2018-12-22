@@ -492,8 +492,7 @@ class Settings implements Subscriber_Interface {
 	 */
 	public function get_field_type( array $args ) {
 
-		$args['id'] = $this->get_field_id( $args['id'] );
-
+		$args['_id'] = $args['_name'] = $this->get_field_id( $args['id'] );
 		echo $this->fields_type->render( $args, $this->options ); // XSS ok.
 	}
 
