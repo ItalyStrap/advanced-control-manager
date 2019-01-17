@@ -34,9 +34,12 @@ return array(
 			'desc'				=> __( 'This code will be included verbatim in style tag before </head> tag of your page or post', 'italystrap' ),
 			'id'				=> $this->_prefix . '_custom_css_settings',
 			'type'				=> 'textarea_code',
-			'attributes'		=> array(
-				'placeholder' => 'body{background-color:#f2f2f2}'
-			),
+			'options'			=> [
+				'disable_codemirror' => true
+			],
+			'attributes'		=> [
+				'placeholder' => 'body{background-color:#f2f2f2}',
+			],
 		),
 		'custom_body_class_settings'=> array(
 			'name'				=> __( 'Body Classes', 'italystrap' ),
