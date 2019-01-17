@@ -123,6 +123,25 @@ return array(
 				'show_on'				=> Core\is_beta(),
 			),
 			array(
+				'id'		=> 'social_button_on_post_types',
+				'title'		=> __( 'Display Social Sharing on', 'italystrap' ),
+				'args'		=> array(
+					'desc'			=> __( 'Select the post types to display buttons', 'italystrap' ) . $beta,
+					'id'			=> 'social_button_on_post_types',
+					'type'			=> 'checkbox',
+					'options'		=> (array) get_post_types(
+						[
+							'public'   => true,
+						]
+					),
+					'class'			=> 'widefat post_types social_button_position easy',
+					'default'		=> 'post',
+					// 'validate'	=> 'ctype_alpha',
+					'sanitize'		=> 'sanitize_select_multiple',
+				),
+				'show_on'				=> Core\is_beta(),
+			),
+			array(
 				'id'		=> 'google_api_key',
 				'title'		=> __( 'Google API Key', 'italystrap' ),
 				'args'		=> array(

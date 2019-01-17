@@ -15,6 +15,7 @@ use ItalyStrap\Event\Subscriber_Interface;
 
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
+use ItalyStrap\HTML;
 
 /**
  * The Share Class
@@ -36,7 +37,7 @@ class Share implements Subscriber_Interface {
 		return array(
 			// 'hook_name'							=> 'method_name',
 			'the_content'	=> array(
-				'function_to_add'	=> 'add_social_button',
+				'function_to_add'	=> 'render',
 				'priority'			=> 9999,
 				'accepted_args'		=> 1,
 			),
@@ -246,7 +247,7 @@ class Share implements Subscriber_Interface {
 
 		foreach ( $this->social_url as $key => $url ) {
 
-			$format = \ItalyStrap\Core\get_attr( $key, $link_attr );
+			$format = HTML\get_attr( $key, $link_attr );
 
 			$output .= sprintf(
 				'<li><a href="%1$s" ' . $format . '><span class="fa fa-%2$s" aria-hidden="true"></span> <span id="%2$s">%3$s</span></a></li>',
@@ -267,15 +268,28 @@ class Share implements Subscriber_Interface {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function add_social_button( $content ) {
+	public function render( $content ) {
 
 		if ( ! is_singular() ) {
 			return $content;
 		}
 
+		/**
+		 * Forced to be an array because if during save option none are selected
+		 * the option is an empty string
+		 */
+		$social_button_on_post_types = (array) $this->options['social_button_on_post_types'];
+
 		$display_social_share_button = (array) get_post_meta( get_the_ID(), '_italystrap_template_settings', true );
 
-		if ( in_array( 'hide_social', $display_social_share_button ) ) {
+
+		/**
+		 * If is not the actual post type selected bail out
+		 */
+		if (
+			! in_array( get_post_type(), $social_button_on_post_types, true )
+			|| in_array( 'hide_social', $display_social_share_button )
+		) {
 			return $content;
 		}
 
