@@ -4,7 +4,7 @@ Donate link: https://italystrap.com/
 Tags: custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts
 Requires at least: 4.9
 Requires PHP: 5.4
-Tested up to: 5.0
+Tested up to: 6.0
 Stable tag: 2.10.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

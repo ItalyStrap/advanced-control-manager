@@ -41,7 +41,7 @@ require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '5.4', '4.8', 'ACM - Advanced Control Manager' );
+$requirements = new Minimum_Requirements( '5.4', '4.9', 'ACM - Advanced Control Manager' );
 
 /**
  * Check compatibility on install
