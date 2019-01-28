@@ -662,7 +662,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('deploy',
 		[
 		// 'preDeploy',
-		'gitcommit:first',
+		'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
 		'gitcheckout:devtomaster',
 		'gitmerge:fromdev',
 		'version', // Change version in package.json
