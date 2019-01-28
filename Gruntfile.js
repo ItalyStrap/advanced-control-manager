@@ -17,6 +17,7 @@ var acm_plugin = [
 	'!node_modules/**',
 	'!bower_components/**',
 	'!tests/**',
+	'!_old/**',
 	'!future-inclusions/**',
 	'!sass/**',
 	'!docs/**',
