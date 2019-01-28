@@ -4,6 +4,8 @@
  *
  * This class load the google fonts for style purpose.
  *
+ * @TODO https://developer.wordpress.org/reference/functions/add_editor_style/#comment-1172
+ *
  * @link www.italystrap.com
  * @since 2.5.0
  *
