@@ -142,6 +142,14 @@ class Loader {
 
 			$this->event_manager->add_subscriber( $this->injector->make( $subscriber ) );
 		}
+
+		foreach ( $app['execute'] as $callableOrMethodStr => $args ) {
+			try {
+				$this->injector->execute( $callableOrMethodStr, $args );
+			} catch ( \Exception $exception ) {
+				echo $exception->getMessage();
+			}
+		}
 	}
 
 	/**
@@ -193,6 +201,7 @@ class Loader {
 			'concretes'				=> array(),
 			'options_concretes'		=> array(),
 			'subscribers'			=> array(),
+			'execute'			=> array(),
 		);
 
 		$this->app = (array) apply_filters( 'italystrap_app', $this->app );
