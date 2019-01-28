@@ -22,6 +22,9 @@ use ItalyStrap\Blocks\Block_Factory;
  * @var Auryn\Injector
  */
 $injector = new \Auryn\Injector;
+add_filter( 'italystrap_injector', function () use ( $injector ) {
+	return $injector;
+} );
 
 $args = (array) require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
 $injector->defineParam( 'args', $args );
