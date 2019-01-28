@@ -283,14 +283,25 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.11.0 =
-Release Date: May 31st, 2018
+Release Date: Jan 28th, 2019
 
 Dev time: 100h
 
+* Requires PHP: 5.4
 * Updated composer dependency
-* New API Class for Breadcrumbs
+* Updated CMB2
+* Updated lang files
+* New API Class for Breadcrumbs loaded from packagist
 * New API for Blocks in beta version
-* Changed Fields API
+* Moved Fields API to packagist
+* Moved Config API to packagist
+* Moved Debug API to packagist
+* Added option for social share button post type selection (only for BETA Version)
+* Added new filter 'italystrap_injector' for passing Injector instance
+* Fixed issue with texteditor_code and Codemirror
+* Bump minimum requirement to WP 4.9
+* Removed unused directory from composer
+
 
 = 2.10.0 =
 Release Date: May 31st, 2018
@@ -684,6 +695,9 @@ Dev time: 100h
 * First release
 
 == Upgrade Notice ==
+
+= 2.11.0 =
+Requires PHP: 5.4
 
 = 2.0 =
 2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/plugin-version-2-available/).
