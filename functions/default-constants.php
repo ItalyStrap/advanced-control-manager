@@ -26,7 +26,7 @@ if ( ! function_exists( 'italystrap_set_default_constant' ) ) {
 		 * Define some costant for internal use
 		 */
 		if ( ! defined( 'ITALYSTRAP_PLUGIN_VERSION' ) ) {
-			define( 'ITALYSTRAP_PLUGIN_VERSION', '2.10.0' );
+			define( 'ITALYSTRAP_PLUGIN_VERSION', '2.11.0' );
 		}
 
 		/**
