@@ -665,8 +665,8 @@ module.exports = function(grunt) {
 		'gitcommit:first',
 		'gitcheckout:devtomaster',
 		'gitmerge:fromdev',
-		'version',
-		'wp_readme_to_markdown',
+		'version', // Change version in package.json
+		'wp_readme_to_markdown', // Update changelog only in readme.txt
 		'gitcommit:version',
 		'gitpush',
 		'prompt',
