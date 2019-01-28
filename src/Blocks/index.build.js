@@ -183,7 +183,9 @@ var _wp$element = wp.element,
 
 // console.log(wp.blocks);
 
-var InspectorControls = wp.editor.InspectorControls;
+var _wp$editor = wp.editor,
+    InspectorControls = _wp$editor.InspectorControls,
+    BlockAlignmentToolbar = _wp$editor.BlockAlignmentToolbar;
 
 // console.log(wp.editor);
 
@@ -248,7 +250,9 @@ var PostsEdit = function (_Component) {
 				wp.element.createElement(
 					InspectorControls,
 					{ key: 'inspector' },
-					wp.element.createElement(PanelBody, { title: __('Posts Settings', 'italystrap') })
+					wp.element.createElement(PanelBody, {
+						title: __('Posts Settings', 'italystrap')
+					})
 				),
 				wp.element.createElement(
 					'div',

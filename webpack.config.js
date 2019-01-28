@@ -1,8 +1,6 @@
 /**
  * Webpack Configuration
  *
- * Block: `02-basic-esnext` — Webpack config file.
- *
  * Working of a Webpack can be very simple or complex. This is an intenally simple
  * build configuration.
  *

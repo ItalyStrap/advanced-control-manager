@@ -6,6 +6,7 @@ const {
 	Fragment,
 } = wp.element;
 
+
 // console.log(wp.element);
 
 /**
@@ -21,7 +22,7 @@ const {
 
 const {
 	InspectorControls,
-	// BlockAlignmentToolbar,
+	BlockAlignmentToolbar,
 	// BlockControls,
 }  = wp.editor;
 
@@ -95,9 +96,10 @@ class PostsEdit extends Component {
 		// console.log(attributes);
 		return (
 			<Fragment>
-				<InspectorControls key="inspector">
-					<PanelBody title={ __( 'Posts Settings', 'italystrap' ) }>
-					</PanelBody>
+				<InspectorControls key = "inspector" >
+					<PanelBody
+						title = { __( 'Posts Settings', 'italystrap' ) }
+					></PanelBody>
 				</InspectorControls>
 				<div key="container">
 					<h1>{ name }</h1>
