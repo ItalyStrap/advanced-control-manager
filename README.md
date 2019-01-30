@@ -5,7 +5,7 @@
 **Requires at least:** 4.9  
 **Requires PHP:** 5.4  
 **Tested up to:** 6.0  
-**Stable tag:** 2.11.0  
+**Stable tag:** 2.11.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -281,6 +281,14 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.11.1 ###
+Release Date: Jan 30th, 2019
+
+Dev time: 1h
+
+* Fixed php syntax error
+* Fixed undefined index on Term in CPT
 
 ### 2.11.0 ###
 Release Date: Jan 28th, 2019
