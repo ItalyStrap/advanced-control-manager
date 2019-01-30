@@ -11,40 +11,40 @@ var index_php_text = [
 
 // '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
 var acm_plugin = [
-	'**',
+	'**', // All
+	/**
+	 * Directories
+	 */
 	'!.git/**',
 	'!.sass-cache/**',
 	'!node_modules/**',
 	'!bower_components/**',
-	'!tests/**',
 	'!_old/**',
 	'!future-inclusions/**',
-	'!sass/**',
-	'!docs/**',
-	// '!vendor/mobiledetect/mobiledetectlib/examples/**',
-	// '!vendor/mobiledetect/mobiledetectlib/tests/**',
-	// '!vendor/overclokk/minimum-requirements/tests/**',
-	// '!vendor/rdlowrey/auryn/examples/**',
-	// '!vendor/rdlowrey/auryn/test/**',
-	// '!vendor/webdevstudios/cmb2/tests/**',
-	'!vendor/cmb2/cmb2/*.clover',
+	'!**/sass/**',
+	'!**/docs/**',
+	'!**/test*/**',
+	'!**/example*/**',
+
+	/**
+	 * Files
+	 */
 	'!bower.json',
 	'!Gruntfile.js',
-	'!package.json',
+	'!package*.json',
 	'!.gitattributes',
 	'!.gitignore',
-	'!*.yml',
+	'!codecept',
+	'!webpack.config.js',
 	'!snippets.md',
+	'!**/*.yml',
 	'!*.zip',
-	'!*.bat',
+	'!**/*.bat',
 	'!**/*.lock',
 	'!**/*.map',
 	'!**/*.clover',
-	// '!**/tests/**',
-	'!**/test*/**',
-	'!**/example*/**',
-	'!codecept',
-	'!webpack.config.js',
+	'!**/*.dist',
+	'!**/*.xml',
 ];
 
 /**
@@ -593,7 +593,7 @@ module.exports = function(grunt) {
 	 * $ npm install
 	 *
 	 * Controllare gli aggiornamenti con composer
-	 * $ composer update
+	 * $ composer update --no-dev
 	 * or
 	 * $ grunt composer:update
 	 *

@@ -282,6 +282,14 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.11.1 =
+Release Date: Jan 30th, 2019
+
+Dev time: 1h
+
+* Fixed php syntax error
+* Fixed undefined index on Term in CPT
+
 = 2.11.0 =
 Release Date: Jan 28th, 2019
 
