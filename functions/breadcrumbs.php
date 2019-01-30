@@ -66,7 +66,7 @@ function get_breadcrumbs( array $args = array() ) {
 
 		return apply_filters(
 			'italystrap_get_the_breadcrumbs',
-			\ItalyStrap\Breadcrumbs\Breadcrumbs_Factory::make( 'html', $args ),
+			\ItalyStrap\Breadcrumbs\Breadcrumbs_Factory::make( 'html', $args )->output(),
 			$args
 		);
 

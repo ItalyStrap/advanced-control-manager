@@ -88,7 +88,7 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control {
 	 */
 	public function render_content() {
 
-		if ( ! isset( $this->args['choices'] ) ) {
+		if ( ! array_key_exists( 'choices', $this->args ) ) {
 			$this->args['choices'] = array();
 		}
 
