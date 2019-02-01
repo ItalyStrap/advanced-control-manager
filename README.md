@@ -5,7 +5,7 @@
 **Requires at least:** 4.9  
 **Requires PHP:** 5.4  
 **Tested up to:** 5.2  
-**Stable tag:** 2.11.2  
+**Stable tag:** 2.11.3  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -281,6 +281,13 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.11.3 ###
+Release Date: Feb 1st, 2019
+
+Dev time: 3h
+
+* Fixed the Debug API
 
 ### 2.11.2 ###
 Release Date: Jan 30th, 2019
