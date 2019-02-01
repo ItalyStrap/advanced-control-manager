@@ -282,6 +282,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.11.3 =
+Release Date: Feb 1st, 2019
+
+Dev time: 3h
+
+* Fixed the Debug API
+
 = 2.11.2 =
 Release Date: Jan 30th, 2019
 

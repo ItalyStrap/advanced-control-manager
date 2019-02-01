@@ -413,7 +413,20 @@ module.exports = function(grunt) {
 						filter: 'isFile',
 					},
 				]
-			}
+			},
+			temp: {
+				options: {
+					archive: '../<%= pkg.name %> <%= pkg.version %>.zip' // Create zip file in theme directory
+				},
+				files: [
+					{
+						cwd: '../temp/<%= pkg.name %>/',
+						src: '**', // What should be included in the zip
+						dest: '<%= pkg.name %>/',        // Where the zipfile should go
+						filter: 'isFile',
+					},
+				]
+			},
 		},
 
 		"github-release": { // https://github.com/dolbyzerr/grunt-github-releaser
@@ -445,6 +458,30 @@ module.exports = function(grunt) {
 				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/tags/<%= pkg.version %>/',
 				filter: 'isFile',
 			},
+			temp: {
+				expand: true,
+				// cwd: 'src',
+				src: acm_plugin,
+				// src: 'lang/**',
+				dest: '../temp/<%= pkg.name %>/',
+				filter: 'isFile',
+			},
+			toTrunk: {
+				expand: true,
+				cwd: '../temp/<%= pkg.name %>/',
+				src: '**',
+				// src: 'lang/**',
+				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/',
+				filter: 'isFile',
+			},
+			toTag: {
+				expand: true,
+				cwd: '../temp/<%= pkg.name %>/',
+				src: '**',
+				// src: 'lang/**',
+				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/tags/<%= pkg.version %>/',
+				filter: 'isFile',
+			},
 		},
 
 		clean: { // https://github.com/gruntjs/grunt-contrib-clean
@@ -452,7 +489,12 @@ module.exports = function(grunt) {
 				force: true,
 				// 'no-write': true
 			},
-			trunk: ['E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/*']
+			trunk: [
+				'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/*'
+			],
+			temp: [
+				'../temp/*'
+			],
 		},
 
 		sync: { // https://www.npmjs.com/package/grunt-sync
@@ -659,40 +701,55 @@ module.exports = function(grunt) {
 		]
 	);
 
-	grunt.registerTask('deploy',
+	grunt.registerTask(
+		'deploy',
 		[
-		// 'preDeploy',
-		'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
-		'gitcheckout:devtomaster',
-		'gitmerge:fromdev',
-		'version', // Change version in package.json
-		'wp_readme_to_markdown', // Update changelog only in readme.txt
-		'gitcommit:version',
-		'gitpush',
-		'prompt',
-		'compress:main',
-		'github-release',
-		'clean',
-		'copy',
-		'gitcheckout:mastertodev',
-		'gitmerge:frommaster',
-		'gitpush',
-		// 'postDeploy',
+			// 'preDeploy',
+			'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
+			'gitcheckout:devtomaster',
+			'gitmerge:fromdev',
+			'version', // Change version in package.json
+			'wp_readme_to_markdown', // Update changelog only in readme.txt
+			'gitcommit:version',
+			'gitpush',
+			'prompt',
+			'copy:temp',
+			'compress:temp',
+			'clean:trunk',
+			'copy:toTrunk',
+			'copy:toTag',
+			'clean:temp',
+			'gitcheckout:mastertodev',
+			'gitmerge:frommaster',
+			'gitpush',
+			// 'postDeploy',
+		]
+	);
+
+	grunt.registerTask(
+		'temp',
+		[
+			'copy:temp',
+			'compress:temp',
+			'clean:trunk',
+			'copy:toTrunk',
+			'copy:toTag',
+			'clean:temp',
 		]
 	);
 
 	grunt.registerTask('release',
 		[
-		'prompt',
-		'compress:main',
-		'github-release',
+			'prompt',
+			'compress:main',
+			'github-release',
 		]
 	);
 
 	grunt.registerTask('composer-update',
 		[
-		'composer:update',
-		'composer:dump-autoload -o',
+			'composer:update',
+			'composer:dump-autoload -o',
 		]
 	);
 
