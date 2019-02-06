@@ -74,6 +74,7 @@ $autoload_plugin_files = array(
 	'/functions/notice.php',
 	'/functions/private.php',
 	'/bootstrap.php',
+	'/functions/edd.php',
 );
 
 if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {
