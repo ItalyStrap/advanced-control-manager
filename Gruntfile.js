@@ -715,6 +715,7 @@ module.exports = function(grunt) {
 			'prompt',
 			'copy:temp',
 			'compress:temp',
+            'github-release',
 			'clean:trunk',
 			'copy:toTrunk',
 			'copy:toTag',
