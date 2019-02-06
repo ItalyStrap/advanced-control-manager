@@ -12,6 +12,7 @@ var index_php_text = [
 // '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
 var acm_plugin = [
 	'**', // All
+
 	/**
 	 * Directories
 	 */
@@ -704,7 +705,6 @@ module.exports = function(grunt) {
 	grunt.registerTask(
 		'deploy',
 		[
-			// 'preDeploy',
 			'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
 			'gitcheckout:devtomaster',
 			'gitmerge:fromdev',
@@ -722,7 +722,6 @@ module.exports = function(grunt) {
 			'gitcheckout:mastertodev',
 			'gitmerge:frommaster',
 			'gitpush',
-			// 'postDeploy',
 		]
 	);
 
