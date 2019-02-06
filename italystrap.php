@@ -3,7 +3,7 @@
  *	Plugin Name:	Advanced Control Manager for WordPress by ItalyStrap
  *	Plugin URI:		https://italystrap.com/
  *	Description:	{Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
- *	Version:		2.11.3
+ *	Version:		2.12.0
  *	Author:			Enea Overclokk
  *	Author URI:		http://www.overclokk.net
  *	Text Domain:	italystrap

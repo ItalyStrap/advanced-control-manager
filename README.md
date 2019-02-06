@@ -2,10 +2,10 @@
 **Contributors:** [overclokk](https://profiles.wordpress.org/overclokk)  
 **Donate link:** https://italystrap.com/  
 **Tags:** custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts  
-**Requires at least:** 4.9  
+**Requires at least:** 5  
 **Requires PHP:** 5.4  
 **Tested up to:** 5.2  
-**Stable tag:** 2.11.3  
+**Stable tag:** 2.12.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -281,6 +281,13 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.12.0 ###
+Release Date: Feb 6th, 2019
+
+Dev time: 30h
+
+* New API for EDD to update ItalyStrap Framework
 
 ### 2.11.3 ###
 Release Date: Feb 1st, 2019
