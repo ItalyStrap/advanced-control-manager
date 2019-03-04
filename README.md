@@ -1,11 +1,11 @@
 # Advanced Control Manager for WordPress by ItalyStrap #
-**Contributors:** [overclokk](https://profiles.wordpress.org/overclokk)  
+**Contributors:** [Enea Overclokk](https://profiles.wordpress.org/Enea Overclokk)  
 **Donate link:** https://italystrap.com/  
 **Tags:** custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts  
 **Requires at least:** 5  
 **Requires PHP:** 5.4  
 **Tested up to:** 5.2  
-**Stable tag:** 2.12.0  
+**Stable tag:** 2.13.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -281,6 +281,15 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.13.0 ###
+Release Date: Mar 4th, 2019
+
+Dev time: 10h
+
+* New Visual editor in terms page under option
+* Fixed Google font fallback json
+* Some other minor fix
 
 ### 2.12.0 ###
 Release Date: Feb 6th, 2019
