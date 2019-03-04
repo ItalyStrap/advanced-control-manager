@@ -5,7 +5,7 @@
  *	Description:	{Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
  *	Version:		2.12.0
  *	Author:			Enea Overclokk
- *	Author URI:		http://www.overclokk.net
+ *	Author URI:		https://www.overclokk.net
  *	Text Domain:	italystrap
  *	License:		GPLv2 or later
  *	License URI:	http://www.gnu.org/licenses/gpl-2.0.html
