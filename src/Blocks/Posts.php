@@ -35,8 +35,9 @@ class Posts extends Block {
 	 *
 	 * @param [type] $argument [description].
 	 */
-	function __construct( Posts_Base $post ) {
-		$this->query_posts = $post;
+	public function __construct( Posts_Base $post, $block_type, $args = [] ) {
+		$this->posts = $post;
+		parent::__construct( $block_type, $args );
 	}
 
 	/**
@@ -47,14 +48,15 @@ class Posts extends Block {
 	 *
 	 * @return string          The output of the shortcode.
 	 */
-	public function render( array $attributes ) {
+	public function render( $attributes = [], $content = '' ) {
 
-		return 'Block posts';
+//		d($attributes);
 
-// ddd( $attributes );
-		$this->query_posts->get_widget_args( $attributes );
+//		return '<h1>Block posts</h1>';
 
-		return $this->query_posts->output();
+		$this->posts->get_widget_args( $attributes );
+
+		return $this->posts->output();
 	}
 
 }

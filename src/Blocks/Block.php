@@ -15,7 +15,19 @@ namespace ItalyStrap\Blocks;
 /**
  * Block API
  */
-abstract class Block {
+abstract class Block extends \WP_Block_Type {
+
+	public function __construct( $block_type, $args = [] ) {
+
+		$args = array_merge(
+			[
+				'render_callback' => [ $this, 'render' ]
+			],
+			$args
+		);
+
+		parent::__construct( $block_type, $args );
+	}
 
 	/**
 	 * Render
@@ -23,7 +35,8 @@ abstract class Block {
 	 * @param  string $value [description]
 	 * @return string        [description]
 	 */
-	public function render( array $attributes ) {
-		return 'Abstract Block';
-	}
+//	public function render( array $attributes ) {
+//		return 'Abstract Block';
+//	}
+
 }

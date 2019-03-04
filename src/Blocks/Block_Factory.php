@@ -101,19 +101,37 @@ class Block_Factory implements Subscriber_Interface {
 		}
 
 		foreach ( (array) $this->blocks_list as $option_name => $class_name ) {
+
 			// if ( empty( $this->options[ $option_name ] ) ) {
 			// 	continue;
 			// }
 
 			$block_name = str_replace( 'block_', '', $option_name );
-			$$block_name =  $this->injector->make( $class_name );
 
-			register_block_type(
-				"italystrap/{$block_name}",
-				array(
-					'render_callback' => array( $$block_name, 'render' ),
-				)
+			/**
+			 * Block object
+			 */
+			$$block_name =  $this->injector->make(
+				$class_name,
+				[
+					':block_type'	=> "italystrap/{$block_name}",
+					':args'			=> [
+//						'render_callback' => '', // Defined in abstract Block::class
+						'attributes'	=> [
+							'orderBy'         => [
+								'type'		=> 'string',
+								'default'	=> 'date',
+							],
+						],
+					],
+				]
 			);
+
+			/**
+			 * We don't need to pass the string name and args for the block because
+			 * we just passed the obj to the first argument.
+			 */
+			register_block_type( $$block_name );
 		}
 	}
 }

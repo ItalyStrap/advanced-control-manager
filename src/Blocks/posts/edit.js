@@ -29,13 +29,12 @@ const {
 // console.log(wp.editor);
 
 const {
-
 	__, // __()
-
 } = wp.i18n;
 
 const {
 	PanelBody,
+	ToggleControl,
 	// Spinner,
 	// withAPIData,
 } = wp.components;
@@ -82,6 +81,13 @@ class PostsEdit extends Component {
 		);
 	}
 
+	toggleDisplayPostDate() {
+		const { displayPostDate } = this.props.attributes;
+		const { setAttributes } = this.props;
+
+		setAttributes( { displayPostDate: ! displayPostDate } );
+	}
+
 	// toggleSetting: () => 
 
 	render() {
@@ -90,16 +96,39 @@ class PostsEdit extends Component {
 			name
 		} = this.props;
 
-		// console.log("this.props");
-		// console.log(this.props);
-		// const { attributes, setAttributes, className, focus } = this.props;
-		// console.log(attributes);
+		console.log("this.props");
+		console.log(this.props);
+		const {
+			attributes,
+			setAttributes,
+			// className,
+			// focus
+		} = this.props;
+
+		console.log(attributes);
+
+		const {
+			displayPostDate,
+			// align,
+			// postLayout,
+			// columns,
+			// order,
+			// orderBy,
+			// categories,
+			// postsToShow
+		} = attributes;
+
 		return (
 			<Fragment>
 				<InspectorControls key = "inspector" >
 					<PanelBody
-						title = { __( 'Posts Settings', 'italystrap' ) }
-					></PanelBody>
+						title = {__('Posts Settings', 'italystrap')}
+					/>
+					<ToggleControl
+						label={ __( 'Display post date' ) }
+						checked={ displayPostDate }
+						onChange={ this.toggleDisplayPostDate }
+					/>
 				</InspectorControls>
 				<div key="container">
 					<h1>{ name }</h1>

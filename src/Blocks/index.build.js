@@ -190,7 +190,9 @@ var _wp$editor = wp.editor,
 // console.log(wp.editor);
 
 var __ = wp.i18n.__;
-var PanelBody = wp.components.PanelBody;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    ToggleControl = _wp$components.ToggleControl;
 
 // console.log( "Data:" );
 // console.log( wp.data );
@@ -232,33 +234,56 @@ var PostsEdit = function (_Component) {
 		return _this;
 	}
 
-	// toggleSetting: () => 
-
 	_createClass(PostsEdit, [{
-		key: 'render',
+		key: "toggleDisplayPostDate",
+		value: function toggleDisplayPostDate() {
+			var displayPostDate = this.props.attributes.displayPostDate;
+			var setAttributes = this.props.setAttributes;
+
+
+			setAttributes({ displayPostDate: !displayPostDate });
+		}
+
+		// toggleSetting: () => 
+
+	}, {
+		key: "render",
 		value: function render() {
 			var name = this.props.name;
 
-			// console.log("this.props");
-			// console.log(this.props);
-			// const { attributes, setAttributes, className, focus } = this.props;
-			// console.log(attributes);
+
+			console.log("this.props");
+			console.log(this.props);
+			var _props = this.props,
+			    attributes = _props.attributes,
+			    setAttributes = _props.setAttributes;
+
+
+			console.log(attributes);
+
+			var displayPostDate = attributes.displayPostDate;
+
 
 			return wp.element.createElement(
 				Fragment,
 				null,
 				wp.element.createElement(
 					InspectorControls,
-					{ key: 'inspector' },
+					{ key: "inspector" },
 					wp.element.createElement(PanelBody, {
 						title: __('Posts Settings', 'italystrap')
+					}),
+					wp.element.createElement(ToggleControl, {
+						label: __('Display post date'),
+						checked: displayPostDate,
+						onChange: this.toggleDisplayPostDate
 					})
 				),
 				wp.element.createElement(
-					'div',
-					{ key: 'container' },
+					"div",
+					{ key: "container" },
 					wp.element.createElement(
-						'h1',
+						"h1",
 						null,
 						name
 					)
