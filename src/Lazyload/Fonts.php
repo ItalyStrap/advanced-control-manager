@@ -40,6 +40,7 @@ class Fonts implements Subscriber_Interface {
 				'function_to_add'	=> 'render',
 				'priority'			=> PHP_INT_MAX - 1,
 			),
+			'enqueue_block_editor_assets'	=> 'gutenberg',
 		);
 	}
 
@@ -281,6 +282,16 @@ class Fonts implements Subscriber_Interface {
 	public function render() {
 		echo $this->generate_script(); // XSS ok.
 		echo '<style>' . $this->css . '</style>'; // XSS ok.
+	}
+
+	public function gutenberg( ) {
+//		d($this->init_fonts());
+//		wp_enqueue_style(
+//			'italystrap-gutenberg-fonts',
+//			'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700',
+//			array(),
+//			CHILD_THEME_VERSION
+//		);
 	}
 
 	/**
