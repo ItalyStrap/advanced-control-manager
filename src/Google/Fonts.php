@@ -62,11 +62,9 @@ class Fonts {
 	 */
 	function __construct( Config_Interface $config ) {
 
-		$this->config = $config->all();
-
 		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
-		$this->google_api_key = isset( $this->config['google_api_key'] ) ? esc_attr( $this->config['google_api_key'] ) : '';
+		$this->google_api_key = esc_attr( $config->get( 'google_api_key', '' ) );
 
 		$this->http_query = array(
 			'key'	=> $this->google_api_key,
@@ -125,13 +123,13 @@ class Fonts {
 	/**
 	 * Get the google fonts from the API or in the cache
 	 *
-	 * @return String
+	 * @return array
 	 */
 	public function get_remote_fonts() {
 
 		if ( empty( $this->google_api_key ) ) {
-			// return (array) $this->get_api_fallback()->items;
-			return array();
+			return (array) $this->get_api_fallback()->items;
+//			return array();
 		}
 
 		// $this->flush_transient();
@@ -149,8 +147,8 @@ class Fonts {
 			 * For example when is missing 'https:'
 			 */
 			if ( is_wp_error( $font_content ) ) {
-				// return (array) $this->get_api_fallback()->items;
-				return array();
+				return (array) $this->get_api_fallback()->items;
+//				return array();
 			}
 
 			self::$fonts = wp_remote_retrieve_body( $font_content );
@@ -160,6 +158,7 @@ class Fonts {
 			self::$fonts = $this->rename_key_by_font_family_name( self::$fonts );
 
 			set_transient( 'italystrap_google_fonts', self::$fonts, MONTH_IN_SECONDS );
+
 			/**
 			 * Commented for better test in future
 			 */
