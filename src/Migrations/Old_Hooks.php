@@ -32,7 +32,8 @@ class Old_Hooks implements Subscriber_Interface  {
 		return array(
 			// 'hook_name'							=> 'method_name',
 			// 'after_setup_theme'	=> 'convert',
-			'italystrap_plugin_app_loaded'	=> 'convert',
+//			'italystrap_theme_loaded'	=> 'convert',
+			'init'	=> 'convert',
 		);
 	}
 
