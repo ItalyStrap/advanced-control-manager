@@ -88,7 +88,7 @@ abstract class Query implements Query_Interface {
 		}
 
 		if ( ! is_string( $context ) ) {
-			throw new InvalidArgumentException( __( 'Context name must be a string', 'italystrap' ) );
+			throw new \InvalidArgumentException( __( 'Context name must be a string', 'italystrap' ) );
 		}
 
 		$this->context = $context;
