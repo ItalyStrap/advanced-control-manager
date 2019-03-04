@@ -27,6 +27,17 @@ $autoload_subscribers = array_merge( $autoload_subscribers, array(
 	)
 );
 
+if ( ! isset( $pagenow ) ) {
+	$pagenow = '';
+}
+
+/**
+ * TinyMCE Editor in Category description
+ */
+if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
+	$autoload_subscribers['visual_editor_on_terms'] = '\ItalyStrap\Editors\Terms';
+}
+
 // $autoload_concretes = array_merge( $autoload_concretes, array(
 // 		'ItalyStrap\Custom\Metaboxes\CMB2_Factory',
 // 	)

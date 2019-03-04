@@ -173,6 +173,20 @@ return array(
 				'show_on'				=> Core\is_beta(),
 			),
 			array(
+				'id'		=> 'visual_editor_on_terms',
+				'title'		=> __( 'Visual editor on terms', 'italystrap' ),
+				'args'		=> array(
+					'label'			=> __( 'Display visual editor on term page', 'italystrap' ),
+					'desc'			=> __( '(Cats, Tags and Custom terms)', 'italystrap' ),
+					'id'			=> 'visual_editor_on_terms',
+					'type'			=> 'checkbox',
+					'class'			=> 'visual_editor_on_terms easy',
+					'default'		=> '',
+					// 'validate'	=> 'ctype_alpha',
+					'sanitize'		=> 'sanitize_text_field',
+				)
+			),
+			array(
 				'id'		=> 'show_theme_hooks',
 				'title'		=> __( 'Theme Hooks', 'italystrap' ),
 				'args'		=> array(
