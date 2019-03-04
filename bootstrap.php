@@ -166,10 +166,12 @@ $app = array(
 	'subscribers'			=> $autoload_subscribers,
 );
 
-/**================================
+/**
+ * ================================
  * Now load the plugin application
  *
  * @var ItalyStrap\Plugin\Loader
- =================================*/
+ * =================================
+ */
 $italystrap_plugin = new \ItalyStrap\Plugin\Loader( $injector, $event_manager, $app, $options );
 add_action( 'after_setup_theme', array( $italystrap_plugin, 'load' ), 10 );
