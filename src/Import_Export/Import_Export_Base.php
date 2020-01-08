@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Fields\Fields_Interface;
+use ItalyStrap\Fields\FieldsInterface;
 
 /**
  * Class description
@@ -58,9 +58,9 @@ abstract class Import_Export_Base {
 	 * Init Class
 	 *
 	 * @param array            $imp_exp_args [description]
-	 * @param Fields_Interface $fields_type  [description]
+	 * @param FieldsInterface $fields_type  [description]
 	 */
-	function __construct( array $imp_exp_args = array(), Fields_Interface $fields_type ) {
+	function __construct( array $imp_exp_args = array(), FieldsInterface $fields_type ) {
 
 		$this->args = $imp_exp_args;
 

@@ -34,6 +34,7 @@ $autoload_subscribers = array_merge( $autoload_subscribers, array(
 		'show_theme_hooks'			=> 'ItalyStrap\Debug\Visual_Hook',
 		'media_carousel_shortcode'	=> 'ItalyStrap\Shortcodes\Gallery',
 		'activate_excerpt_more_mods'=> 'ItalyStrap\Excerpt\Excerpt',
+		'custom_tag_cloud'			=> 'ItalyStrap\Widgets\Tag_Cloud\Tag_Cloud',
 		'ItalyStrap\Asset\Inline_Asset_Factory',
 	)
 );

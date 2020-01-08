@@ -711,8 +711,8 @@ module.exports = function(grunt) {
 			'version', // Change version in package.json
 			'wp_readme_to_markdown', // Update changelog only in readme.txt
 			'gitcommit:version',
-			'gitpush',
 			'prompt',
+			'gitpush',
 			'copy:temp',
 			'compress:temp',
             'github-release',
@@ -753,24 +753,21 @@ module.exports = function(grunt) {
 		]
 	);
 
-	grunt.registerTask('testcssbuild', ['less', 'compass', 'csslint']);
-	grunt.registerTask('testjsbuild', ['jshint', 'uglify']);
-
 	// After botstrap update execute "grunt bootstrap"
 	grunt.registerTask('bootstrap', ['uglify:bootstrapJS', 'less']);
 
 
-	grunt.registerTask('test', ['jshint', 'csslint']);
-	grunt.registerTask('build', ['uglify', 'less', 'compass']);
+	grunt.registerTask( 'test', ['jshint', 'csslint'] );
+	grunt.registerTask( 'build', ['uglify', 'less', 'compass'] );
 
 	grunt.registerTask( 'js', [ 'uglify' ] );
 	grunt.registerTask( 'css', [ 'compass' ] );
 
-	grunt.registerTask('php', 'A sample task that logs stuff.', function() {
+	grunt.registerTask( 'php', 'A sample task that logs stuff.', function() {
 		return null;
 	});
 
-	grunt.registerTask('files', 'A sample task that logs stuff.', function() {
+	grunt.registerTask( 'files', 'A sample task that logs stuff.', function() {
 		traverseFileSystem( './', '/index.php' );
 		return null;
 	});

@@ -108,7 +108,7 @@ class View implements View_Interface {
 
 		$templates = array();
 
-		if ( '' !== $name ) {
+		if ( ! empty( $name ) ) {
 			$templates[] = "{$slug}-{$name}.php";
 		}
 

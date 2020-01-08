@@ -314,6 +314,21 @@ return array(
 				),
 			),
 			array(
+				'id'		=> 'custom_tag_cloud',
+				'title'		=> __( 'Add some style to the built-in Tag Cloud', 'italystrap' ),
+				'args'		=> array(
+					'label'			=> __( 'Tag Cloud for ItalyStrap', 'italystrap' ),
+					'desc'			=> __( '', 'italystrap' ),
+					'id'			=> 'custom_tag_cloud',
+					'type'			=> 'checkbox',
+					'class'			=> 'custom_tag_cloud easy',
+					'default'		=> '',
+					// 'validate'	=> 'ctype_alpha',
+					'sanitize'		=> 'sanitize_text_field',
+				),
+				'show_on'				=> Core\is_italystrap_active(),
+			),
+			array(
 				'id'		=> 'widget_posts',
 				'title'		=> __( 'Posts Widget', 'italystrap' ),
 				'args'		=> array(

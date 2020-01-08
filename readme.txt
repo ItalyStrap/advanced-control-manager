@@ -3,7 +3,7 @@ Contributors: Enea Overclokk
 Donate link: https://italystrap.com/
 Tags: custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts
 Requires at least: 5
-Requires PHP: 5.4
+Requires PHP: 7
 Tested up to: 5.2
 Stable tag: 2.13.0
 License: GPLv2 or later

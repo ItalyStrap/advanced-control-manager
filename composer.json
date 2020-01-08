@@ -13,9 +13,10 @@
 		"erusev/parsedown": "^1.6",
 		"inpsyde/menu-cache": "^1.0",
         "italystrap/edd": "dev-master",
-        "italystrap/breadcrumbs": "^1.0",
-        "italystrap/fields": "^1.0",
-        "italystrap/config": "^1.0",
+        "italystrap/breadcrumbs": "^2.0",
+        "italystrap/settings": "^0.0",
+        "italystrap/fields": "^2.0",
+        "italystrap/config": "^2.0",
 		"italystrap/helpers": "~1.0",
         "italystrap/debug": "^1.0"
 	},

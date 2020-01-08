@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Fields\Fields_Interface;
+use ItalyStrap\Fields\FieldsInterface;
 use ItalyStrap\Update\Validation;
 use ItalyStrap\Update\Sanitization;
 use ItalyStrap\I18N\Translator;
@@ -119,7 +120,7 @@ class Settings implements Subscriber_Interface {
 	 * @param array            $theme_mods     The theme options.
 	 * @param Fields_Interface $fields_type    The Fields object.
 	 */
-	public function __construct( array $options, array $settings, array $args, array $theme_mods, Fields_Interface $fields_type ) {
+	public function __construct( array $options, array $settings, array $args, array $theme_mods, FieldsInterface $fields_type ) {
 
 		if ( isset( $_GET['page'] ) ) { // Input var okay.
 			$this->pagenow = wp_unslash( $_GET['page'] ); // Input var okay.

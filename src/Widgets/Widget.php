@@ -398,7 +398,7 @@ abstract class Widget extends WP_Widget {
 			 * Register string for translation
 			 */
 			if ( isset( $field['translate'] ) && true === $field['translate'] ) {
-				$this->translator->register_string( $field['id'], strip_tags( $instance[ $field['id'] ] ) );
+				$this->translator->registerString( $field['id'], strip_tags( $instance[ $field['id'] ] ) );
 			}
 
 			/**

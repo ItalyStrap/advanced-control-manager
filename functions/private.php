@@ -49,7 +49,7 @@ function _display_config( $atts ) {
 	foreach ( (array) $get_settings as $key => $setting ) {
 		$output .= sprintf(
 			'<li><h4>%s</h4><p>Attribute: <code>%s</code><br>Default: <code>%s</code><br>%s</p></li>',
-			esc_attr( $setting['name'] ),
+			esc_attr( $setting['label'] ),
 			esc_attr( $setting['id'] ),
 			empty( $setting['default'] ) ? __( 'empty', 'italystrap' ) : esc_attr( $setting['default'] ),
 			wp_kses_post( $setting['desc'] )

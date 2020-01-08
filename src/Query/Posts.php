@@ -369,6 +369,8 @@ class Posts extends Query {
 	/**
 	 * Render the query result
 	 *
+     * @TODO https://gist.github.com/gmazzap/c3e29d8999ec1b722dd17b87dddac62e
+     *
 	 * @return string The HTML result
 	 */
 	public function render( array $query_args = array() ) {

@@ -33,7 +33,7 @@
 
 				$readme = ItalyStrap\Core\get_file_content( ITALYSTRAP_PLUGIN_PATH . 'README.md' );
 
-				echo $parsedown->text( $readme );
+				echo wp_kses_post( $parsedown->text( $readme ) );
 				?>
 			</div>
 		</div>
