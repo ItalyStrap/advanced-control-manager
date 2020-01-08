@@ -1,15 +1,17 @@
 <?php
 /**
- *	Plugin Name:	Advanced Control Manager for WordPress by ItalyStrap
- *	Plugin URI:		https://italystrap.com/
- *	Description:	{Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
- *	Version:		2.13.0
- *	Author:			Enea Overclokk
- *	Author URI:		https://www.overclokk.net
- *	Text Domain:	italystrap
- *	License:		GPLv2 or later
- *	License URI:	http://www.gnu.org/licenses/gpl-2.0.html
- *	Domain Path:	/lang
+ *	Plugin Name:	   Advanced Control Manager for WordPress by ItalyStrap
+ *	Plugin URI:		   https://italystrap.com/
+ *	Description:	   {Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
+ *	Version:		   2.13.0
+ *  Requires at least: 5.2
+ *  Requires PHP:      7.2
+ *	Author:			   Enea Overclokk
+ *	Author URI:		   https://www.overclokk.net
+ *	Text Domain:	   italystrap
+ *	License:		   GPLv2 or later
+ *	License URI:	   http://www.gnu.org/licenses/gpl-2.0.html
+ *	Domain Path:	   /lang
  *
  * @package ItalyStrap
  * @since 1.0.0

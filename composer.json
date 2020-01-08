@@ -1,11 +1,11 @@
 {
-	"name": "ItalyStrap/advanced-control-manager",
+	"name": "italystrap/advanced-control-manager",
 	"description": "Make your web site more powerful",
 	"type": "wordpress-plugin",
 	"license": "GPL 2.0",
     "minimum-stability": "dev",
 	"require": {
-		"php": ">=5.3",
+		"php": ">=7.2",
 		"mobiledetect/mobiledetectlib": "dev-master",
 		"cmb2/cmb2": "dev-master",
 		"overclokk/minimum-requirements": "^1.0",

@@ -12,6 +12,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+use ItalyStrap\Fields\Fields;
 use ItalyStrap\Widgets\Widget_Factory;
 use ItalyStrap\Shortcodes\Shortcode_Factory;
 use ItalyStrap\Blocks\Block_Factory;
@@ -19,7 +20,7 @@ use ItalyStrap\Blocks\Block_Factory;
 /**
  * Initialize the DIC
  *
- * @var Auryn\Injector
+ * @var \Auryn\Injector
  */
 $injector = new \Auryn\Injector;
 add_filter( 'italystrap_injector', function () use ( $injector ) {
@@ -65,7 +66,7 @@ $autoload_sharing = array(
 /**=============================
  * Autoload Classes definitions
  *============================*/
-$fields_type = array( 'fields_type' => 'ItalyStrap\Fields\Fields' );
+$fields_type = array( 'fields_type' => Fields::class );
 $autoload_definitions = array(
 	'ItalyStrap\Widgets\Attributes\Attributes'	=> $fields_type,
 	'ItalyStrap\Settings\Settings'				=> $fields_type,
@@ -121,7 +122,7 @@ foreach ( $autoload_aliases as $interface => $implementation ) {
 /**
  * The new events manager in ALPHA version.
  *
- * @var Event_Manager
+ * @var \ItalyStrap\Event\Manager
  */
 $event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
 $events_manager = $event_manager; // Deprecated $events_manager.
@@ -170,7 +171,7 @@ $app = array(
  * ================================
  * Now load the plugin application
  *
- * @var ItalyStrap\Plugin\Loader
+ * @var \ItalyStrap\Plugin\Loader
  * =================================
  */
 $italystrap_plugin = new \ItalyStrap\Plugin\Loader( $injector, $event_manager, $app, $options );

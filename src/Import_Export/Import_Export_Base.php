@@ -187,7 +187,7 @@ abstract class Import_Export_Base {
 
 		$output = '';
 
-		$output .= $this->fields_type->get_field_type( $this->fields_args[ $value ], $default );
+		$output .= $this->fields_type->render( $this->fields_args[ $value ], $default );
 	
 		echo $output; // XSS ok.
 	
