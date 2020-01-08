@@ -24,14 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * Back compat with 5.2 only for running this file
- */
-if ( ! defined( '__DIR__' ) ) {
-	define( '__DIR__', dirname( __FILE__ ) );
-}
-
-require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.php' );
+require __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.php';
 
 /**
  * Instantiate the class
@@ -43,7 +36,7 @@ require( __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '5.4', '4.9', 'ACM - Advanced Control Manager' );
+$requirements = new Minimum_Requirements( '7.2', '5.2', 'ACM - Advanced Control Manager' );
 
 /**
  * Check compatibility on install

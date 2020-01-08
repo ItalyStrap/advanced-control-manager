@@ -73,7 +73,7 @@ $autoload_definitions = array(
 	'ItalyStrap\Import_Export\Import_Export'	=> $fields_type,
 	'ItalyStrapAdminGallerySettings'			=> $fields_type,
 	'ItalyStrap\Config\Config'					=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig ) ),
-	'ItalyStrap\I18N\Translator'				=> array( ':domain' => 'ItalyStrap' ),
+	'ItalyStrap\I18N\Translator'				=> array( ':domain' => 'italystrap' ),
 );
 
 /**======================
