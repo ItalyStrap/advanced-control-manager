@@ -1,3 +1,13 @@
+/wp-content/
+/vendor/
+
+/_others/
+
+*.local
+codeception.yml
+*.lock
+.php_cs.cache
+
 #Git files
 .gitattributes
 .git

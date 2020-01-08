@@ -1,57 +1,20 @@
-actor: Tester
 paths:
     tests: tests
-    log: tests/_output
+    output: tests/_output
     data: tests/_data
-    helpers: tests/_support
-settings:
-    bootstrap: _bootstrap.php
-    colors: false
-    memory_limit: 1024M
-modules:
-    config:
-        Db:
-            dsn: 'mysql:host=localhost;dbname=test'
-            user: root
-            password: password
-            dump: tests/_data/dump.sql
-        WPBrowser:
-            url: 'http://192.168.1.10/italystrap/'
-            adminUsername: admin
-            adminPassword: password
-            adminUrl: /wp-admin
-        WPDb:
-            dsn: 'mysql:host=localhost;dbname=test'
-            user: root
-            password: password
-            dump: tests/_data/dump.sql
-            populate: true
-            cleanup: true
-            url: 'http://192.168.1.10/italystrap/'
-            tablePrefix: wp_
-        WPLoader:
-            wpRootFolder: 'E:/xampp/htdocs/italystrap'
-            dbName: test
-            dbHost: localhost
-            dbUser: root
-            dbPassword: password
-            wpDebug: true
-            dbCharset: utf8
-            dbCollate: ''
-            tablePrefix: wp_
-            domain: 192.168.1.10/italystrap/
-            adminEmail: admin@wp.local
-            title: 'WP Tests'
-            phpBinary: php
-            language: ''
-            plugins: ["advanced-control-manager/italystrap.php"]
-            activatePlugins: ["advanced-control-manager/italystrap.php"]
-        WPWebDriver:
-            url: 'http://192.168.1.10/italystrap/'
-            browser: phantomjs
-            port: 4444
-            restart: true
-            wait: 2
-            adminUsername: admin
-            adminPassword: password
-            adminUrl: /wp-admin
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+    commands:
+        - Codeception\Command\GenerateWPUnit
+        - Codeception\Command\GenerateWPRestApi
+        - Codeception\Command\GenerateWPRestController
+        - Codeception\Command\GenerateWPRestPostTypeController
+        - Codeception\Command\GenerateWPAjax
+        - Codeception\Command\GenerateWPCanonical
+        - Codeception\Command\GenerateWPXMLRPC
+params:
+    - .env
