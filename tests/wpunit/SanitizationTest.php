@@ -97,7 +97,6 @@ class SanitizationTest extends \Codeception\TestCase\WPTestCase
     }
 
     /**
-     * @test
      * it_should_be_return_empty_array_if_string_is_passed
      */
     public function it_should_be_return_empty_array_if_string_is_passed()
@@ -105,7 +104,6 @@ class SanitizationTest extends \Codeception\TestCase\WPTestCase
         $instance_value = array( '<h1>Test</h1><!-- Comment --><script></script>' );
         $value = $this->sanitization->sanitize( 'sanitize_taxonomy_multiple_select', $instance_value );
         $this->assertTrue( empty( $value ) , $value );
-
     }
 
     /**

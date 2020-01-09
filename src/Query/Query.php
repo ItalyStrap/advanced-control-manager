@@ -13,6 +13,7 @@
 
 namespace ItalyStrap\Query;
 
+use ItalyStrap\I18N\Translator;
 use \WP_Query;
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Config\Config;
@@ -103,9 +104,7 @@ abstract class Query implements Query_Interface {
 	 * @return self
 	 */
 	public static function init( $context = 'posts' ) {
-
-		return new self( new WP_Query(), new Excerpt( new Config() ), new Config(), $context );
-
+		return new self( new WP_Query(), new Excerpt( new Config(), new Translator( 'ItalyStrap' ) ), $context );
 	}
 
 	/**
@@ -146,8 +145,8 @@ abstract class Query implements Query_Interface {
 	 * @return string        [description]
 	 */
 	public function get_custom_template_path() {
-		d($this->config['template_custom']);
-		return ITALYSTRAP_PLUGIN_PATH . DS . $templates['standard'];
+//		d($this->config['template_custom']);
+//		return ITALYSTRAP_PLUGIN_PATH . DS . $templates['standard'];
 	}
 
 	/**
@@ -208,7 +207,7 @@ abstract class Query implements Query_Interface {
 		// d( $templates['loop'] );
 		// d( locate_template( $templates['legacy'] ) );
 		// d( locate_template( $templates[ $this->config['template'] ] ) );
-	
+
 		// $this->config['template'] = 'thematic-areas-home';
 
 		/**
@@ -217,7 +216,7 @@ abstract class Query implements Query_Interface {
 		if ( 'standard' === $this->config['template'] ) {
 			$this->config['template'] = 'default';
 		}
-		
+
 		$locate_template = array(
 			$templates[ $this->config['template'] ],
 		);

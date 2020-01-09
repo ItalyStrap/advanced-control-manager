@@ -6,6 +6,7 @@
 
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Config\Config;
+use ItalyStrap\I18N\Translator;
 
 class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 
@@ -23,10 +24,15 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 		// Before.
 		parent::setUp();
 
-		$this->query = ItalyStrap\Query\Posts::init();
 		$this->dom = new \DOMDocument();
 
 		// Your set up methods here.
+	}
+
+	protected function getInstance() {
+		$sut = new \ItalyStrap\Query\Posts( new \WP_Query(), new Excerpt( new Config(), new Translator( 'ItalyStrap' ) ), 'post'  );
+		\PHPUnit\Framework\Assert::assertInstanceOf( \ItalyStrap\Query\Posts::class, $sut, '' );
+		return $sut;
 	}
 
 	/**
@@ -34,8 +40,6 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function tearDown(): void  {
 		// Your tear down methods here.
-		//
-		$this->query = new ItalyStrap\Query\Posts( new \WP_Query(), new Excerpt( new Config() ), new Config(), 'test'  );
 
 		// Then.
 		parent::tearDown();
@@ -45,29 +49,20 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	 * @test
 	 * it should be instantiatable with_static_method
 	 */
-	public function it_should_be_instantiatable_with_static_method() {
-		$this->query = ItalyStrap\Query\Posts::init();
-		$this->assertInstanceOf( 'ItalyStrap\Query\Posts', $this->query );
-	}
-
-	/**
-	 * @test
-	 * it should be instantiatable
-	 */
 	public function it_should_be_instantiatable() {
-		$this->query = new ItalyStrap\Query\Posts( new WP_Query(), new Excerpt( new Config() ), new Config(), 'test'  );
-		$this->assertInstanceOf( 'ItalyStrap\Query\Posts', $this->query );
+		$sut = $this->getInstance();
 	}
 
 	/**
-	 * @test
 	 * it should be echo_read_more_link
 	 */
 	public function it_should_be_echo_read_more_link() {
 
+		$sut = $this->getInstance();
+
 		ob_start();
-		$this->query->read_more_link();
-		$out = ob_end_clean();
+		$sut->read_more_link();
+		$out = ob_get_clean();
 
 		$this->dom->loadHTML( $out );
 		$elements = $this->dom->getElementsByTagName( 'a' );

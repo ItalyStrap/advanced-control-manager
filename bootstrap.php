@@ -13,6 +13,8 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 use ItalyStrap\Fields\Fields;
+use ItalyStrap\I18N\Translatable;
+use ItalyStrap\I18N\Translator;
 use ItalyStrap\Widgets\Widget_Factory;
 use ItalyStrap\Shortcodes\Shortcode_Factory;
 use ItalyStrap\Blocks\Block_Factory;
@@ -82,7 +84,7 @@ $autoload_definitions = array(
 $autoload_aliases = array(
 	'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
 	'ItalyStrap\View\View_Interface'		=> 'ItalyStrap\View\View',
-	'ItalyStrap\I18N\Translatable'			=> 'ItalyStrap\I18N\Translator',
+	Translatable::class	=> Translator::class,
 	// 'ItalyStrap\Fields\Fields_Interface'	=> 'ItalyStrap\Fields\Fields',
 );
 

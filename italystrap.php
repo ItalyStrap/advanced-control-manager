@@ -63,11 +63,7 @@ italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
 $autoload_plugin_files = array(
 	'/vendor/autoload.php',
 	'/vendor/cmb2/cmb2/init.php',
-	'/functions/general-functions.php',
-	'/functions/breadcrumbs.php',
-	'/functions/booleans.php',
-	'/functions/notice.php',
-	'/functions/private.php',
+	'/functions/autoload.php',
 	'/bootstrap.php',
 	'/functions/edd.php',
 );

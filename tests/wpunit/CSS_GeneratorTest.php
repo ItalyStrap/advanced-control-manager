@@ -1,4 +1,7 @@
 <?php
+declare(strict_types=1);
+
+namespace ItalyStrap\Tests;
 
 /**
  * Test private method link
@@ -6,6 +9,7 @@
  */
 
 use ItalyStrap\Widgets\Areas\CSS_Generator;
+use ReflectionClass;
 
 class CSS_GeneratorTest extends \Codeception\TestCase\WPTestCase
 {
@@ -86,7 +90,7 @@ class CSS_GeneratorTest extends \Codeception\TestCase\WPTestCase
      */
     public function it_should_return_true_if_the_value_is_valid( $value ) {
         $foo = self::getMethod( 'is_not_empty_value' );
-        $obj = new ItalyStrap\Widgets\Areas\CSS_Generator();
+        $obj = new \ItalyStrap\Widgets\Areas\CSS_Generator();
         $this->assertTrue( $foo->invokeArgs( $obj, [ $value ] ), "Value $value is not true"  );
     }
 
@@ -109,7 +113,7 @@ class CSS_GeneratorTest extends \Codeception\TestCase\WPTestCase
      */
     public function it_should_return_false_of_the_value_is_valid( $value ) {
         $foo = self::getMethod( 'is_not_empty_value' );
-        $obj = new ItalyStrap\Widgets\Areas\CSS_Generator();
+        $obj = new \ItalyStrap\Widgets\Areas\CSS_Generator();
         $this->assertFalse( $foo->invokeArgs( $obj, [ $value ] ), "Value $value is not false" );
     }
 }
