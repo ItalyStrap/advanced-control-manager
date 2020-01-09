@@ -3,8 +3,8 @@
 class UpdateTest extends \Codeception\TestCase\WPTestCase
 {
 
-    public function setUp()
-    {
+    public function setUp(): void
+	{
         // before
         parent::setUp();
 
@@ -24,8 +24,8 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
         // your set up methods here
     }
 
-    public function tearDown()
-    {
+    public function tearDown(): void
+	{
         // your tear down methods here
 
         // then
@@ -83,7 +83,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_string_without_html_tags
     //  */
     // public function it_should_be_return_string_without_html_tags()
-    // {   
+    // {
     //     $instance_value = '<h1>Test</h1><!-- Comment --><script>alert("Hack");</script>';
     //     $value = $this->update->sanitize( 'strip_tags', $instance_value );
     //     $this->assertTrue( $value === strip_tags( $instance_value ), $value );
@@ -96,7 +96,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_escaped_attr
     //  */
     // public function it_should_be_return_escaped_attr()
-    // {   
+    // {
     //     $instance_value = '<h1>Test</h1><!-- Comment --><script></script>';
     //     $value = $this->update->sanitize( 'esc_attr', $instance_value );
     //     $this->assertTrue( $value === esc_attr( $instance_value ), $value );
@@ -108,7 +108,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_sanitized_text_field_if_func_or_method_doesnt_exist
     //  */
     // public function it_should_be_return_sanitized_text_field_if_func_or_method_doesnt_exist()
-    // {   
+    // {
     //     $instance_value = '<h1>Test</h1><!-- Comment --><script></script>';
     //     $value = $this->update->sanitize( 'doesnt_exist', $instance_value );
     //     $this->assertTrue( $value === sanitize_text_field( $instance_value ), $value );
@@ -120,7 +120,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_empty_string
     //  */
     // public function it_should_be_return_empty_string()
-    // {   
+    // {
     //     $instance_value = '';
     //     $value = $this->update->sanitize( 'sanitize_taxonomy_multiple_select', $instance_value );
     //     $this->assertTrue( '' === $value );
@@ -132,7 +132,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_an_array_if_string_is_passed
     //  */
     // public function it_should_be_return_an_array_if_string_is_passed()
-    // {   
+    // {
     //     $instance_value = '<h1>Test</h1><!-- Comment --><script></script>';
     //     $value = $this->update->sanitize( 'sanitize_taxonomy_multiple_select', $instance_value );
     //     $this->assertTrue( is_array( $value ) );
@@ -144,7 +144,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_empty_array_if_string_is_passed
     //  */
     // public function it_should_be_return_empty_array_if_string_is_passed()
-    // {   
+    // {
     //     $instance_value = array( '<h1>Test</h1><!-- Comment --><script></script>' );
     //     $value = $this->update->sanitize( 'sanitize_taxonomy_multiple_select', $instance_value );
     //     $this->assertTrue( empty( $value ) , $value );
@@ -156,7 +156,7 @@ class UpdateTest extends \Codeception\TestCase\WPTestCase
     //  * it_should_be_return_sanitized_array
     //  */
     // public function it_should_be_return_sanitized_array()
-    // {   
+    // {
     //     $instance_value = array( 0, 1, '<script></script>' );
     //     $value = $this->update->sanitize( 'sanitize_taxonomy_multiple_select', $instance_value );
     //     foreach ( $value as $key => $value ) {

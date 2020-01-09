@@ -3,16 +3,16 @@
 class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
 {
 
-    public function setUp()
-    {
+    public function setUp(): void
+	{
         // before
         parent::setUp();
 
         $this->settings_converter = new \ItalyStrap\Migrations\Settings_Converter();
     }
 
-    public function tearDown()
-    {
+    public function tearDown(): void
+	{
         // your tear down methods here
 
         // then

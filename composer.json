@@ -1,8 +1,17 @@
 {
 	"name": "italystrap/advanced-control-manager",
 	"description": "Make your web site more powerful",
+	"keywords": ["wordpress"],
 	"type": "wordpress-plugin",
 	"license": "GPL 2.0",
+	"authors": [
+		{
+			"name": "overclokk",
+			"email": "info@overclokk.net",
+			"homepage": "https://www.italystrap.com",
+			"role": "Developer"
+		}
+	],
     "minimum-stability": "dev",
 	"require": {
 		"php": ">=7.2",
@@ -12,7 +21,7 @@
 		"rdlowrey/auryn": "^1.4",
 		"erusev/parsedown": "^1.6",
 		"inpsyde/menu-cache": "^1.0",
-        "italystrap/edd": "dev-master",
+        "italystrap/edd": "^0.0",
         "italystrap/breadcrumbs": "^2.0",
         "italystrap/settings": "^0.0",
         "italystrap/fields": "^2.0",
@@ -21,8 +30,15 @@
         "italystrap/debug": "^1.0"
 	},
 	"require-dev": {
+		"leafo/scssphp": "^0.6.5",
 		"lucatume/wp-browser": "~2.2",
-		"leafo/scssphp": "^0.6.5"
+		"lucatume/function-mocker-le": "^1.0",
+		"italystrap/debug": "~2.0",
+		"wp-coding-standards/wpcs": "^2.1",
+		"phpcompatibility/php-compatibility": "*",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"phpstan/phpstan": "^0.12",
+		"szepeviktor/phpstan-wordpress": "^0.5"
 	},
 	"autoload": {
 		"classmap": [
@@ -33,18 +49,22 @@
 			"ItalyStrap\\": "src/"
 		}
 	},
-	"autoload-dev": {
-
-	},
 	"extra": {
 		"installer-paths": {
 			"vendor/{$name}/": ["cmb2/cmb2"]
 		}
 	},
-	"authors": [
-		{
-			"name": "overclokk",
-			"email": "info@overclokk.net"
-		}
-	]
+	"scripts": {
+		"check": [
+			"phpcs -p -s --standard=phpcs.xml src",
+			"phpstan analyse"
+		],
+		"test": [
+			"test"
+		]
+	},
+	"support"    : {
+		"issues": "https://github.com/ItalyStrap/advanced-control-manager/issues",
+		"source": "https://github.com/ItalyStrap/advanced-control-manager"
+	}
 }

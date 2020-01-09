@@ -3,8 +3,8 @@
 class GoogleAnalyticsTest extends \Codeception\TestCase\WPTestCase
 {
 
-    public function setUp()
-    {
+    public function setUp(): void
+	{
         // before
         parent::setUp();
 
@@ -17,8 +17,8 @@ class GoogleAnalyticsTest extends \Codeception\TestCase\WPTestCase
         $this->dom = new DOMDocument();
     }
 
-    public function tearDown()
-    {
+    public function tearDown(): void
+	{
         // your tear down methods here
 
         // then

@@ -3,8 +3,8 @@
 class ValidationTest extends \Codeception\TestCase\WPTestCase
 {
 
-    public function setUp()
-    {
+    public function setUp(): void
+	{
         // before
         parent::setUp();
 
@@ -13,8 +13,8 @@ class ValidationTest extends \Codeception\TestCase\WPTestCase
         // your set up methods here
     }
 
-    public function tearDown()
-    {
+    public function tearDown(): void
+	{
         // your tear down methods here
 
         // then
@@ -30,7 +30,7 @@ class ValidationTest extends \Codeception\TestCase\WPTestCase
     }
 
     public function it_should_be_validate_return_true()
-    {   
+    {
         $instance_value = '<h1>Test</h1><!-- Comment --><script></script>';
         $value = $this->validation->validate( 'alpha_dash', $instance_value );
         $value = $instance_value;

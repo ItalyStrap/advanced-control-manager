@@ -4,7 +4,6 @@
  */
 // namespace ItalyStrap\Core;
 
-use \WP_Query;
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Config\Config;
 
@@ -20,7 +19,7 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * [setUp description]
 	 */
-	public function setUp() {
+	public function setUp(): void  {
 		// Before.
 		parent::setUp();
 
@@ -33,10 +32,10 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * [tearDown description]
 	 */
-	public function tearDown() {
+	public function tearDown(): void  {
 		// Your tear down methods here.
-		// 
-		$this->query = new ItalyStrap\Query\Posts( new WP_Query(), new Excerpt( new Config() ), new Config(), 'test'  );
+		//
+		$this->query = new ItalyStrap\Query\Posts( new \WP_Query(), new Excerpt( new Config() ), new Config(), 'test'  );
 
 		// Then.
 		parent::tearDown();

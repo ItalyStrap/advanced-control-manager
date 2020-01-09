@@ -1,7 +1,22 @@
 # Codeception Test Suite Configuration
+#
+# Suite for unit or integration tests that require WordPress functions and classes.
 
-# suite for WordPress unit tests.
-# Load WordPress and unit test classes that rely on it.
-class_name: WpunitTester
+actor: WpunitTester
 modules:
-    enabled: [WPLoader, \Helper\Wpunit]
+    enabled:
+        - WPLoader
+        - \Helper\Wpunit
+    config:
+        WPLoader:
+            wpRootFolder: "%WP_ROOT_FOLDER%"
+            dbName: "%TEST_DB_NAME%"
+            dbHost: "%TEST_DB_HOST%"
+            dbUser: "%TEST_DB_USER%"
+            dbPassword: "%TEST_DB_PASSWORD%"
+            tablePrefix: "%TEST_TABLE_PREFIX%"
+            domain: "%TEST_SITE_WP_DOMAIN%"
+            adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
+            title: "Settings"
+            plugins: ['settings/index.php']
+            activatePlugins: ['settings/index.php']
