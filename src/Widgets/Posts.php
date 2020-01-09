@@ -22,7 +22,7 @@ class Posts extends Widget {
 	/**
 	 * Instance of ItalyStrap\Query\Posts
 	 *
-	 * @var ItalyStrap\Query\Posts
+	 * @var \ItalyStrap\Query\Posts
 	 */
 	private $query_posts = null;
 

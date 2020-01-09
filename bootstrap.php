@@ -12,9 +12,20 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
+use Auryn\Injector;
+use ItalyStrap\Config\Config;
+use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Event\Manager;
+use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Fields\Fields;
 use ItalyStrap\I18N\Translatable;
 use ItalyStrap\I18N\Translator;
+use ItalyStrap\Import_Export\Import_Export;
+use ItalyStrap\Settings\Settings;
+use ItalyStrap\View\View;
+use ItalyStrap\View\View_Interface;
+use ItalyStrap\Widgets\Areas\Areas;
+use ItalyStrap\Widgets\Attributes\Attributes;
 use ItalyStrap\Widgets\Widget_Factory;
 use ItalyStrap\Shortcodes\Shortcode_Factory;
 use ItalyStrap\Blocks\Block_Factory;
@@ -22,9 +33,9 @@ use ItalyStrap\Blocks\Block_Factory;
 /**
  * Initialize the DIC
  *
- * @var \Auryn\Injector
+ * @var Injector
  */
-$injector = new \Auryn\Injector;
+$injector = new Injector;
 add_filter( 'italystrap_injector', function () use ( $injector ) {
 	return $injector;
 } );
@@ -37,8 +48,8 @@ $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/option
 /**
  * Get the plugin and theme options
  */
-$theme_mods = (array) get_theme_mods();
-$options = (array) get_option( ITALYSTRAP_OPTIONS_NAME );
+$theme_mods = (array) \get_theme_mods();
+$options = (array) \get_option( ITALYSTRAP_OPTIONS_NAME );
 
 //$options = wp_parse_args( $options, get_default_from_config( $admin_settings ) );
 $options = array_merge( get_default_from_config( $admin_settings ), $options );
@@ -60,9 +71,9 @@ $injector->defineParam( 'options', $options );
  * Autoload Shared Classes
  *======================*/
 $autoload_sharing = array(
-	'ItalyStrap\Config\Config',
-	'ItalyStrap\Excerpt\Excerpt',
-	'ItalyStrap\View\View',
+	Config::class,
+	Excerpt::class,
+	View::class,
 );
 
 /**=============================
@@ -70,22 +81,21 @@ $autoload_sharing = array(
  *============================*/
 $fields_type = array( 'fields_type' => Fields::class );
 $autoload_definitions = array(
-	'ItalyStrap\Widgets\Attributes\Attributes'	=> $fields_type,
-	'ItalyStrap\Settings\Settings'				=> $fields_type,
-	'ItalyStrap\Import_Export\Import_Export'	=> $fields_type,
-	'ItalyStrapAdminGallerySettings'			=> $fields_type,
-	'ItalyStrap\Config\Config'					=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig ) ),
-	'ItalyStrap\I18N\Translator'				=> array( ':domain' => 'italystrap' ),
+	Attributes::class						=> $fields_type,
+	Settings::class							=> $fields_type,
+	Import_Export::class					=> $fields_type,
+	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
+	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig ) ),
+	Translator::class						=> array( ':domain' => 'italystrap' ),
 );
 
 /**======================
  * Autoload Aliases Class
  *=====================*/
 $autoload_aliases = array(
-	'ItalyStrap\Config\Config_Interface'	=> 'ItalyStrap\Config\Config',
-	'ItalyStrap\View\View_Interface'		=> 'ItalyStrap\View\View',
-	Translatable::class	=> Translator::class,
-	// 'ItalyStrap\Fields\Fields_Interface'	=> 'ItalyStrap\Fields\Fields',
+	Config_Interface::class	=> Config::class,
+	View_Interface::class	=> View::class,
+	Translatable::class		=> Translator::class,
 );
 
 /**=============================
@@ -94,8 +104,8 @@ $autoload_aliases = array(
  * @see _init & _init_admin
  =============================*/
 $autoload_subscribers = array(
-	'widget_areas'			=> 'ItalyStrap\Widgets\Areas\Areas',
-	'widget_attributes'		=> 'ItalyStrap\Widgets\Attributes\Attributes',
+	'widget_areas'			=> Areas::class,
+	'widget_attributes'		=> Attributes::class,
 );
 
 /**=============================
@@ -107,8 +117,8 @@ $autoload_subscribers = array(
 // 	// 'ItalyStrap\Customizer\Customizer_Register',
 // );
 
-if ( defined( 'ITALYSTRAP_BETA' ) ) {
-	$autoload_subscribers[] = 'ItalyStrap\Customizer\Customizer_Register';
+if ( \defined( 'ITALYSTRAP_BETA' ) ) {
+	$autoload_subscribers[] = \ItalyStrap\Customizer\Customizer_Register::class;
 }
 
 foreach ( $autoload_sharing as $class ) {
@@ -124,9 +134,9 @@ foreach ( $autoload_aliases as $interface => $implementation ) {
 /**
  * The new events manager in ALPHA version.
  *
- * @var \ItalyStrap\Event\Manager
+ * @var Manager
  */
-$event_manager = $injector->make( 'ItalyStrap\Event\Manager' );
+$event_manager = $injector->make( Manager::class );
 $events_manager = $event_manager; // Deprecated $events_manager.
 
 /**
@@ -145,7 +155,7 @@ add_action( 'init', function () {
 	/**
 	 * Load po file
 	 */
-	load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
+	\load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
 }, 100 );
 
 $autoload_plugin_files_init = array(

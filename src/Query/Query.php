@@ -21,7 +21,7 @@ use ItalyStrap\Config\Config;
 /**
  * Query Class for widget and shortcode
  */
-abstract class Query implements Query_Interface {
+class Query implements Query_Interface {
 
 	/**
 	 * WordPress query object.
