@@ -26,8 +26,7 @@
         "italystrap/settings": "^0.0",
         "italystrap/fields": "^2.0",
         "italystrap/config": "^2.0",
-		"italystrap/helpers": "~1.0",
-        "italystrap/debug": "^1.0"
+		"italystrap/helpers": "~1.0"
 	},
 	"require-dev": {
 		"leafo/scssphp": "^0.6.5",
