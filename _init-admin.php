@@ -12,9 +12,16 @@
 
 namespace ItalyStrap\Admin;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
-	die();
-}
+use ItalyStrap\Config\ConfigFactory;
+use ItalyStrap\Custom\Metaboxes\CMB2_Factory;
+use ItalyStrap\Custom\Metaboxes\Register_Metaboxes;
+use ItalyStrap\Editors\Terms;
+use ItalyStrap\Image\Size;
+use ItalyStrap\Import_Export\Import_Export;
+use ItalyStrap\Settings\Page;
+use ItalyStrap\Settings\Settings;
+use ItalyStrap\Settings\SettingsBuilder;
+use ItalyStrap\Settings\ViewPage;
 
 if ( ! is_admin() ) {
 	return;
@@ -22,8 +29,8 @@ if ( ! is_admin() ) {
 
 $autoload_subscribers = array_merge( $autoload_subscribers, array(
 		// 'option_name'			=> 'Class\Name',
-		'media_carousel_shortcode'	=> 'ItalyStrapAdminGallerySettings',
-		'ItalyStrap\Custom\Metaboxes\CMB2_Factory',
+		'media_carousel_shortcode'	=> \ItalyStrapAdminGallerySettings::class,
+		CMB2_Factory::class,
 	)
 );
 
@@ -35,7 +42,7 @@ if ( ! isset( $pagenow ) ) {
  * TinyMCE Editor in Category description
  */
 if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
-	$autoload_subscribers['visual_editor_on_terms'] = '\ItalyStrap\Editors\Terms';
+	$autoload_subscribers['visual_editor_on_terms'] = Terms::class;
 }
 
 // $autoload_concretes = array_merge( $autoload_concretes, array(
@@ -54,7 +61,7 @@ if ( 'edit-tags.php' === $pagenow || 'term.php' === $pagenow ) {
 // add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
 if ( ! empty( $options['widget_visibility'] ) ) {
-	add_action( 'admin_init', array( 'ItalyStrap\Widgets\Visibility\Visibility_Admin', 'init' ) );
+	\add_action( 'admin_init', [\ItalyStrap\Widgets\Visibility\Visibility_Admin::class, 'init'] );
 }
 
 /**
@@ -62,7 +69,7 @@ if ( ! empty( $options['widget_visibility'] ) ) {
  */
 if ( ! empty( $options['show-ids'] ) ) {
 	require( 'hooks/simply-show-ids.php' );
-	add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
+	\add_action( 'admin_init', '\ItalyStrap\Admin\ssid_add' );
 }
 
 /**
@@ -75,11 +82,11 @@ if ( ! empty( $options['show-thumb'] ) ) {
 		return;
 	}
 	require( 'hooks/simply-show-thumb.php' );
-	add_filter( 'manage_posts_columns', 'Italystrap\Admin\posts_columns', 5);
-	add_action( 'manage_posts_custom_column', 'Italystrap\Admin\posts_custom_columns', 5, 2);
-	add_filter( 'manage_pages_columns', 'Italystrap\Admin\posts_columns', 5);
-	add_action( 'manage_pages_custom_column', 'Italystrap\Admin\posts_custom_columns', 5, 2);
-	add_action( 'admin_head-edit.php', 'Italystrap\Admin\posts_columns_style' );
+	\add_filter( 'manage_posts_columns', 'Italystrap\Admin\posts_columns', 5);
+	\add_action( 'manage_posts_custom_column', 'Italystrap\Admin\posts_custom_columns', 5, 2);
+	\add_filter( 'manage_pages_columns', 'Italystrap\Admin\posts_columns', 5);
+	\add_action( 'manage_pages_custom_column', 'Italystrap\Admin\posts_custom_columns', 5, 2);
+	\add_action( 'admin_head-edit.php', 'Italystrap\Admin\posts_columns_style' );
 }
 
 /**
@@ -87,7 +94,22 @@ if ( ! empty( $options['show-thumb'] ) ) {
  */
 // $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/config/options.php' );
 $injector->defineParam( 'settings', $admin_settings );
-$event_manager->add_subscriber( $injector->make( 'ItalyStrap\Settings\Settings' ) );
+$event_manager->add_subscriber( $injector->make( Settings::class ) );
+
+//$settings_builder = new SettingsBuilder();
+//$settings_builder->build(
+//	ConfigFactory::make( require 'admin/config/settings.php' ),
+//	ITALYSTRAP_OPTIONS_NAME,
+//	'italystrap',
+//	ITALYSTRAP_BASENAME
+//);
+//
+//$pages_obj2 = new Page(
+//	ConfigFactory::make( require 'admin/config/page-dashboard.php' ),
+//	new ViewPage()
+//);
+//$pages_obj2->boot();
+//$settings_builder->getLinks()->forPages( $pages_obj2 );
 
 /**
  * Import/Export configuration
@@ -115,22 +137,22 @@ $injector->defineParam( 'imp_exp_args', $imp_exp_args );
 /**
  * Import Export
  */
-$import_export = $injector->make( 'ItalyStrap\Import_Export\Import_Export' );
+$import_export = $injector->make( Import_Export::class );
 $event_manager->add_subscriber( $import_export );
 
 /**
  * Instanziate the ItalyStrap\Image\Size
  *
- * @var ItalyStrap\Image\Size
+ * @var Size
  */
-$image_size_media = $injector->make( 'ItalyStrap\Image\Size' );
+$image_size_media = $injector->make( Size::class );
 $event_manager->add_subscriber( $image_size_media );
 
 /**
  * Option for jpeg_quality
  */
 if ( ! empty( $options['jpeg_quality'] ) ) {
-	add_filter( 'jpeg_quality', function ( $quality, $context ) use ( $options ) {
+	\add_filter( 'jpeg_quality', function ( $quality, $context ) use ( $options ) {
 
 		$options['jpeg_quality'] = $options['jpeg_quality'] > 99 ? 100 : $options['jpeg_quality'];
 
@@ -145,5 +167,5 @@ if ( ! empty( $options['jpeg_quality'] ) ) {
  *
  * @var Register_Metaboxes
  */
-$register_metabox = $injector->make( 'ItalyStrap\Custom\Metaboxes\Register_Metaboxes' );
+$register_metabox = $injector->make( Register_Metaboxes::class );
 $event_manager->add_subscriber( $register_metabox );
