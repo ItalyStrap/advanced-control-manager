@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace ItalyStrap;
+
 use ItalyStrap\Settings\Page as P;
 
 return [
