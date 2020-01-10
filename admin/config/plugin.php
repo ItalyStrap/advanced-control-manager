@@ -17,23 +17,23 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 
 use ItalyStrap\Core;
 
-return array(
+return [
 	'basename'				=> ITALYSTRAP_BASENAME,
 	'options_name'			=> ITALYSTRAP_OPTIONS_NAME,
 	'options_group'			=> 'italystrap_options_group',
 	'admin_view_path'		=> ITALYSTRAP_PLUGIN_PATH . 'admin/view/',
 	'capability'			=> 'manage_options',
-	'plugin_action_links'	=> array(
+	'plugin_action_links'	=> [
 		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
 		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Docs','italystrap' ) . '</a>',
 		'<a href="https://italystrap.com/" target="_blank">ItalyStrap</a>',
-		),
-	'plugin_row_meta'		=> array(
+	],
+	'plugin_row_meta'		=> [
 		'<a href="admin.php?page=italystrap-settings">' . __( 'Settings','italystrap' ) . '</a>',
 		'<a href="http://docs.italystrap.com/" target="_blank">' . __( 'Doc','italystrap' ) . '</a>',
 		'<a href="https://italystrap.com/" target="_blank">ItalyStrap</a>',
-		),
-	'menu_page'				=> array(
+	],
+	'menu_page'				=> [
 		'page_title'		=> __( 'ACM by ItalyStrap Dashboard', 'italystrap' ),
 		'menu_title'		=> 'ACM by ItalyStrap',
 		// 'capability'		=> $this->capability,
@@ -76,8 +76,8 @@ return array(
 		// 		'show_on'		=> ( get_option( 'template' ) === 'ItalyStrap' ),
 		// 	),
 		// ),
-	),
-	'submenu_pages'	=> array(
+	],
+	'submenu_pages'	=> [
 		// array(
 		// 	'parent_slug'	=> 'italystrap-dashboard',//'edit.php?post_type=stores'
 		// 	'page_title'	=> __( 'Documentation', 'italystrap' ),
@@ -86,14 +86,14 @@ return array(
 		// 	'menu_slug'		=> 'italystrap-documentation',
 		// 	// 'function_cb'	=> array( $this, 'get_admin_view' ),
 		// ),
-		array(
+		[
 			'parent_slug'	=> 'italystrap-dashboard',
 			'page_title'	=> __( 'Settings', 'italystrap' ),
 			'menu_title'	=> __( 'Settings', 'italystrap' ),
 			// 'capability'	=> $this->capability,
 			'menu_slug'		=> 'italystrap-settings',
 			// 'function_cb'	=> array( $this, 'get_admin_view' ),
-		),
+		],
 		// array(
 		// 	'parent_slug'	=> 'italystrap-dashboard',
 		// 	'page_title'	=> __( 'Import/Export', 'italystrap' ),
@@ -102,7 +102,7 @@ return array(
 		// 	'menu_slug'		=> 'italystrap-import-export',
 		// 	// 'function_cb'	=> array( $this, 'get_admin_view' ),
 		// ),
-		array(
+		[
 			'parent_slug'	=> 'italystrap-dashboard',
 			'page_title'	=> __( 'Migrations', 'italystrap' ),
 			'menu_title'	=> __( 'Migrations', 'italystrap' ),
@@ -110,6 +110,6 @@ return array(
 			'menu_slug'		=> 'italystrap-migrations',
 			// 'function_cb'	=> array( $this, 'get_admin_view' ),
 			'show_on'		=> get_option( 'template' ) === 'ItalyStrap',
-		),
-	),
-);
+		],
+	],
+];

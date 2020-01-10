@@ -96,20 +96,43 @@ if ( ! empty( $options['show-thumb'] ) ) {
 $injector->defineParam( 'settings', $admin_settings );
 $event_manager->add_subscriber( $injector->make( Settings::class ) );
 
-//$settings_builder = new SettingsBuilder();
-//$settings_builder->build(
-//	ConfigFactory::make( require 'admin/config/settings.php' ),
-//	ITALYSTRAP_OPTIONS_NAME,
-//	'italystrap',
-//	ITALYSTRAP_BASENAME
-//);
-//
-//$pages_obj2 = new Page(
-//	ConfigFactory::make( require 'admin/config/page-dashboard.php' ),
-//	new ViewPage()
-//);
-//$pages_obj2->boot();
-//$settings_builder->getLinks()->forPages( $pages_obj2 );
+$settings = new SettingsBuilder(
+	ITALYSTRAP_OPTIONS_NAME,
+	'italystrap',
+	ITALYSTRAP_BASENAME
+);
+
+// Custom Dashboard page
+$settings->addPage(
+	require 'admin/config/page-dashboard.php'
+);
+
+$settings_config = ConfigFactory::make( require 'admin/config/settings.php' );
+// Settings page
+$settings->addPage(
+	$settings_config->get('page'),
+	$settings_config->get('sections')
+);
+
+// Migration page
+$settings->addPage(
+	[
+		Page::PARENT		=> 'italystrap-dashboard',
+		Page::PAGE_TITLE	=> __( 'Migrations', 'italystrap' ),
+		Page::MENU_TITLE	=> __( 'Migrations', 'italystrap' ),
+		Page::SLUG			=> 'italystrap-migrations',
+		'show_on'			=> get_option( 'template' ) === 'ItalyStrap',
+	]
+);
+
+$settings->addCustomPluginLink(
+	'key-for-css',
+	'https://italystrap.com',
+	'ItalyStrap',
+	[ 'target' => '_blank' ]
+);
+
+$settings->build();
 
 /**
  * Import/Export configuration
