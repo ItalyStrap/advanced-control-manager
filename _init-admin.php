@@ -98,8 +98,8 @@ $event_manager->add_subscriber( $injector->make( Settings::class ) );
 
 $settings = new SettingsBuilder(
 	ITALYSTRAP_OPTIONS_NAME,
-	'italystrap',
-	ITALYSTRAP_BASENAME
+	ITALYSTRAP_BASENAME,
+	ITALYSTRAP_FILE
 );
 
 // Custom Dashboard page
