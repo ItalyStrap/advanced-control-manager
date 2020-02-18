@@ -27,9 +27,9 @@ class Uninstall extends Settings_Base {
 	 * Initialize Class
 	 *
 	 * @param array            $options     Get the plugin options.
-	 * @param Fields_Interface $fields_type The Fields object.
+	 * @param FieldsInterface $fields_type The Fields object.
 	 */
-	public function __construct( array $options = array(), array $settings, array $args, Fields_Interface $fields_type ) {
+	public function __construct( array $options = array(), array $settings, array $args, FieldsInterface $fields_type ) {
 
 		parent::__construct( $options, $settings, $args, $fields_type );
 

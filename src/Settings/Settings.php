@@ -20,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Fields\Fields_Interface;
 use ItalyStrap\Fields\FieldsInterface;
 use ItalyStrap\Update\Validation;
 use ItalyStrap\Update\Sanitization;
@@ -118,7 +117,7 @@ class Settings implements Subscriber_Interface {
 	 * @param array            $settings       The configuration array plugin fields.
 	 * @param array            $args           The configuration array for plugin.
 	 * @param array            $theme_mods     The theme options.
-	 * @param Fields_Interface $fields_type    The Fields object.
+	 * @param FieldsInterface $fields_type    The Fields object.
 	 */
 	public function __construct( array $options, array $settings, array $args, array $theme_mods, FieldsInterface $fields_type ) {
 
@@ -173,9 +172,9 @@ class Settings implements Subscriber_Interface {
 	 * Get Aside for settings page
 	 */
 	public function get_aside() {
-	
+
 		require( $this->args['admin_view_path'] . 'italystrap-aside.php' );
-	
+
 	}
 
 	/**

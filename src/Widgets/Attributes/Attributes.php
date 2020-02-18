@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\Fields\Fields_Interface;
+use ItalyStrap\Fields\FieldsInterface;
 
 /**
  * Class for adding field attributes for widget
@@ -65,9 +65,9 @@ class Attributes implements Subscriber_Interface {
 	 * Init the constructor
 	 *
 	 * @param array            $options     The plugin options.
-	 * @param Fields_Interface $fields_type Field object.
+	 * @param FieldsInterface $fields_type Field object.
 	 */
-	public function __construct( array $options = array(), Fields_Interface $fields_type ) {
+	public function __construct( array $options = array(), FieldsInterface $fields_type ) {
 
 		$this->fields_type = $fields_type;
 

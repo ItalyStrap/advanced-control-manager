@@ -92,11 +92,15 @@ class Image implements Subscriber_Interface {
 			],
 			'lazyload_widget_text'	=> [
 				'widget_text',
-				PHP_INT_MAX
+				PHP_INT_MAX - 1
+			],
+			[
+				'widget_html_code_content',
+				PHP_INT_MAX - 1
 			],
 			[
 				'the_content',
-				PHP_INT_MAX
+				PHP_INT_MAX - 1
 			],
 			[
 				'post_thumbnail_html',
@@ -107,8 +111,10 @@ class Image implements Subscriber_Interface {
 				11
 			],
 			['italystrap_custom_header_image'],
-			['italystrap_carousel_output'],
+			['italystrap_carousel_output', PHP_INT_MAX],
 		];
+
+		$events = $this->dispatcher->filter('italystrap_lazyload_image_events', $events);
 
 		\array_walk($events, function ( array $event, $index ): void {
 
@@ -146,10 +152,6 @@ class Image implements Subscriber_Interface {
 
 		if ( $this->hasAlreadyLazyLoaded( $content ) ) {
 			return $content;
-		}
-
-		if ( $this->dispatcher->currentEventName() === 'widget_text' ) {
-			d($content);
 		}
 
 		/**

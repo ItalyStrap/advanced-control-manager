@@ -103,6 +103,10 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
 			return true;
 		})->shouldBeCalled();
 
+		$this->dispatcher->filter('italystrap_lazyload_image_events', Argument::any())->will(function ($args){
+			return $args[1];
+		})->shouldBeCalled();
+
 		$sut = $this->getInstance();
 		$sut->onWpLoaded();
     }
