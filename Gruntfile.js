@@ -668,7 +668,7 @@ module.exports = function(grunt) {
 	/**
 	 * My workflow
 	 * Update Readme.txt Documentation
-	 * Add new screanshot
+	 * Add new screenshot
 	 * Update changelog only in readme.txt
 	 *
 	 * Aggiornare la lingua con poedit

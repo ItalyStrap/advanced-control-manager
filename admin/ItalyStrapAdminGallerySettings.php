@@ -8,7 +8,7 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
 
-use ItalyStrap\Fields\Fields_Interface;
+use ItalyStrap\Fields\FieldsInterface;
 use ItalyStrap\Event\Subscriber_Interface;
 
 /**
@@ -57,7 +57,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface {
 
 	private $instance_old = array();
 
-	function __construct( Fields_Interface $fields_type, ItalyStrap\Image\Size $image_size ) {
+	function __construct( FieldsInterface $fields_type, ItalyStrap\Image\Size $image_size ) {
 
 		$this->image_size_media = $image_size;
 

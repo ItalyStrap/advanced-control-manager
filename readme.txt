@@ -17,7 +17,7 @@ Make your web site more powerful with ACM - Advanced Control Manager
 
 Always make a backup before install it and always test it in a dev enviroment.
 
-Make shure you have PHP 5.4 >=, better if you have PHP >= 7.0 (PHP 7.x is awesome ;-) ).
+Make sure you have PHP 7.2 >=, better if you have PHP >= 7.4 (PHP 7.x is awesome ;-) ).
 
 If you have any trouble [open a ticket](http://wordpress.org/support/plugin/advanced-control-manager).
 
@@ -29,7 +29,7 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 = Purpose =
 
-I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
+I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/ItalyStrap/italystrap) functionality but it works fine with all WordPress themes.
 
 Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options like popular posts, last posts, related posts and so on, there are a lot of functionality, see above for the full list of featured.
 

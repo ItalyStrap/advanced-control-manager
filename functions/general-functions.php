@@ -352,8 +352,8 @@ function get_template( $template_names ) {
  * @return string          Text content processed
  */
 function get_apply_lazyload( $content ) {
-
-	return \ItalyStrap\Lazyload\Image::replaceSrcImageWithSrcPlaceholders( $content );
+	_deprecated_function( __FUNCTION__, '2.2', 'Use the dedicated filter' );
+	return $content;
 }
 
 /**
