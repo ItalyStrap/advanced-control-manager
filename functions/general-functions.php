@@ -345,27 +345,6 @@ function get_template( $template_names ) {
 	return $located;
 }
 
-
-/**
- * Return img tag lazyloaded
- * @param  string $content Text content to be processed
- * @return string          Text content processed
- */
-function get_apply_lazyload( $content ) {
-	_deprecated_function( __FUNCTION__, '2.2', 'Use the dedicated filter' );
-	return $content;
-}
-
-/**
- * Echo img tag lazyloaded
- * @param  string $content Text content to be processed
- * @return string          Text content processed
- */
-function apply_lazyload( $content ) {
-
-	echo get_apply_lazyload( $content );
-}
-
 /**
  * Retrieves the attachment ID from the file URL
  *
@@ -422,3 +401,22 @@ function get_global( $name = '' ) {
 // 	return $args;
 // }
 // add_filter( 'italystrap_previous_next_post_link_args', __NAMESPACE__ . '\change_next_article_link' );
+
+/**
+ * Return img tag lazyloaded
+ * @param  string $content Text content to be processed
+ * @return string          Text content processed
+ */
+function get_apply_lazyload( $content ) {
+	_deprecated_function( __FUNCTION__, '2.2', 'Use the dedicated filter' );
+	return $content;
+}
+
+/**
+ * Echo img tag lazyloaded
+ * @param  string $content Text content to be processed
+ * @return string          Text content processed
+ */
+function apply_lazyload( $content ) {
+	echo get_apply_lazyload( $content );
+}
