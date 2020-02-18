@@ -231,9 +231,9 @@ function kill_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );	
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
 	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 	add_filter( 'tiny_mce_plugins', 'kill_emojis_tinymce' );
 }
@@ -246,8 +246,8 @@ function kill_emojis() {
  *
  * @since 2.0.0
  * @version 1.5.1 (Version of the original plugin)
- * 
- * @param    array  $plugins  
+ *
+ * @param    array  $plugins
  * @return   array           Difference betwen the two arrays
  */
 function kill_emojis_tinymce( $plugins ) {
@@ -287,7 +287,7 @@ function remove_widget_title( $widget_title ) {
 	if ( substr ( $widget_title, 0, 2 ) === '!!' ) {
 		return;
 	}
-	
+
 	return $widget_title;
 }
 
@@ -353,7 +353,7 @@ function get_template( $template_names ) {
  */
 function get_apply_lazyload( $content ) {
 
-	return \ItalyStrap\Lazyload\Image::add_image_placeholders( $content );
+	return \ItalyStrap\Lazyload\Image::replaceSrcImageWithSrcPlaceholders( $content );
 }
 
 /**

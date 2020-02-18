@@ -12,30 +12,38 @@
 namespace ItalyStrap\Lazyload;
 
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
 
-/**
- *
- */
 class Image implements Subscriber_Interface {
 
+	const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
 	/**
-	 * Returns an array of hooks that this subscriber wants to register with
-	 * the WordPress plugin API.
-	 *
-	 * @hooked plugins_loaded - 10
-	 *
+	 * @var EventDispatcherInterface
+	 */
+	private $dispatcher;
+
+	/**
+	 * @var ConfigInterface
+	 */
+	private $config;
+
+	/**
+	 * @var \SplFileObject
+	 */
+	private $file;
+
+	/**
 	 * @return array
 	 */
 	public static function get_subscribed_events() {
 
-		return array(
-			// 'hook_name'							=> 'method_name',
-			// 'plugins_loaded'	=> 'ItalyStrap\Lazyload\Image::init',
-			'wp_loaded'	=> 'init',
-		);
+		return [
+			'wp_loaded'	=> 'onWpLoaded',
+		];
 	}
 
 	/**
@@ -43,7 +51,7 @@ class Image implements Subscriber_Interface {
 	 *
 	 * @var string
 	 */
-	private static $unveilpath = '';
+	private $script = '';
 
 	/**
 	 * The options of the plugin
@@ -55,26 +63,25 @@ class Image implements Subscriber_Interface {
 	/**
 	 * Init constructor
 	 *
-	 * @param  array $options The plugin options.
+	 * @param ConfigInterface $config
+	 * @param EventDispatcherInterface $dispatcher
+	 * @param \SplFileObject $file
 	 */
-	public function __construct( ConfigInterface $config, array $options ) {
+	public function __construct( ConfigInterface $config, EventDispatcherInterface $dispatcher, \SplFileInfo $file ) {
 
-		self::$options = $options;
-
-		$file = $config->get('is_debug', false) ? 'js/src/unveil.js' : 'js/unveil.min.js';
+		$this->config = $config;
+		$this->dispatcher = $dispatcher;
+		$this->file = $file;
 
 		/**
 		 * Path for unveil.js
 		 *
 		 * @var string
 		 */
-		self::$unveilpath = ITALYSTRAP_PLUGIN_PATH . $file;
+		$this->script = $this->file->fread($this->file->getSize());
 	}
 
-	/**
-	 * Init Lazy_Load
-	 */
-	public static function init() {
+	public function onWpLoaded(): void {
 
 		if ( \is_admin() ) {
 			return;
@@ -86,40 +93,70 @@ class Image implements Subscriber_Interface {
 		 * Funziona solo con priorità inferiore a 10 altrimenti
 		 * le altre immagini non vengono elaborate
 		 */
-		add_filter( 'post_gallery', array( __CLASS__, 'add_image_placeholders' ), 9 );
+		$this->dispatcher->addListener( 'post_gallery', [$this, 'replaceSrcImageWithSrcPlaceholders'], 9 );
 
-		if ( ! empty( self::$options['lazyload_widget_text'] ) ) {
+		if ( $this->config->get('lazyload_widget_text', false) ) {
 			/**
 			 * Experimental
 			 * Da testare ed eventualmente mettere sotto opzione attivabile
 			 */
-			add_filter( 'widget_text', array( __CLASS__, 'add_image_placeholders' ), 11 );
+			$this->dispatcher->addListener( 'widget_text', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
 		}
 
 		/**
 		 * Run this later, so other content filters have run,
 		 * including image_add_wh on WP.com
 		 */
-		add_filter( 'the_content', array( __CLASS__, 'add_image_placeholders' ), 999 );
+		$this->dispatcher->addListener( 'the_content', [$this, 'replaceSrcImageWithSrcPlaceholders'], 999 );
 
-		add_filter( 'post_thumbnail_html', array( __CLASS__, 'add_image_placeholders' ), 11 );
-		add_filter( 'get_avatar', array( __CLASS__, 'add_image_placeholders' ), 11 );
+		$this->dispatcher->addListener( 'post_thumbnail_html', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
+		$this->dispatcher->addListener( 'get_avatar', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
 
 		/**
 		 * Filter for custom header image in ItalyStrap theme
 		 */
-		add_filter( 'italystrap_custom_header_image', array( __CLASS__, 'add_image_placeholders' ) );
-		add_filter( 'italystrap_carousel_output', array( __CLASS__, 'add_image_placeholders' ) );
+		$this->dispatcher->addListener( 'italystrap_custom_header_image', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
+		$this->dispatcher->addListener( 'italystrap_carousel_output', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
 
-		/**
-		 * Append unveil.js content to globalsjs static variable
-		 */
-		Inline_Script::set( self::get_unveil( self::$unveilpath ) );
+		$events = [
+			[
+				'post_gallery',
+				9
+			],
+			[
+				'widget_text',
+				11
+			],
+			[
+				'the_content',
+				PHP_INT_MAX
+			],
+			[
+				'post_thumbnail_html',
+				11
+			],
+			[
+				'get_avatar',
+				11
+			],
+			[
+				'italystrap_custom_header_image'
+			],
+			[
+				'italystrap_carousel_output'
+			],
+		];
 
-		/**
-		 * Append css in static variable and print in front-end footer
-		 */
-		Inline_Style::set( self::custom_css() );
+//		\array_walk($events, function ( array $event, int $index ){
+//			$this->dispatcher->addListener(
+//				$event[0],
+//				[$this, 'replaceSrcImageWithSrcPlaceholders'],
+//				$event[1] ?? 10
+//			);
+//		});
+
+		Inline_Script::set( $this->script() );
+		Inline_Style::set( $this->style() );
 	}
 
 	/**
@@ -128,20 +165,13 @@ class Image implements Subscriber_Interface {
 	 * @param string $content Content to be processed
 	 * @return string
 	 */
-	static function add_image_placeholders( $content ) {
+	public function replaceSrcImageWithSrcPlaceholders( string $content ) {
 
-		/**
-		 * Don't lazyload for feeds, previews
-		 */
-		if ( is_feed() || is_preview() ) {
+		if ( $this->isNotTheFrontEnd() ) {
 			return $content;
 		}
 
-
-		/**
-		 * Don't lazy-load if the content has already been run through previously
-		 */
-		if ( false !== strpos( $content, 'data-src' ) ) {
+		if ( $this->hasAlreadyLazyLoaded( $content ) ) {
 			return $content;
 		}
 
@@ -150,44 +180,32 @@ class Image implements Subscriber_Interface {
 		 *
 		 * @var string
 		 */
-		return preg_replace_callback(
+		return \preg_replace_callback(
 			'#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#',
-			array( __CLASS__ , 'replace_callback' ),
+			function ( array $matches ) {
+				return $this->replaceImg($matches);
+			},
 			$content
 		);
 
 	}
 
-
 	/**
-	 * Replace callback
-	 *
-	 * @param  array $matches The matches value from content.
-	 * @return string         The content
+	 * @param array $matches
+	 * @return string
 	 */
-	/**
-	 * [replace_callback description]
-	 *
-	 * @param  array $matches [description]
-	 *
-	 * @return string          [description]
-	 */
-	static function replace_callback( $matches ) {
-
-		$placeholder_image = self::get_placeholder();
-
-		$content = '';
+	private function replaceImg( array $matches ) {
 
 		/**
 		 * Replace srcset, sizes and src attributes
 		 */
-		$content = str_replace(
-			array( 'srcset', 'sizes' ),
-			array( 'data-srcset', 'data-sizes' ),
-			sprintf(
+		$content = \str_replace(
+			['srcset', 'sizes'],
+			['data-srcset', 'data-sizes'],
+			\sprintf(
 				'<img%1$ssrc="%2$s" data-src="%3$s"%4$s>',
 				$matches[1],
-				$placeholder_image,
+				$this->getImagePlaceholder(),
 				$matches[2],
 				$matches[3]
 			)
@@ -197,7 +215,7 @@ class Image implements Subscriber_Interface {
 		 * Add noscript fallback plus microdata
 		 * The meta tag works only if there is Schema.org markup
 		 */
-		$content .= sprintf(
+		$content .= \sprintf(
 			'<noscript><img%1$ssrc="%2$s"%3$s></noscript><meta itemprop="image" content="%2$s"/>',
 			$matches[1],
 			$matches[2],
@@ -208,47 +226,27 @@ class Image implements Subscriber_Interface {
 	}
 
 	/**
-	 * Get the placeholder
+	 * @link http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/
+	 * Gif black
+	 * data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
+	 * Gif grey
+	 * data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
+	 * Gif transparent
+	 * data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
 	 *
-	 * @return string        THe placeholder
+	 * @return string
 	 */
-	private static function get_placeholder() {
-
-		/**
-		 * In case you want to change the placeholder image use filter
-		 * ItalyStrapLazyload_placeholder_image
-		 * Gif link
-		 *
-		 * @link http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/
-		 * Gif nera
-		 * data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
-		 * Gif grigia
-		 * data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
-		 * Gif trasparente
-		 * data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
-		 * @var string
-		 */
-		$placeholder_image = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-		if ( ! empty( self::$options['lazyload-custom-placeholder'] ) ) {
-			$placeholder_image = self::$options['lazyload-custom-placeholder'];
-		}
-
-		return apply_filters( 'italystrap_lazy_load_placeholder_image', $placeholder_image );
+	private function getImagePlaceholder() {
+		return $this->dispatcher->filter( 'italystrap_lazy_load_placeholder_image',
+			$this->config->get('lazyload-custom-placeholder', static::DEFAULT_PLACEHOLDER)
+		);
 	}
 
 	/**
-	 * Read and return unveil.js
-	 *
-	 * @link https://tommcfarlin.com/reading-files-with-php/
-	 * @param  file $filename	The file for lazyloading.
-	 * @return string			[description]
+	 * @param $content
+	 * @return string
 	 */
-	static function get_unveil( $filename ) {
-
-		$content = '';
-
-		$content = \ItalyStrap\Core\get_file_content( $filename );
+	private function script(): string {
 
 		/**
 		 * Add script for img opacity
@@ -260,7 +258,7 @@ class Image implements Subscriber_Interface {
 		//Da testare
 		// $output = 'jQuery(document).ready(function($){$("img").unveil(200, function(){$(this).load(function(){$(this).css( "opacity","1");});});});';
 
-		$content .= '
+		$this->script .= <<<SCRIPT
 function force_load_img( img ) {
 	var src = img.data("src");
 	if (typeof src !== "undefined" && src !== ""){
@@ -275,32 +273,36 @@ jQuery(document).ready(function($){
 			this.style.opacity = 1;
 		});
 	});
-});';
+});
+SCRIPT;
 
-		return $content;
+		return $this->script;
 
 	}
 
 	/**
 	 * Add css to opacize img first are append to src
+	 * This apply opacity 0 only for thoose images that have the data-src attributes
+	 * normally added from this plugin.
 	 *
 	 * @return string Add opacity and transition to img
 	 */
-	static function custom_css() {
+	private function style(): string {
+		return 'img[data-src]{opacity:0;transition:opacity .3s ease-in;}';
+	}
 
-		/**
-		 * This apply opacity 0 only for thoose images that have the data-src attributes
-		 * normally added from this plugin.
-		 *
-		 * @var string
-		 */
-		$custom_css = 'img[data-src]{opacity:0;transition:opacity .3s ease-in;}';
-		return $custom_css;
+	/**
+	 * @param string $content
+	 * @return bool
+	 */
+	private function hasAlreadyLazyLoaded( string $content ): bool {
+		return false !== \strpos( $content, 'data-src' );
+	}
 
-		/**
-		 * return $custom_css;
-		 */
-		// return null;
-
+	/**
+	 * @return bool
+	 */
+	private function isNotTheFrontEnd(): bool {
+		return \is_feed() || \is_preview();
 	}
 }

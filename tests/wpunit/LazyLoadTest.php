@@ -23,7 +23,7 @@ class LazyLoadTest extends \Codeception\TestCase\WPTestCase {
 
 		$img = '<img width="640" height="480" sizes="(max-width: 640px) 100vw, 640px" srcset="http://192.168.1.10/italystrap/wp-content/uploads/2013/09/dsc20050604_133440_34211-300x225.jpg 300w, http://192.168.1.10/italystrap/wp-content/uploads/2013/09/dsc20050604_133440_34211.jpg 640w" style="max-height:480px" itemprop="image" alt="dsc20050604_133440_34211" class="center-block img-responsive attachment-full size-full" src="http://192.168.1.10/italystrap/wp-content/uploads/2013/09/dsc20050604_133440_34211.jpg">';
 
-		$content = ItalyStrap\Lazyload\Image::add_image_placeholders( $img );
+		$content = ItalyStrap\Lazyload\Image::replaceSrcImageWithSrcPlaceholders( $img );
 
 		$this->assertTrue( false !== strpos( $content, 'data-src' ) );
 	}

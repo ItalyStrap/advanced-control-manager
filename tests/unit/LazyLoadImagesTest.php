@@ -1,5 +1,10 @@
 <?php
 
+use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Lazyload\Image;
+use Prophecy\Argument;
 use tad\FunctionMockerLe;
 
 class LazyLoadImagesTest extends \Codeception\Test\Unit
@@ -8,17 +13,45 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
      * @var \UnitTester
      */
     protected $tester;
+
 	/**
 	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
 	private $config;
 
 	/**
-	 * @return \ItalyStrap\Config\ConfigInterface
+	 * @var \Prophecy\Prophecy\ObjectProphecy
 	 */
-	public function getConfig(): \ItalyStrap\Config\ConfigInterface {
+	private $dispatcher;
+	/**
+	 * @var \Prophecy\Prophecy\ObjectProphecy
+	 */
+	private $file;
+
+	/**
+	 * @return \SplFileObject
+	 */
+	public function getFile(): \SplFileObject {
+		return $this->file->reveal();
+	}
+
+	/**
+	 * @return EventDispatcherInterface
+	 */
+	public function getDispatcher(): EventDispatcherInterface {
+		return $this->dispatcher->reveal();
+	}
+
+	/**
+	 * @return ConfigInterface
+	 */
+	public function getConfig(): ConfigInterface {
 		return $this->config->reveal();
 	}
+
+	private $is_admin = false;
+	private $is_feed = false;
+	private $is_preview = false;
 
 	protected function _before()
     {
@@ -27,11 +60,14 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
 			define( 'ITALYSTRAP_PLUGIN_PATH', '' );
 		}
 
-    	FunctionMockerLe\undefineAll(['is_admin']);
-    	FunctionMockerLe\define('is_admin', function () {return false;});
-    	FunctionMockerLe\define('add_filter', function () {return '';});
+    	FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
+    	FunctionMockerLe\define('is_admin', function (): bool {return $this->is_admin;});
+    	FunctionMockerLe\define('is_feed', function (): bool {return $this->is_feed;});
+    	FunctionMockerLe\define('is_preview', function (): bool {return $this->is_preview;});
 
-    	$this->config = $this->prophesize( \ItalyStrap\Config\ConfigInterface::class );
+    	$this->config = $this->prophesize( ConfigInterface::class );
+    	$this->dispatcher = $this->prophesize( EventDispatcher::class );
+    	$this->file = $this->prophesize( \SplFileObject::class );
     }
 
     protected function _after()
@@ -39,8 +75,8 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
     }
 
 	private function getInstance() {
-		$sut = new \ItalyStrap\Lazyload\Image($this->getConfig(), []);
-		$this->assertInstanceOf( \ItalyStrap\Lazyload\Image::class, $sut, '' );
+		$sut = new Image($this->getConfig(), $this->getDispatcher(), $this->getFile());
+		$this->assertInstanceOf( Image::class, $sut, '' );
 		return $sut;
     }
 
@@ -54,8 +90,82 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
 	/**
 	 * @test
 	 */
-	public function itShouldExecuteInit() {
+//	public function itShouldExecuteInit() {
+//		$this->dispatcher->addListener(
+//			Argument::type('string'),
+//			Argument::type('callable')
+//		)->will(function (): bool {return true;});
+//
+//		$sut = $this->getInstance();
+//		$sut->onWpLoaded();
+//    }
+
+	public function imageProvider() {
+		return [
+			'simple image'	=> [
+				'<img src="some/image/uri">',
+<<<'IMG'
+<img src="PLACEHOLDER" data-src="some/image/uri"><noscript><img src="some/image/uri"></noscript><meta itemprop="image" content="some/image/uri"/>
+IMG
+			],
+		];
+	}
+
+	/**
+	 * @test
+	 * @dataProvider imageProvider()
+	 */
+	public function itShouldReplaceImageWith( $image, $expected ) {
+
+		$this->dispatcher->filter(Argument::type('string'), Argument::any())->willReturn('PLACEHOLDER');
+
 		$sut = $this->getInstance();
-		$sut->init();
+		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($image);
+		$this->assertStringContainsString( $replaced, $expected, '' );
+    }
+
+	public function frontProvider() {
+		return [
+			'is feed'	=> [
+				true,
+				false,
+			],
+			'is preview'	=> [
+				false,
+				true,
+			],
+			'is feed and preview'	=> [
+				true,
+				true,
+			],
+		];
+    }
+
+	/**
+	 * @test
+	 * @dataProvider frontProvider()
+	 */
+	public function itShouldReturnContentIsIsAdminTrue( $feed, $preview ) {
+
+		$this->is_feed = $feed;
+		$this->is_preview = $preview;
+
+		$content = '<img src="some/image/uri">';
+
+		$sut = $this->getInstance();
+		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($content);
+		$this->assertSame($content, $replaced, '');
+    }
+
+	/**
+	 * @test
+	 */
+	public function itShouldReturnContentIfHasAlreadyLazyLoaded() {
+
+		$content = '<img src="some/image/uri" data-src="some/image/uri">';
+
+		$sut = $this->getInstance();
+		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($content);
+		$this->assertSame($content, $replaced, '');
     }
 }
