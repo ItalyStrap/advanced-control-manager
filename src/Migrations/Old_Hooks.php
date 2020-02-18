@@ -2,7 +2,7 @@
 /**
  * Old Hooks API
  *
- * This class converts the old hooks used with the new hooks 
+ * This class converts the old hooks used with the new hooks
  *
  * @link [URL]
  * @since [x.x.x (if available)]
@@ -12,12 +12,12 @@
 
 namespace ItalyStrap\Migrations;
 
-use ItalyStrap\Event\Subscriber_Interface;
+use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Old_Hooks
  */
-class Old_Hooks implements Subscriber_Interface  {
+class Old_Hooks implements SubscriberInterface  {
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
@@ -27,7 +27,7 @@ class Old_Hooks implements Subscriber_Interface  {
 	 *
 	 * @return array
 	 */
-	public static function get_subscribed_events() {
+	public function getSubscribedEvents(): array {
 
 		return array(
 			// 'hook_name'							=> 'method_name',
@@ -72,7 +72,7 @@ class Old_Hooks implements Subscriber_Interface  {
 		if ( ! function_exists( 'do_action_deprecated' ) ) {
 			return;
 		}
-	
+
 		foreach ( $this->hooks as $old => $new ) {
 			if ( empty( $new ) ) {
 				continue;
@@ -95,6 +95,6 @@ class Old_Hooks implements Subscriber_Interface  {
 				do_action( $old );
 			} );
 		}
-	
+
 	}
 }

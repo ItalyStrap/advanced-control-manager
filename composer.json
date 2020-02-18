@@ -15,18 +15,20 @@
     "minimum-stability": "dev",
 	"require": {
 		"php": ">=7.2",
+		"italystrap/empress": "^1.0",
+		"italystrap/event": "dev-master",
+		"italystrap/edd": "^0.0",
+		"italystrap/breadcrumbs": "^2.0",
+		"italystrap/settings": "^0.0",
+		"italystrap/fields": "^2.0",
+		"italystrap/config": "^2.0",
+		"italystrap/helpers": "^1.0",
 		"mobiledetect/mobiledetectlib": "dev-master",
 		"cmb2/cmb2": "dev-master",
 		"overclokk/minimum-requirements": "^1.0",
 		"rdlowrey/auryn": "^1.4",
 		"erusev/parsedown": "^1.6",
-		"inpsyde/menu-cache": "^1.0",
-        "italystrap/edd": "^0.0",
-        "italystrap/breadcrumbs": "^2.0",
-        "italystrap/settings": "^0.0",
-        "italystrap/fields": "^2.0",
-        "italystrap/config": "^2.0",
-		"italystrap/helpers": "~1.0"
+		"inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
 		"leafo/scssphp": "^0.6.5",

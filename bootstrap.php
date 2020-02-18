@@ -12,9 +12,10 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
-use Auryn\Injector;
+use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\Manager;
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Fields\Fields;
@@ -36,6 +37,7 @@ use ItalyStrap\Blocks\Block_Factory;
  * @var Injector
  */
 $injector = new Injector;
+$injector->share($injector);
 add_filter( 'italystrap_injector', function () use ( $injector ) {
 	return $injector;
 } );
@@ -76,6 +78,10 @@ $autoload_sharing = array(
 	View::class,
 );
 
+$is_debug = [
+	'is_debug'	=> is_debug()
+];
+
 /**=============================
  * Autoload Classes definitions
  *============================*/
@@ -85,7 +91,7 @@ $autoload_definitions = array(
 	Settings::class							=> $fields_type,
 	Import_Export::class					=> $fields_type,
 	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
-	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig ) ),
+	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig, $is_debug ) ),
 	Translator::class						=> array( ':domain' => 'italystrap' ),
 );
 
@@ -93,7 +99,9 @@ $autoload_definitions = array(
  * Autoload Aliases Class
  *=====================*/
 $autoload_aliases = array(
+	ConfigInterface::class	=> Config::class,
 	Config_Interface::class	=> Config::class,
+
 	View_Interface::class	=> View::class,
 	Translatable::class		=> Translator::class,
 );

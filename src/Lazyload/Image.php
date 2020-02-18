@@ -11,6 +11,7 @@
 
 namespace ItalyStrap\Lazyload;
 
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Asset\Inline_Script;
 use ItalyStrap\Asset\Inline_Style;
@@ -56,11 +57,11 @@ class Image implements Subscriber_Interface {
 	 *
 	 * @param  array $options The plugin options.
 	 */
-	public function __construct( array $options ) {
+	public function __construct( ConfigInterface $config, array $options ) {
 
 		self::$options = $options;
 
-		$file = WP_DEBUG ? 'js/src/unveil.js' : 'js/unveil.min.js';
+		$file = $config->get('is_debug', false) ? 'js/src/unveil.js' : 'js/unveil.min.js';
 
 		/**
 		 * Path for unveil.js
@@ -73,9 +74,9 @@ class Image implements Subscriber_Interface {
 	/**
 	 * Init Lazy_Load
 	 */
-	static function init() {
+	public static function init() {
 
-		if ( is_admin() ) {
+		if ( \is_admin() ) {
 			return;
 		}
 
@@ -115,7 +116,6 @@ class Image implements Subscriber_Interface {
 		 */
 		Inline_Script::set( self::get_unveil( self::$unveilpath ) );
 
-
 		/**
 		 * Append css in static variable and print in front-end footer
 		 */
@@ -126,6 +126,7 @@ class Image implements Subscriber_Interface {
 	 * Add image placeholders to image src
 	 *
 	 * @param string $content Content to be processed
+	 * @return string
 	 */
 	static function add_image_placeholders( $content ) {
 
@@ -162,7 +163,7 @@ class Image implements Subscriber_Interface {
 	 * Replace callback
 	 *
 	 * @param  array $matches The matches value from content.
-	 * @return string         The content 
+	 * @return string         The content
 	 */
 	/**
 	 * [replace_callback description]

@@ -131,7 +131,7 @@ class Excerpt implements Subscriber_Interface {
 		$class = apply_filters( 'italystrap_read_more_class', $this->options['read_more_class'] );
 
 		$link_text = '' === $link_text
-			? $this->translator->get_string( 'read_more_link_text', $this->options['read_more_link_text'] )
+			? $this->translator->getString( 'read_more_link_text', $this->options['read_more_link_text'] )
 			: $link_text;
 
 		$default = array(
