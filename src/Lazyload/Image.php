@@ -123,7 +123,7 @@ class Image implements Subscriber_Interface {
 			],
 			'lazyload_widget_text'	=> [
 				'widget_text',
-				11
+				PHP_INT_MAX
 			],
 			[
 				'the_content',
@@ -177,6 +177,10 @@ class Image implements Subscriber_Interface {
 
 		if ( $this->hasAlreadyLazyLoaded( $content ) ) {
 			return $content;
+		}
+
+		if ( $this->dispatcher->currentEventName() === 'widget_text' ) {
+			d($content);
 		}
 
 		/**
