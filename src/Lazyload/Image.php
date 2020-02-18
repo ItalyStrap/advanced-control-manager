@@ -14,8 +14,6 @@ namespace ItalyStrap\Lazyload;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\Asset\Inline_Script;
-use ItalyStrap\Asset\Inline_Style;
 
 class Image implements Subscriber_Interface {
 
@@ -93,33 +91,33 @@ class Image implements Subscriber_Interface {
 		 * Funziona solo con priorità inferiore a 10 altrimenti
 		 * le altre immagini non vengono elaborate
 		 */
-		$this->dispatcher->addListener( 'post_gallery', [$this, 'replaceSrcImageWithSrcPlaceholders'], 9 );
+//		$this->dispatcher->addListener( 'post_gallery', [$this, 'replaceSrcImageWithSrcPlaceholders'], 9 );
 
-		if ( $this->config->get('lazyload_widget_text', false) ) {
-			/**
-			 * Experimental
-			 * Da testare ed eventualmente mettere sotto opzione attivabile
-			 */
-			$this->dispatcher->addListener( 'widget_text', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
-		}
+//		if ( $this->config->get('lazyload_widget_text', false) ) {
+//			/**
+//			 * Experimental
+//			 * Da testare ed eventualmente mettere sotto opzione attivabile
+//			 */
+//			$this->dispatcher->addListener( 'widget_text', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
+//		}
 
 		/**
 		 * Run this later, so other content filters have run,
 		 * including image_add_wh on WP.com
 		 */
-		$this->dispatcher->addListener( 'the_content', [$this, 'replaceSrcImageWithSrcPlaceholders'], 999 );
-
-		$this->dispatcher->addListener( 'post_thumbnail_html', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
-		$this->dispatcher->addListener( 'get_avatar', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
+//		$this->dispatcher->addListener( 'the_content', [$this, 'replaceSrcImageWithSrcPlaceholders'], 999 );
+//
+//		$this->dispatcher->addListener( 'post_thumbnail_html', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
+//		$this->dispatcher->addListener( 'get_avatar', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
 
 		/**
 		 * Filter for custom header image in ItalyStrap theme
 		 */
-		$this->dispatcher->addListener( 'italystrap_custom_header_image', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
-		$this->dispatcher->addListener( 'italystrap_carousel_output', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
+//		$this->dispatcher->addListener( 'italystrap_custom_header_image', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
+//		$this->dispatcher->addListener( 'italystrap_carousel_output', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
 
 		$events = [
-			[
+			'some'	=> [
 				'post_gallery',
 				9
 			],
@@ -147,16 +145,26 @@ class Image implements Subscriber_Interface {
 			],
 		];
 
-//		\array_walk($events, function ( array $event, int $index ){
-//			$this->dispatcher->addListener(
-//				$event[0],
-//				[$this, 'replaceSrcImageWithSrcPlaceholders'],
-//				$event[1] ?? 10
-//			);
-//		});
+		\array_walk($events, function ( array $event, $index ): void {
 
-		Inline_Script::set( $this->script() );
-		Inline_Style::set( $this->style() );
+			if ( $this->config->get( $index, false ) ) {
+				return;
+			}
+
+			$this->dispatcher->addListener(
+				$event[0],
+				[$this, 'replaceSrcImageWithSrcPlaceholders'],
+				$event[1] ?? 10
+			);
+		});
+
+		$this->dispatcher->addListener( 'italystrap_custom_inline_script', function ( string $script ) {
+			return $script . $this->script();
+		} );
+
+		$this->dispatcher->addListener( 'italystrap_custom_inline_style', function ( string $style ) {
+			return $style . $this->style();
+		} );
 	}
 
 	/**
@@ -281,8 +289,8 @@ SCRIPT;
 	}
 
 	/**
-	 * Add css to opacize img first are append to src
-	 * This apply opacity 0 only for thoose images that have the data-src attributes
+	 * Add css to dull an img before it is appended to src
+	 * This apply opacity 0 only for those images that have the data-src attributes
 	 * normally added from this plugin.
 	 *
 	 * @return string Add opacity and transition to img

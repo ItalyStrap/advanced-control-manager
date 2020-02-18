@@ -50,6 +50,19 @@ return [
 		'option_type'	=> 'theme_mod',
 	],
 	[
+		'label'			=> __( 'Additional hooks to lazy load the content', 'italystrap' ),
+		'desc'			=> __( 'Insert additional event name (hooks) in the textarea below
+		Put one event per line, if you need to specify a priority separate it with <code>|</code>
+		Default arguments accepted are 3', 'italystrap' ),
+		'id'			=> 'lazyload_additional_filter',
+		'type'			=> 'textarea',
+		'class'			=> 'easy',
+		'placeholder'	=> 'some-event-name|priority',
+		'sanitize'		=> 'sanitize_textarea_field',
+		'option_type'	=> 'theme_mod',
+		'show_on'		=> Core\is_beta(),
+	],
+	[
 		'label'			=> __( 'Lazy Loading for embedded video', 'italystrap' ) . $beta,
 		'desc'			=> __( 'Activate Lazy Loading for embedded video. This only works for youtube video. The with of the container will be the max with of <code>content_width</code> set in your theme. You can use the <code>lazyload-video-wrap</code> CSS class for adding your own style.', 'italystrap' ),
 		'id'			=> 'lazyload_video',

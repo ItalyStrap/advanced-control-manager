@@ -21,7 +21,6 @@ use ItalyStrap\Import_Export\Import_Export;
 use ItalyStrap\Settings\Page;
 use ItalyStrap\Settings\Settings;
 use ItalyStrap\Settings\SettingsBuilder;
-use ItalyStrap\Settings\ViewPage;
 
 if ( ! is_admin() ) {
 	return;
@@ -94,7 +93,8 @@ if ( ! empty( $options['show-thumb'] ) ) {
  */
 // $admin_settings = (array) require( ITALYSTRAP_PLUGIN_PATH . '/admin/config/options.php' );
 $injector->defineParam( 'settings', $admin_settings );
-$event_manager->add_subscriber( $injector->make( Settings::class ) );
+
+//$event_manager->add_subscriber( $injector->make( Settings::class ) );
 
 $settings = new SettingsBuilder(
 	ITALYSTRAP_OPTIONS_NAME,

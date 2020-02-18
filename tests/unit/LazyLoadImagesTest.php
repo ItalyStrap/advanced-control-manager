@@ -90,15 +90,22 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
 	/**
 	 * @test
 	 */
-//	public function itShouldExecuteInit() {
-//		$this->dispatcher->addListener(
-//			Argument::type('string'),
-//			Argument::type('callable')
-//		)->will(function (): bool {return true;});
-//
-//		$sut = $this->getInstance();
-//		$sut->onWpLoaded();
-//    }
+	public function itShouldExecuteInit() {
+
+		$this->config->get(Argument::any(), false)->willReturn(false);
+
+		$this->dispatcher->addListener(
+			Argument::type('string'),
+			Argument::type('callable'),
+			Argument::any(),
+			Argument::any()
+		)->will(function ($args): bool {
+			return true;
+		})->shouldBeCalled();
+
+		$sut = $this->getInstance();
+		$sut->onWpLoaded();
+    }
 
 	public function imageProvider() {
 		return [

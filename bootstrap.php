@@ -90,7 +90,7 @@ $fields_type = array( 'fields_type' => Fields::class );
 
 $autoload_definitions = array(
 	Attributes::class						=> $fields_type,
-	Settings::class							=> $fields_type,
+//	Settings::class							=> $fields_type,
 	Import_Export::class					=> $fields_type,
 	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
 	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig, $is_debug ) ),
