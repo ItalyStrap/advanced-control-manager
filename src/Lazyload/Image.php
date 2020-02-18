@@ -85,37 +85,6 @@ class Image implements Subscriber_Interface {
 			return;
 		}
 
-		/**
-		 * Experimental
-		 * Da testare ed eventualmente mettere sotto opzione attivabile
-		 * Funziona solo con priorità inferiore a 10 altrimenti
-		 * le altre immagini non vengono elaborate
-		 */
-//		$this->dispatcher->addListener( 'post_gallery', [$this, 'replaceSrcImageWithSrcPlaceholders'], 9 );
-
-//		if ( $this->config->get('lazyload_widget_text', false) ) {
-//			/**
-//			 * Experimental
-//			 * Da testare ed eventualmente mettere sotto opzione attivabile
-//			 */
-//			$this->dispatcher->addListener( 'widget_text', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
-//		}
-
-		/**
-		 * Run this later, so other content filters have run,
-		 * including image_add_wh on WP.com
-		 */
-//		$this->dispatcher->addListener( 'the_content', [$this, 'replaceSrcImageWithSrcPlaceholders'], 999 );
-//
-//		$this->dispatcher->addListener( 'post_thumbnail_html', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
-//		$this->dispatcher->addListener( 'get_avatar', [$this, 'replaceSrcImageWithSrcPlaceholders'], 11 );
-
-		/**
-		 * Filter for custom header image in ItalyStrap theme
-		 */
-//		$this->dispatcher->addListener( 'italystrap_custom_header_image', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
-//		$this->dispatcher->addListener( 'italystrap_carousel_output', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
-
 		$events = [
 			[
 				'post_gallery',
