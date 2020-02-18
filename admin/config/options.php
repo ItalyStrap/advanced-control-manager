@@ -1092,6 +1092,24 @@ return [
 			// 	'show_on'				=> Core\is_beta(),
 			// ),
 			[
+				'id'		=> 'lazyload_additional_event_name',
+				'title'		=> __( 'Additional event name to lazy load', 'italystrap' ),
+				'args'		=> 	[
+//					'label'			=> __( 'Additional hooks to lazy load the content', 'italystrap' ),
+					'desc'			=> __( 'Insert additional event name (hooks) in the textarea below
+		Put one event per line, if you need to specify a priority separate it with <code>|</code>, the dafult is 10.
+		Default arguments accepted are 3', 'italystrap' ),
+					'id'			=> 'lazyload_additional_event_name',
+					'type'			=> 'textarea',
+					'class'			=> 'easy',
+					'placeholder'	=> 'some-event-name|priority',
+					'sanitize'		=> 'sanitize_textarea_field',
+					'option_type'	=> 'theme_mod',
+					'show_on'		=> Core\is_beta(),
+				],
+				'show_on'				=> Core\is_beta(),
+			],
+			[
 				'id'		=> 'lazyload_video',
 				'title'		=> __( 'Lazy Loading for embedded video', 'italystrap' ),
 				'args'		=> [

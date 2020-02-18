@@ -117,7 +117,7 @@ class Image implements Subscriber_Interface {
 //		$this->dispatcher->addListener( 'italystrap_carousel_output', [$this, 'replaceSrcImageWithSrcPlaceholders'] );
 
 		$events = [
-			'some'	=> [
+			[
 				'post_gallery',
 				9
 			],
@@ -137,12 +137,8 @@ class Image implements Subscriber_Interface {
 				'get_avatar',
 				11
 			],
-			[
-				'italystrap_custom_header_image'
-			],
-			[
-				'italystrap_carousel_output'
-			],
+			['italystrap_custom_header_image'],
+			['italystrap_carousel_output'],
 		];
 
 		\array_walk($events, function ( array $event, $index ): void {

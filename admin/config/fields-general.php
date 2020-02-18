@@ -78,7 +78,8 @@ return [
 		'options'		=> (array) \get_post_types( [ 'public'   => true, ] ),
 		'class'			=> 'widefat post_types social_button_position easy',
 		'value'			=> 'post',
-		'sanitize'		=> 'sanitize_select_multiple',
+//		'sanitize'		=> 'sanitize_select_multiple',
+		'sanitize'		=> 'sanitize_text_field',
 		'show_on'		=> Core\is_beta(),
 	],
 	[
