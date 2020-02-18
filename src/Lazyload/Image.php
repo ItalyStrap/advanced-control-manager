@@ -121,7 +121,7 @@ class Image implements Subscriber_Interface {
 				'post_gallery',
 				9
 			],
-			[
+			'lazyload_widget_text'	=> [
 				'widget_text',
 				11
 			],
