@@ -3,7 +3,7 @@ Contributors: Enea Overclokk
 Donate link: https://italystrap.com/
 Tags: custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts
 Requires at least: 5.2
-Tested up to: 6
+Tested up to: 5.5
 Stable tag: 2.14.0
 Requires PHP: 7.2
 License: GPLv2 or later
@@ -253,6 +253,13 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 == Changelog ==
+
+= 2.14.1 =
+Release Date: Feb 19th, 2020
+
+Dev time: 4h
+
+* Fixed BC breaks for older ItalyStrap theme framework
 
 = 2.14.0 =
 Release Date: Feb 19th, 2020
