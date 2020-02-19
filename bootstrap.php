@@ -7,6 +7,8 @@ use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\Config_Interface;
 use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Event\EventDispatcher;
+use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\Manager;
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Fields\Fields;
@@ -100,6 +102,8 @@ $autoload_definitions = array(
 $autoload_aliases = array(
 	ConfigInterface::class	=> Config::class,
 	Config_Interface::class	=> Config::class,
+
+	EventDispatcherInterface::class	=> EventDispatcher::class,
 
 	View_Interface::class	=> View::class,
 	Translatable::class		=> Translator::class,
