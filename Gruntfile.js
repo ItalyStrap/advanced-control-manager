@@ -317,7 +317,8 @@ module.exports = function(grunt) {
 		gitcommit: { // https://www.npmjs.com/package/grunt-git
 			version: {
 				options: {
-					message: 'New version: <%= pkg.version %>'
+					message: 'New version: <%= pkg.version %>',
+					allowEmpty: true
 				},
 				files: {
 					// Specify the files you want to commit
@@ -349,7 +350,7 @@ module.exports = function(grunt) {
 						'*.md',
 						'*.php',
 						'*.js'
-						]
+					]
 				}
 			}
 		},
