@@ -11,7 +11,7 @@
 
 namespace ItalyStrap\Lazyload;
 
-use ItalyStrap\Config\ConfigInterface;
+use ItalyStrap\Config\Config;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Event\Subscriber_Interface;
 
@@ -25,7 +25,7 @@ class Image implements Subscriber_Interface {
 	private $dispatcher;
 
 	/**
-	 * @var ConfigInterface
+	 * @var Config
 	 */
 	private $config;
 
@@ -61,11 +61,11 @@ class Image implements Subscriber_Interface {
 	/**
 	 * Init constructor
 	 *
-	 * @param ConfigInterface $config
+	 * @param Config $config
 	 * @param EventDispatcherInterface $dispatcher
 	 * @param \SplFileObject $file
 	 */
-	public function __construct( ConfigInterface $config, EventDispatcherInterface $dispatcher, \SplFileInfo $file ) {
+	public function __construct( Config $config, EventDispatcherInterface $dispatcher, \SplFileInfo $file ) {
 
 		$this->config = $config;
 		$this->dispatcher = $dispatcher;

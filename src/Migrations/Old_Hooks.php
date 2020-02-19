@@ -24,7 +24,12 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface  {
 	 * @inheritDoc
 	 */
 	public static function get_subscribed_events() {
-		return self::getSubscribedEvents();
+		return [
+			// 'hook_name'							=> 'method_name',
+			// 'after_setup_theme'	=> 'convert',
+//			'italystrap_theme_loaded'	=> 'convert',
+			'init'	=> 'convert',
+		];
 	}
 
 	/**
@@ -36,13 +41,7 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface  {
 	 * @return array
 	 */
 	public function getSubscribedEvents(): array {
-
-		return array(
-			// 'hook_name'							=> 'method_name',
-			// 'after_setup_theme'	=> 'convert',
-//			'italystrap_theme_loaded'	=> 'convert',
-			'init'	=> 'convert',
-		);
+		return self::get_subscribed_events();
 	}
 
 	/**
