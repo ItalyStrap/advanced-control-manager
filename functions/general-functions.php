@@ -1,12 +1,10 @@
 <?php
-/**
- * General functions for the plugin
- *
- * @package ItalyStrap
- * @since   2.0.0
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Core;
+
+use Auryn\Injector;
+use ItalyStrap\Lazyload\Image;
 
 /**
  * Combine user attributes with known attributes and fill in defaults when needed.
@@ -18,12 +16,12 @@ namespace ItalyStrap\Core;
  * If the $atts list has unsupported attributes, then they will be ignored and
  * removed from the final returned list.
  *
- * @since 2.0.0
- *
  * @param array  $pairs     Entire list of supported attributes and their defaults.
  * @param array  $atts      User defined attributes in shortcode tag.
  * @param string $shortcode Optional. The name of the shortcode, provided for context to enable filtering.
  * @return array Combined and filtered attribute list.
+ *@since 2.0.0
+ *
  */
 function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shortcode = '' ) {
 
@@ -380,8 +378,8 @@ function get_image_id_from_url( $image_url ) {
 /**
  * Get global
  *
- * @param  string $value [description]
- * @return string        [description]
+ * @param string $name
+ * @return string
  */
 function get_global( $name = '' ) {
 	global $$name;
@@ -389,34 +387,28 @@ function get_global( $name = '' ) {
 }
 
 /**
- * Cambio il testo per il link al post successivo
- *
- * @param  array $args Argomenti per le funzioni di paginazione.
- * @return array       Array aggiornato
- */
-// function change_next_article_link( $args ) {
-
-// 	$args['previous_link'] = '<i class="glyphicon glyphicon-arrow-left"></i> Precedente</li>';
-// 	$args['next_link'] = 'Successivo <i class="glyphicon glyphicon-arrow-right"></i></li></ul>';
-// 	return $args;
-// }
-// add_filter( 'italystrap_previous_next_post_link_args', __NAMESPACE__ . '\change_next_article_link' );
-
-/**
  * Return img tag lazyloaded
- * @param  string $content Text content to be processed
+ * @param string $content Text content to be processed
  * @return string          Text content processed
+ * @throws \Auryn\InjectionException
  */
-function get_apply_lazyload( $content ) {
-	_deprecated_function( __FUNCTION__, '2.2', 'Use the dedicated filter' );
-	return $content;
+function get_apply_lazyload( string $content ): string {
+	/** @var Injector $injector */
+	if ( ! $injector = \apply_filters('italystrap_injector', false) ) {
+		return $content;
+	}
+
+	/** @var Image $lazy */
+	$lazy = $injector->make(Image::class);
+	return $lazy->replaceSrcImageWithSrcPlaceholders( $content );
 }
 
 /**
  * Echo img tag lazyloaded
- * @param  string $content Text content to be processed
- * @return string          Text content processed
+ * @param string $content Text content to be processed
+ * @return void Text content processed
+ * @throws \Auryn\InjectionException
  */
-function apply_lazyload( $content ) {
+function apply_lazyload( string $content ): void {
 	echo get_apply_lazyload( $content );
 }

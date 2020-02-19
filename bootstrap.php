@@ -1,16 +1,7 @@
 <?php
-/**
- * Init API: Init Class
- *
- * @package ItalyStrap
- * @since 2.0.0
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Core;
-
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
-	die();
-}
 
 use ItalyStrap\Empress\Injector;
 use ItalyStrap\Config\Config;
