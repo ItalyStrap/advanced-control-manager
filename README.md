@@ -2,22 +2,20 @@
 **Contributors:** [Enea Overclokk](https://profiles.wordpress.org/Enea Overclokk)  
 **Donate link:** https://italystrap.com/  
 **Tags:** custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts  
-**Requires at least:** 5  
-**Requires PHP:** 7.2  
-**Tested up to:** 6.0  
+**Requires at least:** 5.2  
+**Tested up to:** 6  
 **Stable tag:** 2.13.0  
+**Requires PHP:** 7.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Make your web site more powerful with ACM - Advanced Control Manager
 
-(Requires PHP 5.4 >= and Developers skills)
-
 ## Description ##
 
 Always make a backup before install it and always test it in a dev enviroment.
 
-Make shure you have PHP 5.4 >=, better if you have PHP >= 7.0 (PHP 7.x is awesome ;-) ).
+Make sure you have PHP 7.2 >=, better if you have PHP >= 7.4 (PHP 7.x is awesome ;-) ).
 
 If you have any trouble [open a ticket](http://wordpress.org/support/plugin/advanced-control-manager).
 
@@ -29,7 +27,7 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 ### Purpose ###
 
-I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/overclokk/italystrap) functionality but it works fine with all WordPress themes.
+I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/ItalyStrap/italystrap) functionality but it works fine with all WordPress themes.
 
 Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options like popular posts, last posts, related posts and so on, there are a lot of functionality, see above for the full list of featured.
 
@@ -203,33 +201,7 @@ For activate Lazy Load there is new page "Option" in Advanced Control Manager pa
 
 ### How do I lazy load other images in my theme? ###
 
-You can use the ItalyStrap\Core\get_apply_lazyload helper function:
-
-
-	if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
-		$content = ItalyStrap\Core\get_apply_lazyload( $content );
-	}
-
-
-Or, you can add an attribute called "data-src" with the source of the image URL and set the actual image URL to a transparent 1x1 pixel.
-
-You can also use ItalyStrap\Core\apply_lazyload helper function for print content:
-
-
-	if ( function_exists( 'ItalyStrap\Core\apply_lazyload' ) ) {
-	  ItalyStrap\Core\apply_lazyload( $content );
-	}
-
-
-Otherwise you can also use output buffering, though this isn't recommended:
-
-
-	if ( function_exists( 'ItalyStrap\Core\get_apply_lazyload' ) ) {
-	  ob_start( 'ItalyStrap\Core\get_apply_lazyload' );
-	}
-
-
-This will lazy load <em>all</em> your images.
+> TODO
 
 ### Lazy load uses JavaScript. What about visitors without JS active? ###
 
@@ -245,7 +217,7 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 
 ### I'm using my custom Bootstrap Carousel, why doesn't the second image appear? ###
 
-Put the code below in your file js and type your Bootstrap Carousell ID in place of "#YOURCAROUSELID"
+Put the code below in your file js and type your Bootstrap Carousel ID in place of "#YOURCAROUSELID"
 
 `var cHeight = 0;$("#YOURCAROUSELID").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});`
 
@@ -257,7 +229,7 @@ I tried only with the Bootstrap Carousel integrated, please send me any feedback
 
 Simply activate functionality from Advanced Control Manager option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input
 
-For more informations read the documentation
+For more information read the documentation
 
 If you have any problem please open a ticket :-)
 
@@ -281,6 +253,16 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.2.0 ###
+Release Date: Feb 19th, 2020
+
+Dev time: 100h
+
+* Some other minor fix
+* Refactoring for the image lazy load
+* Refactoring for the setting API
+* Changed the Fields API
 
 ### 2.13.0 ###
 Release Date: Mar 4th, 2019
@@ -733,6 +715,10 @@ Dev time: 100h
 * First release
 
 ## Upgrade Notice ##
+
+### 2.2.0 ###
+Requires PHP: 7.2
+If you don't have the latest version of ItalyStrap it may break you site.
 
 ### 2.11.0 ###
 Requires PHP: 5.4
