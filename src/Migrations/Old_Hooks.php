@@ -12,12 +12,20 @@
 
 namespace ItalyStrap\Migrations;
 
+use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Event\SubscriberInterface;
 
 /**
  * Old_Hooks
  */
-class Old_Hooks implements SubscriberInterface  {
+class Old_Hooks implements SubscriberInterface, Subscriber_Interface  {
+
+	/**
+	 * @inheritDoc
+	 */
+	public static function get_subscribed_events() {
+		return self::getSubscribedEvents();
+	}
 
 	/**
 	 * Returns an array of hooks that this subscriber wants to register with
