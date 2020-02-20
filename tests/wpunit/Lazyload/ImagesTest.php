@@ -103,7 +103,8 @@ class ImagesTest extends WPTestCase
     {
     	$this->dispatcher->addListener('italystrap_lazyload_image_events', function (array $events){
     		$events[] = [
-				'custom_event'
+				'custom_event',
+				22
 			];
 
     		return $events;

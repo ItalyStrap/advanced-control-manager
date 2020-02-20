@@ -118,7 +118,7 @@ class Image implements Subscriber_Interface {
 
 		\array_walk($events, function ( array $event, $index ): void {
 
-			if ( $this->config->get( \strval( $index ), false ) ) {
+			if ( $this->config->get( $index, false ) ) {
 				return;
 			}
 

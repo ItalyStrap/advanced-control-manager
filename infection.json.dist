@@ -1,0 +1,16 @@
+{
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "logs": {
+    	"summary": "infection.log",
+        "text": "infection-log.txt"
+    },
+    "mutators": {
+        "@default": true
+    },
+    "tmpDir": "tests\/_output",
+    "testFramework": "codeception"
+}
