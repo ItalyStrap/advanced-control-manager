@@ -254,6 +254,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.14.3 =
+Release Date: Feb 20th, 2020
+
+Dev time: 2h
+
+* Reverted CMB2 to 2.6.0
+
 = 2.14.2 =
 Release Date: Feb 20th, 2020
 
