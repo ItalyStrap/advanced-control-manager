@@ -1,13 +1,19 @@
 <?php
+declare(strict_types=1);
 
-use ItalyStrap\Config\ConfigInterface;
+namespace ItalyStrap\Tests;
+
+use Codeception\Test\Unit;
+use ItalyStrap\Config\Config;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Lazyload\Image;
 use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
+use SplFileObject;
 use tad\FunctionMockerLe;
 
-class LazyLoadImagesTest extends \Codeception\Test\Unit
+class ImagesTest extends Unit
 {
     /**
      * @var \UnitTester
@@ -15,23 +21,23 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
     protected $tester;
 
 	/**
-	 * @var \Prophecy\Prophecy\ObjectProphecy
+	 * @var ObjectProphecy
 	 */
 	private $config;
 
 	/**
-	 * @var \Prophecy\Prophecy\ObjectProphecy
+	 * @var ObjectProphecy
 	 */
 	private $dispatcher;
 	/**
-	 * @var \Prophecy\Prophecy\ObjectProphecy
+	 * @var ObjectProphecy
 	 */
 	private $file;
 
 	/**
-	 * @return \SplFileObject
+	 * @return SplFileObject
 	 */
-	public function getFile(): \SplFileObject {
+	public function getFile(): SplFileObject {
 		return $this->file->reveal();
 	}
 
@@ -43,9 +49,9 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
 	}
 
 	/**
-	 * @return ConfigInterface
+	 * @return Config
 	 */
-	public function getConfig(): ConfigInterface {
+	public function getConfig(): Config {
 		return $this->config->reveal();
 	}
 
@@ -65,9 +71,9 @@ class LazyLoadImagesTest extends \Codeception\Test\Unit
     	FunctionMockerLe\define('is_feed', function (): bool {return $this->is_feed;});
     	FunctionMockerLe\define('is_preview', function (): bool {return $this->is_preview;});
 
-    	$this->config = $this->prophesize( ConfigInterface::class );
+    	$this->config = $this->prophesize( Config::class );
     	$this->dispatcher = $this->prophesize( EventDispatcher::class );
-    	$this->file = $this->prophesize( \SplFileObject::class );
+    	$this->file = $this->prophesize( SplFileObject::class );
     }
 
     protected function _after()
