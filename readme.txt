@@ -13,7 +13,7 @@ Make your web site more powerful with ACM - Advanced Control Manager
 
 == Description ==
 
-Always make a backup before install it and always test it in a dev enviroment.
+You MUST always do a backup before install it and always test it in a dev enviroment.
 
 Make sure you have PHP 7.2 >=, better if you have PHP >= 7.4 (PHP 7.x is awesome ;-) ).
 
