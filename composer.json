@@ -39,7 +39,8 @@
 		"phpcompatibility/php-compatibility": "*",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
 		"phpstan/phpstan": "^0.12",
-		"szepeviktor/phpstan-wordpress": "^0.5"
+		"szepeviktor/phpstan-wordpress": "^0.5",
+		"infection/infection": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -254,6 +254,13 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.14.2 =
+Release Date: Feb 20th, 2020
+
+Dev time: 4h
+
+* Fixed issue with int key used in Config
+
 = 2.14.1 =
 Release Date: Feb 19th, 2020
 
