@@ -196,45 +196,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		phpcs: { //https://github.com/SaschaGalley/grunt-phpcs
-			application: {
-				src: [
-					// '*.php',
-					// 'admin/*.php',
-					'src/**/*.php',
-					// 'src/Asset/*.php',
-					]
-			},
-			options: {
-				// bin: 'C:/Users/fisso/AppData/Roaming/Composer/vendor/bin/phpcs',
-				standard: 'WordPress',
-				// standard: 'Zend',
-				verbose: true,
-				// showSniffCodes: true,
-			}
-		},
-		/**
-		 * Plugin modificato aggiungendo --no-patch riga 69 file phpcbf.js
-		 * execute += ' ' + parameters.join(' ') + ' --no-patch' + ' "' + files.join('" "') + '"';
-		 */
-		phpcbf: { // https://github.com/mducharme/grunt-phpcbf
-			files: {
-				src: [
-					// '*.php',
-					// 'index.php',
-					'src/Asset/*.php',
-					]
-			},
-			options: {
-				// bin: 'C:/Users/fisso/AppData/Roaming/Composer/vendor/bin/phpcbf',
-				standard: 'WordPress',
-				// noPatch: '--no-patch',
-				// standard: 'Zend',
-				// verbose: true,
-				// showSniffCodes: true,
-			},
-		},
-
 		bump: { // https://github.com/vojtajina/grunt-bump
 			options: {
 				files: ['package.json'],
@@ -598,8 +559,6 @@ module.exports = function(grunt) {
 	// grunt.loadNpmTasks('grunt-contrib-compass');
 	// grunt.loadNpmTasks('grunt-contrib-less');
 	// grunt.loadNpmTasks('grunt-fontello');
-	// grunt.loadNpmTasks('grunt-phpcs');
-	// grunt.loadNpmTasks('grunt-phpcbf');
 	// grunt.loadNpmTasks('grunt-contrib-watch');
 	// grunt.loadNpmTasks('grunt-sync');
 
@@ -648,13 +607,6 @@ module.exports = function(grunt) {
 	 * or
 	 * $ grunt composer:dump-autoload -o
 	 *
-	 */
-	
-	/**
-	 * PHPCS commands
-	 * phpcs E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/italystrap.php --standard=WordPress
-	 * phpcs E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --standard=WordPress
-	 * phpcbf E:/xampp/htdocs/italystrap/wp-content/plugins/italystrap-extended/widget/class-widget.php --no-patch --standard=WordPress
 	 */
 	
 	/**
