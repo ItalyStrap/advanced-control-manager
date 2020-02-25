@@ -125,17 +125,18 @@ class Image implements Subscriber_Interface {
 			$this->dispatcher->addListener(
 				$event[0],
 				[$this, 'replaceSrcImageWithSrcPlaceholders'],
-				$event[1] ?? 10
+				$event[1] ?? 10,
+				1
 			);
 		});
 
 		$this->dispatcher->addListener( 'italystrap_custom_inline_script', function ( string $script ) {
 			return $script . $this->script();
-		} );
+		}, 10, 1 );
 
 		$this->dispatcher->addListener( 'italystrap_custom_inline_style', function ( string $style ) {
 			return $style . $this->style();
-		} );
+		}, 10, 1 );
 	}
 
 	/**
@@ -247,7 +248,7 @@ function force_load_img( img ) {
 }
 jQuery(document).ready(function($){
 	var img = $("img[data-src]");
-	img.unveil(200, function(){
+	img.unveil(0, function(){
 		img.load(function(){
 			this.style.opacity = 1;
 		});

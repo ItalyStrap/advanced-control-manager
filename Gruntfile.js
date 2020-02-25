@@ -109,7 +109,11 @@ module.exports = function(grunt) {
 					],
 					'src/Widgets/assets/js/widget.min.js': [
 						'src/Widgets/assets/js/src/widget.js'
-					],
+					]
+				}
+			},
+			unveil: {
+				files: {
 					'js/unveil.min.js': [
 						'js/src/unveil.js'
 					]
@@ -169,21 +173,6 @@ module.exports = function(grunt) {
 					scss    : true,
 					force   : true,
 					// exclude: ['animation.css', 'fontello-ie7-codes.css', 'fontello.eot'],
-				}
-			}
-		},
-
-		less: { // https://github.com/gruntjs/grunt-contrib-less
-			development: {
-				options: {
-					compress: true,
-					yuicompress: true,
-					optimization: 2
-				},
-				files: {
-					'admin/css/bootstrap.min.css': [
-						'admin/css/src/less/bootstrap.less'
-						],
 				}
 			}
 		},
@@ -528,13 +517,6 @@ module.exports = function(grunt) {
 					livereload: 35729,
 				},
 			},
-			less: {
-				files: ['admin/css/src/less/*.less'],
-				tasks: ['testlessbuild'],
-				options: {
-					livereload: 35729,
-				},
-			},
 			js: {
 				files: ['admin/js/src/*.js', 'js/src/*.js'],
 				tasks: ['testjsbuild'],
@@ -557,7 +539,6 @@ module.exports = function(grunt) {
 	// grunt.loadNpmTasks('grunt-contrib-uglify');
 	// grunt.loadNpmTasks('grunt-contrib-csslint');
 	// grunt.loadNpmTasks('grunt-contrib-compass');
-	// grunt.loadNpmTasks('grunt-contrib-less');
 	// grunt.loadNpmTasks('grunt-fontello');
 	// grunt.loadNpmTasks('grunt-contrib-watch');
 	// grunt.loadNpmTasks('grunt-sync');
@@ -706,15 +687,12 @@ module.exports = function(grunt) {
 		]
 	);
 
-	// After botstrap update execute "grunt bootstrap"
-	grunt.registerTask('bootstrap', ['uglify:bootstrapJS', 'less']);
-
-
-	grunt.registerTask( 'test', ['jshint', 'csslint'] );
-	grunt.registerTask( 'build', ['uglify', 'less', 'compass'] );
 
 	grunt.registerTask( 'js', [ 'uglify' ] );
 	grunt.registerTask( 'css', [ 'compass' ] );
+
+	grunt.registerTask( 'int-assets', ['jshint', 'csslint'] );
+	grunt.registerTask( 'build-assets', ['js', 'css'] );
 
 	grunt.registerTask( 'php', 'A sample task that logs stuff.', function() {
 		return null;
