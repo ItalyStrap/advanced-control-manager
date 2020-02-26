@@ -17,6 +17,17 @@ use ItalyStrap\Event\Subscriber_Interface;
 
 class Image implements Subscriber_Interface {
 
+	/**
+	 * @link http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/
+	 * Gif black
+	 * data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
+	 * Gif grey
+	 * data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
+	 * Gif transparent
+	 * data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
+	 *
+	 * @return string
+	 */
 	const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 	/**
@@ -151,7 +162,7 @@ class Image implements Subscriber_Interface {
 			return $content;
 		}
 
-		if ( $this->hasAlreadyLazyLoaded( $content ) ) {
+		if ( $this->hasAlreadyLazyLoadedIn( $content ) ) {
 			return $content;
 		}
 
@@ -163,7 +174,7 @@ class Image implements Subscriber_Interface {
 		return \preg_replace_callback(
 			'#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#',
 			function ( array $matches ) {
-				return $this->replaceImg($matches);
+				return $this->replaceAttributes($matches);
 			},
 			$content
 		);
@@ -174,7 +185,7 @@ class Image implements Subscriber_Interface {
 	 * @param array $matches
 	 * @return string
 	 */
-	private function replaceImg( array $matches ) {
+	private function replaceAttributes( array $matches ) {
 
 		/**
 		 * Replace srcset, sizes and src attributes
@@ -191,29 +202,26 @@ class Image implements Subscriber_Interface {
 			)
 		);
 
-		/**
-		 * Add noscript fallback plus microdata
-		 * The meta tag works only if there is Schema.org markup
-		 */
+		return $this->appendNoscript( $matches, $content );
+	}
+
+	/**
+	 * @param array $matches
+	 * @param string $content
+	 * @return string
+	 */
+	private function appendNoscript( array $matches, string $content ): string {
 		$content .= \sprintf(
 			'<noscript><img%1$ssrc="%2$s"%3$s></noscript><meta itemprop="image" content="%2$s"/>',
-			$matches[1],
-			$matches[2],
-			$matches[3]
+			$matches[ 1 ],
+			$matches[ 2 ],
+			$matches[ 3 ]
 		);
 
 		return $content;
 	}
 
 	/**
-	 * @link http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/
-	 * Gif black
-	 * data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=
-	 * Gif grey
-	 * data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==
-	 * Gif transparent
-	 * data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
-	 *
 	 * @return string
 	 */
 	private function getImagePlaceholder() {
@@ -275,7 +283,7 @@ SCRIPT;
 	 * @param string $content
 	 * @return bool
 	 */
-	private function hasAlreadyLazyLoaded( string $content ): bool {
+	private function hasAlreadyLazyLoadedIn( string $content ): bool {
 		return false !== \strpos( $content, 'data-src' );
 	}
 

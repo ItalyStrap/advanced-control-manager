@@ -25,13 +25,14 @@
       if (source) {
         /* Start responsive images patch */
         var sizes  = this.getAttribute("data-sizes");
-            srcset = this.getAttribute("data-srcset");
+        var srcset = this.getAttribute("data-srcset");
 
         if ( sizes && srcset ) {
           this.setAttribute( "sizes", sizes );
         }
-        if ( srcset )
+        if ( srcset ) {
           this.setAttribute( "srcset", srcset );
+        }
         /* End responsive images patch */
 
         this.setAttribute("src", source);
