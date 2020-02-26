@@ -171,7 +171,6 @@ class Image implements Subscriber_Interface {
 			},
 			$content
 		);
-
 	}
 
 	/**

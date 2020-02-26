@@ -4,7 +4,9 @@
   "eqnull": true,
   "eqeqeq": true,
   "undef": true,
+  "unused": true,
   "globals": {
-    "jQuery": true
+    "jQuery": true,
+    "window": true
   }
 }

@@ -40,9 +40,10 @@
     "grunt-sync": "^0.6.2",
     "grunt-version": "^1.1.1",
     "grunt-wp-readme-to-markdown": "^2.0.1",
-    "jasmine": "^3.5.0",
     "load-grunt-tasks": "^4.0.0",
-    "webpack": "^3.1.0"
+    "webpack": "^3.1.0",
+    "jasmine": "^3.5.0",
+    "qunit": "^2.9.3"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",

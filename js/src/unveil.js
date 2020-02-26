@@ -12,7 +12,7 @@
 
   $.fn.unveil = function(threshold, callback) {
 
-    var $w = $(window),
+    var $window = $(window),
         th = threshold || 0,
         retina = window.devicePixelRatio > 1,
         attrib = retina? "data-src-retina" : "data-src",
@@ -36,17 +36,21 @@
         /* End responsive images patch */
 
         this.setAttribute("src", source);
-        if (typeof callback === "function") callback.call(this);
+        if (typeof callback === "function") {
+          callback.call(this);
+        }
       }
     });
 
     function unveil() {
       var inview = images.filter(function() {
         var $e = $(this);
-        if ($e.is(":hidden")) return;
+        if ($e.is(":hidden")){
+          return;
+        }
 
-        var wt = $w.scrollTop(),
-            wb = wt + $w.height(),
+        var wt = $window.scrollTop(),
+            wb = wt + $window.height(),
             et = $e.offset().top,
             eb = et + $e.height();
 
@@ -57,7 +61,7 @@
       images = images.not(loaded);
     }
 
-    $w.on("scroll.unveil resize.unveil lookup.unveil", unveil);
+    $window.on("scroll.unveil resize.unveil lookup.unveil", unveil);
 
     unveil();
 
