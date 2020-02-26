@@ -184,9 +184,9 @@ class Image implements Subscriber_Interface {
 		 */
 		$content = \str_replace(
 			['srcset', 'sizes'],
-			['data-srcset', 'data-sizes'],
+			['data-lazy-srcset', 'data-sizes'],
 			\sprintf(
-				'<img%1$ssrc="%2$s" data-src="%3$s"%4$s>',
+				'<img%1$ssrc="%2$s" data-lazy-src="%3$s"%4$s>',
 				$matches[1],
 				$this->getImagePlaceholder(),
 				$matches[2],
@@ -254,7 +254,7 @@ function force_load_img( img ) {
 	}
 }
 jQuery(document).ready(function($){
-	var img = $("img[data-src]");
+	var img = $("img[data-lazy-src]");
 	img.unveil(0, function(){
 		img.load(function(){
 			this.style.opacity = 1;
@@ -269,13 +269,13 @@ SCRIPT;
 
 	/**
 	 * Add css to dull an img before it is appended to src
-	 * This apply opacity 0 only for those images that have the data-src attributes
+	 * This apply opacity 0 only for those images that have the data-lazy-src attributes
 	 * normally added from this plugin.
 	 *
 	 * @return string Add opacity and transition to img
 	 */
 	private function style(): string {
-		return 'img[data-src]{opacity:0;transition:opacity .3s ease-in;}';
+		return 'img[data-lazy-src]{opacity:0;transition:opacity .3s ease-in;}';
 	}
 
 	/**
@@ -283,7 +283,7 @@ SCRIPT;
 	 * @return bool
 	 */
 	private function hasAlreadyLazyLoadedIn( string $content ): bool {
-		return false !== \strpos( $content, 'data-src' );
+		return false !== \strpos( $content, 'data-lazy-src' );
 	}
 
 	/**

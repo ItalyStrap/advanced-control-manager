@@ -122,7 +122,19 @@ class ImagesTest extends Unit
 			'simple image'	=> [
 				'<img src="some/image/uri">',
 <<<'IMG'
-<img src="PLACEHOLDER" data-src="some/image/uri"><noscript><img src="some/image/uri"></noscript><meta itemprop="image" content="some/image/uri"/>
+<img src="PLACEHOLDER" data-lazy-src="some/image/uri"><noscript><img src="some/image/uri"></noscript><meta itemprop="image" content="some/image/uri"/>
+IMG
+			],
+			'data-lazy-srcset'	=> [
+				'<img src="some/image/uri" srcset="some/image/uri">',
+<<<'IMG'
+<img src="PLACEHOLDER" data-lazy-src="some/image/uri" data-lazy-srcset="some/image/uri"><noscript><img src="some/image/uri" srcset="some/image/uri"></noscript><meta itemprop="image" content="some/image/uri"/>
+IMG
+			],
+			'data-sizes'	=> [
+				'<img src="some/image/uri" srcset="some/image/uri" sizes="500">',
+<<<'IMG'
+<img src="PLACEHOLDER" data-lazy-src="some/image/uri" data-lazy-srcset="some/image/uri" data-sizes="500"><noscript><img src="some/image/uri" srcset="some/image/uri" sizes="500"></noscript><meta itemprop="image" content="some/image/uri"/>
 IMG
 			],
 		];
@@ -179,7 +191,7 @@ IMG
 	 */
 	public function itShouldReturnContentIfHasAlreadyLazyLoaded() {
 
-		$content = '<img src="some/image/uri" data-src="some/image/uri">';
+		$content = '<img src="some/image/uri" data-lazy-src="some/image/uri">';
 
 		$sut = $this->getInstance();
 		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($content);

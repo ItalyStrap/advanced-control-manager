@@ -15,17 +15,17 @@
     var $window = $(window),
         th = threshold || 0,
         retina = window.devicePixelRatio > 1,
-        attrib = retina? "data-src-retina" : "data-src",
+        attrib = retina? "data-src-retina" : "data-lazy-src",
         images = this,
         loaded;
 
     this.one("unveil", function() {
       var source = this.getAttribute(attrib);
-      source = source || this.getAttribute("data-src");
+      source = source || this.getAttribute("data-lazy-src");
       if (source) {
         /* Start responsive images patch */
         var sizes  = this.getAttribute("data-sizes");
-        var srcset = this.getAttribute("data-srcset");
+        var srcset = this.getAttribute("data-lazy-srcset");
 
         if ( sizes && srcset ) {
           this.setAttribute( "sizes", sizes );

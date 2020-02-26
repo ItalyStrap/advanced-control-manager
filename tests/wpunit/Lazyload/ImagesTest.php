@@ -115,7 +115,7 @@ class ImagesTest extends WPTestCase
 
         /** @var string $filtered */
         $filtered = $this->dispatcher->filter('custom_event', '<img src="screanshot.png" >');
-        $expected = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="screanshot.png" ><noscript><img src="screanshot.png" ></noscript><meta itemprop="image" content="screanshot.png"/>';
+        $expected = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="screanshot.png" ><noscript><img src="screanshot.png" ></noscript><meta itemprop="image" content="screanshot.png"/>';
 
         Assert::assertStringMatchesFormat( $expected, $filtered, '' );
     }

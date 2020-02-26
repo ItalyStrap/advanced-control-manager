@@ -11,21 +11,21 @@
 	<?php  ?>
 	<img
 		id="first-image"
-		data-src="https://picsum.photos/200/300.webp"
+		data-lazy-src="https://picsum.photos/200/300.webp"
 		src="PLACEHOLDER"
 		alt=""
 	>
 	<img
 		id="second-image"
-		data-src="https://picsum.photos/200/300.webp"
-		data-srcset="https://picsum.photos/200/300.webp"
+		data-lazy-src="https://picsum.photos/200/300.webp"
+		data-lazy-srcset="https://picsum.photos/200/300.webp"
 		src="PLACEHOLDER"
 	 	alt=""
 	>
 	<img
 		id="third-image"
-		data-src="https://picsum.photos/200/300.webp"
-		data-srcset="https://picsum.photos/200/300.webp"
+		data-lazy-src="https://picsum.photos/200/300.webp"
+		data-lazy-srcset="https://picsum.photos/200/300.webp"
 		data-sizes="(max-width: 600px) 200px, 50vw"
 		src="PLACEHOLDER"
 		alt=""
@@ -36,7 +36,7 @@
 <script src="../../js/src/unveil.js"></script>
 <script>
 	jQuery(document).ready(function($){
-		var img = $("img[data-src]");
+		var img = $("img[data-lazy-src]");
 		img.unveil(0, function(){
 			img.load(function(){
 				this.style.opacity = 1;
