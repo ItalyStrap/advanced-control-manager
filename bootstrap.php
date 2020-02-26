@@ -32,7 +32,7 @@ use ItalyStrap\Blocks\Block_Factory;
  */
 $injector = new Injector;
 $injector->share($injector);
-add_filter( 'italystrap_injector', function () use ( $injector ) {
+\add_filter( 'italystrap_injector', function () use ( $injector ) {
 	return $injector;
 } );
 
