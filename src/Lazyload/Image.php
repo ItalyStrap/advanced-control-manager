@@ -81,13 +81,6 @@ class Image implements Subscriber_Interface {
 		$this->config = $config;
 		$this->dispatcher = $dispatcher;
 		$this->file = $file;
-
-		/**
-		 * Path for unveil.js
-		 *
-		 * @var string
-		 */
-		$this->script = $this->file->fread($this->file->getSize());
 	}
 
 	public function onWpLoaded(): void {
@@ -235,6 +228,13 @@ class Image implements Subscriber_Interface {
 	 * @return string
 	 */
 	private function script(): string {
+
+		/**
+		 * Path for unveil.js
+		 *
+		 * @var string
+		 */
+		$this->script = $this->file->fread($this->file->getSize());
 
 		/**
 		 * Add script for img opacity
