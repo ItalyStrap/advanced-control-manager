@@ -224,6 +224,14 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 
 I tried only with the Bootstrap Carousel integrated, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
 
+= Is it compatible with WebP images? =
+
+Yes, it is compatible with WebP images but you also have to install and activate [EWWW IO plugin](https://wordpress.org/plugins/ewww-image-optimizer/)
+to leverage lazy loading for WebP images.
+Once you have activate the EWWW IO go to WebP settings and check 'JPG/PNG to WebP' for generating WebP version of your images
+'JS WebP Rewriting' option is needed only if your server do no load WebP images correctly
+See the [plugin documentation](https://docs.ewww.io/article/16-ewww-io-and-webp-images)
+
 = How can I use Local Business widget =
 
 Simply activate functionality from Advanced Control Manager option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input
@@ -254,11 +262,13 @@ If you have any problem please open a ticket :-)
 == Changelog ==
 
 = 2.14.4 =
-Release Date: Feb 20th, 2020
+Release Date: Feb 27th, 2020
 
-Dev time: 2h
+Dev time: 10h
 
-* Reverted CMB2 to 2.6.0
+* Refactoring of the Image Lazy Load
+* Added support for EWWW IO in Image Lazy Load
+* Added custom filter for Lazy Load your custom images
 
 = 2.14.3 =
 Release Date: Feb 20th, 2020

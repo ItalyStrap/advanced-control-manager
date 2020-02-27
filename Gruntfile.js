@@ -26,6 +26,8 @@ const acm_plugin = [
 	'!**/docs/**',
 	'!**/test*/**',
 	'!**/example*/**',
+	'!spec/**',
+	'!lib/**',
 
 	/**
 	 * Files
