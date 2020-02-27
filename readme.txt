@@ -174,7 +174,7 @@ Then go to your Plugins screen and click Activate.
 
 Add this code in your template files:
 
-`<?php do_action( 'do_breadcrumbs', array() ); ?>`
+`<?php do_action( 'do_breadcrumbs', [] ); ?>`
 
 = What if haven't I got Bootstrap CSS? =
 
@@ -188,20 +188,25 @@ Add attribute `type="carousel"` at gallery shortcode, this will show Bootstrap C
 
 = How to activate Lazy Load for images =
 
-For activate Lazy Load there is new page "Option" in Advanced Control Manager panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
+For activate Lazy Load there is new page "Option" in ACM panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
 
 = How do I change the placeholder image in Lazy Load functionality =
 
-`
+```php
 add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
 function my_custom_lazyload_placeholder_image( $image ) {
 	return 'http://url/to/image';
 }
-`
+```
 
-= How do I lazy load other images in my theme? =
+= How do I lazy load other images in my theme || plugin? =
 
-> TODO
+You can use a dedicated event name to filter your content: 'italystrap_lazyload_images_in_this_content'
+
+```php
+$your_content_with_images = '<img src="screanshot.png" >';
+\apply_filters('italystrap_lazyload_images_in_this_content', $your_content_with_images);
+```
 
 = Lazy load uses JavaScript. What about visitors without JS active? =
 
@@ -214,12 +219,6 @@ Lazy loading works just fine. The images will still load from your CDN. If you h
 = How can I verify that the plugin is working? =
 
 Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
-
-= I'm using my custom Bootstrap Carousel, why doesn't the second image appear? =
-
-Put the code below in your file js and type your Bootstrap Carousel ID in place of "#YOURCAROUSELID"
-
-`var cHeight = 0;$("#YOURCAROUSELID").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});`
 
 = I'm using an external carousel, will Lazy Load work with it? =
 
@@ -253,6 +252,13 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 == Changelog ==
+
+= 2.14.4 =
+Release Date: Feb 20th, 2020
+
+Dev time: 2h
+
+* Reverted CMB2 to 2.6.0
 
 = 2.14.3 =
 Release Date: Feb 20th, 2020
