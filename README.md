@@ -4,7 +4,7 @@
 **Tags:** custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts  
 **Requires at least:** 5.2  
 **Tested up to:** 5.3  
-**Stable tag:** 2.14.3  
+**Stable tag:** 2.14.4  
 **Requires PHP:** 7.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -174,7 +174,7 @@ Then go to your Plugins screen and click Activate.
 
 Add this code in your template files:
 
-`<?php do_action( 'do_breadcrumbs', array() ); ?>`
+`<?php do_action( 'do_breadcrumbs', [] ); ?>`
 
 ### What if haven't I got Bootstrap CSS? ###
 
@@ -188,20 +188,25 @@ Add attribute `type="carousel"` at gallery shortcode, this will show Bootstrap C
 
 ### How to activate Lazy Load for images ###
 
-For activate Lazy Load there is new page "Option" in Advanced Control Manager panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
+For activate Lazy Load there is new page "Option" in ACM panel, in that page there is a checkbox, check on LazyLoad and let the magic begin :-P
 
 ### How do I change the placeholder image in Lazy Load functionality ###
 
+```php
+add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
+function my_custom_lazyload_placeholder_image( $image ) {
+	return 'http://url/to/image';
+}
+```
 
-	add_filter( 'italystrap_lazy_load_placeholder_image', 'my_custom_lazyload_placeholder_image' );
-	function my_custom_lazyload_placeholder_image( $image ) {
-		return 'http://url/to/image';
-	}
+### How do I lazy load other images in my theme || plugin? ###
 
+You can use a dedicated event name to filter your content: 'italystrap_lazyload_images_in_this_content'
 
-### How do I lazy load other images in my theme? ###
-
-> TODO
+```php
+$your_content_with_images = '<img src="screanshot.png" >';
+\apply_filters('italystrap_lazyload_images_in_this_content', $your_content_with_images);
+```
 
 ### Lazy load uses JavaScript. What about visitors without JS active? ###
 
@@ -215,15 +220,17 @@ Lazy loading works just fine. The images will still load from your CDN. If you h
 
 Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
 
-### I'm using my custom Bootstrap Carousel, why doesn't the second image appear? ###
-
-Put the code below in your file js and type your Bootstrap Carousel ID in place of "#YOURCAROUSELID"
-
-`var cHeight = 0;$("#YOURCAROUSELID").on("slide.bs.carousel", function(){var $nextImage = $(".active.item", this).next(".item").find("img");var src = $nextImage.data("src");if (typeof src !== "undefined" && src !== ""){$nextImage.attr("src", src);$nextImage.data("src", "");}});`
-
 ### I'm using an external carousel, will Lazy Load work with it? ###
 
 I tried only with the Bootstrap Carousel integrated, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
+
+### Is it compatible with WebP images? ###
+
+Yes, it is compatible with WebP images but you also have to install and activate [EWWW IO plugin](https://wordpress.org/plugins/ewww-image-optimizer/)
+to leverage lazy loading for WebP images.
+Once you have activate the EWWW IO go to WebP settings and check 'JPG/PNG to WebP' for generating WebP version of your images
+'JS WebP Rewriting' option is needed only if your server do no load WebP images correctly
+See the [plugin documentation](https://docs.ewww.io/article/16-ewww-io-and-webp-images)
 
 ### How can I use Local Business widget ###
 
@@ -253,6 +260,15 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.14.4 ###
+Release Date: Feb 27th, 2020
+
+Dev time: 10h
+
+* Refactoring of the Image Lazy Load
+* Added support for EWWW IO in Image Lazy Load
+* Added custom filter for Lazy Load your custom images
 
 ### 2.14.3 ###
 Release Date: Feb 20th, 2020
