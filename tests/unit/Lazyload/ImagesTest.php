@@ -5,12 +5,10 @@ namespace ItalyStrap\Tests;
 
 use Codeception\Test\Unit;
 use ItalyStrap\Config\Config;
-use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Lazyload\Image;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
-use SplFileObject;
 use tad\FunctionMockerLe;
 
 class ImagesTest extends Unit
@@ -29,17 +27,6 @@ class ImagesTest extends Unit
 	 * @var ObjectProphecy
 	 */
 	private $dispatcher;
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $file;
-
-	/**
-	 * @return SplFileObject
-	 */
-	public function getFile(): SplFileObject {
-		return $this->file->reveal();
-	}
 
 	/**
 	 * @return EventDispatcherInterface
@@ -60,80 +47,53 @@ class ImagesTest extends Unit
 	private $is_preview = false;
 
 	protected function _before()
-    {
+	{
+		FunctionMockerLe\define('is_admin', function (): bool {return $this->is_admin;});
+		FunctionMockerLe\define('is_feed', function (): bool {return $this->is_feed;});
+		FunctionMockerLe\define('is_preview', function (): bool {return $this->is_preview;});
 
-    	if ( ! defined('ITALYSTRAP_PLUGIN_PATH') ) {
-			define( 'ITALYSTRAP_PLUGIN_PATH', '' );
-		}
+		$this->config = $this->prophesize( Config::class );
+		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
+	}
 
-    	FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
-    	FunctionMockerLe\define('is_admin', function (): bool {return $this->is_admin;});
-    	FunctionMockerLe\define('is_feed', function (): bool {return $this->is_feed;});
-    	FunctionMockerLe\define('is_preview', function (): bool {return $this->is_preview;});
-
-    	$this->config = $this->prophesize( Config::class );
-    	$this->dispatcher = $this->prophesize( EventDispatcher::class );
-    	$this->file = $this->prophesize( SplFileObject::class );
-    }
-
-    protected function _after()
-    {
-    }
+	protected function _after()
+	{
+		FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
+	}
 
 	private function getInstance() {
-		$sut = new Image($this->getConfig(), $this->getDispatcher(), $this->getFile());
+		$sut = new Image(
+			$this->getConfig(),
+			$this->getDispatcher()
+		);
 		$this->assertInstanceOf( Image::class, $sut, '' );
 		return $sut;
-    }
+	}
 
 	/**
 	 * @test
 	 */
 	public function itShouldBeInstantiable() {
 		$sut = $this->getInstance();
-    }
-
-	/**
-	 * @test
-	 */
-	public function itShouldExecuteInit() {
-
-		$this->config->get(Argument::any(), false)->willReturn(false);
-
-		$this->dispatcher->addListener(
-			Argument::type('string'),
-			Argument::type('callable'),
-			Argument::any(),
-			Argument::any()
-		)->will(function ($args): bool {
-			return true;
-		})->shouldBeCalled();
-
-		$this->dispatcher->filter('italystrap_lazyload_image_events', Argument::any())->will(function ($args){
-			return $args[1];
-		})->shouldBeCalled();
-
-		$sut = $this->getInstance();
-		$sut->onWpLoaded();
-    }
+	}
 
 	public function imageProvider() {
 		return [
 			'simple image'	=> [
 				'<img src="some/image/uri">',
-<<<'IMG'
+				<<<'IMG'
 <img src="PLACEHOLDER" data-lazy-src="some/image/uri"><noscript><img src="some/image/uri"></noscript><meta itemprop="image" content="some/image/uri"/>
 IMG
 			],
 			'data-lazy-srcset'	=> [
 				'<img src="some/image/uri" srcset="some/image/uri">',
-<<<'IMG'
+				<<<'IMG'
 <img src="PLACEHOLDER" data-lazy-src="some/image/uri" data-lazy-srcset="some/image/uri"><noscript><img src="some/image/uri" srcset="some/image/uri"></noscript><meta itemprop="image" content="some/image/uri"/>
 IMG
 			],
 			'data-sizes'	=> [
 				'<img src="some/image/uri" srcset="some/image/uri" sizes="500">',
-<<<'IMG'
+				<<<'IMG'
 <img src="PLACEHOLDER" data-lazy-src="some/image/uri" data-lazy-srcset="some/image/uri" data-sizes="500"><noscript><img src="some/image/uri" srcset="some/image/uri" sizes="500"></noscript><meta itemprop="image" content="some/image/uri"/>
 IMG
 			],
@@ -151,7 +111,7 @@ IMG
 		$sut = $this->getInstance();
 		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($image);
 		$this->assertStringContainsString( $replaced, $expected, '' );
-    }
+	}
 
 	public function frontProvider() {
 		return [
@@ -168,7 +128,7 @@ IMG
 				true,
 			],
 		];
-    }
+	}
 
 	/**
 	 * @test
@@ -184,7 +144,7 @@ IMG
 		$sut = $this->getInstance();
 		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($content);
 		$this->assertSame($content, $replaced, '');
-    }
+	}
 
 	/**
 	 * @test
@@ -196,5 +156,5 @@ IMG
 		$sut = $this->getInstance();
 		$replaced = $sut->replaceSrcImageWithSrcPlaceholders($content);
 		$this->assertSame($content, $replaced, '');
-    }
+	}
 }

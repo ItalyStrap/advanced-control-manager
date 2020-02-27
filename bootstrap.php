@@ -15,7 +15,7 @@ use ItalyStrap\Fields\Fields;
 use ItalyStrap\I18N\Translatable;
 use ItalyStrap\I18N\Translator;
 use ItalyStrap\Import_Export\Import_Export;
-use ItalyStrap\Lazyload\Image;
+use ItalyStrap\Lazyload\ImageSubscriber;
 use ItalyStrap\Settings\Settings;
 use ItalyStrap\View\View;
 use ItalyStrap\View\View_Interface;
@@ -89,7 +89,7 @@ $autoload_definitions = array(
 	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig, $is_debug ) ),
 	Translator::class						=> array( ':domain' => 'italystrap' ),
 
-	Image::class							=> [
+	ImageSubscriber::class							=> [
 		':file'		=> new \SplFileObject(
 			ITALYSTRAP_PLUGIN_PATH . ( is_debug() ? 'js/src/unveil.js' : 'js/unveil.min.js' )
 		),

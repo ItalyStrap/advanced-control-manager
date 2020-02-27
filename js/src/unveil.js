@@ -70,3 +70,24 @@
   };
 
 })(window.jQuery || window.Zepto);
+
+/**
+ *   var src = img.data("lazy-src");
+ if (typeof src !== "undefined" && src !== "") {
+    img.attr("src", src);
+    img.data("lazy-src", "");
+  }
+ * @param img
+ */
+function force_load_img(img) {
+  img.trigger("unveil");
+}
+
+jQuery(document).ready(function($){
+  var img = $("img[data-lazy-src]");
+  img.unveil(0, function(){
+    img.load(function(){
+      this.style.opacity = 1;
+    });
+  });
+});

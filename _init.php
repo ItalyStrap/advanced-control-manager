@@ -21,7 +21,7 @@ use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Google\Analytics;
 use ItalyStrap\Google\Tag_Manager;
 use ItalyStrap\Lazyload\Fonts;
-use ItalyStrap\Lazyload\Image;
+use ItalyStrap\Lazyload\ImageSubscriber;
 use ItalyStrap\Lazyload\Video;
 use ItalyStrap\Shortcodes\Gallery;
 use ItalyStrap\Social\Share;
@@ -35,7 +35,7 @@ if ( is_admin() ) {
 $autoload_subscribers = array_merge( $autoload_subscribers, array(
 		// 'option_name'			=> 'Class\Name',
 		'lazyload_video'			=> Video::class,
-		'lazyload'					=> Image::class,
+		'lazyload'					=> ImageSubscriber::class,
 		'web_font_loading'			=> Fonts::class, // 404
 		'activate_custom_css'		=> Custom_Css::class,
 		'activate_analytics'		=> Analytics::class,

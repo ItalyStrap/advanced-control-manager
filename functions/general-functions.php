@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ItalyStrap\Core;
 
 use Auryn\Injector;
-use ItalyStrap\Lazyload\Image;
+use ItalyStrap\Lazyload\ImageSubscriber;
 
 /**
  * Combine user attributes with known attributes and fill in defaults when needed.
@@ -398,8 +398,8 @@ function get_apply_lazyload( string $content ): string {
 		return $content;
 	}
 
-	/** @var Image $lazy */
-	$lazy = $injector->make(Image::class);
+	/** @var ImageSubscriber $lazy */
+	$lazy = $injector->make(ImageSubscriber::class);
 	return $lazy->replaceSrcImageWithSrcPlaceholders( $content );
 }
 

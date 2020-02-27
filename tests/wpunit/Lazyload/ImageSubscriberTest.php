@@ -8,12 +8,13 @@ use ItalyStrap\Config\Config;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Lazyload\Image;
+use ItalyStrap\Lazyload\ImageSubscriber;
 use PHPUnit\Framework\Assert;
 use Prophecy\Prophecy\ObjectProphecy;
 use SplFileObject;
 use WpunitTester;
 
-class ImagesTest extends WPTestCase
+class ImageSubscriberTest extends WPTestCase
 {
     /**
      * @var WpunitTester
@@ -32,6 +33,17 @@ class ImagesTest extends WPTestCase
 	 * @var EventDispatcher
 	 */
 	private $dispatcher;
+	/**
+	 * @var ObjectProphecy
+	 */
+	private $image;
+
+	/**
+	 * @return Image
+	 */
+	public function getImage(): Image {
+		return $this->image;
+	}
 
 	/**
 	 * @return SplFileObject
@@ -61,6 +73,7 @@ class ImagesTest extends WPTestCase
 		$this->config = new Config();
 		$this->dispatcher = new EventDispatcher();
 		$this->file = $this->prophesize( SplFileObject::class );
+		$this->image = new Image($this->config, $this->dispatcher);
 
         // Your set up methods here.
     }
@@ -74,8 +87,13 @@ class ImagesTest extends WPTestCase
     }
 
 	private function getInstance() {
-		$sut = new Image($this->getConfig(), $this->getDispatcher(), $this->getFile());
-		$this->assertInstanceOf( Image::class, $sut, '' );
+		$sut = new ImageSubscriber(
+			$this->getConfig(),
+			$this->getDispatcher(),
+			$this->getFile(),
+			$this->getImage()
+		);
+		$this->assertInstanceOf( ImageSubscriber::class, $sut, '' );
 		return $sut;
 	}
 

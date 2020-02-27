@@ -470,7 +470,7 @@ abstract class Carousel {
 			}
 			/**
 			 * 14/03/2017 Ho aggiunto is_array perché in caso dovesse esistere
-			 * una $key = 'keyword' allora questa sarà probabilmente un array. 
+			 * una $key = 'keyword' allora questa sarà probabilmente un array.
 			 */
 			$metadata .= sprintf(
 				'<meta  itemprop="exifData" content="%s: %s"/>',
@@ -761,7 +761,7 @@ $("#%s").on("slide.bs.carousel", function(e){
 	} else {
 		$img = $(".active.item", this).prev(".item").find("img");
 	}
-	force_load_img( $img );
+	$img.trigger("unveil");
 });',
 			esc_js( $this->args['name'] )
 		);
