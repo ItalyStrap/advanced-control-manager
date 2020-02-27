@@ -10,8 +10,8 @@ use ItalyStrap\Event\EventDispatcherInterface;
  * Class Image
  * @package ItalyStrap\Lazyload
  */
-class Image
-{
+class Image {
+
 	/**
 	 * @link http://clubmate.fi/base64-encoded-1px-gifs-black-gray-and-transparent/
 	 * Gif black
@@ -24,6 +24,8 @@ class Image
 	 * @return string
 	 */
 	const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+	const PLACEHOLDER_FILTER_EVENT_NAME = 'italystrap_lazy_load_placeholder_image';
 
 	/**
 	 * @var Config
@@ -124,7 +126,8 @@ class Image
 	 * @return string
 	 */
 	private function getImagePlaceholder() {
-		return $this->dispatcher->filter( 'italystrap_lazy_load_placeholder_image',
+		return $this->dispatcher->filter(
+			static::PLACEHOLDER_FILTER_EVENT_NAME,
 			$this->config->get('lazyload-custom-placeholder', static::DEFAULT_PLACEHOLDER)
 		);
 	}

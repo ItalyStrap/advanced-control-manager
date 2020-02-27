@@ -1,5 +1,5 @@
-var fs = require('fs');
-var index_php_text = [
+const fs = require('fs');
+const index_php_text = [
 	'<?php',
 	'/**',
 	' * May the force be with you.',
@@ -10,7 +10,7 @@ var index_php_text = [
 ].join("\n");
 
 // '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
-var acm_plugin = [
+const acm_plugin = [
 	'**', // All
 
 	/**
@@ -54,9 +54,9 @@ var acm_plugin = [
  * https://docs.nodejitsu.com/articles/file-system/how-to-write-files-in-nodejs
  * http://nodeexamples.com/2012/09/28/getting-a-directory-listing-using-the-fs-module-in-node-js/
  * http://www.monitis.com/blog/2011/07/09/6-node-js-recipes-working-with-the-file-system
- * 
+ *
  */
-var traverseFileSystem = function ( currentPath, fileName ) {
+const traverseFileSystem = function ( currentPath, fileName ) {
 	var files = fs.readdirSync( currentPath );
 	for ( var i in files ) {
 		if ( files[i].search( /vendor|test|node_module/i ) > -1 ) {
@@ -84,7 +84,7 @@ var traverseFileSystem = function ( currentPath, fileName ) {
 	}
 };
 
-var path = require("path");
+const path = require("path");
 
 module.exports = function(grunt) {
 	'use strict';

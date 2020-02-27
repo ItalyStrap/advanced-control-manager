@@ -8,6 +8,9 @@
   "globals": {
     "jQuery": true,
     "window": true,
-    "document": true
+    "document": true,
+    "console": true,
+    "require": true,
+    "module": true
   }
 }

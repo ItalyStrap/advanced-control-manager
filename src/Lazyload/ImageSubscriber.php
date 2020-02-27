@@ -59,7 +59,6 @@ class ImageSubscriber implements Subscriber_Interface {
 		SplFileInfo $file,
 		Image $image
 	) {
-
 		$this->config = $config;
 		$this->dispatcher = $dispatcher;
 		$this->file = $file;
@@ -99,7 +98,7 @@ class ImageSubscriber implements Subscriber_Interface {
 			],
 			['italystrap_custom_header_image'],
 			['italystrap_carousel_output', PHP_INT_MAX],
-			['italystrap_custom_client_output', PHP_INT_MAX],
+			['italystrap_lazyload_this_output', PHP_INT_MAX],
 		];
 
 		$events = $this->dispatcher->filter('italystrap_lazyload_image_events', $events);

@@ -138,5 +138,20 @@ class ImageSubscriberTest extends WPTestCase
         Assert::assertStringMatchesFormat( $expected, $filtered, '' );
     }
 
+	/**
+	 * @test
+	 */
+    public function filterCustomString()
+    {
+		$sut = $this->getInstance();
+		$sut->onWpLoaded();
+
+		/** @var string $filtered */
+		$filtered = $this->dispatcher->filter('italystrap_lazyload_this_output', '<img src="screanshot.png" >');
+		$expected = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="screanshot.png" ><noscript><img src="screanshot.png" ></noscript><meta itemprop="image" content="screanshot.png"/>';
+
+		Assert::assertStringMatchesFormat( $expected, $filtered, '' );
+    }
+
 
 }
