@@ -17,7 +17,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 }
 
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 
 /**
  * Add some metaboxes in admin area with CMB2
@@ -66,7 +66,7 @@ class Register_Metaboxes implements Subscriber_Interface {
 	 *
 	 * @param array $config The plugin config
 	 */
-	function __construct( Config_Interface $config ) {
+	function __construct( ConfigInterface $config ) {
 
 		$this->config = $config->all();
 

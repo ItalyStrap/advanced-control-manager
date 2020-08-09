@@ -18,7 +18,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 	die();
 }
 
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 
 /**
  * Web Font Loading class
@@ -58,9 +58,9 @@ class Fonts {
 	/**
 	 * Init the class.
 	 *
-	 * @param Config_Interface $config The class configuration.
+	 * @param ConfigInterface $config The class configuration.
 	 */
-	function __construct( Config_Interface $config ) {
+	function __construct( ConfigInterface $config ) {
 
 		$this->google_api_url = 'https://www.googleapis.com/webfonts/v1/webfonts';
 
@@ -133,7 +133,7 @@ class Fonts {
 		}
 
 		// $this->flush_transient();
-		
+
 		if ( ! self::$fonts ) {
 			self::$fonts = get_transient( 'italystrap_google_fonts' );
 		}

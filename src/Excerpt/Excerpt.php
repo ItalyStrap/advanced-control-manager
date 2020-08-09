@@ -13,7 +13,7 @@
 namespace ItalyStrap\Excerpt;
 
 use ItalyStrap\Event\Subscriber_Interface;
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Core;
 use ItalyStrap\I18N\Translatable;
 
@@ -95,7 +95,7 @@ class Excerpt implements Subscriber_Interface {
 	 *
 	 * @param $options $argument [description].
 	 */
-	function __construct( Config_Interface $config, Translatable $translator ) {
+	function __construct( ConfigInterface $config, Translatable $translator ) {
 
 		$this->translator = $translator;
 

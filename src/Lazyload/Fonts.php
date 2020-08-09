@@ -17,7 +17,7 @@ if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
 
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Google\Fonts as Google_Fonts;
-use ItalyStrap\Config\Config_Interface;
+use ItalyStrap\Config\ConfigInterface;
 
 /**
  * Web Font Loading class
@@ -63,7 +63,7 @@ class Fonts implements Subscriber_Interface {
 	 *
 	 * @param array $options The plugin options.
 	 */
-	function __construct( Google_Fonts $fonts_obj, Config_Interface $config ) {
+	function __construct( Google_Fonts $fonts_obj, ConfigInterface $config ) {
 
 		$this->config = $config->all();
 
