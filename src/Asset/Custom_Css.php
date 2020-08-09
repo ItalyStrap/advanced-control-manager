@@ -59,7 +59,6 @@ class Custom_Css extends Custom_Css_Base implements Subscriber_Interface {
 		$this->options = $options;
 
 		parent::__construct( $options );
-
 	}
 
 	/**
@@ -71,7 +70,6 @@ class Custom_Css extends Custom_Css_Base implements Subscriber_Interface {
 		$style = $this->get_metabox( get_the_id(), $this->_prefix . '_custom_css_settings', true );
 
 		Inline_Style::set( $style );
-
 	}
 
 	/**

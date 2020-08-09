@@ -109,24 +109,25 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control {
 			$this->args['choices'] = array();
 		}
 
-?>
+		?>
 <label>
 	<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
-	<?php if ( ! empty( $this->description ) ) : ?>
+		<?php if ( ! empty( $this->description ) ) : ?>
 		<span class="description customize-control-description"><?php echo $this->description; // XSS ok. ?></span>
-	<?php endif; ?>
+		<?php endif; ?>
 
-	<?php
+		<?php
 
-	$multi_values = ! is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value();
+		$multi_values = ! is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value();
 
-	?>
+		?>
 
 	<select class="widefat" multiple>
 		<?php
 		foreach ( $this->args['choices'] as $value => $label ) {
-			printf( '<option value="%s" %s>%s</option>',
+			printf(
+				'<option value="%s" %s>%s</option>',
 				esc_attr( $value ),
 				selected( in_array( (string) $value, $multi_values, true ), true, false ),
 				esc_html( $label )
@@ -137,6 +138,6 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control {
 
 	<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( implode( ',', $multi_values ) ); ?>" />
 </label>
-<?php
+		<?php
 	}
 }

@@ -35,9 +35,9 @@ class Multicheck extends Control_Base {
 		<?php endif;
 
 		$multi_values = ! is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value();
-?>
-        <ul>
-<?php
+		?>
+		<ul>
+		<?php
 		foreach ( $this->choices as $value => $label ) :
 			$name = sprintf(
 				'_customize-checkbox-%s[%s]',

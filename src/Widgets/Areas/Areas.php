@@ -147,7 +147,6 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 		$areas_obj = $this;
 
 		foreach ( (array) $this->sidebars as $sidebar_key => $sidebar ) {
-
 			if ( ! isset( $sidebar['value']['id'] ) ) {
 				continue;
 			}
@@ -162,7 +161,7 @@ class Areas extends Areas_Base implements Subscriber_Interface {
 
 			register_sidebar( $sidebar['value'] );
 
-			add_action( $sidebar['action'], function() use ( $sidebar_key, $areas_obj ) {
+			add_action( $sidebar['action'], function () use ( $sidebar_key, $areas_obj ) {
 				$areas_obj->add_widget_area( $sidebar_key );
 			}, absint( $sidebar['priotity'] ) );
 		}

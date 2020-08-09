@@ -20,7 +20,7 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * [setUp description]
 	 */
-	public function setUp(): void  {
+	public function setUp(): void {
 		// Before.
 		parent::setUp();
 
@@ -38,7 +38,7 @@ class QueryPostTest extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * [tearDown description]
 	 */
-	public function tearDown(): void  {
+	public function tearDown(): void {
 		// Your tear down methods here.
 
 		// Then.

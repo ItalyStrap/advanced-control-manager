@@ -74,7 +74,6 @@ class Fonts implements Subscriber_Interface {
 			'first',
 			'second',
 		);
-
 	}
 
 	/**
@@ -130,7 +129,6 @@ class Fonts implements Subscriber_Interface {
 
 		$i = 0;
 		foreach ( $template_part as $key => $part ) {
-
 			if ( empty( $this->fonts ) ) {
 				continue;
 			}
@@ -197,7 +195,6 @@ class Fonts implements Subscriber_Interface {
 		 * @see ItalyStrap\Google\Fonts for more array value info
 		 */
 		return (array) apply_filters( 'italystrap_fonts_before_loading', $fonts, $this );
-
 	}
 
 	/**
@@ -221,7 +218,6 @@ class Fonts implements Subscriber_Interface {
 
 		$i = 1;
 		foreach ( $fonts as $key => $font ) {
-
 			$comma = $count_fonts >= $i ? ',' : '' ;
 
 			/**
@@ -284,7 +280,7 @@ class Fonts implements Subscriber_Interface {
 		echo '<style>' . $this->css . '</style>'; // XSS ok.
 	}
 
-	public function gutenberg( ) {
+	public function gutenberg() {
 //		d($this->init_fonts());
 //		wp_enqueue_style(
 //			'italystrap-gutenberg-fonts',

@@ -65,7 +65,6 @@ class Posts extends Query {
 		$args = apply_filters( 'italystrap_query_posts_args', $args );
 
 		return $args;
-
 	}
 
 	/**
@@ -168,7 +167,6 @@ class Posts extends Query {
 		 * Display per post/page ID
 		 */
 		if ( ! empty( $this->config['post_id'] ) ) {
-
 			$query_args['post__in'] = explode( ',', $this->config['post_id'] );
 
 			/**
@@ -185,24 +183,17 @@ class Posts extends Query {
 			 * If post_id isset than posts_per_page will be override by the number of post ID.
 			 */
 			$query_args['posts_per_page'] = count( $query_args['post__in'] );
-
 		}
 
 		/**
 		 * Sticky posts.
 		 */
 		if ( 'only' === $this->config['sticky_post'] ) {
-
 			$query_args['post__in'] = self::$sticky_posts;
-
 		} elseif ( 'hide' === $this->config['sticky_post'] ) {
-
 			$query_args['ignore_sticky_posts'] = true;
-
 		} else {
-
 			$query_args['posts_per_page'] -= count( self::$sticky_posts );
-
 		}
 
 		/**
@@ -218,7 +209,6 @@ class Posts extends Query {
 		 * You can also select more tags to filter other than the tags assigned to post.
 		 */
 		if ( ! empty( $this->config['related_by_tags'] ) ) {
-
 			$tags = wp_get_post_terms( $this->current_post_id );
 
 			if ( $tags ) {
@@ -245,7 +235,6 @@ class Posts extends Query {
 		 * You can also select more cats to filter other than the cats assigned to post.
 		 */
 		if ( ! empty( $this->config['related_by_cats'] ) ) {
-
 			$cats = wp_get_post_terms( $this->current_post_id, 'category' );
 
 			if ( $cats ) {
@@ -309,7 +298,6 @@ class Posts extends Query {
 		 * Show posts only from current user.
 		 */
 		if ( ! empty( $this->config['from_current_user'] ) ) {
-
 			$current_user = wp_get_current_user();
 
 			if ( isset( $current_user->ID ) ) {
@@ -354,7 +342,6 @@ class Posts extends Query {
 		$context = empty( $this->config['context'] ) ? $this->context : $this->config['context'];
 
 		return apply_filters( "italystrap_{$context}_query_args", $query_args );
-	
 	}
 
 	/**
@@ -369,8 +356,8 @@ class Posts extends Query {
 	/**
 	 * Render the query result
 	 *
-     * @TODO https://gist.github.com/gmazzap/c3e29d8999ec1b722dd17b87dddac62e
-     *
+	 * @TODO https://gist.github.com/gmazzap/c3e29d8999ec1b722dd17b87dddac62e
+	 *
 	 * @return string The HTML result
 	 */
 	public function render( array $query_args = array() ) {
@@ -398,49 +385,40 @@ class Posts extends Query {
 	public function get_custom_fields( $value = '' ) {
 	
 		if ( $this->config['custom_fields'] ) :
-
 			$custom_field_name = explode( ',', $this->config['custom_fields'] ); ?>
 
 			<div class="entry-custom-fields">
 			<?php
 			foreach ( $custom_field_name as $name ) :
-
 				$name = trim( $name );
 				$custom_field_values = get_post_meta( $this->query->post->ID, $name );
 
 				if ( $custom_field_values ) :
-			?>
+					?>
 					<div class="custom-field custom-field-<?php echo esc_attr( str_replace( '_', '-', ltrim( $name, '_' ) ) ); ?>">
 						<?php
 						/**
 						 * If is not an array echo custom field value
 						 */
 						if ( ! is_array( $custom_field_values ) ) {
-
 							echo esc_attr( $custom_field_values );
-
 						} else {
-
 							$last_value = end( $custom_field_values );
 							foreach ( $custom_field_values as $value ) {
-
 								echo esc_attr( $value );
 
 								if ( $value !== $last_value ) {
-
 									echo ', ';
-
 								}
 							}
 						}
 						?>
 					</div>
-			<?php endif;
+				<?php endif;
 			endforeach; ?>
 			</div>
-		<?php
+			<?php
 		endif;
-
 	}
 
 	/**

@@ -12,7 +12,6 @@
 
 namespace ItalyStrap\Update;
 
-
 use ItalyStrap\I18N\Translator;
 
 /**
@@ -53,7 +52,6 @@ class Update implements Update_Interface {
 	public function update( array $instance = array(), array $fields = array() ) {
 
 		foreach ( $fields as $field ) {
-
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';
 			}
@@ -69,9 +67,7 @@ class Update implements Update_Interface {
 			 * Validate fields if $field['validate'] is set
 			 */
 			if ( isset( $field['validate'] ) ) {
-
 				if ( false === $this->validation->validate( $field['validate'], $instance[ $field['id'] ] ) ) {
-
 					$instance[ $field['id'] ] = '';
 				}
 			}

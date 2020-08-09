@@ -13,12 +13,12 @@ use Prophecy\Prophecy\ObjectProphecy;
 use SplFileObject;
 use tad\FunctionMockerLe;
 
-class ImageSubscriberTest extends Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+class ImageSubscriberTest extends Unit {
+
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
 
 	/**
 	 * @var ObjectProphecy
@@ -70,22 +70,26 @@ class ImageSubscriberTest extends Unit
 	private $is_feed = false;
 	private $is_preview = false;
 
-	protected function _before()
-    {
-    	FunctionMockerLe\define('is_admin', function (): bool {return $this->is_admin;});
-    	FunctionMockerLe\define('is_feed', function (): bool {return $this->is_feed;});
-    	FunctionMockerLe\define('is_preview', function (): bool {return $this->is_preview;});
+	protected function _before() {
+		FunctionMockerLe\define('is_admin', function (): bool {
+			return $this->is_admin;
+		});
+		FunctionMockerLe\define('is_feed', function (): bool {
+			return $this->is_feed;
+		});
+		FunctionMockerLe\define('is_preview', function (): bool {
+			return $this->is_preview;
+		});
 
-    	$this->config = $this->prophesize( Config::class );
-    	$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
-    	$this->file = $this->prophesize( SplFileObject::class );
-    	$this->image = $this->prophesize( Image::class );
-    }
+		$this->config = $this->prophesize( Config::class );
+		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
+		$this->file = $this->prophesize( SplFileObject::class );
+		$this->image = $this->prophesize( Image::class );
+	}
 
-    protected function _after()
-    {
-    	FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
-    }
+	protected function _after() {
+		FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
+	}
 
 	private function getInstance() {
 		$sut = new ImageSubscriber(
@@ -96,14 +100,14 @@ class ImageSubscriberTest extends Unit
 		);
 		$this->assertInstanceOf( ImageSubscriber::class, $sut, '' );
 		return $sut;
-    }
+	}
 
 	/**
 	 * @test
 	 */
 	public function itShouldBeInstantiable() {
 		$sut = $this->getInstance();
-    }
+	}
 
 	/**
 	 * @test
@@ -121,11 +125,11 @@ class ImageSubscriberTest extends Unit
 			return true;
 		})->shouldBeCalled();
 
-		$this->dispatcher->filter('italystrap_lazyload_image_events', Argument::any())->will(function ($args){
+		$this->dispatcher->filter('italystrap_lazyload_image_events', Argument::any())->will(function ($args) {
 			return $args[1];
 		})->shouldBeCalled();
 
 		$sut = $this->getInstance();
 		$sut->onWpLoaded();
-    }
+	}
 }

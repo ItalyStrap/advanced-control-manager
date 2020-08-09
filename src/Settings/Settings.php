@@ -162,10 +162,9 @@ class Settings implements Subscriber_Interface {
 		 */
 		add_filter( 'plugin_action_links_' . ITALYSTRAP_BASENAME, array( $this, 'plugin_action_links' ) );
 
-		add_filter( 'plugin_row_meta' , array( $this, 'plugin_row_meta' ), 10, 4 );
+		add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 4 );
 
 		add_action( 'italystrap_after_settings_form', array( $this, 'get_aside' ) );
-
 	}
 
 	/**
@@ -174,7 +173,6 @@ class Settings implements Subscriber_Interface {
 	public function get_aside() {
 
 		require( $this->args['admin_view_path'] . 'italystrap-aside.php' );
-
 	}
 
 	/**
@@ -186,7 +184,6 @@ class Settings implements Subscriber_Interface {
 	public function enqueue_admin_style_script( $hook ) {
 
 		if ( 'italystrap-settings' === $this->pagenow ) {
-
 			wp_enqueue_script(
 				$this->pagenow,
 				plugins_url( 'js/' . $this->pagenow . '.min.js', __FILE__ ),
@@ -236,7 +233,6 @@ class Settings implements Subscriber_Interface {
 		}
 
 		foreach ( (array) $submenu_pages as $submenu ) {
-
 			if ( isset( $submenu['show_on'] ) && ! $this->show_on( $submenu['show_on'] ) ) {
 				continue;
 			}
@@ -250,9 +246,7 @@ class Settings implements Subscriber_Interface {
 				// $submenu['function_cb']
 				array( $this, 'get_settings_view' )
 			);
-
 		}
-
 	}
 
 	/**
@@ -308,7 +302,8 @@ class Settings implements Subscriber_Interface {
 		global $wp_settings_sections, $wp_settings_fields;
 
 		if ( ! isset( $wp_settings_sections[ $page ] ) ) {
-			return; }
+			return;
+		}
 
 		$count = 1;
 
@@ -319,10 +314,12 @@ class Settings implements Subscriber_Interface {
 			}
 
 			if ( $section['callback'] ) {
-				call_user_func( $section['callback'], $section ); }
+				call_user_func( $section['callback'], $section );
+			}
 
 			if ( ! isset( $wp_settings_fields ) || ! isset( $wp_settings_fields[ $page ] ) || ! isset( $wp_settings_fields[ $page ][ $section['id'] ] ) ) {
-				continue; }
+				continue;
+			}
 			echo '<table class="form-table">';
 			do_settings_fields( $page, $section['id'] );
 			echo '</table>';
@@ -341,7 +338,6 @@ class Settings implements Subscriber_Interface {
 		$out = '<ul>';
 
 		foreach ( $this->settings as $key => $setting ) {
-
 			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
 				continue;
 			}
@@ -363,7 +359,6 @@ class Settings implements Subscriber_Interface {
 		$this->add_option();
 
 		foreach ( $this->settings as $setting ) {
-
 			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
 				continue;
 			}
@@ -376,7 +371,6 @@ class Settings implements Subscriber_Interface {
 			);
 
 			foreach ( $setting['settings_fields'] as $field ) {
-
 				if ( isset( $field['show_on'] ) && false === $field['show_on'] ) {
 					continue;
 				}
@@ -397,7 +391,6 @@ class Settings implements Subscriber_Interface {
 		}
 
 		$this->register_setting();
-
 	}
 
 	/**
@@ -411,7 +404,6 @@ class Settings implements Subscriber_Interface {
 			$this->args['options_name'],
 			array( $this, 'update' )
 		);
-
 	}
 
 	/**
@@ -427,7 +419,6 @@ class Settings implements Subscriber_Interface {
 		$this->translator = new Translator( 'ItalyStrap' );
 
 		foreach ( $this->fields as $field ) {
-
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';
 			}
@@ -443,9 +434,7 @@ class Settings implements Subscriber_Interface {
 			 * Validate fields if $field['validate'] is set
 			 */
 			if ( isset( $field['validate'] ) ) {
-
 				if ( false === $this->validation->validate( $field['validate'], $instance[ $field['id'] ] ) ) {
-
 					$instance[ $field['id'] ] = '';
 				}
 			}
@@ -460,7 +449,6 @@ class Settings implements Subscriber_Interface {
 		}
 
 		return $instance;
-
 	}
 
 	/**
@@ -471,7 +459,6 @@ class Settings implements Subscriber_Interface {
 	public function render_section_cb( $args ) {
 
 		echo isset( $args['callback'][0]->settings[ $args['id'] ]['desc'] ) ? $args['callback'][0]->settings[ $args['id'] ]['desc'] : ''; // XSS ok.
-
 	}
 
 	/**
@@ -510,7 +497,6 @@ class Settings implements Subscriber_Interface {
 		}
 
 		return $fields;
-
 	}
 
 	/**
@@ -527,7 +513,6 @@ class Settings implements Subscriber_Interface {
 		}
 
 		return $default_settings;
-
 	}
 
 	/**
@@ -540,7 +525,6 @@ class Settings implements Subscriber_Interface {
 			add_option( $this->args['options_name'], $default );
 			$this->set_theme_mods( (array) $default );
 		}
-
 	}
 
 	/**
@@ -550,7 +534,6 @@ class Settings implements Subscriber_Interface {
 
 		delete_option( $this->args['options_name'] );
 		$this->remove_theme_mods( $this->get_plugin_settings_array_default() );
-
 	}
 
 	/**
@@ -565,7 +548,6 @@ class Settings implements Subscriber_Interface {
 				set_theme_mod( $key, $value[ $key ] );
 			}
 		}
-
 	}
 
 	/**
@@ -580,7 +562,6 @@ class Settings implements Subscriber_Interface {
 				remove_theme_mod( $key );
 			}
 		}
-
 	}
 
 	/**
@@ -605,7 +586,6 @@ class Settings implements Subscriber_Interface {
 		$this->set_theme_mods( (array) $value );
 
 		return $option;
-
 	}
 
 	/**

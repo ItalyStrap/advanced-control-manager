@@ -104,13 +104,13 @@ class Tag_Manager implements Subscriber_Interface {
 	/**
 	 * Google tag manager
 	 * @link http://www.tagmanageritalia.it/come-installare-google-tag-manager-tramite-wordpress/
-     * Filters the list of CSS body classes for the current post or page.
-     *
-     * @since 2.2.2
-     *
-     * @param array $classes An array of body classes.
-     * @param array $class   An array of additional classes added to the body.
-     */
+	 * Filters the list of CSS body classes for the current post or page.
+	 *
+	 * @since 2.2.2
+	 *
+	 * @param array $classes An array of body classes.
+	 * @param array $class   An array of additional classes added to the body.
+	 */
 	public function render_tag_manager( $classes, $class ) {
 
 		if ( is_customize_preview() || is_preview() || is_admin() ) {

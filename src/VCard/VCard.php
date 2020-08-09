@@ -40,7 +40,6 @@ class VCard {
 		$args = apply_filters( 'italystrap_{$context}_args', $args );
 
 		$this->args = $args;
-
 	}
 
 	/**
@@ -58,7 +57,6 @@ class VCard {
 		ob_end_clean();
 
 		return $output;
-
 	}
 
 	/**
@@ -117,7 +115,6 @@ class VCard {
 		} else {
 			return $meta;
 		}
-
 	}
 
 	/**
@@ -156,6 +153,5 @@ class VCard {
 		} else {
 			return $contacts_list;
 		}
-
 	}
 }

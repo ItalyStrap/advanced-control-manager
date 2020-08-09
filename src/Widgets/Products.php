@@ -129,7 +129,6 @@ class Products extends Widget {
 		unset( $args['category__in'] );
 
 		return $args;
-	
 	}
 
 	/**

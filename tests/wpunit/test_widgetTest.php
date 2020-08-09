@@ -1,18 +1,16 @@
 <?php
 
-class test_widgetTest extends \Codeception\TestCase\WPTestCase
-{
+class test_widgetTest extends \Codeception\TestCase\WPTestCase {
 
-	public function setUp(): void
-	{
+
+	public function setUp(): void {
 		// before
 		parent::setUp();
 
 		// your set up methods here
 	}
 
-	public function tearDown(): void
-	{
+	public function tearDown(): void {
 		// your tear down methods here
 
 		// then
@@ -38,7 +36,6 @@ class test_widgetTest extends \Codeception\TestCase\WPTestCase
 		// foreach ( $pair as $key => $default ) {
 		// 	$this->assertTrue( isset( $default['default'] ) );
 		// }
-
 	}
 
 	/**
@@ -62,6 +59,5 @@ class test_widgetTest extends \Codeception\TestCase\WPTestCase
 		$this->assertStringContainsString( '<h2>Buscar</h2>', $output );
 		$this->assertStringContainsString( '<section>', $output );
 		$this->assertStringContainsString( '</section>', $output );
-
 	}
 }

@@ -91,8 +91,7 @@ class Size implements Subscriber_Interface {
 				 */
 				$sizes[ $_size ]['width'] = get_option( $_size . '_size_w' );
 				$sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );
- 				$sizes[ $_size ]['crop'] = (bool) get_option( $_size . '_crop' );
-
+				$sizes[ $_size ]['crop'] = (bool) get_option( $_size . '_crop' );
 			} elseif ( $_size && isset( $_wp_additional_image_sizes[ $_size ] ) ) {
 
 				/**
@@ -103,14 +102,12 @@ class Size implements Subscriber_Interface {
 					'height'	=> $_wp_additional_image_sizes[ $_size ]['height'],
 					'crop'		=> $_wp_additional_image_sizes[ $_size ]['crop'],
 				);
-
 			}
 
 			/**
 			 * Add thumb name to administrators in the WordPress Media Library
 			 */
 			if ( isset( $sizes[ $_size ] ) ) {
-
 				// $custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
 				$custom[ $_size ] = sprintf(
 					'%s %sx%spx',

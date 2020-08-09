@@ -23,7 +23,7 @@ use CMB2;
 /**
  * Add some metaboxes in admin area with CMB2
  */
-class CMB2_Adapter extends CMB2_Loader{
+class CMB2_Adapter extends CMB2_Loader {
 
 	/**
 	 * Merge config in configs

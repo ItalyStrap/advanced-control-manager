@@ -104,6 +104,5 @@ class Gallery implements Subscriber_Interface {
 			add_filter( 'jetpack_gallery_types', array( $this, 'gallery_types' ) );
 			// add_filter( 'ItalyStrap_gallery_types', array( $this, 'gallery_types' ), 999 );
 		}
-	
 	}
 }

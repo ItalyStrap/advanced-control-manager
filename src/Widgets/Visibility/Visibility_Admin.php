@@ -27,7 +27,7 @@ class Visibility_Admin extends Visibility_Base {
 	}
 
 	public static function widget_admin_setup() {
-		if( is_rtl() ) {
+		if ( is_rtl() ) {
 			wp_enqueue_style( 'widget-conditions', plugins_url( 'assets/rtl/widget-conditions-rtl.css', __FILE__ ) );
 		} else {
 			wp_enqueue_style( 'widget-conditions', plugins_url( 'assets/widget-conditions.css', __FILE__ ) );
@@ -55,7 +55,6 @@ class Visibility_Admin extends Visibility_Base {
 		$conditions['rules'] = array();
 
 		foreach ( $post_conditions['rules_major'] as $index => $major_rule ) {
-
 			if ( ! $major_rule ) {
 				continue;
 			}
@@ -67,10 +66,11 @@ class Visibility_Admin extends Visibility_Base {
 			);
 		}
 
-		if ( ! empty( $conditions['rules'] ) )
+		if ( ! empty( $conditions['rules'] ) ) {
 			$instance['conditions'] = $conditions;
-		else
+		} else {
 			unset( $instance['conditions'] );
+		}
 
 		if (
 				( isset( $instance['conditions'] ) && ! isset( $old_instance['conditions'] ) )
@@ -90,8 +90,7 @@ class Visibility_Admin extends Visibility_Base {
 			 * @since 2.4.0
 			 */
 			do_action( 'widget_conditions_save' );
-		}
-		else if ( ! isset( $instance['conditions'] ) && isset( $old_instance['conditions'] ) ) {
+		} elseif ( ! isset( $instance['conditions'] ) && isset( $old_instance['conditions'] ) ) {
 
 			/**
 			 * Fires after the widget visibility conditions are deleted.
@@ -131,7 +130,6 @@ class Visibility_Admin extends Visibility_Base {
 
 		$widget_conditional = '';
 		if ( empty( $_POST['widget-conditions-visible'] ) || '0' == $_POST['widget-conditions-visible'] ) {
-
 			$widget_conditional = 'widget-conditional-hide';
 		}
 
@@ -146,16 +144,14 @@ class Visibility_Admin extends Visibility_Base {
 
 			<?php
 			if ( ! isset( $_POST['widget-conditions-visible'] ) ) {
-
 				?><a href="#" class="button display-options"><?php _e( 'Visibility', 'italystrap' ); ?></a><?php
-
 			}
 			?>
 			<div class="widget-conditional-inner">
 				<div class="condition-top">
 					<?php printf(
-					_x( '%s if:', 'placeholder: dropdown menu to select widget visibility; hide if or show if', 'italystrap' ),
-					'<select name="conditions[action]"><option value="show" ' . selected( $conditions['action'], 'show', false ) . '>' . esc_html_x( 'Show', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option><option value="hide" ' . selected( $conditions['action'], 'hide', false ) . '>' . esc_html_x( 'Hide', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option></select>'
+						_x( '%s if:', 'placeholder: dropdown menu to select widget visibility; hide if or show if', 'italystrap' ),
+						'<select name="conditions[action]"><option value="show" ' . selected( $conditions['action'], 'show', false ) . '>' . esc_html_x( 'Show', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option><option value="hide" ' . selected( $conditions['action'], 'hide', false ) . '>' . esc_html_x( 'Hide', 'Used in the "%s if:" translation for the widget visibility dropdown', 'italystrap' ) . '</option></select>'
 					); ?>
 				</div><!-- .condition-top -->
 
@@ -172,7 +168,7 @@ class Visibility_Admin extends Visibility_Base {
 									<option value="category" <?php selected( "category", $rule['major'] ); ?>><?php esc_html_e( 'Category', 'italystrap' ); ?></option>
 									<option value="author" <?php selected( "author", $rule['major'] ); ?>><?php echo esc_html_x( 'Author', 'Noun, as in: "The author of this post is..."', 'italystrap' ); ?></option>
 
-									<?php if( ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) { // this doesn't work on .com because of caching ?>
+									<?php if ( ! ( defined( 'IS_WPCOM' ) && IS_WPCOM ) ) { // this doesn't work on .com because of caching ?>
 										<option value="loggedin" <?php selected( "loggedin", $rule['major'] ); ?>><?php echo esc_html_x( 'User', 'Noun', 'italystrap' ); ?></option>
 										<option value="role" <?php selected( "role", $rule['major'] ); ?>><?php echo esc_html_x( 'Role', 'Noun, as in: "The user role of that can access this widget is..."', 'italystrap' ); ?></option>
 									<?php } ?>
@@ -188,7 +184,9 @@ class Visibility_Admin extends Visibility_Base {
 
 								<?php _ex( 'is', 'Widget Visibility: {Rule Major [Page]} is {Rule Minor [Search results]}', 'italystrap' ); ?>
 
-								<select class="conditions-rule-minor" name="conditions[rules_minor][]" <?php if ( ! $rule['major'] ) { ?> disabled="disabled"<?php } ?> data-loading-text="<?php esc_attr_e( 'Loading...', 'italystrap' ); ?>">
+								<select class="conditions-rule-minor" name="conditions[rules_minor][]" <?php if ( ! $rule['major'] ) {
+									?> disabled="disabled"<?php
+																									   } ?> data-loading-text="<?php esc_attr_e( 'Loading...', 'italystrap' ); ?>">
 									<?php self::widget_conditions_options_echo( $rule['major'], $rule['minor'] ); ?>
 								</select>
 
@@ -219,7 +217,7 @@ class Visibility_Admin extends Visibility_Base {
 	 * Provided a second level of granularity for widget conditions.
 	 */
 	public static function widget_conditions_options_echo( $major = '', $minor = '' ) {
-		if ( in_array( $major,  array( 'category', 'tag' ) ) && is_numeric( $minor ) ) {
+		if ( in_array( $major, array( 'category', 'tag' ) ) && is_numeric( $minor ) ) {
 			$minor = self::maybe_get_split_term( $minor, $major );
 		}
 
@@ -237,13 +235,13 @@ class Visibility_Admin extends Visibility_Base {
 					<option value="<?php echo esc_attr( $category->term_id ); ?>" <?php selected( $category->term_id, $minor ); ?>><?php echo esc_html( $category->name ); ?></option>
 					<?php
 				}
-			break;
+				break;
 			case 'loggedin':
 				?>
 				<option value="loggedin" <?php selected( 'loggedin', $minor ); ?>><?php _e( 'Logged In', 'italystrap' ); ?></option>
 				<option value="loggedout" <?php selected( 'loggedout', $minor ); ?>><?php _e( 'Logged Out', 'italystrap' ); ?></option>
 				<?php
-			break;
+				break;
 			case 'author':
 				?>
 				<option value=""><?php _e( 'All author pages', 'italystrap' ); ?></option>
@@ -254,7 +252,7 @@ class Visibility_Admin extends Visibility_Base {
 					<option value="<?php echo esc_attr( $author->ID ); ?>" <?php selected( $author->ID, $minor ); ?>><?php echo esc_html( $author->display_name ); ?></option>
 					<?php
 				}
-			break;
+				break;
 			case 'role':
 				global $wp_roles;
 
@@ -263,7 +261,7 @@ class Visibility_Admin extends Visibility_Base {
 					<option value="<?php echo esc_attr( $role_key ); ?>" <?php selected( $role_key, $minor ); ?> ><?php echo esc_html( $role['name'] ); ?></option>
 					<?php
 				}
-			break;
+				break;
 			case 'tag':
 				?>
 				<option value=""><?php _e( 'All tag pages', 'italystrap' ); ?></option>
@@ -277,7 +275,7 @@ class Visibility_Admin extends Visibility_Base {
 					<option value="<?php echo esc_attr($tag->term_id ); ?>" <?php selected( $tag->term_id, $minor ); ?>><?php echo esc_html( $tag->name ); ?></option>
 					<?php
 				}
-			break;
+				break;
 			case 'date':
 				?>
 				<option value="" <?php selected( '', $minor ); ?>><?php _e( 'All date archives', 'italystrap' ); ?></option>
@@ -285,13 +283,14 @@ class Visibility_Admin extends Visibility_Base {
 				<option value="month"<?php selected( 'month', $minor ); ?>><?php _e( 'Monthly archives', 'italystrap' ); ?></option>
 				<option value="year"<?php selected( 'year', $minor ); ?>><?php _e( 'Yearly archives', 'italystrap' ); ?></option>
 				<?php
-			break;
+				break;
 			case 'page':
 				// Previously hardcoded post type options.
-				if ( ! $minor )
+				if ( ! $minor ) {
 					$minor = 'post_type-page';
-				else if ( 'post' == $minor )
+				} elseif ( 'post' == $minor ) {
 					$minor = 'post_type-post';
+				}
 
 				?>
 				<option value="front" <?php selected( 'front', $minor ); ?>><?php _e( 'Front page', 'italystrap' ); ?></option>
@@ -320,7 +319,7 @@ class Visibility_Admin extends Visibility_Base {
 					?>
 				</optgroup>
 				<?php
-			break;
+				break;
 			case 'taxonomy':
 				?>
 				<option value=""><?php _e( 'All taxonomy pages', 'italystrap' ); ?></option>
@@ -366,9 +365,9 @@ class Visibility_Admin extends Visibility_Base {
 
 					?>
 				</optgroup>
-				<?php
+					<?php
 				}
-			break;
+				break;
 
 			case 'post_type':
 				?>
@@ -417,7 +416,7 @@ class Visibility_Admin extends Visibility_Base {
 					?>
 				</optgroup>
 				<?php
-			break;
+				break;
 		}
 	}
 
@@ -448,12 +447,12 @@ class Visibility_Admin extends Visibility_Base {
 		$page_children = get_pages( array( 'child_of' => (int) $minor ) );
 
 		if ( $page_children ) {
-		?>
+			?>
 			<label>
 				<input type="checkbox" id="include_children" name="conditions[page_children][]" value="has" <?php checked( $has_children, true ); ?> />
 				<?php echo esc_html_x( "Include children", 'Checkbox on Widget Visibility if choosen page has children.', 'italystrap' ); ?>
 			</label>
-		<?php
+			<?php
 		}
 	}
 

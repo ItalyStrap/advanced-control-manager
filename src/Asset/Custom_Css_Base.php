@@ -58,7 +58,6 @@ abstract class Custom_Css_Base {
 		$this->_prefix = '_' . $this->prefix;
 
 		$this->options = $options;
-
 	}
 
 	/**
@@ -81,7 +80,6 @@ abstract class Custom_Css_Base {
 			$content = get_post_meta( $post_id, $key, $single );
 		}
 		return $content;
-
 	}
 
 	/**
@@ -111,6 +109,5 @@ abstract class Custom_Css_Base {
 		}
 
 		return $content;
-
 	}
 }

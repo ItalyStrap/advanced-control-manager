@@ -12,14 +12,14 @@
 	cursor: pointer;
 }
 .youtube::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #000;
-    opacity: 0.3;
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #000;
+	opacity: 0.3;
 }
 .youtube img {
 	width: 100%;

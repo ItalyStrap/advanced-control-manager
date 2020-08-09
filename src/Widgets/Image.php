@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Image\Image as Image_Base;
+
 // use \ItalyStrapAdminMediaSettings;
 
 /**

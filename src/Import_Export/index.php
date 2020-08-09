@@ -1,1 +1,1 @@
-<?php /* Scemo chi legge :-P */ ?>
+<?php ;/* Scemo chi legge :-P */

@@ -13,6 +13,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use \ItalyStrap\Carousel\Bootstrap;
+
 // use \ItalyStrapAdminMediaSettings;
 
 /**
@@ -86,6 +87,5 @@ class Carousel extends Widget {
 	function numeric_comma( $value ) {
 
 		return (bool) preg_match( '/(?:\d+\,)+?/', $instance_value );
-
 	}
 } // class

@@ -60,7 +60,7 @@ class View implements View_Interface {
 
 		$object = (object) $data;
 		$renderer = \Closure::bind(
-			function( $template_file ) {
+			function ( $template_file ) {
 				ob_start();
 				include $template_file;
 				return ob_get_clean();

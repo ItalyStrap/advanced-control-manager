@@ -326,6 +326,5 @@ class Customizer_Register implements Subscriber_Interface {
 				'type'			=> 'input',
 			)
 		);
-
 	}
 }

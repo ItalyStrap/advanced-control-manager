@@ -14,12 +14,12 @@ use Prophecy\Prophecy\ObjectProphecy;
 use SplFileObject;
 use WpunitTester;
 
-class ImageSubscriberTest extends WPTestCase
-{
-    /**
-     * @var WpunitTester
-     */
-    protected $tester;
+class ImageSubscriberTest extends WPTestCase {
+
+	/**
+	 * @var WpunitTester
+	 */
+	protected $tester;
 
 	/**
 	 * @var ObjectProphecy
@@ -65,26 +65,24 @@ class ImageSubscriberTest extends WPTestCase
 	public function getConfig(): Config {
 		return $this->config;
 	}
-    public function setUp(): void
-    {
-        // Before...
-        parent::setUp();
+	public function setUp(): void {
+		// Before...
+		parent::setUp();
 
 		$this->config = new Config();
 		$this->dispatcher = new EventDispatcher();
 		$this->file = $this->prophesize( SplFileObject::class );
 		$this->image = new Image($this->config, $this->dispatcher);
 
-        // Your set up methods here.
-    }
+		// Your set up methods here.
+	}
 
-    public function tearDown(): void
-    {
-        // Your tear down methods here.
+	public function tearDown(): void {
+		// Your tear down methods here.
 
-        // Then...
-        parent::tearDown();
-    }
+		// Then...
+		parent::tearDown();
+	}
 
 	private function getInstance() {
 		$sut = new ImageSubscriber(
@@ -100,49 +98,45 @@ class ImageSubscriberTest extends WPTestCase
 	/**
 	 * @test
 	 */
-    public function instanceOk()
-    {
-        $sut = $this->getInstance();
-    }
+	public function instanceOk() {
+		$sut = $this->getInstance();
+	}
 
 	/**
 	 * @test
 	 */
-    public function makeSureItRuns()
-    {
-        $sut = $this->getInstance();
-        $sut->onWpLoaded();
-    }
+	public function makeSureItRuns() {
+		$sut = $this->getInstance();
+		$sut->onWpLoaded();
+	}
 
 	/**
 	 * @test
 	 */
-    public function filteredContentHasLazyload()
-    {
-    	$this->dispatcher->addListener('italystrap_lazyload_image_events', function (array $events){
-    		$events[] = [
+	public function filteredContentHasLazyload() {
+		$this->dispatcher->addListener('italystrap_lazyload_image_events', function (array $events) {
+			$events[] = [
 				'custom_event',
 				22
 			];
 
-    		return $events;
+			return $events;
 		});
 
-        $sut = $this->getInstance();
-        $sut->onWpLoaded();
+		$sut = $this->getInstance();
+		$sut->onWpLoaded();
 
-        /** @var string $filtered */
-        $filtered = $this->dispatcher->filter('custom_event', '<img src="screanshot.png" >');
-        $expected = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="screanshot.png" ><noscript><img src="screanshot.png" ></noscript><meta itemprop="image" content="screanshot.png"/>';
+		/** @var string $filtered */
+		$filtered = $this->dispatcher->filter('custom_event', '<img src="screanshot.png" >');
+		$expected = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="screanshot.png" ><noscript><img src="screanshot.png" ></noscript><meta itemprop="image" content="screanshot.png"/>';
 
-        Assert::assertStringMatchesFormat( $expected, $filtered, '' );
-    }
+		Assert::assertStringMatchesFormat( $expected, $filtered, '' );
+	}
 
 	/**
 	 * @test
 	 */
-    public function filterCustomString()
-    {
+	public function filterCustomString() {
 		$sut = $this->getInstance();
 		$sut->onWpLoaded();
 
@@ -154,7 +148,5 @@ class ImageSubscriberTest extends WPTestCase
 		$expected = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="screanshot.png" ><noscript><img src="screanshot.png" ></noscript><meta itemprop="image" content="screanshot.png"/>';
 
 		Assert::assertStringMatchesFormat( $expected, $filtered, '' );
-    }
-
-
+	}
 }

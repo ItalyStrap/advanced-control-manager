@@ -48,7 +48,7 @@
 			jQuery(this).ajaxSubmit({
 				success: function(){
 					jQuery('#saveResult').html("<div id='saveMessage' class='successModal'></div>");
-					jQuery('#saveMessage').append("<div class=\"updated\"><p><?php echo htmlentities(__('Settings Saved Successfully','wp'),ENT_QUOTES); ?></p></div>").show();
+					jQuery('#saveMessage').append("<div class=\"updated\"><p><?php echo htmlentities(__('Settings Saved Successfully', 'wp'), ENT_QUOTES); ?></p></div>").show();
 					jQuery( '.loading-gif' ).fadeOut();
 				}, 
 				timeout: 5000

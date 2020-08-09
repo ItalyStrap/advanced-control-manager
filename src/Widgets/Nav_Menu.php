@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-use ItalyStrap\Navbar\Bootstrap_Nav_Menu;
+use ItalyStrap\Navbar\BootstrapNavMenu;
 
 /**
  * Widget Class for post type
@@ -22,7 +22,7 @@ class Nav_Menu extends Widget {
 	/**
 	 * Init the constructor
 	 */
-	function __construct( Bootstrap_Nav_Menu $nav_menu ) {
+	function __construct( BootstrapNavMenu $nav_menu ) {
 
 		$this->nav_menu = $nav_menu;
 

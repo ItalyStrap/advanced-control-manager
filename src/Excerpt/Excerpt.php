@@ -102,7 +102,6 @@ class Excerpt implements Subscriber_Interface {
 		self::$config = $config;
 
 		$this->options = self::$config->all();
-
 	}
 
 	/**

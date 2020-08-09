@@ -101,7 +101,7 @@ $autoload_definitions = array(
  *=====================*/
 $autoload_aliases = array(
 	ConfigInterface::class	=> Config::class,
-	Config_Interface::class	=> Config::class,
+//	Config_Interface::class	=> Config::class,
 
 	EventDispatcherInterface::class	=> EventDispatcher::class,
 

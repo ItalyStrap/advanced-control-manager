@@ -4,8 +4,9 @@
  * @author QueryLoop
  */
 // Exit if accessed directly
-if ( !defined( 'ABSPATH' ) )
+if ( !defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 class Italy_Cookie_Choices_Pointer {
 
@@ -22,7 +23,6 @@ class Italy_Cookie_Choices_Pointer {
 			$this->prefix = $args[ 'prefix' ];
 		}
 		add_action( 'current_screen', array( $this, 'maybe_add_pointers' ) );
-
 	}
 
 	/**
@@ -75,8 +75,9 @@ class Italy_Cookie_Choices_Pointer {
 				}
 			}
 			// Clean from null ecc
-			if ( !empty( $pointers[ $key ][ 'pages' ] ) && is_array( $pointers[ $key ][ 'pages' ] ) )
+			if ( !empty( $pointers[ $key ][ 'pages' ] ) && is_array( $pointers[ $key ][ 'pages' ] ) ) {
 				$pointers[ $key ][ 'pages' ] = array_filter( $pointers[ $key ][ 'pages' ] );
+			}
 			
 			if ( !empty( $pointers[ $key ][ 'pages' ] ) ) {
 				if ( is_array( $pointers[ $key ][ 'pages' ] ) ) {
@@ -164,5 +165,4 @@ class Italy_Cookie_Choices_Pointer {
 
 		update_user_meta( get_current_user_id(), 'dismissed_wp_pointers', $meta );
 	}
-
 }

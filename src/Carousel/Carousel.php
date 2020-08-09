@@ -100,7 +100,6 @@ abstract class Carousel {
 		if ( property_exists( $this, $property ) ) {
 			return $this->$property;
 		}
-
 	}
 
 	/**
@@ -136,7 +135,6 @@ abstract class Carousel {
 		$args = apply_filters( 'italystrap_carousel_attributes', $args );
 
 		return $args;
-
 	}
 
 	/**
@@ -161,13 +159,13 @@ abstract class Carousel {
 
 		if ( is_array( $post_type_ids ) and ! empty( $post_type_ids[0] ) ) {
 			foreach ( $post_type_ids as $post_type_id ) {
-				$posts[] = get_post( intval( $post_type_id ) , ARRAY_A ); }
+				$posts[] = get_post( intval( $post_type_id ), ARRAY_A );
+			}
 		}
 
 		$posts = apply_filters( 'italystrap_carousel_posts', $posts, $this->args );
 
 		return $posts;
-
 	}
 
 	/**
@@ -186,7 +184,6 @@ abstract class Carousel {
 		$container_style = apply_filters( 'italystrap_carousel_container_style', $container_style, $this->args );
 
 		return $container_style;
-
 	}
 
 	/**
@@ -233,7 +230,6 @@ abstract class Carousel {
 		 *       Valutare se è possibile ridurre a una sola chiamata di get_post()
 		 */
 		foreach ( $this->posts as $post ) {
-
 			if ( ! is_array( $post ) ) {
 				continue;
 			}
@@ -250,7 +246,6 @@ abstract class Carousel {
 			}
 			$output .= $this->get_img_container( 'end' );
 			$i++;
-
 		}
 
 		// End inner.
@@ -267,7 +262,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_output', $output, $this->args );
 
 		return $output;
-
 	}
 
 	/**
@@ -322,7 +316,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_inner', $output, $this->args );
 
 		return $output;
-
 	}
 
 	/**
@@ -352,7 +345,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_caption_container', $output, $this->args );
 
 		return $output;
-
 	}
 
 	/**
@@ -382,7 +374,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_img_container', $output, $this->args );
 
 		return $output;
-
 	}
 
 	/**
@@ -422,7 +413,7 @@ abstract class Carousel {
 			'style'		=> 'max-height:' . absint( $img_attr[2] ) . 'px',
 			);
 
-		$output = wp_get_attachment_image( $post_thumbnail_id , $size_class, false, $attr );
+		$output = wp_get_attachment_image( $post_thumbnail_id, $size_class, false, $attr );
 
 		$output .= $this->get_img_metadata( $post_thumbnail_id, $post, $img_attr, $schemaposition );
 
@@ -508,17 +499,12 @@ abstract class Carousel {
 		}
 
 		if ( $detect->isTablet() && $this->args['responsive'] ) {
-
 			$image_size = $this->args['sizetablet'];
-
 		} elseif ( $detect->isMobile() && $this->args['responsive'] ) {
-
 			$image_size = $this->args['sizephone'];
-
 		}
 
 		return esc_attr( $image_size );
-
 	}
 
 	/**
@@ -553,36 +539,34 @@ abstract class Carousel {
 		$post['post_title'] = apply_filters( 'the_title', $post['post_title'], $post['ID'] );
 
 		switch ( $this->args['link'] ) {
+			case 'file':
+				$post_title = sprintf(
+					'<a href="%s" itemprop="url">%s</a>',
+					esc_url( $link_file ),
+					wp_kses_post( $post['post_title'] )
+				);
+				break;
 
-		 	case 'file':
-		 		$post_title = sprintf(
-		 			'<a href="%s" itemprop="url">%s</a>',
-		 			esc_url( $link_file ),
-		 			wp_kses_post( $post['post_title'] )
-		 		);
-		 		break;
+			case 'parent':
+				$post_title = sprintf(
+					'<a href="%s" itemprop="url">%s</a>',
+					esc_url( get_permalink( $post['post_parent'] ) ),
+					wp_kses_post( $post['post_title'] )
+				);
+				break;
 
-		 	case 'parent':
-		 		$post_title = sprintf(
-		 			'<a href="%s" itemprop="url">%s</a>',
-		 			esc_url( get_permalink( $post['post_parent'] ) ),
-		 			wp_kses_post( $post['post_title'] )
-		 		);
-		 		break;
+			case 'none':
+				// $post_title = esc_attr( $post['post_title'] );
+				$post_title = wp_kses_post( $post['post_title'] );
+				break;
 
-		 	case 'none':
-		 		// $post_title = esc_attr( $post['post_title'] );
-		 		$post_title = wp_kses_post( $post['post_title'] );
-		 		break;
-
-		 	default:
-		 		$post_title = sprintf(
-		 			'<a href="%s" itemprop="url">%s</a>',
-		 			esc_url( get_permalink( $post['ID'] ) ),
-		 			wp_kses_post( $post['post_title'] )
-		 		);
-		 		break;
-
+			default:
+				$post_title = sprintf(
+					'<a href="%s" itemprop="url">%s</a>',
+					esc_url( get_permalink( $post['ID'] ) ),
+					wp_kses_post( $post['post_title'] )
+				);
+				break;
 		}
 
 		$output .= sprintf(
@@ -594,7 +578,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_title', $output, $this->args, $post );
 
 		return $output;
-
 	}
 
 	/**
@@ -623,13 +606,11 @@ abstract class Carousel {
 		$output = '';
 
 		if ( 'false' !== $this->args['text'] ) {
-
 			$output .= '1' === $this->args['wpautop'] || 'false' !== $this->args['wpautop']
 			? wpautop( wp_kses_post( $post['post_excerpt'] ) )
 			: esc_attr( $post['post_excerpt'] );
 
 			$output = '1' === $this->args['do_shortcode'] ? do_shortcode( $output ) : $output;
-
 		} else {
 			return $output;
 		}
@@ -692,11 +673,9 @@ abstract class Carousel {
 		 * @todo fare il foreach solo sul numero degli ID validi nell'array degli ID
 		 */
 		foreach ( $this->posts as $post ) {
-
 				$class = ( 0 === $i ) ? 'active' : '';
 				$output .= '<li data-target="#' . esc_attr( $this->args['name'] ) . '" data-slide-to="' . $i . '" class="' . $class . '"></li>';
 				$i++;
-
 		}
 
 		$output .= '</ol>';
@@ -726,7 +705,6 @@ abstract class Carousel {
 		$output = apply_filters( 'italystrap_carousel_control', $output, $this->args );
 
 		return $output;
-
 	}
 
 	/**
@@ -777,7 +755,6 @@ $("#%s").on("slide.bs.carousel", function(e){
 		$output = apply_filters( 'italystrap_carousel_javascript', $output, $this->args, $lazyload );
 
 		return $output;
-
 	}
 
 	/**
@@ -789,7 +766,7 @@ $("#%s").on("slide.bs.carousel", function(e){
 	 */
 	public function make_array( $string, $orderby = '' ) {
 
-		$array = explode( ',' , $string );
+		$array = explode( ',', $string );
 
 		$count = count( $array );
 
@@ -799,11 +776,11 @@ $("#%s").on("slide.bs.carousel", function(e){
 
 		// Support for random order.
 		if ( 'rand' === $orderby ) {
-			shuffle( $array ); }
+			shuffle( $array );
+		}
 
 		$array = apply_filters( 'italystrap_carousel_make_array', $array, $this->args );
 
 		return $array;
-
 	}
 }

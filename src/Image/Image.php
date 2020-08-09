@@ -129,7 +129,7 @@ class Image {
 			$attr['title'] = esc_attr( $this->args['image_title'] );
 		}
 
-		$output .= wp_get_attachment_image( $this->args['id'] , $size, false, $attr );
+		$output .= wp_get_attachment_image( $this->args['id'], $size, false, $attr );
 
 		return $output;
 	}
@@ -196,6 +196,5 @@ class Image {
 			\ItalyStrap\Core\get_attr( 'widget_image_caption', array( 'class' => 'fig-null' ) ),
 			esc_attr( $this->args['caption'] )
 		);
-	
 	}
 }

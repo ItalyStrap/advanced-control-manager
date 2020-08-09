@@ -80,7 +80,6 @@ class Sanitization {
 		} else {
 			return sanitize_text_field( $instance_value );
 		}
-
 	}
 
 	/**
@@ -102,7 +101,6 @@ class Sanitization {
 			return array();
 		}
 		return $array;
-	
 	}
 
 	/**
@@ -123,6 +121,5 @@ class Sanitization {
 			return array();
 		}
 		return $array;
-	
 	}
 }

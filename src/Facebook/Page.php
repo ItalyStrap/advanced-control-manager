@@ -54,7 +54,6 @@ class Page {
 			js.src = "//connect.facebook.net/" + sfpp_script_vars.language + "/sdk.js#xfbml=1&version=v2.5&appId=" + sfpp_script_vars.appId;
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, "script", "facebook-jssdk"));';
-	
 	}
 
 	/**
@@ -77,8 +76,8 @@ class Page {
 
 		echo sprintf(
 			'<div id="fb-root"></div><script>(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/%1$s/sdk.js#%2$s";fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>',
-		str_replace( '-', '_', get_bloginfo( 'language' ) ),
-		http_build_query( $data )
+			str_replace( '-', '_', get_bloginfo( 'language' ) ),
+			http_build_query( $data )
 		);
 	}
 
@@ -116,7 +115,7 @@ class Page {
 		$attr = array(
 			'class'							=> 'fb-page',
 			'data-href'						=>
-				false !== strpos( $instance['href'], 'facebook.com' ) 
+				false !== strpos( $instance['href'], 'facebook.com' )
 				? esc_url( $instance['href'] )
 				: 'https://facebook.com/' . esc_attr( $instance['href'] ),
 			'data-width'					=> absint( $instance['width'] ),
@@ -147,6 +146,5 @@ class Page {
 	public function output() {
 	
 		echo $this->render( array() );
-	
 	}
 }

@@ -92,7 +92,7 @@ class Areas_Base {
 
 		global $wpdb;
 		$sql_query =
-	"SELECT p.ID AS post_id, p.post_title, p.post_excerpt, p.post_parent, p.menu_order, p.post_name, m1.meta_key, m1.meta_value
+		"SELECT p.ID AS post_id, p.post_title, p.post_excerpt, p.post_parent, p.menu_order, p.post_name, m1.meta_key, m1.meta_value
 	FROM {$wpdb->posts} AS p
 	INNER JOIN {$wpdb->postmeta} AS m1 ON ( p.ID = m1.post_id )
 	INNER JOIN {$wpdb->postmeta} AS m2 ON ( p.ID = m2.post_id )

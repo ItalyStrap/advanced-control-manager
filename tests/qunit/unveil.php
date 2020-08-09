@@ -20,7 +20,7 @@
 		data-lazy-src="https://picsum.photos/200/300.webp"
 		data-lazy-srcset="https://picsum.photos/200/300.webp"
 		src="PLACEHOLDER"
-	 	alt=""
+		 alt=""
 	>
 	<img
 		id="third-image"

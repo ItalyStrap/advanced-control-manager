@@ -27,7 +27,7 @@ use ItalyStrap\Update\Sanitization;
 /**
  * Class for admin area
  */
-abstract class Settings_Base implements Settings_Interface{
+abstract class Settings_Base implements Settings_Interface {
 
 	/**
 	 * Definition of variables containing the configuration
@@ -125,7 +125,6 @@ abstract class Settings_Base implements Settings_Interface{
 		}
 
 		foreach ( (array) $this->args['submenu_pages'] as $submenu ) {
-
 			if ( isset( $submenu['show_on'] ) && ! $this->show_on( $submenu['show_on'] ) ) {
 				continue;
 			}
@@ -139,9 +138,7 @@ abstract class Settings_Base implements Settings_Interface{
 				// $submenu['function_cb']
 				array( $this, 'get_settings_view' )
 			);
-
 		}
-
 	}
 
 	/**
@@ -257,7 +254,8 @@ abstract class Settings_Base implements Settings_Interface{
 		global $wp_settings_sections, $wp_settings_fields;
 
 		if ( ! isset( $wp_settings_sections[ $page ] ) ) {
-			return; }
+			return;
+		}
 
 		$count = 1;
 
@@ -268,10 +266,12 @@ abstract class Settings_Base implements Settings_Interface{
 			}
 
 			if ( $section['callback'] ) {
-				call_user_func( $section['callback'], $section ); }
+				call_user_func( $section['callback'], $section );
+			}
 
 			if ( ! isset( $wp_settings_fields ) || ! isset( $wp_settings_fields[ $page ] ) || ! isset( $wp_settings_fields[ $page ][ $section['id'] ] ) ) {
-				continue; }
+				continue;
+			}
 			echo '<table class="form-table">';
 			do_settings_fields( $page, $section['id'] );
 			echo '</table>';
@@ -290,7 +290,6 @@ abstract class Settings_Base implements Settings_Interface{
 		$out = '<ul>';
 
 		foreach ( $this->settings as $key => $setting ) {
-
 			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
 				continue;
 			}
@@ -312,7 +311,6 @@ abstract class Settings_Base implements Settings_Interface{
 		$this->add_option();
 
 		foreach ( $this->settings as $key => $setting ) {
-
 			if ( isset( $setting['show_on'] ) && false === $setting['show_on'] ) {
 				continue;
 			}
@@ -325,7 +323,6 @@ abstract class Settings_Base implements Settings_Interface{
 			);
 
 			foreach ( $setting['settings_fields'] as $key2 => $field ) {
-
 				if ( isset( $field['show_on'] ) && false === $field['show_on'] ) {
 					continue;
 				}
@@ -342,7 +339,6 @@ abstract class Settings_Base implements Settings_Interface{
 		}
 
 		$this->register_setting();
-
 	}
 
 	/**
@@ -356,7 +352,6 @@ abstract class Settings_Base implements Settings_Interface{
 			$this->args['options_name'],
 			array( $this, 'update' )
 		);
-
 	}
 
 	/**
@@ -371,7 +366,6 @@ abstract class Settings_Base implements Settings_Interface{
 		$this->sanitization = new Sanitization;
 
 		foreach ( $this->fields as $field ) {
-
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';
 			}
@@ -380,9 +374,7 @@ abstract class Settings_Base implements Settings_Interface{
 			 * Validate fields if $field['validate'] is set
 			 */
 			if ( isset( $field['validate'] ) ) {
-
 				if ( false === $this->validation->validate( $field['validate'], $instance[ $field['id'] ] ) ) {
-
 					$instance[ $field['id'] ] = '';
 				}
 			}
@@ -397,7 +389,6 @@ abstract class Settings_Base implements Settings_Interface{
 		}
 
 		return $instance;
-
 	}
 
 	/**
@@ -408,7 +399,6 @@ abstract class Settings_Base implements Settings_Interface{
 	public function render_section_cb( $args ) {
 
 		echo isset( $args['callback'][0]->settings[ $args['id'] ]['desc'] ) ? $args['callback'][0]->settings[ $args['id'] ]['desc'] : ''; // XSS ok.
-
 	}
 
 	/**
@@ -440,7 +430,6 @@ abstract class Settings_Base implements Settings_Interface{
 		}
 
 		return $fields;
-
 	}
 
 	/**
@@ -457,7 +446,6 @@ abstract class Settings_Base implements Settings_Interface{
 		}
 
 		return $default_settings;
-
 	}
 
 	/**
@@ -470,7 +458,6 @@ abstract class Settings_Base implements Settings_Interface{
 			add_option( $this->args['options_name'], $default );
 			$this->set_theme_mods( (array) $default );
 		}
-
 	}
 
 	/**
@@ -480,7 +467,6 @@ abstract class Settings_Base implements Settings_Interface{
 
 		delete_option( $this->args['options_name'] );
 		$this->remove_theme_mods( $this->get_plugin_settings_array_default() );
-
 	}
 
 	/**
@@ -495,7 +481,6 @@ abstract class Settings_Base implements Settings_Interface{
 				set_theme_mod( $key, $value[ $key ] );
 			}
 		}
-
 	}
 
 	/**
@@ -510,7 +495,6 @@ abstract class Settings_Base implements Settings_Interface{
 				remove_theme_mod( $key );
 			}
 		}
-
 	}
 
 	/**
@@ -535,6 +519,5 @@ abstract class Settings_Base implements Settings_Interface{
 		$this->set_theme_mods( (array) $value );
 
 		return $option;
-
 	}
 }

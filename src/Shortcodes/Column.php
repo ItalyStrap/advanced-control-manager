@@ -51,7 +51,7 @@ class Column extends Shortcode {
 				/**
 				* Each attribute that accepts user input will have its own array defined like this
 				* Our shortcode accepts two parameters or attributes, title and URL
-				* Lets first define the UI for title field. 
+				* Lets first define the UI for title field.
 				*/
 
 				array(
@@ -78,7 +78,7 @@ class Column extends Shortcode {
 					'description'	=> __( 'Enter CSS classes for the element. (Optional)', 'italystrap' ),
 				),
 
-				/** Finally we will define the UI for Color Selection */ 
+				/** Finally we will define the UI for Color Selection */
 				// array(
 				// 	'label'	=> 'Color',
 				// 	'attr'	=> 'color',

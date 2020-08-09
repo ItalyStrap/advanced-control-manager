@@ -8,7 +8,6 @@
 
 namespace ItalyStrap\Customizer;
 
-
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
@@ -95,13 +94,13 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control {
 		if ( ! is_array( $this->args['choices'] ) ) {
 			$this->args['choices'] = array();
 		}
-?>
+		?>
 <label>
 	<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 
-	<?php if ( ! empty( $this->description ) ) : ?>
+		<?php if ( ! empty( $this->description ) ) : ?>
 		<span class="description customize-control-description"><?php echo $this->description; // XSS ok. ?></span>
-	<?php endif; ?>
+		<?php endif; ?>
 
 	<select class="widefat" <?php $this->link(); ?>>
 		<?php
@@ -116,6 +115,6 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control {
 		?>
 	</select>
 </label>
-<?php
+		<?php
 	}
 }

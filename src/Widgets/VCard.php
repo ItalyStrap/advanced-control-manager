@@ -8,7 +8,6 @@
 
 namespace ItalyStrap\Widgets;
 
-
 if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
@@ -114,6 +113,5 @@ class VCard extends Widget {
 		// ob_end_clean();
 
 		// return $out;
-
 	}
 } // Class.

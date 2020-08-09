@@ -101,7 +101,6 @@ class Block_Factory implements Subscriber_Interface {
 		}
 
 		foreach ( (array) $this->blocks_list as $option_name => $class_name ) {
-
 			// if ( empty( $this->options[ $option_name ] ) ) {
 			// 	continue;
 			// }
@@ -116,7 +115,7 @@ class Block_Factory implements Subscriber_Interface {
 				[
 					':block_type'	=> "italystrap/{$block_name}",
 					':args'			=> [
-//						'render_callback' => '', // Defined in abstract Block::class
+				//						'render_callback' => '', // Defined in abstract Block::class
 						'attributes'	=> [
 							'orderBy'         => [
 								'type'		=> 'string',

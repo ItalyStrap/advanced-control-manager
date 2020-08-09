@@ -38,7 +38,7 @@ class Register {
 		$this->widget = $widget;
 	}
 
-	public function hook(){
+	public function hook() {
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 	}
 

@@ -32,6 +32,5 @@ class Uninstall extends Settings_Base {
 	public function __construct( array $options = array(), array $settings, array $args, FieldsInterface $fields_type ) {
 
 		parent::__construct( $options, $settings, $args, $fields_type );
-
 	}
 }

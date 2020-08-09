@@ -51,11 +51,11 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','//connect.facebook.net/en_US/fbevents.js');
 
 fbq( 'init', 'xxxxxxxxxxxxxxx' );
-<?php if ( $nome_pagina == "conversione.php" ): ?>
+		<?php if ( $nome_pagina == "conversione.php" ) : ?>
 fbq( 'track', 'Purchase', {value: '10.00', currency:'EUR'} );
-<?php else: ?>
+		<?php else : ?>
 fbq( 'track', "PageView" );
-<?php endif; ?>
+		<?php endif; ?>
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=xxxxxxxxxxxxxxx&ev=PageView&noscript=1"
@@ -125,6 +125,5 @@ Track when a registration form is completed (ex. complete subscription, sign up 
 fbq('track', 'CompleteRegistration'); -->
 
 		<?php
-	
 	}
 }

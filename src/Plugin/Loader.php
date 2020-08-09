@@ -130,7 +130,6 @@ class Loader {
 			$this->event_manager->add_subscriber( $this->injector->make( $concrete ) );
 		}
 		foreach ( $app['subscribers'] as $option_name => $subscriber ) {
-
 			if ( is_int( $option_name ) ) {
 				$this->event_manager->add_subscriber( $this->injector->make( $subscriber ) );
 				continue;

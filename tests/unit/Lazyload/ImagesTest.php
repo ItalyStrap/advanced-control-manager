@@ -11,12 +11,12 @@ use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use tad\FunctionMockerLe;
 
-class ImagesTest extends Unit
-{
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
+class ImagesTest extends Unit {
+
+	/**
+	 * @var \UnitTester
+	 */
+	protected $tester;
 
 	/**
 	 * @var ObjectProphecy
@@ -46,18 +46,22 @@ class ImagesTest extends Unit
 	private $is_feed = false;
 	private $is_preview = false;
 
-	protected function _before()
-	{
-		FunctionMockerLe\define('is_admin', function (): bool {return $this->is_admin;});
-		FunctionMockerLe\define('is_feed', function (): bool {return $this->is_feed;});
-		FunctionMockerLe\define('is_preview', function (): bool {return $this->is_preview;});
+	protected function _before() {
+		FunctionMockerLe\define('is_admin', function (): bool {
+			return $this->is_admin;
+		});
+		FunctionMockerLe\define('is_feed', function (): bool {
+			return $this->is_feed;
+		});
+		FunctionMockerLe\define('is_preview', function (): bool {
+			return $this->is_preview;
+		});
 
 		$this->config = $this->prophesize( Config::class );
 		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
 	}
 
-	protected function _after()
-	{
+	protected function _after() {
 		FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
 	}
 

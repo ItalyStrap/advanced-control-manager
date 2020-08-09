@@ -44,7 +44,6 @@ class Product extends Query {
 	public static function init() {
 
 		return new self( new WP_Query() );
-
 	}
 
 	/**
@@ -63,7 +62,6 @@ class Product extends Query {
 		$args = apply_filters( 'italystrap_query_posts_args', $args );
 
 		return $args;
-
 	}
 
 	/**
@@ -150,7 +148,6 @@ class Product extends Query {
 		 * Display per post/page ID
 		 */
 		if ( ! empty( $this->args['post_id'] ) ) {
-
 			$args['post__in'] = explode( ',', $this->args['post_id'] );
 
 			/**
@@ -162,24 +159,17 @@ class Product extends Query {
 			 * Convert array value from string to integer
 			 */
 			$args['post__in'] = array_map( 'absint', $args['post__in'] );
-
 		}
 
 		/**
 		 * Sticky posts.
 		 */
 		if ( 'only' === $this->args['sticky_post'] ) {
-
 			$args['post__in'] = self::$sticky_posts;
-
 		} elseif ( 'hide' === $this->args['sticky_post'] ) {
-
 			$args['ignore_sticky_posts'] = true;
-
 		} else {
-
 			$args['posts_per_page'] -= count( self::$sticky_posts );
-
 		}
 
 		/**
@@ -195,7 +185,6 @@ class Product extends Query {
 		 * You can also select more tags to filter other than the tags assigned to post.
 		 */
 		if ( ! empty( $this->args['related_by_tags'] ) ) {
-
 			$tags = wp_get_post_terms( $this->post->ID );
 
 			if ( $tags ) {
@@ -222,7 +211,6 @@ class Product extends Query {
 		 * You can also select more cats to filter other than the cats assigned to post.
 		 */
 		if ( ! empty( $this->args['related_by_cats'] ) ) {
-
 			$cats = wp_get_post_terms( $this->post->ID, 'category' );
 
 			if ( $cats ) {
@@ -240,7 +228,6 @@ class Product extends Query {
 		 * Show posts only from current user.
 		 */
 		if ( ! empty( $this->args['from_current_user'] ) ) {
-
 			$current_user = wp_get_current_user();
 
 			if ( isset( $current_user->ID ) ) {
@@ -267,6 +254,5 @@ class Product extends Query {
 		ob_end_clean();
 
 		return $output;
-
 	}
 }

@@ -61,7 +61,6 @@ class Validation {
 	 */
 	public function do_validation( $rule, $instance_value = '' ) {
 		switch ( $rule ) {
-
 			// case 'ctype_alpha':
 			// 	return ctype_alpha( $instance_value );
 			// break;
@@ -111,13 +110,12 @@ class Validation {
 			default:
 				if ( method_exists( $this, $rule ) ) {
 					return $this->$rule( $instance_value );
-				} else if ( is_callable( $rule ) ) {
+				} elseif ( is_callable( $rule ) ) {
 					call_user_func( $rule, $instance_value );
 				} else {
 					return false;
 				}
-			break;
-
+				break;
 		}
 	}
 }

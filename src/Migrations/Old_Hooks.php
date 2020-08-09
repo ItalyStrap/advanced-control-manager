@@ -18,7 +18,7 @@ use ItalyStrap\Event\SubscriberInterface;
 /**
  * Old_Hooks
  */
-class Old_Hooks implements SubscriberInterface, Subscriber_Interface  {
+class Old_Hooks implements SubscriberInterface, Subscriber_Interface {
 
 	/**
 	 * @inheritDoc
@@ -102,6 +102,5 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface  {
 				do_action( $old );
 			} );
 		}
-
 	}
 }

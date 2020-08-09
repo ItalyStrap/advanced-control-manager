@@ -51,7 +51,7 @@ class Row extends Shortcode {
 				/**
 				* Each attribute that accepts user input will have its own array defined like this
 				* Our shortcode accepts two parameters or attributes, title and URL
-				* Lets first define the UI for title field. 
+				* Lets first define the UI for title field.
 				*/
 
 				// array(
@@ -65,7 +65,7 @@ class Row extends Shortcode {
 				// 	/** Define input type. Supported types are text, checkbox, textarea, radio, select, email, url, number, and date. */
 				// 	'type'			=> 'text',
 
-				// 	* Add a helpful description for users 
+				//  * Add a helpful description for users
 				// 	'description'	=> __( 'Enter a CSS ID for the element, this must be unique. (Optional)', 'italystrap' ),
 				// ),
 
@@ -78,7 +78,7 @@ class Row extends Shortcode {
 				// 	'description'	=> __( 'Enter CSS classes for the element. (Optional)', 'italystrap' ),
 				// ),
 
-				/** Finally we will define the UI for Color Selection */ 
+				/** Finally we will define the UI for Color Selection */
 				// array(
 				// 	'label'	=> 'Color',
 				// 	'attr'	=> 'color',

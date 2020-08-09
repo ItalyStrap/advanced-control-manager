@@ -139,7 +139,6 @@ class Fonts {
 		}
 
 		if ( false === self::$fonts ) {
-
 			$font_content = wp_remote_get( $this->google_api_url . '?' . http_build_query( $this->http_query ), array( 'sslverify' => false ) );
 
 			/**
@@ -183,7 +182,7 @@ class Fonts {
 	/**
 	 * If the we don't have a Google API key, or the request fails,
 	 * use the contents of this file instead.
-	 * 
+	 *
 	 * @author Paul Clark
 	 * @link http://stylesplugin.com
 	 * @file styles/styles-font-menu/classes/sfm-group-google.php
@@ -195,7 +194,7 @@ class Fonts {
 	/**
 	 * Save Google Fonts API response to file for cases where we
 	 * don't have an API key or the API request fails
-	 * 
+	 *
 	 * @author Paul Clark
 	 * @link http://stylesplugin.com
 	 * @file styles/styles-font-menu/classes/sfm-group-google.php

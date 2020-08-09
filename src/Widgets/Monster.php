@@ -70,8 +70,7 @@ class Monster extends Widget {
 
 		$output = '';
 
-		foreach( $this->get_widget_config() as $widget ) {
-
+		foreach ( $this->get_widget_config() as $widget ) {
 			$_instance = ( isset( $widget[1] ) ) ? $widget[1] : null;
 
 			// $args['before_widget'] = sprintf(
@@ -254,14 +253,17 @@ class Monster extends Widget {
 		global $wp_widget_factory;
 
 		$widget_obj = '';
-		if ( isset( $wp_widget_factory->widgets[$widget] ) )
+		if ( isset( $wp_widget_factory->widgets[$widget] ) ) {
 			$widget_obj = $wp_widget_factory->widgets[$widget];
+		}
 
-		if ( ! is_a( $widget_obj, 'WP_Widget') )
+		if ( ! is_a( $widget_obj, 'WP_Widget') ) {
 			return '';
+		}
 
-		if ( ! isset( $widget_obj->widget_options['classname'] ) )
+		if ( ! isset( $widget_obj->widget_options['classname'] ) ) {
 			return '';
+		}
 
 		return $widget_obj->widget_options['classname'];
 	}
@@ -305,5 +307,5 @@ class Monster extends Widget {
 		$html = implode( "\n", $html );
 
 		return apply_filters( 'monster-widget-get-text', $html );
-    }
+	}
 } // Class.

@@ -54,7 +54,6 @@ class HTML {
 		if ( ! $this->args['print'] ) {
 			$this->the_html_sitemaps( $this->args );
 		}
-
 	}
 
 	/**
@@ -69,7 +68,6 @@ class HTML {
 		$author_args['echo'] = false;
 
 		return wp_list_authors( $author_args );
-
 	}
 
 	/**
@@ -85,7 +83,6 @@ class HTML {
 		$pages_args['echo'] = false;
 
 		return wp_list_pages( $pages_args );
-
 	}
 
 	/**
@@ -96,7 +93,6 @@ class HTML {
 	public function the_html_sitemaps( $args = array() ) {
 
 		echo $this->get_the_html_sitemaps( $args ); // XSS ok.
-
 	}
 
 	/**
@@ -143,14 +139,12 @@ class HTML {
 			$post_types = get_post_types( array( 'public' => true ) );
 
 			foreach ( $post_types as $post_type ) {
-
 				// if ( in_array( $post_type, array('post','page','attachment') ) )
 				// 	continue;
 
 				$pt = get_post_type_object( $post_type );
 
 				if ( 'post' === $post_type ) {
-
 					$posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>';
 
 					/**
@@ -162,7 +156,6 @@ class HTML {
 					$cats = get_categories( array( 'hide_empty' => 1 ) );
 
 					foreach ( $cats as $cat ) {
-
 						$posts_output .= '<li><h3 itemprop="name">' . $cat->cat_name . '</h3><ul>';
 
 						query_posts( 'posts_per_page=-1&cat=' . $cat->cat_ID );
@@ -172,24 +165,17 @@ class HTML {
 
 							// Only display a post link once, even if it's in multiple categories.
 							if ( $category[0]->cat_ID == $cat->cat_ID ) {
-
 								$posts_output .= '<li itemprop="itemListElement"><a href="' . get_permalink() . '" itemprop="url">' . get_the_title() . '</a></li>';
-
 							}
 						}
 						$posts_output .= '</ul></li>';
 					}
 
 						$posts_output .= '</ul>';
-
 				} elseif ( 'page' === $post_type ) {
-
 					$posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>' . $this->get_wp_list_pages() . '</ul>';
-
 				} elseif ( 'attachment' === $post_type ) {
-
 					continue;
-
 				} else {
 					/**
 					 * Get all custopm post type
@@ -205,13 +191,11 @@ class HTML {
 					}
 
 					$posts_output .= '</ul>';
-
 				}
 			}
 
 			$posts_output .= '</div>';
 
 			return apply_filters( 'italystrap_html_sitemaps', $posts_output );
-
 	}
 }

@@ -107,7 +107,6 @@ class Settings_Converter {
 		}
 
 		foreach ( $pattern as $old_key => $new_key ) {
-
 			$options[ $new_key ] = null;
 
 			if ( ! empty( $options[ $new_key ] ) ) {

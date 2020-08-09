@@ -24,7 +24,6 @@ class Grouped_Posts_Old {
 		$this->query = $query;
 
 		// add_shortcode( 'docs', array( $this, 'docs' ) );
-
 	}
 
 	/**
@@ -45,7 +44,6 @@ class Grouped_Posts_Old {
 		$this->args = $instance;
 
 		return $instance;
-
 	}
 
 	/**
@@ -80,11 +78,9 @@ class Grouped_Posts_Old {
 		// $query = $this->query->get_attributes( $args );
 
 		if ( $query->have_posts() ) :
-
 			$output .= '<ul class="list-unstyled">';
 
 			while ( $query->have_posts() ) :
-
 				$query->the_post();
 
 				$output .= '<li><i class="fa fa-file-text-o"></i> ';
@@ -94,19 +90,16 @@ class Grouped_Posts_Old {
 				$output .= '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
 
 				$output .= '</li>';
-
 			endwhile;
 
 			$output .= '</ul>';
 
 			// $output .= '<i class="fa fa-arrow-circle-o-right"></i> <a class="hkb-category__view-all" href="' . $term_link . '">View all</a>';
-
 		endif;
 
 		wp_reset_postdata();
 
 		return $output;
-	
 	}
 
 	/**
@@ -131,7 +124,7 @@ class Grouped_Posts_Old {
 			// 'offset'			=> 0, // (int) The number by which to offset the terms query.
 			// 'fields'			=> 0, // (string) Term fields to query for. Accepts 'all' (returns an array of complete term objects), 'ids' (returns an array of ids), 'id=>parent' (returns an associative array with ids as keys, parent term IDs as values), 'names' (returns an array of term names), 'count' (returns the number of matching terms), 'id=>name' (returns an associative array with ids as keys, term names as values), or 'id=>slug' (returns an associative array with ids as keys, term slugs as values). Default 'all'.
 			// 'name'			=> 0, // (string|array) Optional. Name or array of names to return term(s) for.
-			// 'slug'			=> 0, // (string|array) Optional. Slug or array of slugs to return term(s) for. 
+			// 'slug'           => 0, // (string|array) Optional. Slug or array of slugs to return term(s) for.
 			// 'hierarchical'	=> 0, // (bool) Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
 			// 'search'	=> 0, // (string) Search criteria to match terms. Will be SQL-formatted with wildcards before and after.
 			// 'name__like'	=> 0, // (string) Retrieve terms with criteria by which a term is LIKE $name__like.
@@ -183,7 +176,6 @@ class Grouped_Posts_Old {
 		}
 
 		$count++;
-	
 	}
 
 	/**
@@ -243,7 +235,6 @@ class Grouped_Posts_Old {
 		$output .= '<ul class="list-unstyled">';
 
 		foreach ( (array) $categories as $category ) {
-
 			if ( 0 === $category->count ) {
 				continue;
 			}
@@ -256,13 +247,11 @@ class Grouped_Posts_Old {
 					number_format_i18n( $category->count )
 				)
 			);
-
 		}
 
 		$output .= '</ul>';
 
 		return $output;
-	
 	}
 
 	/**
@@ -323,7 +312,7 @@ class Grouped_Posts_Old {
 	protected function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
 		global $wpdb;
 		$sql_query =
-	"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid
+		"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid
 	FROM {$wpdb->term_taxonomy} AS tt
 	INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 	INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
@@ -354,7 +343,6 @@ class Grouped_Posts_Old {
 		d( $categories );
 		$term = (object) array();
 		foreach ( (array) $categories as $category ) {
-
 			$term->taxonomy = 'category';
 			$term->term_id = $category['term_id'];
 			$term->slug = $category['term_slug'];
@@ -398,7 +386,6 @@ class Grouped_Posts_Old {
 		$output .= '<ul class="list-unstyled">';
 
 		foreach ( $posts as $post_key => $post ) {
-
 			if ( $i >= $limit ) {
 				continue;
 			}
@@ -472,8 +459,9 @@ class Grouped_Posts_Old {
 
 				$category_object = get_term( $category_object, 'category' );
 				$category = $category_object->slug;
-				if ( $parent = $category_object->parent )
+				if ( $parent = $category_object->parent ) {
 					$category = get_category_parents($parent, false, '/', true) . $category;
+				}
 			}
 			// show default category in permalinks, without
 			// having to assign it explicitly
@@ -491,7 +479,7 @@ class Grouped_Posts_Old {
 			$author = $authordata->user_nicename;
 		}
 
-		$date = explode(" ",date('Y m d H i s', $unixtime));
+		$date = explode(" ", date('Y m d H i s', $unixtime));
 		$rewritereplace =
 		array(
 			$date[0],
@@ -535,7 +523,6 @@ class Grouped_Posts_Old {
 		);
 
 		foreach ( (array) $categories as $category ) :
-
 			if ( 0 === $category->count ) {
 				continue;
 			}
@@ -570,7 +557,6 @@ class Grouped_Posts_Old {
 				// $this->get_posts( $category->term_id )
 				$query_posts->output( $query_args )
 			);
-
 		endforeach;
 
 		$output .= '</div>';

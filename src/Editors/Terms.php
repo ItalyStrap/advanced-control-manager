@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 }
 
 use ItalyStrap\Event\Subscriber_Interface;
+
 /**
  * Display the TinyMCE wp_editor in taxonomy description page
  * This is an idea from:
@@ -71,10 +72,8 @@ class Terms implements Subscriber_Interface {
 		unset( $taxonomies['post_format'] );
 
 		foreach ( $taxonomies as $taxonomy ) {
-
 			add_filter( $taxonomy . '_edit_form_fields', array( $this, 'taxonomy_description' ) );
 			add_filter( $taxonomy . '_add_form_fields', array( $this, 'taxonomies_description' ) );
-
 		}
 
 		/**
@@ -102,7 +101,7 @@ class Terms implements Subscriber_Interface {
 
 		$description = ( isset( $tax->description ) ) ? $tax->description : '';
 
-		wp_editor( wp_kses_post( $description , ENT_QUOTES, 'UTF-8' ), 'cat_description', $settings );
+		wp_editor( wp_kses_post( $description, ENT_QUOTES, 'UTF-8' ), 'cat_description', $settings );
 	}
 
 	/**
@@ -154,10 +153,10 @@ class Terms implements Subscriber_Interface {
 	public function remove_default_taxonomy_description() {
 
 		?><script type="text/javascript">
-            jQuery(function($) {
-                $('textarea#description').closest('tr.form-field').remove();
-                $('.term-description-wrap').remove();
-            });
+			jQuery(function($) {
+				$('textarea#description').closest('tr.form-field').remove();
+				$('.term-description-wrap').remove();
+			});
 		</script><?php
 	}
 }

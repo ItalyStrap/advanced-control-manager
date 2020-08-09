@@ -93,7 +93,6 @@ class Query implements Query_Interface {
 		}
 
 		$this->context = $context;
-
 	}
 
 	/**
@@ -124,7 +123,6 @@ class Query implements Query_Interface {
 	public function get_widget_args( $args ) {
 
 		$this->config = $this->get_attributes( $args );
-
 	}
 
 	/**
@@ -135,7 +133,6 @@ class Query implements Query_Interface {
 	public function get_shortcode_args( $args ) {
 
 		$this->config = $this->get_attributes( $args );
-
 	}
 
 	/**
@@ -298,14 +295,16 @@ class Query implements Query_Interface {
 	 *
 	 * @return string The HTML result
 	 */
-	public function output(){}
+	public function output() {
+	}
 
 	/**
 	 * Render the query result
 	 *
 	 * @return string The HTML result
 	 */
-	public function render(){}
+	public function render() {
+	}
 
 	/**
 	 * Get posts id by views.

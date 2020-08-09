@@ -218,7 +218,6 @@ class Share implements Subscriber_Interface {
 				$get_the_title
 			),
 		);
-	
 	}
 
 	/**
@@ -246,7 +245,6 @@ class Share implements Subscriber_Interface {
 		);
 
 		foreach ( $this->social_url as $key => $url ) {
-
 			$format = HTML\get_attr( $key, $link_attr );
 
 			$output .= sprintf(

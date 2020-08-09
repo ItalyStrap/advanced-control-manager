@@ -102,7 +102,6 @@ abstract class Widget extends WP_Widget {
 		}
 
 		return array_merge( $this->title_field(), $fields );
-
 	}
 
 	/**
@@ -140,7 +139,6 @@ abstract class Widget extends WP_Widget {
 		$output .= $args['after_widget'];
 
 		echo apply_filters( 'widget_text', $this->cache_widget( $args, $output ) ); // XSS ok.
-
 	}
 
 	/**
@@ -192,19 +190,14 @@ abstract class Widget extends WP_Widget {
 		$output .= $args['before_title'];
 
 		if ( ! empty( $this->args['title_link'] ) ) {
-
 			$output .= '<a href="' . esc_html( $this->args['title_link'] ) . '">' . $title . '</a>';
-
 		} else {
-
 			$output .= $title;
-
 		}
 
 		$output .= $args['after_title'];
 
 		return $output;
-
 	}
 
 	/**
@@ -308,7 +301,6 @@ abstract class Widget extends WP_Widget {
 		parent::__construct( $id_base, $name, $widget_options, $control_options );
 
 		$this->init_events();
-
 	}
 
 	/**
@@ -361,7 +353,6 @@ abstract class Widget extends WP_Widget {
 		$form = $this->render_form();
 
 		echo $form; // WPCS: XSS OK.
-
 	}
 
 	/**
@@ -389,7 +380,6 @@ abstract class Widget extends WP_Widget {
 		$this->translator = new Translator( 'ItalyStrap' );
 
 		foreach ( $this->fields as $field ) {
-
 			if ( ! isset( $instance[ $field['id'] ] ) ) {
 				$instance[ $field['id'] ] = '';
 			}
@@ -405,9 +395,7 @@ abstract class Widget extends WP_Widget {
 			 * Validate fields if $field['validate'] is set
 			 */
 			if ( isset( $field['validate'] ) ) {
-
 				if ( false === $this->validation->validate( $field['validate'], $instance[ $field['id'] ] ) ) {
-
 					$instance[ $field['id'] ] = '';
 				}
 			}
@@ -455,7 +443,6 @@ abstract class Widget extends WP_Widget {
 	protected function after_validate_fields( $instance ) {
 
 		return $instance;
-
 	}
 
 	/**
@@ -469,15 +456,10 @@ abstract class Widget extends WP_Widget {
 		$sections = array();
 
 		foreach ( (array) $fields as $key ) {
-
 			if ( isset( $key['section'] ) && 'general' !== $key['section'] ) {
-
 				$sections[ $key['section'] ][ $key['id'] ] = (array) $key;
-
 			} else {
-
 				$sections['general'][ $key['id'] ] = (array) $key;
-
 			}
 		}
 
@@ -529,18 +511,14 @@ abstract class Widget extends WP_Widget {
 		$i = 0;
 
 		foreach ( $this->sections_keys as $key => $value ) {
-
 			$out .= '<div class="upw-tab' . ( ( 0 === $i ) ? '' : ' upw-hide' ) . ' upw-tab-' . $value . '">';
 
 			foreach ( $sections[ $value ] as $key ) {
-
 				$out .= $this->field_type( $key );
-
 			}
 
 			$out .= '</div>';
 			$i++;
-
 		}
 
 		return $out;
@@ -561,15 +539,11 @@ abstract class Widget extends WP_Widget {
 		$this->sections_keys = $this->get_sections_keys( $sections );
 
 		if ( count( $this->sections_keys ) <= 1 ) {
-
 			$out .= $this->field_types( $fields );
-
 		} else {
-
 			$out .= $this->create_sections_tabs_menu( $sections );
 
 			$out .= $this->create_sections_tabs( $sections );
-
 		}
 
 		$out = $this->after_field_types( $out );
@@ -722,7 +696,6 @@ abstract class Widget extends WP_Widget {
 		$js_file = \ItalyStrap\Core\is_script_debug() ? 'assets/js/src/widget.js' : 'assets/js/widget.min.js';
 
 		if ( ! wp_script_is( 'italystrap-widget' ) ) {
-
 			wp_enqueue_style(
 				'italystrap-widget',
 				plugins_url( 'assets/css/widget.css', __FILE__ )
@@ -733,7 +706,6 @@ abstract class Widget extends WP_Widget {
 				plugins_url( $js_file, __FILE__ ),
 				array( 'jquery', 'jquery-ui-sortable' )
 			);
-
 		}
 
 		self::$method_loaded = true;

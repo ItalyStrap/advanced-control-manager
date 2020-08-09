@@ -74,7 +74,6 @@ class Attributes implements Subscriber_Interface {
 		$this->config = require( ITALYSTRAP_PLUGIN_PATH . 'config/widget-attributes.php' );
 
 		$this->new_input_fields = array( 'widget_css_id', 'widget_css_css' );
-
 	}
 
 	/**

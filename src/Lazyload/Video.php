@@ -1,6 +1,6 @@
 <?php
 /**
- * LazyLoad Video API 
+ * LazyLoad Video API
  *
  * Class for lazyloading video embedded
  * @link https://webdesign.tutsplus.com/tutorials/how-to-lazy-load-embedded-youtube-videos--cms-26743

@@ -27,6 +27,5 @@ class Bootstrap extends Carousel {
 	function __construct( $args ) {
 
 		parent::__construct( $args );
-
 	}
 }

@@ -69,7 +69,6 @@ abstract class Import_Export_Base {
 		$this->fields_type = $fields_type;
 
 		$this->i18n = wp_parse_args( $this->args['i18n'], require( 'config/i18n.php' ) );
-
 	}
 
 	/**
@@ -101,7 +100,6 @@ abstract class Import_Export_Base {
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -121,7 +119,6 @@ abstract class Import_Export_Base {
 		$output = str_replace( array( ' ', ':' ), '-', $output );
 
 		return $output;
-	
 	}
 
 	/**
@@ -130,7 +127,6 @@ abstract class Import_Export_Base {
 	public function get_view() {
 
 		require( 'view/italystrap-import-export.php' );
-
 	}
 
 	/**
@@ -190,6 +186,5 @@ abstract class Import_Export_Base {
 		$output .= $this->fields_type->render( $this->fields_args[ $value ], $default );
 	
 		echo $output; // XSS ok.
-	
 	}
 }

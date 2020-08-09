@@ -68,7 +68,6 @@ class CSS_Generator implements Subscriber_Interface {
 		$output = '';
 
 		foreach ( $declarations as $property => $value ) {
-
 			if ( ! $this->is_not_empty_value( $value ) ) {
 				continue;
 			}
@@ -80,7 +79,6 @@ class CSS_Generator implements Subscriber_Interface {
 			 * a percent like "100%"
 			 */
 			if ( is_int( $value ) ) {
-
 				$value = sprintf(
 					'url(%s)',
 					wp_get_attachment_image_url( $value, '' ) // 4.4.0
@@ -159,6 +157,6 @@ class CSS_Generator implements Subscriber_Interface {
 		printf(
 			'<style scoped>%s</style>',
 			$rules
-		);	
+		);
 	}
 }

@@ -44,7 +44,6 @@ class Grouped_Posts {
 		$this->args = $instance;
 
 		return $instance;
-
 	}
 
 	/**
@@ -79,11 +78,9 @@ class Grouped_Posts {
 		// $query = $this->query->get_attributes( $args );
 
 		if ( $query->have_posts() ) :
-
 			$output .= '<ul class="list-unstyled">';
 
 			while ( $query->have_posts() ) :
-
 				$query->the_post();
 
 				$output .= '<li><i class="fa fa-file-text-o"></i> ';
@@ -93,19 +90,16 @@ class Grouped_Posts {
 				$output .= '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
 
 				$output .= '</li>';
-
 			endwhile;
 
 			$output .= '</ul>';
 
 			// $output .= '<i class="fa fa-arrow-circle-o-right"></i> <a class="hkb-category__view-all" href="' . $term_link . '">View all</a>';
-
 		endif;
 
 		wp_reset_postdata();
 
 		return $output;
-	
 	}
 
 	/**
@@ -130,7 +124,7 @@ class Grouped_Posts {
 			// 'offset'			=> 0, // (int) The number by which to offset the terms query.
 			// 'fields'			=> 0, // (string) Term fields to query for. Accepts 'all' (returns an array of complete term objects), 'ids' (returns an array of ids), 'id=>parent' (returns an associative array with ids as keys, parent term IDs as values), 'names' (returns an array of term names), 'count' (returns the number of matching terms), 'id=>name' (returns an associative array with ids as keys, term names as values), or 'id=>slug' (returns an associative array with ids as keys, term slugs as values). Default 'all'.
 			// 'name'			=> 0, // (string|array) Optional. Name or array of names to return term(s) for.
-			// 'slug'			=> 0, // (string|array) Optional. Slug or array of slugs to return term(s) for. 
+			// 'slug'           => 0, // (string|array) Optional. Slug or array of slugs to return term(s) for.
 			// 'hierarchical'	=> 0, // (bool) Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
 			// 'search'	=> 0, // (string) Search criteria to match terms. Will be SQL-formatted with wildcards before and after.
 			// 'name__like'	=> 0, // (string) Retrieve terms with criteria by which a term is LIKE $name__like.
@@ -182,7 +176,6 @@ class Grouped_Posts {
 		}
 
 		$count++;
-	
 	}
 
 	/**
@@ -242,7 +235,6 @@ class Grouped_Posts {
 		$output .= '<ul class="list-unstyled">';
 
 		foreach ( (array) $categories as $category ) {
-
 			if ( 0 === $category->count ) {
 				continue;
 			}
@@ -255,13 +247,11 @@ class Grouped_Posts {
 					number_format_i18n( $category->count )
 				)
 			);
-
 		}
 
 		$output .= '</ul>';
 
 		return $output;
-	
 	}
 
 	/**
@@ -280,7 +270,7 @@ class Grouped_Posts {
 	protected function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
 		global $wpdb;
 		$sql_query =
-	"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid, p.post_name, p.post_date
+		"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid, p.post_name, p.post_date
 	FROM {$wpdb->term_taxonomy} AS tt
 	INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 	INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
@@ -415,7 +405,6 @@ class Grouped_Posts {
 		$output .= '<ul class="list-unstyled">';
 
 		foreach ( $posts as $post_key => $post ) {
-
 			if ( $i >= $limit ) {
 				continue;
 			}
@@ -460,11 +449,13 @@ class Grouped_Posts {
 			}
 		}
 
-		if ( !is_object($term) )
+		if ( !is_object($term) ) {
 			$term = new WP_Error('invalid_term', __('Empty Term'));
+		}
 
-		if ( is_wp_error( $term ) )
+		if ( is_wp_error( $term ) ) {
 			return $term;
+		}
 
 		$taxonomy = $term->taxonomy;
 
@@ -474,12 +465,13 @@ class Grouped_Posts {
 		$t = get_taxonomy($taxonomy);
 
 		if ( empty($termlink) ) {
-			if ( 'category' == $taxonomy )
+			if ( 'category' == $taxonomy ) {
 				$termlink = '?cat=' . $term->term_id;
-			elseif ( $t->query_var )
+			} elseif ( $t->query_var ) {
 				$termlink = "?$t->query_var=$slug";
-			else
+			} else {
 				$termlink = "?taxonomy=$taxonomy&term=$slug";
+			}
 			$termlink = home_url($termlink);
 		} else {
 			if ( $t->rewrite['hierarchical'] ) {

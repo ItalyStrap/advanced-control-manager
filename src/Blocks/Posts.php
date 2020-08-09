@@ -58,5 +58,4 @@ class Posts extends Block {
 
 		return $this->posts->output();
 	}
-
 }

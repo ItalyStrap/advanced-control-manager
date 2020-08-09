@@ -35,7 +35,6 @@ abstract class Inline_Asset implements Inline_Asset_Interface {
 	public static function set( $data ) {
 
 		return static::$data .= $data;
-
 	}
 
 	/**
@@ -44,6 +43,5 @@ abstract class Inline_Asset implements Inline_Asset_Interface {
 	public static function get() {
 
 		return static::$data;
-
 	}
 }

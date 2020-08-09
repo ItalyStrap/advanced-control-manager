@@ -4,19 +4,17 @@ declare(strict_types=1);
 namespace ItalyStrap\Tests;
 
 require_once codecept_root_dir( '/italystrap.php' );
-class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
-{
+class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase {
 
-	public function setUp(): void
-	{
+
+	public function setUp(): void {
 		// before
 		parent::setUp();
 
 		// your set up methods here
 	}
 
-	public function tearDown(): void
-	{
+	public function tearDown(): void {
 		// your tear down methods here
 
 		// then
@@ -35,7 +33,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
 		$array = \ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php' ), $atts, $shortcode = '' );
 
 		$this->assertTrue( is_array( $array ) );
-
 	}
 
 	/**
@@ -48,7 +45,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
 		$get_file_content = \ItalyStrap\Core\get_file_content( $unveilpath );
 
 		$this->assertTrue( isset( $get_file_content ) );
-
 	}
 
 	/**
@@ -59,7 +55,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
 		$is_array = \ItalyStrap\Core\get_taxonomies_list_array( 'category' );
 
 		$this->assertTrue( is_array( $is_array ) );
-
 	}
 
 	/**

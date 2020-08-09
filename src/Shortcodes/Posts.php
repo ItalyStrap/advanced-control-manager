@@ -78,7 +78,6 @@ class Posts extends Shortcode {
 		$new_attr = array();
 
 		foreach ( $this->config as $key => $value ) {
-
 			if ( isset( $value['show_on'] ) && ! $value['show_on'] ) {
 				continue;
 			}

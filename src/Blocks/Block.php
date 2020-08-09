@@ -38,5 +38,4 @@ abstract class Block extends \WP_Block_Type {
 //	public function render( array $attributes ) {
 //		return 'Abstract Block';
 //	}
-
 }
