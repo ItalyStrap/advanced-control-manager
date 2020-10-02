@@ -4,7 +4,7 @@
 **Tags:** custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts  
 **Requires at least:** 5.2  
 **Tested up to:** 5.3  
-**Stable tag:** 2.14.4  
+**Stable tag:** 2.15.0  
 **Requires PHP:** 7.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -260,6 +260,17 @@ If you have any problem please open a ticket :-)
 16. Advanced Control Manager admin settings
 
 ## Changelog ##
+
+### 2.15.0 ###
+Release Date: Oct 2nd, 2020
+
+Dev time: 30h
+
+* Changes some class names for PSR-2
+* Renamed Config_Interface dependency to ConfigInterface {PSR-2}
+* Bools functions wrapped with function_exists
+* Moved some classes to new namespace
+
 
 ### 2.14.4 ###
 Release Date: Feb 27th, 2020
