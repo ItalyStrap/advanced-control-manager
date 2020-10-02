@@ -261,6 +261,17 @@ If you have any problem please open a ticket :-)
 
 == Changelog ==
 
+= 2.15.0 =
+Release Date: Oct 2nd, 2020
+
+Dev time: 30h
+
+* Changes some class names for PSR-2
+* Renamed Config_Interface dependency to ConfigInterface {PSR-2}
+* Bools functions wrapped with function_exists
+* Moved some classes to new namespace
+
+
 = 2.14.4 =
 Release Date: Feb 27th, 2020
 

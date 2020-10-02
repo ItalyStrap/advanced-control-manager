@@ -287,6 +287,7 @@ module.exports = function(grunt) {
 					// 	'italystrap.php'
 					// 	]
 					src: [
+						'*.gitignore',
 						'*.json', //For now bower it is not uploaded
 						'*.txt',
 						'*.md',
@@ -302,6 +303,7 @@ module.exports = function(grunt) {
 				},
 				files: {
 					src: [
+						'*.gitignore',
 						'*.json',
 						'*.txt',
 						'*.md',
