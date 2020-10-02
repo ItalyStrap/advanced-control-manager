@@ -115,15 +115,15 @@ $settings->addPage(
 );
 
 // Migration page
-$settings->addPage(
-	[
-		Page::PARENT		=> 'italystrap-dashboard',
-		Page::PAGE_TITLE	=> __( 'Migrations', 'italystrap' ),
-		Page::MENU_TITLE	=> __( 'Migrations', 'italystrap' ),
-		Page::SLUG			=> 'italystrap-migrations',
-		'show_on'			=> get_option( 'template' ) === 'ItalyStrap',
-	]
-);
+//$settings->addPage(
+//	[
+//		Page::PARENT		=> 'italystrap-dashboard',
+//		Page::PAGE_TITLE	=> __( 'Migrations', 'italystrap' ),
+//		Page::MENU_TITLE	=> __( 'Migrations', 'italystrap' ),
+//		Page::SLUG			=> 'italystrap-migrations',
+//		'show_on'			=> get_option( 'template' ) === 'ItalyStrap',
+//	]
+//);
 
 $settings->addCustomPluginLink(
 	'key-for-css',
