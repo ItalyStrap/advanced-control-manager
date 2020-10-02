@@ -42,7 +42,7 @@
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "jasmine": "^3.6.1",
     "load-grunt-tasks": "^4.0.0",
-    "qunit": "^2.10.1",
+    "qunit": "^2.11.2",
     "webpack": "^3.1.0"
   },
   "scripts": {

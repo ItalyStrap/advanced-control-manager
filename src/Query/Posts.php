@@ -383,7 +383,7 @@ class Posts extends Query {
 	 * @return string        [description]
 	 */
 	public function get_custom_fields( $value = '' ) {
-	
+
 		if ( $this->config['custom_fields'] ) :
 			$custom_field_name = explode( ',', $this->config['custom_fields'] ); ?>
 

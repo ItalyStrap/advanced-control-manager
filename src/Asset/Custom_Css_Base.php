@@ -25,21 +25,21 @@ abstract class Custom_Css_Base {
 	 *
 	 * @var string
 	 */
-	private $prefix;
+	protected $prefix;
 
 	/**
 	 * CMB _prefix
 	 *
 	 * @var string
 	 */
-	private $_prefix;
+	protected $_prefix;
 
 	/**
 	 * The plugin options
 	 *
 	 * @var array
 	 */
-	private $options = array();
+	protected $options = array();
 
 	/**
 	 * Init the constructor

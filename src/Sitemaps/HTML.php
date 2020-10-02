@@ -10,7 +10,7 @@
  * @since   2.0
  */
 
-namespace ItalyStrap\Core\Sitemaps;
+namespace ItalyStrap\Sitemaps;
 
 /**
  * This class creates an HTML sitemaps

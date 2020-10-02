@@ -38,7 +38,7 @@ abstract class Widget extends WP_Widget {
 	/**
 	 * The type of fields to create
 	 *
-	 * @var object
+	 * @var Fields
 	 */
 	private $fields_type;
 
@@ -356,6 +356,14 @@ abstract class Widget extends WP_Widget {
 	}
 
 	/**
+	 * @TODO Maybe use it for registering stuff
+	 */
+	public function _register() {
+//		$this->init_events();
+		parent::_register();
+	}
+
+	/**
 	 * Updates a particular instance of a widget.
 	 *
 	 * This function should check that `$new_instance` is set correctly. The newly-calculated
@@ -437,8 +445,8 @@ abstract class Widget extends WP_Widget {
 	 * Allows to modify the output after validating the fields.
 	 *
 	 * @access public
-	 * @param  string $instance The $instance of widget.
-	 * @return string           Return the $instance of widget
+	 * @param  array $instance The $instance of widget.
+	 * @return array           Return the $instance of widget
 	 */
 	protected function after_validate_fields( $instance ) {
 
@@ -698,7 +706,9 @@ abstract class Widget extends WP_Widget {
 		if ( ! wp_script_is( 'italystrap-widget' ) ) {
 			wp_enqueue_style(
 				'italystrap-widget',
-				plugins_url( 'assets/css/widget.css', __FILE__ )
+				plugins_url( 'assets/css/widget.css', __FILE__ ),
+				[],
+				\rand()
 			);
 
 			wp_enqueue_script(

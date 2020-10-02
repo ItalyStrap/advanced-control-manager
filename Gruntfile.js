@@ -40,14 +40,19 @@ const acm_plugin = [
 	'!codecept',
 	'!webpack.config.js',
 	'!snippets.md',
-	'!**/*.yml',
-	'!*.zip',
-	'!**/*.bat',
-	'!**/*.lock',
-	'!**/*.map',
 	'!**/*.clover',
+	'!**/c3.php',
+	'!**/infection.*',
+	'!**/*.bat',
+	'!**/*.cmd',
 	'!**/*.dist',
+	'!**/*.lock',
+	'!**/*.neon',
+	'!**/*.phar',
+	'!**/*.yml',
+	'!**/*.zip',
 	'!**/*.xml',
+	'!**/*.map',
 ];
 
 /**
@@ -330,6 +335,12 @@ module.exports = function(grunt) {
 			}
 		},
 
+		exec: { // https://github.com/jharding/grunt-exec
+			// https://github.com/a6software/Helpful/blob/master/grunt_automated_testing_config/Gruntfile.js
+			composer_update: 'composer update --no-dev && composer dumpautoload -o',
+			composer_update_dev: 'composer update && composer dumpautoload',
+		},
+
 		compress: { // https://github.com/gruntjs/grunt-contrib-compress
 			main: {
 				options: {
@@ -463,13 +474,6 @@ module.exports = function(grunt) {
 					}],
 			pretend: true, // Don't do any IO. Before you run the task with `updateAndDelete` PLEASE MAKE SURE it doesn't remove too much.
 			verbose: true // Display log messages when copying files
-			}
-		},
-
-		exec: { // https://github.com/jharding/grunt-exec
-				// https://github.com/a6software/Helpful/blob/master/grunt_automated_testing_config/Gruntfile.js
-			run_only_unit_tests: {
-				cmd: 'php vendor/codeception/codeception/codecept run'
 			}
 		},
 

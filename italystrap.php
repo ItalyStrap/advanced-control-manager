@@ -18,7 +18,7 @@
  */
 
 /**
- * This will make shure the plugin files can't be accessed within the web browser directly.
+ * This will make sure the plugin files can't be accessed within the web browser directly.
  */
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -42,7 +42,7 @@ $requirements = new Minimum_Requirements( '7.2', '5.2', 'ACM - Advanced Control 
  * Check compatibility on install
  * If is not compatible on install print an admin_notice
  */
-register_activation_hook( __FILE__, array( $requirements, 'check_compatibility_on_install' ) );
+register_activation_hook( __FILE__, [$requirements, 'check_compatibility_on_install'] );
 
 /**
  * If it is already installed and activated check if example new version is compatible, if is not don't load plugin code and print admin_notice
@@ -50,7 +50,7 @@ register_activation_hook( __FILE__, array( $requirements, 'check_compatibility_o
  */
 if ( ! $requirements->is_compatible_version() ) {
 
-	add_action( 'admin_notices', array( $requirements, 'load_plugin_admin_notices' ) );
+	add_action( 'admin_notices', [$requirements, 'load_plugin_admin_notices'] );
 	return;
 }
 
@@ -60,16 +60,16 @@ if ( ! $requirements->is_compatible_version() ) {
 require( __DIR__ . '/functions/default-constants.php' );
 italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
 
-$autoload_plugin_files = array(
+$autoload_plugin_files = [
 	'/vendor/autoload.php',
 	'/vendor/cmb2/cmb2/init.php',
 	'/functions/autoload.php',
 	'/bootstrap.php',
 	'/functions/edd.php',
-);
+];
 
 if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {
-	$autoload_plugin_files = array();
+	$autoload_plugin_files = [];
 }
 
 foreach ( $autoload_plugin_files as $file ) {
@@ -125,7 +125,7 @@ do_action( 'italystrap_plugin_loaded', null );
  *
  * @var array
  */
-$plugin_files_path = apply_filters( 'italystrap_require_plugin_files_path', array() );
+$plugin_files_path = apply_filters( 'italystrap_require_plugin_files_path', [] );
 
 if ( ! empty( $plugin_files_path ) ) {
 	foreach ( (array) $plugin_files_path as $key => $plugin_file_path ) {

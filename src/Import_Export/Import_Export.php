@@ -36,9 +36,13 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface {
 		return array(
 			// 'hook_name'							=> 'method_name',
 			'italystrap_after_settings_page'	=> 'get_view',
-			'admin_init'						=> 'export',
-			'admin_init'						=> 'import',
+			'admin_init'						=> 'onAdminInit',
 		);
+	}
+
+	public function onAdminInit() {
+		$this->export();
+		$this->import();
 	}
 
 	/**

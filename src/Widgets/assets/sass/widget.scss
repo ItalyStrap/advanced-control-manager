@@ -73,3 +73,9 @@
 	padding: 4px 6px;
 }
 // Fine post widget
+
+.widget-inside form {
+	display: flex;
+	flex-direction: column-reverse;
+	padding-top: 1rem;
+}

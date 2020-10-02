@@ -1,1 +1,6 @@
 .widgets-holder-wrap [id*="italystrap"] .widget-top,.widgets-holder-wrap [id*="italystrap"] .in-widget-title,.widgets-holder-wrap [id*="italystrap"] h3{background-color:#0074a2;color:#fff}#widget-list [id*="italystrap"] .widget-top,#widget-list [id*="italystrap"] h3{background-color:#0074a2;color:#fff}#wp_inactive_widgets [id*="italystrap"] .widget-top,#wp_inactive_widgets [id*="italystrap"] h3{background-color:#0074a2;color:#fff}.upw-divider{border:0;border-top:1px solid #DFDFDF}.upw-tabs{display:block;border-bottom:1px solid #DFDFDF;margin:1em 0}.upw-tab-item{display:inline-block;border:1px solid transparent;border-bottom:0;color:#666;padding:8px 10px}.upw-tab-item:not(.active):hover,.upw-tab-item:not(.active):focus{color:#4d4d4d;background-color:#f7f7f7;cursor:pointer}.upw-tab-item:not(.active):active{color:#333;background-color:#f0f0f0}.upw-tab-item.active{color:#444;border-color:#DFDFDF;background:#fff;position:relative;bottom:-1px;cursor:default;font-weight:bold}.upw-hide{display:none !important}.upw-credits{font-size:0.9em;background:#f7f7f7;border:1px solid #ebebeb;padding:4px 6px}
+.widget-inside form {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-top: 1rem;
+}
