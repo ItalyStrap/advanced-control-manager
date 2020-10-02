@@ -28,7 +28,6 @@ wp-tests-config.php
 test_italystrap.php
 phpunit.xml
 *.bat
-codecept
 **/todo.md
 c3.php
 
