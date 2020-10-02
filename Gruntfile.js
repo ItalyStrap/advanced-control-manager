@@ -647,12 +647,12 @@ module.exports = function(grunt) {
 	grunt.registerTask(
 		'deploy',
 		[
-			'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
-			'gitcheckout:devtomaster',
-			'gitmerge:fromdev',
-			'version', // Change version in package.json
-			'wp_readme_to_markdown', // Update changelog only in readme.txt
-			'gitcommit:version',
+			// 'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
+			// 'gitcheckout:devtomaster',
+			// 'gitmerge:fromdev',
+			// 'version', // Change version in package.json
+			// 'wp_readme_to_markdown', // Update changelog only in readme.txt
+			// 'gitcommit:version',
 			'prompt',
 			'gitpush',
 			'copy:temp',
