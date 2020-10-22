@@ -52,44 +52,38 @@ class QueryPostTest extends WPTestCase {
 		$sut = $this->getInstance();
 	}
 
-	/**
-	 * @test
-	 */
-	public function parameters() {
-		$sut = $this->getInstance();
-		$sut->get_shortcode_args( [] );
-		$args = $sut->get_query_args();
+	public function postTypeProvider() {
+		yield 'default post type "post"' => [
+			[],
+			'post'
+		];
 
-		Assert::assertEquals( 'post', $args['post_type'], '' );
+		yield 'post type "test"' => [
+			['post_types' => 'test'],
+			'test'
+		];
 
-		codecept_debug( $args['post_type'] );
+		yield 'post type "test" e "post"' => [
+			['post_types' => 'test, post'],
+			['test', 'post']
+		];
+
+		yield 'post type "post" e "test"' => [
+			['post_types' => 'post, test'],
+			['post', 'test']
+		];
 	}
 
 	/**
+	 * @dataProvider postTypeProvider()
 	 * @test
 	 */
-	public function parameters2() {
+	public function itShouldReturn( $shortcode_args, $expected_value ) {
 		$sut = $this->getInstance();
-		$sut->get_shortcode_args( ['post_types' => 'test'] );
+		$sut->get_shortcode_args( $shortcode_args );
 		$args = $sut->get_query_args();
 
-		Assert::assertEquals( 'test', $args['post_type'], '' );
-
-		codecept_debug( $args['post_type'] );
-	}
-
-	/**
-	 * @test
-	 */
-	public function parameters3() {
-		$sut = $this->getInstance();
-
-		$sut->get_shortcode_args( ['post_types' => 'test, post'] );
-		$args = $sut->get_query_args();
-
-		Assert::assertEquals( ['test', 'post'], $args['post_type'], '' );
-
-		codecept_debug( $args['post_type'] );
+		Assert::assertEquals( $expected_value, $args['post_type'], '' );
 	}
 
 	/**
