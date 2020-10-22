@@ -648,7 +648,7 @@ module.exports = function(grunt) {
 		'deploy',
 		[
 			// Commit before deploy of new version
-			'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
+			// 'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
 			'gitcheckout:devtomaster',
 			'gitmerge:fromdev',
 			'version', // Change version in package.json
