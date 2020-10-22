@@ -651,6 +651,7 @@ module.exports = function(grunt) {
 			// 'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
 			'gitcheckout:devtomaster',
 			'gitmerge:fromdev',
+			// New version: <%= pkg.version %>
 			'version', // Change version in package.json
 			'wp_readme_to_markdown', // Update changelog only in readme.txt
 			'gitcommit:version',

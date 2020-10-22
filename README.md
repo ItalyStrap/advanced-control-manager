@@ -4,7 +4,7 @@
 **Tags:** custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts  
 **Requires at least:** 5.2  
 **Tested up to:** 5.6  
-**Stable tag:** 2.15.0  
+**Stable tag:** 2.15.1  
 **Requires PHP:** 7.2  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -261,6 +261,13 @@ If you have any problem please open a ticket :-)
 
 ## Changelog ##
 
+### 2.15.1 ###
+Release Date: Oct 22nd, 2020
+
+Dev time: 6h
+
+* Fixed bug in Post class for generated post_type string
+
 ### 2.15.0 ###
 Release Date: Oct 2nd, 2020
 
@@ -270,7 +277,6 @@ Dev time: 30h
 * Renamed Config_Interface dependency to ConfigInterface {PSR-2}
 * Bools functions wrapped with function_exists
 * Moved some classes to new namespace
-
 
 ### 2.14.4 ###
 Release Date: Feb 27th, 2020
