@@ -66,6 +66,7 @@ class Query implements Query_Interface {
 	protected $context;
 
 	protected $excerpt;
+	protected $config;
 
 	/**
 	 * Constructor.

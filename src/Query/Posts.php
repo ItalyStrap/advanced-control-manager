@@ -70,7 +70,7 @@ class Posts extends Query {
 	/**
 	 * Get the query arguments
 	 *
-	 * @param  string $value [description]
+	 * @param array $args
 	 * @return string        [description]
 	 */
 	public function get_query_args( array $args = array() ) {
@@ -146,14 +146,7 @@ class Posts extends Query {
 			'posts_per_page'			=> absint( $this->config['posts_number'] ) + count( $this->posts_to_exclude ),
 			'order'						=> $this->config['order'],
 			'orderby'					=> $this->config['orderby'],
-			'post_type'					=>
-				empty( $this->config['post_types'] )
-				? 'post'
-				: (
-					is_array( $this->config['post_types'] )
-					? $this->config['post_types']
-					: explode( ',', $this->config['post_types'] )
-				),
+			'post_type'					=> $this->postType(),
 			'no_found_rows'				=> true,
 			'update_post_term_cache'	=> false,
 			'update_post_meta_cache'	=> false,
@@ -442,5 +435,28 @@ class Posts extends Query {
 		}
 
 		echo $this->excerpt->read_more_link( 'widget_post_read_more', $attr, $link_text );
+	}
+
+	/**
+	 * @return string|string[]
+	 */
+	private function postType() {
+
+		if ( empty( $this->config[ 'post_types' ] ) ) {
+			return 'post';
+		}
+
+		if ( \is_string( $this->config[ 'post_types' ] ) ) {
+			$this->config[ 'post_types' ] = (array) explode( ',', $this->config[ 'post_types' ] );
+			$this->config[ 'post_types' ] = \array_map( 'trim', $this->config[ 'post_types' ] );
+		}
+
+		$this->config[ 'post_types' ] = (array) $this->config[ 'post_types' ];
+
+		if ( \count( $this->config[ 'post_types' ] ) === 1 ) {
+			return $this->config[ 'post_types' ][0];
+		}
+
+		return $this->config[ 'post_types' ];
 	}
 }
