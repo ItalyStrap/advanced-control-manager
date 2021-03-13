@@ -36,5 +36,5 @@ jobs:
     - name: Run test suite
       run: vendor/bin/codecept run unit --coverage-text
 
-    - name: Run infection suite
-      run: vendor/bin/infection --threads=4
+#    - name: Run infection suite
+#      run: vendor/bin/infection --threads=4
