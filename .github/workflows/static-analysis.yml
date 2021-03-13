@@ -7,8 +7,8 @@ on:
     branches: [ master, Dev ]
 
 jobs:
-  tests:
-    name: Linting
+  static:
+    name: Static Analysis
 
     runs-on: ubuntu-latest
 
@@ -23,7 +23,7 @@ jobs:
 
       - uses: ramsey/composer-install@v1
         with:
-          composer-options: "--prefer-dist --ignore-platform-reqs"
+          composer-options: "--prefer-dist"
 
       - name: PHPStan
         run: vendor/bin/phpstan analyze

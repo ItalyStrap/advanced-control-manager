@@ -117,10 +117,10 @@ class Block_Factory implements Subscriber_Interface {
 					':args'			=> [
 				//						'render_callback' => '', // Defined in abstract Block::class
 						'attributes'	=> [
-//							'orderBy'         => [
-//								'type'		=> 'string',
-//								'default'	=> 'date',
-//							],
+				//							'orderBy'         => [
+				//								'type'		=> 'string',
+				//								'default'	=> 'date',
+				//							],
 							'exclude_current_post'         => [
 								'type'		=> 'boolean',
 								'default'	=> 'false',

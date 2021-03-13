@@ -29,8 +29,10 @@ class QueryPostTest extends WPTestCase {
 	protected function getInstance() {
 		$sut = new Posts(
 			new WP_Query(),
-			new Excerpt( new Config(),
-				new Translator( 'ItalyStrap' ) ),
+			new Excerpt(
+				new Config(),
+				new Translator( 'ItalyStrap' )
+			),
 			'test'
 		);
 
