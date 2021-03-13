@@ -69,7 +69,7 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__posts_index__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__posts__ = __webpack_require__(1);
 /**
  * WordPress dependencies
  */
@@ -86,7 +86,7 @@ var registerBlockType = wp.blocks.registerBlockType;
  */
 var registerItalyStrapBlocks = function registerItalyStrapBlocks() {
 
-  [__WEBPACK_IMPORTED_MODULE_0__posts_index__].forEach(function (_ref) {
+  [__WEBPACK_IMPORTED_MODULE_0__posts__].forEach(function (_ref) {
     var name = _ref.name,
         settings = _ref.settings;
 
@@ -104,10 +104,16 @@ registerItalyStrapBlocks();
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit__ = __webpack_require__(2);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block_json__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__block_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__edit__ = __webpack_require__(2);
 var __ = wp.i18n.__;
+
+/**
+ * Internal dependencies
+ */
+
+
 
 
 var name = 'italystrap/posts';
@@ -115,6 +121,7 @@ var name = 'italystrap/posts';
 var settings = {
 
 	title: __('ItalyStrap Posts', 'italystrap'),
+
 	icon: 'universal-access-alt',
 	category: 'widgets',
 	keywords: [__('posts', 'italystrap')],
@@ -135,15 +142,17 @@ var settings = {
 
 
 	attributes: {
-		url: {
-			type: 'string',
-			source: 'attribute',
-			selector: 'img',
-			attribute: 'src'
+		exclude_current_post: {
+			type: 'boolean',
+			default: false
+		},
+		show_thumbnail: {
+			type: 'boolean',
+			default: false
 		}
 	},
 
-	edit: __WEBPACK_IMPORTED_MODULE_0__edit__["a" /* default */],
+	edit: __WEBPACK_IMPORTED_MODULE_1__edit__["a" /* default */],
 
 	save: function save() {
 		return null;
@@ -155,13 +164,7 @@ var settings = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
  * wp.element
@@ -192,7 +195,8 @@ var _wp$editor = wp.editor,
 var __ = wp.i18n.__;
 var _wp$components = wp.components,
     PanelBody = _wp$components.PanelBody,
-    ToggleControl = _wp$components.ToggleControl;
+    ToggleControl = _wp$components.ToggleControl,
+    ServerSideRender = _wp$components.ServerSideRender;
 
 // console.log( "Data:" );
 // console.log( wp.data );
@@ -207,95 +211,63 @@ var select = wp.data.select;
 // const WP_Posts = new wp.api.collections.Posts();
 // console.log(WP_Posts);
 
-var PostsEdit = function (_Component) {
-	_inherits(PostsEdit, _Component);
+function PostsEdit(props) {
 
-	function PostsEdit() {
-		_classCallCheck(this, PostsEdit);
-
-		// console.log(this.props);
-
-		var _this = _possibleConstructorReturn(this, (PostsEdit.__proto__ || Object.getPrototypeOf(PostsEdit)).apply(this, arguments));
-
-		var _this$props = _this.props,
-		    setAttributes = _this$props.setAttributes,
-		    className = _this$props.className,
-		    focus = _this$props.focus;
-
-		// this.onSelectImage = this.onSelectImage.bind( this );
-
-		_this.state = {
-			selectedImage: null
+	var toggleAttribute = function toggleAttribute(attributeName) {
+		return function (newValue) {
+			return setAttributes(_defineProperty({}, attributeName, newValue));
 		};
+	};
 
-		setAttributes({
-			key: 'value'
-		});
-		return _this;
-	}
-
-	_createClass(PostsEdit, [{
-		key: "toggleDisplayPostDate",
-		value: function toggleDisplayPostDate() {
-			var displayPostDate = this.props.attributes.displayPostDate;
-			var setAttributes = this.props.setAttributes;
+	var name = props.name,
+	    attributes = props.attributes,
+	    setAttributes = props.setAttributes;
+	var exclude_current_post = attributes.exclude_current_post,
+	    show_thumbnail = attributes.show_thumbnail;
 
 
-			setAttributes({ displayPostDate: !displayPostDate });
-		}
-
-		// toggleSetting: () => 
-
+	var controls = [{
+		key: 0,
+		label: __('Exclude current post', 'italystrap'),
+		checked: exclude_current_post,
+		onChange: toggleAttribute("exclude_current_post")
 	}, {
-		key: "render",
-		value: function render() {
-			var name = this.props.name;
+		key: 1,
+		label: __('Show Thumbnail', 'italystrap'),
+		checked: show_thumbnail,
+		onChange: toggleAttribute("show_thumbnail")
+	}];
 
-
-			console.log("this.props");
-			console.log(this.props);
-			var _props = this.props,
-			    attributes = _props.attributes,
-			    setAttributes = _props.setAttributes;
-
-
-			console.log(attributes);
-
-			var displayPostDate = attributes.displayPostDate;
-
-
-			return wp.element.createElement(
-				Fragment,
-				null,
-				wp.element.createElement(
-					InspectorControls,
-					{ key: "inspector" },
-					wp.element.createElement(PanelBody, {
-						title: __('Posts Settings', 'italystrap')
-					}),
-					wp.element.createElement(ToggleControl, {
-						label: __('Display post date'),
-						checked: displayPostDate,
-						onChange: this.toggleDisplayPostDate
-					})
-				),
-				wp.element.createElement(
-					"div",
-					{ key: "container" },
-					wp.element.createElement(
-						"h1",
-						null,
-						name
-					)
-				)
-			);
-		}
-	}]);
-
-	return PostsEdit;
-}(Component);
+	return wp.element.createElement(
+		Fragment,
+		null,
+		wp.element.createElement(
+			InspectorControls,
+			{ key: 'inspector' },
+			wp.element.createElement(
+				PanelBody,
+				{
+					title: __('Posts Settings', 'italystrap')
+				},
+				controls.map(function (args) {
+					return wp.element.createElement(ToggleControl, args);
+				})
+			)
+		),
+		wp.element.createElement(ServerSideRender, {
+			block: name,
+			attributes: attributes
+		})
+	);
+}
 
 /* harmony default export */ __webpack_exports__["a"] = (PostsEdit);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"italystrap/posts","category":"widgets","attributes":{"exclude_current_post":{"type":"boolean","default":false},"show_thumbnail":{"type":"boolean","default":false}}}
 
 /***/ })
 /******/ ]);

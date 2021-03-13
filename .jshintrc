@@ -6,6 +6,7 @@
   "undef": true,
   "unused": true,
   "globals": {
+    "wp": true,
     "jQuery": true,
     "window": true,
     "document": true,

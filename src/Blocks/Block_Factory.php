@@ -117,9 +117,17 @@ class Block_Factory implements Subscriber_Interface {
 					':args'			=> [
 				//						'render_callback' => '', // Defined in abstract Block::class
 						'attributes'	=> [
-							'orderBy'         => [
-								'type'		=> 'string',
-								'default'	=> 'date',
+//							'orderBy'         => [
+//								'type'		=> 'string',
+//								'default'	=> 'date',
+//							],
+							'exclude_current_post'         => [
+								'type'		=> 'boolean',
+								'default'	=> 'false',
+							],
+							'show_thumbnail'         => [
+								'type'		=> 'boolean',
+								'default'	=> 'false',
 							],
 						],
 					],
@@ -131,6 +139,8 @@ class Block_Factory implements Subscriber_Interface {
 			 * we just passed the obj to the first argument.
 			 */
 			register_block_type( $$block_name );
+
+//			register_block_type_from_metadata(  );
 		}
 	}
 }
