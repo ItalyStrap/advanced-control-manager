@@ -9,6 +9,7 @@ use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Lazyload\Image;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use Prophecy\Prophet;
 use tad\FunctionMockerLe;
 
 class ImagesTest extends Unit {
@@ -27,6 +28,11 @@ class ImagesTest extends Unit {
 	 * @var ObjectProphecy
 	 */
 	private $dispatcher;
+
+	/**
+	 * @var Prophet
+	 */
+	private $prophecy;
 
 	/**
 	 * @return EventDispatcherInterface
@@ -57,8 +63,10 @@ class ImagesTest extends Unit {
 			return $this->is_preview;
 		});
 
-		$this->config = $this->prophesize( Config::class );
-		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
+		$this->prophecy = new Prophet();
+
+		$this->config = $this->prophecy->prophesize( Config::class );
+		$this->dispatcher = $this->prophecy->prophesize( EventDispatcherInterface::class );
 	}
 
 	protected function _after() {
