@@ -31,7 +31,7 @@
 		"inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "^2.4",
+		"lucatume/wp-browser": "~2.4",
 		"lucatume/function-mocker-le": "^1.0",
 		"codeception/c3": "2.*",
 		"codeception/module-asserts": "^1.0",
