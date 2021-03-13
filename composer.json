@@ -46,7 +46,7 @@
 		"phpcompatibility/php-compatibility": "*",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"phpstan/phpstan": "^0.12",
-		"szepeviktor/phpstan-wordpress": "^0.5",
+		"szepeviktor/phpstan-wordpress": "^0.7",
 		"vimeo/psalm": "^3.9",
 		"phpbench/phpbench": "@dev",
 		"infection/infection": "^0.15.3",

@@ -6,6 +6,8 @@ includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
+    parallel:
+        maximumNumberOfProcesses: 1
     level: 4
     inferPrivatePropertyTypeFromConstructor: true
     paths:
@@ -13,7 +15,7 @@ parameters:
     excludes_analyse:
         - %currentWorkingDirectory%/src/I18N/
         - %currentWorkingDirectory%/src/Settings/view/
-    autoload_files:
+    bootstrapFiles:
         # Procedural code
         #- %currentWorkingDirectory%/functions/autoload.php
     ignoreErrors:
