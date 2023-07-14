@@ -14,14 +14,13 @@
 	],
     "minimum-stability": "stable",
 	"require": {
-		"php": ">=7.2",
+		"php": ">=7.4",
 		"italystrap/empress": "^1.0",
 		"italystrap/event": "dev-master",
 		"italystrap/edd": "^0.0",
 		"italystrap/breadcrumbs": "^2.0",
 		"italystrap/settings": "dev-master",
 		"italystrap/fields": "^2.0",
-		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"mobiledetect/mobiledetectlib": "^2.8",
 		"cmb2/cmb2": "~2.6.0",
@@ -98,5 +97,12 @@
 	"support"    : {
 		"issues": "https://github.com/ItalyStrap/advanced-control-manager/issues",
 		"source": "https://github.com/ItalyStrap/advanced-control-manager"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"composer/package-versions-deprecated": true,
+			"codeception/c3": true
+		}
 	}
 }
