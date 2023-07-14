@@ -16,9 +16,10 @@ use ItalyStrap\I18N\Translatable;
 use ItalyStrap\I18N\Translator;
 use ItalyStrap\Import_Export\Import_Export;
 use ItalyStrap\Lazyload\ImageSubscriber;
+use ItalyStrap\Migrations\Old_Hooks;
 use ItalyStrap\Settings\Settings;
-use ItalyStrap\View\View;
-use ItalyStrap\View\View_Interface;
+use ItalyStrap\View\ViewACM;
+use ItalyStrap\View\ViewACM_Interface;
 use ItalyStrap\Widgets\Areas\Areas;
 use ItalyStrap\Widgets\Attributes\Attributes;
 use ItalyStrap\Widgets\Widget_Factory;
@@ -69,7 +70,7 @@ $injector->defineParam( 'options', $options );
 $autoload_sharing = array(
 	Config::class,
 	Excerpt::class,
-	View::class,
+	ViewACM::class,
 );
 
 $is_debug = [
@@ -85,7 +86,7 @@ $autoload_definitions = array(
 	Attributes::class						=> $fields_type,
 //	Settings::class							=> $fields_type,
 	Import_Export::class					=> $fields_type,
-	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
+//	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
 	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig, $is_debug ) ),
 	Translator::class						=> array( ':domain' => 'italystrap' ),
 
@@ -105,7 +106,7 @@ $autoload_aliases = array(
 
 	EventDispatcherInterface::class	=> EventDispatcher::class,
 
-	View_Interface::class	=> View::class,
+	ViewACM_Interface::class	=> ViewACM::class,
 	Translatable::class		=> Translator::class,
 );
 
@@ -131,6 +132,11 @@ $autoload_subscribers = array(
 if ( \defined( 'ITALYSTRAP_BETA' ) ) {
 	$autoload_subscribers[] = \ItalyStrap\Customizer\Customizer_Register::class;
 }
+
+/**
+ * @todo Maybe add also a version like <=4.0
+ */
+is_italystrap_active() && $autoload_subscribers[] = Old_Hooks::class;
 
 foreach ( $autoload_sharing as $class ) {
 	$injector->share( $class );

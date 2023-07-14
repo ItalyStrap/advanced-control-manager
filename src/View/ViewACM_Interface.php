@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 	die();
 }
 
-interface View_Interface {
+interface ViewACM_Interface {
 
 	/**
 	 * Load a template part into a template

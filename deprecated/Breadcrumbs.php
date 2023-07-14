@@ -90,8 +90,8 @@ class Breadcrumbs {
 	 */
 	public function __construct() {
 
-		$this->bloginfo_name = GET_BLOGINFO_NAME;
-		$this->home_url = HOME_URL;
+		$this->bloginfo_name = \get_option( 'blogname' );
+		$this->home_url = \get_home_url( null, '/' );
 	}
 
 	/**
@@ -569,7 +569,7 @@ class Breadcrumbs {
 		if ( get_category_link( $parent->term_id ) ) {
 			$chain .= $before_element . '<a itemprop="item" href="' . esc_url( get_category_link( $parent->term_id ) ) . '" title="' . $name . '"><span itemprop="name">'. $name .'</span></a><meta itemprop="position" content="' . $i . '" />'. $after_element;
 		} else {
-			$chain .= $before_element . $name . $after_element; 
+			$chain .= $before_element . $name . $after_element;
 		}
 
 			return $chain;
@@ -664,7 +664,7 @@ class Breadcrumbs {
 				$args['after_element']
 			);
 
-			$count++;	
+			$count++;
 		}
 
 		return $breadcrumb;
