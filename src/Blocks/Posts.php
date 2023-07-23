@@ -50,10 +50,6 @@ class Posts extends Block {
 	 */
 	public function render( $attributes = [], $content = '' ) {
 
-//		d($attributes);
-
-//		return '<h1>Block posts</h1>';
-
 		$this->posts->get_widget_args( $attributes );
 
 		return $this->posts->output();

@@ -10,6 +10,7 @@ use ItalyStrap\Lazyload\Image;
 use ItalyStrap\Lazyload\ImageSubscriber;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use Prophecy\Prophet;
 use SplFileObject;
 use tad\FunctionMockerLe;
 
@@ -37,6 +38,11 @@ class ImageSubscriberTest extends Unit {
 	 * @var ObjectProphecy
 	 */
 	private $image;
+
+	/**
+	 * @var Prophet
+	 */
+	private $prophecy;
 
 	/**
 	 * @return Image
@@ -81,10 +87,12 @@ class ImageSubscriberTest extends Unit {
 			return $this->is_preview;
 		});
 
-		$this->config = $this->prophesize( Config::class );
-		$this->dispatcher = $this->prophesize( EventDispatcherInterface::class );
-		$this->file = $this->prophesize( SplFileObject::class );
-		$this->image = $this->prophesize( Image::class );
+		$this->prophecy = new Prophet();
+
+		$this->config = $this->prophecy->prophesize( Config::class );
+		$this->dispatcher = $this->prophecy->prophesize( EventDispatcherInterface::class );
+		$this->file = $this->prophecy->prophesize( SplFileObject::class );
+		$this->image = $this->prophecy->prophesize( Image::class );
 	}
 
 	protected function _after() {

@@ -1,12 +1,17 @@
-import edit from './edit';
-
 const { __ } = wp.i18n;
+
+/**
+ * Internal dependencies
+ */
+import metadata from './block.json';
+import edit from './edit';
 
 export const name = 'italystrap/posts';
 
 export const settings = {
 
 	title: __( 'ItalyStrap Posts', 'italystrap' ),
+
 	icon: 'universal-access-alt',
 	category: 'widgets',
 	keywords: [ __( 'posts', 'italystrap' ) ],
@@ -26,17 +31,17 @@ export const settings = {
 	},
 
 	attributes: {
-		url: {
-			type: 'string',
-			source: 'attribute',
-			selector: 'img',
-			attribute: 'src',
+		exclude_current_post: {
+			type: 'boolean',
+			default: false,
+		},
+		show_thumbnail: {
+			type: 'boolean',
+			default: false,
 		},
 	},
 
 	edit,
 
-	save() {
-		return null;
-	},
+	save: () => null,
 };

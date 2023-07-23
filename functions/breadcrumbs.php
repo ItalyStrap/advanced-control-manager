@@ -40,8 +40,8 @@ function get_breadcrumbs( array $args = array() ) {
 		'close_wrapper_name'	=> '</span>',
 	);
 
-	$args['bloginfo_name'] = GET_BLOGINFO_NAME;
-	$args['home_url'] = HOME_URL;
+	$args['bloginfo_name'] = \get_option( 'blogname' );
+	$args['home_url'] = \get_home_url( null, '/' );
 	$args['separator'] = false;
 
 	// $args['show_on_front'] = false;

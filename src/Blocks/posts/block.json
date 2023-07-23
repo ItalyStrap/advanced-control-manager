@@ -1,0 +1,14 @@
+{
+  "name": "italystrap/posts",
+  "category": "widgets",
+  "attributes": {
+    "exclude_current_post": {
+      "type": "boolean",
+      "default": false
+    },
+    "show_thumbnail": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

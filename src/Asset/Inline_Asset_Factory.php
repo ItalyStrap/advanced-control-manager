@@ -123,7 +123,7 @@ class Inline_Asset_Factory implements Subscriber_Interface {
 		}
 
 		printf(
-			'<style type="text/css" id="custom-inline-css">%s</style>',
+			'<style id="custom-inline-css">%s</style>',
 			strip_tags( $this->minify->css( $css ) )
 		);
 	}
