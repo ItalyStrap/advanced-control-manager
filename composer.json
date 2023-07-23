@@ -23,7 +23,7 @@
 		"italystrap/fields": "^2.0",
 		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
-		"mobiledetect/mobiledetectlib": "dev-master",
+		"mobiledetect/mobiledetectlib": "^2.8",
 		"cmb2/cmb2": "2.6.0",
 		"overclokk/minimum-requirements": "^1.0",
 		"rdlowrey/auryn": "^1.4",
@@ -98,5 +98,11 @@
 	"support"    : {
 		"issues": "https://github.com/ItalyStrap/advanced-control-manager/issues",
 		"source": "https://github.com/ItalyStrap/advanced-control-manager"
+	},
+	"config": {
+		"allow-plugins": {
+			"codeception/c3": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
