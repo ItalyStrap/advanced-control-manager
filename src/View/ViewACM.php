@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
 /**
  * Template Class
  */
-class View implements View_Interface {
+class ViewACM implements ViewACM_Interface {
 
 	private $store = [];
 

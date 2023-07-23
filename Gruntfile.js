@@ -649,21 +649,21 @@ module.exports = function(grunt) {
 		[
 			// Commit before deploy of new version
 			// 'gitcommit:first', // This will update: '*.json','*.txt','*.md','*.php','*.js'
-			'gitcheckout:devtomaster',
-			'gitmerge:fromdev',
+			// 'gitcheckout:devtomaster',
+			// 'gitmerge:fromdev',
 			// New version: <%= pkg.version %>
-			'version', // Change version in package.json
-			'wp_readme_to_markdown', // Update changelog only in readme.txt
-			'gitcommit:version',
-			'prompt',
-			'gitpush',
-			'copy:temp',
-			'compress:temp',
-            'github-release',
-			'clean:trunk',
-			'copy:toTrunk',
-			'copy:toTag',
-			'clean:temp',
+			// 'version', // Change version in package.json
+			// 'wp_readme_to_markdown', // Update changelog only in readme.txt
+			// 'gitcommit:version',
+			// 'prompt',
+			// 'gitpush',
+			// 'copy:temp',
+			// 'compress:temp',
+            // 'github-release',
+			// 'clean:trunk',
+			// 'copy:toTrunk',
+			// 'copy:toTag',
+			// 'clean:temp',
 			'gitcheckout:mastertodev',
 			'gitmerge:frommaster',
 			'gitpush',

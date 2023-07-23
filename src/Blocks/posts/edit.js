@@ -37,6 +37,7 @@ const {
 	ToggleControl,
 	// Spinner,
 	// withAPIData,
+	ServerSideRender
 } = wp.components;
 
 // console.log( "Data:" );
@@ -54,88 +55,67 @@ const {
 // const WP_Posts = new wp.api.collections.Posts();
 // console.log(WP_Posts);
 
-class PostsEdit extends Component {
+function PostsEdit( props ) {
 
-	constructor() {
-		super( ...arguments );
+	const toggleAttribute = ( attributeName ) => ( newValue ) =>
+		setAttributes( { [ attributeName ]: newValue } );
 
-		// console.log(this.props);
+	const {
+		name,
+		attributes,
+		setAttributes,
+		// className,
+		// focus
+	} = props;
 
-		const {
-			// attributes,
-			setAttributes,
-			className,
-			focus
-		} = this.props;
+	const {
+		exclude_current_post,
+		show_thumbnail,
+		// align,
+		// postLayout,
+		// columns,
+		// order,
+		// orderBy,
+		// categories,
+		// postsToShow
+	} = attributes;
 
-		// this.onSelectImage = this.onSelectImage.bind( this );
+	const controls = [
+		{
+			key: 0,
+			label: __( 'Exclude current post', 'italystrap' ),
+			checked: exclude_current_post,
+			onChange: toggleAttribute("exclude_current_post"),
+		},
+		{
+			key: 1,
+			label: __( 'Show Thumbnail', 'italystrap' ),
+			checked: show_thumbnail,
+			onChange: toggleAttribute("show_thumbnail"),
+		},
+	];
 
-		this.state = {
-			selectedImage: null,
-		};
-
-		setAttributes(
-			{
-				key: 'value'
-			}
-		);
-	}
-
-	toggleDisplayPostDate() {
-		const { displayPostDate } = this.props.attributes;
-		const { setAttributes } = this.props;
-
-		setAttributes( { displayPostDate: ! displayPostDate } );
-	}
-
-	// toggleSetting: () => 
-
-	render() {
-
-		const {
-			name
-		} = this.props;
-
-		console.log("this.props");
-		console.log(this.props);
-		const {
-			attributes,
-			setAttributes,
-			// className,
-			// focus
-		} = this.props;
-
-		console.log(attributes);
-
-		const {
-			displayPostDate,
-			// align,
-			// postLayout,
-			// columns,
-			// order,
-			// orderBy,
-			// categories,
-			// postsToShow
-		} = attributes;
-
-		return (
-			<Fragment>
-				<InspectorControls key = "inspector" >
-					<PanelBody
-						title = {__('Posts Settings', 'italystrap')}
-					/>
-					<ToggleControl
-						label={ __( 'Display post date' ) }
-						checked={ displayPostDate }
-						onChange={ this.toggleDisplayPostDate }
-					/>
-				</InspectorControls>
-				<div key="container">
-					<h1>{ name }</h1>
-				</div>
-			</Fragment>
-		);
-	}
+	return (
+		<Fragment>
+			<InspectorControls key="inspector" >
+				<PanelBody
+					title = {__('Posts Settings', 'italystrap')}
+				>
+					{
+						controls.map( ( args ) => {
+							return (
+								<ToggleControl {...args} />
+							);
+						} )
+					}
+				</PanelBody>
+			</InspectorControls>
+			<ServerSideRender
+				block={name}
+				attributes={ attributes }
+			/>
+		</Fragment>
+	);
 }
 
 export default PostsEdit;

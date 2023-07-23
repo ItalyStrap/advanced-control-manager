@@ -21,6 +21,7 @@ use ItalyStrap\Import_Export\Import_Export;
 use ItalyStrap\Settings\Page;
 use ItalyStrap\Settings\Settings;
 use ItalyStrap\Settings\SettingsBuilder;
+use function ItalyStrap\Core\is_italystrap_active;
 
 if ( ! is_admin() ) {
 	return;
@@ -28,7 +29,7 @@ if ( ! is_admin() ) {
 
 $autoload_subscribers = array_merge( $autoload_subscribers, array(
 		// 'option_name'			=> 'Class\Name',
-		'media_carousel_shortcode'	=> \ItalyStrapAdminGallerySettings::class,
+//		'media_carousel_shortcode'	=> \ItalyStrapAdminGallerySettings::class,
 		CMB2_Factory::class,
 	)
 );
@@ -184,7 +185,7 @@ if ( ! empty( $options['jpeg_quality'] ) ) {
 }
 
 /**
- * Instanziate the Register_Metaboxes.
+ * Instantiate the Register_Metaboxes.
  * Questo oggetto va lasciato fuori da condizionali perché
  * il tema nel file bootstrap mi esegue il metodo 'register_widget_areas_fields'
  *
@@ -192,3 +193,16 @@ if ( ! empty( $options['jpeg_quality'] ) ) {
  */
 $register_metabox = $injector->make( Register_Metaboxes::class );
 $event_manager->add_subscriber( $register_metabox );
+
+/**
+ * Add fields to widget areas
+ * The widget areas is a CPT for adding custom widget registration in
+ * specific position in the theme
+ */
+
+/**
+ * @todo Maybe add also a version like <=4.0
+ */
+/** @var callable $callable */
+$callable = [$register_metabox, 'register_widget_areas_fields'];
+is_italystrap_active() && \add_action( 'cmb2_admin_init', $callable );

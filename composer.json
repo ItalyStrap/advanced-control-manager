@@ -3,7 +3,7 @@
 	"description": "Make your web site more powerful",
 	"keywords": ["wordpress"],
 	"type": "wordpress-plugin",
-	"license": "GPL 2.0",
+	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Enea Overclokk",
@@ -14,14 +14,13 @@
 	],
     "minimum-stability": "stable",
 	"require": {
-		"php": ">=7.2",
+		"php": ">=7.4",
 		"italystrap/empress": "^1.0",
 		"italystrap/event": "dev-master",
 		"italystrap/edd": "^0.0",
 		"italystrap/breadcrumbs": "^2.0",
 		"italystrap/settings": "dev-master",
 		"italystrap/fields": "^2.0",
-		"italystrap/config": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"mobiledetect/mobiledetectlib": "^2.8",
 		"cmb2/cmb2": "2.6.0",
@@ -31,7 +30,7 @@
 		"inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "^2.4",
+		"lucatume/wp-browser": "~2.4",
 		"lucatume/function-mocker-le": "^1.0",
 		"codeception/c3": "2.*",
 		"codeception/module-asserts": "^1.0",
@@ -44,9 +43,9 @@
 		"brianium/paratest": "^4.0",
 		"squizlabs/php_codesniffer": "*",
 		"phpcompatibility/php-compatibility": "*",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"phpstan/phpstan": "^0.12",
-		"szepeviktor/phpstan-wordpress": "^0.5",
+		"szepeviktor/phpstan-wordpress": "^0.7",
 		"vimeo/psalm": "^3.9",
 		"phpbench/phpbench": "@dev",
 		"infection/infection": "^0.15.3",

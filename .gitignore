@@ -30,6 +30,6 @@ phpunit.xml
 *.bat
 **/todo.md
 c3.php
-
+**/*.back
 
 

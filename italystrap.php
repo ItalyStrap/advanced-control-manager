@@ -4,8 +4,8 @@
  *	Plugin URI:		   https://italystrap.com/
  *	Description:	   {Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
  *	Version:		   2.15.1
- *  Requires at least: 5.2
- *  Requires PHP:      7.2
+ *  Requires at least: 6.0
+ *  Requires PHP:      7.4
  *	Author:			   Enea Overclokk
  *	Author URI:		   https://www.overclokk.net
  *	Text Domain:	   italystrap

@@ -8,7 +8,7 @@ const {
 /**
  * Internal dependencies
  */
-import * as posts from './posts/index';
+import * as posts from './posts';
 
 /**
  * Register blocks
@@ -16,9 +16,7 @@ import * as posts from './posts/index';
 const registerItalyStrapBlocks = () => {
 
 	[
-
 		posts,
-
 	].forEach( ( { name, settings } ) => {
 		registerBlockType( name, settings );
 	} );
