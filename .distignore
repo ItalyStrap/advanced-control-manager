@@ -6,13 +6,20 @@
 .distignore
 .gitignore
 
+*.dist
+*.xml
+
 # Composer file
 composer.lock
 composer.json
 
+# Assets needs to be compiled
+/sass
+
 # All tests folders also in the project and in the vendor folder
 /tests
 /vendor/*/tests
+/spec
 
 # All phpunit.xml files
 /phpunit.xml
@@ -27,3 +34,8 @@ composer.json
 .env
 .jshintrc
 Gruntfile.js
+webpack.config.js
+
+# Npm package files
+package.json
+package-lock.json
