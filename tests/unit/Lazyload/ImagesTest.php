@@ -1,77 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit\Lazyload;
 
-use Codeception\Test\Unit;
-use ItalyStrap\Config\Config;
-use ItalyStrap\Event\EventDispatcherInterface;
 use ItalyStrap\Lazyload\Image;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
-use Prophecy\Prophet;
-use tad\FunctionMockerLe;
 
-class ImagesTest extends Unit {
-
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
-
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $config;
-
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $dispatcher;
-
-	/**
-	 * @var Prophet
-	 */
-	private $prophecy;
-
-	/**
-	 * @return EventDispatcherInterface
-	 */
-	public function getDispatcher(): EventDispatcherInterface {
-		return $this->dispatcher->reveal();
-	}
-
-	/**
-	 * @return Config
-	 */
-	public function getConfig(): Config {
-		return $this->config->reveal();
-	}
-
-	private $is_admin = false;
-	private $is_feed = false;
-	private $is_preview = false;
-
-	protected function _before() {
-		FunctionMockerLe\define('is_admin', function (): bool {
-			return $this->is_admin;
-		});
-		FunctionMockerLe\define('is_feed', function (): bool {
-			return $this->is_feed;
-		});
-		FunctionMockerLe\define('is_preview', function (): bool {
-			return $this->is_preview;
-		});
-
-		$this->prophecy = new Prophet();
-
-		$this->config = $this->prophecy->prophesize( Config::class );
-		$this->dispatcher = $this->prophecy->prophesize( EventDispatcherInterface::class );
-	}
-
-	protected function _after() {
-		FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
-	}
+class ImagesTest extends UnitTestCase {
 
 	private function getInstance() {
 		$sut = new Image(
@@ -89,7 +25,8 @@ class ImagesTest extends Unit {
 		$sut = $this->getInstance();
 	}
 
-	public function imageProvider() {
+	public function imageProvider(): iterable
+	{
 		return [
 			'simple image'	=> [
 				'<img src="some/image/uri">',

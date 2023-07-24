@@ -1,103 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Unit\Lazyload;
 
-use Codeception\Test\Unit;
-use ItalyStrap\Config\Config;
-use ItalyStrap\Event\EventDispatcherInterface;
-use ItalyStrap\Lazyload\Image;
 use ItalyStrap\Lazyload\ImageSubscriber;
+use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
-use Prophecy\Prophet;
-use SplFileObject;
-use tad\FunctionMockerLe;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-class ImageSubscriberTest extends Unit {
+class ImageSubscriberTest extends UnitTestCase {
 
-	/**
-	 * @var \UnitTester
-	 */
-	protected $tester;
-
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $config;
-
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $dispatcher;
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $file;
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $image;
-
-	/**
-	 * @var Prophet
-	 */
-	private $prophecy;
-
-	/**
-	 * @return Image
-	 */
-	public function getImage(): Image {
-		return $this->image->reveal();
-	}
-
-	/**
-	 * @return SplFileObject
-	 */
-	public function getFile(): SplFileObject {
-		return $this->file->reveal();
-	}
-
-	/**
-	 * @return EventDispatcherInterface
-	 */
-	public function getDispatcher(): EventDispatcherInterface {
-		return $this->dispatcher->reveal();
-	}
-
-	/**
-	 * @return Config
-	 */
-	public function getConfig(): Config {
-		return $this->config->reveal();
-	}
-
-	private $is_admin = false;
-	private $is_feed = false;
-	private $is_preview = false;
-
-	protected function _before() {
-		FunctionMockerLe\define('is_admin', function (): bool {
-			return $this->is_admin;
-		});
-		FunctionMockerLe\define('is_feed', function (): bool {
-			return $this->is_feed;
-		});
-		FunctionMockerLe\define('is_preview', function (): bool {
-			return $this->is_preview;
-		});
-
-		$this->prophecy = new Prophet();
-
-		$this->config = $this->prophecy->prophesize( Config::class );
-		$this->dispatcher = $this->prophecy->prophesize( EventDispatcherInterface::class );
-		$this->file = $this->prophecy->prophesize( SplFileObject::class );
-		$this->image = $this->prophecy->prophesize( Image::class );
-	}
-
-	protected function _after() {
-		FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
-	}
+	use ProphecyTrait;
 
 	private function getInstance() {
 		$sut = new ImageSubscriber(

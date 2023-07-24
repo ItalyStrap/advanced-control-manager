@@ -58,7 +58,8 @@ class Image {
 	 * @param string $content Content to be processed
 	 * @return string
 	 */
-	public function replaceSrcImageWithSrcPlaceholders( string $content ) {
+	public function replaceSrcImageWithSrcPlaceholders( string $content ): string
+	{
 
 		if ( $this->isNotTheFrontEnd() ) {
 			return $content;
