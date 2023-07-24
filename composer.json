@@ -40,10 +40,9 @@
 		"codeception/module-filesystem": "^1.0",
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
-		"vimeo/psalm": "^3.11",
+		"vimeo/psalm": "^5.7",
 		"phpbench/phpbench": "@dev",
 		"phpmetrics/phpmetrics": "^2.5",
-		"nunomaduro/phpinsights": "^1.14",
 		"italystrap/debug": "^2.1",
 		"leafo/scssphp": "^0.6",
 		"phpspec/prophecy-phpunit": "^2.0"
