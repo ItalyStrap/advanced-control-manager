@@ -19,7 +19,6 @@ infection/
 *.lock
 .svn
 .php_cs.cache
-.gitattributes
 codeception.yml
 lang/ItalyStrap.po
 composer.lock
