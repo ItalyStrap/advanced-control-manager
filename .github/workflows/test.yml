@@ -26,15 +26,13 @@ jobs:
       with:
         php-version: ${{ matrix.php_versions }}
         coverage: xdebug2
-        # extensions: gd, zip
-        # tools: composer:v1
 
-    - uses: ramsey/composer-install@v1
+    - uses: ramsey/composer-install@v2
       with:
-        composer-options: "--prefer-dist --ignore-platform-reqs"
+        composer-options: "--prefer-dist"
+
+    - name: Build codeception
+      run: ./vendor/bin/codecept build
 
     - name: Run test suite
-      run: vendor/bin/codecept run unit --coverage-text
-
-#    - name: Run infection suite
-#      run: vendor/bin/infection --threads=4
+      run: ./vendor/bin/codecept run unit --coverage-text
