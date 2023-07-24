@@ -10,6 +10,7 @@ bower_components
 future-inclusions/
 vendor/
 tests/_output/*
+tests/_support/_generated/*
 _old/
 infection/
 
