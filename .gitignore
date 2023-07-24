@@ -13,6 +13,7 @@ tests/_output/*
 tests/_support/_generated/*
 _old/
 infection/
+.trunk/
 
 
 #Files

@@ -415,7 +415,8 @@ module.exports = function(grunt) {
 				expand: true,
 				// cwd: 'src',
 				src: acm_plugin,
-				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/',
+				// dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/',
+				dest: './.trunk',
 				filter: 'isFile',
 			},
 			tag: {
@@ -449,6 +450,13 @@ module.exports = function(grunt) {
 				dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/tags/<%= pkg.version %>/',
 				filter: 'isFile',
 			},
+			dest: {
+				expand: true,
+				// cwd: 'src',
+				src: acm_plugin,
+				dest: './dest/',
+				filter: 'isFile',
+			}
 		},
 
 		clean: { // https://github.com/gruntjs/grunt-contrib-clean
@@ -699,6 +707,7 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask( 'js', [ 'uglify' ] );
+	grunt.registerTask( 'js', [ 'uglify' ] );
 	grunt.registerTask( 'css', [ 'compass' ] );
 
 	grunt.registerTask( 'int-assets', ['jshint', 'csslint'] );
@@ -712,6 +721,9 @@ module.exports = function(grunt) {
 		traverseFileSystem( './', '/index.php' );
 		return null;
 	});
+
+
+	grunt.registerTask( 'build', [ 'copy:trunk' ] );
 
 	grunt.event.on('watch', function(action, filepath) {
 		grunt.log.writeln(filepath + ' has ' + action);

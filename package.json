@@ -17,6 +17,7 @@
     "babel-preset-env": "^1.7.0",
     "cross-env": "^7.0.3",
     "grunt": "~1.6.1",
+    "grunt-cli": "^1.4.3",
     "grunt-bower-installer": "^0.3.6",
     "grunt-bump": "^0.8.0",
     "grunt-composer": "^0.4.5",
@@ -46,8 +47,6 @@
     "webpack": "^5.88.2"
   },
   "scripts": {
-    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
-    "dev": "cross-env BABEL_ENV=default webpack --watch",
-    "test": "jasmine"
+    "build": "grunt build"
   }
 }
