@@ -1,0 +1,29 @@
+/.wordpress-org
+/.git
+/.github
+/node_modules
+
+.distignore
+.gitignore
+
+# Composer file
+composer.lock
+composer.json
+
+# All tests folders also in the project and in the vendor folder
+/tests
+/vendor/*/tests
+
+# All phpunit.xml files
+/phpunit.xml
+/vendor/*/phpunit.xml
+/phpunit.xml.dist
+/vendor/*/phpunit.xml.dist
+
+# All . config files
+.babelrc
+.eslintrc
+.editorconfig
+.env
+.jshintrc
+Gruntfile.js
