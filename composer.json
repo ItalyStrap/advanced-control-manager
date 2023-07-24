@@ -30,7 +30,7 @@
 		"inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "~2.4",
+		"lucatume/wp-browser": "^3.1",
 		"lucatume/function-mocker-le": "^1.0",
 		"codeception/c3": "2.*",
 		"codeception/module-asserts": "^1.0",
@@ -40,14 +40,12 @@
 		"codeception/module-filesystem": "^1.0",
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
-		"brianium/paratest": "^4.0",
-		"vimeo/psalm": "^3.9",
+		"vimeo/psalm": "^3.11",
 		"phpbench/phpbench": "@dev",
-		"infection/infection": "^0.15.3",
 		"phpmetrics/phpmetrics": "^2.5",
-		"nunomaduro/phpinsights": "^1.14.0",
-		"italystrap/debug": "~2.0",
-		"leafo/scssphp": "^0.6.5",
+		"nunomaduro/phpinsights": "^1.14",
+		"italystrap/debug": "^2.1",
+		"leafo/scssphp": "^0.6",
 		"phpspec/prophecy-phpunit": "^2.0"
 	},
 	"autoload": {
