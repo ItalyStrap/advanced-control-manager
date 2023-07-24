@@ -41,18 +41,14 @@
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
 		"brianium/paratest": "^4.0",
-		"squizlabs/php_codesniffer": "*",
-		"phpcompatibility/php-compatibility": "*",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"phpstan/phpstan": "^0.12",
-		"szepeviktor/phpstan-wordpress": "^0.7",
 		"vimeo/psalm": "^3.9",
 		"phpbench/phpbench": "@dev",
 		"infection/infection": "^0.15.3",
 		"phpmetrics/phpmetrics": "^2.5",
 		"nunomaduro/phpinsights": "^1.14.0",
 		"italystrap/debug": "~2.0",
-		"leafo/scssphp": "^0.6.5"
+		"leafo/scssphp": "^0.6.5",
+		"phpspec/prophecy-phpunit": "^2.0"
 	},
 	"autoload": {
 		"classmap": [
@@ -61,6 +57,12 @@
 		],
 		"psr-4": {
 			"ItalyStrap\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"ItalyStrap\\Tests\\": "tests/src",
+			"ItalyStrap\\Tests\\Unit\\": "tests/unit"
 		}
 	},
 	"extra": {
