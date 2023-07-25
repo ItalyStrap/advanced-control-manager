@@ -40,12 +40,17 @@
 		"codeception/module-filesystem": "^1.0",
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
+		"phpspec/prophecy-phpunit": "^2.0",
+
+		"squizlabs/php_codesniffer": "^3.7",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+
 		"vimeo/psalm": "^5.7",
 		"phpbench/phpbench": "@dev",
 		"phpmetrics/phpmetrics": "^2.5",
 		"italystrap/debug": "^2.1",
 		"leafo/scssphp": "^0.6",
-		"phpspec/prophecy-phpunit": "^2.0",
 		"rector/rector": "^0.17.7"
 	},
 	"autoload": {
@@ -72,8 +77,11 @@
 		"test": [
 			"test"
 		],
+		"cs:fix": [
+			"@php vendor/bin/phpcbf -p"
+		],
 		"cs": [
-			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./src/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./src/ ./tests/"
+			"vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./src/ ./tests/"
 		],
 		"analyze": [
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
