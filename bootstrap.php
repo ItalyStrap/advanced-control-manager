@@ -33,9 +33,7 @@ use ItalyStrap\Blocks\Block_Factory;
  */
 $injector = new Injector;
 $injector->share($injector);
-\add_filter( 'italystrap_injector', function () use ( $injector ) {
-	return $injector;
-} );
+\add_filter( 'italystrap_injector', fn() => $injector );
 
 $args = (array) require( ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php' );
 $injector->defineParam( 'args', $args );
@@ -51,11 +49,7 @@ $options = (array) \get_option( ITALYSTRAP_OPTIONS_NAME );
 //$options = wp_parse_args( $options, get_default_from_config( $admin_settings ) );
 $options = array_merge( get_default_from_config( $admin_settings ), $options );
 
-$prefix_coonfig = array(
-	'prefix'	=> 'italystrap',
-	'_prefix'	=> '_italystrap',
-	'prefix_'	=> 'italystrap_',
-);
+$prefix_coonfig = ['prefix'	=> 'italystrap', '_prefix'	=> '_italystrap', 'prefix_'	=> 'italystrap_'];
 
 /**
  * Define theme_mods  and options parmeter
@@ -67,11 +61,7 @@ $injector->defineParam( 'options', $options );
 /**=======================
  * Autoload Shared Classes
  *======================*/
-$autoload_sharing = array(
-	Config::class,
-	Excerpt::class,
-	ViewACM::class,
-);
+$autoload_sharing = [Config::class, Excerpt::class, ViewACM::class];
 
 $is_debug = [
 	'is_debug'	=> is_debug()
@@ -80,45 +70,33 @@ $is_debug = [
 /**=============================
  * Autoload Classes definitions
  *============================*/
-$fields_type = array( 'fields_type' => Fields::class );
+$fields_type = ['fields_type' => Fields::class];
 
-$autoload_definitions = array(
-	Attributes::class						=> $fields_type,
-//	Settings::class							=> $fields_type,
-	Import_Export::class					=> $fields_type,
-//	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
-	Config::class							=> array( ':config' => array_merge( $options, $theme_mods, $prefix_coonfig, $is_debug ) ),
-	Translator::class						=> array( ':domain' => 'italystrap' ),
-
-	ImageSubscriber::class							=> [
-		':file'		=> new \SplFileObject(
-			ITALYSTRAP_PLUGIN_PATH . ( is_debug() ? 'js/src/unveil.js' : 'js/unveil.min.js' )
-		),
-	],
-);
+$autoload_definitions = [
+    Attributes::class						=> $fields_type,
+    //	Settings::class							=> $fields_type,
+    Import_Export::class					=> $fields_type,
+    //	\ItalyStrapAdminGallerySettings::class	=> $fields_type,
+    Config::class							=> [':config' => array_merge( $options, $theme_mods, $prefix_coonfig, $is_debug )],
+    Translator::class						=> [':domain' => 'italystrap'],
+    ImageSubscriber::class							=> [
+   		':file'		=> new \SplFileObject(
+   			ITALYSTRAP_PLUGIN_PATH . ( is_debug() ? 'js/src/unveil.js' : 'js/unveil.min.js' )
+   		),
+   	],
+];
 
 /**======================
  * Autoload Aliases Class
  *=====================*/
-$autoload_aliases = array(
-	ConfigInterface::class	=> Config::class,
-	Config_Interface::class	=> Config::class,
-
-	EventDispatcherInterface::class	=> EventDispatcher::class,
-
-	ViewACM_Interface::class	=> ViewACM::class,
-	Translatable::class		=> Translator::class,
-);
+$autoload_aliases = [ConfigInterface::class	=> Config::class, Config_Interface::class	=> Config::class, EventDispatcherInterface::class	=> EventDispatcher::class, ViewACM_Interface::class	=> ViewACM::class, Translatable::class		=> Translator::class];
 
 /**=============================
  * Autoload Concrete Classes
  * with option check
  * @see _init & _init_admin
  =============================*/
-$autoload_subscribers = array(
-	'widget_areas'			=> Areas::class,
-	'widget_attributes'		=> Attributes::class,
-);
+$autoload_subscribers = ['widget_areas'			=> Areas::class, 'widget_attributes'		=> Attributes::class];
 
 /**=============================
  * Autoload Concrete Classes
@@ -175,26 +153,23 @@ add_action( 'init', function () {
 	\load_plugin_textdomain( 'italystrap', false, dirname( ITALYSTRAP_BASENAME ) . '/lang' );
 }, 100 );
 
-$autoload_plugin_files_init = array(
-	'/_init.php',
-	'/_init-admin.php',
-);
+$autoload_plugin_files_init = ['/_init.php', '/_init-admin.php'];
 
 foreach ( $autoload_plugin_files_init as $file ) {
 	require( __DIR__ . $file );
 }
 
-$app = array(
-	'sharing'				=> $autoload_sharing,
-	'aliases'				=> $autoload_aliases,
-	'definitions'			=> $autoload_definitions,
-	'define_param'			=> array(),
-	'delegations'			=> array(),
-	'preparations'			=> array(),
-	// 'concretes'				=> $autoload_concretes,
-	// 'options_concretes'		=> $autoload_options_concretes,
-	'subscribers'			=> $autoload_subscribers,
-);
+$app = [
+    'sharing'				=> $autoload_sharing,
+    'aliases'				=> $autoload_aliases,
+    'definitions'			=> $autoload_definitions,
+    'define_param'			=> [],
+    'delegations'			=> [],
+    'preparations'			=> [],
+    // 'concretes'				=> $autoload_concretes,
+    // 'options_concretes'		=> $autoload_options_concretes,
+    'subscribers'			=> $autoload_subscribers,
+];
 
 /**
  * ================================
@@ -204,4 +179,4 @@ $app = array(
  * =================================
  */
 $italystrap_plugin = new \ItalyStrap\Plugin\Loader( $injector, $event_manager, $app, $options );
-add_action( 'after_setup_theme', array( $italystrap_plugin, 'load' ), 10 );
+add_action( 'after_setup_theme', [$italystrap_plugin, 'load'], 10 );

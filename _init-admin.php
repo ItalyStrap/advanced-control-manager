@@ -27,11 +27,11 @@ if ( ! is_admin() ) {
 	return;
 }
 
-$autoload_subscribers = array_merge( $autoload_subscribers, array(
-		// 'option_name'			=> 'Class\Name',
-//		'media_carousel_shortcode'	=> \ItalyStrapAdminGallerySettings::class,
-		CMB2_Factory::class,
-	)
+$autoload_subscribers = array_merge( $autoload_subscribers, [
+    // 'option_name'			=> 'Class\Name',
+    //		'media_carousel_shortcode'	=> \ItalyStrapAdminGallerySettings::class,
+    CMB2_Factory::class,
+]
 );
 
 if ( ! isset( $pagenow ) ) {
@@ -140,22 +140,7 @@ $settings->build();
  *
  * @var array
  */
-$imp_exp_args = array(
-	'capability'	=> 'manage_options',
-	'name_action'	=> 'italystrap_action',
-	'export_nonce'	=> 'italystrap_export_nonce',
-	'import_nonce'	=> 'italystrap_import_nonce',
-	'filename'		=> 'italystrap-plugin-settings-export',
-	'import_file'	=> 'italystrap_import_file',
-	'options_names'	=> array(
-			$args['options_name'],
-			// 'theme_mods_ItalyStrap',
-			// 'theme_mods_' . get_option( 'stylesheet' ),
-			// 'italystrap_widget_area',
-			// 'theme_mods_twentyeleven',
-	),
-	'i18n'			=> array(),
-);
+$imp_exp_args = ['capability'	=> 'manage_options', 'name_action'	=> 'italystrap_action', 'export_nonce'	=> 'italystrap_export_nonce', 'import_nonce'	=> 'italystrap_import_nonce', 'filename'		=> 'italystrap-plugin-settings-export', 'import_file'	=> 'italystrap_import_file', 'options_names'	=> [$args['options_name']], 'i18n'			=> []];
 $injector->defineParam( 'imp_exp_args', $imp_exp_args );
 
 /**
