@@ -81,7 +81,7 @@
 			"@php vendor/bin/phpcbf -p"
 		],
 		"cs": [
-			"vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./src/ ./tests/"
+			"@php vendor/bin/phpcs -p"
 		],
 		"analyze": [
 			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"

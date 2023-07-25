@@ -20,6 +20,11 @@
     <file>./templates/</file>
     <file>./tests/</file>
     <file>./_init.php</file>
+    <file>./_init-admin.php</file>
+    <file>./bootstrap.php</file>
+    <file>./index.php</file>
+    <file>./italystrap.php</file>
+    <file>./uninstall.php</file>
 
     <!-- Use PSR12 as a base.-->
     <rule ref="PSR12">

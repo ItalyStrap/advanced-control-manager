@@ -1,17 +1,18 @@
 <?php
+
 /**
- *	Plugin Name:	   Advanced Control Manager for WordPress by ItalyStrap
- *	Plugin URI:		   https://italystrap.com/
- *	Description:	   {Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
- *	Version:		   2.15.1
+ *  Plugin Name:       Advanced Control Manager for WordPress by ItalyStrap
+ *  Plugin URI:        https://italystrap.com/
+ *  Description:       {Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
+ *  Version:           2.15.1
  *  Requires at least: 6.0
  *  Requires PHP:      7.4
- *	Author:			   Enea Overclokk
- *	Author URI:		   https://www.overclokk.net
- *	Text Domain:	   italystrap
- *	License:		   GPLv2 or later
- *	License URI:	   http://www.gnu.org/licenses/gpl-2.0.html
- *	Domain Path:	   /lang
+ *  Author:            Enea Overclokk
+ *  Author URI:        https://www.overclokk.net
+ *  Text Domain:       italystrap
+ *  License:           GPLv2 or later
+ *  License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+ *  Domain Path:       /lang
  *
  * @package ItalyStrap
  * @since 1.0.0
@@ -20,8 +21,8 @@
 /**
  * This will make sure the plugin files can't be accessed within the web browser directly.
  */
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
 require __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.php';
@@ -36,44 +37,43 @@ require __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.p
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements( '7.2', '5.2', 'ACM - Advanced Control Manager' );
+$requirements = new Minimum_Requirements('7.2', '5.2', 'ACM - Advanced Control Manager');
 
 /**
  * Check compatibility on install
  * If is not compatible on install print an admin_notice
  */
-register_activation_hook( __FILE__, [$requirements, 'check_compatibility_on_install'] );
+register_activation_hook(__FILE__, [$requirements, 'check_compatibility_on_install']);
 
 /**
  * If it is already installed and activated check if example new version is compatible, if is not don't load plugin code and print admin_notice
  * This part need more test
  */
-if ( ! $requirements->is_compatible_version() ) {
-
-	add_action( 'admin_notices', [$requirements, 'load_plugin_admin_notices'] );
-	return;
+if (! $requirements->is_compatible_version()) {
+    add_action('admin_notices', [$requirements, 'load_plugin_admin_notices']);
+    return;
 }
 
 /**
  * Init plugin default constant
  */
-require( __DIR__ . '/functions/default-constants.php' );
-italystrap_set_default_constant( __FILE__, 'ITALYSTRAP' );
+require(__DIR__ . '/functions/default-constants.php');
+italystrap_set_default_constant(__FILE__, 'ITALYSTRAP');
 
 $autoload_plugin_files = [
-	'/vendor/autoload.php',
-	'/vendor/cmb2/cmb2/init.php',
-	'/functions/autoload.php',
-	'/bootstrap.php',
-	'/functions/edd.php',
+    '/vendor/autoload.php',
+    '/vendor/cmb2/cmb2/init.php',
+    '/functions/autoload.php',
+    '/bootstrap.php',
+    '/functions/edd.php',
 ];
 
-if ( did_action( 'italystrap_plugin_loaded' ) > 0 ) {
-	$autoload_plugin_files = [];
+if (did_action('italystrap_plugin_loaded') > 0) {
+    $autoload_plugin_files = [];
 }
 
-foreach ( $autoload_plugin_files as $file ) {
-	require( __DIR__ . $file );
+foreach ($autoload_plugin_files as $file) {
+    require(__DIR__ . $file);
 }
 
 /**
@@ -81,7 +81,7 @@ foreach ( $autoload_plugin_files as $file ) {
  *
  * @since 2.0.0
  */
-do_action( 'italystrap_plugin_loaded', null );
+do_action('italystrap_plugin_loaded', null);
 
 /**
  * This filter is used to load your php file right after ItalyStrap plugin is loaded.
@@ -125,21 +125,21 @@ do_action( 'italystrap_plugin_loaded', null );
  *
  * @var array
  */
-$plugin_files_path = apply_filters( 'italystrap_require_plugin_files_path', [] );
+$plugin_files_path = apply_filters('italystrap_require_plugin_files_path', []);
 
-if ( ! empty( $plugin_files_path ) ) {
-	foreach ( (array) $plugin_files_path as $key => $plugin_file_path ) {
-		if ( ! file_exists( $plugin_file_path ) ) {
-			continue;
-		}
-		require( $plugin_file_path );
-	}
-	/**
-	 * Fires once ItalyStrap Child plugin has loaded.
-	 *
-	 * @since 2.0.0
-	 */
-	do_action( 'italystrap_child_plugin_loaded', null );
+if (! empty($plugin_files_path)) {
+    foreach ((array) $plugin_files_path as $key => $plugin_file_path) {
+        if (! file_exists($plugin_file_path)) {
+            continue;
+        }
+        require($plugin_file_path);
+    }
+    /**
+     * Fires once ItalyStrap Child plugin has loaded.
+     *
+     * @since 2.0.0
+     */
+    do_action('italystrap_child_plugin_loaded', null);
 }
 
 /**
