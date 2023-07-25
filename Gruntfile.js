@@ -413,9 +413,7 @@ module.exports = function(grunt) {
 		copy: { // https://github.com/gruntjs/grunt-contrib-copy
 			trunk: {
 				expand: true,
-				// cwd: 'src',
 				src: acm_plugin,
-				// dest: 'E:/Dropbox/svn-wordpress/<%= pkg.name %>/trunk/',
 				dest: './.trunk',
 				filter: 'isFile',
 			},
