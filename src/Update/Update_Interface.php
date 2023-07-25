@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Interface for Admin Class
  *
@@ -12,19 +13,19 @@
 
 namespace ItalyStrap\Update;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
+if (! defined('ABSPATH') or ! ABSPATH) {
+    die();
 }
 
-interface Update_Interface {
-
-	/**
-	 * Sanitize the input data
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param  array $input The input array.
-	 * @return array        Return the array sanitized
-	 */
-	public function update( array $instance = array(), array $fields = array() );
+interface Update_Interface
+{
+    /**
+     * Sanitize the input data
+     *
+     * @since 2.0.0
+     *
+     * @param  array $input The input array.
+     * @return array        Return the array sanitized
+     */
+    public function update(array $instance = array(), array $fields = array());
 }

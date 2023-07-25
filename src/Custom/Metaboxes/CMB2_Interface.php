@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CMB2 API Interface
  *
@@ -12,10 +13,10 @@
 
 namespace ItalyStrap\Custom\Metaboxes;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
-	die();
+if (! defined('ITALYSTRAP_PLUGIN') or ! ITALYSTRAP_PLUGIN) {
+    die();
 }
 
-interface CMB2_Interface {
-
+interface CMB2_Interface
+{
 }

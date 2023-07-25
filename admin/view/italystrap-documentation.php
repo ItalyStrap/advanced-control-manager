@@ -1,37 +1,37 @@
 <div class="wrap">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="jumbotron">
-					<h1 class='text-center'><?php _e( 'Documentation', 'italystrap' ) ?></h1>
-				</div>
-				<h3>How to use Breadcrumbs</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h1 class='text-center'><?php _e('Documentation', 'italystrap') ?></h1>
+                </div>
+                <h3>How to use Breadcrumbs</h3>
 <!-- Start text -->
 By default the breadcrumbs is developed with <a href="http://schema.org/BreadcrumbList" target="_blank">Schema.org markups</a> for Google Rich snippets and <a href="http://getbootstrap.com/components/#breadcrumbs" target="_blank">Bootstrap style</a>.
 
 No problem if you don't have Bootstrap in your site, this class accepts your personal customization for your purpose or you can put this code in your style css:
 
 <pre>
-	<code>.breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#f5f5f5;border-radius:4px}.breadcrumb&gt;li{display:inline-block}.breadcrumb&gt;li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}.breadcrumb&gt;.active{color:#777}</code>
+    <code>.breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#f5f5f5;border-radius:4px}.breadcrumb&gt;li{display:inline-block}.breadcrumb&gt;li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}.breadcrumb&gt;.active{color:#777}</code>
 </pre>
 
 For add ItalyStrap Breadcrumbs put the code below in your theme files (single.php and page.php, optional in archive.php, 404.php <span id="result_box" class="short_text" lang="en"><span class="hps">or</span> <span class="hps">where you want to</span> <span class="hps">show it</span></span>)
 <pre>&lt;?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
-	
-	    new ItalyStrapBreadcrumbs();
-	
-	} ?&gt;</pre>
+    
+        new ItalyStrapBreadcrumbs();
+    
+    } ?&gt;</pre>
 This will show breadcrumbs like this (if you have Bootstrap css):
 <ol class="breadcrumb">
-	<li><a href="#">Blog info name</a></li>
-	<li><a title="Senza categoria" href="#">Category</a></li>
-	<li>Breadcrumbs</li>
+    <li><a href="#">Blog info name</a></li>
+    <li><a title="Senza categoria" href="#">Category</a></li>
+    <li>Breadcrumbs</li>
 </ol>
 If you don't have Bootstrap CSS the breadcrumbs will show as a list (you will have to develop your own style, remember, add separator in CSS style, <a href="http://getbootstrap.com/components/#breadcrumbs" target="_blank">read this</a>):
 <ol>
-	<li><a href="#">Blog info name</a></li>
-	<li><a href="#">Category</a></li>
-	<li class="active">Breadcrumbs</li>
+    <li><a href="#">Blog info name</a></li>
+    <li><a href="#">Category</a></li>
+    <li class="active">Breadcrumbs</li>
 </ol>
 This is the HTML code for basic breadcrumbs:
 <div class="highlight">
@@ -74,19 +74,19 @@ The breadcrumbs class accepts an optional array for your personal customizations
  );</pre>
 <strong>Example to show Bootstrap Glyphicon instead of Home (If you have it):</strong>
 <pre>&lt;?php if ( class_exists('ItalyStrapBreadcrumbs') ) {
-	
-	    $defaults = array(
-	        'home'    =&gt;  '&lt;span class="glyphicon glyphicon-home" aria-hidden="true"&gt;&lt;/span&gt;'
-	    );
-	
-	    new ItalyStrapBreadcrumbs( $defaults );
-	
-	}?&gt;</pre>
+    
+        $defaults = array(
+            'home'    =&gt;  '&lt;span class="glyphicon glyphicon-home" aria-hidden="true"&gt;&lt;/span&gt;'
+        );
+    
+        new ItalyStrapBreadcrumbs( $defaults );
+    
+    }?&gt;</pre>
 It will show breadcrumbs like this:
 <ol class="breadcrumb">
-	<li><a href="#"><i class="glyphicon glyphicon-home"></i>­</a></li>
-	<li><a title="Senza categoria" href="#">Category</a></li>
-	<li>Breadcrumbs</li>
+    <li><a href="#"><i class="glyphicon glyphicon-home"></i>­</a></li>
+    <li><a title="Senza categoria" href="#">Category</a></li>
+    <li>Breadcrumbs</li>
 </ol>
 
 <!-- Gallery Carouse documentation -->
@@ -109,48 +109,48 @@ You can add a <code>type</code> parameter directly from the Insert Media screen 
 You can also select an image size only for standard carousel, for responsive size add it directly in the code, see below or see screenshot n°5 in <a href="https://WordPress.org/plugins/italystrap/screenshots/" target="_blank">plugin screenshot page</a>.
 <h4>Optional attributes:</h4>
 <ul class="task-list">
-	<li><code>name</code>: any name. String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page. Default: <em>italystrap-bootstrap-carousel</em>.
+    <li><code>name</code>: any name. String will be sanitize to be used as an HTML ID. Recommended when you want to have more than one carousel in the same page. Default: <em>italystrap-bootstrap-carousel</em>.
 Example:[gallery type="carousel" ids="61,60,59" name="myCarousel"]</li>
-	<li><code>indicators</code>: indicators position. Accepted values: <em>before-inner</em>, <em>after-inner</em>, <em>after-control</em>, <em>false</em> (hides indicators). Default: <em>before-inner</em>.
+    <li><code>indicators</code>: indicators position. Accepted values: <em>before-inner</em>, <em>after-inner</em>, <em>after-control</em>, <em>false</em> (hides indicators). Default: <em>before-inner</em>.
 Example:[gallery type="carousel" ids="61,60,59" indicators="after-inner"]</li>
-	<li><code>width</code>: carousel container width, in <code>px</code> or <code>%</code>. Default: not set.
+    <li><code>width</code>: carousel container width, in <code>px</code> or <code>%</code>. Default: not set.
 Example:[gallery type="carousel" ids="61,60,59" width="800px"]</li>
-	<li><code>height</code>: carousel item height, in <code>px</code> or <code>%</code>. Default: not set.
+    <li><code>height</code>: carousel item height, in <code>px</code> or <code>%</code>. Default: not set.
 Example:[gallery type="carousel" ids="61,60,59" height="400px"]</li>
-	<li><code>titletag</code>: define HTML tag for image title. Default: <em>h4</em>.
+    <li><code>titletag</code>: define HTML tag for image title. Default: <em>h4</em>.
 Example:[gallery type="carousel" ids="61,60,59" titletag="h2"]</li>
-	<li><code>wpautop</code>: auto-format text. Default: <em>true</em>.
+    <li><code>wpautop</code>: auto-format text. Default: <em>true</em>.
 Example:[gallery type="carousel" ids="61,60,59" wpautop="false"]</li>
-	<li><code>title</code>: show or hide image title. Set <em>false</em> to hide. Default: <em>true</em>.
+    <li><code>title</code>: show or hide image title. Set <em>false</em> to hide. Default: <em>true</em>.
 Example:[gallery type="carousel" ids="61,60,59" title="false"]</li>
-	<li><code>text</code>: show or hide image text. Set <em>false</em> to hide. Default: <em>true</em>.
+    <li><code>text</code>: show or hide image text. Set <em>false</em> to hide. Default: <em>true</em>.
 Example:[gallery type="carousel" ids="61,60,59" text="false"]</li>
-	<li><code>containerclass</code>: extra class for carousel container. Default: not set.
+    <li><code>containerclass</code>: extra class for carousel container. Default: not set.
 Example:[gallery type="carousel" ids="61,60,59" containerclass="container"]</li>
-	<li><code>itemclass</code>: extra class for carousel item. Default: not set.
+    <li><code>itemclass</code>: extra class for carousel item. Default: not set.
 Example:[gallery type="carousel" ids="61,60,59" itemclass="container"]</li>
-	<li><code>captionclass</code>: extra class for item caption. Default: not set.
+    <li><code>captionclass</code>: extra class for item caption. Default: not set.
 Example:[gallery type="carousel" ids="61,60,59" captionclass="container"]</li>
-	<li><code>control</code>: control arrows display. Accepted values: <em>true</em> (to show), <em>false</em> (to hide). Default: <em>true</em>.
+    <li><code>control</code>: control arrows display. Accepted values: <em>true</em> (to show), <em>false</em> (to hide). Default: <em>true</em>.
 Example:[gallery type="carousel" ids="61,60,59" control="false"]</li>
-	<li><code>interval</code>: the amount of time to delay between automatically cycling an item in milliseconds. Example 5000 = 5 seconds. If <em>0</em>, carousel will not automatically cycle. Default: <em>0</em>. (<a href="http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/" target="_blank">In this link yuou find why is set to 0 by default</a>)
+    <li><code>interval</code>: the amount of time to delay between automatically cycling an item in milliseconds. Example 5000 = 5 seconds. If <em>0</em>, carousel will not automatically cycle. Default: <em>0</em>. (<a href="http://www.smashingmagazine.com/2015/02/09/carousel-usage-exploration-on-mobile-e-commerce-websites/" target="_blank">In this link yuou find why is set to 0 by default</a>)
 Example:[gallery type="carousel" ids="61,60,59" interval="2000"]</li>
-	<li><code>pause</code>: pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave. Default: <em>"hover"</em>.
+    <li><code>pause</code>: pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave. Default: <em>"hover"</em>.
 Example:[gallery type="carousel" ids="61,60,59" interval="hover"]</li>
-	<li><code>size</code>: size for image attachment. Accepted values: <em>thumbnail</em>, <em>medium</em>, <em>large</em>, <em>full</em>. Default: <em>full </em>or your own custom name added in add_image_size function. See <a href="http://codex.WordPress.org/Function_Reference/wp_get_attachment_image_src">wp_get_attachment_image_src()</a> for further reference.
+    <li><code>size</code>: size for image attachment. Accepted values: <em>thumbnail</em>, <em>medium</em>, <em>large</em>, <em>full</em>. Default: <em>full </em>or your own custom name added in add_image_size function. See <a href="http://codex.WordPress.org/Function_Reference/wp_get_attachment_image_src">wp_get_attachment_image_src()</a> for further reference.
 Example:[gallery type="carousel" ids="61,60,59" size="full"]</li>
-	<li><code>responsive</code>: Activate responsive image. Accepted values: true, false. Default false. It works only if you add <code>sizetablet</code> and <code>sizephone</code> attribute. See below.
+    <li><code>responsive</code>: Activate responsive image. Accepted values: true, false. Default false. It works only if you add <code>sizetablet</code> and <code>sizephone</code> attribute. See below.
 Example:[gallery type="carousel" ids="61,60,59" responsive="true" size="medium"]</li>
-	<li><code>sizetablet</code>: Size image for tablet device. Accepted values: thumbnail, medium, large, full or your own custom name added in add_image_size function. Default: large.
+    <li><code>sizetablet</code>: Size image for tablet device. Accepted values: thumbnail, medium, large, full or your own custom name added in add_image_size function. Default: large.
 Example:[gallery type="carousel" ids="61,60,59" responsive="true" size="full" sizetablet="large"]</li>
-	<li><code>sizephone</code>: Size image for phone device. Accepted values: thumbnail, medium, large, full or your own custom name added in add_image_size function. Default: medium.
+    <li><code>sizephone</code>: Size image for phone device. Accepted values: thumbnail, medium, large, full or your own custom name added in add_image_size function. Default: medium.
 Example:[gallery type="carousel" ids="61,60,59" responsive="true" size="full" sizephone="medium"]</li>
 </ul>
 <h4><a id="user-content-native-supported-attributes" class="anchor" href="https://github.com/andrezrv/agnosia-bootstrap-carousel#native-supported-attributes"></a>Native supported attributes:</h4>
 <ul class="task-list">
-	<li><code>orderby</code>: Alternative order for your images.
+    <li><code>orderby</code>: Alternative order for your images.
 Example:[gallery type="carousel" ids="61,60,59" orderby="rand"]</li>
-	<li><code>link</code>: where your image titles will link to. Accepted values: <em>file</em>, <em>none</em> and empty. An empty value will link to your attachment's page.
+    <li><code>link</code>: where your image titles will link to. Accepted values: <em>file</em>, <em>none</em> and empty. An empty value will link to your attachment's page.
 Example:[gallery type="carousel" ids="61,60,59" link="file"]</li>
 </ul>
 
@@ -198,78 +198,78 @@ I tried only with ItalyStrap Bootstrap Carousel, please send me a feedback if ha
 Simply activate functionality from ItalyStrap option page, add ItalyStrap vCard Local Business in your widgetozed area and then fill in the fields input of ItalyStrap vCard Local Business
 <h4>Available Local Business Types for now (list from schema.org):</h4>
 <ul>
-	<li>AccountingService</li>
-	<li>AutoDealer</li>
-	<li>AutoRental</li>
-	<li>AutoRepair</li>
-	<li>AutoWash</li>
-	<li>Attorney</li>
-	<li>Bakery</li>
-	<li>BarOrPub</li>
-	<li>ChildCare</li>
-	<li>ClothingStore</li>
-	<li>Dentist</li>
-	<li>ElectronicsStore</li>
-	<li>EmergencyService</li>
-	<li>EntertainmentBusiness</li>
-	<li>EventVenue</li>
-	<li>ExerciseGym</li>
-	<li>FinancialService</li>
-	<li>FurnitureStore</li>
-	<li>GardenStore</li>
-	<li>GeneralContractor</li>
-	<li>GolfCourse</li>
-	<li>HardwareStore</li>
-	<li>HealthAndBeautyBusiness</li>
-	<li>HomeAndConstructionBusiness</li>
-	<li>HobbyShop</li>
-	<li>HomeGoodsStore</li>
-	<li>Hotel</li>
-	<li>HVACBusiness</li>
-	<li>InsuranceAgency</li>
-	<li>LodgingBusiness</li>
-	<li>MedicalClinic</li>
-	<li>MensClothingStore</li>
-	<li>MotorcycleDealer</li>
-	<li>MovingCompany</li>
-	<li>PetStore</li>
-	<li>Physician</li>
-	<li>ProfessionalService</li>
-	<li>RealEstateAgent</li>
-	<li>Residence</li>
-	<li>Restaurant</li>
-	<li>School</li>
-	<li>SportingGoodsStore</li>
-	<li>Store</li>
-	<li>TattooParlor</li>
-	<li>TravelAgency</li>
-	<li>VeterinaryCare</li>
+    <li>AccountingService</li>
+    <li>AutoDealer</li>
+    <li>AutoRental</li>
+    <li>AutoRepair</li>
+    <li>AutoWash</li>
+    <li>Attorney</li>
+    <li>Bakery</li>
+    <li>BarOrPub</li>
+    <li>ChildCare</li>
+    <li>ClothingStore</li>
+    <li>Dentist</li>
+    <li>ElectronicsStore</li>
+    <li>EmergencyService</li>
+    <li>EntertainmentBusiness</li>
+    <li>EventVenue</li>
+    <li>ExerciseGym</li>
+    <li>FinancialService</li>
+    <li>FurnitureStore</li>
+    <li>GardenStore</li>
+    <li>GeneralContractor</li>
+    <li>GolfCourse</li>
+    <li>HardwareStore</li>
+    <li>HealthAndBeautyBusiness</li>
+    <li>HomeAndConstructionBusiness</li>
+    <li>HobbyShop</li>
+    <li>HomeGoodsStore</li>
+    <li>Hotel</li>
+    <li>HVACBusiness</li>
+    <li>InsuranceAgency</li>
+    <li>LodgingBusiness</li>
+    <li>MedicalClinic</li>
+    <li>MensClothingStore</li>
+    <li>MotorcycleDealer</li>
+    <li>MovingCompany</li>
+    <li>PetStore</li>
+    <li>Physician</li>
+    <li>ProfessionalService</li>
+    <li>RealEstateAgent</li>
+    <li>Residence</li>
+    <li>Restaurant</li>
+    <li>School</li>
+    <li>SportingGoodsStore</li>
+    <li>Store</li>
+    <li>TattooParlor</li>
+    <li>TravelAgency</li>
+    <li>VeterinaryCare</li>
 </ul>
 <h4>Available Fields:</h4>
 <ul>
-	<li>Business Name</li>
-	<li>Logo URL</li>
-	<li>Street Address</li>
-	<li>Zipcode/Postal Code</li>
-	<li>City/Locality</li>
-	<li>State/Region</li>
-	<li>Country</li>
-	<li>Telephone number</li>
-	<li>Mobile number</li>
-	<li>Fax number</li>
-	<li>Email</li>
-	<li>TaxID</li>
-	<li>Facebook page (hidden)</li>
-	<li>Twitter page (hidden)</li>
-	<li>Googleplus page (hidden)</li>
-	<li>Pinterest page (hidden)</li>
-	<li>Instagram page (hidden)</li>
-	<li>Youtube page (hidden)</li>
-	<li>Linkedin page (hidden)</li>
+    <li>Business Name</li>
+    <li>Logo URL</li>
+    <li>Street Address</li>
+    <li>Zipcode/Postal Code</li>
+    <li>City/Locality</li>
+    <li>State/Region</li>
+    <li>Country</li>
+    <li>Telephone number</li>
+    <li>Mobile number</li>
+    <li>Fax number</li>
+    <li>Email</li>
+    <li>TaxID</li>
+    <li>Facebook page (hidden)</li>
+    <li>Twitter page (hidden)</li>
+    <li>Googleplus page (hidden)</li>
+    <li>Pinterest page (hidden)</li>
+    <li>Instagram page (hidden)</li>
+    <li>Youtube page (hidden)</li>
+    <li>Linkedin page (hidden)</li>
 </ul>
 
 <!-- / End text -->
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Array definition for carousel default options
  *
  * @package ItalyStrap
  */
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
+if (! defined('ABSPATH') or ! ABSPATH) {
+    die();
 }
 
 /**
@@ -15,19 +16,19 @@ if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
  */
 return array(
 
-	/**
-	 * Text below the image.
-	 */
-	'text'				=> array(
-				'label'		=> __( 'Text of the image', 'italystrap' ),
-				'desc'		=> __( 'Enter the text of the image.', 'italystrap' ),
-				'id'		=> 'text',
-				'type'		=> 'textarea',
-				'class'		=> 'widefat',
-				'default'	=> false,
-				// 'validate'	=> 'alpha_dash',
-				'sanitize'	=> 'sanitize_text_field',
-				 ),
+    /**
+     * Text below the image.
+     */
+    'text'              => array(
+                'label'     => __('Text of the image', 'italystrap'),
+                'desc'      => __('Enter the text of the image.', 'italystrap'),
+                'id'        => 'text',
+                'type'      => 'textarea',
+                'class'     => 'widefat',
+                'default'   => false,
+                // 'validate'   => 'alpha_dash',
+                'sanitize'  => 'sanitize_text_field',
+                 ),
 
 
 );

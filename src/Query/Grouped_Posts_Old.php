@@ -1,318 +1,329 @@
-<?php namespace ItalyStrap\Query;
+<?php
 
-use \WP_Query;
+namespace ItalyStrap\Query;
+
+use WP_Query;
 
 /**
  * Classe per la documentazione
  */
-class Grouped_Posts_Old {
+class Grouped_Posts_Old
+{
+    /**
+     * Pluin options
+     *
+     * @var array
+     */
+    private $options = array();
 
-	/**
-	 * Pluin options
-	 *
-	 * @var array
-	 */
-	private $options = array();
+    /**
+     * Inizializzo il costruttore
+     */
+    function __construct(array $options = array(), Posts $query = null)
+    {
 
-	/**
-	 * Inizializzo il costruttore
-	 */
-	function __construct( array $options = array(), Posts $query = null ) {
+        $this->options = $options;
 
-		$this->options = $options;
+        $this->query = $query;
 
-		$this->query = $query;
+        // add_shortcode( 'docs', array( $this, 'docs' ) );
+    }
 
-		// add_shortcode( 'docs', array( $this, 'docs' ) );
-	}
+    /**
+     * Get shortcode attributes.
+     *
+     * @param  array $args The carousel attribute.
+     * @return array Mixed array of shortcode attributes.
+     */
+    public function get_attributes(array $instance)
+    {
 
-	/**
-	 * Get shortcode attributes.
-	 *
-	 * @param  array $args The carousel attribute.
-	 * @return array Mixed array of shortcode attributes.
-	 */
-	public function get_attributes( array $instance ) {
+        /**
+         * Define data by given attributes.
+         */
+        $instance = \ItalyStrap\Core\shortcode_atts_multidimensional_array(require(ITALYSTRAP_PLUGIN_PATH . 'config/grouped-posts.php'), $instance, 'query_posts');
 
-		/**
-		 * Define data by given attributes.
-		 */
-		$instance = \ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/grouped-posts.php' ), $instance, 'query_posts' );
+        $instance = apply_filters('italystrap_query_posts_args', $instance);
 
-		$instance = apply_filters( 'italystrap_query_posts_args', $instance );
+        $this->args = $instance;
 
-		$this->args = $instance;
+        return $instance;
+    }
 
-		return $instance;
-	}
+    /**
+     * Function description
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function get_posts($category_term_id)
+    {
 
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_posts( $category_term_id ) {
+        // $query_posts = Posts::init();
 
-		// $query_posts = Posts::init();
+        // $query_posts->get_widget_args( $instance );
 
-		// $query_posts->get_widget_args( $instance );
+        // return $query_posts->output();
+        // echo "<pre>";
+        // print_r($this->query->query);
+        // print_r($query_posts);
+        // echo "</pre>";
+        //
 
-		// return $query_posts->output();
-		// echo "<pre>";
-		// print_r($this->query->query);
-		// print_r($query_posts);
-		// echo "</pre>";
-		//
-	
-		$output = '';
+        $output = '';
 
-		$args = array(
-			'no_found_rows'		=> true,
-			'posts_per_page'	=> 5,
-			// 'cat' => $category->term_id,
-			'category__in'		=> $category_term_id,
-		);
+        $args = array(
+            'no_found_rows'     => true,
+            'posts_per_page'    => 5,
+            // 'cat' => $category->term_id,
+            'category__in'      => $category_term_id,
+        );
 
-		$query = new WP_Query( $args );
-		// $query = $this->query->get_attributes( $args );
+        $query = new WP_Query($args);
+        // $query = $this->query->get_attributes( $args );
 
-		if ( $query->have_posts() ) :
-			$output .= '<ul class="list-unstyled">';
+        if ($query->have_posts()) :
+            $output .= '<ul class="list-unstyled">';
 
-			while ( $query->have_posts() ) :
-				$query->the_post();
+            while ($query->have_posts()) :
+                $query->the_post();
 
-				$output .= '<li><i class="fa fa-file-text-o"></i> ';
-				// $output .= get_the_post_thumbnail( $query->post->ID );
-				$output .= get_the_post_thumbnail( $query->post->ID, 'thumbnail' );
+                $output .= '<li><i class="fa fa-file-text-o"></i> ';
+                // $output .= get_the_post_thumbnail( $query->post->ID );
+                $output .= get_the_post_thumbnail($query->post->ID, 'thumbnail');
 
-				$output .= '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
+                $output .= '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
 
-				$output .= '</li>';
-			endwhile;
+                $output .= '</li>';
+            endwhile;
 
-			$output .= '</ul>';
+            $output .= '</ul>';
 
-			// $output .= '<i class="fa fa-arrow-circle-o-right"></i> <a class="hkb-category__view-all" href="' . $term_link . '">View all</a>';
-		endif;
+            // $output .= '<i class="fa fa-arrow-circle-o-right"></i> <a class="hkb-category__view-all" href="' . $term_link . '">View all</a>';
+        endif;
 
-		wp_reset_postdata();
+        wp_reset_postdata();
 
-		return $output;
-	}
+        return $output;
+    }
 
-	/**
-	 * Get tax query args
-	 *
-	 * @see https://developer.wordpress.org/reference/functions/get_terms/
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_tax_query_args( array $tax_query_args = array(), $tax = 'category'  ) {
+    /**
+     * Get tax query args
+     *
+     * @see https://developer.wordpress.org/reference/functions/get_terms/
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function get_tax_query_args(array $tax_query_args = array(), $tax = 'category')
+    {
 
-		$defaults = array(
-			'taxonomy'		=> $tax,
-			'orderby'		=> 'name',
-			'order'			=> 'ASC',
-			'hide_empty'	=> 0,
-			// 'include'		=> 0, // (array|string) Array or comma/space-separated string of term ids to include.
-			// 'exclude'		=> 0, // (array|string) Array or comma/space-separated string of term ids to exclude. If $include is non-empty, $exclude is ignored.
-			// 'exclude_tree'	=> 0, // (array|string) Array or comma/space-separated string of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored.
-			// 'number'			=> 0, // (int|string) Maximum number of terms to return. Accepts ''|0 (all) or any positive number. Default ''|0 (all).
-			// 'offset'			=> 0, // (int) The number by which to offset the terms query.
-			// 'fields'			=> 0, // (string) Term fields to query for. Accepts 'all' (returns an array of complete term objects), 'ids' (returns an array of ids), 'id=>parent' (returns an associative array with ids as keys, parent term IDs as values), 'names' (returns an array of term names), 'count' (returns the number of matching terms), 'id=>name' (returns an associative array with ids as keys, term names as values), or 'id=>slug' (returns an associative array with ids as keys, term slugs as values). Default 'all'.
-			// 'name'			=> 0, // (string|array) Optional. Name or array of names to return term(s) for.
-			// 'slug'           => 0, // (string|array) Optional. Slug or array of slugs to return term(s) for.
-			// 'hierarchical'	=> 0, // (bool) Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
-			// 'search'	=> 0, // (string) Search criteria to match terms. Will be SQL-formatted with wildcards before and after.
-			// 'name__like'	=> 0, // (string) Retrieve terms with criteria by which a term is LIKE $name__like.
-			// 'description__like'	=> 0, // (string) Retrieve terms where the description is LIKE $description__like.
-			// 'pad_counts'	=> 0, // (bool) Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
-			// 'get'	=> 0, // (string) Whether to return terms regardless of ancestry or whether the terms are empty. Accepts 'all' or empty (disabled).
-			// 'child_of'	=> 0, // (int) Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
-			'parent'		=> 0,
-			// 'childless'	=> 0, // (bool) True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
-			// 'cache_domain'	=> 0, // (string) Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
-			// 'update_term_meta_cache'	=> 0, // (bool) Whether to prime meta caches for matched terms. Default true.
-			// 'meta_query'	=> 0, // (array) Meta query clauses to limit retrieved terms by. See WP_Meta_Query.
-			// 'meta_key'	=> 0, // (string) Limit terms to those matching a specific metadata key. Can be used in conjunction with $meta_value.
-			// 'meta_value'	=> 0, // (string) Limit terms to those matching a specific metadata value. Usually used in conjunction with $meta_key.
-		);
+        $defaults = array(
+            'taxonomy'      => $tax,
+            'orderby'       => 'name',
+            'order'         => 'ASC',
+            'hide_empty'    => 0,
+            // 'include'        => 0, // (array|string) Array or comma/space-separated string of term ids to include.
+            // 'exclude'        => 0, // (array|string) Array or comma/space-separated string of term ids to exclude. If $include is non-empty, $exclude is ignored.
+            // 'exclude_tree'   => 0, // (array|string) Array or comma/space-separated string of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored.
+            // 'number'         => 0, // (int|string) Maximum number of terms to return. Accepts ''|0 (all) or any positive number. Default ''|0 (all).
+            // 'offset'         => 0, // (int) The number by which to offset the terms query.
+            // 'fields'         => 0, // (string) Term fields to query for. Accepts 'all' (returns an array of complete term objects), 'ids' (returns an array of ids), 'id=>parent' (returns an associative array with ids as keys, parent term IDs as values), 'names' (returns an array of term names), 'count' (returns the number of matching terms), 'id=>name' (returns an associative array with ids as keys, term names as values), or 'id=>slug' (returns an associative array with ids as keys, term slugs as values). Default 'all'.
+            // 'name'           => 0, // (string|array) Optional. Name or array of names to return term(s) for.
+            // 'slug'           => 0, // (string|array) Optional. Slug or array of slugs to return term(s) for.
+            // 'hierarchical'   => 0, // (bool) Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+            // 'search' => 0, // (string) Search criteria to match terms. Will be SQL-formatted with wildcards before and after.
+            // 'name__like' => 0, // (string) Retrieve terms with criteria by which a term is LIKE $name__like.
+            // 'description__like'  => 0, // (string) Retrieve terms where the description is LIKE $description__like.
+            // 'pad_counts' => 0, // (bool) Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+            // 'get'    => 0, // (string) Whether to return terms regardless of ancestry or whether the terms are empty. Accepts 'all' or empty (disabled).
+            // 'child_of'   => 0, // (int) Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+            'parent'        => 0,
+            // 'childless'  => 0, // (bool) True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+            // 'cache_domain'   => 0, // (string) Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+            // 'update_term_meta_cache' => 0, // (bool) Whether to prime meta caches for matched terms. Default true.
+            // 'meta_query' => 0, // (array) Meta query clauses to limit retrieved terms by. See WP_Meta_Query.
+            // 'meta_key'   => 0, // (string) Limit terms to those matching a specific metadata key. Can be used in conjunction with $meta_value.
+            // 'meta_value' => 0, // (string) Limit terms to those matching a specific metadata value. Usually used in conjunction with $meta_key.
+        );
 
-		// if ( ! empty( $this->args['include'] ) ) {
-		// 	$defaults['include'] = $this->args['include'];
-		// }
+        // if ( ! empty( $this->args['include'] ) ) {
+        //  $defaults['include'] = $this->args['include'];
+        // }
 
-		// if ( ! empty( $this->args['exclude'] ) ) {
-		// 	$defaults['exclude'] = $this->args['exclude'];
-		// }
-		$this->set_tax_query_args( $defaults );
+        // if ( ! empty( $this->args['exclude'] ) ) {
+        //  $defaults['exclude'] = $this->args['exclude'];
+        // }
+        $this->set_tax_query_args($defaults);
 
-		return wp_parse_args( $tax_query_args, $defaults );
-	}
+        return wp_parse_args($tax_query_args, $defaults);
+    }
 
-	/**
-	 * Continue after first call
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function set_tax_query_args( &$defaults ) {
+    /**
+     * Continue after first call
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function set_tax_query_args(&$defaults)
+    {
 
-		static $count = 0;
+        static $count = 0;
 
-		if ( 1 <= $count ) {
-			return;
-		}
-	
-		if ( ! empty( $this->args['include'] ) ) {
-			$defaults['include'] = $this->args['include'];
-		}
+        if (1 <= $count) {
+            return;
+        }
 
-		if ( ! empty( $this->args['exclude'] ) ) {
-			$defaults['exclude'] = $this->args['exclude'];
-		}
+        if (! empty($this->args['include'])) {
+            $defaults['include'] = $this->args['include'];
+        }
 
-		$count++;
-	}
+        if (! empty($this->args['exclude'])) {
+            $defaults['exclude'] = $this->args['exclude'];
+        }
 
-	/**
-	 * Retrieve top 10 most-commented posts and cache the results.
-	 *
-	 * @param bool $force_refresh Optional. Whether to force the cache to be refreshed.
-	 *                            Default false.
-	 * @return array|WP_Error Array of WP_Post objects with the highest comment counts,
-	 *                        WP_Error object otherwise.
-	 */
-	function get_category_array( $force_refresh = false, $tax = 'category', array $args = array(), $id = null ) {
+        $count++;
+    }
 
-		if ( ! isset( $id ) ) {
-			$id = $tax;
-		}
+    /**
+     * Retrieve top 10 most-commented posts and cache the results.
+     *
+     * @param bool $force_refresh Optional. Whether to force the cache to be refreshed.
+     *                            Default false.
+     * @return array|WP_Error Array of WP_Post objects with the highest comment counts,
+     *                        WP_Error object otherwise.
+     */
+    function get_category_array($force_refresh = false, $tax = 'category', array $args = array(), $id = null)
+    {
 
-		// Check for the category_array key in the 'category_posts' group.
-		$category_array = wp_cache_get( "italystrap_{$id}_array", 'category_posts' );
+        if (! isset($id)) {
+            $id = $tax;
+        }
 
-		// If nothing is found, build the object.
-		if ( true === $force_refresh || false === $category_array ) {
-			// Grab the top 10 most commented posts.
-			$category_array = get_categories( $this->get_tax_query_args( $args, $tax ) );
+        // Check for the category_array key in the 'category_posts' group.
+        $category_array = wp_cache_get("italystrap_{$id}_array", 'category_posts');
 
-			if ( ! is_wp_error( $category_array ) ) {
-				// In this case we don't need a timed cache expiration.
-				wp_cache_set( "italystrap_{$id}_array", $category_array, 'category_posts' );
-			}
-		}
-		// echo "<pre>";
-		// print_r($category_array);
-		// echo "</pre>";
-		return $category_array;
-	}
+        // If nothing is found, build the object.
+        if (true === $force_refresh || false === $category_array) {
+            // Grab the top 10 most commented posts.
+            $category_array = get_categories($this->get_tax_query_args($args, $tax));
 
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_categories( $parent_id ) {
+            if (! is_wp_error($category_array)) {
+                // In this case we don't need a timed cache expiration.
+                wp_cache_set("italystrap_{$id}_array", $category_array, 'category_posts');
+            }
+        }
+        // echo "<pre>";
+        // print_r($category_array);
+        // echo "</pre>";
+        return $category_array;
+    }
 
-		$args = array(
-			'parent'		=> $parent_id,
-			// 'number'		=> '5',
-		);
+    /**
+     * Function description
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function get_categories($parent_id)
+    {
 
-		$categories = $this->get_category_array( false, 'category', $args, $parent_id );
+        $args = array(
+            'parent'        => $parent_id,
+            // 'number'     => '5',
+        );
 
-		if ( empty( $categories ) ) {
-			return;
-		}
+        $categories = $this->get_category_array(false, 'category', $args, $parent_id);
 
-		$output = '';
+        if (empty($categories)) {
+            return;
+        }
 
-		$output .= '<ul class="list-unstyled">';
+        $output = '';
 
-		foreach ( (array) $categories as $category ) {
-			if ( 0 === $category->count ) {
-				continue;
-			}
-			$output .= sprintf(
-				'<li><i class="fa fa-folder"></i> <strong><a href="%s">%s</a></strong> <small>(%s)</small></li>',
-				esc_url( get_term_link( $category ) ),
-				$category->name,
-				sprintf(
-					_n( '%1$s Article', '%1$s Articles', $category->count, 'italystrap' ),
-					number_format_i18n( $category->count )
-				)
-			);
-		}
+        $output .= '<ul class="list-unstyled">';
 
-		$output .= '</ul>';
+        foreach ((array) $categories as $category) {
+            if (0 === $category->count) {
+                continue;
+            }
+            $output .= sprintf(
+                '<li><i class="fa fa-folder"></i> <strong><a href="%s">%s</a></strong> <small>(%s)</small></li>',
+                esc_url(get_term_link($category)),
+                $category->name,
+                sprintf(
+                    _n('%1$s Article', '%1$s Articles', $category->count, 'italystrap'),
+                    number_format_i18n($category->count)
+                )
+            );
+        }
 
-		return $output;
-	}
+        $output .= '</ul>';
 
-	/**
-	 * Gets all of the posts grouped by terms for the specified
-	 * post type and taxonomy.
-	 *
-	 * Results are grouped by terms and ordered by the term and post IDs.
-	 * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
-	 * @since 1.0.0
-	 *
-	 * @param string $post_type_name Post type to limit query to
-	 * @param string $taxonomy_name Taxonomy to limit query to
-	 *
-	 * @return array|false
-	 */
-	public function get_posts_grouped_by_term( $post_type_name, $taxonomy_name ) {
-		$records = $this->get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name );
-		// d( $records );
-		$groupings = array();
+        return $output;
+    }
 
-		foreach ( $records as $record ) {
-			$term_id = (int) $record->term_id;
-			$post_id = (int) $record->post_id;
-			if ( ! array_key_exists( $term_id, $groupings ) ) {
-				$groupings[ $term_id ] = array(
-					'term_id'			=> $term_id,
-					'term_name'			=> $record->term_name,
-					'term_slug'			=> $record->term_slug,
-					'term_description'	=> $record->term_description,
-					'term_parent'		=> $record->term_parent,
-					'posts'				=> array(),
-				);
-			}
-			$groupings[ $term_id ]['posts'][ $post_id ] = array(
-				'post_id'		=> $post_id,
-				'post_title'	=> $record->post_title,
-				'post_content'	=> $record->post_content,
-				'post_parent'	=> $record->post_parent,
-				'menu_order'	=> $record->menu_order,
-				'guid'			=> $record->guid,
-			);
-		}
-		return $groupings;
-	}
-	/**
-	 * Gets all of the posts grouped by terms for the specified
-	 * post type and taxonomy.
-	 *
-	 * Results are grouped by terms and ordered by the term and post IDs.
-	 * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
-	 * @since 1.0.0
-	 *
-	 * @param string $post_type_name Post type to limit query to
-	 * @param string $taxonomy_name Taxonomy to limit query to
-	 *
-	 * @return array|false
-	 */
-	protected function get_posts_grouped_by_term_from_db( $post_type_name, $taxonomy_name ) {
-		global $wpdb;
-		$sql_query =
-		"SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid
+    /**
+     * Gets all of the posts grouped by terms for the specified
+     * post type and taxonomy.
+     *
+     * Results are grouped by terms and ordered by the term and post IDs.
+     * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
+     * @since 1.0.0
+     *
+     * @param string $post_type_name Post type to limit query to
+     * @param string $taxonomy_name Taxonomy to limit query to
+     *
+     * @return array|false
+     */
+    public function get_posts_grouped_by_term($post_type_name, $taxonomy_name)
+    {
+        $records = $this->get_posts_grouped_by_term_from_db($post_type_name, $taxonomy_name);
+        // d( $records );
+        $groupings = array();
+
+        foreach ($records as $record) {
+            $term_id = (int) $record->term_id;
+            $post_id = (int) $record->post_id;
+            if (! array_key_exists($term_id, $groupings)) {
+                $groupings[ $term_id ] = array(
+                    'term_id'           => $term_id,
+                    'term_name'         => $record->term_name,
+                    'term_slug'         => $record->term_slug,
+                    'term_description'  => $record->term_description,
+                    'term_parent'       => $record->term_parent,
+                    'posts'             => array(),
+                );
+            }
+            $groupings[ $term_id ]['posts'][ $post_id ] = array(
+                'post_id'       => $post_id,
+                'post_title'    => $record->post_title,
+                'post_content'  => $record->post_content,
+                'post_parent'   => $record->post_parent,
+                'menu_order'    => $record->menu_order,
+                'guid'          => $record->guid,
+            );
+        }
+        return $groupings;
+    }
+    /**
+     * Gets all of the posts grouped by terms for the specified
+     * post type and taxonomy.
+     *
+     * Results are grouped by terms and ordered by the term and post IDs.
+     * https://github.com/hellofromtonya/CollapsibleContent/blob/master/src/faq/template/helpers.php
+     * @since 1.0.0
+     *
+     * @param string $post_type_name Post type to limit query to
+     * @param string $taxonomy_name Taxonomy to limit query to
+     *
+     * @return array|false
+     */
+    protected function get_posts_grouped_by_term_from_db($post_type_name, $taxonomy_name)
+    {
+        global $wpdb;
+        $sql_query =
+        "SELECT t.term_id, t.name AS term_name, t.slug AS term_slug, tt.description AS term_description, tt.parent AS term_parent, p.ID AS post_id, p.post_title, p.post_content, p.post_parent, p.menu_order, p.guid
 	FROM {$wpdb->term_taxonomy} AS tt
 	INNER JOIN {$wpdb->terms} AS t ON (tt.term_id = t.term_id)
 	INNER JOIN {$wpdb->term_relationships} AS tr ON (tt.term_taxonomy_id = tr.term_taxonomy_id)
@@ -321,246 +332,250 @@ class Grouped_Posts_Old {
 	GROUP BY t.term_id, p.ID
 	ORDER BY t.term_id, p.menu_order ASC;";
 
-		$sql_query = $wpdb->prepare( $sql_query, $post_type_name, $taxonomy_name );
-		$results = $wpdb->get_results( $sql_query );
+        $sql_query = $wpdb->prepare($sql_query, $post_type_name, $taxonomy_name);
+        $results = $wpdb->get_results($sql_query);
 
-		if ( ! $results || ! is_array( $results ) ) {
-			return false;
-		}
+        if (! $results || ! is_array($results)) {
+            return false;
+        }
 
-		return $results;
-	}
+        return $results;
+    }
 
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function output( $atts = null ) {
-		$output = '';
-		$categories = $this->get_posts_grouped_by_term( 'post', 'category' );
-		d( $categories );
-		$term = (object) array();
-		foreach ( (array) $categories as $category ) {
-			$term->taxonomy = 'category';
-			$term->term_id = $category['term_id'];
-			$term->slug = $category['term_slug'];
+    /**
+     * Function description
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function output($atts = null)
+    {
+        $output = '';
+        $categories = $this->get_posts_grouped_by_term('post', 'category');
+        d($categories);
+        $term = (object) array();
+        foreach ((array) $categories as $category) {
+            $term->taxonomy = 'category';
+            $term->term_id = $category['term_id'];
+            $term->slug = $category['term_slug'];
 
-			$count = count( $category['posts'] );
-			$output .= sprintf(
-				'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
-				! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
-				home_url( '/' ) . $category['term_slug'], // esc_url( get_term_link( $category['term_id'] ) ),
-				// esc_url( \get_permalink_by_slug( $category['term_slug'] ) ),
-				// esc_url( get_term_link( $category['term_id'] ), 'category' ),
-				// esc_url( get_term_link( $category['term_id'] ) ),
-				// esc_url( get_term_link( $term ) ),
-				esc_html( $category['term_name'] ),
-				sprintf(
-					_n( '%1$s Article', '%1$s Articles', $count, 'italystrap' ),
-					number_format_i18n( $count )
-				),
-				$category['term_description'],
-				$this->get_categories( $category['term_id'] ),
-				// '',
-				// $this->get_posts( $category['term_id'] ),
-				$this->get_the_grouped_posts( $category['posts'] ),
-				'' //$query_posts->output( $query_args )
-			);
-		}
+            $count = count($category['posts']);
+            $output .= sprintf(
+                '<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
+                ! empty($this->args['tax_class']) ? esc_attr($this->args['tax_class']) : '',
+                home_url('/') . $category['term_slug'], // esc_url( get_term_link( $category['term_id'] ) ),
+                // esc_url( \get_permalink_by_slug( $category['term_slug'] ) ),
+                // esc_url( get_term_link( $category['term_id'] ), 'category' ),
+                // esc_url( get_term_link( $category['term_id'] ) ),
+                // esc_url( get_term_link( $term ) ),
+                esc_html($category['term_name']),
+                sprintf(
+                    _n('%1$s Article', '%1$s Articles', $count, 'italystrap'),
+                    number_format_i18n($count)
+                ),
+                $category['term_description'],
+                $this->get_categories($category['term_id']),
+                // '',
+                // $this->get_posts( $category['term_id'] ),
+                $this->get_the_grouped_posts($category['posts']),
+                '' //$query_posts->output( $query_args )
+            );
+        }
 
-		return $output;
-	}
+        return $output;
+    }
 
-	/**
-	 * Function description
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function get_the_grouped_posts( array $posts = array(), $limit = 5 ) {
-		$output = '';
-		$i = 0;
+    /**
+     * Function description
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function get_the_grouped_posts(array $posts = array(), $limit = 5)
+    {
+        $output = '';
+        $i = 0;
 
-		$output .= '<ul class="list-unstyled">';
+        $output .= '<ul class="list-unstyled">';
 
-		foreach ( $posts as $post_key => $post ) {
-			if ( $i >= $limit ) {
-				continue;
-			}
+        foreach ($posts as $post_key => $post) {
+            if ($i >= $limit) {
+                continue;
+            }
 
-			$this->get_the_permalink( $post );
+            $this->get_the_permalink($post);
 
-			$output .= '<li>';
+            $output .= '<li>';
 
-			$output .= '<i class="fa fa-file-text-o"></i> ';
+            $output .= '<i class="fa fa-file-text-o"></i> ';
 
-			// $output .= get_the_post_thumbnail( $post['post_id'], 'thumbnail' );
+            // $output .= get_the_post_thumbnail( $post['post_id'], 'thumbnail' );
 
-			// $output .= '<a href="' . get_the_permalink( $post['post_id'] ) . '">' . $post['post_title'] . '</a>';
-			$output .= '<a href="' . $post['guid'] . '">' . $post['post_title'] . '</a>';
+            // $output .= '<a href="' . get_the_permalink( $post['post_id'] ) . '">' . $post['post_title'] . '</a>';
+            $output .= '<a href="' . $post['guid'] . '">' . $post['post_title'] . '</a>';
 
-			$output .= '</li>';
+            $output .= '</li>';
 
-			$i++;
-		}
+            $i++;
+        }
 
-		$output .= '</ul>';
+        $output .= '</ul>';
 
-		return $output;
-	}
+        return $output;
+    }
 
-	/**
-	 * Get the post permalink
-	 *
-	 * @param  array  $post The post array.
-	 *
-	 * @return string      Return the permalink of the post.
-	 */
-	public function get_the_permalink( array $post ) {
+    /**
+     * Get the post permalink
+     *
+     * @param  array  $post The post array.
+     *
+     * @return string      Return the permalink of the post.
+     */
+    public function get_the_permalink(array $post)
+    {
 
-		static $permalink = null;
+        static $permalink = null;
 
-		if ( ! isset( $permalink ) ) {
-			$permalink = get_option('permalink_structure');
-		}
+        if (! isset($permalink)) {
+            $permalink = get_option('permalink_structure');
+        }
 
-		$link = '';
+        $link = '';
 
-		return $link;
+        return $link;
 
-		// if they're not using the fancy permalink option
-		if ( '' !== $permalink ) {
-			return home_url( '?p=' . $post['post_id'] );
-		}
+        // if they're not using the fancy permalink option
+        if ('' !== $permalink) {
+            return home_url('?p=' . $post['post_id']);
+        }
 
 
-		$unixtime = strtotime($post->post_date);
+        $unixtime = strtotime($post->post_date);
 
-		$category = '';
-		if ( strpos($permalink, '%category%') !== false ) {
-			$cats = get_the_category($post->ID);
-			if ( $cats ) {
-				$cats = wp_list_sort( $cats, array(
-					'term_id' => 'ASC',
-				) );
+        $category = '';
+        if (strpos($permalink, '%category%') !== false) {
+            $cats = get_the_category($post->ID);
+            if ($cats) {
+                $cats = wp_list_sort($cats, array(
+                    'term_id' => 'ASC',
+                ));
 
-				/**
-				 * Filters the category that gets used in the %category% permalink token.
-				 *
-				 * @since 3.5.0
-				 *
-				 * @param WP_Term  $cat  The category to use in the permalink.
-				 * @param array    $cats Array of all categories (WP_Term objects) associated with the post.
-				 * @param WP_Post  $post The post in question.
-				 */
-				$category_object = apply_filters( 'post_link_category', $cats[0], $cats, $post );
+                /**
+                 * Filters the category that gets used in the %category% permalink token.
+                 *
+                 * @since 3.5.0
+                 *
+                 * @param WP_Term  $cat  The category to use in the permalink.
+                 * @param array    $cats Array of all categories (WP_Term objects) associated with the post.
+                 * @param WP_Post  $post The post in question.
+                 */
+                $category_object = apply_filters('post_link_category', $cats[0], $cats, $post);
 
-				$category_object = get_term( $category_object, 'category' );
-				$category = $category_object->slug;
-				if ( $parent = $category_object->parent ) {
-					$category = get_category_parents($parent, false, '/', true) . $category;
-				}
-			}
-			// show default category in permalinks, without
-			// having to assign it explicitly
-			if ( empty($category) ) {
-				$default_category = get_term( get_option( 'default_category' ), 'category' );
-				if ( $default_category && ! is_wp_error( $default_category ) ) {
-					$category = $default_category->slug;
-				}
-			}
-		}
+                $category_object = get_term($category_object, 'category');
+                $category = $category_object->slug;
+                if ($parent = $category_object->parent) {
+                    $category = get_category_parents($parent, false, '/', true) . $category;
+                }
+            }
+            // show default category in permalinks, without
+            // having to assign it explicitly
+            if (empty($category)) {
+                $default_category = get_term(get_option('default_category'), 'category');
+                if ($default_category && ! is_wp_error($default_category)) {
+                    $category = $default_category->slug;
+                }
+            }
+        }
 
-		$author = '';
-		if ( strpos($permalink, '%author%') !== false ) {
-			$authordata = get_userdata($post->post_author);
-			$author = $authordata->user_nicename;
-		}
+        $author = '';
+        if (strpos($permalink, '%author%') !== false) {
+            $authordata = get_userdata($post->post_author);
+            $author = $authordata->user_nicename;
+        }
 
-		$date = explode(" ", date('Y m d H i s', $unixtime));
-		$rewritereplace =
-		array(
-			$date[0],
-			$date[1],
-			$date[2],
-			$date[3],
-			$date[4],
-			$date[5],
-			$post->post_name,
-			$post->ID,
-			$category,
-			$author,
-			$post->post_name,
-		);
-		$permalink = home_url( str_replace($rewritecode, $rewritereplace, $permalink) );
-		$permalink = user_trailingslashit($permalink, 'single');
-	}
+        $date = explode(" ", date('Y m d H i s', $unixtime));
+        $rewritereplace =
+        array(
+            $date[0],
+            $date[1],
+            $date[2],
+            $date[3],
+            $date[4],
+            $date[5],
+            $post->post_name,
+            $post->ID,
+            $category,
+            $author,
+            $post->post_name,
+        );
+        $permalink = home_url(str_replace($rewritecode, $rewritereplace, $permalink));
+        $permalink = user_trailingslashit($permalink, 'single');
+    }
 
-	/**
-	 * Aggiungo lo shortcode per mostrare il loop dei plus
-	 * @param  array $atts Attributi dello shortcode.
-	 */
-	public function outputs( $atts = null ) {
+    /**
+     * Aggiungo lo shortcode per mostrare il loop dei plus
+     * @param  array $atts Attributi dello shortcode.
+     */
+    public function outputs($atts = null)
+    {
 
-		$query_posts = Posts::init();
+        $query_posts = Posts::init();
 
-		$query_posts->get_widget_args( $this->args );
+        $query_posts->get_widget_args($this->args);
 
-		$output = '';
+        $output = '';
 
-		/**
-		 * Array delle categorie
-		 * @todo Mettere a posto la cache per le varie query, leggere 10up su github
-		 * @var array
-		 */
-		$categories = $this->get_category_array();
+        /**
+         * Array delle categorie
+         * @todo Mettere a posto la cache per le varie query, leggere 10up su github
+         * @var array
+         */
+        $categories = $this->get_category_array();
 
-		$output .= sprintf(
-			'<div class="%s">',
-			! empty( $this->args['tax_container_class'] ) ? esc_attr( $this->args['tax_container_class'] ) : ''
-		);
+        $output .= sprintf(
+            '<div class="%s">',
+            ! empty($this->args['tax_container_class']) ? esc_attr($this->args['tax_container_class']) : ''
+        );
 
-		foreach ( (array) $categories as $category ) :
-			if ( 0 === $category->count ) {
-				continue;
-			}
+        foreach ((array) $categories as $category) :
+            if (0 === $category->count) {
+                continue;
+            }
 
-			/**
-			 * @see http://wordpress.stackexchange.com/questions/169469/get-posts-from-child-categories-with-parent-category-id
-			 */
-			$query_args = array(
-				'category__in' 			=> $category->term_id,
-				// 'tax_query' 			=> array(
-				// 	array(
-				// 		'taxonomy'	=> 'category',
-				// 		'field'		=> 'term_id',
-				// 		'terms'		=> $category->term_id,
-				// 	),
-				// ),
-				'update_post_term_cache' => true
-			);
+            /**
+             * @see http://wordpress.stackexchange.com/questions/169469/get-posts-from-child-categories-with-parent-category-id
+             */
+            $query_args = array(
+                'category__in'          => $category->term_id,
+                // 'tax_query'          => array(
+                //  array(
+                //      'taxonomy'  => 'category',
+                //      'field'     => 'term_id',
+                //      'terms'     => $category->term_id,
+                //  ),
+                // ),
+                'update_post_term_cache' => true
+            );
 
-			$output .= sprintf(
-				'<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
-				! empty( $this->args['tax_class'] ) ? esc_attr( $this->args['tax_class'] ) : '',
-				esc_url( get_term_link( $category ) ),
-				$category->name,
-				sprintf(
-					_n( '%1$s Article', '%1$s Articles', $category->count, 'italystrap' ),
-					number_format_i18n( $category->count )
-				),
-				$category->description,
-				$this->get_categories( $category->term_id ),
-				// ''
-				// $this->get_posts( $category->term_id )
-				$query_posts->output( $query_args )
-			);
-		endforeach;
+            $output .= sprintf(
+                '<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
+                ! empty($this->args['tax_class']) ? esc_attr($this->args['tax_class']) : '',
+                esc_url(get_term_link($category)),
+                $category->name,
+                sprintf(
+                    _n('%1$s Article', '%1$s Articles', $category->count, 'italystrap'),
+                    number_format_i18n($category->count)
+                ),
+                $category->description,
+                $this->get_categories($category->term_id),
+                // ''
+                // $this->get_posts( $category->term_id )
+                $query_posts->output($query_args)
+            );
+        endforeach;
 
-		$output .= '</div>';
+        $output .= '</div>';
 
-		return $output;
-	}
+        return $output;
+    }
 }

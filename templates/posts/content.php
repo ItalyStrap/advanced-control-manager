@@ -1,4 +1,5 @@
 <?php
+
 /**
  * [Short Description (no period for file headers)]
  *
@@ -9,4 +10,3 @@
  *
  * @package [Plugin/Theme/Etc]
  */
-

@@ -16,77 +16,82 @@ use tad\FunctionMockerLe;
 
 class UnitTestCase extends Unit
 {
-	use ProphecyTrait;
+    use ProphecyTrait;
 
-	protected $tester;
+    protected $tester;
 
-	/**
-	 * @var Prophet
-	 */
-	protected $prophecy;
+    /**
+     * @var Prophet
+     */
+    protected $prophecy;
 
-	/**
-	 * @var ObjectProphecy
-	 */
-	protected $config;
+    /**
+     * @var ObjectProphecy
+     */
+    protected $config;
 
-	protected function getConfig(): Config {
-		return $this->config->reveal();
-	}
+    protected function getConfig(): Config
+    {
+        return $this->config->reveal();
+    }
 
-	/**
-	 * @var ObjectProphecy
-	 */
-	protected $dispatcher;
+    /**
+     * @var ObjectProphecy
+     */
+    protected $dispatcher;
 
-	protected function getDispatcher(): EventDispatcherInterface {
-		return $this->dispatcher->reveal();
-	}
+    protected function getDispatcher(): EventDispatcherInterface
+    {
+        return $this->dispatcher->reveal();
+    }
 
-	/**
-	 * @var ObjectProphecy
-	 */
-	protected $file;
+    /**
+     * @var ObjectProphecy
+     */
+    protected $file;
 
-	protected function getFile(): SplFileObject {
-		return $this->file->reveal();
-	}
+    protected function getFile(): SplFileObject
+    {
+        return $this->file->reveal();
+    }
 
-	/**
-	 * @var ObjectProphecy
-	 */
-	protected $image;
+    /**
+     * @var ObjectProphecy
+     */
+    protected $image;
 
-	protected function getImage(): Image {
-		return $this->image->reveal();
-	}
+    protected function getImage(): Image
+    {
+        return $this->image->reveal();
+    }
 
-	protected $is_admin = false;
-	protected $is_feed = false;
-	protected $is_preview = false;
+    protected $is_admin = false;
+    protected $is_feed = false;
+    protected $is_preview = false;
 
 	// phpcs:ignore -- Method from Codeception
 	protected function _before(): void
-	{
-		FunctionMockerLe\define('is_admin', function (): bool {
-			return $this->is_admin;
-		});
-		FunctionMockerLe\define('is_feed', function (): bool {
-			return $this->is_feed;
-		});
-		FunctionMockerLe\define('is_preview', function (): bool {
-			return $this->is_preview;
-		});
+    {
+        FunctionMockerLe\define('is_admin', function (): bool {
+            return $this->is_admin;
+        });
+        FunctionMockerLe\define('is_feed', function (): bool {
+            return $this->is_feed;
+        });
+        FunctionMockerLe\define('is_preview', function (): bool {
+            return $this->is_preview;
+        });
 
-		$this->prophecy = new Prophet();
+        $this->prophecy = new Prophet();
 
-		$this->config = $this->prophecy->prophesize( Config::class );
-		$this->dispatcher = $this->prophecy->prophesize( EventDispatcherInterface::class );
-		$this->file = $this->prophecy->prophesize( SplFileObject::class );
-		$this->image = $this->prophecy->prophesize( Image::class );
-	}
+        $this->config = $this->prophecy->prophesize(Config::class);
+        $this->dispatcher = $this->prophecy->prophesize(EventDispatcherInterface::class);
+        $this->file = $this->prophecy->prophesize(SplFileObject::class);
+        $this->image = $this->prophecy->prophesize(Image::class);
+    }
 
-	protected function _after() {
-		FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
-	}
+    protected function _after()
+    {
+        FunctionMockerLe\undefineAll(['is_admin','is_feed','is_preview']);
+    }
 }

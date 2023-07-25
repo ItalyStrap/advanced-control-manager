@@ -1,95 +1,103 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Tests;
 
-require_once codecept_root_dir( '/italystrap.php' );
-class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase {
+require_once codecept_root_dir('/italystrap.php');
+class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
+{
+    public function setUp(): void
+    {
+        // before
+        parent::setUp();
 
+        // your set up methods here
+    }
 
-	public function setUp(): void {
-		// before
-		parent::setUp();
+    public function tearDown(): void
+    {
+        // your tear down methods here
 
-		// your set up methods here
-	}
+        // then
+        parent::tearDown();
+    }
 
-	public function tearDown(): void {
-		// your tear down methods here
+    /**
+     * Test if shortcode_atts_multidimensional_array return an array
+     */
+    public function test_shortcode_atts_multidimensional_array()
+    {
 
-		// then
-		parent::tearDown();
-	}
+        $atts = array(
+            'title' => 'The title',
+        );
 
-	/**
-	 * Test if shortcode_atts_multidimensional_array return an array
-	 */
-	public function test_shortcode_atts_multidimensional_array() {
+        $array = \ItalyStrap\Core\shortcode_atts_multidimensional_array(require(ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php'), $atts, $shortcode = '');
 
-		$atts = array(
-			'title'	=> 'The title',
-		);
+        $this->assertTrue(is_array($array));
+    }
 
-		$array = \ItalyStrap\Core\shortcode_atts_multidimensional_array( require( ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php' ), $atts, $shortcode = '' );
+    /**
+     * Test function ItalyStrap\Core\file_get_content() works
+     */
+    public function test_file_get_content()
+    {
 
-		$this->assertTrue( is_array( $array ) );
-	}
+        $unveilpath = ITALYSTRAP_PLUGIN_PATH . 'js/unveil.min.js';
 
-	/**
-	 * Test function ItalyStrap\Core\file_get_content() works
-	 */
-	public function test_file_get_content() {
+        $get_file_content = \ItalyStrap\Core\get_file_content($unveilpath);
 
-		$unveilpath = ITALYSTRAP_PLUGIN_PATH . 'js/unveil.min.js';
+        $this->assertTrue(isset($get_file_content));
+    }
 
-		$get_file_content = \ItalyStrap\Core\get_file_content( $unveilpath );
+    /**
+     * Test if get_taxonomies_list_array return an array
+     */
+    public function test_if_get_taxonomies_list_array_return_an_array()
+    {
 
-		$this->assertTrue( isset( $get_file_content ) );
-	}
+        $is_array = \ItalyStrap\Core\get_taxonomies_list_array('category');
 
-	/**
-	 * Test if get_taxonomies_list_array return an array
-	 */
-	public function test_if_get_taxonomies_list_array_return_an_array() {
+        $this->assertTrue(is_array($is_array));
+    }
 
-		$is_array = \ItalyStrap\Core\get_taxonomies_list_array( 'category' );
+    /**
+     * Test if get_image_size_array return an array
+     */
+    public function test_if_get_image_size_array_return_an_array()
+    {
 
-		$this->assertTrue( is_array( $is_array ) );
-	}
+        $is_array = \ItalyStrap\Core\get_image_size_array();
 
-	/**
-	 * Test if get_image_size_array return an array
-	 */
-	public function test_if_get_image_size_array_return_an_array() {
+        $this->assertTrue(is_array($is_array));
+    }
 
-		$is_array = \ItalyStrap\Core\get_image_size_array();
+    /**
+     * Test is return a string and if HTML tag is present.
+     */
+    public function test_if_return_a_string()
+    {
 
-		$this->assertTrue( is_array( $is_array ) );
-	}
+        $string = \ItalyStrap\Core\render_html_in_title_output('Questo è un {{strong}}titolo{{/strong}} in grassetto');
 
-	/**
-	 * Test is return a string and if HTML tag is present.
-	 */
-	public function test_if_return_a_string() {
+        $this->assertTrue(is_string($string));
+        $this->assertStringContainsString('<strong>', $string);
+        $this->assertStringContainsString('</strong>', $string);
+    }
 
-		$string = \ItalyStrap\Core\render_html_in_title_output( 'Questo è un {{strong}}titolo{{/strong}} in grassetto' );
+    /**
+     * Test if return an object
+     */
+    public function test_if_return_an_object()
+    {
 
-		$this->assertTrue( is_string( $string ) );
-		$this->assertStringContainsString( '<strong>', $string );
-		$this->assertStringContainsString( '</strong>', $string );
-	}
+        $detect = '';
+        $detect = apply_filters('mobile_detect', $detect);
 
-	/**
-	 * Test if return an object
-	 */
-	public function test_if_return_an_object() {
+        // Then use add_filter to append object.
+        add_filter('mobile_detect', 'ItalyStrap\Core\new_mobile_detect');
 
-		$detect = '';
-		$detect = apply_filters( 'mobile_detect', $detect );
-
-		// Then use add_filter to append object.
-		add_filter( 'mobile_detect', 'ItalyStrap\Core\new_mobile_detect' );
-
-		$this->assertTrue( is_object( $detect ) );
-	}
+        $this->assertTrue(is_object($detect));
+    }
 }

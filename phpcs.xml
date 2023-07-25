@@ -12,8 +12,14 @@
     <rule ref="PHPCompatibility"/>
     <config name="testVersion" value="7.4-"/>
 
+    <file>./admin/</file>
+    <file>./config/</file>
+    <file>./functions/</file>
+    <file>./hooks/</file>
     <file>./src/</file>
+    <file>./templates/</file>
     <file>./tests/</file>
+    <file>./_init.php</file>
 
     <!-- Use PSR12 as a base.-->
     <rule ref="PSR12">

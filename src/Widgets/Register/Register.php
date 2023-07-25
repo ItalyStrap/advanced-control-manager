@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register Widget Class
  *
@@ -13,38 +14,41 @@
 
 namespace ItalyStrap\Widgets\Register;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
+if (! defined('ABSPATH') or ! ABSPATH) {
+    die();
 }
 
 /**
  * Widget Register Class
  */
-class Register {
+class Register
+{
+    /**
+     * Widget object
+     *
+     * @var object
+     */
+    protected $widget;
 
-	/**
-	 * Widget object
-	 *
-	 * @var object
-	 */
-	protected $widget;
+    /**
+     * Init the class
+     *
+     * @param object $widget The object of the widget.
+     */
+    public function __construct($widget)
+    {
+        $this->widget = $widget;
+    }
 
-	/**
-	 * Init the class
-	 *
-	 * @param object $widget The object of the widget.
-	 */
-	public function __construct( $widget ) {
-		$this->widget = $widget;
-	}
+    public function hook()
+    {
+        add_action('widgets_init', array( $this, 'register_widgets' ));
+    }
 
-	public function hook() {
-		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
-	}
+    public function register_widgets()
+    {
+        global $wp_widget_factory;
 
-	public function register_widgets() {
-		global $wp_widget_factory;
-
-		$wp_widget_factory->widgets[ get_class( $this->widget ) ] = $this->widget;
-	}
+        $wp_widget_factory->widgets[ get_class($this->widget) ] = $this->widget;
+    }
 }

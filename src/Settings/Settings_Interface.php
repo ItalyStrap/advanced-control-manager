@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Interface for Admin Class
  *
@@ -12,40 +13,40 @@
 
 namespace ItalyStrap\Settings;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
+if (! defined('ABSPATH') or ! ABSPATH) {
+    die();
 }
 
-interface Settings_Interface {
+interface Settings_Interface
+{
+    /**
+     * Function description
+     *
+     * @since 2.0.0
+     */
+    public function settings_init();
 
-	/**
-	 * Function description
-	 *
-	 * @since 2.0.0
-	 */
-	public function settings_init();
+    /**
+     * Add option
+     *
+     * @since 2.0.0
+     */
+    public function add_option();
 
-	/**
-	 * Add option
-	 *
-	 * @since 2.0.0
-	 */
-	public function add_option();
+    /**
+     * Delete option
+     *
+     * @since 2.0.0
+     */
+    public function delete_option();
 
-	/**
-	 * Delete option
-	 *
-	 * @since 2.0.0
-	 */
-	public function delete_option();
-
-	/**
-	 * Sanitize the input data
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param  array $input The input array.
-	 * @return array        Return the array sanitized
-	 */
-	public function update( $input );
+    /**
+     * Sanitize the input data
+     *
+     * @since 2.0.0
+     *
+     * @param  array $input The input array.
+     * @return array        Return the array sanitized
+     */
+    public function update($input);
 }
