@@ -12,12 +12,12 @@ use ItalyStrap\Lazyload\ImageSubscriber;
 use PHPUnit\Framework\Assert;
 use Prophecy\Prophecy\ObjectProphecy;
 use SplFileObject;
-use WpunitTester;
+use IntegrationTester;
 
 class ImageSubscriberTest extends WPTestCase {
 
 	/**
-	 * @var WpunitTester
+	 * @var IntegrationTester
 	 */
 	protected $tester;
 

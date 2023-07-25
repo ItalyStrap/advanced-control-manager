@@ -45,7 +45,8 @@
 		"phpmetrics/phpmetrics": "^2.5",
 		"italystrap/debug": "^2.1",
 		"leafo/scssphp": "^0.6",
-		"phpspec/prophecy-phpunit": "^2.0"
+		"phpspec/prophecy-phpunit": "^2.0",
+		"rector/rector": "^0.17.7"
 	},
 	"autoload": {
 		"classmap": [

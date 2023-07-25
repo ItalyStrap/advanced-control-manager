@@ -42,13 +42,9 @@ class ImageSubscriberTest extends UnitTestCase {
 			Argument::type('callable'),
 			Argument::any(),
 			Argument::any()
-		)->will(function ($args): bool {
-			return true;
-		})->shouldBeCalled();
+		)->will(fn($args): bool => true)->shouldBeCalled();
 
-		$this->dispatcher->filter('italystrap_lazyload_image_events', Argument::any())->will(function ($args) {
-			return $args[1];
-		})->shouldBeCalled();
+		$this->dispatcher->filter('italystrap_lazyload_image_events', Argument::any())->will(fn($args) => $args[1])->shouldBeCalled();
 
 		$sut = $this->getInstance();
 		$sut->onWpLoaded();

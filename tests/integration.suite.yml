@@ -2,11 +2,11 @@
 #
 # Suite for unit or integration tests that require WordPress functions and classes.
 
-actor: WpunitTester
+actor: IntegrationTester
 modules:
     enabled:
         - WPLoader
-        - \Helper\Wpunit
+        - \Helper\Integration
     config:
         WPLoader:
             wpRootFolder: "%WP_ROOT_FOLDER%"
