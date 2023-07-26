@@ -75,9 +75,6 @@
 		}
 	},
 	"scripts": {
-		"test": [
-			"test"
-		],
 		"cs:fix": [
 			"@php vendor/bin/phpcbf -p"
 		],
@@ -85,22 +82,28 @@
 			"@php vendor/bin/phpcs -p"
 		],
 		"analyze": [
-			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
+			"@php vendor/bin/psalm"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit && vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=4"
+			"@php vendor/bin/codecept run unit"
 		],
-		"bench": [
-			"vendor\\bin\\phpbench run --report=performance"
+		"integration": [
+			"@php vendor/bin/codecept run integration && vendor/bin/infection --threads=4"
 		],
-		"metrics": [
-			"vendor\\bin\\phpmetrics --report-html='./tests/_output/report' ./src"
-		],
-		"insights": [
-			"vendor\\bin\\phpinsights"
+		"infection": [
+			"@php vendor/bin/infection --threads=4"
 		],
 		"clean": [
-			"vendor\\bin\\codecept clean"
+			"@php vendor/bin/codecept clean"
+		],
+		"bench": [
+			"vendor/bin/phpbench run --report=performance"
+		],
+		"metrics": [
+			"vendor/bin/phpmetrics --report-html='./tests/_output/report' ./src"
+		],
+		"insights": [
+			"vendor/bin/phpinsights"
 		]
 	},
 	"support"    : {

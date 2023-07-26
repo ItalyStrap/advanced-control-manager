@@ -1,35 +1,21 @@
 <?php
 
-class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
+declare(strict_types=1);
+
+namespace ItalyStrap\Tests\Integration;
+
+use ItalyStrap\Migrations\Settings_Converter;
+use ItalyStrap\Tests\IntegrationTestCase;
+
+class SettingsConverterTest extends IntegrationTestCase
 {
-    public function setUp(): void
-    {
-        // before
-        parent::setUp();
-
-        $this->settings_converter = new \ItalyStrap\Migrations\Settings_Converter();
-    }
-
-    public function tearDown(): void
-    {
-        // your tear down methods here
-
-        // then
-        parent::tearDown();
-    }
+	private function makeInstance(): Settings_Converter
+	{
+		return new Settings_Converter();
+	}
 
     /**
      * @test
-     * it should be instantiatable
-     */
-    public function it_should_be_instantiatable()
-    {
-        $this->assertInstanceOf('\ItalyStrap\Migrations\Settings_Converter', $this->settings_converter);
-    }
-
-    /**
-     * @test
-     * it_should_be_converted_to_theme_mod
      */
     public function it_should_be_converted_to_theme_mod()
     {
@@ -49,7 +35,7 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
             'logo'             => 'http://192.168.1.10/italystrap/wp-content/uploads/2015/08/26-wordpress-512.png',
         );
 
-        $this->settings_converter->data_to_theme_mod($pattern, $old_data);
+        $this->makeInstance()->data_to_theme_mod($pattern, $old_data);
 
         foreach ($pattern as $key => $value) {
             $this->assertTrue(null !== get_theme_mod($value), get_theme_mod($value));
@@ -58,7 +44,6 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
 
     /**
      * @test
-     * it_should_be_converted_to_option
      */
     public function it_should_be_converted_to_option()
     {
@@ -74,7 +59,7 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
             // 'analytics'    => 'UA-12345-6',
         );
 
-        $this->settings_converter->data_to_option($pattern, $old_data);
+        $this->makeInstance()->data_to_option($pattern, $old_data);
 
         foreach ($pattern as $key => $value) {
             $this->assertTrue(null !== get_option($value), get_option($value));
@@ -83,7 +68,6 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
 
     /**
      * @test
-     * it_should_return_integer
      */
     public function it_should_return_integer()
     {
@@ -98,8 +82,8 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
             'favicon'      => 'http://192.168.1.10/italystrap/wp-content/uploads/2013/03/featured-image-horizontal.jpg',
         );
 
-        $this->settings_converter->data_to_option($pattern, $old_data);
-        $this->settings_converter->data_to_theme_mod($pattern, $old_data);
+        $this->makeInstance()->data_to_option($pattern, $old_data);
+        $this->makeInstance()->data_to_theme_mod($pattern, $old_data);
 
         foreach ($pattern as $key => $value) {
             $this->assertTrue(is_numeric(get_option($value)), 'Value: ' . get_option($value));
@@ -109,7 +93,6 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
 
     /**
      * @test
-     * it_should_be_converted_to_options
      */
     public function it_should_be_converted_to_options()
     {
@@ -126,7 +109,7 @@ class Settings_Converter_Test extends \Codeception\TestCase\WPTestCase
 
         $new_options = get_option('italystrap_settings');
 
-        $this->settings_converter->data_to_options($pattern, $old_data, $new_options, 'italystrap_settings');
+        $this->makeInstance()->data_to_options($pattern, $old_data, $new_options, 'italystrap_settings');
 
         $options = get_option('italystrap_settings');
 

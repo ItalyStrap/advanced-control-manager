@@ -2,66 +2,33 @@
 
 declare(strict_types=1);
 
-/**
- * Test the Query_Posts Class
- */
+namespace ItalyStrap\Test\Integration;
 
-namespace ItalyStrap\Test;
-
-use Codeception\TestCase\WPTestCase;
-use DOMDocument;
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Config\Config;
 use ItalyStrap\I18N\Translator;
 use ItalyStrap\Query\Posts;
+use ItalyStrap\Tests\IntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use WP_Query;
 
-class QueryPostTest extends WPTestCase
+class QueryPostTest extends IntegrationTestCase
 {
-    public function setUp(): void
-    {
-        // Before.
-        parent::setUp();
 
-        $this->dom = new DOMDocument();
-
-        // Your set up methods here.
+    private function makeInstance(): Posts
+	{
+		return new Posts(
+			new WP_Query(),
+			new Excerpt(
+				new Config(),
+				new Translator('ItalyStrap')
+			),
+			'test'
+		);
     }
 
-    protected function getInstance()
-    {
-        $sut = new Posts(
-            new WP_Query(),
-            new Excerpt(
-                new Config(),
-                new Translator('ItalyStrap')
-            ),
-            'test'
-        );
-
-        Assert::assertInstanceOf(Posts::class, $sut, '');
-        return $sut;
-    }
-
-    public function tearDown(): void
-    {
-        // Your tear down methods here.
-
-        // Then.
-        parent::tearDown();
-    }
-
-    /**
-     * @test
-     */
-    public function instanceOk()
-    {
-        $sut = $this->getInstance();
-    }
-
-    public function postTypeProvider()
-    {
+    public function postTypeProvider(): \Generator
+	{
         yield 'default post type "post"' => [
             [],
             'post'
@@ -89,20 +56,17 @@ class QueryPostTest extends WPTestCase
      */
     public function itShouldReturn($shortcode_args, $expected_value)
     {
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
         $sut->get_shortcode_args($shortcode_args);
         $args = $sut->get_query_args();
 
         Assert::assertEquals($expected_value, $args['post_type'], '');
     }
 
-    /**
-     * it should be echo_read_more_link
-     */
     public function itShouldBeEchoReadMoreLink()
     {
 
-        $sut = $this->getInstance();
+        $sut = $this->makeInstance();
 
         ob_start();
         $sut->read_more_link();

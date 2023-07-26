@@ -1,17 +1,8 @@
 <?php
 
-/**
- * Validation API: Validation Class
- *
- * @package ItalyStrap
- * @since 2.0.0
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Update;
-
-if (! defined('ITALYSTRAP_PLUGIN') or ! ITALYSTRAP_PLUGIN) {
-    die();
-}
 
 /**
  * Validation class

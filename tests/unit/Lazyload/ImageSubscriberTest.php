@@ -7,11 +7,9 @@ namespace ItalyStrap\Tests\Unit\Lazyload;
 use ItalyStrap\Lazyload\ImageSubscriber;
 use ItalyStrap\Tests\UnitTestCase;
 use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 class ImageSubscriberTest extends UnitTestCase
 {
-    use ProphecyTrait;
 
     private function getInstance()
     {

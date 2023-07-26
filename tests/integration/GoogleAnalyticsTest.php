@@ -1,6 +1,12 @@
 <?php
 
-class GoogleAnalyticsTest extends \Codeception\TestCase\WPTestCase
+declare(strict_types=1);
+
+namespace ItalyStrap\Tests\Integration;
+
+use ItalyStrap\Tests\IntegrationTestCase;
+
+class GoogleAnalyticsTest extends IntegrationTestCase
 {
     public function setUp(): void
     {
@@ -16,43 +22,8 @@ class GoogleAnalyticsTest extends \Codeception\TestCase\WPTestCase
         $this->dom = new DOMDocument();
     }
 
-    public function tearDown(): void
-    {
-        // your tear down methods here
-
-        // then
-        parent::tearDown();
-    }
-
     /**
      * @test
-     * it should be instantiatable
-     */
-    public function it_should_be_instantiatable()
-    {
-        $this->assertInstanceOf('ItalyStrap\Google\Analytics', $this->analytics);
-    }
-
-    /**
-     * @test
-     * it_should_be_instance_of_I_Fields
-     */
-    // public function it_should_be_instance_of_I_Fields() {
-    //     $this->assertInstanceOf( 'ItalyStrap\Fields\Fields_Interface', $this->fields_type );
-    // }
-
-    /**
-     * @test
-     * it_should_be_an_object
-     */
-    public function it_should_be_an_object()
-    {
-        $this->assertTrue(is_object($this->analytics));
-    }
-
-    /**
-     * @test
-     * it_should_be_return_standard_script
      */
     public function it_should_be_return_standard_script()
     {
@@ -64,7 +35,6 @@ class GoogleAnalyticsTest extends \Codeception\TestCase\WPTestCase
 
     /**
      * @test
-     * it_should_be_return_alternative_script
      */
     public function it_should_be_return_alternative_script()
     {
@@ -76,7 +46,6 @@ class GoogleAnalyticsTest extends \Codeception\TestCase\WPTestCase
 
     /**
      * @test
-     * it_should_be_return_analytics_script
      */
     public function it_should_be_return_analytics_script()
     {

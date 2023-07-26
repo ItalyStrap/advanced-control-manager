@@ -2,30 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ItalyStrap\Tests;
+namespace ItalyStrap\Tests\Integration;
 
-require_once codecept_root_dir('/italystrap.php');
-class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
+use ItalyStrap\Tests\IntegrationTestCase;
+
+class GeneralFunctionsTest extends IntegrationTestCase
 {
-    public function setUp(): void
-    {
-        // before
-        parent::setUp();
-
-        // your set up methods here
-    }
-
-    public function tearDown(): void
-    {
-        // your tear down methods here
-
-        // then
-        parent::tearDown();
-    }
-
-    /**
-     * Test if shortcode_atts_multidimensional_array return an array
-     */
     public function test_shortcode_atts_multidimensional_array()
     {
 
@@ -38,9 +20,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
         $this->assertTrue(is_array($array));
     }
 
-    /**
-     * Test function ItalyStrap\Core\file_get_content() works
-     */
     public function test_file_get_content()
     {
 
@@ -51,9 +30,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
         $this->assertTrue(isset($get_file_content));
     }
 
-    /**
-     * Test if get_taxonomies_list_array return an array
-     */
     public function test_if_get_taxonomies_list_array_return_an_array()
     {
 
@@ -62,9 +38,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
         $this->assertTrue(is_array($is_array));
     }
 
-    /**
-     * Test if get_image_size_array return an array
-     */
     public function test_if_get_image_size_array_return_an_array()
     {
 
@@ -73,9 +46,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
         $this->assertTrue(is_array($is_array));
     }
 
-    /**
-     * Test is return a string and if HTML tag is present.
-     */
     public function test_if_return_a_string()
     {
 
@@ -86,9 +56,6 @@ class GeneralFunctionsTest extends \Codeception\TestCase\WPTestCase
         $this->assertStringContainsString('</strong>', $string);
     }
 
-    /**
-     * Test if return an object
-     */
     public function test_if_return_an_object()
     {
 
