@@ -14,21 +14,20 @@ use WP_Query;
 
 class QueryPostTest extends IntegrationTestCase
 {
-
     private function makeInstance(): Posts
-	{
-		return new Posts(
-			new WP_Query(),
-			new Excerpt(
-				new Config(),
-				new Translator('ItalyStrap')
-			),
-			'test'
-		);
+    {
+        return new Posts(
+            new WP_Query(),
+            new Excerpt(
+                new Config(),
+                new Translator('ItalyStrap')
+            ),
+            'test'
+        );
     }
 
     public function postTypeProvider(): \Generator
-	{
+    {
         yield 'default post type "post"' => [
             [],
             'post'

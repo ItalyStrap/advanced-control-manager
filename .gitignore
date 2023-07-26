@@ -32,5 +32,6 @@ phpunit.xml
 **/todo.md
 c3.php
 **/*.back
+rector.php
 
 

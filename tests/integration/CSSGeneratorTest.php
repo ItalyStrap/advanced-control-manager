@@ -24,10 +24,10 @@ class CSSGeneratorTest extends IntegrationTestCase
         ];
     }
 
-	private function makeInstance(): CSS_Generator
-	{
-		return new CSS_Generator();
-	}
+    private function makeInstance(): CSS_Generator
+    {
+        return new CSS_Generator();
+    }
 
     protected static function getMethod($name)
     {

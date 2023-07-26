@@ -17,81 +17,80 @@ use SplFileObject;
 
 class IntegrationTestCase extends WPTestCase
 {
-	use ProphecyTrait;
+    use ProphecyTrait;
 
-	protected $tester;
+    protected $tester;
 
-	/**
-	 * @var DOMDocument
-	 */
-	private $dom;
+    /**
+     * @var DOMDocument
+     */
+    private $dom;
 
-	/**
-	 * @var ObjectProphecy
-	 */
-	private $file;
+    /**
+     * @var ObjectProphecy
+     */
+    private $file;
 
-	/**
-	 * @var Config
-	 */
-	private $config;
+    /**
+     * @var Config
+     */
+    private $config;
 
-	/**
-	 * @var EventDispatcher
-	 */
-	private $dispatcher;
+    /**
+     * @var EventDispatcher
+     */
+    private $dispatcher;
 
-	private $image;
+    private $image;
 
-	public function getImage(): Image
-	{
-		return $this->image;
-	}
+    public function getImage(): Image
+    {
+        return $this->image;
+    }
 
-	/**
-	 * @return SplFileObject
-	 */
-	public function getFile(): SplFileObject
-	{
-		return $this->file->reveal();
-	}
+    /**
+     * @return SplFileObject
+     */
+    public function getFile(): SplFileObject
+    {
+        return $this->file->reveal();
+    }
 
-	/**
-	 * @return EventDispatcherInterface
-	 */
-	public function getDispatcher(): EventDispatcherInterface
-	{
-		return $this->dispatcher;
-	}
+    /**
+     * @return EventDispatcherInterface
+     */
+    public function getDispatcher(): EventDispatcherInterface
+    {
+        return $this->dispatcher;
+    }
 
-	/**
-	 * @return Config
-	 */
-	public function getConfig(): Config
-	{
-		return $this->config;
-	}
+    /**
+     * @return Config
+     */
+    public function getConfig(): Config
+    {
+        return $this->config;
+    }
 
-	public function setUp(): void
-	{
-		parent::setUp();
+    public function setUp(): void
+    {
+        parent::setUp();
 
-		$this->dom = new DOMDocument();
+        $this->dom = new DOMDocument();
 
-		$this->validation = new Validation();
+        $this->validation = new Validation();
 
-		$this->config = new Config();
-		$this->dispatcher = new EventDispatcher();
-		$this->file = $this->prophesize(SplFileObject::class);
-		$this->image = new Image($this->config, $this->dispatcher);
-	}
+        $this->config = new Config();
+        $this->dispatcher = new EventDispatcher();
+        $this->file = $this->prophesize(SplFileObject::class);
+        $this->image = new Image($this->config, $this->dispatcher);
+    }
 
-	public function tearDown(): void
-	{
-		// your tear down methods here
+    public function tearDown(): void
+    {
+        // your tear down methods here
 
-		// then
-		parent::tearDown();
-	}
-
+        // then
+        parent::tearDown();
+    }
 }

@@ -9,10 +9,10 @@ use ItalyStrap\Update\Sanitization;
 
 class SanitizationTest extends IntegrationTestCase
 {
-	private function makeInstance(): Sanitization
-	{
-		return new Sanitization();
-	}
+    private function makeInstance(): Sanitization
+    {
+        return new Sanitization();
+    }
 
     /**
      * @test

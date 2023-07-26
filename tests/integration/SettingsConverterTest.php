@@ -9,10 +9,10 @@ use ItalyStrap\Tests\IntegrationTestCase;
 
 class SettingsConverterTest extends IntegrationTestCase
 {
-	private function makeInstance(): Settings_Converter
-	{
-		return new Settings_Converter();
-	}
+    private function makeInstance(): Settings_Converter
+    {
+        return new Settings_Converter();
+    }
 
     /**
      * @test

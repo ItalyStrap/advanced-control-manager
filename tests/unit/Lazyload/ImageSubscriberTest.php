@@ -10,7 +10,6 @@ use Prophecy\Argument;
 
 class ImageSubscriberTest extends UnitTestCase
 {
-
     private function getInstance()
     {
         $sut = new ImageSubscriber(
