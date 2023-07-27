@@ -37,23 +37,23 @@ abstract class Import_Export_Base
      *
      * @var array
      */
-    protected $args = array();
+    protected $args = [];
 
     /**
      * Array with all plugin settings
      *
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      * The translation strings
      *
      * @var array
      */
-    protected $i18n = array();
+    protected $i18n = [];
 
-    protected $fields_args = array();
+    protected $fields_args = [];
 
     /**
      * Init Class
@@ -61,7 +61,7 @@ abstract class Import_Export_Base
      * @param array            $imp_exp_args [description]
      * @param FieldsInterface $fields_type  [description]
      */
-    function __construct(array $imp_exp_args = array(), FieldsInterface $fields_type)
+    function __construct(array $imp_exp_args = [], FieldsInterface $fields_type)
     {
 
         $this->args = $imp_exp_args;
@@ -120,7 +120,7 @@ abstract class Import_Export_Base
             date_i18n(get_option('time_format'))
         );
 
-        $output = str_replace(array( ' ', ':' ), '-', $output);
+        $output = str_replace([' ', ':'], '-', $output);
 
         return $output;
     }
@@ -143,49 +143,30 @@ abstract class Import_Export_Base
     public function do_fields($value = '')
     {
 
-        $this->fields_args = array(
-
-            'export_settings'   => array(
-                'name'      => $this->i18n['export']['desc'],
-                'desc'      => '',
-                'id'        => $this->args['name_action'],
-                '_id'       => $this->args['name_action'],
-                '_name'     => $this->args['name_action'],
-                'type'      => 'hidden',
-                // 'class'      => 'widefat italystrap_action',
-                'default'   => $value,
-                'value'     => $value,
-             ),
-
-            'import_file'   => array(
-                'name'      => $this->i18n['import']['desc'],
-                'desc'      => '',
-                'id'        => $this->args['import_file'],
-                '_id'       => $this->args['import_file'],
-                '_name'     => $this->args['import_file'],
-                'type'      => 'file',
-                // 'class'      => 'widefat italystrap_action',
-                // 'default'    => $value,
-                // 'value'      => $value,
-             ),
-
-            'import_settings'   => array(
-                'name'      => '',
-                'desc'      => '',
-                'id'        => $this->args['name_action'],
-                '_id'       => $this->args['name_action'],
-                '_name'     => $this->args['name_action'],
-                'type'      => 'hidden',
-                // 'class'      => 'widefat italystrap_action',
-                'class-p'       => 'hidden',
-                'default'   => $value,
-                'value'     => $value,
-             ),
-        );
-
-        $default = array(
+        $this->fields_args = ['export_settings'   => [
+            'name'      => $this->i18n['export']['desc'],
+            'desc'      => '',
+            'id'        => $this->args['name_action'],
+            '_id'       => $this->args['name_action'],
+            '_name'     => $this->args['name_action'],
+            'type'      => 'hidden',
+            // 'class'      => 'widefat italystrap_action',
+            'default'   => $value,
             'value'     => $value,
-        );
+        ], 'import_file'   => ['name'      => $this->i18n['import']['desc'], 'desc'      => '', 'id'        => $this->args['import_file'], '_id'       => $this->args['import_file'], '_name'     => $this->args['import_file'], 'type'      => 'file'], 'import_settings'   => [
+            'name'      => '',
+            'desc'      => '',
+            'id'        => $this->args['name_action'],
+            '_id'       => $this->args['name_action'],
+            '_name'     => $this->args['name_action'],
+            'type'      => 'hidden',
+            // 'class'      => 'widefat italystrap_action',
+            'class-p'       => 'hidden',
+            'default'   => $value,
+            'value'     => $value,
+        ]];
+
+        $default = ['value'     => $value];
 
         $output = '';
 

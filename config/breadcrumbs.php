@@ -14,21 +14,18 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  * Definition array() with all the options connected to the
  * module which must be called by an include (setoptions).
  */
-return array(
-
+return [
     /**
      * Text below the image.
      */
-    'text'              => array(
-                'label'     => __('Text of the image', 'italystrap'),
-                'desc'      => __('Enter the text of the image.', 'italystrap'),
-                'id'        => 'text',
-                'type'      => 'textarea',
-                'class'     => 'widefat',
-                'default'   => false,
-                // 'validate'   => 'alpha_dash',
-                'sanitize'  => 'sanitize_text_field',
-                 ),
-
-
-);
+    'text'              => [
+        'label'     => __('Text of the image', 'italystrap'),
+        'desc'      => __('Enter the text of the image.', 'italystrap'),
+        'id'        => 'text',
+        'type'      => 'textarea',
+        'class'     => 'widefat',
+        'default'   => false,
+        // 'validate'   => 'alpha_dash',
+        'sanitize'  => 'sanitize_text_field',
+    ],
+];

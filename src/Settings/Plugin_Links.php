@@ -33,14 +33,11 @@ class Plugin_Links
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'update_option' => array(
-                'function_to_add'   => 'save',
-                'accepted_args'     => 3,
-            ),
+            'update_option' => ['function_to_add'   => 'save', 'accepted_args'     => 3],
             'plugins_loaded'    => 'init',
-        );
+        ];
     }
 
     /**

@@ -20,20 +20,14 @@ use Inpsyde\MenuCache\MenuCache;
  */
 class Menu extends MenuCache
 {
-    /**
-     * @var int
-     */
-    private $expiration;
+    private ?int $expiration = null;
 
-    /**
-     * @var string
-     */
-    private $key_prefix = 'cached_menu_';
+    private string $key_prefix = 'cached_menu_';
 
     /**
      * @var string[]
      */
-    private $theme_locations;
+    private ?array $theme_locations = null;
 
     /**
      * Stores the menu HTML in a transient.
@@ -148,7 +142,7 @@ class Menu extends MenuCache
 
         if (! $menu && ! $args->theme_location) {
             foreach (wp_get_nav_menus() as $menu_maybe) {
-                if (wp_get_nav_menu_items($menu_maybe->term_id, array( 'update_post_term_cache' => false ))) {
+                if (wp_get_nav_menu_items($menu_maybe->term_id, ['update_post_term_cache' => false])) {
                     $menu = $menu_maybe;
                     break;
                 }

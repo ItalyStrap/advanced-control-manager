@@ -68,11 +68,7 @@ class Page
     public function script_2()
     {
 
-        $data = array(
-            'xfbml'     => '1',
-            'version'   => 'v2.8',
-            // 'appId'      => '150302815027430',
-        );
+        $data = ['xfbml'     => '1', 'version'   => 'v2.8'];
 
         // if ( empty( $instance['appId'] ) ) {
         //  $data['appId'] = $instance['appId'];
@@ -92,7 +88,7 @@ class Page
      *
      * @return string        [description]
      */
-    public function render(array $instance = array())
+    public function render(array $instance = [])
     {
 
         if (empty($instance['href'])) {
@@ -117,21 +113,10 @@ class Page
 
         // wp_parse_args( $args, $defaults );
 
-        $attr = array(
-            'class'                         => 'fb-page',
-            'data-href'                     =>
-                false !== strpos($instance['href'], 'facebook.com')
-                ? esc_url($instance['href'])
-                : 'https://facebook.com/' . esc_attr($instance['href']),
-            'data-width'                    => absint($instance['width']),
-            'data-height'                   => absint($instance['height']),
-            'data-tabs'                     => implode(',', (array) $instance['tabs']),
-            'data-hide-cover'               => esc_attr($instance['hide-cover']),
-            'data-show-facepile'            => esc_attr($instance['show-facepile']),
-            'data-hide-cta'                 => esc_attr($instance['hide-cta']),
-            'data-small-header'             => esc_attr($instance['small-header']),
-            'data-adapt-container-width'    => esc_attr($instance['adapt-container-width']),
-        );
+        $attr = ['class'                         => 'fb-page', 'data-href'                     =>
+            false !== strpos($instance['href'], 'facebook.com')
+            ? esc_url($instance['href'])
+            : 'https://facebook.com/' . esc_attr($instance['href']), 'data-width'                    => absint($instance['width']), 'data-height'                   => absint($instance['height']), 'data-tabs'                     => implode(',', (array) $instance['tabs']), 'data-hide-cover'               => esc_attr($instance['hide-cover']), 'data-show-facepile'            => esc_attr($instance['show-facepile']), 'data-hide-cta'                 => esc_attr($instance['hide-cta']), 'data-small-header'             => esc_attr($instance['small-header']), 'data-adapt-container-width'    => esc_attr($instance['adapt-container-width'])];
 
         $output = sprintf(
             '<div%1$s><div%2$s></div></div>',
@@ -151,6 +136,6 @@ class Page
     public function output()
     {
 
-        echo $this->render(array());
+        echo $this->render([]);
     }
 }

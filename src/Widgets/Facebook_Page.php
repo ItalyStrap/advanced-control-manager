@@ -29,7 +29,7 @@ class Facebook_Page extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         /**
          * List of posts type
@@ -44,15 +44,15 @@ class Facebook_Page extends Widget
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Facebook Page', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Display the Facebook Page widget', 'italystrap'),
             'fields'            => $this->get_widget_fields(require(ITALYSTRAP_PLUGIN_PATH . 'config/facebook-page.php')),
-            'control_options'   => array( 'width' => 450 ),
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-         );
+            'control_options'   => ['width' => 450],
+            'widget_options'    => ['customize_selective_refresh' => true],
+        ];
 
         /**
          * Create Widget
@@ -72,7 +72,7 @@ class Facebook_Page extends Widget
     {
 
         $facebook_page = new Page();
-        add_action('wp_footer', array( $facebook_page, 'script_2' ), 99);
+        add_action('wp_footer', [$facebook_page, 'script_2'], 99);
         // add_action( 'italystrap_sidebar', array( $facebook_page, 'output' ) );
 
         // $query_posts = Posts_Base::init();

@@ -29,7 +29,7 @@ function posts_columns($defaults)
 function posts_custom_columns($column_name, $id)
 {
     if ($column_name === 'featured_image') {
-        echo the_post_thumbnail(array( 60, 60 ));
+        echo the_post_thumbnail([60, 60]);
     }
 }
 

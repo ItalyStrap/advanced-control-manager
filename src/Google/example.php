@@ -20,29 +20,7 @@
  */
 add_filter('italystrap_ga_commands_queue', function ($parameters, $settings) {
 
-    $new_commands_queue = array(
-            array(
-                'command'       => 'create',
-                'fields'        => esc_js($settings['google_analytics_id']),
-                'fields_object' => array(
-                     'cookieDomain'          => 'italystrap.com',
-                     'siteSpeedSampleRate'   => 100,
-                 ),
-            ),
-            array(
-                'command'       => 'require',
-                'fields'        => 'linkid',
-                'fields_object' => 'linkid.js',
-            ),
-            array(
-                'command'       => 'require',
-                'fields'        => 'displayfeatures',
-            ),
-            array(
-                'command'       => 'send',
-                'fields'        => 'pageview',
-            ),
-    );
+    $new_commands_queue = [['command'       => 'create', 'fields'        => esc_js($settings['google_analytics_id']), 'fields_object' => ['cookieDomain'          => 'italystrap.com', 'siteSpeedSampleRate'   => 100]], ['command'       => 'require', 'fields'        => 'linkid', 'fields_object' => 'linkid.js'], ['command'       => 'require', 'fields'        => 'displayfeatures'], ['command'       => 'send', 'fields'        => 'pageview']];
 
     return $new_commands_queue;
 }, 10, 2);

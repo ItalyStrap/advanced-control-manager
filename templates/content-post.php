@@ -46,10 +46,10 @@
                 <section class="entry-body">
                     <header class="entry-header">
                         <?php include \ItalyStrap\Core\get_template('/templates/posts/title.php'); ?>
-                    
+
                         <?php if ($this->config['show_date'] || $this->config['show_author'] || $this->config['show_comments_number']) : ?>
                         <div class="entry-meta">
-                    
+
                             <?php
                             if ($this->config['show_date']) : ?>
                                 <time class="published" datetime="<?php echo get_the_time('c'); // XSS ok. ?>" itemprop="datePublished"><?php echo get_the_time($this->config['date_format']); // XSS ok.?></time>
@@ -60,7 +60,7 @@
                             <span class="sep"><?php esc_attr_e('|', 'italystrap'); ?></span>
                                 <?php
                             endif; ?>
-                    
+
                             <?php if ($this->config['show_author']) : ?>
                                 <span class="author vcard" itemprop="author">
                                     <?php esc_attr_e('By', 'italystrap'); ?>
@@ -69,23 +69,23 @@
                                     </a>
                                 </span>
                             <?php endif; ?>
-                    
+
                             <?php if ($this->config['show_author'] && $this->config['show_comments_number']) : ?>
                                 <span class="sep"><?php esc_attr_e('|', 'italystrap'); ?></span>
                             <?php endif; ?>
-                    
+
                             <?php if ($this->config['show_comments_number']) : ?>
                                 <a class="comments" href="<?php comments_link(); ?>">
                                     <?php comments_number(__('No comments', 'italystrap'), __('One comment', 'italystrap'), __('% comments', 'italystrap')); ?>
                                 </a>
                             <?php endif; ?>
-                    
+
                         </div>
-                    
+
                         <?php endif; ?>
-                    
+
                     </header>
-                    
+
                     <?php if ($this->config['show_excerpt']) : ?>
                         <div class="entry-summary">
                             <p itemprop="text">
@@ -102,7 +102,7 @@
 
                     <?php if ($this->config['show_cats'] || $this->config['show_tags']) : ?>
                         <footer class="entry-footer">
-                        
+
                             <?php
                             $categories = get_the_term_list($this->query->post->ID, 'category', '', ', ');
                             if ($this->config['show_cats'] && $categories) :
@@ -112,7 +112,7 @@
                                 <span class="entry-cats-list"><?php echo $categories; // XSS ok.?></span>
                             </div>
                             <?php endif; ?>
-                        
+
                             <?php
                             $tags = get_the_term_list($this->query->post->ID, 'post_tag', '', ', ');
 
@@ -123,7 +123,7 @@
                                 <span class="entry-tags-list" itemprop="keywords"><?php echo $tags; // XSS ok. ?></span>
                             </div>
                             <?php endif; ?>
-                        
+
                             <?php $this->get_custom_fields(); ?>
                         </footer>
                     <?php endif; ?>

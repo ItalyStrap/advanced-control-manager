@@ -20,9 +20,9 @@ namespace ItalyStrap\Event;
  */
 class Manager
 {
-    const CALLBACK = 'function_to_add';
-    const PRIORITY = 'priority';
-    const ACCEPTED_ARGS = 'accepted_args';
+    public const CALLBACK = 'function_to_add';
+    public const PRIORITY = 'priority';
+    public const ACCEPTED_ARGS = 'accepted_args';
 
     /**
      * Adds an event subscriber.
@@ -101,11 +101,11 @@ class Manager
     private function remove_subscriber_listener(Subscriber_Interface $subscriber, $event_name, $parameters)
     {
         if (is_string($parameters)) {
-            $this->remove_listener($event_name, array( $subscriber, $parameters ));
+            $this->remove_listener($event_name, [$subscriber, $parameters]);
         } elseif (is_array($parameters) && isset($parameters[ static::CALLBACK ])) {
             $this->remove_listener(
                 $event_name,
-                array( $subscriber, $parameters[ static::CALLBACK ] ),
+                [$subscriber, $parameters[ static::CALLBACK ]],
                 $parameters[ static::PRIORITY ] ?? 10
             );
         }

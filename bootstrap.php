@@ -17,7 +17,7 @@ use ItalyStrap\I18N\Translatable;
 use ItalyStrap\I18N\Translator;
 use ItalyStrap\Import_Export\Import_Export;
 use ItalyStrap\Lazyload\ImageSubscriber;
-use ItalyStrap\Migrations\Old_Hooks;
+use ItalyStrap\Migrations\EventsMigration;
 use ItalyStrap\Settings\Settings;
 use ItalyStrap\View\ViewACM;
 use ItalyStrap\View\ViewACM_Interface;
@@ -78,7 +78,12 @@ $autoload_definitions = [
     //  Settings::class                         => $fields_type,
     Import_Export::class                    => $fields_type,
     //  \ItalyStrapAdminGallerySettings::class  => $fields_type,
-    Config::class                           => [':config' => array_merge($options, $theme_mods, $prefix_coonfig, $is_debug)],
+    Config::class                           => [':config' => \array_merge(
+        $options,
+        $theme_mods,
+        $prefix_coonfig,
+        $is_debug
+    )],
     Translator::class                       => [':domain' => 'italystrap'],
     ImageSubscriber::class                          => [
         ':file'     => new \SplFileObject(
@@ -90,14 +95,23 @@ $autoload_definitions = [
 /**======================
  * Autoload Aliases Class
  *=====================*/
-$autoload_aliases = [ConfigInterface::class => Config::class, Config_Interface::class   => Config::class, EventDispatcherInterface::class   => EventDispatcher::class, ViewACM_Interface::class => ViewACM::class, Translatable::class      => Translator::class];
+$autoload_aliases = [
+    ConfigInterface::class => Config::class,
+    Config_Interface::class   => Config::class,
+    EventDispatcherInterface::class   => EventDispatcher::class,
+    ViewACM_Interface::class => ViewACM::class,
+    Translatable::class      => Translator::class
+];
 
 /**=============================
  * Autoload Concrete Classes
  * with option check
  * @see _init & _init_admin
  =============================*/
-$autoload_subscribers = ['widget_areas'         => Areas::class, 'widget_attributes'        => Attributes::class];
+$autoload_subscribers = [
+    'widget_areas'         => Areas::class,
+    'widget_attributes'        => Attributes::class
+];
 
 /**=============================
  * Autoload Concrete Classes
@@ -115,7 +129,7 @@ if (\defined('ITALYSTRAP_BETA')) {
 /**
  * @todo Maybe add also a version like <=4.0
  */
-is_italystrap_active() && $autoload_subscribers[] = Old_Hooks::class;
+is_italystrap_active() && $autoload_subscribers[] = EventsMigration::class;
 
 foreach ($autoload_sharing as $class) {
     $injector->share($class);
@@ -151,7 +165,11 @@ add_action('init', function () {
     /**
      * Load po file
      */
-    \load_plugin_textdomain('italystrap', false, dirname(ITALYSTRAP_BASENAME) . '/lang');
+    \load_plugin_textdomain(
+        'italystrap',
+        false,
+        dirname(ITALYSTRAP_BASENAME) . '/lang'
+    );
 }, 100);
 
 $autoload_plugin_files_init = ['/_init.php', '/_init-admin.php'];

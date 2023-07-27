@@ -40,18 +40,18 @@ class Products extends Widget
 
         // $fields['tags']['options'] = ( ( is_admin() ) ? get_taxonomies_list_array( 'product_tag' ) : null );
 
-        $fields['post_types'] = array(
+        $fields['post_types'] = [
             'name'      => __('Post type', 'italystrap'),
             'desc'      => __('Select the post type.', 'italystrap'),
             'id'        => 'post_types',
             'type'      => 'multiple_select',
             'class'     => 'widefat post_types',
             'default'   => 'product',
-            'options'   => array( 'product' => 'product' ),
+            'options'   => ['product' => 'product'],
             // 'validate'   => 'numeric_comma',
             'filter'    => 'sanitize_text_field',
             'section'   => 'filter',
-        );
+        ];
 
         return apply_filters('italystrap_before_create_fields', $fields, $this->id_base);
     }
@@ -65,22 +65,22 @@ class Products extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         /**
          * Configure widget array.
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Product', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Displays list of WC product with an array of options', 'italystrap'),
             'fields'            => $this->get_widget_fields(require(ITALYSTRAP_PLUGIN_PATH . 'config/posts.php')),
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-            'control_options'   => array( 'width' => 450 ),
-         );
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 450],
+        ];
 
         /**
          * Create Widget
@@ -102,31 +102,11 @@ class Products extends Widget
         }
 
         if (isset($args['tag__in']) && ! isset($args['category__in'])) {
-            $args['tax_query'] = array(
-                array(
-                    'taxonomy'  => 'product_tag',
-                    'terms'     => $args['tag__in'],
-                ),
-            );
+            $args['tax_query'] = [['taxonomy'  => 'product_tag', 'terms'     => $args['tag__in']]];
         } elseif (! isset($args['tag__in']) && isset($args['category__in'])) {
-            $args['tax_query'] = array(
-                array(
-                    'taxonomy'  => 'product_cat',
-                    'terms'     => $args['category__in'],
-                ),
-            );
+            $args['tax_query'] = [['taxonomy'  => 'product_cat', 'terms'     => $args['category__in']]];
         } else {
-            $args['tax_query'] = array(
-                'relation'  => 'AND',
-                array(
-                    'taxonomy'  => 'product_tag',
-                    'terms'     => $args['tag__in'],
-                ),
-                array(
-                    'taxonomy'  => 'product_cat',
-                    'terms'     => $args['category__in'],
-                ),
-            );
+            $args['tax_query'] = ['relation'  => 'AND', ['taxonomy'  => 'product_tag', 'terms'     => $args['tag__in']], ['taxonomy'  => 'product_cat', 'terms'     => $args['category__in']]];
         }
 
         unset($args['tag__in']);
@@ -150,7 +130,7 @@ class Products extends Widget
 
         $query_posts->get_widget_args($instance);
 
-        add_filter("italystrap_{$this->id_base}_query_arg", array( $this, 'parse_query_arguments' ));
+        add_filter("italystrap_{$this->id_base}_query_arg", [$this, 'parse_query_arguments']);
 
         return $query_posts->output();
     }

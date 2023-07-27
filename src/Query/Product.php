@@ -75,6 +75,8 @@ class Product extends Query
     public function output()
     {
 
+        $first_tag = [];
+        $first_cat = [];
         /**
          * Get the current post id
          *
@@ -128,7 +130,7 @@ class Product extends Query
          *
          * @var array
          */
-        $args = array(
+        $args = [
             'posts_per_page'            => $this->args['posts_number'] + count($this->posts_to_exclude),
             'order'                     => $this->args['order'],
             'orderby'                   => $this->args['orderby'],
@@ -138,15 +140,8 @@ class Product extends Query
             'update_post_meta_cache'    => false,
             // 'product_tag'                => 'tag',
             // 'product_cat'                => 'tag',
-            'tax_query'             => array(
-                array(
-                    'taxonomy'      => 'product_tag',
-                    'terms'     => array( '226' ),
-                    // 'field'  => 'slug',
-                    // 'operator'   => 'IN'
-                )
-            ),
-        );
+            'tax_query'             => [['taxonomy'      => 'product_tag', 'terms'     => ['226']]],
+        ];
 
         /**
          * Display per post/page ID
@@ -192,7 +187,7 @@ class Product extends Query
             $tags = wp_get_post_terms($this->post->ID);
 
             if ($tags) {
-                $count = count($tags);
+                $count = is_countable($tags) ? count($tags) : 0;
                 for ($i = 0; $i < $count; $i++) {
                     $first_tag[] = $tags[ $i ]->term_id;
                 }
@@ -218,7 +213,7 @@ class Product extends Query
             $cats = wp_get_post_terms($this->post->ID, 'category');
 
             if ($cats) {
-                $count = count($cats);
+                $count = is_countable($cats) ? count($cats) : 0;
                 for ($i = 0; $i < $count; $i++) {
                     $first_cat[] = $cats[ $i ]->term_id;
                 }

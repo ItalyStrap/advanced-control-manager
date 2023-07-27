@@ -62,7 +62,7 @@ class Control_Base extends WP_Customize_Control
      *                                                 'date' are supported implicitly. Default 'text'.
      * }
      */
-    function __construct(WP_Customize_Manager $manager, $id, array $args = array())
+    function __construct(WP_Customize_Manager $manager, $id, array $args = [])
     {
 
         /**
@@ -90,7 +90,7 @@ class Control_Base extends WP_Customize_Control
 
         if (defined(WP_DEBUG) && WP_DEBUG) {
             $min = '';
-            $ver = rand(0, 100000);
+            $ver = random_int(0, 100000);
         }
 
         if (! file_exists(__DIR__ . '/js/' . $this->class_name . $min . '.js')) {
@@ -100,7 +100,7 @@ class Control_Base extends WP_Customize_Control
         wp_enqueue_script(
             'customizer-' . $this->class_name,
             plugins_url('js/' . $this->class_name . $min . '.js', __FILE__),
-            array( 'jquery' ),
+            ['jquery'],
             $ver,
             true
         );

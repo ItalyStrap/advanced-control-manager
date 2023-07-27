@@ -42,28 +42,23 @@ class Customizer_Register implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'customize_register'    => array(
-                'function_to_add'   => 'register',
-                'priority'          => 11,
-            ),
-        );
+            'customize_register'    => ['function_to_add'   => 'register', 'priority'          => 11],
+        ];
     }
 
     /**
      * $capability
-     *
-     * @var string
      */
-    private $capability = 'edit_theme_options';
+    private string $capability = 'edit_theme_options';
 
     /**
      * The plugin config
      *
      * @var array
      */
-    private $config = array();
+    private $config = [];
 
     /**
      * Init the class
@@ -99,13 +94,13 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_section(
             'fonts',
-            array(
+            [
                 'title'             => __('Fonts', 'italystrap'),
                 'description'       => __('First of all you have to add the Google API Key in the plugin settings page, after that you can select the font family you want to use, then you have to add some CSS to your style.css or in the settings section of this plugin.', 'italystrap'),
                 // 'panel' => $this->panel, // Not typically needed.
                 'priority'          => 160,
                 'capability'        => $this->capability,
-            )
+            ]
         );
 
         /**
@@ -113,27 +108,14 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'first_font_family',
-            array(
-                'default'           => apply_filters('italystrap_first_font_family', ''),
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => apply_filters('italystrap_first_font_family', ''), 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
 
         $wp_customize->add_control(
             new Customize_Select_Web_Fonts_Control(
                 $wp_customize,
                 'first_font_family',
-                array(
-                    'label'         => __('The first font family to load', 'italystrap'),
-                    'description'   => __('Select the first font family you want to load. Example: "Open Sans"', 'italystrap'),
-                    'section'       => 'fonts',
-                    'settings'      => 'first_font_family',
-                    'priority'      => 10,
-                    'choices'       => $this->fonts,
-                )
+                ['label'         => __('The first font family to load', 'italystrap'), 'description'   => __('Select the first font family you want to load. Example: "Open Sans"', 'italystrap'), 'section'       => 'fonts', 'settings'      => 'first_font_family', 'priority'      => 10, 'choices'       => $this->fonts]
             )
         );
 
@@ -142,27 +124,14 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'first_font_variants',
-            array(
-                'default'           => 'regular',
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => 'regular', 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
 
         $wp_customize->add_control(
             new Customize_Select_Multiple_Control(
                 $wp_customize,
                 'first_font_variants',
-                array(
-                    'label'         => __('Weight of the first font family', 'italystrap'),
-                    'description'   => __('Chose carefully the weight of the font family, multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font weights.', 'italystrap'),
-                    'section'       => 'fonts',
-                    'settings'      => 'first_font_variants',
-                    'priority'      => 10,
-                    'choices'       => $this->variants,
-                )
+                ['label'         => __('Weight of the first font family', 'italystrap'), 'description'   => __('Chose carefully the weight of the font family, multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font weights.', 'italystrap'), 'section'       => 'fonts', 'settings'      => 'first_font_variants', 'priority'      => 10, 'choices'       => $this->variants]
             )
         );
 
@@ -171,27 +140,14 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'first_font_subsets',
-            array(
-                'default'           => 'latin',
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => 'latin', 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
 
         $wp_customize->add_control(
             new Customize_Select_Multiple_Control(
                 $wp_customize,
                 'first_font_subsets',
-                array(
-                    'label'         => __('Subsets of the first font family', 'italystrap'),
-                    'description'   => __('Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font subsets.', 'italystrap'),
-                    'section'       => 'fonts',
-                    'settings'      => 'first_font_subsets',
-                    'priority'      => 10,
-                    'choices'       => $this->subsets,
-                )
+                ['label'         => __('Subsets of the first font family', 'italystrap'), 'description'   => __('Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font subsets.', 'italystrap'), 'section'       => 'fonts', 'settings'      => 'first_font_subsets', 'priority'      => 10, 'choices'       => $this->subsets]
             )
         );
 
@@ -200,23 +156,11 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'first_typography',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => '', 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
         $wp_customize->add_control(
             'first_typography',
-            array(
-                'settings'  => 'first_typography',
-                'label'         => __('Typography for the first font', 'italystrap'),
-                'description'   => __('Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>', 'italystrap'),
-                'section'       => 'fonts',
-                'type'          => 'input',
-            )
+            ['settings'  => 'first_typography', 'label'         => __('Typography for the first font', 'italystrap'), 'description'   => __('Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>', 'italystrap'), 'section'       => 'fonts', 'type'          => 'input']
         );
 
         /**
@@ -224,27 +168,14 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'second_font_family',
-            array(
-                'default'           => apply_filters('italystrap_second_font_family', ''),
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => apply_filters('italystrap_second_font_family', ''), 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
 
         $wp_customize->add_control(
             new Customize_Select_Web_Fonts_Control(
                 $wp_customize,
                 'second_font_family',
-                array(
-                    'label'         => __('The Second font family to load', 'italystrap'),
-                    'description'   => __('Select the second font family you want to load. Example: "Open Sans"', 'italystrap'),
-                    'section'       => 'fonts',
-                    'settings'      => 'second_font_family',
-                    'priority'      => 10,
-                    'choices'       => $this->fonts,
-                )
+                ['label'         => __('The Second font family to load', 'italystrap'), 'description'   => __('Select the second font family you want to load. Example: "Open Sans"', 'italystrap'), 'section'       => 'fonts', 'settings'      => 'second_font_family', 'priority'      => 10, 'choices'       => $this->fonts]
             )
         );
 
@@ -253,27 +184,14 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'second_font_variants',
-            array(
-                'default'           => 'regular',
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => 'regular', 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
 
         $wp_customize->add_control(
             new Customize_Select_Multiple_Control(
                 $wp_customize,
                 'second_font_variants',
-                array(
-                    'label'         => __('Weight of the second font family', 'italystrap'),
-                    'description'   => __('Chose carefully the weight of the font family, multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font weights.', 'italystrap'),
-                    'section'       => 'fonts',
-                    'settings'      => 'second_font_variants',
-                    'priority'      => 10,
-                    'choices'       => $this->variants,
-                )
+                ['label'         => __('Weight of the second font family', 'italystrap'), 'description'   => __('Chose carefully the weight of the font family, multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font weights.', 'italystrap'), 'section'       => 'fonts', 'settings'      => 'second_font_variants', 'priority'      => 10, 'choices'       => $this->variants]
             )
         );
 
@@ -282,27 +200,14 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'second_font_subsets',
-            array(
-                'default'           => 'latin',
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => 'latin', 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
 
         $wp_customize->add_control(
             new Customize_Select_Multiple_Control(
                 $wp_customize,
                 'second_font_subsets',
-                array(
-                    'label'         => __('Subsets of the second font family', 'italystrap'),
-                    'description'   => __('Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font subsets.', 'italystrap'),
-                    'section'       => 'fonts',
-                    'settings'      => 'second_font_subsets',
-                    'priority'      => 10,
-                    'choices'       => $this->subsets,
-                )
+                ['label'         => __('Subsets of the second font family', 'italystrap'), 'description'   => __('Chose the subsets of the font family, default "latin", multiple selection allowed (press CTRL and click). Performance tips: Do not load too much font subsets.', 'italystrap'), 'section'       => 'fonts', 'settings'      => 'second_font_subsets', 'priority'      => 10, 'choices'       => $this->subsets]
             )
         );
 
@@ -311,23 +216,11 @@ class Customizer_Register implements Subscriber_Interface
          */
         $wp_customize->add_setting(
             'second_typography',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => $this->capability,
-                'transport'         => 'postMessage',
-                'sanitize_callback' => 'sanitize_text_field',
-            )
+            ['default'           => '', 'type'              => 'theme_mod', 'capability'        => $this->capability, 'transport'         => 'postMessage', 'sanitize_callback' => 'sanitize_text_field']
         );
         $wp_customize->add_control(
             'second_typography',
-            array(
-                'settings'  => 'second_typography',
-                'label'         => __('Typography for the second font', 'italystrap'),
-                'description'   => __('Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>', 'italystrap'),
-                'section'       => 'fonts',
-                'type'          => 'input',
-            )
+            ['settings'  => 'second_typography', 'label'         => __('Typography for the second font', 'italystrap'), 'description'   => __('Insert here one or more HTML tags or CSS selector separated by comma of the element you want to display this font. Example: <code>body</code> or <code>h1</code> or <code>h1,h2,h3,h4,h5,h6,.widget-title</code>', 'italystrap'), 'section'       => 'fonts', 'type'          => 'input']
         );
     }
 }

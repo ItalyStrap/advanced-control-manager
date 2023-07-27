@@ -16,25 +16,16 @@ use SplFileInfo;
 
 class ImageSubscriber implements Subscriber_Interface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
+    private \ItalyStrap\Event\EventDispatcherInterface $dispatcher;
 
-    /**
-     * @var Config
-     */
-    private $config;
+    private \ItalyStrap\Config\Config $config;
 
     /**
      * @var \SplFileObject
      */
-    private $file;
+    private \SplFileInfo $file;
 
-    /**
-     * @var Image
-     */
-    private $image;
+    private \ItalyStrap\Lazyload\Image $image;
 
     /**
      * @return array
@@ -120,13 +111,9 @@ class ImageSubscriber implements Subscriber_Interface
             );
         });
 
-        $this->dispatcher->addListener('italystrap_custom_inline_script', function (string $script) {
-            return $script . $this->script();
-        }, 10, 1);
+        $this->dispatcher->addListener('italystrap_custom_inline_script', fn(string $script) => $script . $this->script(), 10, 1);
 
-        $this->dispatcher->addListener('italystrap_custom_inline_style', function (string $style) {
-            return $style . $this->style();
-        }, 10, 1);
+        $this->dispatcher->addListener('italystrap_custom_inline_style', fn(string $style) => $style . $this->style(), 10, 1);
     }
 
     /**

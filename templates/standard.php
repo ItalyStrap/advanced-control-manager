@@ -53,11 +53,7 @@
                         <a href="<?php the_permalink(); ?>" rel="bookmark">
                             <?php the_post_thumbnail(
                                 $thumb_size,
-                                array(
-                                    'class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->config['image_class'],
-                                    'alt'   => trim(strip_tags(get_post_meta(get_post_thumbnail_id($this->post->ID), '_wp_attachment_image_alt', true))),
-                                    'itemprop'  => 'image',
-                                )
+                                ['class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->config['image_class'], 'alt'   => trim(strip_tags(get_post_meta(get_post_thumbnail_id($this->post->ID), '_wp_attachment_image_alt', true))), 'itemprop'  => 'image']
                             ); ?>
                         </a>
                     </figure>
@@ -65,10 +61,7 @@
                     <figure class="entry-image">
                         <a href="<?php the_permalink(); ?>" rel="bookmark">
                             <?php
-                            $attr = array(
-                                'itemprop'  => 'image',
-                                'class' => $this->config['image_class'],
-                            );
+                            $attr = ['itemprop'  => 'image', 'class' => $this->config['image_class']];
                             $the_post_thumbnail = wp_get_attachment_image($this->config['thumb_url'], $thumb_size, false, $attr);
                             echo apply_filters('italystrap_widget_the_post_thumbnail', $the_post_thumbnail);
                             ?>
@@ -87,10 +80,10 @@
                             </a>
                         </<?php echo esc_attr($this->config['entry_title']); ?>>
                         <?php endif; ?>
-                    
+
                         <?php if ($this->config['show_date'] || $this->config['show_author'] || $this->config['show_comments_number']) : ?>
                         <div class="entry-meta">
-                    
+
                             <?php
                             if ($this->config['show_date']) : ?>
                                 <time class="published" datetime="<?php echo get_the_time('c'); ?>" itemprop="datePublished"><?php echo get_the_time($this->config['date_format']); ?></time>
@@ -101,7 +94,7 @@
                             <span class="sep"><?php esc_attr_e('|', 'italystrap'); ?></span>
                                 <?php
                             endif; ?>
-                    
+
                             <?php if ($this->config['show_author']) : ?>
                                 <span class="author vcard" itemprop="author">
                                     <?php esc_attr_e('By', 'italystrap'); ?>
@@ -110,23 +103,23 @@
                                     </a>
                                 </span>
                             <?php endif; ?>
-                    
+
                             <?php if ($this->config['show_author'] && $this->config['show_comments_number']) : ?>
                                 <span class="sep"><?php esc_attr_e('|', 'italystrap'); ?></span>
                             <?php endif; ?>
-                    
+
                             <?php if ($this->config['show_comments_number']) : ?>
                                 <a class="comments" href="<?php comments_link(); ?>">
                                     <?php comments_number(__('No comments', 'italystrap'), __('One comment', 'italystrap'), __('% comments', 'italystrap')); ?>
                                 </a>
                             <?php endif; ?>
-                    
+
                         </div>
-                    
+
                         <?php endif; ?>
-                    
+
                     </header>
-                    
+
                     <?php if ($this->config['show_excerpt']) : ?>
                         <div class="entry-summary">
                             <p itemprop="text">
@@ -137,11 +130,7 @@
                                 ?>
                                 <?php if ($this->config['show_readmore']) : ?>
                                 <a <?php
-                                $array = array(
-                                    'class' => 'more-link',
-                                    'href'  => get_permalink(),
-                                    'rel'   => 'prefetch',
-                                    );
+                                $array = ['class' => 'more-link', 'href'  => get_permalink(), 'rel'   => 'prefetch'];
                                 ItalyStrap\Core\get_attr('widget_post_read_more', $array, true) ?>><?php echo esc_attr($this->config['excerpt_readmore']); ?></a>
                                 <?php endif; ?>
                             </p>
@@ -151,9 +140,9 @@
                             <?php the_content() ?>
                         </div>
                     <?php endif; ?>
-                    
+
                     <footer class="entry-footer">
-                    
+
                         <?php
                         $categories = get_the_term_list($this->query->post->ID, 'category', '', ', ');
                         if ($this->config['show_cats'] && $categories) :
@@ -163,7 +152,7 @@
                             <span class="entry-cats-list"><?php echo esc_attr($categories); ?></span>
                         </div>
                         <?php endif; ?>
-                    
+
                         <?php
                         $tags = get_the_term_list($this->query->post->ID, 'post_tag', '', ', ');
 
@@ -174,7 +163,7 @@
                             <span class="entry-tags-list" itemprop="keywords"><?php echo esc_attr($tags); ?></span>
                         </div>
                         <?php endif; ?>
-                    
+
                         <?php
 
                         // global $product;

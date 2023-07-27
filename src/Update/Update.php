@@ -22,17 +22,13 @@ class Update implements Update_Interface
 {
     /**
      * Validation object
-     *
-     * @var Validation
      */
-    private $validation = null;
+    private ?\ItalyStrap\Update\Validation $validation = null;
 
     /**
      * Sanitization object
-     *
-     * @var Sanitization
      */
-    private $sanitization;
+    private \ItalyStrap\Update\Sanitization $sanitization;
 
     /**
      * [__construct description]
@@ -51,7 +47,7 @@ class Update implements Update_Interface
      * @param  array $instance The array with value to save.
      * @return array           The array validated and sanitized.
      */
-    public function update(array $instance = array(), array $fields = array())
+    public function update(array $instance = [], array $fields = [])
     {
 
         foreach ($fields as $field) {

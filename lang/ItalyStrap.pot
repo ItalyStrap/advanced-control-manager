@@ -3267,11 +3267,11 @@ msgstr ""
 msgid "Real size"
 msgstr ""
 
-#: src/Migrations/Migrations_Factory.php:43
+#: src/Migrations/ParentThemeMigrations.php:43
 msgid "Migration page for ItalyStrap theme framework"
 msgstr ""
 
-#: src/Migrations/Migrations_Factory.php:44
+#: src/Migrations/ParentThemeMigrations.php:44
 msgid ""
 "Before upgrading to new version of the ItalyStrap theme framework (4.x) you "
 "need to migrate the old settings and rename the old directory of the theme "

@@ -35,32 +35,17 @@ class Areas extends Areas_Base implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
             'widgets_init'          => 'register_sidebars',
-            'init'                  => array(
-                'function_to_add'       => 'register_post_type',
-                'priority'              => 20,
-            ),
-            'save_post_sidebar'     => array(
-                'function_to_add'       => 'add_sidebar',
-                'accepted_args'         => 3
-            ),
-            'edit_post'             => array(
-                'function_to_add'       => 'add_sidebar',
-                'accepted_args'         => 2
-            ),
+            'init'                  => ['function_to_add'       => 'register_post_type', 'priority'              => 20],
+            'save_post_sidebar'     => ['function_to_add'       => 'add_sidebar', 'accepted_args'         => 3],
+            'edit_post'             => ['function_to_add'       => 'add_sidebar', 'accepted_args'         => 2],
             'delete_post'           => 'delete_sidebar',
-            'wp_import_post_meta'   => array(
-                'function_to_add'       => 'import_postmeta',
-                'accepted_args'         => 3
-            ),
+            'wp_import_post_meta'   => ['function_to_add'       => 'import_postmeta', 'accepted_args'         => 3],
             'widgets_admin_page'    => 'print_add_button',
-            'italystrap_cmb2_configurations_array'  => array(
-                'function_to_add'   => 'register_metaboxes',
-                'priority'          => 10,
-            ),
-        );
+            'italystrap_cmb2_configurations_array'  => ['function_to_add'   => 'register_metaboxes', 'priority'          => 10],
+        ];
     }
 
     /**
@@ -135,10 +120,7 @@ class Areas extends Areas_Base implements Subscriber_Interface
 
         $this->css->style($sidebar);
 
-        $widget_area_attr = array(
-            'class' => 'widget_area ' . $sidebar_id . ' ' . esc_attr($widget_area_class),
-            'id'    => $sidebar_id,
-        );
+        $widget_area_attr = ['class' => 'widget_area ' . $sidebar_id . ' ' . esc_attr($widget_area_class), 'id'    => $sidebar_id];
 
         require(__DIR__ . '/view/widget-area.php');
     }
@@ -185,7 +167,7 @@ class Areas extends Areas_Base implements Subscriber_Interface
         // error_log( print_r( $wp_import, true ) );
         // error_log( print_r( new \WP_Import(), true ) );
 
-        $new_postmeta = array();
+        $new_postmeta = [];
 
         foreach ($postmeta as $array) {
             $new_postmeta[ $array['key'] ] = $array['value'];
@@ -206,7 +188,7 @@ class Areas extends Areas_Base implements Subscriber_Interface
      * @param bool   $update           Is post update or not.
      * @param array  $postmeta         Postmeta data used only by $this->import_postmeta().
      */
-    public function add_sidebar($post_ID, $post, $update = false, $postmeta = array())
+    public function add_sidebar($post_ID, $post, $update = false, $postmeta = [])
     {
 
         if ('sidebar' !== $post->post_type) {
@@ -222,7 +204,7 @@ class Areas extends Areas_Base implements Subscriber_Interface
         }
 
         if (false === get_option('italystrap_widget_area')) {
-            add_option('italystrap_widget_area', array());
+            add_option('italystrap_widget_area', []);
         }
 
         static $run_once = false;
@@ -240,7 +222,7 @@ class Areas extends Areas_Base implements Subscriber_Interface
 
         $fields['background_image']['id'] = $this->_prefix . '_background_image_id';
 
-        $instance = array();
+        $instance = [];
 
         /**
          * Is is an import use $postmeta otherwise use $_POST
@@ -253,44 +235,21 @@ class Areas extends Areas_Base implements Subscriber_Interface
 
         $instance = $this->update->update($postmeta, $fields);
 
-        $this->sidebars[ $post_ID ] = array(
-            'id'                => $post->post_name,
-            'action'            => $instance[ $this->_prefix . '_action' ],
-            'priotity'          => (int) $instance[ $this->_prefix . '_priority' ],
-            'style'             => array(
-                'background-color'      => $instance[ $this->_prefix . '_background_color' ],
-                'background-image'      => (int) $instance[ $this->_prefix . '_background_image_id'],
-                'background-image-id'   => (int) $instance[ $this->_prefix . '_background_image_id'],
-                // 'background-size'        => 'cover',
-                // 'background-position'    => 'center',
-            ),
-            'widget_area_class' => $instance[ $this->_prefix . '_widget_area_class' ],
-            'container_width'   => $instance[ $this->_prefix . '_container_width' ],
-            'value'             => array(
-                'name'              => $post->post_title,
-                'id'                => $post->post_name,
-                'description'       => $post->post_excerpt,
-                'before_widget'     => sprintf(
-                    '<%s %s>',
-                    $instance[ $this->_prefix . '_widget_before_after' ],
-                    \ItalyStrap\Core\get_attr($post->post_name, array( 'class' => 'widget %2$s', 'id' => '%1$s' ))
-                ),
-                'after_widget'      => sprintf(
-                    '</%s>',
-                    $instance[ $this->_prefix . '_widget_before_after' ]
-                ),
-
-                'before_title'      => sprintf(
-                    '<%s class="widget-title %s">',
-                    $instance[ $this->_prefix . '_widget_title_before_after' ],
-                    $instance[ $this->_prefix . '_widget_title_class' ]
-                ),
-                'after_title'       => sprintf(
-                    '</%s>',
-                    $instance[ $this->_prefix . '_widget_title_before_after' ]
-                ),
-            ),
-        );
+        $this->sidebars[ $post_ID ] = ['id'                => $post->post_name, 'action'            => $instance[ $this->_prefix . '_action' ], 'priotity'          => (int) $instance[ $this->_prefix . '_priority' ], 'style'             => ['background-color'      => $instance[ $this->_prefix . '_background_color' ], 'background-image'      => (int) $instance[ $this->_prefix . '_background_image_id'], 'background-image-id'   => (int) $instance[ $this->_prefix . '_background_image_id']], 'widget_area_class' => $instance[ $this->_prefix . '_widget_area_class' ], 'container_width'   => $instance[ $this->_prefix . '_container_width' ], 'value'             => ['name'              => $post->post_title, 'id'                => $post->post_name, 'description'       => $post->post_excerpt, 'before_widget'     => sprintf(
+            '<%s %s>',
+            $instance[ $this->_prefix . '_widget_before_after' ],
+            \ItalyStrap\Core\get_attr($post->post_name, ['class' => 'widget %2$s', 'id' => '%1$s'])
+        ), 'after_widget'      => sprintf(
+            '</%s>',
+            $instance[ $this->_prefix . '_widget_before_after' ]
+        ), 'before_title'      => sprintf(
+            '<%s class="widget-title %s">',
+            $instance[ $this->_prefix . '_widget_title_before_after' ],
+            $instance[ $this->_prefix . '_widget_title_class' ]
+        ), 'after_title'       => sprintf(
+            '</%s>',
+            $instance[ $this->_prefix . '_widget_title_before_after' ]
+        )]];
 
         // error_log( print_r( $this->sidebars, true ) );
         // $this->reorder_sidebar( $post_ID, $instance, '', $post );
@@ -341,14 +300,14 @@ class Areas extends Areas_Base implements Subscriber_Interface
         // error_log( print_r( $wp_filter[ $instance[ $this->_prefix . '_action' ] ], true ) );
         // $this->sidebars[ $post_id ]['priotity']
 
-        $temp = array();
+        $temp = [];
 
         // foreach ( $this->sidebars as $key => $value ) {
         //  $temp[ $this->sidebars[ $key ]['action'] ] = $this->sidebars[ $key ]['priotity'];
         // }
 
 
-        foreach (apply_filters('italystrap_theme_positions', array()) as $key => $value) {
+        foreach (apply_filters('italystrap_theme_positions', []) as $key => $value) {
             foreach ($this->sidebars as $id => $config) {
                 if ($config['action'] === $key) {
                     $temp[ $id ] = $config;

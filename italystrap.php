@@ -3,7 +3,7 @@
 /**
  *  Plugin Name:       Advanced Control Manager for WordPress by ItalyStrap
  *  Plugin URI:        https://italystrap.com/
- *  Description:       {Requires PHP 7 >= and Dev skills} Essential tool with an array of utility for WordPress, all written in OOP design pattern. Always make a backup before upgrading.
+ *  Description:       Essential tool with an array of utility for WordPress. Always make a backup before upgrading.
  *  Version:           2.15.1
  *  Requires at least: 6.0
  *  Requires PHP:      7.4
@@ -18,13 +18,6 @@
  * @since 1.0.0
  */
 
-/**
- * This will make sure the plugin files can't be accessed within the web browser directly.
- */
-if (! defined('WPINC')) {
-    die;
-}
-
 require __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.php';
 
 /**
@@ -37,7 +30,7 @@ require __DIR__ . '/vendor/overclokk/minimum-requirements/minimum-requirements.p
  *
  * @var Minimum_Requirements
  */
-$requirements = new Minimum_Requirements('7.2', '5.2', 'ACM - Advanced Control Manager');
+$requirements = new Minimum_Requirements('7.4', '6.0', 'ACM - Advanced Control Manager');
 
 /**
  * Check compatibility on install
@@ -46,7 +39,8 @@ $requirements = new Minimum_Requirements('7.2', '5.2', 'ACM - Advanced Control M
 register_activation_hook(__FILE__, [$requirements, 'check_compatibility_on_install']);
 
 /**
- * If it is already installed and activated check if example new version is compatible, if is not don't load plugin code and print admin_notice
+ * If it is already installed and activated check
+ * if example new version is compatible, if is not don't load plugin code and print admin_notice
  * This part need more test
  */
 if (! $requirements->is_compatible_version()) {
@@ -145,5 +139,8 @@ if (! empty($plugin_files_path)) {
 /**
  * To do
  *
- * @todo Agganciare init all'azione plugin_loaded (forse plugin_loaded è troppo presto, valutare se usare init direttamente) che in questo modo sarà possibile eventualmente fare un remove_actions se necessario (normalmente con plugin premium)
+ * @todo Agganciare init all'azione plugin_loaded
+ *      (forse plugin_loaded è troppo presto, valutare se usare init direttamente)
+ *      che in questo modo sarà possibile eventualmente fare un remove_actions se necessario
+ *      (normalmente con plugin premium)
  */

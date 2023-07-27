@@ -24,13 +24,13 @@ if (! defined('ITALYSTRAP_PLUGIN') or ! ITALYSTRAP_PLUGIN) {
  */
 abstract class Shortcode
 {
-    protected $attr = array();
+    protected $attr = [];
 
-    protected $default = array();
+    protected $default = [];
 
     protected $content = '';
 
-    public $shortcode_ui = array();
+    public $shortcode_ui = [];
 
     /**
      * [__construct description]

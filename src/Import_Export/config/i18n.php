@@ -11,31 +11,4 @@
  * @package Italystrap\Import_Export
  */
 
-return array(
-
-    'no_json_file'  => array(
-        'message'   => esc_attr__('Please upload a valid .json file', 'italystrap'),
-        'title'     => esc_attr__('No valid json file', 'italystrap'),
-    ),
-
-    'zero_size' => array(
-        'message'   => esc_attr__('The json file can\'t be empty', 'italystrap'),
-        'title'     => esc_attr__('Empty file', 'italystrap'),
-    ),
-
-    'no_file'   => array(
-        'message'   => esc_attr__('Please upload a file to import', 'italystrap'),
-        'title'     => esc_attr__('No file import', 'italystrap'),
-    ),
-
-    'export'    => array(
-        'title'     => esc_attr__('Export Settings', 'italystrap'),
-        'desc'      => __('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'italystrap'),
-    ),
-
-    'import'    => array(
-        'title'     => esc_attr__('Import Settings', 'italystrap'),
-        'desc'      => __('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'italystrap'),
-    ),
-
-);
+return ['no_json_file'  => ['message'   => esc_attr__('Please upload a valid .json file', 'italystrap'), 'title'     => esc_attr__('No valid json file', 'italystrap')], 'zero_size' => ['message'   => esc_attr__('The json file can\'t be empty', 'italystrap'), 'title'     => esc_attr__('Empty file', 'italystrap')], 'no_file'   => ['message'   => esc_attr__('Please upload a file to import', 'italystrap'), 'title'     => esc_attr__('No file import', 'italystrap')], 'export'    => ['title'     => esc_attr__('Export Settings', 'italystrap'), 'desc'      => __('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'italystrap')], 'import'    => ['title'     => esc_attr__('Import Settings', 'italystrap'), 'desc'      => __('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'italystrap')]];

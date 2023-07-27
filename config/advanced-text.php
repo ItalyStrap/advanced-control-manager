@@ -14,12 +14,11 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  * Definition array() with all the options connected to the
  * module which must be called by an include (setoptions).
  */
-return array(
-
+return [
     /**
      * Ids for the images to use.
      */
-    'ids'               => array(
+    'ids'               => [
         'label'     => __('Images ID', 'italystrap'),
         'desc'      => __('Enter the media or post type ID.', 'italystrap'),
         'id'        => 'ids',
@@ -29,5 +28,5 @@ return array(
         // 'validate'   => 'numeric_comma',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-);
+    ],
+];

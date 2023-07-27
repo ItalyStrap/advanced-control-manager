@@ -47,16 +47,12 @@ class Excerpt implements Subscriber_Interface
 
         $options = self::$config->all();
 
-        $events = array(
+        $events = [
             // 'hook_name'                          => 'method_name',
             'excerpt_length'    => 'excerpt_length',
             'excerpt_more'      => '__return_empty_string',
-            'wp_trim_words' => array(
-                'function_to_add'   => 'excerpt_end_with_punctuation',
-                'priority'          => 98,
-                'accepted_args'     => 4,
-            ),
-        );
+            'wp_trim_words' => ['function_to_add'   => 'excerpt_end_with_punctuation', 'priority'          => 98, 'accepted_args'     => 4],
+        ];
 
         $filter = '';
 
@@ -73,10 +69,8 @@ class Excerpt implements Subscriber_Interface
 
     /**
      * Theme settings
-     *
-     * @var array
      */
-    private $options = array();
+    private array $options = [];
 
     /**
      * Configuration object
@@ -87,10 +81,8 @@ class Excerpt implements Subscriber_Interface
 
     /**
      * Translator Object
-     *
-     * @var Translatable
      */
-    private $translator;
+    private \ItalyStrap\I18N\Translatable $translator;
 
     /**
      * Init the class
@@ -124,7 +116,7 @@ class Excerpt implements Subscriber_Interface
      *
      * @return string Return link to post in read more.
      */
-    public function read_more_link($context = 'excerpt_read_more', array $attr = array(), $link_text = '')
+    public function read_more_link($context = 'excerpt_read_more', array $attr = [], $link_text = '')
     {
 
         /**
@@ -138,11 +130,7 @@ class Excerpt implements Subscriber_Interface
             ? $this->translator->getString('read_more_link_text', $this->options['read_more_link_text'])
             : $link_text;
 
-        $default = array(
-            'class' => $class,
-            'href'  => get_permalink(),
-            'rel'   => 'prefetch',
-        );
+        $default = ['class' => $class, 'href'  => get_permalink(), 'rel'   => 'prefetch'];
 
         $attr = array_merge($default, $attr);
 
@@ -233,7 +221,7 @@ class Excerpt implements Subscriber_Interface
          *
          * @var array
          */
-        $needles = apply_filters('italystrap_excerpt_end_punctuation_pattern', array( '. ', '? ', '! ' ));
+        $needles = apply_filters('italystrap_excerpt_end_punctuation_pattern', ['. ', '? ', '! ']);
 
         $found = false;
 
@@ -241,7 +229,7 @@ class Excerpt implements Subscriber_Interface
             /**
              * Return early
              */
-            if ($found = strrpos($text, $punctuation)) {
+            if ($found = strrpos($text, (string) $punctuation)) {
                 return substr($text, 0, $found + 1) . $more;
             }
         }

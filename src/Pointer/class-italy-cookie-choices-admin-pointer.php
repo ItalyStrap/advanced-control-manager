@@ -17,15 +17,15 @@ class Italy_Cookie_Choices_Pointer
      * @var string
      */
     protected $prefix = 'italy-cookie-choices';
-    protected $pointers = array();
+    protected $pointers = [];
 
-    function __construct($args = array())
+    function __construct($args = [])
     {
 
         if (isset($args[ 'prefix' ])) {
             $this->prefix = $args[ 'prefix' ];
         }
-        add_action('current_screen', array( $this, 'maybe_add_pointers' ));
+        add_action('current_screen', [$this, 'maybe_add_pointers']);
     }
 
     /**
@@ -36,22 +36,21 @@ class Italy_Cookie_Choices_Pointer
     function initial_pointers()
     {
         global $pagenow;
-        $defaults = array(
+        $defaults = [
             'class' => '',
-            'width' => 300, //only fixed value
+            'width' => 300,
+            //only fixed value
             'align' => 'middle',
             'edge' => 'left',
-            'post_type' => array(),
-            'pages' => array(),
-            'icon_class' => ''
-        );
+            'post_type' => [],
+            'pages' => [],
+            'icon_class' => '',
+        ];
         $screen = get_current_screen();
-        $current_post_type = isset($screen->post_type) ? $screen->post_type : false;
+        $current_post_type = $screen->post_type ?? false;
         $search_pt = false;
 
-        $pointers = apply_filters($this->prefix . '-pointerplus_list', array(
-                // Pointers are added through the 'initial_pointerplus' filter
-                ), $this->prefix);
+        $pointers = apply_filters($this->prefix . '-pointerplus_list', [], $this->prefix);
 
         foreach ($pointers as $key => $pointer) {
             $pointers[ $key ] = wp_parse_args($pointer, $defaults);
@@ -120,7 +119,7 @@ class Italy_Cookie_Choices_Pointer
         // If we have some pointers to show, save them and start enqueuing assets to display them
         if (!empty($diff)) {
             $this->pointers = $diff;
-            add_action('admin_enqueue_scripts', array( $this, 'admin_enqueue_assets' ));
+            add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_assets']);
 
             foreach ($diff as $pointer) {
                 if (isset($pointer[ 'phpcode' ])) {
@@ -138,8 +137,8 @@ class Italy_Cookie_Choices_Pointer
     function admin_enqueue_assets()
     {
         $base_url = plugins_url('', __FILE__);
-        wp_enqueue_style($this->prefix, $base_url . '/pointerplus.css', array( 'wp-pointer' ));
-        wp_enqueue_script($this->prefix, $base_url . '/pointerplus.js?var=' . str_replace('-', '_', $this->prefix) . '_pointerplus', array( 'wp-pointer' ));
+        wp_enqueue_style($this->prefix, $base_url . '/pointerplus.css', ['wp-pointer']);
+        wp_enqueue_script($this->prefix, $base_url . '/pointerplus.js?var=' . str_replace('-', '_', $this->prefix) . '_pointerplus', ['wp-pointer']);
         wp_localize_script($this->prefix, str_replace('-', '_', $this->prefix) . '_pointerplus', apply_filters($this->prefix . '_pointerplus_js_vars', $this->pointers));
     }
 
@@ -150,7 +149,7 @@ class Italy_Cookie_Choices_Pointer
      */
     function reset_pointer()
     {
-        add_action('current_screen', array( $this, '_reset_pointer' ), 0);
+        add_action('current_screen', [$this, '_reset_pointer'], 0);
     }
 
     /**

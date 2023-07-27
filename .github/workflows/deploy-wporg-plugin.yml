@@ -41,7 +41,9 @@ jobs:
         npm run build
 
     - name: List output files
-      run: ls -la
+      working-directory: ${{ env.BUILD_DIR }}
+      run: |
+        ls -la
 
     - name: WordPress Plugin Deploy
       id: deploy

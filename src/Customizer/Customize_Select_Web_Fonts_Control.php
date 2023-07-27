@@ -75,7 +75,7 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control
      *                                                 'date' are supported implicitly. Default 'text'.
      * }
      */
-    public function __construct(WP_Customize_Manager $manager, $id, array $args = array())
+    public function __construct(WP_Customize_Manager $manager, $id, array $args = [])
     {
 
         $this->args = $args;
@@ -90,11 +90,11 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control
     {
 
         if (! array_key_exists('choices', $this->args)) {
-            $this->args['choices'] = array();
+            $this->args['choices'] = [];
         }
 
         if (! is_array($this->args['choices'])) {
-            $this->args['choices'] = array();
+            $this->args['choices'] = [];
         }
         ?>
 <label>

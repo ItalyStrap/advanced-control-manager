@@ -40,14 +40,14 @@ abstract class Custom_Css_Base
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Init the constructor
      *
      * @param array $options The plugin options
      */
-    function __construct(array $options = array())
+    function __construct(array $options = [])
     {
 
         /**

@@ -27,35 +27,27 @@ class Minify
 {
     /**
      * Search pattern.
-     *
-     * @var array
      */
-    private $search = array(
-        "\r\n",
-        "\n",
-        "\r",
-        "\t",
-        '&nbsp;',
-        '&amp;nbsp;',
-    );
+    private array $search = ["\r\n", "\n", "\r", "\t", '&nbsp;', '&amp;nbsp;'];
 
     /**
      * Replace pattern.
-     *
-     * @var array
      */
-    private $replace = array(
+    private array $replace = [
         ': '    => ':',
         '; '    => ';',
         ' {'    => '{',
         ' }'    => '}',
         ', '    => ',',
         '{ '    => '{',
-        ';}'    => '}', // Strip optional semicolons.
-        ",\n"   => ',', // Don't wrap multiple selectors.
-        "\n}"   => '}', // Don't wrap closing braces.
-        '} '    => '}', // Put each rule on it's own line.
-    );
+        ';}'    => '}',
+        // Strip optional semicolons.
+        ",\n"   => ',',
+        // Don't wrap multiple selectors.
+        "\n}"   => '}',
+        // Don't wrap closing braces.
+        '} '    => '}',
+    ];
 
     /**
      * Minify the subject output
@@ -82,10 +74,11 @@ class Minify
             return "\n" . $is_debug . "\n" . $subject;
         }
 
-        $comments = array(
-            '#/\*.*?\*/#s' => '',  // Strip C style comments.
-            '#\s\s+#'      => ' ', // Strip excess whitespace.
-        );
+        $comments = [
+            '#/\*.*?\*/#s' => '',
+            // Strip C style comments.
+            '#\s\s+#'      => ' ',
+        ];
 
         $search = array_keys($comments);
         $subject = preg_replace($search, $comments, $subject);

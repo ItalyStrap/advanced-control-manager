@@ -35,13 +35,13 @@ class CMB2_Factory implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'cmb2_admin_init'   => 'autoload',
-        );
+        ];
     }
 
-    protected $configs = array();
+    protected $configs = [];
 
     /**
      * Autoload CMB2

@@ -30,14 +30,11 @@ if (0 === $this->query->current_post && $this->config['show_first_thumbnail_bigg
 
 $post_ID = $this->query->post->ID;
 
-$get_thumb_attr = array(
-    'itemprop'  => 'image',
-    'class'     => sprintf(
-        'attachment-%1$s size-%1$s %2$s',
-        $thumb_size,
-        $this->config['image_class']
-    ),
-);
+$get_thumb_attr = ['itemprop'  => 'image', 'class'     => sprintf(
+    'attachment-%1$s size-%1$s %2$s',
+    $thumb_size,
+    $this->config['image_class']
+)];
 
 if (has_post_thumbnail($post_ID)) : ?>
     <figure class="entry-image">

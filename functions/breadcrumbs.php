@@ -18,7 +18,7 @@ use ItalyStrap\HTML;
  *                      @see class Breadcrumbs for more info.
  * @return string       Return the breadcrumbs html.
  */
-function get_breadcrumbs(array $args = array())
+function get_breadcrumbs(array $args = [])
 {
 
     /**
@@ -28,19 +28,7 @@ function get_breadcrumbs(array $args = array())
      * @uses wp_parse_args() Parsifica $args in entrata in un array e lo combina con l'array di default
      * @link http://codex.wordpress.org/it:Riferimento_funzioni/wp_parse_args
      */
-    $deprecated = array(
-        'open_wrapper'          => '<ol class="breadcrumb"  itemscope itemtype="https://schema.org/BreadcrumbList">',
-        'closed_wrapper'        => '</ol>',
-
-        'before_element'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
-
-        'before_element_active' => '<li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">',
-
-        'after_element'         => '</li>',
-
-        'wrapper_name'          => '<span itemprop="name">',
-        'close_wrapper_name'    => '</span>',
-    );
+    $deprecated = ['open_wrapper'          => '<ol class="breadcrumb"  itemscope itemtype="https://schema.org/BreadcrumbList">', 'closed_wrapper'        => '</ol>', 'before_element'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">', 'before_element_active' => '<li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">', 'after_element'         => '</li>', 'wrapper_name'          => '<span itemprop="name">', 'close_wrapper_name'    => '</span>'];
 
     $args['bloginfo_name'] = \get_option('blogname');
     $args['home_url'] = \get_home_url(null, '/');
@@ -82,7 +70,7 @@ function get_breadcrumbs(array $args = array())
  *                      @see class Breadcrumbs for more info.
  * @return string       Return the breadcrumbs html.
  */
-function breadcrumbs(array $args = array())
+function breadcrumbs(array $args = [])
 {
 
     echo get_breadcrumbs($args);
@@ -95,7 +83,7 @@ function breadcrumbs(array $args = array())
  *
  * @param  array  $args The breadcrumbs arguments.
  */
-function do_breadcrumbs(array $args = array())
+function do_breadcrumbs(array $args = [])
 {
 
     breadcrumbs($args);

@@ -36,10 +36,10 @@ class Register_Metaboxes implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'italystrap_cmb2_configurations_array'  => 'register',
-        );
+        ];
     }
 
     /**
@@ -61,7 +61,7 @@ class Register_Metaboxes implements Subscriber_Interface
      *
      * @var Config
      */
-    private $config = array();
+    private $config = [];
 
     /**
      * Init the constructor
@@ -125,7 +125,7 @@ class Register_Metaboxes implements Subscriber_Interface
     public function register_style_fields_in_wp_editor($configs)
     {
 
-        $script_settings_metabox_object_types = apply_filters('italystrap_script_settings_metabox_object_types', array( 'post', 'page' ));
+        $script_settings_metabox_object_types = apply_filters('italystrap_script_settings_metabox_object_types', ['post', 'page']);
 
         /**
          * Sample metabox to demonstrate each field type included

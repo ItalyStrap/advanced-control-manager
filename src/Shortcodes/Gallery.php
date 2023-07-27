@@ -31,10 +31,10 @@ class Gallery implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'wp_loaded' => 'add_carousel_to_gallery_shortcode',
-        );
+        ];
     }
 
     /**
@@ -105,8 +105,8 @@ class Gallery implements Subscriber_Interface
 
         if (! $gallery) {
             // $shortcode_carousel = new Gallery();
-            add_filter('post_gallery', array( $this, 'gallery_shortcode' ), 10, 3);
-            add_filter('jetpack_gallery_types', array( $this, 'gallery_types' ));
+            add_filter('post_gallery', [$this, 'gallery_shortcode'], 10, 3);
+            add_filter('jetpack_gallery_types', [$this, 'gallery_types']);
             // add_filter( 'ItalyStrap_gallery_types', array( $this, 'gallery_types' ), 999 );
         }
     }

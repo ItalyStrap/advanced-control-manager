@@ -75,9 +75,11 @@ class Posts extends Query
      * @param array $args
      * @return string        [description]
      */
-    public function get_query_args(array $args = array())
+    public function get_query_args(array $args = [])
     {
 
+        $first_tag = [];
+        $first_cat = [];
         /**
          * Get the current post id
          *
@@ -145,15 +147,7 @@ class Posts extends Query
          *
          * @var array
          */
-        $query_args = array(
-            'posts_per_page'            => absint($this->config['posts_number']) + count($this->posts_to_exclude),
-            'order'                     => $this->config['order'],
-            'orderby'                   => $this->config['orderby'],
-            'post_type'                 => $this->postType(),
-            'no_found_rows'             => true,
-            'update_post_term_cache'    => false,
-            'update_post_meta_cache'    => false,
-        );
+        $query_args = ['posts_per_page'            => absint($this->config['posts_number']) + count($this->posts_to_exclude), 'order'                     => $this->config['order'], 'orderby'                   => $this->config['orderby'], 'post_type'                 => $this->postType(), 'no_found_rows'             => true, 'update_post_term_cache'    => false, 'update_post_meta_cache'    => false];
 
         if (! empty($this->config['most_viewed'])) {
             $query_args['post__in'] = $this->get_posts_ids_by_views($this->config);
@@ -208,7 +202,7 @@ class Posts extends Query
             $tags = wp_get_post_terms($this->current_post_id);
 
             if ($tags) {
-                $count = count($tags);
+                $count = is_countable($tags) ? count($tags) : 0;
                 for ($i = 0; $i < $count; $i++) {
                     $first_tag[] = $tags[ $i ]->term_id;
                 }
@@ -234,7 +228,7 @@ class Posts extends Query
             $cats = wp_get_post_terms($this->current_post_id, 'category');
 
             if ($cats) {
-                $count = count($cats);
+                $count = is_countable($cats) ? count($cats) : 0;
                 for ($i = 0; $i < $count; $i++) {
                     $first_cat[] = $cats[ $i ]->term_id;
                 }
@@ -345,7 +339,7 @@ class Posts extends Query
      *
      * @return string The HTML result
      */
-    public function output(array $query_args = array())
+    public function output(array $query_args = [])
     {
         return $this->render($query_args);
     }
@@ -357,7 +351,7 @@ class Posts extends Query
      *
      * @return string The HTML result
      */
-    public function render(array $query_args = array())
+    public function render(array $query_args = [])
     {
 
         $this->query->query($this->get_query_args($query_args));
@@ -430,9 +424,7 @@ class Posts extends Query
             return;
         }
 
-        $attr = array(
-            'class' => $this->config['read_more_class'],
-        );
+        $attr = ['class' => $this->config['read_more_class']];
 
         $link_text = $this->config['excerpt_readmore'];
 

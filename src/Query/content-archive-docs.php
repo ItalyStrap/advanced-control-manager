@@ -14,11 +14,7 @@ use WP_Query;
 <div class="row docs">
     <?php
 
-    $base_categories = get_categories(array(
-        'taxonomy' => 'category',
-        'parent' => 0,
-        'hide_empty' => 0,
-    ));
+    $base_categories = get_categories(['taxonomy' => 'category', 'parent' => 0, 'hide_empty' => 0]);
 
     foreach ((array) $base_categories as $category) :
         if (0 === $category->count) {
@@ -30,12 +26,7 @@ use WP_Query;
         $output .= '<header><h2><i class="fa fa-folder-o"></i> <a href="' . $term_link . '">' . $category->name . '</a> <small>( ' . sprintf(_n('%1$s Article', '%1$s Articles', $category->count, 'ItalyStrap'), number_format_i18n($category->count)) . ' )</small></h2>';
         $output .= '<p>' . $category->description . '</p></header>';
 
-        $sub_categories = get_categories(array(
-            'taxonomy' => 'category',
-            'parent' => $category->term_id,
-            'hide_empty' => 0,
-            'number' => '5',
-        ));
+        $sub_categories = get_categories(['taxonomy' => 'category', 'parent' => $category->term_id, 'hide_empty' => 0, 'number' => '5']);
 
         if ($sub_categories) {
             $output .= '<ul class="list-unstyled">';
@@ -50,11 +41,11 @@ use WP_Query;
             $output .= '</ul>';
         }
 
-        $category_posts = new WP_Query(array(
+        $category_posts = new WP_Query([
             'posts_per_page' => 5,
             // 'cat' => $category->term_id,
             'category__in' => $category->term_id,
-        ));
+        ]);
 
         if ($category_posts->have_posts()) :
             $output .= '<ul class="list-unstyled">';

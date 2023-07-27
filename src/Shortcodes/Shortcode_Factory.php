@@ -35,12 +35,10 @@ class Shortcode_Factory implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
-            'after_setup_theme' => array(
-                'function_to_add'   => 'register',
-            ),
-        );
+            'after_setup_theme' => ['function_to_add'   => 'register'],
+        ];
     }
 
     /**
@@ -55,7 +53,7 @@ class Shortcode_Factory implements Subscriber_Interface
      *
      * @var array
      */
-    private $shortcodes_list = array();
+    private $shortcodes_list = [];
 
     /**
      * Injector object
@@ -67,18 +65,12 @@ class Shortcode_Factory implements Subscriber_Interface
     /**
      * Fire the construct
      */
-    public function __construct(array $options = array(), $injector = null)
+    public function __construct(array $options = [], $injector = null)
     {
         $this->options = $options;
         $this->injector = $injector;
 
-        $this->shortcodes_list = array(
-            'shortcode_row'         => 'ItalyStrap\\Shortcodes\\Row',
-            'shortcode_column'      => 'ItalyStrap\\Shortcodes\\Column',
-            'shortcode_posts'       => 'ItalyStrap\\Shortcodes\\Posts',
-            'shortcode_post_title'  => 'ItalyStrap\\Shortcodes\\Post_Title',
-            'shortcode_button'      => 'ItalyStrap\\Shortcodes\\Button',
-        );
+        $this->shortcodes_list = ['shortcode_row'         => \ItalyStrap\Shortcodes\Row::class, 'shortcode_column'      => \ItalyStrap\Shortcodes\Column::class, 'shortcode_posts'       => \ItalyStrap\Shortcodes\Posts::class, 'shortcode_post_title'  => \ItalyStrap\Shortcodes\Post_Title::class, 'shortcode_button'      => \ItalyStrap\Shortcodes\Button::class];
     }
 
     /**
@@ -94,10 +86,10 @@ class Shortcode_Factory implements Subscriber_Interface
             }
 
             $shortcode_name = str_replace('shortcode_', '', $option_name);
-            $$shortcode_name =  $this->injector->make($class_name);
-            add_shortcode($shortcode_name, array( $$shortcode_name, 'render' ));
+            ${$shortcode_name} =  $this->injector->make($class_name);
+            add_shortcode($shortcode_name, [${$shortcode_name}, 'render']);
             if (function_exists('\shortcode_ui_register_for_shortcode')) {
-                shortcode_ui_register_for_shortcode($shortcode_name, $$shortcode_name->shortcode_ui);
+                shortcode_ui_register_for_shortcode($shortcode_name, ${$shortcode_name}->shortcode_ui);
             }
         }
     }

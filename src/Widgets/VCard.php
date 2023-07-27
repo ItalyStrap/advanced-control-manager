@@ -62,7 +62,7 @@ class VCard extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         $fields = array_merge($this->title_field(), $this->config);
 
@@ -71,15 +71,15 @@ class VCard extends Widget
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap vCard Local Business', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'italystrap'),
             'fields'            => $fields,
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-            'control_options'   => array( 'width' => 340 ),
-         );
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 340],
+        ];
 
         /**
          * Create Widget

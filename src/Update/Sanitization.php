@@ -102,7 +102,7 @@ class Sanitization
         $array = array_map('absint', $array);
         $count = count($array);
         if (1 === $count && 0 === $array[0]) {
-            return array();
+            return [];
         }
         return $array;
     }
@@ -123,7 +123,7 @@ class Sanitization
         $array = array_map('esc_attr', (array) $instance_value);
         $count = count($array);
         if (1 === $count && 0 === $array[0]) {
-            return array();
+            return [];
         }
         return $array;
     }

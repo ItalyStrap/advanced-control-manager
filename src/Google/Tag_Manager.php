@@ -32,34 +32,26 @@ class Tag_Manager implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'wp_head'   => array(
-                'function_to_add'   => 'render',
-                'priority'          => 1,
-            ),
-            'italystrap_before' => array(
-                'function_to_add'   => 'render',
-                'priority'          => 1,
-            ),
-        );
+            'wp_head'   => ['function_to_add'   => 'render', 'priority'          => 1],
+            'italystrap_before' => ['function_to_add'   => 'render', 'priority'          => 1],
+        ];
     }
 
     /**
      * Plugin options settings.
-     *
-     * @var array
      */
-    private $options = null;
+    private ?array $options = null;
 
-    private static $position = '';
+    private static string $position = '';
 
     /**
      * Init the constructor.
      *
      * @param array $argument Plugin options settings.
      */
-    function __construct(array $options = array())
+    function __construct(array $options = [])
     {
         $this->options = $options;
         // add_filter( 'body_class', array( $this, 'render_tag_manager' ), 10000, 2 );

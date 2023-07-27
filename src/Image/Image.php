@@ -82,9 +82,7 @@ class Image
 
         $icon = esc_attr($this->args['icon']);
 
-        $attr = array(
-            'class'     => $icon . ' ' . $align,
-        );
+        $attr = ['class'     => $icon . ' ' . $align];
 
         $output .= sprintf(
             '<span %s></span>',
@@ -125,10 +123,7 @@ class Image
          */
         $image_css_class = esc_attr($this->args['image_css_class']);
 
-        $attr = array(
-            'class'     => "attachment-$size size-$size $align $image_css_class",
-            'itemprop'  => 'image',
-        );
+        $attr = ['class'     => "attachment-$size size-$size $align $image_css_class", 'itemprop'  => 'image'];
 
         if (! empty($this->args['image_title'])) {
             $attr['title'] = esc_attr($this->args['image_title']);
@@ -201,7 +196,7 @@ class Image
 
         return sprintf(
             '<figcaption %s>%s</figcaption>',
-            \ItalyStrap\Core\get_attr('widget_image_caption', array( 'class' => 'fig-null' )),
+            \ItalyStrap\Core\get_attr('widget_image_caption', ['class' => 'fig-null']),
             esc_attr($this->args['caption'])
         );
     }

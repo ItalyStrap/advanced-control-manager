@@ -24,10 +24,10 @@ class Visibility extends Visibility_Base
     public static function init()
     {
 
-        if (! in_array($GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true)) {
-            add_filter('widget_display_callback', array( __CLASS__, 'filter_widget' ));
-            add_filter('sidebars_widgets', array( __CLASS__, 'sidebars_widgets' ));
-            add_action('template_redirect', array( __CLASS__, 'template_redirect' ));
+        if (! in_array($GLOBALS['pagenow'], ['wp-login.php', 'wp-register.php'], true)) {
+            add_filter('widget_display_callback', [self::class, 'filter_widget']);
+            add_filter('sidebars_widgets', [self::class, 'sidebars_widgets']);
+            add_action('template_redirect', [self::class, 'template_redirect']);
         }
     }
 
@@ -39,7 +39,7 @@ class Visibility extends Visibility_Base
      */
     public static function sidebars_widgets($widget_areas)
     {
-        $settings = array();
+        $settings = [];
 
         foreach ($widget_areas as $widget_area => $widgets) {
             if (empty($widgets)) {
@@ -123,7 +123,7 @@ class Visibility extends Visibility_Base
 
         // Store the results of all in-page condition lookups so that multiple widgets with
         // the same visibility conditions don't result in duplicate DB queries.
-        static $condition_result_cache = array();
+        static $condition_result_cache = [];
 
         $condition_result = false;
 

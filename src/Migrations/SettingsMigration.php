@@ -1,36 +1,15 @@
 <?php
 
-/**
- * Settings_Converter API
- *
- * This class converts settings from options to theme_mode and viceversa
- *
- * @link www.italystrap.it
- * @since 4.0.0
- *
- * @package ItalyStrap
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Migrations;
 
-/**
- * Settings_Converter
- */
-class Settings_Converter
+class SettingsMigration
 {
-    /**
-     * [$var description]
-     *
-     * @var array
-     */
-    private $data = array();
+    private array $data = [];
+    private array $pattern;
 
-    /**
-     * [__construct description]
-     *
-     * @param [type] $data [description].
-     */
-    public function __construct(array $pattern = array(), array $data = array())
+    public function __construct(array $pattern = [], array $data = [])
     {
         $this->data = $data;
         $this->pattern = $pattern;
@@ -44,7 +23,7 @@ class Settings_Converter
      *
      * @example $pattern = array( 'old_option_key'  => 'new_theme_mod_key', );
      */
-    public function data_to_theme_mod(array $pattern, array $data)
+    public function dataToThemeMod(array $pattern, array $data)
     {
 
         foreach ($pattern as $old_key => $new_key) {
@@ -57,7 +36,7 @@ class Settings_Converter
             }
 
             if (preg_match('#png|jpg|gif#is', $data[ $old_key ])) {
-                set_theme_mod($new_key, $this->get_image_id_from_url($data[ $old_key ]));
+                set_theme_mod($new_key, $this->getImageIdFromUrl($data[ $old_key ]));
                 continue;
             }
 
@@ -73,7 +52,7 @@ class Settings_Converter
      *
      * @example $pattern = array( 'old_option_key'  => 'new_theme_mod_key', );
      */
-    public function data_to_option(array $pattern, array $data)
+    public function dataToOption(array $pattern, array $data)
     {
 
         foreach ($pattern as $old_key => $new_key) {
@@ -86,7 +65,7 @@ class Settings_Converter
             }
 
             if (preg_match('#png|jpg|gif#is', $data[ $old_key ])) {
-                update_option($new_key, $this->get_image_id_from_url($data[ $old_key ]));
+                update_option($new_key, $this->getImageIdFromUrl($data[ $old_key ]));
                 continue;
             }
 
@@ -104,11 +83,11 @@ class Settings_Converter
      *
      * @example $pattern = array( 'old_option_key'  => 'new_theme_mod_key', );
      */
-    public function data_to_options(array $pattern, array $data, $options, $option_name)
+    public function dataToOptions(array $pattern, array $data, $options, $option_name)
     {
 
         if (! is_array($options)) {
-            $options = array();
+            $options = [];
         }
 
         foreach ($pattern as $old_key => $new_key) {
@@ -123,7 +102,7 @@ class Settings_Converter
             }
 
             if (preg_match('#png|jpg|gif#is', $data[ $old_key ])) {
-                $options[ $new_key ] = $this->get_image_id_from_url($data[ $old_key ]);
+                $options[ $new_key ] = $this->getImageIdFromUrl($data[ $old_key ]);
                 update_option($option_name, $options);
                 continue;
             }
@@ -138,11 +117,11 @@ class Settings_Converter
      *
      * @link https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
      *
-     * @param  string $image_url The src of the image.
+     * @param string $image_url The src of the image.
      *
      * @return int               Return the ID of the image
      */
-    private function get_image_id_from_url($image_url)
+    private function getImageIdFromUrl(string $image_url): int
     {
 
         return \ItalyStrap\Core\get_image_id_from_url($image_url);

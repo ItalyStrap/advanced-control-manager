@@ -16,17 +16,17 @@ namespace ItalyStrap\Migrations;
 /**
  * Rename_Directory Class.
  */
-class Rename_Directory
+class RenameDirectory
 {
     /**
      * Check the right permission for the directory.
      *
-     * @param  string $new_parent_dir The new name for the directory.
-     * @param  string $permissions           Permissions for the controller. Default '0755'.
+     * @param string $new_parent_dir The new name for the directory.
+     * @param string $permissions           Permissions for the controller. Default '0755'.
      *
      * @return bool                          Retur true if the permissions are 755
      */
-    private function is_permission_right($new_parent_dir, $permissions = '0755')
+    private function isPermissionRight(string $new_parent_dir, string $permissions = '0755'): bool
     {
         return $permissions === substr(sprintf('%o', fileperms($new_parent_dir)), - 4);
     }
@@ -34,12 +34,12 @@ class Rename_Directory
     /**
      * Rename the directory
      *
-     * @param  string $old_parent_dir The name and path of the old directory.
-     * @param  string $new_parent_dir The name and path of the new directory.
+     * @param string $old_parent_dir The name and path of the old directory.
+     * @param string $new_parent_dir The name and path of the new directory.
      *
      * @return bool                          Return true if success.
      */
-    public function rename($old_parent_dir, $new_parent_dir)
+    public function rename(string $old_parent_dir, string $new_parent_dir)
     {
 
         // if ( ! is_dir( $old_parent_dir ) ) {
@@ -57,7 +57,7 @@ class Rename_Directory
 
         $renamed = rename($old_parent_dir, $new_parent_dir);
 
-        if (! $this->is_permission_right($new_parent_dir)) {
+        if (! $this->isPermissionRight($new_parent_dir)) {
             chmod($new_parent_dir, 0755);
         }
 

@@ -33,34 +33,17 @@ class Tag_Cloud implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
             'widget_tag_cloud_args'         => 'widget_tag_cloud_args',
             'wp_generate_tag_cloud_data'    => 'tag_cloud_data',
-        );
+        ];
     }
 
     /**
      * [$var description]
-     *
-     * @var array
      */
-    private $defaults = array(
-        'smallest'  => 8,
-        'largest'   => 22,
-        'unit'      => 'pt',
-        'number'    => 45,
-        'format'    => 'flat',
-        'separator' => "\n",
-        'orderby'   => 'name',
-        'order'     => 'ASC',
-        'exclude'   => '',
-        'include'   => '',
-        'link'      => 'view',
-        'taxonomy'  => 'post_tag',
-        'post_type' => '',
-        'echo'      => true
-    );
+    private array $defaults = ['smallest'  => 8, 'largest'   => 22, 'unit'      => 'pt', 'number'    => 45, 'format'    => 'flat', 'separator' => "\n", 'orderby'   => 'name', 'order'     => 'ASC', 'exclude'   => '', 'include'   => '', 'link'      => 'view', 'taxonomy'  => 'post_tag', 'post_type' => '', 'echo'      => true];
 
     /**
      * Filters the taxonomy used in the Tag Cloud widget.

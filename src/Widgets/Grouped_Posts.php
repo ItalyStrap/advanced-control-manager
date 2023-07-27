@@ -38,7 +38,7 @@ class Grouped_Posts extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         /**
          * List of posts type
@@ -46,22 +46,22 @@ class Grouped_Posts extends Widget
          * @todo Aggiungere any all'array
          * @var array
          */
-        $get_post_types = get_post_types(array( 'public' => true ));
+        $get_post_types = get_post_types(['public' => true]);
 
         /**
          * Configure widget array.
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Grouped Posts', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Displays list of categories with their posts with an array of options. This widget is still in ALPHA version.', 'italystrap'),
             'fields'            => $this->get_widget_fields(require(ITALYSTRAP_PLUGIN_PATH . 'config/grouped-posts.php')),
-            'control_options'   => array( 'width' => 450 ),
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-         );
+            'control_options'   => ['width' => 450],
+            'widget_options'    => ['customize_selective_refresh' => true],
+        ];
 
         /**
          * Create Widget

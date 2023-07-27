@@ -35,31 +35,15 @@ class Video implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             /**
              * This run on [embed] shortcode
              */
-            'embed_oembed_html' => array(
-                'function_to_add'   => 'get_embed',
-                'accepted_args'     => 4,
-            ),
-            'oembed_result' => array(
-                'function_to_add'   => 'get_embed',
-                'accepted_args'     => 3,
-            ),
-            'wp_video_shortcode'    => array(
-                'function_to_add'   => 'get_video_shortcode',
-                'accepted_args'     => 5,
-            ),
-            /**
-             * @todo Future improvements
-             */
-            // 'embed_defaults' => array(
-            //  'function_to_add'   => 'embed_defaults',
-            //  'accepted_args'     => 2,
-            // ),
-        );
+            'embed_oembed_html' => ['function_to_add'   => 'get_embed', 'accepted_args'     => 4],
+            'oembed_result' => ['function_to_add'   => 'get_embed', 'accepted_args'     => 3],
+            'wp_video_shortcode'    => ['function_to_add'   => 'get_video_shortcode', 'accepted_args'     => 5],
+        ];
     }
 
     /**
@@ -71,7 +55,7 @@ class Video implements Subscriber_Interface
      * @regex null
      */
     // private $regex = '#https?://(www.)?youtube\.com/(?:v|embed)/([^/]+)#i';
-    private $regex = '#(?:v=|\/v\/|\.be\/)([a-zA-Z0-9_-]+)#i';
+    private string $regex = '#(?:v=|\/v\/|\.be\/)([a-zA-Z0-9_-]+)#i';
 
     /**
      * Constructor

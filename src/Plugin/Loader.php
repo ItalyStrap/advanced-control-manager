@@ -23,24 +23,18 @@ class Loader
 {
     /**
      * Flag to track if the plugin is loaded.
-     *
-     * @var bool
      */
-    private $loaded;
+    private bool $loaded;
 
     /**
      * Auryn PHP container
-     *
-     * @var Injector
      */
-    private $injector;
+    private \Auryn\Injector $injector;
 
     /**
      * Event Manager
-     *
-     * @var Manager
      */
-    private $event_manager;
+    private \ItalyStrap\Event\Manager $event_manager;
 
     /**
      * Array with all the classes registered for the initialization of the plugin.
@@ -51,10 +45,8 @@ class Loader
 
     /**
      * Plugin config
-     *
-     * @var array
      */
-    private $config;
+    private array $config;
 
     /**
      * Init the plugin
@@ -64,7 +56,7 @@ class Loader
      * @param array    $app           Class appuration array.
      * @param array    $config        Plugin configuration.
      */
-    function __construct(Injector $injector, Manager $event_manager, array $app = array(), array $config = array())
+    function __construct(Injector $injector, Manager $event_manager, array $app = [], array $config = [])
     {
 
         $this->injector = $injector;
@@ -196,18 +188,7 @@ class Loader
     private function get_app()
     {
 
-        $default = array(
-            'sharing'               => array(),
-            'aliases'               => array(),
-            'definitions'           => array(),
-            'define_param'          => array(),
-            'delegations'           => array(),
-            'preparations'          => array(),
-            'concretes'             => array(),
-            'options_concretes'     => array(),
-            'subscribers'           => array(),
-            'execute'           => array(),
-        );
+        $default = ['sharing'               => [], 'aliases'               => [], 'definitions'           => [], 'define_param'          => [], 'delegations'           => [], 'preparations'          => [], 'concretes'             => [], 'options_concretes'     => [], 'subscribers'           => [], 'execute'           => []];
 
         $this->app = (array) apply_filters('italystrap_app', $this->app);
 

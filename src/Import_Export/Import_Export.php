@@ -35,11 +35,11 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'italystrap_after_settings_page'    => 'get_view',
             'admin_init'                        => 'onAdminInit',
-        );
+        ];
     }
 
     public function onAdminInit()
@@ -86,7 +86,7 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface
             exit;
         }
 
-        echo json_encode($this->settings);
+        echo json_encode($this->settings, JSON_THROW_ON_ERROR);
         exit;
     }
 
@@ -119,7 +119,7 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface
             wp_die(
                 $this->i18n['no_json_file']['message'],
                 $this->i18n['no_json_file']['title'],
-                array( 'back_link' => true )
+                ['back_link' => true]
             );
         }
 
@@ -130,7 +130,7 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface
             wp_die(
                 $this->i18n['zero_size']['message'],
                 $this->i18n['zero_size']['title'],
-                array( 'back_link' => true )
+                ['back_link' => true]
             );
         }
 
@@ -143,7 +143,7 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface
             wp_die(
                 $this->i18n['no_file']['message'],
                 $this->i18n['no_file']['title'],
-                array( 'back_link' => true )
+                ['back_link' => true]
             );
         }
 
@@ -152,7 +152,7 @@ class Import_Export extends Import_Export_Base implements Subscriber_Interface
          *
          * @var array
          */
-        $settings = (array) json_decode(file_get_contents($import_file));
+        $settings = (array) json_decode(file_get_contents($import_file), null, 512, JSON_THROW_ON_ERROR);
 
         foreach ((array) $this->args['options_names'] as $options_name) {
             update_option($options_name, get_object_vars($settings[ $options_name ]));

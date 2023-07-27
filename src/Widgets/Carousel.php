@@ -35,7 +35,7 @@ class Carousel extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         /**
          * Instance of list of image sizes
@@ -51,15 +51,15 @@ class Carousel extends Widget
          * Configure widget array.
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Media Carousel', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Add a image carousel for all your media files from any posts type (posts, pages, attachments and custom post type)', 'italystrap'),
             'fields'            => $fields,
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-            'control_options'   => array( 'width' => 450 ),
-         );
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 450],
+        ];
 
         /**
          * Create Widget
@@ -90,6 +90,7 @@ class Carousel extends Widget
     function numeric_comma($value)
     {
 
+        $instance_value = null;
         return (bool) preg_match('/(?:\d+\,)+?/', $instance_value);
     }
 } // class

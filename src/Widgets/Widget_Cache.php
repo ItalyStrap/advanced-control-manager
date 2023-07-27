@@ -31,7 +31,7 @@ class Widget_Cache
         $cache = wp_cache_get(apply_filters("italystrap_cached_{$this->id}", $this->id), 'widget');
 
         if (! is_array($cache)) {
-            $cache = array();
+            $cache = [];
         }
 
         if (isset($cache[ $this->id ])) {
@@ -52,7 +52,7 @@ class Widget_Cache
     public function cache_widget($args, $content)
     {
 
-        wp_cache_set(apply_filters("italystrap_cached_{$this->id}", $this->id), array( $this->id => $content ), 'widget');
+        wp_cache_set(apply_filters("italystrap_cached_{$this->id}", $this->id), [$this->id => $content], 'widget');
 
         return $content;
     }

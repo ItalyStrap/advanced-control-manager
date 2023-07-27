@@ -97,15 +97,7 @@ class VCard
     public function get_itemprop_sameas($echo = false)
     {
 
-        $same_as = array(
-            'facebook',
-            'twitter',
-            'googleplus',
-            'pinterest',
-            'instagram',
-            'youtube',
-            'linkedin',
-        );
+        $same_as = ['facebook', 'twitter', 'googleplus', 'pinterest', 'instagram', 'youtube', 'linkedin'];
 
         $meta = '';
 
@@ -132,13 +124,7 @@ class VCard
     public function get_itemprop_contacts($echo = false)
     {
 
-        $contacts = array(
-            'tel'       => 'telephone',
-            'mobile'    => 'telephone',
-            'fax'       => 'faxNumber',
-            'email'     => 'email',
-            'taxID'     => 'taxID',
-        );
+        $contacts = ['tel'       => 'telephone', 'mobile'    => 'telephone', 'fax'       => 'faxNumber', 'email'     => 'email', 'taxID'     => 'taxID'];
 
         $contacts_list = '';
 

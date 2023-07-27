@@ -13,12 +13,7 @@ namespace ItalyStrap\Core;
  *
  * @var array
  */
-$ul_attr = array(
-    'id'    => 'schema',
-    'class' => 'list-unstyled schema vCard' . esc_attr($this->args['container_class']),
-    'itemtype'  => 'http://schema.org/' . esc_textarea($this->args['schema']),
-    'itemscope' => true,
-    );
+$ul_attr = ['id'    => 'schema', 'class' => 'list-unstyled schema vCard' . esc_attr($this->args['container_class']), 'itemtype'  => 'http://schema.org/' . esc_textarea($this->args['schema']), 'itemscope' => true];
 
 ?>
 
@@ -28,11 +23,7 @@ $ul_attr = array(
     <li class='image'>
         <figure class="vcard-logo">
             <?php
-            $attr = array(
-                'itemprop'  => 'image',
-                'class'     => esc_attr($this->args['logo_class']),
-                'alt'       => $this->get_company_name(),
-            );
+            $attr = ['itemprop'  => 'image', 'class'     => esc_attr($this->args['logo_class']), 'alt'       => $this->get_company_name()];
             $the_post_thumbnail = wp_get_attachment_image($this->args['logo_id'], $this->args['logo_size'], false, $attr);
             echo apply_filters('italystrap_vcard_logo', $the_post_thumbnail); // XSS ok.
             ?>

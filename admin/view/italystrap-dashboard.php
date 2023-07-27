@@ -44,11 +44,7 @@ use function ItalyStrap\Core\get_file_content;
                             <?php
                             echo esc_url(
                                 add_query_arg(
-                                    array(
-                                        'utm_source' => 'plugin',
-                                        'utm_medium' => 'link',
-                                        'utm_campaign' => 'italystrap',
-                                    ),
+                                    ['utm_source' => 'plugin', 'utm_medium' => 'link', 'utm_campaign' => 'italystrap'],
                                     'https://www.italystrap.com/support/'
                                 )
                             );
@@ -58,11 +54,7 @@ use function ItalyStrap\Core\get_file_content;
                             <?php
                             echo esc_url(
                                 add_query_arg(
-                                    array(
-                                        'utm_source' => 'plugin',
-                                        'utm_medium' => 'link',
-                                        'utm_campaign' => 'italystrap',
-                                    ),
+                                    ['utm_source' => 'plugin', 'utm_medium' => 'link', 'utm_campaign' => 'italystrap'],
                                     'https://www.italystrap.com/contact/'
                                 )
                             );

@@ -1,35 +1,17 @@
 <?php
 
-/**
- * Old Hooks API
- *
- * This class converts the old hooks used with the new hooks
- *
- * @link [URL]
- * @since [x.x.x (if available)]
- *
- * @package [Plugin/Theme/Etc]
- */
+declare(strict_types=1);
 
 namespace ItalyStrap\Migrations;
 
 use ItalyStrap\Event\Subscriber_Interface;
 use ItalyStrap\Event\SubscriberInterface;
 
-/**
- * Old_Hooks
- */
-class Old_Hooks implements SubscriberInterface, Subscriber_Interface
+class EventsMigration implements SubscriberInterface, Subscriber_Interface
 {
-    /**
-     * @inheritDoc
-     */
     public static function get_subscribed_events()
     {
         return [
-            // 'hook_name'                          => 'method_name',
-            // 'after_setup_theme'  => 'convert',
-//          'italystrap_theme_loaded'   => 'convert',
             'init'  => 'convert',
         ];
     }
@@ -38,7 +20,7 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
      *
-     * @hooked 'after_setup_theme' - 10
+     * @hooked 'init' - 10
      *
      * @return array
      */
@@ -49,10 +31,8 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface
 
     /**
      * Hooks from version <4.0.0
-     *
-     * @var array
      */
-    private $hooks = array(
+    private array $hooks = [
         'body_open'                 => '',
         'wrapper_open'              => 'italystrap_before',
         'header_open'               => 'italystrap_before_header',
@@ -71,16 +51,13 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface
         'footer_open'               => 'italystrap_before_footer',
         'footer_closed'             => 'italystrap_after_footer',
         'wrapper_closed'            => 'italystrap_after',
-        'body_closed'               => '',
-    );
+        'body_closed'               => ''
+    ];
 
-    /**
-     * Conver old hooks
-     */
     public function convert()
     {
 
-        if (! function_exists('do_action_deprecated')) {
+        if (!\function_exists('do_action_deprecated')) {
             return;
         }
 
@@ -88,22 +65,23 @@ class Old_Hooks implements SubscriberInterface, Subscriber_Interface
             if (empty($new)) {
                 continue;
             }
-            add_action($new, function () use ($new, $old) {
-                if (! has_filter($old)) {
+            \add_action($new, function () use ($new, $old) {
+                if (!\has_filter($old)) {
                     return;
                 }
 
-                _deprecated_hook(
+                \_deprecated_hook(
                     $old,
                     '4.0.0',
                     $new,
-                    sprintf(
-                        __('%s is deprecated, use %s instead.', 'italystrap'),
+                    \sprintf(
+                        /** translators: %1$s is the old hook name, %2$s is the new hook name */
+                        \__('%s is deprecated, use %s instead.', 'italystrap'),
                         $old,
                         $new
                     )
                 );
-                do_action($old);
+                \do_action($old);
             });
         }
     }

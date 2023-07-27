@@ -37,13 +37,11 @@ class Block_Factory implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
-            'after_setup_theme' => array(
-                'function_to_add'   => 'register',
-            ),
+            'after_setup_theme' => ['function_to_add'   => 'register'],
             'enqueue_block_editor_assets'   => 'enqueue',
-        );
+        ];
     }
 
     /**
@@ -55,10 +53,8 @@ class Block_Factory implements Subscriber_Interface
 
     /**
      * List of all widget classes name.
-     *
-     * @var array
      */
-    private $blocks_list = array();
+    private array $blocks_list = [];
 
     /**
      * Injector object
@@ -70,14 +66,12 @@ class Block_Factory implements Subscriber_Interface
     /**
      * Fire the construct
      */
-    public function __construct(array $options = array(), $injector = null)
+    public function __construct(array $options = [], $injector = null)
     {
         $this->options = $options;
         $this->injector = $injector;
 
-        $this->blocks_list = array(
-            'block_posts'           => 'ItalyStrap\\Blocks\\Posts',
-        );
+        $this->blocks_list = ['block_posts'           => \ItalyStrap\Blocks\Posts::class];
     }
 
     /**
@@ -88,8 +82,8 @@ class Block_Factory implements Subscriber_Interface
         wp_enqueue_script(
             'italystrap-posts',
             plugins_url('index.build.js', __FILE__),
-            array( 'wp-blocks', 'wp-element', 'wp-api' ),
-            rand(),
+            ['wp-blocks', 'wp-element', 'wp-api'],
+            random_int(0, mt_getrandmax()),
             true
         );
     }
@@ -115,7 +109,7 @@ class Block_Factory implements Subscriber_Interface
             /**
              * Block object
              */
-            $$block_name =  $this->injector->make(
+            ${$block_name} =  $this->injector->make(
                 $class_name,
                 [
                     ':block_type'   => "italystrap/{$block_name}",
@@ -143,7 +137,7 @@ class Block_Factory implements Subscriber_Interface
              * We don't need to pass the string name and args for the block because
              * we just passed the obj to the first argument.
              */
-            register_block_type($$block_name);
+            register_block_type(${$block_name});
 
 //          register_block_type_from_metadata(  );
         }

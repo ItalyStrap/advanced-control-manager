@@ -24,19 +24,13 @@ class Image
      *
      * @return string
      */
-    const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    public const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-    const PLACEHOLDER_FILTER_EVENT_NAME = 'italystrap_lazy_load_placeholder_image';
+    public const PLACEHOLDER_FILTER_EVENT_NAME = 'italystrap_lazy_load_placeholder_image';
 
-    /**
-     * @var Config
-     */
-    private $config;
+    private \ItalyStrap\Config\Config $config;
 
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
+    private \ItalyStrap\Event\EventDispatcherInterface $dispatcher;
 
     /**
      * Init constructor
@@ -77,9 +71,7 @@ class Image
          */
         return \preg_replace_callback(
             '#<img([^>]+?)src=[\'"]?([^\'"\s>]+)[\'"]?([^>]*)>#',
-            function (array $matches) {
-                return $this->replaceAttributes($matches);
-            },
+            fn(array $matches) => $this->replaceAttributes($matches),
             $content
         );
     }

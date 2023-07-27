@@ -15,16 +15,12 @@ namespace ItalyStrap\Core;
 $output = '';
 
 if (! empty($this->args['add_figure_container'])) {
-    $attr = array(
-        'class' => 'widget-image-figure ' . esc_attr($this->args['container_css_class']),
-    );
+    $attr = ['class' => 'widget-image-figure ' . esc_attr($this->args['container_css_class'])];
     $output .= sprintf('<figure %s>', get_attr('widget_image_figure', $attr));
 }
 
 if (! empty($this->args['link'])) {
-    $link_attr = array(
-        'href' => esc_url($this->args['link']),
-    );
+    $link_attr = ['href' => esc_url($this->args['link'])];
 
     if (! empty($this->args['link_target_blank'])) {
         $link_attr['target'] = '_blank';

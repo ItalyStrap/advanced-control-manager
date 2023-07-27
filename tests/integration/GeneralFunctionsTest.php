@@ -11,9 +11,7 @@ class GeneralFunctionsTest extends IntegrationTestCase
     public function test_shortcode_atts_multidimensional_array()
     {
 
-        $atts = array(
-            'title' => 'The title',
-        );
+        $atts = ['title' => 'The title'];
 
         $array = \ItalyStrap\Core\shortcode_atts_multidimensional_array(require(ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php'), $atts, $shortcode = '');
 

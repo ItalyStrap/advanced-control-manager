@@ -31,24 +31,20 @@ class HTML
 {
     /**
      * Arguments for class.
-     *
-     * @var array
      */
-    private $args = array();
+    private array $args = [];
 
     /**
      * The post HTML output
-     *
-     * @var string
      */
-    private $posts_output = '';
+    private string $posts_output = '';
 
     /**
      * The constructor
      *
      * @param array $args The array of arguments.
      */
-    function __construct($args = array())
+    function __construct($args = [])
     {
 
         $this->args = $args;
@@ -65,7 +61,7 @@ class HTML
      * @param  array  $author_args Arguments for wp_list_author().
      * @return string              Return list of author
      */
-    private function get_wp_list_author($author_args = array())
+    private function get_wp_list_author($author_args = [])
     {
 
         $author_args['echo'] = false;
@@ -80,7 +76,7 @@ class HTML
      * @param  array  $pages_args Argument for wp_list_pages()
      * @return string             Return list of pages
      */
-    private function get_wp_list_pages($pages_args = array())
+    private function get_wp_list_pages($pages_args = [])
     {
 
         $pages_args['title_li'] = '';
@@ -94,7 +90,7 @@ class HTML
      *
      * @param  array $args The arguments for class.
      */
-    public function the_html_sitemaps($args = array())
+    public function the_html_sitemaps($args = [])
     {
 
         echo $this->get_the_html_sitemaps($args); // XSS ok.
@@ -106,7 +102,7 @@ class HTML
      * @param  array  $args Argument for HTML sitemaps.
      * @return string       Return the HTML sitemaps
      */
-    public function get_the_html_sitemaps($args = array())
+    public function get_the_html_sitemaps($args = [])
     {
 
             /**
@@ -131,9 +127,7 @@ class HTML
              *
              * @var array
              */
-            $author_args = array(
-                'exclude_admin' => false,
-            );
+            $author_args = ['exclude_admin' => false];
 
             $posts_output .= '<h2 itemprop="name">' . __('Authors:', 'italystrap') . '</h2><meta itemprop="itemListOrder" content="Ascending" /><ul>' . $this->get_wp_list_author($author_args) . '</ul>';
 
@@ -142,63 +136,63 @@ class HTML
              *
              * @var array
              */
-            $post_types = get_post_types(array( 'public' => true ));
+            $post_types = get_post_types(['public' => true]);
 
-            foreach ($post_types as $post_type) {
-                // if ( in_array( $post_type, array('post','page','attachment') ) )
-                //  continue;
+        foreach ($post_types as $post_type) {
+            // if ( in_array( $post_type, array('post','page','attachment') ) )
+            //  continue;
 
-                $pt = get_post_type_object($post_type);
+            $pt = get_post_type_object($post_type);
 
-                if ('post' === $post_type) {
-                    $posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>';
+            if ('post' === $post_type) {
+                $posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>';
 
-                    /**
-                     * Returns an array of category objects matching the query parameters.
-                     *
-                     * @link https://codex.wordpress.org/Function_Reference/get_categories
-                     * @var array
-                     */
-                    $cats = get_categories(array( 'hide_empty' => 1 ));
+                /**
+                 * Returns an array of category objects matching the query parameters.
+                 *
+                 * @link https://codex.wordpress.org/Function_Reference/get_categories
+                 * @var array
+                 */
+                $cats = get_categories(['hide_empty' => 1]);
 
-                    foreach ($cats as $cat) {
-                        $posts_output .= '<li><h3 itemprop="name">' . $cat->cat_name . '</h3><ul>';
+                foreach ($cats as $cat) {
+                    $posts_output .= '<li><h3 itemprop="name">' . $cat->cat_name . '</h3><ul>';
 
-                        query_posts('posts_per_page=-1&cat=' . $cat->cat_ID);
-                        while (have_posts()) {
-                            the_post();
-                            $category = get_the_category();
-
-                            // Only display a post link once, even if it's in multiple categories.
-                            if ($category[0]->cat_ID == $cat->cat_ID) {
-                                $posts_output .= '<li itemprop="itemListElement"><a href="' . get_permalink() . '" itemprop="url">' . get_the_title() . '</a></li>';
-                            }
-                        }
-                        $posts_output .= '</ul></li>';
-                    }
-
-                        $posts_output .= '</ul>';
-                } elseif ('page' === $post_type) {
-                    $posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>' . $this->get_wp_list_pages() . '</ul>';
-                } elseif ('attachment' === $post_type) {
-                    continue;
-                } else {
-                    /**
-                     * Get all custopm post type
-                     */
-
-                    $posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>';
-
-                    query_posts('post_type=' . $post_type . '&posts_per_page=-1');
-
+                    query_posts('posts_per_page=-1&cat=' . $cat->cat_ID);
                     while (have_posts()) {
                         the_post();
-                        $posts_output .= '<li itemprop="itemListElement"><a href="' . get_permalink() . '" itemprop="url">' . get_the_title() . '</a></li>';
+                        $category = get_the_category();
+
+                        // Only display a post link once, even if it's in multiple categories.
+                        if ($category[0]->cat_ID == $cat->cat_ID) {
+                            $posts_output .= '<li itemprop="itemListElement"><a href="' . get_permalink() . '" itemprop="url">' . get_the_title() . '</a></li>';
+                        }
                     }
+                    $posts_output .= '</ul></li>';
+                }
 
                     $posts_output .= '</ul>';
+            } elseif ('page' === $post_type) {
+                $posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>' . $this->get_wp_list_pages() . '</ul>';
+            } elseif ('attachment' === $post_type) {
+                continue;
+            } else {
+                /**
+                 * Get all custopm post type
+                 */
+
+                $posts_output .= '<h2 itemprop="name">' . $pt->labels->name . '</h2><meta itemprop="itemListOrder" content="Descending" /><ul>';
+
+                query_posts('post_type=' . $post_type . '&posts_per_page=-1');
+
+                while (have_posts()) {
+                    the_post();
+                    $posts_output .= '<li itemprop="itemListElement"><a href="' . get_permalink() . '" itemprop="url">' . get_the_title() . '</a></li>';
                 }
+
+                $posts_output .= '</ul>';
             }
+        }
 
             $posts_output .= '</div>';
 

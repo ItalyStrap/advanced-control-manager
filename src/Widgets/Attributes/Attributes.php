@@ -35,25 +35,27 @@ class Attributes implements Subscriber_Interface
     {
 
         if (is_admin()) {
-            return array(
+            return [
                 // 'hook_name'                          => 'method_name',
-                'in_widget_form'            => array(
+                'in_widget_form'            => [
                     'function_to_add'   => 'input_fields',
-                    'priority'          => 10, // Optional
-                    'accepted_args'     => 3, // Optional
-                ),
-                'widget_update_callback'    => array(
+                    'priority'          => 10,
+                    // Optional
+                    'accepted_args'     => 3,
+                ],
+                'widget_update_callback'    => [
                     'function_to_add'   => 'save_attributes',
-                    'priority'          => 10, // Optional
-                    'accepted_args'     => 4, // Optional
-                ),
-            );
+                    'priority'          => 10,
+                    // Optional
+                    'accepted_args'     => 4,
+                ],
+            ];
         }
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'dynamic_sidebar_params'    => 'insert_attributes',
-        );
+        ];
     }
 
     /**
@@ -69,14 +71,14 @@ class Attributes implements Subscriber_Interface
      * @param array            $options     The plugin options.
      * @param FieldsInterface $fields_type Field object.
      */
-    public function __construct(array $options = array(), FieldsInterface $fields_type)
+    public function __construct(array $options = [], FieldsInterface $fields_type)
     {
 
         $this->fields_type = $fields_type;
 
         $this->config = require(ITALYSTRAP_PLUGIN_PATH . 'config/widget-attributes.php');
 
-        $this->new_input_fields = array( 'widget_css_id', 'widget_css_css' );
+        $this->new_input_fields = ['widget_css_id', 'widget_css_css'];
     }
 
     /**
@@ -137,10 +139,7 @@ class Attributes implements Subscriber_Interface
     {
 
         $instance = array_merge(
-            array(
-                'widget_css_id'    => '',
-                'widget_css_class' => '',
-            ),
+            ['widget_css_id'    => '', 'widget_css_class' => ''],
             $instance
         );
 

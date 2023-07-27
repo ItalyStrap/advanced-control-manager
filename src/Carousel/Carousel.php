@@ -34,14 +34,14 @@ abstract class Carousel
      *
      * @var array
      */
-    public $args = array();
+    public $args = [];
 
     /**
      * Array of WordPress $post objects.
      *
      * @var array
      */
-    public $posts = array();
+    public $posts = [];
 
     /**
      * The width of the container
@@ -160,7 +160,7 @@ abstract class Carousel
     public function get_posts()
     {
 
-        $posts = array();
+        $posts = [];
 
         $post_type_ids = (array) $this->make_array($this->args['ids'], $this->args['orderby']);
 
@@ -408,7 +408,7 @@ abstract class Carousel
 
         $size_class = $this->get_img_size_attr();
 
-        $img_attr = array();
+        $img_attr = [];
 
         /**
          * Get the image attribute
@@ -422,11 +422,7 @@ abstract class Carousel
          */
         $img_attr = wp_get_attachment_image_src($post_thumbnail_id, $size_class);
 
-        $attr = array(
-            'class'     => "center-block img-responsive attachment-$size_class size-$size_class",
-            'itemprop'  => 'image',
-            'style'     => 'max-height:' . absint($img_attr[2]) . 'px',
-            );
+        $attr = ['class'     => "center-block img-responsive attachment-$size_class size-$size_class", 'itemprop'  => 'image', 'style'     => 'max-height:' . absint($img_attr[2]) . 'px'];
 
         $output = wp_get_attachment_image($post_thumbnail_id, $size_class, false, $attr);
 
@@ -456,7 +452,7 @@ abstract class Carousel
          * @var array
          */
         $imgmeta = wp_get_attachment_metadata($id);
-        $imgmeta = ( isset($imgmeta['image_meta']) ) ? $imgmeta['image_meta'] : array();
+        $imgmeta = $imgmeta['image_meta'] ?? [];
 
         /**
          * The metadata of the image.

@@ -21,11 +21,11 @@ class Visibility_Admin extends Visibility_Base
     public static function init()
     {
 
-        add_action('sidebar_admin_setup', array( __CLASS__, 'widget_admin_setup' ));
-        add_filter('widget_update_callback', array( __CLASS__, 'widget_update' ), 10, 3);
-        add_action('in_widget_form', array( __CLASS__, 'widget_conditions_admin' ), 10, 3);
-        add_action('wp_ajax_widget_conditions_options', array( __CLASS__, 'widget_conditions_options' ));
-        add_action('wp_ajax_widget_conditions_has_children', array( __CLASS__, 'widget_conditions_has_children' ));
+        add_action('sidebar_admin_setup', [self::class, 'widget_admin_setup']);
+        add_filter('widget_update_callback', [self::class, 'widget_update'], 10, 3);
+        add_action('in_widget_form', [self::class, 'widget_conditions_admin'], 10, 3);
+        add_action('wp_ajax_widget_conditions_options', [self::class, 'widget_conditions_options']);
+        add_action('wp_ajax_widget_conditions_has_children', [self::class, 'widget_conditions_has_children']);
     }
 
     public static function widget_admin_setup()
@@ -36,7 +36,7 @@ class Visibility_Admin extends Visibility_Base
             wp_enqueue_style('widget-conditions', plugins_url('assets/widget-conditions.css', __FILE__));
         }
         wp_enqueue_style('widget-conditions', plugins_url('assets/widget-conditions.css', __FILE__));
-        wp_enqueue_script('widget-conditions', plugins_url('assets/widget-conditions.js', __FILE__), array( 'jquery', 'jquery-ui-core' ), 20140721, true);
+        wp_enqueue_script('widget-conditions', plugins_url('assets/widget-conditions.js', __FILE__), ['jquery', 'jquery-ui-core'], 20_140_721, true);
     }
 
     /**
@@ -54,20 +54,16 @@ class Visibility_Admin extends Visibility_Base
 
         $post_conditions = $_POST['conditions'];
 
-        $conditions = array();
+        $conditions = [];
         $conditions['action'] = sanitize_text_field($post_conditions['action']);
-        $conditions['rules'] = array();
+        $conditions['rules'] = [];
 
         foreach ($post_conditions['rules_major'] as $index => $major_rule) {
             if (! $major_rule) {
                 continue;
             }
 
-            $conditions['rules'][] = array(
-                'major' => sanitize_text_field($major_rule),
-                'minor' => isset($post_conditions['rules_minor'][ $index ]) ? sanitize_text_field($post_conditions['rules_minor'][ $index ]) : '',
-                'has_children' => isset($post_conditions['page_children'][ $index ]) ? true : false,
-            );
+            $conditions['rules'][] = ['major' => sanitize_text_field($major_rule), 'minor' => isset($post_conditions['rules_minor'][ $index ]) ? sanitize_text_field($post_conditions['rules_minor'][ $index ]) : '', 'has_children' => isset($post_conditions['page_children'][ $index ]) ? true : false];
         }
 
         if (! empty($conditions['rules'])) {
@@ -116,10 +112,10 @@ class Visibility_Admin extends Visibility_Base
      * @param $return unused.
      * @param array $instance The widget settings.
      */
-    public static function widget_conditions_admin($widget, $return, array $instance = array())
+    public static function widget_conditions_admin($widget, $return, array $instance = [])
     {
 
-        $conditions = array();
+        $conditions = [];
 
         if (isset($instance['conditions'])) {
             $conditions = $instance['conditions'];
@@ -130,7 +126,7 @@ class Visibility_Admin extends Visibility_Base
         }
 
         if (empty($conditions['rules'])) {
-            $conditions['rules'][] = array( 'major' => '', 'minor' => '', 'has_children' => '' );
+            $conditions['rules'][] = ['major' => '', 'minor' => '', 'has_children' => ''];
         }
 
         $widget_conditional = '';
@@ -164,7 +160,7 @@ class Visibility_Admin extends Visibility_Base
                     <?php
 
                     foreach ($conditions['rules'] as $rule) {
-                        $rule = wp_parse_args($rule, array( 'major' => '', 'minor' => '', 'has_children' => '' ));
+                        $rule = wp_parse_args($rule, ['major' => '', 'minor' => '', 'has_children' => '']);
                         ?>
                         <div class="condition">
                             <div class="selection alignleft">
@@ -182,7 +178,7 @@ class Visibility_Admin extends Visibility_Base
                                     <option value="date" <?php selected("date", $rule['major']); ?>><?php echo esc_html_x('Date', 'Noun, as in: "This page is a date archive."', 'italystrap'); ?></option>
                                     <option value="page" <?php selected("page", $rule['major']); ?>><?php echo esc_html_x('Page', 'Example: The user is looking at a page, not a post.', 'italystrap'); ?></option>
                                     <option value="post_type" <?php selected("post_type", $rule['major']); ?>><?php echo esc_html_x('Post Type', 'Example: the user is viewing a custom post type archive.', 'italystrap'); ?></option>
-                                    <?php if (get_taxonomies(array( '_builtin' => false ))) : ?>
+                                    <?php if (get_taxonomies(['_builtin' => false])) : ?>
                                         <option value="taxonomy" <?php selected("taxonomy", $rule['major']); ?>><?php echo esc_html_x('Taxonomy', 'Noun, as in: "This post has one taxonomy."', 'italystrap'); ?></option>
                                     <?php endif; ?>
                                 </select>
@@ -223,7 +219,7 @@ class Visibility_Admin extends Visibility_Base
      */
     public static function widget_conditions_options_echo($major = '', $minor = '')
     {
-        if (in_array($major, array( 'category', 'tag' )) && is_numeric($minor)) {
+        if (in_array($major, ['category', 'tag']) && is_numeric($minor)) {
             $minor = self::maybe_get_split_term($minor, $major);
         }
 
@@ -233,8 +229,8 @@ class Visibility_Admin extends Visibility_Base
                 <option value=""><?php _e('All category pages', 'italystrap'); ?></option>
                 <?php
 
-                $categories = get_categories(array( 'number' => 1000, 'orderby' => 'count', 'order' => 'DESC' ));
-                usort($categories, array( __CLASS__, 'strcasecmp_name' ));
+                $categories = get_categories(['number' => 1000, 'orderby' => 'count', 'order' => 'DESC']);
+                usort($categories, [self::class, 'strcasecmp_name']);
 
                 foreach ($categories as $category) {
                     ?>
@@ -253,7 +249,7 @@ class Visibility_Admin extends Visibility_Base
                 <option value=""><?php _e('All author pages', 'italystrap'); ?></option>
                 <?php
 
-                foreach (get_users(array( 'orderby' => 'name', 'exclude_admin' => true )) as $author) {
+                foreach (get_users(['orderby' => 'name', 'exclude_admin' => true]) as $author) {
                     ?>
                     <option value="<?php echo esc_attr($author->ID); ?>" <?php selected($author->ID, $minor); ?>><?php echo esc_html($author->display_name); ?></option>
                     <?php
@@ -273,8 +269,8 @@ class Visibility_Admin extends Visibility_Base
                 <option value=""><?php _e('All tag pages', 'italystrap'); ?></option>
                 <?php
 
-                $tags = get_tags(array( 'number' => 1000, 'orderby' => 'count', 'order' => 'DESC' ));
-                usort($tags, array( __CLASS__, 'strcasecmp_name' ));
+                $tags = get_tags(['number' => 1000, 'orderby' => 'count', 'order' => 'DESC']);
+                usort($tags, [self::class, 'strcasecmp_name']);
 
                 foreach ($tags as $tag) {
                     ?>
@@ -307,7 +303,7 @@ class Visibility_Admin extends Visibility_Base
                 <optgroup label="<?php esc_attr_e('Post type:', 'italystrap'); ?>">
                     <?php
 
-                    $post_types = get_post_types(array( 'public' => true, '_builtin' => true ), 'objects');
+                    $post_types = get_post_types(['public' => true, '_builtin' => true], 'objects');
 
                     foreach ($post_types as $post_type) {
                         ?>
@@ -320,7 +316,7 @@ class Visibility_Admin extends Visibility_Base
                 <optgroup label="<?php esc_attr_e('Static page:', 'italystrap'); ?>">
                     <?php
 
-                    echo str_replace(' value="' . esc_attr($minor) . '"', ' value="' . esc_attr($minor) . '" selected="selected"', preg_replace('/<\/?select[^>]*?>/i', '', wp_dropdown_pages(array( 'echo' => false ))));
+                    echo str_replace(' value="' . esc_attr($minor) . '"', ' value="' . esc_attr($minor) . '" selected="selected"', preg_replace('/<\/?select[^>]*?>/i', '', wp_dropdown_pages(['echo' => false])));
 
                     ?>
                 </optgroup>
@@ -342,10 +338,10 @@ class Visibility_Admin extends Visibility_Base
                      *
                      * @param array $args Widget Visibility taxonomy arguments.
                      */
-                    apply_filters('italystrap_widget_visibility_tax_args', array( '_builtin' => false )),
+                    apply_filters('italystrap_widget_visibility_tax_args', ['_builtin' => false]),
                     'objects'
                 );
-                usort($taxonomies, array( __CLASS__, 'strcasecmp_name' ));
+                usort($taxonomies, [self::class, 'strcasecmp_name']);
 
                 $parts = explode('_tax_', $minor);
 
@@ -362,7 +358,7 @@ class Visibility_Admin extends Visibility_Base
                         </option>
                     <?php
 
-                    $terms = get_terms(array( $taxonomy->name ), array( 'number' => 250, 'hide_empty' => false ));
+                    $terms = get_terms([$taxonomy->name], ['number' => 250, 'hide_empty' => false]);
                     foreach ($terms as $term) {
                         ?>
                         <option value="<?php echo esc_attr($taxonomy->name . '_tax_' . $term->term_id); ?>" <?php selected($taxonomy->name . '_tax_' . $term->term_id, $minor); ?>><?php echo esc_html($term->name); ?></option>
@@ -380,7 +376,7 @@ class Visibility_Admin extends Visibility_Base
                 <optgroup label="<?php echo esc_attr_x('Single post:', 'a heading for a list of custom post types', 'italystrap'); ?>">
                     <?php
 
-                    $post_types = get_post_types(array( 'public' => true, '_builtin' => false ), 'objects');
+                    $post_types = get_post_types(['public' => true, '_builtin' => false], 'objects');
 
                     foreach ($post_types as $post_type) {
                         ?>
@@ -397,7 +393,7 @@ class Visibility_Admin extends Visibility_Base
                 <optgroup label="<?php echo esc_attr_x('Archive page:', 'a heading for a list of custom post archive pages', 'italystrap'); ?>">
                     <?php
 
-                    $post_types = get_post_types(array( 'public' => true, '_builtin' => false ), 'objects');
+                    $post_types = get_post_types(['public' => true, '_builtin' => false], 'objects');
 
                     foreach ($post_types as $post_type) {
                         ?>
@@ -452,7 +448,7 @@ class Visibility_Admin extends Visibility_Base
             return null;
         }
 
-        $page_children = get_pages(array( 'child_of' => (int) $minor ));
+        $page_children = get_pages(['child_of' => (int) $minor]);
 
         if ($page_children) {
             ?>

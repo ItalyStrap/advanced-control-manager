@@ -31,7 +31,7 @@ class CSSGeneratorTest extends IntegrationTestCase
 
     protected static function getMethod($name)
     {
-        $class = new ReflectionClass('ItalyStrap\Widgets\Areas\CSS_Generator');
+        $class = new ReflectionClass(\ItalyStrap\Widgets\Areas\CSS_Generator::class);
         $method = $class->getMethod($name);
         $method->setAccessible(true);
         return $method;

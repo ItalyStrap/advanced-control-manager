@@ -34,10 +34,8 @@ class Areas_Base
 
     /**
      * Array with widget areas
-     *
-     * @var array
      */
-    private $widget_areas = array();
+    private array $widget_areas = [];
 
     /**
      * Update object for saving data to DB
@@ -53,14 +51,14 @@ class Areas_Base
      */
     protected $css = null;
 
-    protected $cmb2_config = array();
+    protected $cmb2_config = [];
 
     /**
      * [__construct description]
      *
      * @param [type] $argument [description].
      */
-    function __construct(array $options = array(), Update $update, CSS_Generator $css)
+    function __construct(array $options = [], Update $update, CSS_Generator $css)
     {
         // $this->sidebars = $options;
         $this->sidebars = apply_filters('italystrap_registered_widget_areas_config', get_option('italystrap_widget_area'));
@@ -132,7 +130,7 @@ class Areas_Base
      *
      * @return string String of HTML attributes and values.
      */
-    public function attr($context, array $attr = array(), $echo = false, $args = null)
+    public function attr($context, array $attr = [], $echo = false, $args = null)
     {
 
         Core\get_attr($context, $attr, $echo, $args);
@@ -167,55 +165,36 @@ class Areas_Base
 
         $singular = __('Widget Area', 'italystrap');
         $plural = __('Widget Areas', 'italystrap');
-        $rewrite = array( 'slug' => 'sidebars' );
-        $supports = array(
-            'title',
-            'excerpt',
-            // 'page-attributes',
-        );
+        $rewrite = ['slug' => 'sidebars'];
+        $supports = ['title', 'excerpt'];
 
         if ('' === $rewrite) {
             $rewrite = 'sidebar';
         }
 
-        $labels = array(
-            'name'                  => _x($plural, 'post type general name', 'italystrap'),
-            'singular_name'         => _x($singular, 'post type singular name', 'italystrap'),
-            'add_new'               => _x('Add New', $singular),
-            'add_new_item'          => sprintf(
-                __('Add New %s', 'italystrap'),
-                $singular
-            ),
-            'edit_item'             => sprintf(
-                __('Edit %s', 'italystrap'),
-                $singular
-            ),
-            'new_item'              => sprintf(
-                __('New %s', 'italystrap'),
-                $singular
-            ),
-            'all_items'             => $plural,
-            'view_item'             => sprintf(
-                __('View %s', 'italystrap'),
-                $singular
-            ),
-            'search_items'          => sprintf(
-                __('Search %a', 'italystrap'),
-                $plural
-            ),
-            'not_found'             => sprintf(
-                __('No %s Found', 'italystrap'),
-                $plural
-            ),
-            'not_found_in_trash'    => sprintf(
-                __('No %s Found In Trash', 'italystrap'),
-                $plural
-            ),
-            'parent_item_colon'     => '',
-            'menu_name'             => $plural
-
-        );
-        $args = array(
+        $labels = ['name'                  => _x($plural, 'post type general name', 'italystrap'), 'singular_name'         => _x($singular, 'post type singular name', 'italystrap'), 'add_new'               => _x('Add New', $singular), 'add_new_item'          => sprintf(
+            __('Add New %s', 'italystrap'),
+            $singular
+        ), 'edit_item'             => sprintf(
+            __('Edit %s', 'italystrap'),
+            $singular
+        ), 'new_item'              => sprintf(
+            __('New %s', 'italystrap'),
+            $singular
+        ), 'all_items'             => $plural, 'view_item'             => sprintf(
+            __('View %s', 'italystrap'),
+            $singular
+        ), 'search_items'          => sprintf(
+            __('Search %a', 'italystrap'),
+            $plural
+        ), 'not_found'             => sprintf(
+            __('No %s Found', 'italystrap'),
+            $plural
+        ), 'not_found_in_trash'    => sprintf(
+            __('No %s Found In Trash', 'italystrap'),
+            $plural
+        ), 'parent_item_colon'     => '', 'menu_name'             => $plural];
+        $args = [
             'labels'                => $labels,
             'public'                => false,
             'publicly_queryable'    => true,
@@ -230,8 +209,8 @@ class Areas_Base
             'has_archive'           => 'sidebars',
             'hierarchical'          => false,
             'menu_position'         => null,
-            'supports'              => $supports
-        );
+            'supports'              => $supports,
+        ];
         register_post_type('sidebar', $args);
     } // End register_post_type()
 
@@ -247,11 +226,7 @@ class Areas_Base
             '<div><a %s>%s</a></div>',
             Core\get_attr(
                 'widget_add_sidebar',
-                array(
-                    'href'  => 'post-new.php?post_type=sidebar',
-                    'class' => 'button button-primary sidebar-chooser-add',
-                    'style' => 'margin:1em 0;',
-                ),
+                ['href'  => 'post-new.php?post_type=sidebar', 'class' => 'button button-primary sidebar-chooser-add', 'style' => 'margin:1em 0;'],
                 false
             ),
             __('Add new widgets area', 'italystrap')

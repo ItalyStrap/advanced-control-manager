@@ -14,12 +14,11 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  * Definition array() with all the options connected to the
  * module which must be called by an include (setoptions).
  */
-return array(
-
+return [
     /**
      * Arbitrary text or HTML advanced editor WYSIWYG.
      */
-    'text'              => array(
+    'text'              => [
         'label'     => __('WP Editor', 'italystrap'),
         'desc'      => __('Arbitrary text or HTML advanced editor WYSIWYG.', 'italystrap'),
         'id'        => 'text',
@@ -30,5 +29,5 @@ return array(
         'capability' => current_user_can('unfiltered_html'),
         'sanitize'  => 'wp_kses_post|trim',
         'section'   => 'general',
-    ),
-);
+    ],
+];

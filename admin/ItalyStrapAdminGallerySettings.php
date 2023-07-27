@@ -28,10 +28,10 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'admin_init'    => 'admin_init',
-        );
+        ];
     }
 
     /**
@@ -39,25 +39,20 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
      *
      * @var array
      */
-    private $fields_old = array();
+    private $fields_old = [];
 
-    private $randID = null;
+    private ?int $randID = null;
 
     /**
      * Default option
      *
      * @var array
      */
-    private $carousel_options = array();
+    private $carousel_options = [];
 
-    private $indicators = array(
-        'before-inner',
-        'after-inner',
-        'after-control',
-        'false',
-    );
+    private array $indicators = ['before-inner', 'after-inner', 'after-control', 'false'];
 
-    private $instance_old = array();
+    private array $instance_old = [];
 
     function __construct(FieldsInterface $fields_type, ItalyStrap\Image\Size $image_size)
     {
@@ -73,32 +68,9 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
 
         $this->fields = require(ITALYSTRAP_PLUGIN_PATH . 'config/media-carousel.php');
 
-        $this->carousel_options = array(
-            'orderby'       => array(
-                    'menu_order'    => __('Menu order (Default)', 'italystrap'),
-                    'title'         => __('Order by the image\'s title', 'italystrap'),
-                    'post_date'     => __('Sort by date/time', 'italystrap'),
-                    'rand'          => __('Order randomly', 'italystrap'),
-                    'ID'            => __('Order by the image\'s ID', 'italystrap'),
-                ),
-            'indicators'    => array(
-                    'before-inner'  => __('before-inner', 'italystrap'),
-                    'after-inner'   => __('after-inner', 'italystrap'),
-                    'after-control' => __('after-control', 'italystrap'),
-                    'false'         => __('false', 'italystrap'),
-                ),
-            'control'       => true,
-            'pause'         => array(
-                    'false'         => __('none', 'italystrap'),
-                    'hover'         => __('hover', 'italystrap'),
-                ),
-            'image_title'   => true,
-            'text'          => true,
-            'wpautop'       => true,
-            'responsive'    => false,
-        );
+        $this->carousel_options = ['orderby'       => ['menu_order'    => __('Menu order (Default)', 'italystrap'), 'title'         => __('Order by the image\'s title', 'italystrap'), 'post_date'     => __('Sort by date/time', 'italystrap'), 'rand'          => __('Order randomly', 'italystrap'), 'ID'            => __('Order by the image\'s ID', 'italystrap')], 'indicators'    => ['before-inner'  => __('before-inner', 'italystrap'), 'after-inner'   => __('after-inner', 'italystrap'), 'after-control' => __('after-control', 'italystrap'), 'false'         => __('false', 'italystrap')], 'control'       => true, 'pause'         => ['false'         => __('none', 'italystrap'), 'hover'         => __('hover', 'italystrap')], 'image_title'   => true, 'text'          => true, 'wpautop'       => true, 'responsive'    => false];
 
-        $this->randID = rand(2, 5);
+        $this->randID = random_int(2, 5);
 
         // add_action( 'admin_init', array( $this, 'admin_init' ) );
     }
@@ -111,16 +83,13 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
         $this->gallery_types =
             apply_filters(
                 'italystrap_gallery_types',
-                array(
-                    'default' => __('Standard gallery', 'italystrap'),
-                    'carousel' => __('Bootstrap Carousel', 'italystrap'),
-                )
+                ['default' => __('Standard gallery', 'italystrap'), 'carousel' => __('Bootstrap Carousel', 'italystrap')]
             );
 
         // Enqueue the media UI only if needed.
         // if ( count( $this->gallery_types ) > 0 ) {
-            add_action('wp_enqueue_media', array( $this, 'wp_enqueue_media' ));
-            add_action('print_media_templates', array( $this, 'print_media_templates_old' ));
+            add_action('wp_enqueue_media', [$this, 'wp_enqueue_media']);
+            add_action('print_media_templates', [$this, 'print_media_templates_old']);
             // add_action( 'print_media_templates', array( $this, 'print_media_templates' ) );
         // }
     }
@@ -136,7 +105,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
              * This only happens if we're not in ItalyStrap, but on WPCOM instead.
              * This is the correct path for WPCOM.
              */
-            wp_register_script('italystrap-gallery-settings', plugins_url('admin/js/src/gallery-settings.js', ITALYSTRAP_FILE), array( 'media-views' ), '20121225666');
+            wp_register_script('italystrap-gallery-settings', plugins_url('admin/js/src/gallery-settings.js', ITALYSTRAP_FILE), ['media-views'], '20121225666');
         }
 
         $translation_array = wp_json_encode(require(ITALYSTRAP_PLUGIN_PATH . 'config/carousel.php'));
@@ -159,7 +128,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
 
         ?><style>.setting select{float: right;}</style><?php
 
-            $instance_old = array();
+            $instance_old = [];
 
             $instance_old = wp_parse_args((array) $instance_old, (array) $this->fields_old);
 
@@ -185,7 +154,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
         $image_size_media_array = $this->image_size_media->get_image_sizes();
 
         foreach ($this->fields_old as $key => $label) {
-            $instance_old[ $key ] = isset($instance_old[ $key ]) ? $instance_old[ $key ] : '';
+            $instance_old[ $key ] ??= '';
 
             /**
              * Save select in widget
@@ -197,7 +166,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
             if ('ids' === $key || 'type' === $key || 'size' === $key) {
             } elseif ('sizetablet' === $key || 'sizephone' === $key) {
                 ?>
-                <?php $saved_option = ( isset($instance_old[ $key ]) ) ? $instance_old[ $key ] : '' ; ?>
+                <?php $saved_option = $instance_old[ $key ] ?? '' ; ?>
 
                 <label class="setting" for="<?php echo esc_attr($key); ?>">
                     <span><?php echo esc_attr($key); ?></span>
@@ -219,7 +188,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
                 ?>
 
                 <?php if (isset($this->carousel_options[ $key ]) && is_array($this->carousel_options[ $key ])) :  ?>
-                    <?php $saved_option = ( isset($instance_old[ $key ]) ) ? $instance_old[ $key ] : '' ; ?>
+                    <?php $saved_option = $instance_old[ $key ] ?? '' ; ?>
 
                     <label class="setting" for="<?php echo esc_attr($key); ?>">
                         <span><?php echo esc_attr($key); ?></span>
@@ -295,9 +264,9 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
 
         $default_gallery_type = apply_filters('italystrap_default_gallery_type', 'default');
 
-        $instance = array();
+        $instance = [];
 
-        $key = array(
+        $key = [
             'name'      => __('Type', 'italystrap'),
             'desc'      => __('Enter the widget class name.', 'italystrap'),
             'id'        => 'type',
@@ -309,8 +278,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
             // 'class-p'    => 'setting',
             'default'   => $default_gallery_type,
             'options'   => $this->gallery_types,
-            // 'value'      => 'Some value',
-         );
+        ];
 
         $output = sprintf(
             '<script type="text/html" id="tmpl-italystrap-gallery-settings">%s<div id="italystrap-carousel-option">%s</div></script>',
@@ -360,6 +328,6 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
          */
         $key['_id'] = $key['_name'] = $key['attributes']['data-setting'] = $key['id'];
 
-        return $this->fields_type->get_field_type($key, array());
+        return $this->fields_type->get_field_type($key, []);
     }
 }

@@ -50,7 +50,7 @@ class Query implements Query_Interface
      *
      * @var array
      */
-    protected $posts_to_exclude = array();
+    protected $posts_to_exclude = [];
 
     /**
      * Declare this variable static and call it only one time
@@ -192,12 +192,12 @@ class Query implements Query_Interface
         // d( $this->config['template'] );
         // 'thematic-areas-home'
 
-        $templates = array(
+        $templates = [
             // 'name'   => 'fullpath/of/the/template.php'
             'default'   => $template_dir_name . DS . 'posts/default.php',
             'legacy'    => $template_dir_name . DS . 'posts/legacy.php',
             'custom'    => null,
-        );
+        ];
             // 'default'    => $template_dir_name . DS . 'posts/test.php',
 
         $context = 'posts';
@@ -205,9 +205,7 @@ class Query implements Query_Interface
         // $templates = apply_filters( "italystrap_{$context}_templates_name_registered", $templates );
         $templates = apply_filters('italystrap_templates_posts_name_registered', $templates);
 
-        $templates = array_merge($templates, array(
-            'loop'  => $template_dir_name . DS . 'posts/loop.php',
-        ));
+        $templates = array_merge($templates, ['loop'  => $template_dir_name . DS . 'posts/loop.php']);
 
         // d( locate_template( $templates['default'] ) );
         // d( $templates['loop'] );
@@ -223,9 +221,7 @@ class Query implements Query_Interface
             $this->config['template'] = 'default';
         }
 
-        $locate_template = array(
-            $templates[ $this->config['template'] ],
-        );
+        $locate_template = [$templates[ $this->config['template'] ]];
 
         // d( file_exists( 'E:\xampp\htdocs\helpcode/wp-content/themes/italystrap/templates\posts/default.php' ) );
 
@@ -354,10 +350,10 @@ class Query implements Query_Interface
             $days = 2;
         }
 
-        $post_view_posts = stats_get_csv('postviews', array( 'days' => absint($days), 'limit' => 11 ));
+        $post_view_posts = stats_get_csv('postviews', ['days' => absint($days), 'limit' => 11]);
 
         if (! $post_view_posts) {
-            return array();
+            return [];
         }
 
         $post_view_ids = array_filter(wp_list_pluck($post_view_posts, 'post_id'));

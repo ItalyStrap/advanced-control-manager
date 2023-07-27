@@ -35,14 +35,11 @@ class Widget_Factory implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
-            'widgets_init'  => array(
-                'function_to_add'   => 'register',
-                'priority'          => 10,
-            ),
+            'widgets_init'  => ['function_to_add'   => 'register', 'priority'          => 10],
             'monster-widget-config' => 'monster_widget',
-        );
+        ];
     }
 
     /**
@@ -57,7 +54,7 @@ class Widget_Factory implements Subscriber_Interface
      *
      * @var array
      */
-    private $widget_list = array();
+    private $widget_list = [];
 
     /**
      * Injector object
@@ -69,25 +66,32 @@ class Widget_Factory implements Subscriber_Interface
     /**
      * Fire the construct
      */
-    public function __construct(array $options = array(), $injector = null)
+    public function __construct(array $options = [], $injector = null)
     {
         $this->options = $options;
         $this->injector = $injector;
 
-        $this->widget_list = array(
-            'vcardwidget'               => 'ItalyStrap\\Widgets\\Vcard_Widget', // Deprecated
+        $this->widget_list = [
+            'vcardwidget'               => \ItalyStrap\Widgets\Vcard_Widget::class,
+            // Deprecated
             // 'post_widget'                => 'Widget_Posts2', // Deprecated
-            'media_carousel_widget'     => 'ItalyStrap\\Widgets\\Carousel',
-            'widget_posts'              => 'ItalyStrap\\Widgets\\Posts',
-            'widget_vcard'              => 'ItalyStrap\\Widgets\\VCard', // New
-            'widget_image'              => 'ItalyStrap\\Widgets\\Image', // New
-            'widget_facebook_page'      => 'ItalyStrap\\Widgets\\Facebook_Page', // New
-            'widget_breadcrumbs'        => 'ItalyStrap\\Widgets\\Breadcrumbs', // Beta
-            'widget_grouped_posts'      => 'ItalyStrap\\Widgets\\Grouped_Posts', // Beta
-            'widget_editor'             => 'ItalyStrap\\Widgets\\Editor', // _Beta
+            'media_carousel_widget'     => \ItalyStrap\Widgets\Carousel::class,
+            'widget_posts'              => \ItalyStrap\Widgets\Posts::class,
+            'widget_vcard'              => \ItalyStrap\Widgets\VCard::class,
+            // New
+            'widget_image'              => \ItalyStrap\Widgets\Image::class,
+            // New
+            'widget_facebook_page'      => \ItalyStrap\Widgets\Facebook_Page::class,
+            // New
+            'widget_breadcrumbs'        => \ItalyStrap\Widgets\Breadcrumbs::class,
+            // Beta
+            'widget_grouped_posts'      => \ItalyStrap\Widgets\Grouped_Posts::class,
+            // Beta
+            'widget_editor'             => \ItalyStrap\Widgets\Editor::class,
+            // _Beta
             // 'widget_nav_menu'            => 'ItalyStrap\\Widgets\\Nav_Menu', // _Beta
-            'widget_monster'            => 'ItalyStrap\\Widgets\\Monster', // Debug
-        );
+            'widget_monster'            => \ItalyStrap\Widgets\Monster::class,
+        ];
     }
 
     /**
@@ -115,53 +119,7 @@ class Widget_Factory implements Subscriber_Interface
     public function monster_widget($widgets)
     {
 
-        $new_widgets = array(
-            array(
-                'ItalyStrap\\Widgets\\Carousel',
-                array(
-                    'title'     => __('Bootstrap Carousel', 'italystrap'),
-                    'ids'       => '2300,2298,2244',
-                )
-            ),
-            array(
-                'ItalyStrap\\Widgets\\Posts',
-                array(
-                    'title'     => __('ItalyStrap Posts', 'italystrap'),
-                    'post_types'    => 'post',
-                )
-            ),
-            array(
-                'ItalyStrap\\Widgets\\VCard',
-                array(
-                    'title'     => __('ItalyStrap VCard', 'italystrap'),
-                )
-            ),
-            array(
-                'ItalyStrap\\Widgets\\Image',
-                array(
-                    'title'     => __('ItalyStrap Image', 'italystrap'),
-                    'id'        => '2300',
-                )
-            ),
-            array(
-                'ItalyStrap\\Widgets\\Facebook_Page',
-                array(
-                    'title'     => __('Facebook_Page', 'italystrap'),
-                )
-            ),
-            array(
-                'ItalyStrap\\Widgets\\Breadcrumbs',
-                array(
-                    'title'     => __('Breadcrumbs', 'italystrap'),
-                )
-            ),
-            array(
-                'ItalyStrap\\Widgets\\Taxonomies_Posts',
-                array(
-                    'title'     => __('Taxonomies_Posts', 'italystrap'),
-                )
-            ),
-        );
+        $new_widgets = [[\ItalyStrap\Widgets\Carousel::class, ['title'     => __('Bootstrap Carousel', 'italystrap'), 'ids'       => '2300,2298,2244']], [\ItalyStrap\Widgets\Posts::class, ['title'     => __('ItalyStrap Posts', 'italystrap'), 'post_types'    => 'post']], [\ItalyStrap\Widgets\VCard::class, ['title'     => __('ItalyStrap VCard', 'italystrap')]], [\ItalyStrap\Widgets\Image::class, ['title'     => __('ItalyStrap Image', 'italystrap'), 'id'        => '2300']], [\ItalyStrap\Widgets\Facebook_Page::class, ['title'     => __('Facebook_Page', 'italystrap')]], [\ItalyStrap\Widgets\Breadcrumbs::class, ['title'     => __('Breadcrumbs', 'italystrap')]], ['ItalyStrap\\Widgets\\Taxonomies_Posts', ['title'     => __('Taxonomies_Posts', 'italystrap')]]];
 
         return wp_parse_args($widgets, $new_widgets);
     }

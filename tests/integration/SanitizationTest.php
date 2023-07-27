@@ -66,7 +66,7 @@ class SanitizationTest extends IntegrationTestCase
 
     public function it_should_be_return_empty_array_if_string_is_passed()
     {
-        $instance_value = array( '<h1>Test</h1><!-- Comment --><script></script>' );
+        $instance_value = ['<h1>Test</h1><!-- Comment --><script></script>'];
         $value = $this->makeInstance()->sanitize('sanitize_taxonomy_multiple_select', $instance_value);
         $this->assertTrue(empty($value), $value);
     }
@@ -76,7 +76,7 @@ class SanitizationTest extends IntegrationTestCase
      */
     public function it_should_be_return_sanitized_array()
     {
-        $instance_value = array( 0, 1, '<script></script>' );
+        $instance_value = [0, 1, '<script></script>'];
         $value = $this->makeInstance()->sanitize('sanitize_taxonomy_multiple_select', $instance_value);
         foreach ($value as $key => $value) {
             $this->assertTrue(is_int($value), $value);

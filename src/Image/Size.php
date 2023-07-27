@@ -35,13 +35,10 @@ class Size implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'image_size_names_choose'   => array(
-                'function_to_add'   => 'get_image_sizes',
-                'priority'          => 999,
-            ),
-        );
+            'image_size_names_choose'   => ['function_to_add'   => 'get_image_sizes', 'priority'          => 999],
+        ];
     }
 
     /**
@@ -57,19 +54,19 @@ class Size implements Subscriber_Interface
      * @param  array $args Default WordPres image list ('thumbnail', 'medium', 'large').
      * @return array       New list with custom and standard thumb
      */
-    function get_image_sizes(array $args = array())
+    function get_image_sizes(array $args = [])
     {
 
         global $_wp_additional_image_sizes;
 
-        $custom = array( 'full' => __('Real size', 'italystrap') );
+        $custom = ['full' => __('Real size', 'italystrap')];
 
         /**
          * An array of each size value
          *
          * @var array
          */
-        $sizes = array();
+        $sizes = [];
 
         /**
          * An array of name of each thumb, custom and standard
@@ -87,7 +84,7 @@ class Size implements Subscriber_Interface
              * The name of each thumb
              * var $_size string
              */
-            if ($_size && in_array($_size, array( 'thumbnail', 'medium', 'large' ), true)) {
+            if ($_size && in_array($_size, ['thumbnail', 'medium', 'large'], true)) {
 
                 /**
                  * Get the size of each standard thumb
@@ -100,11 +97,7 @@ class Size implements Subscriber_Interface
                 /**
                  * Get the size of each custom thumb
                  */
-                $sizes[ $_size ] = array(
-                    'width'     => $_wp_additional_image_sizes[ $_size ]['width'],
-                    'height'    => $_wp_additional_image_sizes[ $_size ]['height'],
-                    'crop'      => $_wp_additional_image_sizes[ $_size ]['crop'],
-                );
+                $sizes[ $_size ] = ['width'     => $_wp_additional_image_sizes[ $_size ]['width'], 'height'    => $_wp_additional_image_sizes[ $_size ]['height'], 'crop'      => $_wp_additional_image_sizes[ $_size ]['crop']];
             }
 
             /**

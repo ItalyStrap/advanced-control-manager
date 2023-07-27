@@ -35,14 +35,10 @@ class Share implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'the_content'   => array(
-                'function_to_add'   => 'render',
-                'priority'          => 9999,
-                'accepted_args'     => 1,
-            ),
-        );
+            'the_content'   => ['function_to_add'   => 'render', 'priority'          => 9999, 'accepted_args'     => 1],
+        ];
     }
 
     /**
@@ -50,25 +46,26 @@ class Share implements Subscriber_Interface
      *
      * @var null
      */
-    private $social_url = array();
+    private $social_url = [];
 
-    private $options = array();
+    private array $options = [];
 
     /**
      * [__construct description]
      *
      * @param [type] $argument [description].
      */
-    function __construct(array $options = array())
+    function __construct(array $options = [])
     {
 
+        $option = [];
         $this->options = $options;
 
         $wpseo_social = get_option('wpseo_social');
         $this->via = ! empty($option['twitter_site']) ? '&via=' . $option['twitter_site'] : '' ;
 
         // add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999999 );
-        add_action('wp_footer', array( $this, 'style_in_footer' ), 999999);
+        add_action('wp_footer', [$this, 'style_in_footer'], 999999);
 
         /**
          * Append css in static variable and print in front-end footer
@@ -86,33 +83,7 @@ class Share implements Subscriber_Interface
     public function style()
     {
 
-        $rules = array(
-            'facebook'  => array(
-                'background-color'  => '#465f9e',
-                'border-color'      => '#465f9e',
-                'color'             => '#fff',
-            ),
-            'twitter'   => array(
-                'background-color'  => '#1DA1F2',
-                'border-color'      => '#1DA1F2',
-                'color'             => '#fff',
-            ),
-            'google-plus'   => array(
-                'background-color'  => '#DB4437',
-                'border-color'      => '#DB4437',
-                'color'             => '#fff',
-            ),
-            'linkedin'  => array(
-                'background-color'  => '#0077B5',
-                'border-color'      => '#0077B5',
-                'color'             => '#fff',
-            ),
-            'pinterest' => array(
-                'background-color'  => '#B4091C',
-                'border-color'      => '#B4091C',
-                'color'             => '#fff',
-            ),
-        );
+        $rules = ['facebook'  => ['background-color'  => '#465f9e', 'border-color'      => '#465f9e', 'color'             => '#fff'], 'twitter'   => ['background-color'  => '#1DA1F2', 'border-color'      => '#1DA1F2', 'color'             => '#fff'], 'google-plus'   => ['background-color'  => '#DB4437', 'border-color'      => '#DB4437', 'color'             => '#fff'], 'linkedin'  => ['background-color'  => '#0077B5', 'border-color'      => '#0077B5', 'color'             => '#fff'], 'pinterest' => ['background-color'  => '#B4091C', 'border-color'      => '#B4091C', 'color'             => '#fff']];
 
         $style = '';
 
@@ -133,7 +104,7 @@ class Share implements Subscriber_Interface
      * @param  string $value [description]
      * @return string        [description]
      */
-    public function get_props(array $props = array())
+    public function get_props(array $props = [])
     {
 
         $output = '';
@@ -194,7 +165,7 @@ class Share implements Subscriber_Interface
         // $get_the_excerpt = $this->content;
         $thumb_url = wp_get_attachment_url(get_post_thumbnail_id(get_the_id()));
 
-        $this->social_url = array(
+        $this->social_url = [
             'facebook'  => sprintf(
                 '//www.facebook.com/sharer.php?u=%s&p[title]=%s',
                 $get_permalink,
@@ -224,7 +195,7 @@ class Share implements Subscriber_Interface
                 $thumb_url,
                 $get_the_title
             ),
-        );
+        ];
     }
 
     /**
@@ -243,14 +214,14 @@ class Share implements Subscriber_Interface
 
         $output = '<ul class="social-button list-inline">';
 
-        $link_attr = array(
+        $link_attr = [
             // Not use href because will not be escaped right.
             'class'     => '%2$s btn btn-default btn-xs',
             'target'    => 'popup',
             'onclick'   => 'window.open("%1$s","popup","width=600,height=600"); return false;',
             'rel'       => 'nofollow',
             'title'     => __('Share on %2$s', 'italystrap'),
-        );
+        ];
 
         foreach ($this->social_url as $key => $url) {
             $format = HTML\get_attr($key, $link_attr);
@@ -302,11 +273,7 @@ class Share implements Subscriber_Interface
 
         $this->content = $content;
 
-        $positions = array(
-            'before'    => '%2$s%1$s',
-            'after'     => '%1$s%2$s',
-            'both'      => '%2$s%1$s%2$s',
-        );
+        $positions = ['before'    => '%2$s%1$s', 'after'     => '%1$s%2$s', 'both'      => '%2$s%1$s%2$s'];
 
         return sprintf(
             $positions[ $this->options['social_button_position'] ],

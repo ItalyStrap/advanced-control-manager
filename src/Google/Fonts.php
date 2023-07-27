@@ -52,9 +52,9 @@ class Fonts
      *
      * @var array
      */
-    protected $http_query = array();
+    protected $http_query = [];
 
-    protected static $fonts = array();
+    protected static $fonts = [];
 
     /**
      * Init the class.
@@ -68,50 +68,13 @@ class Fonts
 
         $this->google_api_key = esc_attr($config->get('google_api_key', ''));
 
-        $this->http_query = array(
-            'key'   => $this->google_api_key,
-        );
+        $this->http_query = ['key'   => $this->google_api_key];
 
         $this->api_fallback_file = __DIR__ . DS . 'fonts/fonts.json';
 
-        $this->variants = array(
-            '100'       => __('100', 'italystrap'),
-            '100italic' => __('100italic', 'italystrap'),
-            '200'       => __('200', 'italystrap'),
-            '200italic' => __('200italic', 'italystrap'),
-            '300'       => __('300', 'italystrap'),
-            '300italic' => __('300italic', 'italystrap'),
-            'regular'   => __('Regular 400', 'italystrap'),
-            'italic'    => __('Italic 400', 'italystrap'),
-            '500'       => __('500', 'italystrap'),
-            '500italic' => __('500italic', 'italystrap'),
-            '600'       => __('600', 'italystrap'),
-            '600italic' => __('600italic', 'italystrap'),
-            '700'       => __('700', 'italystrap'),
-            '700italic' => __('700italic', 'italystrap'),
-            '800'       => __('800', 'italystrap'),
-            '800italic' => __('800italic', 'italystrap'),
-            '900'       => __('900', 'italystrap'),
-            '900italic' => __('900italic', 'italystrap'),
-        );
+        $this->variants = ['100'       => __('100', 'italystrap'), '100italic' => __('100italic', 'italystrap'), '200'       => __('200', 'italystrap'), '200italic' => __('200italic', 'italystrap'), '300'       => __('300', 'italystrap'), '300italic' => __('300italic', 'italystrap'), 'regular'   => __('Regular 400', 'italystrap'), 'italic'    => __('Italic 400', 'italystrap'), '500'       => __('500', 'italystrap'), '500italic' => __('500italic', 'italystrap'), '600'       => __('600', 'italystrap'), '600italic' => __('600italic', 'italystrap'), '700'       => __('700', 'italystrap'), '700italic' => __('700italic', 'italystrap'), '800'       => __('800', 'italystrap'), '800italic' => __('800italic', 'italystrap'), '900'       => __('900', 'italystrap'), '900italic' => __('900italic', 'italystrap')];
 
-        $this->subsets = array(
-            'bengali'       => __('Bengali', 'italystrap'),
-            'cyrillic'      => __('Cyrillic', 'italystrap'),
-            'cyrillic-ext'  => __('Cyrillic Extended', 'italystrap'),
-            'devanagari'    => __('Devanagari', 'italystrap'),
-            'greek'         => __('Greek', 'italystrap'),
-            'greek-ext'     => __('Greek Extended', 'italystrap'),
-            'gujarati'      => __('Gujarati', 'italystrap'),
-            'hebrew'        => __('Hebrew', 'italystrap'),
-            'khmer'         => __('Khmer', 'italystrap'),
-            'latin'         => __('Latin', 'italystrap'),
-            'latin-ext'     => __('Latin Extended', 'italystrap'),
-            'tamil'         => __('Tamil', 'italystrap'),
-            'telugu'        => __('Telugu', 'italystrap'),
-            'thai'          => __('Thai', 'italystrap'),
-            'vietnamese'    => __('Vietnamese', 'italystrap'),
-        );
+        $this->subsets = ['bengali'       => __('Bengali', 'italystrap'), 'cyrillic'      => __('Cyrillic', 'italystrap'), 'cyrillic-ext'  => __('Cyrillic Extended', 'italystrap'), 'devanagari'    => __('Devanagari', 'italystrap'), 'greek'         => __('Greek', 'italystrap'), 'greek-ext'     => __('Greek Extended', 'italystrap'), 'gujarati'      => __('Gujarati', 'italystrap'), 'hebrew'        => __('Hebrew', 'italystrap'), 'khmer'         => __('Khmer', 'italystrap'), 'latin'         => __('Latin', 'italystrap'), 'latin-ext'     => __('Latin Extended', 'italystrap'), 'tamil'         => __('Tamil', 'italystrap'), 'telugu'        => __('Telugu', 'italystrap'), 'thai'          => __('Thai', 'italystrap'), 'vietnamese'    => __('Vietnamese', 'italystrap')];
     }
 
     /**
@@ -143,7 +106,7 @@ class Fonts
         }
 
         if (false === self::$fonts) {
-            $font_content = wp_remote_get($this->google_api_url . '?' . http_build_query($this->http_query), array( 'sslverify' => false ));
+            $font_content = wp_remote_get($this->google_api_url . '?' . http_build_query($this->http_query), ['sslverify' => false]);
 
             /**
              * In case the url of the google fonts is wrong
@@ -156,7 +119,7 @@ class Fonts
 
             self::$fonts = wp_remote_retrieve_body($font_content);
 
-            self::$fonts = (array) json_decode(self::$fonts);
+            self::$fonts = (array) json_decode(self::$fonts, null, 512, JSON_THROW_ON_ERROR);
 
             self::$fonts = $this->rename_key_by_font_family_name(self::$fonts);
 
@@ -177,7 +140,7 @@ class Fonts
         }
 
         if (! isset(self::$fonts['items'])) {
-            return array();
+            return [];
         }
 
         return (array) self::$fonts['items'];
@@ -193,7 +156,7 @@ class Fonts
      */
     public function get_api_fallback()
     {
-        return json_decode(file_get_contents($this->api_fallback_file));
+        return json_decode(file_get_contents($this->api_fallback_file), null, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -207,7 +170,7 @@ class Fonts
     public function set_api_fallback($fonts)
     {
         if (! file_exists($this->api_fallback_file) || is_writable($this->api_fallback_file)) {
-            file_put_contents($this->api_fallback_file, json_encode($fonts));
+            file_put_contents($this->api_fallback_file, json_encode($fonts, JSON_THROW_ON_ERROR));
         }
     }
 
@@ -233,7 +196,7 @@ class Fonts
      * @param  array $items The array with Google fonts.
      * @return array        Return the new array
      */
-    protected function rename_key_by_font_family_name(array $items = array())
+    protected function rename_key_by_font_family_name(array $items = [])
     {
 
         if (empty($items['items'])) {

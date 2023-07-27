@@ -4,7 +4,7 @@
 require(ITALY_COOKIE_CHOICES_PLUGIN_PATH . 'admin/class-italy-cookie-choices-admin-pointer.php');
 
 if (is_admin()) {
-    $pointerplus = new Italy_Cookie_Choices_Pointer(array( 'prefix' => 'italy-cookie-choices' ));
+    $pointerplus = new Italy_Cookie_Choices_Pointer(['prefix' => 'italy-cookie-choices']);
 }
 
 // With this you can reset all the pointer with your prefix
@@ -33,7 +33,7 @@ if (!class_exists('Italy_Cookie_Choices_Pointer_Init')) {
         {
 
             // Your prefix
-            add_filter('italy-cookie-choices' . '-pointerplus_list', array( $this, 'custom_initial_pointers'), 10, 2);
+            add_filter('italy-cookie-choices' . '-pointerplus_list', [$this, 'custom_initial_pointers'], 10, 2);
         }
 
 
@@ -62,22 +62,14 @@ if (!class_exists('Italy_Cookie_Choices_Pointer_Init')) {
               // );
 
 
-            return array_merge($pointers, array(
-                $prefix . '_settings' => array(
-                    'selector' => '#active',
-                    'title' => __('Radio 1', 'italy-cookie-choices'),
-                    'text' => __('The plugin is active and ready to start working.', 'italy-cookie-choices'),
-                    'width' => 260,
-                    'icon_class' => 'dashicons-admin-settings',
-                    'jsnext' => "button = jQuery('<a id=\"pointer-close\" class=\"button action\">" . __('Next') . "</a>');
+            return array_merge($pointers, [
+                $prefix . '_settings' => ['selector' => '#active', 'title' => __('Radio 1', 'italy-cookie-choices'), 'text' => __('The plugin is active and ready to start working.', 'italy-cookie-choices'), 'width' => 260, 'icon_class' => 'dashicons-admin-settings', 'jsnext' => "button = jQuery('<a id=\"pointer-close\" class=\"button action\">" . __('Next') . "</a>');
 						button.bind('click.pointer', function () {
 							t.element.pointer('close');
 							jQuery('#label_radio_1').pointer('open');
 						});
-						return button;",
-                    // 'phpcode' => $this->custom_phpcode_thickbox( 'https://www.youtube.com/embed/EaWfDuXQfo0' )
-                ),
-                $prefix . '_settings1' => array(
+						return button;"],
+                $prefix . '_settings1' => [
                     'selector' => '#label_radio_1',
                     'title' => __('Radio 1', 'italy-cookie-choices'),
                     'text' => __('The plugin is active and ready to start working.', 'italy-cookie-choices'),
@@ -90,71 +82,37 @@ if (!class_exists('Italy_Cookie_Choices_Pointer_Init')) {
                     //  });
                     //  return button;",
                     // 'phpcode' => $this->custom_phpcode_thickbox()
-                    'show' => 'close'
-                ),
-                $prefix . '_settings11' => array(
-                    'selector' => '#label_radio_111',
-                    'title' => __('Radio 2', 'italy-cookie-choices'),
-                    'text' => __('The plugin is active and ready to start working.', 'italy-cookie-choices'),
-                    'width' => 260,
-                    'icon_class' => 'dashicons-admin-settings',
-                    'jsnext' => "button = jQuery('<a id=\"pointer-close\" class=\"button action thickbox\" href=\"#TB_inline?width=700&height=500&inlineId=menu-popup\">" . __('Open Popup') . "</a>');
+                    'show' => 'close',
+                ],
+                $prefix . '_settings11' => ['selector' => '#label_radio_111', 'title' => __('Radio 2', 'italy-cookie-choices'), 'text' => __('The plugin is active and ready to start working.', 'italy-cookie-choices'), 'width' => 260, 'icon_class' => 'dashicons-admin-settings', 'jsnext' => "button = jQuery('<a id=\"pointer-close\" class=\"button action thickbox\" href=\"#TB_inline?width=700&height=500&inlineId=menu-popup\">" . __('Open Popup') . "</a>');
 						button.bind('click.pointer', function () {
 							t.element.pointer('close');
 		    			});
-						return button;",
-                    'phpcode' => $this->custom_phpcode_thickbox('https://www.youtube.com/embed/EaWfDuXQfo0')
-                ),
-                $prefix . '_posts' => array(
-                    'selector' => '#radio_1',
-                    'title' => __('Italy_Cookie_Choices_Pointer for Posts', 'italy-cookie-choices'),
-                    'text' => __('One more pointer.', 'italy-cookie-choices'),
-                    'post_type' => array( 'post' ),
-                    'icon_class' => 'dashicons-admin-post',
-                    'width' => 350,
-                ),
-                $prefix . '_pages' => array(
-                    'selector' => '#menu-pages',
-                    'title' => __('Italy_Cookie_Choices_Pointer Pages', 'italy-cookie-choices'),
-                    'text' => __('A pointer for pages.', 'italy-cookie-choices'),
-                    'post_type' => array( 'page' ),
-                    'icon_class' => 'dashicons-admin-post'
-                ),
-                $prefix . '_users' => array(
-                    'selector' => '#menu-users',
-                    'title' => __('Italy_Cookie_Choices_Pointer Users', 'italy-cookie-choices'),
-                    'text' => __('A pointer for users.', 'italy-cookie-choices'),
-                    'pages' => array( 'users.php' ),
-                    'icon_class' => 'dashicons-admin-users'
-                ),
-                $prefix . '_settings_tab1' => array(
-                    'selector' => '#show-settings-link',
-                    'title' => __('Italy_Cookie_Choices_Pointer Help', 'italy-cookie-choices'),
-                    'text' => __('A pointer with action.', 'italy-cookie-choices'),
-                    'edge' => 'top',
-                    'align' => 'right',
-                    'icon_class' => 'dashicons-welcome-learn-more',
-                    'jsnext' => "button = jQuery('<a id=\"pointer-close\" class=\"button action\">" . __('Next') . "</a>');
+						return button;", 'phpcode' => $this->custom_phpcode_thickbox('https://www.youtube.com/embed/EaWfDuXQfo0')],
+                $prefix . '_posts' => ['selector' => '#radio_1', 'title' => __('Italy_Cookie_Choices_Pointer for Posts', 'italy-cookie-choices'), 'text' => __('One more pointer.', 'italy-cookie-choices'), 'post_type' => ['post'], 'icon_class' => 'dashicons-admin-post', 'width' => 350],
+                $prefix . '_pages' => ['selector' => '#menu-pages', 'title' => __('Italy_Cookie_Choices_Pointer Pages', 'italy-cookie-choices'), 'text' => __('A pointer for pages.', 'italy-cookie-choices'), 'post_type' => ['page'], 'icon_class' => 'dashicons-admin-post'],
+                $prefix . '_users' => ['selector' => '#menu-users', 'title' => __('Italy_Cookie_Choices_Pointer Users', 'italy-cookie-choices'), 'text' => __('A pointer for users.', 'italy-cookie-choices'), 'pages' => ['users.php'], 'icon_class' => 'dashicons-admin-users'],
+                $prefix . '_settings_tab1' => ['selector' => '#show-settings-link', 'title' => __('Italy_Cookie_Choices_Pointer Help', 'italy-cookie-choices'), 'text' => __('A pointer with action.', 'italy-cookie-choices'), 'edge' => 'top', 'align' => 'right', 'icon_class' => 'dashicons-welcome-learn-more', 'jsnext' => "button = jQuery('<a id=\"pointer-close\" class=\"button action\">" . __('Next') . "</a>');
 		                    button.bind('click.pointer', function () {
 		                        t.element.pointer('close');
 		                        jQuery('#contextual-help-link').pointer('open');
 		                    });
-		                    return button;"
-                ),
+		                    return button;"],
                 /**
                  * $prefix . '_my_custom_id'
                  * per ogni pointer deve essere univoco
                  */
-                $prefix . '_contextual_tab1' => array(
-                    'selector' => '#contextual-help-link', // Il selettore css dove appendere il pointer, può essere un ID o una classe CSS
+                $prefix . '_contextual_tab1' => [
+                    'selector' => '#contextual-help-link',
+                    // Il selettore css dove appendere il pointer, può essere un ID o una classe CSS
                     'title' => __('Italy_Cookie_Choices_Pointer Help', 'italy-cookie-choices'),
                     'text' => __('A pointer for help tab.<br>Go to Posts, Pages or Users for other pointers.', 'italy-cookie-choices'),
                     'edge' => 'top',
                     'align' => 'right',
                     'icon_class' => 'dashicons-welcome-learn-more',
-                    'show' => 'close' // Serve per non visualizzare il pointer nella pagina, utile per usarlo insieme al pulsante next
-                )
-                    ));
+                    'show' => 'close',
+                ],
+            ]);
         }
 
 

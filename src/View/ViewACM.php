@@ -20,7 +20,7 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  */
 class ViewACM implements ViewACM_Interface
 {
-    private $store = [];
+    private array $store = [];
 
     /**
      * Retrieve the name of the highest priority template file that exists.
@@ -111,7 +111,7 @@ class ViewACM implements ViewACM_Interface
          */
         do_action("italystrap_get_template_part_{$slug}", $slug, $name);
 
-        $templates = array();
+        $templates = [];
 
         if (! empty($name)) {
             $templates[] = "{$slug}-{$name}.php";

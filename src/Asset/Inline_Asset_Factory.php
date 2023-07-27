@@ -39,17 +39,11 @@ class Inline_Asset_Factory implements Subscriber_Interface
          * For example you can use "PHP_INT_MAX - 50" and you code will be appended
          * after this asset.
          */
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
-            'wp_head'   => array(
-                'function_to_add'   => 'inline_css',
-                'priority'          => PHP_INT_MAX - 100,
-            ),
-            'wp_print_footer_scripts'   => array(
-                'function_to_add'   => 'inline_javascript',
-                'priority'          => PHP_INT_MAX - 100,
-            ),
-        );
+            'wp_head'   => ['function_to_add'   => 'inline_css', 'priority'          => PHP_INT_MAX - 100],
+            'wp_print_footer_scripts'   => ['function_to_add'   => 'inline_javascript', 'priority'          => PHP_INT_MAX - 100],
+        ];
     }
 
     /**

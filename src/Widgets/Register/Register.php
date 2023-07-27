@@ -42,7 +42,7 @@ class Register
 
     public function hook()
     {
-        add_action('widgets_init', array( $this, 'register_widgets' ));
+        add_action('widgets_init', [$this, 'register_widgets']);
     }
 
     public function register_widgets()

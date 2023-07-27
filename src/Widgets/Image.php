@@ -37,7 +37,7 @@ class Image extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         $fields = array_merge($this->title_field(), $this->config);
 
@@ -46,15 +46,15 @@ class Image extends Widget
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Image', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Add a image with title, url and description', 'italystrap'),
             'fields'            => $fields,
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-            'control_options'   => array( 'width' => 450 ),
-         );
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 450],
+        ];
 
         /**
          * Create Widget

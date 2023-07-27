@@ -42,15 +42,15 @@ class Nav_Menu extends Widget
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Nav Menu', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Add an advanced custom menu to your sidebar.', 'italystrap'),
             'fields'            => $fields,
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-            'control_options'   => array( 'width' => 450 ),
-         );
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 450],
+        ];
 
         /**
          * Create Widget
@@ -77,12 +77,12 @@ class Nav_Menu extends Widget
             return;
         }
 
-        $nav_menu_args = array(
+        $nav_menu_args = [
             'echo'              => false,
             'fallback_cb'       => '',
             'menu'              => $nav_menu,
-
-            'container'         => false, // WP Default div.
+            'container'         => false,
+            // WP Default div.
             'container_class'   => false,
             'container_id'      => false,
             'menu_class'        => 'list-inline info-menu flex-menu',
@@ -93,7 +93,7 @@ class Nav_Menu extends Widget
             'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',
             'depth'             => 1,
             'walker'            => $this->nav_menu,
-        );
+        ];
 
         /**
          * Filters the arguments for the Custom Menu widget.

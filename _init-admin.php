@@ -118,13 +118,14 @@ $settings->addPage(
 
 // Migration page
 //$settings->addPage(
-//  [
+//    [
 //      Page::PARENT        => 'italystrap-dashboard',
-//      Page::PAGE_TITLE    => __( 'Migrations', 'italystrap' ),
-//      Page::MENU_TITLE    => __( 'Migrations', 'italystrap' ),
+//      Page::PAGE_TITLE    => __('Migrations', 'italystrap'),
+//      Page::MENU_TITLE    => __('Migrations', 'italystrap'),
 //      Page::SLUG          => 'italystrap-migrations',
-//      'show_on'           => get_option( 'template' ) === 'ItalyStrap',
-//  ]
+//      Page::VIEW          => ITALYSTRAP_PLUGIN_PATH . '/admin/view/italystrap-migrations.php',
+//    'show_on'           => \strpos(get_option('template'), 'ItalyStrap') !== false,
+//    ]
 //);
 
 $settings->addCustomPluginLink(
@@ -141,7 +142,17 @@ $settings->build();
  *
  * @var array
  */
-$imp_exp_args = ['capability'   => 'manage_options', 'name_action'  => 'italystrap_action', 'export_nonce'  => 'italystrap_export_nonce', 'import_nonce'    => 'italystrap_import_nonce', 'filename'        => 'italystrap-plugin-settings-export', 'import_file'   => 'italystrap_import_file', 'options_names'    => [$args['options_name']], 'i18n'          => []];
+$imp_exp_args = [
+    'capability'   => 'manage_options',
+    'name_action'  => 'italystrap_action',
+    'export_nonce'  => 'italystrap_export_nonce',
+    'import_nonce'    => 'italystrap_import_nonce',
+    'filename'        => 'italystrap-plugin-settings-export',
+    'import_file'   => 'italystrap_import_file',
+    'options_names'    => [
+        $args['options_name']],
+    'i18n'          => []
+];
 $injector->defineParam('imp_exp_args', $imp_exp_args);
 
 /**

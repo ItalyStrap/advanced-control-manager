@@ -44,10 +44,10 @@ class Terms implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
             'init'  => 'init',
-        );
+        ];
     }
 
     /**
@@ -56,8 +56,8 @@ class Terms implements Subscriber_Interface
     public function init()
     {
 
-        add_action('admin_print_footer_scripts', array( $this, 'remove_default_taxonomy_description' ));
-        add_action('admin_print_styles', array( $this, 'add_inline_style' ));
+        add_action('admin_print_footer_scripts', [$this, 'remove_default_taxonomy_description']);
+        add_action('admin_print_styles', [$this, 'add_inline_style']);
 
         /**
          * Get the taxonomy array
@@ -75,8 +75,8 @@ class Terms implements Subscriber_Interface
         unset($taxonomies['post_format']);
 
         foreach ($taxonomies as $taxonomy) {
-            add_filter($taxonomy . '_edit_form_fields', array( $this, 'taxonomy_description' ));
-            add_filter($taxonomy . '_add_form_fields', array( $this, 'taxonomies_description' ));
+            add_filter($taxonomy . '_edit_form_fields', [$this, 'taxonomy_description']);
+            add_filter($taxonomy . '_add_form_fields', [$this, 'taxonomies_description']);
         }
 
         /**
@@ -95,15 +95,9 @@ class Terms implements Subscriber_Interface
     public function print_wp_editor($tax = '')
     {
 
-        $settings = array(
-            'wpautop'           => true,
-            'media_buttons'     => true,
-            'quicktags'         => true,
-            'textarea_rows'     => '15',
-            'textarea_name'     => 'description',
-        );
+        $settings = ['wpautop'           => true, 'media_buttons'     => true, 'quicktags'         => true, 'textarea_rows'     => '15', 'textarea_name'     => 'description'];
 
-        $description = ( isset($tax->description) ) ? $tax->description : '';
+        $description = $tax->description ?? '';
 
         wp_editor(wp_kses_post($description, ENT_QUOTES, 'UTF-8'), 'cat_description', $settings);
     }

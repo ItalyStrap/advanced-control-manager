@@ -26,7 +26,7 @@
                  */
                 submit_button();
                 ?>
-                
+
             </form>
             <aside>
                 <h3 class="hndle">
@@ -85,7 +85,7 @@
                 </form>
             </div>
         </div>
-        
+
         <div class="postbox">
             <h3 class="hndle"><span><?php _e('Import Settings', 'italystrap'); ?></span></h3>
             <div class="inside">

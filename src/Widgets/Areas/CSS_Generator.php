@@ -32,14 +32,11 @@ class CSS_Generator implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'              => 'method_name',
             'widgets_init'          => 'register_sidebars',
-            'init'                  => array(
-                'function_to_add'       => 'register_post_type',
-                'priority'              => 20,
-            ),
-        );
+            'init'                  => ['function_to_add'       => 'register_post_type', 'priority'              => 20],
+        ];
     }
 
     /**
@@ -66,7 +63,7 @@ class CSS_Generator implements Subscriber_Interface
      * @param  array $declarations The declarations of the selector.
      * @return string              The parse declarations
      */
-    protected function parse_declaration(array $declarations = array())
+    protected function parse_declaration(array $declarations = [])
     {
 
         $output = '';
@@ -106,7 +103,7 @@ class CSS_Generator implements Subscriber_Interface
      *
      * @return string               Return the generated rule-set.
      */
-    public function generate_rule($selector, array $declarations = array())
+    public function generate_rule($selector, array $declarations = [])
     {
 
         /**
@@ -135,7 +132,7 @@ class CSS_Generator implements Subscriber_Interface
      *
      * @param  array $style The given style for the widget area
      */
-    public function style(array $style = array())
+    public function style(array $style = [])
     {
 
         $rules = $this->generate_rule($style['id'], $style['style']);

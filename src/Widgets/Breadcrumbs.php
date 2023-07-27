@@ -34,15 +34,15 @@ class Breadcrumbs extends Widget
          * Configure widget array.
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Breadcrumbs', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('Add a Breadcrumbs ti widgetized area', 'italystrap'),
             'fields'            => $fields,
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-            'control_options'   => array( 'width' => 340 ),
-         );
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 340],
+        ];
 
         /**
          * Create Widget

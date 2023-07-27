@@ -45,39 +45,31 @@ class Posts extends Shortcode
 
         self::$instance++;
 
-        $shortcode_ui_default = array(
-
+        $shortcode_ui_default = [
             /** This label will appear in user interface */
             'label'         => '',
-
             /** This is the actual attr used in the code used for shortcode */
             'attr'          => '',
-
             /** Define input type. Supported types are text, checkbox, textarea, radio, select, email, url, number, and date. */
             'type'          => 'text',
-
             /** Add a helpful description for users */
             'description'   => '',
-        );
+        ];
 
         $this->config = require(ITALYSTRAP_PLUGIN_PATH . 'config/posts.php');
 
-        $this->shortcode_ui = array(
-
+        $this->shortcode_ui = [
             /** Label for your shortcode user interface. This part is required. */
             'label'         => __('Posts', 'italystrap'),
-
             /** Icon or an image attachment for shortcode. Optional. src or dashicons-$icon.  */
             'listItemImage' => 'dashicons-flag',
-
             /** You can select which post types will show shortcode UI */
             // 'post_type'      => array( 'post', 'page' ),
-
             /** Shortcode Attributes */
-            'attrs'         => array(),
-        );
+            'attrs'         => [],
+        ];
 
-        $new_attr = array();
+        $new_attr = [];
 
         foreach ($this->config as $key => $value) {
             if (isset($value['show_on']) && ! $value['show_on']) {
@@ -85,15 +77,9 @@ class Posts extends Shortcode
             }
 
             // $default = isset( $value['default'] ) && '0' !== $value['default'] ? $value['default'] : '';
-            $default = isset($value['default']) ? $value['default'] : '';
+            $default = $value['default'] ?? '';
 
-            $new_attr = array(
-                'label'         => $value['label'],
-                'description'   => $value['desc'],
-                'attr'          => $key,
-                'type'          => $value['type'],
-                // 'value'          => $default,
-            );
+            $new_attr = ['label'         => $value['label'], 'description'   => $value['desc'], 'attr'          => $key, 'type'          => $value['type']];
 
             if (isset($value['default']) && false != $value['default']) {
                 /**
@@ -121,10 +107,7 @@ class Posts extends Shortcode
                  */
                 if ('checkbox' === $value['type']) {
                     $new_attr['type'] = 'select';
-                    $new_attr['options'] = array(
-                        '1' => 'True',
-                        '0' => 'False',
-                    );
+                    $new_attr['options'] = ['1' => 'True', '0' => 'False'];
                     $new_attr['value'] = $value['default'];
                     // $new_attr['value'] = '1';
                     // $new_attr['value'] = 'true';
@@ -146,7 +129,7 @@ class Posts extends Shortcode
 
             if ('media' === $value['type']) {
                 $new_attr['type'] = 'attachment';
-                $new_attr['libraryType'] = array( 'image' );
+                $new_attr['libraryType'] = ['image'];
                 $new_attr['addButton'] = esc_html__('Select Image', 'italystrap');
                 $new_attr['frameTitle'] = esc_html__('Select Image', 'italystrap');
             }
@@ -169,7 +152,7 @@ class Posts extends Shortcode
      * @param  array $instance The settings for the particular instance of the widget.
      * @return string           Return the output
      */
-    public function shortcode_render(array $attr = array(), $content = "")
+    public function shortcode_render(array $attr = [], $content = "")
     {
 
         $this->query_posts->get_widget_args($attr);
@@ -185,7 +168,7 @@ class Posts extends Shortcode
      *
      * @return string          The output of the shortcode.
      */
-    public function render($attr = array(), $content = "")
+    public function render($attr = [], $content = "")
     {
 
         $attr = shortcode_atts($this->default, $attr, 'posts');

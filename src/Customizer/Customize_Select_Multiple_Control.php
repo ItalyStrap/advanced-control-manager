@@ -71,7 +71,7 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control
      *                                                 'date' are supported implicitly. Default 'text'.
      * }
      */
-    public function __construct(WP_Customize_Manager $manager, $id, array $args = array())
+    public function __construct(WP_Customize_Manager $manager, $id, array $args = [])
     {
 
         $this->args = $args;
@@ -91,7 +91,7 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control
         wp_enqueue_script(
             'customizer-select-multiple',
             ITALYSTRAP_PLUGIN_URL . '/src/Customizer/js/customizer-select-multiple.min.js',
-            array( 'jquery' ),
+            ['jquery'],
             // array( 'jquery', 'customize-preview' ), // Con customize-preview si blocca il "torna indietro"
             null,
             true
@@ -105,11 +105,11 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control
     {
 
         if (! isset($this->args['choices'])) {
-            $this->args['choices'] = array();
+            $this->args['choices'] = [];
         }
 
         if (! is_array($this->args['choices'])) {
-            $this->args['choices'] = array();
+            $this->args['choices'] = [];
         }
 
         ?>

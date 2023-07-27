@@ -33,72 +33,34 @@ class Column extends Shortcode
     {
         self::$instance++;
 
-        $this->default = array(
-            'id'            => '',
-            'class'         => '',
-            'style'         => '',
-        );
+        $this->default = ['id'            => '', 'class'         => '', 'style'         => ''];
 
-        $this->shortcode_ui = array(
-
+        $this->shortcode_ui = [
             /** Label for your shortcode user interface. This part is required. */
             'label'         => __('Column settings', 'italystrap'),
-
             /** Icon or an image attachment for shortcode. Optional. src or dashicons-$icon.  */
             'listItemImage' => 'dashicons-flag',
-
             /** Shortcode Attributes */
-            'attrs'         => array(
-
+            'attrs'         => [
                 /**
-                * Each attribute that accepts user input will have its own array defined like this
-                * Our shortcode accepts two parameters or attributes, title and URL
-                * Lets first define the UI for title field.
-                */
-
-                array(
-
+                 * Each attribute that accepts user input will have its own array defined like this
+                 * Our shortcode accepts two parameters or attributes, title and URL
+                 * Lets first define the UI for title field.
+                 */
+                [
                     /** This label will appear in user interface */
                     'label'         => __('CSS ID', 'italystrap'),
-
                     /** This is the actual attr used in the code used for shortcode */
                     'attr'          => 'id',
-
                     /** Define input type. Supported types are text, checkbox, textarea, radio, select, email, url, number, and date. */
                     'type'          => 'text',
-
                     /** Add a helpful description for users */
                     'description'   => __('Enter a CSS ID for the element, this must be unique. (Optional)', 'italystrap'),
-                ),
-
+                ],
                 /** Now we will define UI for the URL field */
-
-                array(
-                    'label'         => __('CSS class', 'italystrap'),
-                    'attr'          => 'class',
-                    'type'          => 'text',
-                    'description'   => __('Enter CSS classes for the element. (Optional)', 'italystrap'),
-                ),
-
-                /** Finally we will define the UI for Color Selection */
-                // array(
-                //  'label' => 'Color',
-                //  'attr'  => 'color',
-
-                //  /** We will use select field instead of text */
-                //  'type'  => 'select',
-                //      'options' => array(
-                //          'blue'      => 'Blue',
-                //          'orange'    => 'Orange',
-                //          'green'     => 'Green',
-                //      ),
-                // ),
-
-            ),
-
-            /** You can select which post types will show shortcode UI */
-            // 'post_type'      => array( 'post', 'page' ),
-        );
+                ['label'         => __('CSS class', 'italystrap'), 'attr'          => 'class', 'type'          => 'text', 'description'   => __('Enter CSS classes for the element. (Optional)', 'italystrap')],
+            ],
+        ];
     }
 
     /**
@@ -109,7 +71,7 @@ class Column extends Shortcode
      *
      * @return string          The output of the shortcode.
      */
-    public function render($attr = array(), $content = "")
+    public function render($attr = [], $content = "")
     {
 
         $this->attr = shortcode_atts($this->default, $attr, 'column');

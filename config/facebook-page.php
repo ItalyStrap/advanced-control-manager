@@ -19,12 +19,11 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  * Definition array() with all the options connected to the
  * module which must be called by an include (setoptions).
  */
-return array(
-
+return [
     /**
      * Page Name or Page URL.
      */
-    'href'              => array(
+    'href'              => [
         'label'     => __('Page Name or Page URL', 'italystrap'),
         'desc'      => __('Enter your FB page name or the url of your FB page.', 'italystrap'),
         'id'        => 'href',
@@ -36,12 +35,11 @@ return array(
         // 'validate'   => 'alpha_dash',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Max width of widget.
      */
-    'width'             => array(
+    'width'             => [
         'label'     => __('Max width of widget', 'italystrap'),
         'desc'      => __('Enter the max width of the FB page.', 'italystrap'),
         'id'        => 'width',
@@ -52,12 +50,11 @@ return array(
         'validate'  => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Height of widget.
      */
-    'height'                => array(
+    'height'                => [
         'label'     => __('Height of widget', 'italystrap'),
         'desc'      => __('Enter the max height of the FB page.', 'italystrap'),
         'id'        => 'height',
@@ -68,12 +65,11 @@ return array(
         'validate'  => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Tab to be visualized.
      */
-    'tabs'              => array(
+    'tabs'              => [
         'label'     => __('Tab to be visualized', 'italystrap'),
         'desc'      => __('Select the tab you want to be visualized in your FB widget. Use ctrl + click for multiple selection.', 'italystrap'),
         'id'        => 'tabs',
@@ -81,20 +77,15 @@ return array(
         'class'     => 'widefat tabs',
         // 'class-p'    => 'tabs',
         'default'   => 'timeline',
-        'options'   => array(
-            'timeline'      => __('Timeline (Default)', 'italystrap'),
-            'events'        => __('Events', 'italystrap'),
-            'messages'      => __('Messages', 'italystrap'),
-        ),
+        'options'   => ['timeline'      => __('Timeline (Default)', 'italystrap'), 'events'        => __('Events', 'italystrap'), 'messages'      => __('Messages', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_select_multiple',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Hide Cover.
      */
-    'hide-cover'        => array(
+    'hide-cover'        => [
         'label'     => __('Hide Cover', 'italystrap'),
         'desc'      => __('Hide the cover of your FB page.', 'italystrap'),
         'id'        => 'hide-cover',
@@ -102,19 +93,15 @@ return array(
         'class'     => 'widefat hide-cover',
         // 'class-p'    => 'hide-cover',
         'default'   => 'false',
-        'options'   => array(
-            'true'      => __('True', 'italystrap'),
-            'false'     => __('False', 'italystrap'),
-        ),
+        'options'   => ['true'      => __('True', 'italystrap'), 'false'     => __('False', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Show facepile.
      */
-    'show-facepile'     => array(
+    'show-facepile'     => [
         'label'     => __('Show facepile', 'italystrap'),
         'desc'      => __('Show the profile avatar when click on like button.', 'italystrap'),
         'id'        => 'show-facepile',
@@ -122,19 +109,15 @@ return array(
         'class'     => 'widefat show-facepile',
         // 'class-p'    => 'show-facepile',
         'default'   => 'true',
-        'options'   => array(
-            'true'      => __('True', 'italystrap'),
-            'false'     => __('False', 'italystrap'),
-        ),
+        'options'   => ['true'      => __('True', 'italystrap'), 'false'     => __('False', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Hide CTA.
      */
-    'hide-cta'      => array(
+    'hide-cta'      => [
         'label'     => __('Hide CTA', 'italystrap'),
         'desc'      => __('Hide the CTA button if available.', 'italystrap'),
         'id'        => 'hide-cta',
@@ -142,19 +125,15 @@ return array(
         'class'     => 'widefat hide-cta',
         // 'class-p'    => 'hide-cta',
         'default'   => 'false',
-        'options'   => array(
-            'true'      => __('True', 'italystrap'),
-            'false'     => __('False', 'italystrap'),
-        ),
+        'options'   => ['true'      => __('True', 'italystrap'), 'false'     => __('False', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Small header.
      */
-    'small-header'      => array(
+    'small-header'      => [
         'label'     => __('Small header', 'italystrap'),
         'desc'      => __('Use the small header.', 'italystrap'),
         'id'        => 'small-header',
@@ -162,19 +141,15 @@ return array(
         'class'     => 'widefat small-header',
         // 'class-p'    => 'small-header',
         'default'   => 'false',
-        'options'   => array(
-            'true'      => __('True', 'italystrap'),
-            'false'     => __('False', 'italystrap'),
-        ),
+        'options'   => ['true'      => __('True', 'italystrap'), 'false'     => __('False', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Adapt container width.
      */
-    'adapt-container-width'     => array(
+    'adapt-container-width'     => [
         'label'     => __('Adapt container width', 'italystrap'),
         'desc'      => __('Try to adapt to the width of the container.', 'italystrap'),
         'id'        => 'adapt-container-width',
@@ -182,19 +157,15 @@ return array(
         'class'     => 'widefat adapt-container-width',
         // 'class-p'    => 'adapt-container-width',
         'default'   => 'true',
-        'options'   => array(
-            'true'      => __('True', 'italystrap'),
-            'false'     => __('False', 'italystrap'),
-        ),
+        'options'   => ['true'      => __('True', 'italystrap'), 'false'     => __('False', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-
+    ],
     /**
      * Align of content.
      */
-    'align'     => array(
+    'align'     => [
         'label'     => __('Align of content', 'italystrap'),
         'desc'      => __('Select the align of the widget.', 'italystrap'),
         'id'        => 'align',
@@ -202,14 +173,9 @@ return array(
         'class'     => 'widefat align',
         // 'class-p'    => 'align',
         'default'   => 'none',
-        'options'   => array(
-            'none'      => __('None', 'italystrap'),
-            'left'      => __('Left', 'italystrap'),
-            'center'    => __('Center', 'italystrap'),
-            'right'     => __('Right', 'italystrap'),
-        ),
+        'options'   => ['none'      => __('None', 'italystrap'), 'left'      => __('Left', 'italystrap'), 'center'    => __('Center', 'italystrap'), 'right'     => __('Right', 'italystrap')],
         // 'validate'   => 'is_numeric',
         'sanitize'  => 'sanitize_text_field',
         'section'   => 'general',
-    ),
-);
+    ],
+];

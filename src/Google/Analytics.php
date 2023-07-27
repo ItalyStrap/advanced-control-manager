@@ -40,21 +40,16 @@ class Analytics implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            self::$position => array(
-                'function_to_add'   => 'render_analytics',
-                'priority'          => 999999,
-            ),
-        );
+            self::$position => ['function_to_add'   => 'render_analytics', 'priority'          => 999999],
+        ];
     }
 
     /**
      * Plugin options settings.
-     *
-     * @var array
      */
-    private $options = null;
+    private ?array $options = null;
 
     private static $position = '';
 
@@ -63,7 +58,7 @@ class Analytics implements Subscriber_Interface
      *
      * @param array $argument Plugin options settings.
      */
-    function __construct(array $options = array())
+    function __construct(array $options = [])
     {
         $this->options = $options;
         self::$position = $this->options['google_analytics_position'];
@@ -184,7 +179,7 @@ class Analytics implements Subscriber_Interface
             }
 
             if (is_array($parameter)) {
-                $output .= json_encode($parameter);
+                $output .= json_encode($parameter, JSON_THROW_ON_ERROR);
             } else {
                 $output .= sprintf(
                     '"%s"%s',
@@ -220,11 +215,7 @@ class Analytics implements Subscriber_Interface
             return '';
         }
 
-        $parameters = array(
-            'command'       => 'set',
-            'fields'        => 'anonymizeIp',
-            'fields_object' => 'true',
-        );
+        $parameters = ['command'       => 'set', 'fields'        => 'anonymizeIp', 'fields_object' => 'true'];
 
         return $this->get_ga($parameters);
     }
@@ -237,17 +228,7 @@ class Analytics implements Subscriber_Interface
     public function ga_commands_queue()
     {
 
-        $parameters = array(
-            array(
-                'command'       => 'create',
-                'fields'        => esc_js($this->options['google_analytics_id']),
-                'fields_object' => 'auto',
-            ),
-            array(
-                'command'       => 'send',
-                'fields'        => 'pageview',
-            ),
-        );
+        $parameters = [['command'       => 'create', 'fields'        => esc_js($this->options['google_analytics_id']), 'fields_object' => 'auto'], ['command'       => 'send', 'fields'        => 'pageview']];
 
         $parameters = apply_filters('italystrap_ga_commands_queue', $parameters, $this->options);
 

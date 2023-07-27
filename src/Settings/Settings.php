@@ -43,14 +43,11 @@ class Settings implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'update_option' => array(
-                'function_to_add'   => 'save',
-                'accepted_args'     => 3,
-            ),
+            'update_option' => ['function_to_add'   => 'save', 'accepted_args'     => 3],
             'plugins_loaded'    => 'init',
-        );
+        ];
     }
 
 
@@ -75,7 +72,7 @@ class Settings implements Subscriber_Interface
      *
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      * The plugin name
@@ -89,7 +86,7 @@ class Settings implements Subscriber_Interface
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * The type of fields to create
@@ -103,14 +100,14 @@ class Settings implements Subscriber_Interface
      *
      * @var array
      */
-    protected $submenus = array();
+    protected $submenus = [];
 
     /**
      * The fields preregistered in the config file.
      *
      * @var array
      */
-    protected $fields = array();
+    protected $fields = [];
 
     /**
      * Initialize Class
@@ -152,23 +149,23 @@ class Settings implements Subscriber_Interface
         /**
          * Add Admin menù page
          */
-        add_action('admin_menu', array( $this, 'add_menu_page' ));
+        add_action('admin_menu', [$this, 'add_menu_page']);
 
-        add_action('admin_init', array( $this, 'settings_init' ));
+        add_action('admin_init', [$this, 'settings_init']);
 
         /**
          * Load script for ItalyStrap\Admin
          */
-        add_action('admin_enqueue_scripts', array( $this, 'enqueue_admin_style_script' ));
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_style_script']);
 
         /**
          * Add link in plugin activation panel
          */
-        add_filter('plugin_action_links_' . ITALYSTRAP_BASENAME, array( $this, 'plugin_action_links' ));
+        add_filter('plugin_action_links_' . ITALYSTRAP_BASENAME, [$this, 'plugin_action_links']);
 
-        add_filter('plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 4);
+        add_filter('plugin_row_meta', [$this, 'plugin_row_meta'], 10, 4);
 
-        add_action('italystrap_after_settings_form', array( $this, 'get_aside' ));
+        add_action('italystrap_after_settings_form', [$this, 'get_aside']);
     }
 
     /**
@@ -193,7 +190,7 @@ class Settings implements Subscriber_Interface
             wp_enqueue_script(
                 $this->pagenow,
                 plugins_url('js/' . $this->pagenow . '.min.js', __FILE__),
-                array( 'jquery-ui-tabs', 'jquery-form' ),
+                ['jquery-ui-tabs', 'jquery-form'],
                 false,
                 false,
                 true
@@ -221,7 +218,7 @@ class Settings implements Subscriber_Interface
             $this->args['menu_page']['menu_title'],
             $this->capability, // $this->args['menu_page']['capability'],
             $this->args['menu_page']['menu_slug'],
-            array( $this, 'get_settings_view' ),
+            [$this, 'get_settings_view'],
             $this->args['menu_page']['icon_url'],
             $this->args['menu_page']['position']
         );
@@ -252,7 +249,7 @@ class Settings implements Subscriber_Interface
                 $this->capability, // $submenu['capability'],
                 $submenu['menu_slug'],
                 // $submenu['function_cb']
-                array( $this, 'get_settings_view' )
+                [$this, 'get_settings_view']
             );
         }
     }
@@ -379,7 +376,7 @@ class Settings implements Subscriber_Interface
             add_settings_section(
                 $setting['id'],
                 $setting['title'],
-                array( $this, 'render_section_cb' ), //array( $this, $field['callback'] ),
+                [$this, 'render_section_cb'], //array( $this, $field['callback'] ),
                 $this->args['options_group'] //$setting['page']
             );
 
@@ -395,7 +392,7 @@ class Settings implements Subscriber_Interface
                 add_settings_field(
                     $field['id'],
                     $field['title'],
-                    array( $this, 'get_field_type' ), //array( $this, $field['callback'] ),
+                    [$this, 'get_field_type'], //array( $this, $field['callback'] ),
                     $this->args['options_group'], //$field['page'],
                     $setting['id'],
                     $field['args']
@@ -416,7 +413,7 @@ class Settings implements Subscriber_Interface
         register_setting(
             $this->args['options_group'],
             $this->args['options_name'],
-            array( $this, 'update' )
+            [$this, 'update']
         );
     }
 
@@ -474,7 +471,7 @@ class Settings implements Subscriber_Interface
     public function render_section_cb($args)
     {
 
-        echo isset($args['callback'][0]->settings[ $args['id'] ]['desc']) ? $args['callback'][0]->settings[ $args['id'] ]['desc'] : ''; // XSS ok.
+        echo $args['callback'][0]->settings[ $args['id'] ]['desc'] ?? ''; // XSS ok.
     }
 
     /**
@@ -509,6 +506,7 @@ class Settings implements Subscriber_Interface
     public function get_settings_fields()
     {
 
+        $fields = [];
         foreach ((array) $this->settings as $settings_value) {
             foreach ($settings_value['settings_fields'] as $fields_key => $fields_value) {
                 $fields[ $fields_value['id'] ] = $fields_value['args'];
@@ -526,10 +524,10 @@ class Settings implements Subscriber_Interface
     public function get_plugin_settings_array_default()
     {
 
-        $default_settings = array();
+        $default_settings = [];
 
         foreach ((array) $this->fields as $key => $setting) {
-            $default_settings[ $key ] = isset($setting['default']) ? $setting['default'] : '';
+            $default_settings[ $key ] = $setting['default'] ?? '';
         }
 
         return $default_settings;
@@ -563,7 +561,7 @@ class Settings implements Subscriber_Interface
      *
      * @param  array $value The options array with value.
      */
-    public function set_theme_mods(array $value = array())
+    public function set_theme_mods(array $value = [])
     {
 
         foreach ((array) $this->fields as $key => $field) {
@@ -578,7 +576,7 @@ class Settings implements Subscriber_Interface
      *
      * @param  array $value The options array with value.
      */
-    public function remove_theme_mods(array $value = array())
+    public function remove_theme_mods(array $value = [])
     {
 
         foreach ((array) $this->fields as $key => $field) {

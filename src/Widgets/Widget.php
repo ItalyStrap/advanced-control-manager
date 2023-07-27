@@ -38,38 +38,32 @@ abstract class Widget extends WP_Widget
 {
     /**
      * The type of fields to create
-     *
-     * @var Fields
      */
-    private $fields_type;
+    private ?\ItalyStrap\Fields\Fields $fields_type = null;
 
     /**
      * Fields array of widget form
      *
      * @var array
      */
-    private $fields = array();
+    private $fields = [];
 
     /**
      * Sections fields of widget forms
-     *
-     * @var array
      */
-    private $sections_keys = array();
+    private array $sections_keys = [];
 
     /**
      * This member is temporary only for loading script and style once.
-     *
-     * @var bool
      */
-    private static $method_loaded = false;
+    private static bool $method_loaded = false;
 
     /**
      * Store the configuration array
      *
      * @var array
      */
-    protected $config = array();
+    protected $config = [];
 
     /**
      * Set the title field
@@ -77,18 +71,7 @@ abstract class Widget extends WP_Widget
     protected function title_field()
     {
 
-        return array(
-            'title' => array(
-                'label'     => __('Title', 'italystrap'),
-                'desc'      => __('Enter the widget title.', 'italystrap'),
-                'id'        => 'title',
-                'type'      => 'text',
-                'class'     => 'widefat',
-                'default'   => '',
-                'validate'  => 'alpha_dash',
-                'sanitize'  => 'strip_tags|esc_attr',
-            ),
-        );
+        return ['title' => ['label'     => __('Title', 'italystrap'), 'desc'      => __('Enter the widget title.', 'italystrap'), 'id'        => 'title', 'type'      => 'text', 'class'     => 'widefat', 'default'   => '', 'validate'  => 'alpha_dash', 'sanitize'  => 'strip_tags|esc_attr']];
     }
 
     /**
@@ -97,7 +80,7 @@ abstract class Widget extends WP_Widget
      * @param  array $fields The options array with new fields.
      * @return array         Return an array with all fields
      */
-    protected function get_widget_fields(array $fields = array())
+    protected function get_widget_fields(array $fields = [])
     {
 
         if (empty($fields)) {
@@ -122,7 +105,7 @@ abstract class Widget extends WP_Widget
     public function widget($args, $instance)
     {
 
-        if ($this->get_cached_widget($args)) {
+        if ($this->get_cached_widget()) {
             return;
         }
 
@@ -224,13 +207,7 @@ abstract class Widget extends WP_Widget
          *
          * @var array
          */
-        $defaults = array(
-            'label'             => '',
-            'description'       => __('&rArr; Add a $args[\'description\'] to your widget', 'italystrap'),
-            'fields'            => array(),
-            'widget_options'    => array(),
-            'control_options'   => array(),
-        );
+        $defaults = ['label'             => '', 'description'       => __('&rArr; Add a $args[\'description\'] to your widget', 'italystrap'), 'fields'            => [], 'widget_options'    => [], 'control_options'   => []];
 
         /**
          * Parse and merge args with defaults.
@@ -259,7 +236,7 @@ abstract class Widget extends WP_Widget
          *
          * @var array
          */
-        $widget_options = array( 'description' => $args['description'] );
+        $widget_options = ['description' => $args['description']];
 
         $widget_options = wp_parse_args((array) $args['widget_options'], (array) $widget_options);
 
@@ -314,9 +291,9 @@ abstract class Widget extends WP_Widget
      */
     protected function init_events()
     {
-        add_action('save_post', array( $this, 'flush_widget_cache' ));
-        add_action('deleted_post', array( $this, 'flush_widget_cache' ));
-        add_action('switch_theme', array( $this, 'flush_widget_cache' ));
+        add_action('save_post', [$this, 'flush_widget_cache']);
+        add_action('deleted_post', [$this, 'flush_widget_cache']);
+        add_action('switch_theme', [$this, 'flush_widget_cache']);
     }
 
     /**
@@ -475,7 +452,7 @@ abstract class Widget extends WP_Widget
     private function make_sections_array(array $fields)
     {
 
-        $sections = array();
+        $sections = [];
 
         foreach ((array) $fields as $key) {
             if (isset($key['section']) && 'general' !== $key['section']) {
@@ -654,7 +631,7 @@ abstract class Widget extends WP_Widget
         $cache = wp_cache_get(apply_filters("italystrap_cached_{$this->id}", $this->id), 'widget');
 
         if (! is_array($cache)) {
-            $cache = array();
+            $cache = [];
         }
 
         if (isset($cache[ $this->id ])) {
@@ -675,7 +652,7 @@ abstract class Widget extends WP_Widget
     protected function cache_widget($args, $content)
     {
 
-        wp_cache_set(apply_filters("italystrap_cached_{$this->id}", $this->id), array( $this->id => $content ), 'widget');
+        wp_cache_set(apply_filters("italystrap_cached_{$this->id}", $this->id), [$this->id => $content], 'widget');
 
         return $content;
     }
@@ -734,13 +711,13 @@ abstract class Widget extends WP_Widget
                 'italystrap-widget',
                 plugins_url('assets/css/widget.css', __FILE__),
                 [],
-                \rand()
+                random_int(0, mt_getrandmax())
             );
 
             wp_enqueue_script(
                 'italystrap-widget',
                 plugins_url($js_file, __FILE__),
-                array( 'jquery', 'jquery-ui-sortable' )
+                ['jquery', 'jquery-ui-sortable']
             );
         }
 

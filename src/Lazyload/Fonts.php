@@ -36,14 +36,11 @@ class Fonts implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        return array(
+        return [
             // 'hook_name'                          => 'method_name',
-            'wp_footer' => array(
-                'function_to_add'   => 'render',
-                'priority'          => PHP_INT_MAX - 1,
-            ),
+            'wp_footer' => ['function_to_add'   => 'render', 'priority'          => PHP_INT_MAX - 1],
             'enqueue_block_editor_assets'   => 'gutenberg',
-        );
+        ];
     }
 
     /**
@@ -51,7 +48,7 @@ class Fonts implements Subscriber_Interface
      *
      * @var array
      */
-    protected $config = array();
+    protected $config = [];
 
     /**
      * The generated CSS for the page
@@ -73,10 +70,7 @@ class Fonts implements Subscriber_Interface
         $this->fonts_obj = $fonts_obj;
         $this->fonts = $this->fonts_obj->get_remote_fonts();
 
-        $this->fonts_to_load = array(
-            'first',
-            'second',
-        );
+        $this->fonts_to_load = ['first', 'second'];
     }
 
     /**
@@ -96,7 +90,7 @@ class Fonts implements Subscriber_Interface
          *
          * @var [type]
          */
-        $type = isset($this->config[ $value . '_typography']) ? $this->config[ $value . '_typography'] : '';
+        $type = $this->config[ $value . '_typography'] ?? '';
         // $typographyes = explode( ',', $this->config[ $value . '_typography'] );
         $typographyes = explode(',', $type);
 
@@ -130,7 +124,7 @@ class Fonts implements Subscriber_Interface
 
         $template_part = $this->fonts_to_load;
 
-        $fonts = array();
+        $fonts = [];
 
         $i = 0;
         foreach ($template_part as $key => $part) {
@@ -158,7 +152,7 @@ class Fonts implements Subscriber_Interface
             $font_family = esc_attr($this->config[ $part . '_font_family' ]);
 
             if (! isset($this->fonts[ $font_family ])) {
-                return array();
+                return [];
             }
 
             /**
@@ -216,7 +210,7 @@ class Fonts implements Subscriber_Interface
 
         $font_to_observe = '';
         $check = '';
-        $web_font_config = array();
+        $web_font_config = [];
 
         $range = range('a', 'z');
 

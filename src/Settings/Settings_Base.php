@@ -50,7 +50,7 @@ abstract class Settings_Base implements Settings_Interface
      *
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      * The plugin name
@@ -64,7 +64,7 @@ abstract class Settings_Base implements Settings_Interface
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * The type of fields to create
@@ -78,14 +78,14 @@ abstract class Settings_Base implements Settings_Interface
      *
      * @var array
      */
-    protected $submenus = array();
+    protected $submenus = [];
 
     /**
      * The fields preregistered in the config file.
      *
      * @var array
      */
-    protected $fields = array();
+    protected $fields = [];
 
     /**
      * Enqueue Style and Script
@@ -110,7 +110,7 @@ abstract class Settings_Base implements Settings_Interface
             $this->args['menu_page']['menu_title'],
             $this->capability, // $this->args['menu_page']['capability'],
             $this->args['menu_page']['menu_slug'],
-            array( $this, 'get_settings_view' ),
+            [$this, 'get_settings_view'],
             $this->args['menu_page']['icon_url'],
             $this->args['menu_page']['position']
         );
@@ -139,7 +139,7 @@ abstract class Settings_Base implements Settings_Interface
                 $this->capability, // $submenu['capability'],
                 $submenu['menu_slug'],
                 // $submenu['function_cb']
-                array( $this, 'get_settings_view' )
+                [$this, 'get_settings_view']
             );
         }
     }
@@ -328,7 +328,7 @@ abstract class Settings_Base implements Settings_Interface
             add_settings_section(
                 $setting['id'],
                 $setting['title'],
-                array( $this, $setting['callback'] ),
+                [$this, $setting['callback']],
                 $setting['page']
             );
 
@@ -340,7 +340,7 @@ abstract class Settings_Base implements Settings_Interface
                 add_settings_field(
                     $field['id'],
                     $field['title'],
-                    array( $this, $field['callback'] ),
+                    [$this, $field['callback']],
                     $field['page'],
                     $field['section'],
                     $field['args']
@@ -361,7 +361,7 @@ abstract class Settings_Base implements Settings_Interface
         register_setting(
             $this->args['options_group'],
             $this->args['options_name'],
-            array( $this, 'update' )
+            [$this, 'update']
         );
     }
 
@@ -411,7 +411,7 @@ abstract class Settings_Base implements Settings_Interface
     public function render_section_cb($args)
     {
 
-        echo isset($args['callback'][0]->settings[ $args['id'] ]['desc']) ? $args['callback'][0]->settings[ $args['id'] ]['desc'] : ''; // XSS ok.
+        echo $args['callback'][0]->settings[ $args['id'] ]['desc'] ?? ''; // XSS ok.
     }
 
     /**
@@ -438,6 +438,7 @@ abstract class Settings_Base implements Settings_Interface
     public function get_settings_fields()
     {
 
+        $fields = [];
         foreach ((array) $this->settings as $settings_value) {
             foreach ($settings_value['settings_fields'] as $fields_key => $fields_value) {
                 $fields[ $fields_value['id'] ] = $fields_value['args'];
@@ -455,10 +456,10 @@ abstract class Settings_Base implements Settings_Interface
     public function get_plugin_settings_array_default()
     {
 
-        $default_settings = array();
+        $default_settings = [];
 
         foreach ((array) $this->fields as $key => $setting) {
-            $default_settings[ $key ] = isset($setting['default']) ? $setting['default'] : '';
+            $default_settings[ $key ] = $setting['default'] ?? '';
         }
 
         return $default_settings;
@@ -492,7 +493,7 @@ abstract class Settings_Base implements Settings_Interface
      *
      * @param  array $value The options array with value.
      */
-    public function set_theme_mods(array $value = array())
+    public function set_theme_mods(array $value = [])
     {
 
         foreach ((array) $this->fields as $key => $field) {
@@ -507,7 +508,7 @@ abstract class Settings_Base implements Settings_Interface
      *
      * @param  array $value The options array with value.
      */
-    public function remove_theme_mods(array $value = array())
+    public function remove_theme_mods(array $value = [])
     {
 
         foreach ((array) $this->fields as $key => $field) {

@@ -37,22 +37,22 @@ class Monster extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         /**
          * Configure widget array.
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Monster Widgets', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('(Don\'t use this widget because it is in ALPHA version.) Test multiple widgets by ItalyStrap at the same time.', 'italystrap'),
             // 'fields'         => $this->get_widget_fields( require( ITALYSTRAP_PLUGIN_PATH . 'config/posts.php' ) ),
-            'control_options'   => array( 'width' => 450 ),
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-         );
+            'control_options'   => ['width' => 450],
+            'widget_options'    => ['customize_selective_refresh' => true],
+        ];
 
         /**
          * Create Widget
@@ -74,7 +74,7 @@ class Monster extends Widget
         $output = '';
 
         foreach ($this->get_widget_config() as $widget) {
-            $_instance = ( isset($widget[1]) ) ? $widget[1] : null;
+            $_instance = $widget[1] ?? null;
 
             // $args['before_widget'] = sprintf(
             //  $before_widget,
@@ -161,7 +161,7 @@ class Monster extends Widget
     public function get_widget_config()
     {
 
-        $widgets = array(
+        $widgets = [
             // array(
             //  'Carousel',
             //  array(
@@ -169,76 +169,9 @@ class Monster extends Widget
             //      'ids'       => '1,2,3',
             //  )
             // ),
-            array(
-                'Posts',
-                array(
-                    'title'    => __('ItalyStrap Posts', 'italystrap'),
-                )
-            ),
-            array(
-                'VCard',
-                array(
-                    'title' => __('ItalyStrap VCard', 'italystrap'),
-                )
-            ),
-            // array(
-            //  'Image',
-            //  array(
-            //      'title'        => __( 'ItalyStrap Image', 'italystrap' ),
-            //  )
-            // ),
-            // array(
-            //  'Facebook_Page',
-            //  array(
-            //      'title'        => __( 'Facebook_Page', 'italystrap' ),
-            //  )
-            // ),
-            // array(
-            //  'Breadcrumbs',
-            //  array(
-            //      'title'   => __( 'Breadcrumbs', 'italystrap' ),
-            //  )
-            // ),
-            // array(
-            //  'Taxonomies_Posts',
-            //  array(
-            //      'title'   => __( 'Taxonomies_Posts', 'italystrap' ),
-            //  )
-            // ),
-
-
-
-
-
-            // array( 'WP_Widget_Recent_Comments', array(
-            //  'title'  => __( 'Recent Comments', 'italystrap' ),
-            //  'number' => 7,
-            // ) ),
-            // array( 'WP_Widget_Recent_Posts', array(
-            //  'title'  => __( 'Recent Posts', 'italystrap' ),
-            //  'number' => 1,
-            // ) ),
-            // array( 'WP_Widget_RSS', array(
-            //  'title'        => __( 'RSS', 'italystrap' ),
-            //  'url'          => 'http://themeshaper.com/feed',
-            //  'items'        => 10,
-            //  'show_author'  => true,
-            //  'show_date'    => true,
-            //  'show_summary' => true,
-            // ) ),
-            // array( 'WP_Widget_Search', array(
-            //  'title'   => __( 'Search', 'italystrap' ),
-            // ) ),
-            // array( 'WP_Widget_Text', array(
-            //  'title'  => __( 'Text', 'italystrap' ),
-            //  'text'   => $this->get_text(),
-            //  'filter' => true,
-            // ) ),
-            // array( 'WP_Widget_Tag_Cloud', array(
-            //  'title'    => __( 'Tag Cloud', 'italystrap' ),
-            //  'taxonomy' => 'post_tag',
-            // ) ),
-        );
+            ['Posts', ['title'    => __('ItalyStrap Posts', 'italystrap')]],
+            ['VCard', ['title' => __('ItalyStrap VCard', 'italystrap')]],
+        ];
 
         return apply_filters('italystrap_monster_widget_config', $widgets);
     }
@@ -286,7 +219,7 @@ class Monster extends Widget
      */
     public function get_text()
     {
-        $html = array();
+        $html = [];
 
         $html[] = '<strong>' . __('Large image: Hand Coded', 'italystrap') . '</strong>';
         $html[] = '<img src="' . esc_url(plugin_dir_url(__FILE__) . 'images/bikes.jpg') . '" alt="" class="size-large img-responsive">';

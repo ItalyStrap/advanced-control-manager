@@ -11,17 +11,15 @@ class Grouped_Posts
 {
     /**
      * Pluin options
-     *
-     * @var array
      */
-    private $options = array();
+    private array $options = [];
 
     protected $term = null;
 
     /**
      * Inizializzo il costruttore
      */
-    function __construct(array $options = array(), Posts $query = null)
+    function __construct(array $options = [], Posts $query = null)
     {
 
         $this->options = $options;
@@ -72,12 +70,12 @@ class Grouped_Posts
 
         $output = '';
 
-        $args = array(
+        $args = [
             'no_found_rows'     => true,
             'posts_per_page'    => 5,
             // 'cat' => $category->term_id,
             'category__in'      => $category_term_id,
-        );
+        ];
 
         $query = new WP_Query($args);
         // $query = $this->query->get_attributes( $args );
@@ -115,10 +113,10 @@ class Grouped_Posts
      * @param  string $value [description]
      * @return string        [description]
      */
-    public function get_tax_query_args(array $tax_query_args = array(), $tax = 'category')
+    public function get_tax_query_args(array $tax_query_args = [], $tax = 'category')
     {
 
-        $defaults = array(
+        $defaults = [
             'taxonomy'      => $tax,
             'orderby'       => 'name',
             'order'         => 'ASC',
@@ -139,13 +137,7 @@ class Grouped_Posts
             // 'get'    => 0, // (string) Whether to return terms regardless of ancestry or whether the terms are empty. Accepts 'all' or empty (disabled).
             // 'child_of'   => 0, // (int) Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
             'parent'        => 0,
-            // 'childless'  => 0, // (bool) True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
-            // 'cache_domain'   => 0, // (string) Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
-            // 'update_term_meta_cache' => 0, // (bool) Whether to prime meta caches for matched terms. Default true.
-            // 'meta_query' => 0, // (array) Meta query clauses to limit retrieved terms by. See WP_Meta_Query.
-            // 'meta_key'   => 0, // (string) Limit terms to those matching a specific metadata key. Can be used in conjunction with $meta_value.
-            // 'meta_value' => 0, // (string) Limit terms to those matching a specific metadata value. Usually used in conjunction with $meta_key.
-        );
+        ];
 
         // if ( ! empty( $this->args['include'] ) ) {
         //  $defaults['include'] = $this->args['include'];
@@ -193,7 +185,7 @@ class Grouped_Posts
      * @return array|WP_Error Array of WP_Post objects with the highest comment counts,
      *                        WP_Error object otherwise.
      */
-    function get_category_array($force_refresh = false, $tax = 'category', array $args = array(), $id = null)
+    function get_category_array($force_refresh = false, $tax = 'category', array $args = [], $id = null)
     {
 
         if (! isset($id)) {
@@ -228,10 +220,7 @@ class Grouped_Posts
     public function get_categories($parent_id)
     {
 
-        $args = array(
-            'parent'        => $parent_id,
-            // 'number'     => '5',
-        );
+        $args = ['parent'        => $parent_id];
 
         $categories = $this->get_category_array(false, 'category', $args, $parent_id);
 
@@ -316,33 +305,16 @@ class Grouped_Posts
     {
         $records = $this->get_posts_grouped_by_term_from_db($post_type_name, $taxonomy_name);
         // ddd( $records );
-        $groupings = array();
+        $groupings = [];
 
         foreach ($records as $record) {
             $term_id = (int) $record->term_id;
             $post_id = (int) $record->post_id;
             $term_parent = (int) $record->term_parent;
             if (! array_key_exists($term_id, $groupings)) {
-                $groupings[ $term_id ] = array(
-                    'term_id'           => $term_id,
-                    'term_name'         => $record->term_name,
-                    'term_slug'         => $record->term_slug,
-                    'term_description'  => $record->term_description,
-                    'term_parent'       => $term_parent,
-                    'posts'             => array(),
-                );
+                $groupings[ $term_id ] = ['term_id'           => $term_id, 'term_name'         => $record->term_name, 'term_slug'         => $record->term_slug, 'term_description'  => $record->term_description, 'term_parent'       => $term_parent, 'posts'             => []];
             }
-            $groupings[ $term_id ]['posts'][ $post_id ] = array(
-                'post_id'       => $post_id,
-                'post_title'    => $record->post_title,
-                'post_content'  => $record->post_content,
-                'post_parent'   => $record->post_parent,
-                'post_name'     => $record->post_name,
-                'post_date'     => $record->post_date,
-                'menu_order'    => $record->menu_order,
-                'guid'          => $record->guid,
-                'term_id'       => $term_id,
-            );
+            $groupings[ $term_id ]['posts'][ $post_id ] = ['post_id'       => $post_id, 'post_title'    => $record->post_title, 'post_content'  => $record->post_content, 'post_parent'   => $record->post_parent, 'post_name'     => $record->post_name, 'post_date'     => $record->post_date, 'menu_order'    => $record->menu_order, 'guid'          => $record->guid, 'term_id'       => $term_id];
         }
 
         // d( $groupings );
@@ -361,7 +333,7 @@ class Grouped_Posts
         $output = '';
         $this->categories = $this->get_posts_grouped_by_term('post', 'category');
 
-        $term = (object) array();
+        $term = (object) [];
         foreach ((array) $this->categories as $category) {
             $output .= $this->build_output($category, $term);
         }
@@ -379,7 +351,7 @@ class Grouped_Posts
     {
         $output = '';
 
-        $count = count($category['posts']);
+        $count = is_countable($category['posts']) ? count($category['posts']) : 0;
 
         $output .= sprintf(
             '<div class="%s"><header><h2 class="entry-title-category"><i class="fa fa-folder-o"></i> <a href="%s">%s</a> <small>(%s)</small></h2><p>%s</p></header>%s%s</div>',
@@ -411,7 +383,7 @@ class Grouped_Posts
      * @param  string $value [description]
      * @return string        [description]
      */
-    public function get_the_grouped_posts(array $posts = array(), $limit = 5)
+    public function get_the_grouped_posts(array $posts = [], $limit = 5)
     {
         $output = '';
         $i = 0;
@@ -490,7 +462,7 @@ class Grouped_Posts
             $termlink = home_url($termlink);
         } else {
             if ($t->rewrite['hierarchical']) {
-                $hierarchical_slugs = array();
+                $hierarchical_slugs = [];
                 $ancestors = get_ancestors($term->term_id, $taxonomy, 'taxonomy');
                 foreach ((array)$ancestors as $ancestor) {
                     $ancestor_term = get_term($ancestor, $taxonomy);
@@ -591,34 +563,10 @@ class Grouped_Posts
 
         $date = explode(" ", date('Y m d H i s', $unixtime));
 
-        $rewritecode = array(
-            '%year%',
-            '%monthnum%',
-            '%day%',
-            '%hour%',
-            '%minute%',
-            '%second%',
-            $leavename ? '' : '%postname%',
-            '%post_id%',
-            '%category%',
-            '%author%',
-            $leavename ? '' : '%pagename%',
-        );
+        $rewritecode = ['%year%', '%monthnum%', '%day%', '%hour%', '%minute%', '%second%', $leavename ? '' : '%postname%', '%post_id%', '%category%', '%author%', $leavename ? '' : '%pagename%'];
 
         $rewritereplace =
-        array(
-            $date[0],
-            $date[1],
-            $date[2],
-            $date[3],
-            $date[4],
-            $date[5],
-            $post['post_name'],
-            $post['post_id'],
-            $category,
-            $author,
-            $post['post_name'],
-        );
+        [$date[0], $date[1], $date[2], $date[3], $date[4], $date[5], $post['post_name'], $post['post_id'], $category, $author, $post['post_name']];
         $permalink = '';
         $permalink = home_url(str_replace($rewritecode, $rewritereplace, $permalink_structure));
         $permalink = user_trailingslashit($permalink, 'single');

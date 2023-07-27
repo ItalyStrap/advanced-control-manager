@@ -31,34 +31,20 @@ class CMB2_Loader
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
-    protected $config = array();
+    protected $config = [];
 
-    protected $default = array(
-        'name'      => '',
-        'desc'      => '',
-        'id'        => '',
-        'type'      => 'text',
-        'default'   => '',
-        'sanitize'  => 'sanitize_text_field',
-        'show_on'   => true,
-    );
+    protected $default = ['name'      => '', 'desc'      => '', 'id'        => '', 'type'      => 'text', 'default'   => '', 'sanitize'  => 'sanitize_text_field', 'show_on'   => true];
 
-    protected $config_default = array(
-        'id'            => '',
-        'title'         => '',
-        'object_types'  => array(),
-        'context'       => 'normal',
-        'priority'      => 'low',
-    );
+    protected $config_default = ['id'            => '', 'title'         => '', 'object_types'  => [], 'context'       => 'normal', 'priority'      => 'low'];
 
     /**
      * Init the constructor
      *
      * @param array $options The plugin options
      */
-    public function __construct(array $config = array())
+    public function __construct(array $config = [])
     {
         $this->config = $config;
     }

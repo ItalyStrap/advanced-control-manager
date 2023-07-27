@@ -29,7 +29,7 @@ function shortcode_atts_multidimensional_array(array $pairs, array $atts, $short
 
     $atts = (array) $atts;
 
-    $array = array();
+    $array = [];
 
     foreach ($pairs as $name => $default) {
         if (array_key_exists($name, $atts)) {
@@ -64,14 +64,14 @@ function shortcode_atts_multidimensional_array(array $pairs, array $atts, $short
  *
  * @return array         Return the array with options default.
  */
-function get_default_from_config(array $config = array())
+function get_default_from_config(array $config = [])
 {
 
-    $options_default = array();
+    $options_default = [];
 
     foreach ($config as $value) {
         foreach ($value['settings_fields'] as $settings_fields_value) {
-            $default = isset($settings_fields_value['args']['default']) ? $settings_fields_value['args']['default'] : null;
+            $default = $settings_fields_value['args']['default'] ?? null;
             $options_default[ $settings_fields_value['id'] ] = $default;
         }
     }
@@ -129,7 +129,7 @@ function get_taxonomies_list_array($tax)
      */
     $tax_arrays = get_terms($tax);
 
-    $get_taxonomies_list_array = array();
+    $get_taxonomies_list_array = [];
 
     if ($tax_arrays && ! is_wp_error($tax_arrays)) {
         foreach ($tax_arrays as $tax_array) {
@@ -146,7 +146,7 @@ function get_taxonomies_list_array($tax)
  * @param  array $custom_size Custom size.
  * @return array              Return the array with all media size plus custom size
  */
-function get_image_size_array($custom_size = array())
+function get_image_size_array($custom_size = [])
 {
 
     static $image_size_media = null;
@@ -253,9 +253,9 @@ function kill_emojis()
 function kill_emojis_tinymce($plugins)
 {
     if (is_array($plugins)) {
-        return array_diff($plugins, array( 'wpemoji' ));
+        return array_diff($plugins, ['wpemoji']);
     } else {
-        return array();
+        return [];
     }
 }
 
@@ -312,7 +312,7 @@ if (! function_exists('ItalyStrap\Core\get_attr')) {
      *
      * @return string String of HTML attributes and values.
      */
-    function get_attr($context, array $attr = array(), $echo = false, $args = null)
+    function get_attr($context, array $attr = [], $echo = false, $args = null)
     {
 
         if (! $echo) {
@@ -376,7 +376,7 @@ function get_image_id_from_url($image_url)
         wp_cache_set('get_image_id' . $image_url, $attachment);
     }
 
-    $attachment[0] = isset($attachment[0]) ? $attachment[0] : null;
+    $attachment[0] ??= null;
 
     return absint($attachment[0]);
 }
@@ -389,8 +389,8 @@ function get_image_id_from_url($image_url)
  */
 function get_global($name = '')
 {
-    global $$name;
-    return $$name;
+    global ${$name};
+    return ${$name};
 }
 
 /**

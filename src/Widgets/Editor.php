@@ -27,23 +27,22 @@ class Editor extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', array( $this, 'upload_scripts' ));
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
         /**
          * Configure widget array.
          *
          * @var array
          */
-        $args = array(
+        $args = [
             // Widget Backend label.
             'label'             => __('ItalyStrap Editor', 'italystrap'),
             // Widget Backend Description.
             'description'       => __('The visual editor widget.', 'italystrap'),
             'fields'            => $this->get_widget_fields(require(ITALYSTRAP_PLUGIN_PATH . 'config/editor.php')),
-
-            'control_options'   => array( 'width' => 650 ),
-            'widget_options'    => array( 'customize_selective_refresh' => true ),
-         );
+            'control_options'   => ['width' => 650],
+            'widget_options'    => ['customize_selective_refresh' => true],
+        ];
 
         /**
          * Create Widget

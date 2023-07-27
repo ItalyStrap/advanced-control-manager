@@ -15,11 +15,11 @@
             <form action="#" method="post">
                 <?php
 
-                $injector = new \Auryn\Injector();
-                $migrations = $injector->make('\ItalyStrap\Migrations\Migrations_Factory');
+//                $injector = new \Auryn\Injector();
+//                $migrations = $injector->make('\\' . \ItalyStrap\Migrations\ParentThemeMigrations::class);
 
-                // $migrations = new \ItalyStrap\Migrations\Migrations_Factory();
-                $migrations->run();
+                // $migrations = new \ItalyStrap\Migrations\ParentThemeMigrations();
+//                $migrations->run();
                 // $this->create_nav_tab();
                 /**
                  * Output nonce, action, and option_page fields for a settings page.
