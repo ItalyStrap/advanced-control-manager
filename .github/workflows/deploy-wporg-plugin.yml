@@ -1,7 +1,7 @@
 name: 🚀 Deploy to WordPress.org
 
 env:
-  BUILD_DIR: .trunk/
+  BUILD_DIR: trunk/
 
 on:
   workflow_dispatch:
@@ -48,7 +48,7 @@ jobs:
 
     - name: WordPress Plugin Deploy
       id: deploy
-      uses: 10up/action-wordpress-plugin-deploy@develop
+      uses: 10up/action-wordpress-plugin-deploy@stable
       with:
         generate-zip: true
         dry-run: true
