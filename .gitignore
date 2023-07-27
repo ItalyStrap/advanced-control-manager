@@ -10,8 +10,10 @@ bower_components
 future-inclusions/
 vendor/
 tests/_output/*
+tests/_support/_generated/*
 _old/
 infection/
+.trunk/
 
 
 #Files
@@ -30,5 +32,6 @@ phpunit.xml
 **/todo.md
 c3.php
 **/*.back
+rector.php
 
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Various metaboxes for this plugin
  *
@@ -14,8 +15,8 @@
 
 namespace ItalyStrap\Custom\Metaboxes;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
-	die();
+if (! defined('ITALYSTRAP_PLUGIN') or ! ITALYSTRAP_PLUGIN) {
+    die();
 }
 
 use CMB2;
@@ -23,43 +24,46 @@ use CMB2;
 /**
  * Add some metaboxes in admin area with CMB2
  */
-class CMB2_Adapter extends CMB2_Loader {
+class CMB2_Adapter extends CMB2_Loader
+{
+    /**
+     * Merge config in configs
+     *
+     * @param  array $config An array with a configuration for CMB2
+     * @return string        [description]
+     */
+    public function merge(array $config)
+    {
+        $this->configs[] = $config;
+    }
 
-	/**
-	 * Merge config in configs
-	 *
-	 * @param  array $config An array with a configuration for CMB2
-	 * @return string        [description]
-	 */
-	public function merge( array $config ) {
-		$this->configs[] = $config;
-	}
+    /**
+     * Autoload CMB2
+     */
+    public function autoload()
+    {
 
-	/**
-	 * Autoload CMB2
-	 */
-	public function autoload() {
+        foreach ($this->configs as $config) {
+            $this->load_cmb2($config);
+        }
+    }
 
-		foreach ( $this->configs as $config ) {
-			$this->load_cmb2( $config );
-		}
-	}
+    /**
+     * Load CMB2
+     *
+     * @param  array $config Configuration array for CMB2
+     */
+    public function load_cmb2(array $config)
+    {
 
-	/**
-	 * Load CMB2
-	 *
-	 * @param  array $config Configuration array for CMB2
-	 */
-	public function load_cmb2( array $config ) {
+        /**
+         * This prevents that the CMB2 autoload the fields itself.
+         */
+        $fields = $config['fields'];
+        unset($config['fields']);
 
-		/**
-		 * This prevents that the CMB2 autoload the fields itself.
-		 */
-		$fields = $config['fields'];
-		unset( $config['fields'] );
+        $this->cmb = new_cmb2_box(array_merge($this->config_default, $config));
 
-		$this->cmb = new_cmb2_box( array_merge( $this->config_default, $config ) );
-
-		$this->generate_fields( $this->cmb, $fields );
-	}
+        $this->generate_fields($this->cmb, $fields);
+    }
 }

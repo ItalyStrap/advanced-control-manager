@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ItalyStrap\Core;
@@ -23,36 +24,37 @@ use ItalyStrap\Lazyload\ImageSubscriber;
  *@since 2.0.0
  *
  */
-function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shortcode = '' ) {
+function shortcode_atts_multidimensional_array(array $pairs, array $atts, $shortcode = '')
+{
 
-	$atts = (array) $atts;
+    $atts = (array) $atts;
 
-	$array = array();
+    $array = [];
 
-	foreach ( $pairs as $name => $default ) {
+    foreach ($pairs as $name => $default) {
+        if (array_key_exists($name, $atts)) {
+            $array[ $name ] = $atts[ $name ];
+        } else {
+            $array[ $name ] = ( ( ! empty($default['default']) ) ? $default['default'] : '' );
+        }
+    }
 
-		if ( array_key_exists( $name, $atts ) ) {
-			$array[ $name ] = $atts[ $name ]; } else {
-			$array[ $name ] = ( ( ! empty( $default['default'] ) ) ? $default['default'] : '' ); }
-	}
+    /**
+     * Filter a shortcode's default attributes.
+     *
+     * If the third parameter of the shortcode_atts() function is present then this filter is available.
+     * The third parameter, $shortcode, is the name of the shortcode.
+     *
+     * @param array  $array       The output array of shortcode attributes.
+     * @param array  $pairs     The supported attributes and their defaults.
+     * @param array  $atts      The user defined shortcode attributes.
+     * @param string $shortcode The shortcode name.
+     */
+    if ($shortcode) {
+        $array = apply_filters("shortcode_atts_multidimensional_array_{$shortcode}", $array, $pairs, $atts, $shortcode);
+    }
 
-	/**
-	 * Filter a shortcode's default attributes.
-	 *
-	 * If the third parameter of the shortcode_atts() function is present then this filter is available.
-	 * The third parameter, $shortcode, is the name of the shortcode.
-	 *
-	 * @param array  $array       The output array of shortcode attributes.
-	 * @param array  $pairs     The supported attributes and their defaults.
-	 * @param array  $atts      The user defined shortcode attributes.
-	 * @param string $shortcode The shortcode name.
-	 */
-	if ( $shortcode ) {
-		$array = apply_filters( "shortcode_atts_multidimensional_array_{$shortcode}", $array, $pairs, $atts, $shortcode );
-	}
-
-	return $array;
-
+    return $array;
 }
 
 /**
@@ -62,19 +64,19 @@ function shortcode_atts_multidimensional_array( array $pairs, array $atts, $shor
  *
  * @return array         Return the array with options default.
  */
-function get_default_from_config( array $config = array() ) {
+function get_default_from_config(array $config = [])
+{
 
-	$options_default = array();
+    $options_default = [];
 
-	foreach ( $config as $value ) {
-		foreach ( $value['settings_fields'] as $settings_fields_value ) {
-			$default = isset( $settings_fields_value['args']['default'] ) ? $settings_fields_value['args']['default'] : null;
-			$options_default[ $settings_fields_value['id'] ] = $default;
-		}
-	}
+    foreach ($config as $value) {
+        foreach ($value['settings_fields'] as $settings_fields_value) {
+            $default = $settings_fields_value['args']['default'] ?? null;
+            $options_default[ $settings_fields_value['id'] ] = $default;
+        }
+    }
 
-	return $options_default;
-
+    return $options_default;
 }
 
 /**
@@ -82,31 +84,31 @@ function get_default_from_config( array $config = array() ) {
  *
  * @link https://tommcfarlin.com/reading-files-with-php/
  *
- * @param  file $filename	The file for lazyloading.
+ * @param  file $filename   The file for lazyloading.
  *
  * @throws Exception If the file doesn't exist.
  *
- * @return string $content	Return the content of the file
+ * @return string $content  Return the content of the file
  */
-function get_file_content( $filename ) {
+function get_file_content($filename)
+{
 
-	// Check to see if the file exists at the specified path.
-	if ( ! file_exists( $filename ) ) {
-		throw new \Exception( __( 'The file doesn\'t exist.', 'italystrap' ) );
-	}
+    // Check to see if the file exists at the specified path.
+    if (! file_exists($filename)) {
+        throw new \Exception(__('The file doesn\'t exist.', 'italystrap'));
+    }
 
-	// Open the file for reading.
-	$file_resource = fopen( $filename, 'r' );
+    // Open the file for reading.
+    $file_resource = fopen($filename, 'r');
 
-	/**
-	 * Read the entire contents of the file which is indicated by
-	 * the filesize argument
-	 */
-	$content = fread( $file_resource, filesize( $filename ) );
-	fclose( $file_resource );
+    /**
+     * Read the entire contents of the file which is indicated by
+     * the filesize argument
+     */
+    $content = fread($file_resource, filesize($filename));
+    fclose($file_resource);
 
-	return $content;
-
+    return $content;
 }
 
 /**
@@ -115,29 +117,27 @@ function get_file_content( $filename ) {
  * @param  string $tax The name of taxonomy type.
  * @return array       Return an array with tax list
  */
-function get_taxonomies_list_array( $tax ) {
+function get_taxonomies_list_array($tax)
+{
 
-	/**
-	 * Array of taxonomies
-	 *
-	 * @todo Make object cache, see https://10up.github.io/Engineering-Best-Practices/php/#performance
-	 * @todo Add a default value
-	 * @var array
-	 */
-	$tax_arrays = get_terms( $tax );
+    /**
+     * Array of taxonomies
+     *
+     * @todo Make object cache, see https://10up.github.io/Engineering-Best-Practices/php/#performance
+     * @todo Add a default value
+     * @var array
+     */
+    $tax_arrays = get_terms($tax);
 
-	$get_taxonomies_list_array = array();
+    $get_taxonomies_list_array = [];
 
-	if ( $tax_arrays && ! is_wp_error( $tax_arrays ) ) {
+    if ($tax_arrays && ! is_wp_error($tax_arrays)) {
+        foreach ($tax_arrays as $tax_array) {
+            $get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
+        }
+    }
 
-		foreach ( $tax_arrays as $tax_array ) {
-
-			$get_taxonomies_list_array[ $tax_array->term_id ] = $tax_array->name;
-
-		}
-	}
-
-	return $get_taxonomies_list_array;
+    return $get_taxonomies_list_array;
 }
 
 /**
@@ -146,21 +146,22 @@ function get_taxonomies_list_array( $tax ) {
  * @param  array $custom_size Custom size.
  * @return array              Return the array with all media size plus custom size
  */
-function get_image_size_array( $custom_size = array() ) {
+function get_image_size_array($custom_size = [])
+{
 
-	static $image_size_media = null;
+    static $image_size_media = null;
 
-	if ( ! $image_size_media ) {
+    if (! $image_size_media) {
 
-		/**
-		 * Instance of list of image sizes
-		 *
-		 * @var \ItalyStrap\Image\Size
-		 */
-		$image_size_media = new \ItalyStrap\Image\Size;
-	}
+        /**
+         * Instance of list of image sizes
+         *
+         * @var \ItalyStrap\Image\Size
+         */
+        $image_size_media = new \ItalyStrap\Image\Size();
+    }
 
-	return (array) $image_size_media->get_image_sizes();
+    return (array) $image_size_media->get_image_sizes();
 }
 
 /**
@@ -176,16 +177,16 @@ function get_image_size_array( $custom_size = array() ) {
  * @param  string $title The title.
  * @return string        The title converted
  */
-function render_html_in_title_output( $title ) {
+function render_html_in_title_output($title)
+{
 
-	$tagopen = '{{'; // Our HTML opening tag replacement.
-	$tagclose = '}}'; // Our HTML closing tag replacement.
+    $tagopen = '{{'; // Our HTML opening tag replacement.
+    $tagclose = '}}'; // Our HTML closing tag replacement.
 
-	$title = str_replace( $tagopen, '<', $title );
-	$title = str_replace( $tagclose, '>', $title );
+    $title = str_replace($tagopen, '<', $title);
+    $title = str_replace($tagclose, '>', $title);
 
-	return $title;
-
+    return $title;
 }
 
 /**
@@ -203,17 +204,17 @@ function render_html_in_title_output( $title ) {
  * @param  null $mobile_detect An empty variable.
  * @return object              Instance of Mobiloe detect
  */
-function new_mobile_detect( $mobile_detect ) {
+function new_mobile_detect($mobile_detect)
+{
 
-	$mobile_detect = new \Detection\MobileDetect;
-	/**
-	 * Istantiate Mobile_Detect class for responive use
-	 *
-	 * @todo Passare l'istanza dentro la classe http://stackoverflow.com/a/10634148
-	 * @var obj
-	 */
-	return $mobile_detect;
-
+    $mobile_detect = new \Detection\MobileDetect();
+    /**
+     * Istantiate Mobile_Detect class for responive use
+     *
+     * @todo Passare l'istanza dentro la classe http://stackoverflow.com/a/10634148
+     * @var obj
+     */
+    return $mobile_detect;
 }
 
 /**
@@ -225,15 +226,16 @@ function new_mobile_detect( $mobile_detect ) {
  * @since 2.0.0
  * @version 1.5.1 (Version of the original plugin)
  */
-function kill_emojis() {
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	add_filter( 'tiny_mce_plugins', 'kill_emojis_tinymce' );
+function kill_emojis()
+{
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+    add_filter('tiny_mce_plugins', 'kill_emojis_tinymce');
 }
 
 /**
@@ -248,12 +250,13 @@ function kill_emojis() {
  * @param    array  $plugins
  * @return   array           Difference betwen the two arrays
  */
-function kill_emojis_tinymce( $plugins ) {
-	if ( is_array( $plugins ) ) {
-		return array_diff( $plugins, array( 'wpemoji' ) );
-	} else {
-		return array();
-	}
+function kill_emojis_tinymce($plugins)
+{
+    if (is_array($plugins)) {
+        return array_diff($plugins, ['wpemoji']);
+    } else {
+        return [];
+    }
 }
 
 /**
@@ -264,9 +267,9 @@ function kill_emojis_tinymce( $plugins ) {
  * @param  object $widget [description].
  */
 // function register_widget( $widget ) {
-// 	global $wp_widget_factory;
+//  global $wp_widget_factory;
 
-// 	$wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
+//  $wp_widget_factory->widgets[ get_class( $widget ) ] = $widget;
 // }
 
 /**
@@ -280,42 +283,44 @@ function kill_emojis_tinymce( $plugins ) {
  *
  * @return string/null               The widget title or null.
  */
-function remove_widget_title( $widget_title ) {
+function remove_widget_title($widget_title)
+{
 
-	if ( substr ( $widget_title, 0, 2 ) === '!!' ) {
-		return;
-	}
+    if (substr($widget_title, 0, 2) === '!!') {
+        return;
+    }
 
-	return $widget_title;
+    return $widget_title;
 }
 
-if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
+if (! function_exists('ItalyStrap\Core\get_attr')) {
 
-	/**
-	 * Build list of attributes into a string and apply contextual filter on string.
-	 *
-	 * The contextual filter is of the form `italystrap_attr_{context}_output`.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @see In general-function on the plugin.
-	 *
-	 * @param  string $context    The context, to build filter name.
-	 * @param  array  $attributes Optional. Extra attributes to merge with defaults.
-	 * @param  bool   $echo       True for echoing or false for returning the value.
-	 *                            Default false.
-	 * @param  null   $args       Optional. Extra arguments in case is needed.
-	 *
-	 * @return string String of HTML attributes and values.
-	 */
-	function get_attr( $context, array $attr = array(), $echo = false, $args = null ) {
+    /**
+     * Build list of attributes into a string and apply contextual filter on string.
+     *
+     * The contextual filter is of the form `italystrap_attr_{context}_output`.
+     *
+     * @since 4.0.0
+     *
+     * @see In general-function on the plugin.
+     *
+     * @param  string $context    The context, to build filter name.
+     * @param  array  $attributes Optional. Extra attributes to merge with defaults.
+     * @param  bool   $echo       True for echoing or false for returning the value.
+     *                            Default false.
+     * @param  null   $args       Optional. Extra arguments in case is needed.
+     *
+     * @return string String of HTML attributes and values.
+     */
+    function get_attr($context, array $attr = [], $echo = false, $args = null)
+    {
 
-		if ( ! $echo ) {
-			return \ItalyStrap\HTML\get_attr( $context, $attr, false, $args );
-		}
+        if (! $echo) {
+            return \ItalyStrap\HTML\get_attr($context, $attr, false, $args);
+        }
 
-		echo \ItalyStrap\HTML\get_attr( $context, $attr, false, $args );
-	}
+        echo \ItalyStrap\HTML\get_attr($context, $attr, false, $args);
+    }
 }
 
 /**
@@ -330,17 +335,18 @@ if ( ! function_exists( 'ItalyStrap\Core\get_attr' ) ) {
  * @param string|array $template_names Template file(s) to search for, in order.
  * @return string The template filename if one is located.
  */
-function get_template( $template_names ) {
+function get_template($template_names)
+{
 
-	$located = '';
+    $located = '';
 
-	$located = locate_template( $template_names );
+    $located = locate_template($template_names);
 
-	if ( '' === $located ) {
-		return ITALYSTRAP_PLUGIN_PATH . $template_names;
-	}
+    if ('' === $located) {
+        return ITALYSTRAP_PLUGIN_PATH . $template_names;
+    }
 
-	return $located;
+    return $located;
 }
 
 /**
@@ -352,27 +358,27 @@ function get_template( $template_names ) {
  *
  * @return int               Return the ID of the image
  */
-function get_image_id_from_url( $image_url ) {
+function get_image_id_from_url($image_url)
+{
 
-	$attachment = wp_cache_get( 'get_image_id' . $image_url );
+    $attachment = wp_cache_get('get_image_id' . $image_url);
 
-	if ( false === $attachment ) {
-
-		global $wpdb;
-		$attachment = $wpdb->get_col(
-			$wpdb->prepare(
-				"SELECT ID
+    if (false === $attachment) {
+        global $wpdb;
+        $attachment = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT ID
 				FROM $wpdb->posts
 				WHERE guid='%s';",
-				$image_url
-			)
-		);
-		wp_cache_set( 'get_image_id' . $image_url, $attachment );
-	}
+                $image_url
+            )
+        );
+        wp_cache_set('get_image_id' . $image_url, $attachment);
+    }
 
-	$attachment[0] = isset( $attachment[0] ) ? $attachment[0] : null;
+    $attachment[0] ??= null;
 
-	return absint( $attachment[0] );
+    return absint($attachment[0]);
 }
 
 /**
@@ -381,9 +387,10 @@ function get_image_id_from_url( $image_url ) {
  * @param string $name
  * @return string
  */
-function get_global( $name = '' ) {
-	global $$name;
-	return $$name;
+function get_global($name = '')
+{
+    global ${$name};
+    return ${$name};
 }
 
 /**
@@ -392,15 +399,16 @@ function get_global( $name = '' ) {
  * @return string          Text content processed
  * @throws \Auryn\InjectionException
  */
-function get_apply_lazyload( string $content ): string {
-	/** @var Injector $injector */
-	if ( ! $injector = \apply_filters('italystrap_injector', false) ) {
-		return $content;
-	}
+function get_apply_lazyload(string $content): string
+{
+    /** @var Injector $injector */
+    if (! $injector = \apply_filters('italystrap_injector', false)) {
+        return $content;
+    }
 
-	/** @var ImageSubscriber $lazy */
-	$lazy = $injector->make(ImageSubscriber::class);
-	return $lazy->replaceSrcImageWithSrcPlaceholders( $content );
+    /** @var ImageSubscriber $lazy */
+    $lazy = $injector->make(ImageSubscriber::class);
+    return $lazy->replaceSrcImageWithSrcPlaceholders($content);
 }
 
 /**
@@ -409,6 +417,7 @@ function get_apply_lazyload( string $content ): string {
  * @return void Text content processed
  * @throws \Auryn\InjectionException
  */
-function apply_lazyload( string $content ): void {
-	echo get_apply_lazyload( $content );
+function apply_lazyload(string $content): void
+{
+    echo get_apply_lazyload($content);
 }

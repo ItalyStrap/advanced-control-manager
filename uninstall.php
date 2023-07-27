@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -11,8 +12,8 @@
 /**
  * If uninstall not called from WordPress, then exit
  */
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+if (! defined('WP_UNINSTALL_PLUGIN')) {
+    exit;
 }
 
 /**
@@ -21,50 +22,45 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * https://premium.wpmudev.org/blog/activate-deactivate-uninstall-hooks/
  */
 
-if ( is_multisite() ) {
+if (is_multisite()) {
+    global $wpdb;
 
-	global $wpdb;
+    $blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);
 
-	$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A );
+    /**
+     * In case of transient
+     * delete_transient( 'italystrap_settings' );
+     */
 
-	/**
-	 * In case of transient
-	 * delete_transient( 'italystrap_settings' );
-	 */
+    delete_option('italystrap_settings');
+    delete_option('italystrap_widget_area');
 
-	delete_option( 'italystrap_settings' );
-	delete_option( 'italystrap_widget_area' );
+    if ($blogs) {
+        foreach ($blogs as $blog) {
+            switch_to_blog($blog['blog_id']);
 
-	if ( $blogs ) {
-		foreach ( $blogs as $blog ) {
+            /**
+             * In case of transient
+             * delete_transient( 'italystrap_settings' );
+             * Delete all custom post type created by plugin
+             */
 
-			switch_to_blog( $blog['blog_id'] );
+            delete_option('italystrap_settings');
+            delete_option('italystrap_widget_area');
+            // delete_post_meta_by_key( '_italystrap_layout_settings' );
 
-			/**
-			 * In case of transient
-			 * delete_transient( 'italystrap_settings' );
-			 * Delete all custom post type created by plugin
-			 */
-
-			delete_option( 'italystrap_settings' );
-			delete_option( 'italystrap_widget_area' );
-			// delete_post_meta_by_key( '_italystrap_layout_settings' );
-
-			restore_current_blog();
-
-		}
-	}
+            restore_current_blog();
+        }
+    }
 } else {
 
-	/**
-	 * In case of transient
-	 * delete_transient( 'italystrap_settings' );
-	 * Delete all custom post type created by plugin
-	 */
+    /**
+     * In case of transient
+     * delete_transient( 'italystrap_settings' );
+     * Delete all custom post type created by plugin
+     */
 
-	delete_option( 'italystrap_settings' );
-	delete_option( 'italystrap_widget_area' );
-	// delete_post_meta_by_key( '_italystrap_layout_settings' );
-
-
+    delete_option('italystrap_settings');
+    delete_option('italystrap_widget_area');
+    // delete_post_meta_by_key( '_italystrap_layout_settings' );
 }

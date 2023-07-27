@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Shortcode API
  *
@@ -14,29 +15,30 @@
 
 namespace ItalyStrap\Shortcodes;
 
-if ( ! defined( 'ITALYSTRAP_PLUGIN' ) or ! ITALYSTRAP_PLUGIN ) {
-	die();
+if (! defined('ITALYSTRAP_PLUGIN') or ! ITALYSTRAP_PLUGIN) {
+    die();
 }
 
 /**
  * Shortcode
  */
-abstract class Shortcode {
+abstract class Shortcode
+{
+    protected $attr = [];
 
-	protected $attr = array();
+    protected $default = [];
 
-	protected $default = array();
+    protected $content = '';
 
-	protected $content = '';
+    public $shortcode_ui = [];
 
-	public $shortcode_ui = array();
-
-	/**
-	 * [__construct description]
-	 *
-	 * @param [type] $argument [description].
-	 */
-	public function __construct( $argument = null ) {
-		// Code...
-	}
+    /**
+     * [__construct description]
+     *
+     * @param [type] $argument [description].
+     */
+    public function __construct($argument = null)
+    {
+        // Code...
+    }
 }

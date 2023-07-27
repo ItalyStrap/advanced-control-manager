@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class for new vCard widget
  *
@@ -8,11 +9,11 @@
 
 namespace ItalyStrap\Widgets;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
+if (! defined('ABSPATH') or ! ABSPATH) {
+    die();
 }
 
-use \ItalyStrap\VCard\VCard as VCard_Base;
+use ItalyStrap\VCard\VCard as VCard_Base;
 
 /**
  * Da leggere https://carlalexander.ca/polymorphism-wordpress-interfaces/
@@ -48,70 +49,72 @@ use \ItalyStrap\VCard\VCard as VCard_Base;
 /**
  * Class
  */
-class VCard extends Widget {
+class VCard extends Widget
+{
+    /**
+     * Init the constructor
+     */
+    function __construct()
+    {
 
-	/**
-	 * Init the constructor
-	 */
-	function __construct() {
+        $this->config = require(ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php');
 
-		$this->config = require( ITALYSTRAP_PLUGIN_PATH . 'config/vcard.php' );
+        /**
+         * I don't like this and I have to find a better solution for loading script and style for widgets.
+         */
+        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
 
-		/**
-		 * I don't like this and I have to find a better solution for loading script and style for widgets.
-		 */
-		add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts' ) );
+        $fields = array_merge($this->title_field(), $this->config);
 
-		$fields = array_merge( $this->title_field(), $this->config );
+        /**
+         * Configure widget array.
+         *
+         * @var array
+         */
+        $args = [
+            // Widget Backend label.
+            'label'             => __('ItalyStrap vCard Local Business', 'italystrap'),
+            // Widget Backend Description.
+            'description'       => __('Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'italystrap'),
+            'fields'            => $fields,
+            'widget_options'    => ['customize_selective_refresh' => true],
+            'control_options'   => ['width' => 340],
+        ];
 
-		/**
-		 * Configure widget array.
-		 *
-		 * @var array
-		 */
-		$args = array(
-			// Widget Backend label.
-			'label'				=> __( 'ItalyStrap vCard Local Business', 'italystrap' ),
-			// Widget Backend Description.
-			'description'		=> __( 'Add a vCard Local Business with Schema.org markup to your theme widgetized area', 'italystrap' ),
-			'fields'			=> $fields,
-			'widget_options'	=> array( 'customize_selective_refresh' => true ),
-			'control_options'	=> array( 'width' => 340 ),
-		 );
+        /**
+         * Create Widget
+         */
+        $this->create_widget($args);
+    }
 
-		/**
-		 * Create Widget
-		 */
-		$this->create_widget( $args );
-	}
-
-	/**
-	 * Dispay the widget content
-	 *
-	 * @param  array $args     Display arguments including 'before_title', 'after_title',
-	 *                        'before_widget', and 'after_widget'.
-	 * @param  array $instance The settings for the particular instance of the widget.
-	 */
-	public function widget_render( $args, $instance ) {
+    /**
+     * Dispay the widget content
+     *
+     * @param  array $args     Display arguments including 'before_title', 'after_title',
+     *                        'before_widget', and 'after_widget'.
+     * @param  array $instance The settings for the particular instance of the widget.
+     */
+    public function widget_render($args, $instance)
+    {
 
 
-		$vcard = new VCard_Base();
+        $vcard = new VCard_Base();
 
-		$vcard->get_args( 'widget_vcard', $instance, $this->config );
+        $vcard->get_args('widget_vcard', $instance, $this->config);
 
-		return $vcard->output();
+        return $vcard->output();
 
-		/**
-		 * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
-		 */
+        /**
+         * var_dump( get_option( 'widget_italystrap-vcard-local-business' ) );
+         */
 
-		// ob_start();
+        // ob_start();
 
-		// require( \ItalyStrap\Core\get_template( 'templates/content-vcard.php' ) );
+        // require( \ItalyStrap\Core\get_template( 'templates/content-vcard.php' ) );
 
-		// $out = ob_get_contents();
-		// ob_end_clean();
+        // $out = ob_get_contents();
+        // ob_end_clean();
 
-		// return $out;
-	}
+        // return $out;
+    }
 } // Class.

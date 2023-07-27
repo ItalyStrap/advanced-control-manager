@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class for admin panel
  *
@@ -14,23 +15,24 @@
 
 namespace ItalyStrap\Settings;
 
-if ( ! defined( 'ABSPATH' ) or ! ABSPATH ) {
-	die();
+if (! defined('ABSPATH') or ! ABSPATH) {
+    die();
 }
 
 /**
  * Class for admin area
  */
-class Uninstall extends Settings_Base {
+class Uninstall extends Settings_Base
+{
+    /**
+     * Initialize Class
+     *
+     * @param array            $options     Get the plugin options.
+     * @param FieldsInterface $fields_type The Fields object.
+     */
+    public function __construct(array $options = [], array $settings, array $args, FieldsInterface $fields_type)
+    {
 
-	/**
-	 * Initialize Class
-	 *
-	 * @param array            $options     Get the plugin options.
-	 * @param FieldsInterface $fields_type The Fields object.
-	 */
-	public function __construct( array $options = array(), array $settings, array $args, FieldsInterface $fields_type ) {
-
-		parent::__construct( $options, $settings, $args, $fields_type );
-	}
+        parent::__construct($options, $settings, $args, $fields_type);
+    }
 }

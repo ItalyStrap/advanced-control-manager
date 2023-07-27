@@ -1,4 +1,5 @@
 <?php
+
 /**
  * API for inline script
  *
@@ -16,12 +17,12 @@ namespace ItalyStrap\Asset;
 /**
  * Class description
  */
-class Inline_Script extends Inline_Asset {
-
-	/**
-	 * The data that will be printend inline.
-	 *
-	 * @var string
-	 */
-	protected static $data = '';
+class Inline_Script extends Inline_Asset
+{
+    /**
+     * The data that will be printend inline.
+     *
+     * @var string
+     */
+    protected static $data = '';
 }

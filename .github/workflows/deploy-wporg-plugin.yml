@@ -1,5 +1,8 @@
 name: 🚀 Deploy to WordPress.org
 
+env:
+  BUILD_DIR: .trunk/
+
 on:
   workflow_dispatch:
   release:
@@ -12,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -27,17 +30,20 @@ jobs:
     - name: 👀 See the content
       run: ls
 
-    - name: Use Node.js 12
+    - name: Use Node.js 16
       uses: actions/setup-node@v2-beta
       with:
-        node-version: '12'
+        node-version: '16'
 
     - name: 🔨 Build Project
       run: |
         npm install
+        npm run build
 
     - name: List output files
-      run: ls -la
+      working-directory: ${{ env.BUILD_DIR }}
+      run: |
+        ls -la
 
     - name: WordPress Plugin Deploy
       id: deploy
@@ -48,6 +54,7 @@ jobs:
       env:
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        BUILD_DIR: ${{ env.BUILD_DIR }}
 
     - name: Upload release asset
       uses: actions/upload-release-asset@v1

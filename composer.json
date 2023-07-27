@@ -23,14 +23,14 @@
 		"italystrap/fields": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"mobiledetect/mobiledetectlib": "^2.8",
-		"cmb2/cmb2": "~2.6.0",
+		"cmb2/cmb2": "2.6.0",
 		"overclokk/minimum-requirements": "^1.0",
 		"rdlowrey/auryn": "^1.4",
 		"erusev/parsedown": "^1.6",
 		"inpsyde/menu-cache": "^1.0"
 	},
 	"require-dev": {
-		"lucatume/wp-browser": "~2.4",
+		"lucatume/wp-browser": "^3.1",
 		"lucatume/function-mocker-le": "^1.0",
 		"codeception/c3": "2.*",
 		"codeception/module-asserts": "^1.0",
@@ -40,19 +40,18 @@
 		"codeception/module-filesystem": "^1.0",
 		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
-		"brianium/paratest": "^4.0",
-		"squizlabs/php_codesniffer": "*",
-		"phpcompatibility/php-compatibility": "*",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"phpstan/phpstan": "^0.12",
-		"szepeviktor/phpstan-wordpress": "^0.7",
-		"vimeo/psalm": "^3.9",
+		"phpspec/prophecy-phpunit": "^2.0",
+
+		"squizlabs/php_codesniffer": "^3.7",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+
+		"vimeo/psalm": "^5.7",
 		"phpbench/phpbench": "@dev",
-		"infection/infection": "^0.15.3",
 		"phpmetrics/phpmetrics": "^2.5",
-		"nunomaduro/phpinsights": "^1.14.0",
-		"italystrap/debug": "~2.0",
-		"leafo/scssphp": "^0.6.5"
+		"italystrap/debug": "^2.1",
+		"leafo/scssphp": "^0.6",
+		"rector/rector": "^0.17.7"
 	},
 	"autoload": {
 		"classmap": [
@@ -63,35 +62,48 @@
 			"ItalyStrap\\": "src/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"ItalyStrap\\Tests\\": "tests/src",
+			"ItalyStrap\\Tests\\Unit\\": "tests/unit",
+			"ItalyStrap\\Tests\\Integration\\": "tests/integration"
+		}
+	},
 	"extra": {
 		"installer-paths": {
 			"vendor/{$name}/": ["cmb2/cmb2"]
 		}
 	},
 	"scripts": {
-		"test": [
-			"test"
+		"cs:fix": [
+			"@php vendor/bin/phpcbf -p"
 		],
 		"cs": [
-			"vendor\\bin\\phpcbf -p --ignore=./tests/_support/* ./src/ ./tests/ && vendor\\bin\\phpcs -p --ignore=./tests/_support/* ./src/ ./tests/"
+			"@php vendor/bin/phpcs -p"
 		],
 		"analyze": [
-			"vendor\\bin\\phpstan analyze --level=max && vendor\\bin\\psalm"
+			"@php vendor/bin/psalm"
 		],
 		"unit": [
-			"vendor\\bin\\codecept run unit && vendor\\bin\\codecept run wpunit && vendor\\bin\\infection --threads=4"
+			"@php vendor/bin/codecept run unit"
 		],
-		"bench": [
-			"vendor\\bin\\phpbench run --report=performance"
+		"integration": [
+			"@php vendor/bin/codecept run integration && vendor/bin/infection --threads=4"
 		],
-		"metrics": [
-			"vendor\\bin\\phpmetrics --report-html='./tests/_output/report' ./src"
-		],
-		"insights": [
-			"vendor\\bin\\phpinsights"
+		"infection": [
+			"@php vendor/bin/infection --threads=4"
 		],
 		"clean": [
-			"vendor\\bin\\codecept clean"
+			"@php vendor/bin/codecept clean"
+		],
+		"bench": [
+			"vendor/bin/phpbench run --report=performance"
+		],
+		"metrics": [
+			"vendor/bin/phpmetrics --report-html='./tests/_output/report' ./src"
+		],
+		"insights": [
+			"vendor/bin/phpinsights"
 		]
 	},
 	"support"    : {
@@ -100,9 +112,8 @@
 	},
 	"config": {
 		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true,
-			"composer/package-versions-deprecated": true,
-			"codeception/c3": true
+			"codeception/c3": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	}
 }

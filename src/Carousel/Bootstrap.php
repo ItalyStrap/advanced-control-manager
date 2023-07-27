@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ItalyStrap Carousel initially forked from Agnosia Bootstrap Carousel by AuSoft
  *
@@ -18,14 +19,15 @@ namespace ItalyStrap\Carousel;
 /**
  * The Carousel Bootsrap class
  */
-class Bootstrap extends Carousel {
+class Bootstrap extends Carousel
+{
+    /**
+     * Initialize the contstructor
+     * @param array $args The carousel attribute.
+     */
+    function __construct($args)
+    {
 
-	/**
-	 * Initialize the contstructor
-	 * @param array $args The carousel attribute.
-	 */
-	function __construct( $args ) {
-
-		parent::__construct( $args );
-	}
+        parent::__construct($args);
+    }
 }

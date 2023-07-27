@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block API
  *
@@ -15,27 +16,28 @@ namespace ItalyStrap\Blocks;
 /**
  * Block API
  */
-abstract class Block extends \WP_Block_Type {
+abstract class Block extends \WP_Block_Type
+{
+    public function __construct($block_type, $args = [])
+    {
 
-	public function __construct( $block_type, $args = [] ) {
+        $args = array_merge(
+            [
+                'render_callback' => [ $this, 'render' ]
+            ],
+            $args
+        );
 
-		$args = array_merge(
-			[
-				'render_callback' => [ $this, 'render' ]
-			],
-			$args
-		);
+        parent::__construct($block_type, $args);
+    }
 
-		parent::__construct( $block_type, $args );
-	}
-
-	/**
-	 * Render
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-//	public function render( array $attributes ) {
-//		return 'Abstract Block';
-//	}
+    /**
+     * Render
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+//  public function render( array $attributes ) {
+//      return 'Abstract Block';
+//  }
 }

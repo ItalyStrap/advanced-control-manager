@@ -1,4 +1,5 @@
 <?php
+
 /**
  * [Short Description (no period for file headers)]
  *
@@ -15,34 +16,38 @@ namespace ItalyStrap\Facebook;
 /**
  * Class description
  */
-class Pixel {
+class Pixel
+{
+    /**
+     * [$var description]
+     *
+     * @var null
+     */
+    private $var = null;
 
-	/**
-	 * [$var description]
-	 *
-	 * @var null
-	 */
-	private $var = null;
+    /**
+     * [__construct description]
+     *
+     * @param [type] $argument [description].
+     */
+    function __construct($argument = null)
+    {
+        // Code...
+    }
 
-	/**
-	 * [__construct description]
-	 *
-	 * @param [type] $argument [description].
-	 */
-	function __construct( $argument = null ) {
-		// Code...
-	}
+    /**
+     * Render
+     *
+     * @param  string $value [description]
+     * @return string        [description]
+     */
+    public function render()
+    {
 
-	/**
-	 * Render
-	 *
-	 * @param  string $value [description]
-	 * @return string        [description]
-	 */
-	public function render() {
-	
-		?>
-<!-- Facebook Pixel Code -->
+        ?>
+$nome_pagina = null;
+        $nome_pagina = null;
+        <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -51,11 +56,11 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','//connect.facebook.net/en_US/fbevents.js');
 
 fbq( 'init', 'xxxxxxxxxxxxxxx' );
-		<?php if ( $nome_pagina == "conversione.php" ) : ?>
+        <?php if ($nome_pagina == "conversione.php") : ?>
 fbq( 'track', 'Purchase', {value: '10.00', currency:'EUR'} );
-		<?php else : ?>
+        <?php else : ?>
 fbq( 'track', "PageView" );
-		<?php endif; ?>
+        <?php endif; ?>
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=xxxxxxxxxxxxxxx&ev=PageView&noscript=1"
@@ -124,6 +129,6 @@ CompleteRegistration
 Track when a registration form is completed (ex. complete subscription, sign up for a service)
 fbq('track', 'CompleteRegistration'); -->
 
-		<?php
-	}
+        <?php
+    }
 }

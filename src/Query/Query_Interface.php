@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Interface for Fields
  *
@@ -12,12 +13,12 @@
 
 namespace ItalyStrap\Query;
 
-interface Query_Interface {
-
-	/**
-	 * Output the query result
-	 *
-	 * @return string The HTML result
-	 */
-	public function render();
+interface Query_Interface
+{
+    /**
+     * Output the query result
+     *
+     * @return string The HTML result
+     */
+    public function render();
 }
