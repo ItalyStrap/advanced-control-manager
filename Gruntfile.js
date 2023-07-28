@@ -32,14 +32,15 @@ const acm_plugin = [
 	/**
 	 * Files
 	 */
+	'!.gitattributes',
+	'!.gitignore',
 	'!bower.json',
 	'!Gruntfile.js',
 	'!package*.json',
-	'!.gitattributes',
-	'!.gitignore',
 	'!codecept',
 	'!webpack.config.js',
 	'!snippets.md',
+	'!rector.php',
 	'!**/*.clover',
 	'!**/c3.php',
 	'!**/infection.*',
