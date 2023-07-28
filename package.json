@@ -4,7 +4,7 @@
   "description": "Make your web site more powerfull",
   "author": "Enea Overclokk",
   "homepage": "https://italystrap.com",
-  "version": "2.15.1",
+  "version": "2.16.0",
   "license": "GPL-2.0",
   "repository": {
     "type": "git",
@@ -47,6 +47,8 @@
     "webpack": "^5.88.2"
   },
   "scripts": {
-    "build": "grunt build"
+    "build": "grunt build",
+    "version": "grunt version",
+    "readme": "grunt wp_readme_to_markdown"
   }
 }
