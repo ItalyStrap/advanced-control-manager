@@ -20,6 +20,7 @@ jobs:
 
       - name: WordPress.org plugin assets/readme update
         uses: 10up/action-wordpress-plugin-asset-update@stable
+        if: "github.ref != 'refs/heads/master'"
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
