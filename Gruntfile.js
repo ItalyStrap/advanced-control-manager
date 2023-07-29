@@ -415,7 +415,7 @@ module.exports = function(grunt) {
 			trunk: {
 				expand: true,
 				src: acm_plugin,
-				dest: './.trunk',
+				dest: grunt.option('output-dir') || './.trunk',
 				filter: 'isFile',
 			},
 			tag: {

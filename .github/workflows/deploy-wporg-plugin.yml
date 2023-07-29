@@ -1,7 +1,7 @@
 name: 🚀 Deploy to WordPress.org
 
 env:
-  BUILD_DIR: .trunk/
+  BUILD_DIR: trunk/
 
 on:
   workflow_dispatch:
@@ -28,7 +28,9 @@ jobs:
         composer-options: "--no-dev -o"
 
     - name: 👀 See the content
-      run: ls
+      run: |
+        pwd
+        ls -la
 
     - name: Use Node.js 16
       uses: actions/setup-node@v3
@@ -39,11 +41,12 @@ jobs:
       run: |
         npm install --legacy-peer-deps
         mkdir -p ${{ env.BUILD_DIR }}
-        npm run build
+        npm run build -- --output-dir=${{ env.BUILD_DIR }}
 
     - name: List output files
       working-directory: ${{ env.BUILD_DIR }}
       run: |
+        pwd
         ls -la
 
     - name: WordPress Plugin Deploy
