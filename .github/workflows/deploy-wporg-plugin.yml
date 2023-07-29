@@ -1,7 +1,7 @@
 name: 🚀 Deploy to WordPress.org
 
 env:
-  BUILD_DIR: trunk/
+  BUILD_DIR: .trunk/
 
 on:
   workflow_dispatch:
