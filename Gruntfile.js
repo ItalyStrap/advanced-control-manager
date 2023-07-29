@@ -558,34 +558,6 @@ module.exports = function(grunt) {
 
 	});
 
-	// grunt.loadNpmTasks('grunt-contrib-jshint');
-	// grunt.loadNpmTasks('grunt-contrib-uglify');
-	// grunt.loadNpmTasks('grunt-contrib-csslint');
-	// grunt.loadNpmTasks('grunt-contrib-compass');
-	// grunt.loadNpmTasks('grunt-fontello');
-	// grunt.loadNpmTasks('grunt-contrib-watch');
-	// grunt.loadNpmTasks('grunt-sync');
-
-	// grunt.loadNpmTasks('grunt-file-creator');
-
-	/**
-	 * https://www.npmjs.com/package/grunt-composer
-	 */
-	// grunt.loadNpmTasks('grunt-composer');
-
-	// grunt.loadNpmTasks('grunt-contrib-copy');
-	// grunt.loadNpmTasks('grunt-contrib-clean');
-
-	// grunt.loadNpmTasks('grunt-bump');
-
-	// grunt.loadNpmTasks('grunt-version');
-	// grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
-	// grunt.loadNpmTasks('grunt-git');
-	// grunt.loadNpmTasks('grunt-prompt');
-	// grunt.loadNpmTasks('grunt-contrib-compress');
-	// grunt.loadNpmTasks('grunt-github-releaser');
-	// grunt.loadNpmTasks('grunt-exec');
-
 	/**
 	 * Controllare gli aggiornamenti
 	 * @link https://www.npmjs.com/package/npm-check-updates
