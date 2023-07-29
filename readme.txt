@@ -3,19 +3,17 @@ Contributors: Enea Overclokk
 Donate link: https://italystrap.com/
 Tags: custom post widget, custom post shortcode, image & video lazy loading, twitter bootstrap carousel for gallery, popular posts
 Requires at least: 6.0
-Tested up to: 6.1
+Tested up to: 6.3
 Stable tag: 2.16.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Make your web site more powerful with ACM - Advanced Control Manager
+Make your website more powerful with ACM - Advanced Control Manager
 
 == Description ==
 
-You MUST always do a backup before install it and always test it in a dev enviroment.
-
-Make sure you have PHP 7.2 >=, better if you have PHP >= 7.4 (PHP 7.x is awesome ;-) ).
+You MUST always do a backup before install it and always test it in a dev environment.
 
 If you have any trouble [open a ticket](http://wordpress.org/support/plugin/advanced-control-manager).
 
@@ -23,13 +21,13 @@ If you have any feature requests or code issue [open a ticket on github](https:/
 
 [ItalyStrap](https://italystrap.com/) will add powerful features to your WordPress site.
 
-[Advanced Control Manager](https://github.com/ItalyStrap/advanced-control-manager) is also on github.
+[Advanced Control Manager](https://github.com/ItalyStrap/advanced-control-manager) is also on GitHub.
 
 = Purpose =
 
-I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/ItalyStrap/italystrap) functionality but it works fine with all WordPress themes.
+I developed this plugin with many features because I need them in all sites created for my clients, it also extends the [ItalyStrap Theme Frameworks](https://github.com/ItalyStrap/italystrap) functionality, but it works fine with all WordPress themes.
 
-Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazyload for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazyload support), widget for displaying lists of posts type with a lot of options like popular posts, last posts, related posts and so on, there are a lot of functionality, see above for the full list of featured.
+Think about Advanced Control Manager like a Jetpack with many functionality that make your site more powerful and extensible, for example: Lazy load for image with srcset support, widget and shortcode for Twitter Bootstrap Carousel (with lazy load support), widget for displaying lists of posts type with a lot of options like popular posts, last posts, related posts and so on, there are a lot of functionality, see above for the full list of featured.
 
 This plugin is fully developed in OOP. It utilizes [DI Container](https://github.com/rdlowrey/auryn), Dependency Injection, Polymorphism, Inheritance, etc.
 If you are a developer you can extend it with his API (Dev docs coming soon).
@@ -95,7 +93,7 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 == Analytics ==
 
-* Activate Google Analytics (Insert the universal google analytics code)
+* Activate Google Analytics (Insert the universal Google Analytics code)
 * Add Google Analytics ID
 * Anonymize Google Analytics IP
 * Google Analytics position
@@ -118,11 +116,11 @@ To do so you can add `define( 'ITALYSTRAP_BETA', true );` to your `wp-config.php
 
 * **[Breadcrumbs](http://docs.italystrap.com/breadcrumbs-wordpress-theme/)** Make your WordPress site SEO friendly with Breadcrumbs and Schema.org and get Google rich snippet in SERP, fully customizable for your purpose (ItalyStrap breadcrumbs class is 10 times faster than Yoast Breadcrumbs ;-) ).
 
-* **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also work with ItalyStrap Bootstrap Carousel, srcset and sizes.
+* **[LazyLoad](http://docs.italystrap.com/wordpress-image-lazy-load-with-italystrap/)** Lazy load images to improve page load times and server bandwidth. Images are loaded only when visible to the user. This functionality is forked from [lazy-load](https://wordpress.org/plugins/lazy-load/) plugin with my improvements. It also works with ItalyStrap Bootstrap Carousel, srcset and sizes.
 
 * **[Schema.org Local Business](http://docs.italystrap.com/widget-italystrap-vcard-local-business/)** A simple Widget to add [Schema.org Local business](http://schema.org/LocalBusiness) in your widgetized themes (sidebar, footer, ...)
 This widget will add microdata information about your  site for SEO purposes.
-This widget was present in my [ItalyStrap theme framework](https://italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on googleplus.
+This widget was present in my [ItalyStrap theme framework](https://italystrap.com/) forked from [Roots theme](https://roots.io/) with some improvements of mine, now I've done more improvements thank to [this tool](https://www.searchcommander.com/seo-tools/structured-data-builder/) shared from [Luca Bove](https://plus.google.com/+LucaBove/posts/iM4aTMgzWAu) on google plus.
 
 * **Posts Widget** This adds a widget for displaying posts with a lot of options, you can create a related posts, posts from any taxonomies, pages, and mmore, in a future release you have also the power to change the template.
 
@@ -176,9 +174,9 @@ Add this code in your template files:
 
 `<?php do_action( 'do_breadcrumbs', [] ); ?>`
 
-= What if haven't I got Bootstrap CSS? =
+= What if you haven't got Bootstrap CSS? =
 
-If you haven't Bootstrap CSS style for breadcrumbs don't worry about it, you have 2 options, firts option you have to develope your own style for breadcrumbs, second option you can add this css code in your css style theme:
+If you haven't Bootstrap CSS style for breadcrumbs don't worry about it, you have 2 options, firsts option you have to develop your own style for breadcrumbs, second option you can add this css code in your css style theme:
 
 `.breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#f5f5f5;border-radius:4px}.breadcrumb>li{display:inline-block}.breadcrumb>li+li:before{content:"/\00a0";padding:0 5px;color:#ccc}.breadcrumb>.active{color:#777}`
 
@@ -222,13 +220,13 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 
 = I'm using an external carousel, will Lazy Load work with it? =
 
-I tried only with the Bootstrap Carousel integrated, please send me any feedback if have any issue with other carousel, however I can't guarantee to solve the issue.
+I tried only with the Bootstrap Carousel integrated, please send me any feedback if you have any issue with other carousel, however I can't guarantee to solve the issue.
 
 = Is it compatible with WebP images? =
 
-Yes, it is compatible with WebP images but you also have to install and activate [EWWW IO plugin](https://wordpress.org/plugins/ewww-image-optimizer/)
+Yes, it is compatible with WebP images, but you also have to install and activate [EWWW IO plugin](https://wordpress.org/plugins/ewww-image-optimizer/)
 to leverage lazy loading for WebP images.
-Once you have activate the EWWW IO go to WebP settings and check 'JPG/PNG to WebP' for generating WebP version of your images
+Once you have activated the EWWW IO go to WebP settings and check 'JPG/PNG to WebP' for generating WebP version of your images
 'JS WebP Rewriting' option is needed only if your server do no load WebP images correctly
 See the [plugin documentation](https://docs.ewww.io/article/16-ewww-io-and-webp-images)
 
@@ -390,7 +388,7 @@ Dev time: 100h
 * New API Class for I18N strings
 * New API Class for rendering views files
 * New Translator class
-* Fix for A non numeric valus encountered src\Query\Posts.php
+* Fix for A non-numeric valus encountered src\Query\Posts.php
 * Fix excerpt in Carousel
 * Better file structure for functions
 * Improved hook on injector autoload
@@ -467,7 +465,7 @@ Dev time: 200h
 * Improvement of the Widget Area import
 * Improvement of the autoload of Import/Export
 * Improvement of the settings array
-* Fixed hfeed mcrodata issue
+* Fixed hfeed microdata issue
 
 = 2.6.0 =
 Release Date: April 18th, 2017
@@ -505,7 +503,7 @@ Dev time: 100h
 * Fixed array to string conversion in Carousel.php
 * Fixed post exclusion on archi page for Post.php (Widget and Shortcode)
 * Fixed undefined index in Fonts.php
-* Fixed empy value for width and height in Carousel
+* Fixed empty value for width and height in Carousel
 * Deprecated old Widget namespace, now it is ItalyStrap\Widgets;
 
 = 2.4.2 =
@@ -536,7 +534,7 @@ Dev time: 100h
 * Refactoring: Widget registering
 * Refactoring: Widget Class (method visibility)
 * Refactoring: Some internal refactoring
-* Fixed PHP error on \Excpetion
+* Fixed PHP error on \Exception
 
 = 2.4.0 =
 Release Date: January 23rd, 2017
@@ -547,8 +545,8 @@ Dev time: 100h
 * Added counts by ID inserted for Posts API
 * Added some example for Widget Creation
 * Added migration strategy for the ItalyStrap theme framework user
-* Added new filter for google analytics output
-* Added some example for google analytics API
+* Added new filter for Google Analytics output
+* Added some example for Google Analytics API
 * Added button for widget area only for the ItalyStrap theme framework user
 * Refactoring: Some changes for Taxonomies list API (Only for beta tester)
 * Refactoring: Some changes in Widget API
@@ -563,9 +561,9 @@ Release Date: Dicember 31st, 2016
 Dev time: 200h
 
 * New API for FB pages (only for Beta tester)
-* New wdget for FB pages (only for Beta tester)
+* New widget for FB pages (only for Beta tester)
 * New widget visibility (only for Beta tester)
-* New lazyload for videos (only for Alpha tester)
+* New lazy load for videos (only for Alpha tester)
 * New option for hiding widget title
 * Added new functionality for the excerpt read more link
 * Added some example files
@@ -578,7 +576,7 @@ Dev time: 200h
 * Some code refactoring
 
 = 2.2.1 =
-Release Date: Dicember 4th, 2016
+Release Date: December 4th, 2016
 
 Dev time: 100h
 
@@ -606,8 +604,8 @@ Dev time: 30h
 
 * Fixed [#15](https://github.com/overclokk/italystrap-extended/issues/15)
 * psr-4 almost ready for admin classes
-* Improvements of the Fields API
-* Improvemente of the Settings API
+* Improvement of the Fields API
+* Improvement of the Settings API
 * Class for Social Sharing only for beta tester
 * Other fix, improvements and refactoring
 
@@ -678,7 +676,7 @@ Make backup first ;-)
   * HTML attributes for widgets
   * Possibility to add some tags to widget title with `{{}}` instead of `<>`
 * **Widgets:**
-  * New API for building widgets in a easy way (it is possible to create your own widget too but the docs will be available soon)
+  * New API for building widgets in an easy way (it is possible to create your own widget too but the docs will be available soon)
   * Widget for vCard  with schema.org markup (this is a new version, the old one is deprecated, you can see in the widget description)
   * Widget for Post (a widget with a lot of options for displaying post, page and custom type in a widget area)
   * Widget for Bootstrap Carousel (it works only if you have Twitter Bootstrap CSS loaded by your theme), the settings are the same of shortcode settings.
@@ -783,7 +781,7 @@ If you don't have the latest version of ItalyStrap it may break you site.
 Requires PHP: 5.4
 
 = 2.0 =
-2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazyload and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/plugin-version-2-available/).
+2.0 is a major update. It is important that you make backups and ensure your WordPress is 2.0 compatible before upgrading, in particular the breadcrumbs, the lazy load and the carousel, please read the changelog for more information or [read more here](http://www.italystrap.com/plugin-version-2-available/).
 
 = 1.0.2 =
 This version fixes a documentation link in admin dashboard.  Upgrade as soon as possible
@@ -801,10 +799,10 @@ First release.
 * German: Deutsch - immer dabei!
 * French: Français, toujours inclus.
 
-*Note:* This plugins is localized/ translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating I recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/) and for validating the ["Poedit Editor"](http://www.poedit.net/).
+*Note:* This plugins is localized/ translatable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating I recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/) and for validating the ["Poedit Editor"](http://www.poedit.net/).
 
 == Additional Info ==
-**Idea Behind / Philosophy:** A plugin for improve and add some powerful improvement to your site. I'll try to add more feautures if it makes some sense. So stay tuned :).
+**Idea Behind / Philosophy:** A plugin for improve and add some powerful improvement to your site. I'll try to add more features if it makes some sense. So stay tuned :).
 
 == Credits ==
 
