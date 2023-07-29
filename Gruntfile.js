@@ -11,7 +11,7 @@ const index_php_text = [
 
 // '!README.md', // Questo va sempre copiato, serve per la pagina interna del plugin con la documentazione.
 const acm_plugin = [
-	'**', // All
+	'**', // All but exclude the following files...
 
 	/**
 	 * Directories
@@ -37,10 +37,10 @@ const acm_plugin = [
 	'!bower.json',
 	'!Gruntfile.js',
 	'!package*.json',
-	'!codecept',
 	'!webpack.config.js',
 	'!snippets.md',
 	'!rector.php',
+	'!.wordpress-org/*.svg',
 	'!**/*.clover',
 	'!**/c3.php',
 	'!**/infection.*',
@@ -54,6 +54,14 @@ const acm_plugin = [
 	'!**/*.zip',
 	'!**/*.xml',
 	'!**/*.map',
+	'!**/codecept',
+	'!vendor/**/*.json',
+	'!vendor/**/CHANGELOG.md',
+	'!vendor/**/CONTRIBUTING.md',
+	'!vendor/**/README.md',
+	'!vendor/**/SECURITY.md',
+	'!vendor/**/STABILITY.md',
+	'!vendor/**/UPGRADE.md',
 ];
 
 /**
