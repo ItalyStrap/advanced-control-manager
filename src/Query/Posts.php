@@ -40,7 +40,7 @@ class Posts extends Query
     /**
      * Initialize the repository.
      *
-     * @uses PHP 5.3
+     * @uses PhpCompat 5.3
      *
      * @return self
      */

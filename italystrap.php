@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  *  Plugin Name:       Advanced Control Manager for WordPress by ItalyStrap
  *  Plugin URI:        https://italystrap.com/
@@ -34,7 +36,7 @@ $requirements = new Minimum_Requirements('7.4', '6.0', 'ACM - Advanced Control M
 
 /**
  * Check compatibility on install
- * If is not compatible on install print an admin_notice
+ * If is not compatible on installation print an admin_notice
  */
 register_activation_hook(__FILE__, [$requirements, 'check_compatibility_on_install']);
 
