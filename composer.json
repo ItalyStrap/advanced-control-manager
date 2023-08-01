@@ -22,6 +22,7 @@
 		"italystrap/settings": "dev-master",
 		"italystrap/fields": "^2.0",
 		"italystrap/helpers": "^1.0",
+		"italystrap/platform-requirements-check": "dev-master",
 		"mobiledetect/mobiledetectlib": "^2.8",
 		"cmb2/cmb2": "2.6.0",
 		"overclokk/minimum-requirements": "^1.0",
