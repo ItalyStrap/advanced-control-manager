@@ -61,7 +61,6 @@ $autoload_plugin_files = [
     '/vendor/cmb2/cmb2/init.php',
     '/functions/autoload.php',
     '/bootstrap.php',
-    '/functions/edd.php',
 ];
 
 if (did_action('italystrap_plugin_loaded') > 0) {
