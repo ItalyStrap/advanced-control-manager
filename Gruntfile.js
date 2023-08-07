@@ -258,12 +258,6 @@ module.exports = function(grunt) {
 				},
 				src: [ 'italystrap.php' ],
 			},
-			constant: {
-				options: {
-					prefix: 'ITALYSTRAP_PLUGIN_VERSION\', \''
-				},
-				src: [ 'functions/default-constants.php' ],
-			},
 			readme: {
 				options: {
 					prefix: 'Stable tag\\:\\s'
