@@ -69,29 +69,29 @@ jobs:
           wp config create --dbname="${{env.DB_NAME}}" --dbuser="${{env.DB_USER}}" --dbpass="${{env.DB_PASSWORD}}" --dbhost="${{env.DB_HOST}}" --dbprefix="${{env.TABLE_PREFIX}}"
           wp core install --url="${{env.APP_HOST}}:${{env.APP_PORT}}" --title="Test" --admin_user="${{env.APP_USER}}" --admin_password="${{env.APP_PASSWORD}}" --admin_email="${{env.APP_USER}}@${{env.APP_HOST}}.test" --skip-email
           wp core update-db
-          cp -r $GITHUB_WORKSPACE ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+          cp -r $GITHUB_WORKSPACE ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
 
       - uses: "ramsey/composer-install@v2"
         with:
-          working-directory: "${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}"
+          working-directory: "${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}"
 
-      - name: Activate ${{env.REPOSITORY_NAME}} - ${{ github.event.repository.name }}
+      - name: Activate ${{ github.event.repository.name }}
         working-directory: ${{env.APP_FOLDER_PATH}}
         run: |
           wp plugin deactivate --all
           wp site empty --yes
-          wp theme activate ${{env.REPOSITORY_NAME}}
-          wp theme list --status=active
-          chmod -R 777 wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
-          ls -la wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
-          wp db export wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}/tests/_data/dump.sql
+          wp plugin activate ${{ github.event.repository.name }}
+          wp plugin list --status=active
+          chmod -R 777 wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
+          ls -la wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
+          wp db export wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}/tests/_data/dump.sql
 
       - name: Build codeception
-        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
         run: ./vendor/bin/codecept build
 
       - name: Run Unit & Integration test
-        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
         run: |
           ./vendor/bin/codecept run unit
           ./vendor/bin/codecept run integration
@@ -100,7 +100,7 @@ jobs:
         run: php -S ${{env.APP_HOST}}:${{env.APP_PORT}} -t ${{env.APP_FOLDER_PATH}} >/dev/null 2>&1 &
 
       - name: Run Functional and Acceptance test
-        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{env.REPOSITORY_NAME}}
+        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
         run: |
           ./vendor/bin/codecept run functional --debug
           ./vendor/bin/codecept run acceptance --debug
