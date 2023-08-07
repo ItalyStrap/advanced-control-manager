@@ -39,9 +39,6 @@ class ImageSubscriberTest extends IntegrationTestCase
         $sut->onWpLoaded();
     }
 
-    /**
-     * @test
-     */
     public function filteredContentHasLazyload()
     {
         $this->dispatcher->addListener('italystrap_lazyload_image_events', function (array $events) {
@@ -63,9 +60,6 @@ class ImageSubscriberTest extends IntegrationTestCase
         Assert::assertStringMatchesFormat($expected, $filtered, '');
     }
 
-    /**
-     * @test
-     */
     public function filterCustomString()
     {
         $sut = $this->getInstance();

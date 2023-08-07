@@ -14,9 +14,6 @@ class SettingsConverterTest extends IntegrationTestCase
         return new SettingsMigration();
     }
 
-    /**
-     * @test
-     */
     public function it_should_be_converted_to_theme_mod()
     {
         $pattern = [

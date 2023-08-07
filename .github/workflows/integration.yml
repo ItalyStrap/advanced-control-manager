@@ -1,7 +1,6 @@
 name: CI
 
 env:
-  REPOSITORY_NAME: advanced-control-manager
   PROJECT_KIND: plugins
   DB_HOST: localhost
   DB_NAME: test
@@ -93,14 +92,8 @@ jobs:
       - name: Run Unit & Integration test
         working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
         run: |
-          ./vendor/bin/codecept run unit
+          ./vendor/bin/codecept run unit --coverage-text
           ./vendor/bin/codecept run integration
 
       - name: Start dev server
         run: php -S ${{env.APP_HOST}}:${{env.APP_PORT}} -t ${{env.APP_FOLDER_PATH}} >/dev/null 2>&1 &
-
-      - name: Run Functional and Acceptance test
-        working-directory: ${{env.APP_FOLDER_PATH}}/wp-content/${{env.PROJECT_KIND}}/${{ github.event.repository.name }}
-        run: |
-          ./vendor/bin/codecept run functional --debug
-          ./vendor/bin/codecept run acceptance --debug

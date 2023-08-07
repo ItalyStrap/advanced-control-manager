@@ -89,7 +89,7 @@
 			"@php vendor/bin/codecept run unit"
 		],
 		"integration": [
-			"@php vendor/bin/codecept run integration && vendor/bin/infection --threads=4"
+			"@php vendor/bin/codecept run integration"
 		],
 		"infection": [
 			"@php vendor/bin/infection --threads=4"
