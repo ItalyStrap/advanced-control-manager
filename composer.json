@@ -25,7 +25,6 @@
 		"italystrap/platform-requirements-check": "dev-master",
 		"mobiledetect/mobiledetectlib": "^2.8",
 		"cmb2/cmb2": "2.6.0",
-		"overclokk/minimum-requirements": "^1.0",
 		"rdlowrey/auryn": "^1.4",
 		"erusev/parsedown": "^1.6",
 		"inpsyde/menu-cache": "^1.0"
