@@ -53,7 +53,7 @@ use ItalyStrap\Blocks\Block_Factory;
         }, $plugin_data);
 
         $requirementsList = [
-        new \ItalyStrap\PlatformRequirementsCheck\RangeVersionRequirement(
+            new \ItalyStrap\PlatformRequirementsCheck\RangeVersionRequirement(
                 'PHP',
                 \PHP_VERSION,
                 (string)$plugin_data[self::PHP_MIN_VERSION],
