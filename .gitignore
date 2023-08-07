@@ -33,5 +33,6 @@ phpunit.xml
 c3.php
 **/*.back
 rector.php
+studio.json
 
 

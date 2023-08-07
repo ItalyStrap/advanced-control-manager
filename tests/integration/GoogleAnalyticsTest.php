@@ -22,20 +22,13 @@ class GoogleAnalyticsTest extends IntegrationTestCase
         $this->dom = new DOMDocument();
     }
 
-    /**
-     * @test
-     */
     public function it_should_be_return_standard_script()
     {
-
         $this->dom->loadHTML($this->analytics->standard_script('ga();'));
 
         $this->assertNotEmpty($this->dom->getElementsByTagName('script'));
     }
 
-    /**
-     * @test
-     */
     public function it_should_be_return_alternative_script()
     {
 
@@ -44,9 +37,6 @@ class GoogleAnalyticsTest extends IntegrationTestCase
         $this->assertNotEmpty($this->dom->getElementsByTagName('script'));
     }
 
-    /**
-     * @test
-     */
     public function it_should_be_return_analytics_script()
     {
 

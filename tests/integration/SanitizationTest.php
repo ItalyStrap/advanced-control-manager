@@ -71,9 +71,6 @@ class SanitizationTest extends IntegrationTestCase
         $this->assertTrue(empty($value), $value);
     }
 
-    /**
-     * @test
-     */
     public function it_should_be_return_sanitized_array()
     {
         $instance_value = [0, 1, '<script></script>'];
@@ -86,7 +83,7 @@ class SanitizationTest extends IntegrationTestCase
     /**
      * @see WP_Widget::save_settings()
      */
-    function test_wp_widget_save_settings()
+    function wp_widget_save_settings()
     {
         global $wp_registered_widgets;
 

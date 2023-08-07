@@ -101,7 +101,7 @@ class Query implements Query_Interface
     /**
      * Initialize the repository.
      *
-     * @uses PHP 5.3
+     * @uses PhpCompat 5.3
      *
      * @return self
      */
