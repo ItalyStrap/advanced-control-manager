@@ -72,7 +72,7 @@ class Register_Metaboxes implements Subscriber_Interface
     function __construct(ConfigInterface $config)
     {
 
-        $this->config = $config->all();
+        $this->config = $config->toArray();
 
         /**
          * Start with an underscore to hide fields from custom fields list

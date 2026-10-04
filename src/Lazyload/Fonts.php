@@ -71,7 +71,7 @@ class Fonts implements Subscriber_Interface
     function __construct(Google_Fonts $fonts_obj, ConfigInterface $config)
     {
 
-        $this->config = $config->all();
+        $this->config = $config->toArray();
 
         $this->fonts_obj = $fonts_obj;
         $this->fonts = $this->fonts_obj->get_remote_fonts();

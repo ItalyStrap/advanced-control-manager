@@ -45,7 +45,7 @@ class Excerpt implements Subscriber_Interface
     public static function get_subscribed_events()
     {
 
-        $options = self::$config->all();
+        $options = self::$config->toArray();
 
         $events = [
             // 'hook_name'                          => 'method_name',
@@ -92,7 +92,7 @@ class Excerpt implements Subscriber_Interface
 
         self::$config = $config;
 
-        $this->options = self::$config->all();
+        $this->options = self::$config->toArray();
     }
 
     /**
