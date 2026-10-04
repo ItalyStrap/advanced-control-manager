@@ -25,6 +25,9 @@ if (! class_exists('WP_Customize_Control')) {
  */
 class Customize_Select_Web_Fonts_Control extends WP_Customize_Control
 {
+    public $args;
+    public $label;
+    public $description;
     /**
      * The type of customize control being rendered.
      *
@@ -102,7 +105,7 @@ class Customize_Select_Web_Fonts_Control extends WP_Customize_Control
 
         <?php if (! empty($this->description)) : ?>
         <span class="description customize-control-description"><?php echo $this->description; // XSS ok. ?></span>
-        <?php endif; ?>
+<?php endif; ?>
 
     <select class="widefat" <?php $this->link(); ?>>
         <?php

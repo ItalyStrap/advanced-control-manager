@@ -26,6 +26,7 @@ if (! class_exists('WP_Customize_Control')) {
 
 class Textarea extends WP_Customize_Control
 {
+    public $label;
     /**
      * Render the control's content.
      *

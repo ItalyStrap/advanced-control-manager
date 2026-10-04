@@ -20,17 +20,15 @@ namespace ItalyStrap\Event;
  */
 class Manager
 {
-    public const CALLBACK = 'function_to_add';
-    public const PRIORITY = 'priority';
-    public const ACCEPTED_ARGS = 'accepted_args';
+    final public const CALLBACK = 'function_to_add';
+    final public const PRIORITY = 'priority';
+    final public const ACCEPTED_ARGS = 'accepted_args';
 
     /**
      * Adds an event subscriber.
      *
      * The event manager adds the given subscriber to the list of event listeners
      * for all the events that it wants to listen to.
-     *
-     * @param Subscriber_Interface $subscriber
      */
     public function add_subscriber(Subscriber_Interface $subscriber)
     {
@@ -43,11 +41,9 @@ class Manager
      * Adds the given subscriber listener to the list of event listeners
      * that listen to the given event.
      *
-     * @param Subscriber_Interface $subscriber
      * @param string               $event_name
-     * @param mixed                $parameters
      */
-    private function add_subscriber_listener(Subscriber_Interface $subscriber, $event_name, $parameters)
+    private function add_subscriber_listener(Subscriber_Interface $subscriber, $event_name, mixed $parameters)
     {
         if (\is_string($parameters)) {
             $this->add_listener($event_name, [$subscriber, $parameters]);
@@ -80,8 +76,6 @@ class Manager
      *
      * The event manager removes the given subscriber from the list of event listeners
      * for all the events that it wants to listen to.
-     *
-     * @param Subscriber_Interface $subscriber
      */
     public function remove_subscriber(Subscriber_Interface $subscriber)
     {
@@ -94,11 +88,9 @@ class Manager
      * Adds the given subscriber listener to the list of event listeners
      * that listen to the given event.
      *
-     * @param Subscriber_Interface $subscriber
      * @param string               $event_name
-     * @param mixed                $parameters
      */
-    private function remove_subscriber_listener(Subscriber_Interface $subscriber, $event_name, $parameters)
+    private function remove_subscriber_listener(Subscriber_Interface $subscriber, $event_name, mixed $parameters)
     {
         if (is_string($parameters)) {
             $this->remove_listener($event_name, [$subscriber, $parameters]);
@@ -149,7 +141,7 @@ class Manager
         }
 
         foreach ((array) $wp_filter[ $event_name ][ $priority ] as $method_name_regstered => $value) {
-            if (strpos($method_name_regstered, $method_name) !== false) {
+            if (str_contains($method_name_regstered, $method_name)) {
                 \remove_filter($event_name, $method_name_regstered, $priority);
             }
         }

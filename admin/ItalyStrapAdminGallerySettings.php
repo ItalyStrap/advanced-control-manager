@@ -45,10 +45,8 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
 
     /**
      * Default option
-     *
-     * @var array
      */
-    private $carousel_options = [];
+    private array $carousel_options = [];
 
     private array $indicators = ['before-inner', 'after-inner', 'after-control', 'false'];
 
@@ -88,8 +86,8 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
 
         // Enqueue the media UI only if needed.
         // if ( count( $this->gallery_types ) > 0 ) {
-            add_action('wp_enqueue_media', [$this, 'wp_enqueue_media']);
-            add_action('print_media_templates', [$this, 'print_media_templates_old']);
+            add_action('wp_enqueue_media', $this->wp_enqueue_media(...));
+            add_action('print_media_templates', $this->print_media_templates_old(...));
             // add_action( 'print_media_templates', array( $this, 'print_media_templates' ) );
         // }
     }
@@ -183,7 +181,7 @@ class ItalyStrapAdminGallerySettings implements Subscriber_Interface
                         ?>
                     </select>
                 </label>
-                <?php
+<?php
             } else {
                 ?>
 

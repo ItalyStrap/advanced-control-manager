@@ -8,7 +8,7 @@ declare(strict_types=1);
  *  Description:       Essential tool with an array of utility for WordPress. Always make a backup before upgrading.
  *  Version:           2.16.0
  *  Requires at least: 6.0
- *  Requires PHP:      7.4
+ *  Requires PHP:      8.2
  *  Author:            Enea Overclokk
  *  Author URI:        https://www.overclokk.net
  *  Text Domain:       italystrap
@@ -25,5 +25,4 @@ namespace ItalyStrap;
 if (\did_action('italystrap_plugin_loaded') > 0) {
     return;
 }
-
 require_once __DIR__ . '/bootstrap.php';

@@ -10,17 +10,18 @@ use WP_Query;
 class Grouped_Posts_Old
 {
     /**
-     * Pluin options
+     * @var \ItalyStrap\Query\Posts|null
      */
-    private array $options = [];
-
+    public $query;
+    public $args;
     /**
      * Inizializzo il costruttore
      */
-    function __construct(array $options = [], Posts $query = null)
+    function __construct(/**
+     * Pluin options
+     */
+    private readonly array $options = [], Posts $query = null)
     {
-
-        $this->options = $options;
 
         $this->query = $query;
 
@@ -425,10 +426,10 @@ class Grouped_Posts_Old
         }
 
 
-        $unixtime = strtotime($post->post_date);
+        $unixtime = strtotime((string) $post->post_date);
 
         $category = '';
-        if (strpos($permalink, '%category%') !== false) {
+        if (str_contains((string) $permalink, '%category%')) {
             $cats = get_the_category($post->ID);
             if ($cats) {
                 $cats = wp_list_sort($cats, ['term_id' => 'ASC']);
@@ -461,7 +462,7 @@ class Grouped_Posts_Old
         }
 
         $author = '';
-        if (strpos($permalink, '%author%') !== false) {
+        if (str_contains((string) $permalink, '%author%')) {
             $authordata = get_userdata($post->post_author);
             $author = $authordata->user_nicename;
         }
@@ -469,7 +470,7 @@ class Grouped_Posts_Old
         $date = explode(" ", date('Y m d H i s', $unixtime));
         $rewritereplace =
         [$date[0], $date[1], $date[2], $date[3], $date[4], $date[5], $post->post_name, $post->ID, $category, $author, $post->post_name];
-        $permalink = home_url(str_replace($rewritecode, $rewritereplace, $permalink));
+        $permalink = home_url(str_replace($rewritecode, $rewritereplace, (string) $permalink));
         $permalink = user_trailingslashit($permalink, 'single');
     }
 

@@ -23,6 +23,11 @@ use ItalyStrap\Fields\FieldsInterface;
  */
 class Attributes implements Subscriber_Interface
 {
+    public $config;
+    /**
+     * @var string[]
+     */
+    public $new_input_fields;
     /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
@@ -71,7 +76,7 @@ class Attributes implements Subscriber_Interface
      * @param array            $options     The plugin options.
      * @param FieldsInterface $fields_type Field object.
      */
-    public function __construct(array $options = [], FieldsInterface $fields_type)
+    public function __construct(FieldsInterface $fields_type, array $options = [])
     {
 
         $this->fields_type = $fields_type;
@@ -180,7 +185,7 @@ class Attributes implements Subscriber_Interface
                     ' ',
                     array_map(
                         'sanitize_html_class',
-                        explode(' ', $new_instance['widget_css_class'])
+                        explode(' ', (string) $new_instance['widget_css_class'])
                     )
                 )
             );
@@ -235,7 +240,7 @@ class Attributes implements Subscriber_Interface
             $params[0]['before_widget'] = preg_replace(
                 '/id=".*?"/',
                 sprintf('id="%s"', $instance['widget_css_id']),
-                $params[0]['before_widget'],
+                (string) $params[0]['before_widget'],
                 1
             );
         }
@@ -245,7 +250,7 @@ class Attributes implements Subscriber_Interface
             $params[0]['before_widget'] = preg_replace(
                 '/class="/',
                 sprintf('class="%s ', $instance['widget_css_class']),
-                $params[0]['before_widget'],
+                (string) $params[0]['before_widget'],
                 1
             );
         }

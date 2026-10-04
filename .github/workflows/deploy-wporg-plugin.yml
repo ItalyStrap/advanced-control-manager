@@ -3,10 +3,10 @@ name: 🚀 Deploy App to WordPress.org
 env:
   BUILD_DIR: trunk/
 
+# Manual only: the plugin is closed on WordPress.org and GitHub releases now ship
+# the scoped build through release-package.yml.
 on:
   workflow_dispatch:
-  release:
-    types: [published]
 
 jobs:
   build:

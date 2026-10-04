@@ -24,31 +24,23 @@ if (! defined('ABSPATH') or ! ABSPATH) {
 class Register
 {
     /**
-     * Widget object
-     *
-     * @var object
-     */
-    protected $widget;
-
-    /**
      * Init the class
      *
      * @param object $widget The object of the widget.
      */
-    public function __construct($widget)
+    public function __construct(protected $widget)
     {
-        $this->widget = $widget;
     }
 
     public function hook()
     {
-        add_action('widgets_init', [$this, 'register_widgets']);
+        add_action('widgets_init', $this->register_widgets(...));
     }
 
     public function register_widgets()
     {
         global $wp_widget_factory;
 
-        $wp_widget_factory->widgets[ get_class($this->widget) ] = $this->widget;
+        $wp_widget_factory->widgets[ $this->widget::class ] = $this->widget;
     }
 }

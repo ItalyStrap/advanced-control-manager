@@ -27,28 +27,6 @@ class Loader
     private bool $loaded;
 
     /**
-     * Auryn PHP container
-     */
-    private \Auryn\Injector $injector;
-
-    /**
-     * Event Manager
-     */
-    private \ItalyStrap\Event\Manager $event_manager;
-
-    /**
-     * Array with all the classes registered for the initialization of the plugin.
-     *
-     * @var array
-     */
-    private $app = [];
-
-    /**
-     * Plugin config
-     */
-    private array $config;
-
-    /**
      * Init the plugin
      *
      * @param Injector $injector      Auryn Injector.
@@ -56,27 +34,17 @@ class Loader
      * @param array    $app           Class appuration array.
      * @param array    $config        Plugin configuration.
      */
-    function __construct(Injector $injector, Manager $event_manager, array $app = [], array $config = [])
+    function __construct(/**
+     * Auryn PHP container
+     */
+    private readonly \Auryn\Injector $injector, /**
+     * Event Manager
+     */
+    private readonly \ItalyStrap\Event\Manager $event_manager, private array $app = [], /**
+     * Plugin config
+     */
+    private array $config = [])
     {
-
-        $this->injector = $injector;
-        $this->event_manager = $event_manager;
-        $this->config = $config;
-
-        // $default = array(
-        //  'sharing'               => array(),
-        //  'aliases'               => array(),
-        //  'definitions'           => array(),
-        //  'define_param'          => array(),
-        //  'delegations'           => array(),
-        //  'preparations'          => array(),
-        //  'concretes'             => array(),
-        //  'options_concretes'     => array(),
-        //  'subscribers'           => array(),
-        // );
-
-        // $this->app = array_merge( $default, $app );
-        $this->app = $app;
 
         $this->loaded = false;
     }

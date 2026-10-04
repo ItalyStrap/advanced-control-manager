@@ -24,6 +24,7 @@ use ItalyStrap\Fields\FieldsInterface;
  */
 abstract class Import_Export_Base
 {
+    public $fields_type;
     /**
      * Definition of variables containing the configuration
      * to be applied to the various function calls wordpress
@@ -61,7 +62,7 @@ abstract class Import_Export_Base
      * @param array            $imp_exp_args [description]
      * @param FieldsInterface $fields_type  [description]
      */
-    function __construct(array $imp_exp_args = [], FieldsInterface $fields_type)
+    function __construct(FieldsInterface $fields_type, array $imp_exp_args = [])
     {
 
         $this->args = $imp_exp_args;

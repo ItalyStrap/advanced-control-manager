@@ -97,7 +97,7 @@ return;
         <?php endif; ?>
 
         <?php if ($custom_fields) {
-            $custom_field_name = explode(',', $custom_fields);
+            $custom_field_name = explode(',', (string) $custom_fields);
             foreach ($custom_field_name as $name) {
                 $name = trim($name);
                 $custom_field_values = get_post_meta($post->ID, $name, true);

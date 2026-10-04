@@ -1,0 +1,9 @@
+{
+    "require": {
+        "humbug/php-scoper": "^0.18",
+        "sniccowp/php-scoper-wordpress-excludes": "^6.6"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

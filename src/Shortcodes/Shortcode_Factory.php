@@ -42,18 +42,9 @@ class Shortcode_Factory implements Subscriber_Interface
     }
 
     /**
-     * The plugin's options
-     *
-     * @var string
-     */
-    private $options = '';
-
-    /**
      * List of all widget classes name.
-     *
-     * @var array
      */
-    private $shortcodes_list = [];
+    private array $shortcodes_list = [];
 
     /**
      * Injector object
@@ -65,9 +56,11 @@ class Shortcode_Factory implements Subscriber_Interface
     /**
      * Fire the construct
      */
-    public function __construct(array $options = [], $injector = null)
+    public function __construct(/**
+     * The plugin's options
+     */
+    private array $options = [], $injector = null)
     {
-        $this->options = $options;
         $this->injector = $injector;
 
         $this->shortcodes_list = ['shortcode_row'         => \ItalyStrap\Shortcodes\Row::class, 'shortcode_column'      => \ItalyStrap\Shortcodes\Column::class, 'shortcode_posts'       => \ItalyStrap\Shortcodes\Posts::class, 'shortcode_post_title'  => \ItalyStrap\Shortcodes\Post_Title::class, 'shortcode_button'      => \ItalyStrap\Shortcodes\Button::class];

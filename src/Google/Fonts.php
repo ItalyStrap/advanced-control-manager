@@ -27,6 +27,14 @@ use ItalyStrap\Config\ConfigInterface;
 class Fonts
 {
     /**
+     * @var mixed[]
+     */
+    public $variants;
+    /**
+     * @var array<string, mixed>
+     */
+    public $subsets;
+    /**
      * Google API font URL
      *
      * @var string
@@ -119,7 +127,7 @@ class Fonts
 
             self::$fonts = wp_remote_retrieve_body($font_content);
 
-            self::$fonts = (array) json_decode(self::$fonts, null, 512, JSON_THROW_ON_ERROR);
+            self::$fonts = (array) json_decode((string) self::$fonts, null, 512, JSON_THROW_ON_ERROR);
 
             self::$fonts = $this->rename_key_by_font_family_name(self::$fonts);
 

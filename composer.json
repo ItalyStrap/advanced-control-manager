@@ -12,10 +12,11 @@
 			"role": "Developer"
 		}
 	],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
 	"require": {
 		"php": ">=7.4",
-		"italystrap/empress": "^1.0",
+		"italystrap/empress": "dev-modularized",
 		"italystrap/event": "dev-master",
 		"italystrap/edd": "^0.0",
 		"italystrap/breadcrumbs": "^2.0",
@@ -52,12 +53,12 @@
 		"italystrap/debug": "^2.1",
 		"leafo/scssphp": "^0.6",
 		"rector/rector": "^0.17.7",
-		"franzl/studio": "^0.16.0"
+		"franzl/studio": "^0.16.0",
+		"behat/gherkin": "~4.11.0"
 	},
 	"autoload": {
 		"classmap": [
-			"admin",
-			"deprecated"
+			"admin"
 		],
 		"psr-4": {
 			"ItalyStrap\\": "src/"

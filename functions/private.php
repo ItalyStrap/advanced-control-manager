@@ -89,7 +89,7 @@ function _display_options($atts)
 
     $output = '';
     foreach ($get_settings as $section => $settings) {
-        $output .= '<h2>' . ucfirst(esc_html($section)) . '</h2>';
+        $output .= '<h2>' . ucfirst((string) esc_html($section)) . '</h2>';
         $output .= '<ul class="">';
         foreach ($settings['settings_fields'] as $setting) {
             // d( $setting['show_on'] );

@@ -286,7 +286,7 @@ function kill_emojis_tinymce($plugins)
 function remove_widget_title($widget_title)
 {
 
-    if (substr($widget_title, 0, 2) === '!!') {
+    if (str_starts_with($widget_title, '!!')) {
         return;
     }
 

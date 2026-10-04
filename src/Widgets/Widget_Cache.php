@@ -20,6 +20,7 @@ namespace ItalyStrap\Widgets;
  */
 class Widget_Cache
 {
+    public $id;
     /**
      * Get cached widget.
      *

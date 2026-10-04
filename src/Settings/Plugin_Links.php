@@ -22,6 +22,7 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  */
 class Plugin_Links
 {
+    public $args;
     /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.

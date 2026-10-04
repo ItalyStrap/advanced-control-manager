@@ -76,7 +76,7 @@ class Page
 
         echo sprintf(
             '<div id="fb-root"></div><script>(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/%1$s/sdk.js#%2$s";fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script>',
-            str_replace('-', '_', get_bloginfo('language')),
+            str_replace('-', '_', (string) get_bloginfo('language')),
             http_build_query($data)
         );
     }
@@ -114,7 +114,7 @@ class Page
         // wp_parse_args( $args, $defaults );
 
         $attr = ['class'                         => 'fb-page', 'data-href'                     =>
-            false !== strpos($instance['href'], 'facebook.com')
+            str_contains((string) $instance['href'], 'facebook.com')
             ? esc_url($instance['href'])
             : 'https://facebook.com/' . esc_attr($instance['href']), 'data-width'                    => absint($instance['width']), 'data-height'                   => absint($instance['height']), 'data-tabs'                     => implode(',', (array) $instance['tabs']), 'data-hide-cover'               => esc_attr($instance['hide-cover']), 'data-show-facepile'            => esc_attr($instance['show-facepile']), 'data-hide-cta'                 => esc_attr($instance['hide-cta']), 'data-small-header'             => esc_attr($instance['small-header']), 'data-adapt-container-width'    => esc_attr($instance['adapt-container-width'])];
 

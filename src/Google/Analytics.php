@@ -46,11 +46,6 @@ class Analytics implements Subscriber_Interface
         ];
     }
 
-    /**
-     * Plugin options settings.
-     */
-    private ?array $options = null;
-
     private static $position = '';
 
     /**
@@ -58,9 +53,11 @@ class Analytics implements Subscriber_Interface
      *
      * @param array $argument Plugin options settings.
      */
-    function __construct(array $options = [])
+    function __construct(/**
+     * Plugin options settings.
+     */
+    private array $options = [])
     {
-        $this->options = $options;
         self::$position = $this->options['google_analytics_position'];
         // add_filter( 'body_class', array( $this, 'render_tag_manager' ), 10000, 2 );
     }

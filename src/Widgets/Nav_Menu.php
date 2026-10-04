@@ -20,6 +20,7 @@ use ItalyStrap\Navbar\BootstrapNavMenu;
  */
 class Nav_Menu extends Widget
 {
+    public $nav_menu;
     /**
      * Init the constructor
      */

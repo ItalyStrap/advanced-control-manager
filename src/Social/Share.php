@@ -25,6 +25,11 @@ use ItalyStrap\HTML;
 class Share implements Subscriber_Interface
 {
     /**
+     * @var string
+     */
+    public $via;
+    public $content;
+    /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
      *
@@ -48,24 +53,21 @@ class Share implements Subscriber_Interface
      */
     private $social_url = [];
 
-    private array $options = [];
-
     /**
      * [__construct description]
      *
      * @param [type] $argument [description].
      */
-    function __construct(array $options = [])
+    function __construct(private array $options = [])
     {
 
         $option = [];
-        $this->options = $options;
 
         $wpseo_social = get_option('wpseo_social');
         $this->via = ! empty($option['twitter_site']) ? '&via=' . $option['twitter_site'] : '' ;
 
         // add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999999 );
-        add_action('wp_footer', [$this, 'style_in_footer'], 999999);
+        add_action('wp_footer', $this->style_in_footer(...), 999999);
 
         /**
          * Append css in static variable and print in front-end footer
@@ -230,7 +232,7 @@ class Share implements Subscriber_Interface
                 '<li><a href="%1$s" ' . $format . '><span class="fa fa-%2$s" aria-hidden="true"></span> <span id="%2$s">%3$s</span></a></li>',
                 $url,
                 $key,
-                str_replace('-', ' ', $key)
+                str_replace('-', ' ', (string) $key)
             );
         }
 

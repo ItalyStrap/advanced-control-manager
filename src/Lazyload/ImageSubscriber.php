@@ -16,17 +16,6 @@ use SplFileInfo;
 
 class ImageSubscriber implements Subscriber_Interface
 {
-    private \ItalyStrap\Event\EventDispatcherInterface $dispatcher;
-
-    private \ItalyStrap\Config\Config $config;
-
-    /**
-     * @var \SplFileObject
-     */
-    private \SplFileInfo $file;
-
-    private \ItalyStrap\Lazyload\Image $image;
-
     /**
      * @return array
      */
@@ -40,22 +29,9 @@ class ImageSubscriber implements Subscriber_Interface
 
     /**
      * Init constructor
-     *
-     * @param Config $config
-     * @param EventDispatcherInterface $dispatcher
-     * @param SplFileInfo $file
-     * @param Image $image
      */
-    public function __construct(
-        Config $config,
-        EventDispatcherInterface $dispatcher,
-        SplFileInfo $file,
-        Image $image
-    ) {
-        $this->config = $config;
-        $this->dispatcher = $dispatcher;
-        $this->file = $file;
-        $this->image = $image;
+    public function __construct(private readonly \ItalyStrap\Config\Config $config, private readonly \ItalyStrap\Event\EventDispatcherInterface $dispatcher, private readonly \SplFileInfo $file, private readonly \ItalyStrap\Lazyload\Image $image)
+    {
     }
 
     public function onWpLoaded(): void
@@ -105,7 +81,7 @@ class ImageSubscriber implements Subscriber_Interface
 
             $this->dispatcher->addListener(
                 $event[0],
-                [$this->image, 'replaceSrcImageWithSrcPlaceholders'],
+                $this->image->replaceSrcImageWithSrcPlaceholders(...),
                 $event[1] ?? 10,
                 1
             );

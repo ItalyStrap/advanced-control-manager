@@ -42,7 +42,7 @@ class Product extends Query
      *
      * @return self
      */
-    public static function init()
+    public static function init($context = 'posts')
     {
 
         return new self(new WP_Query());
@@ -134,7 +134,7 @@ class Product extends Query
             'posts_per_page'            => $this->args['posts_number'] + count($this->posts_to_exclude),
             'order'                     => $this->args['order'],
             'orderby'                   => $this->args['orderby'],
-            'post_type'                 => ( empty($this->args['post_types']) ? 'post' : explode(',', $this->args['post_types']) ),
+            'post_type'                 => ( empty($this->args['post_types']) ? 'post' : explode(',', (string) $this->args['post_types']) ),
             'no_found_rows'             => true,
             'update_post_term_cache'    => false,
             'update_post_meta_cache'    => false,
@@ -147,7 +147,7 @@ class Product extends Query
          * Display per post/page ID
          */
         if (! empty($this->args['post_id'])) {
-            $args['post__in'] = explode(',', $this->args['post_id']);
+            $args['post__in'] = explode(',', (string) $this->args['post_id']);
 
             /**
              * This delete last comma in case the input is like 1,2,

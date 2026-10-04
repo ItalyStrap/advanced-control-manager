@@ -80,19 +80,15 @@ class Excerpt implements Subscriber_Interface
     private static $config;
 
     /**
-     * Translator Object
-     */
-    private \ItalyStrap\I18N\Translatable $translator;
-
-    /**
      * Init the class
      *
      * @param $options $argument [description].
      */
-    function __construct(ConfigInterface $config, Translatable $translator)
+    function __construct(ConfigInterface $config, /**
+     * Translator Object
+     */
+    private readonly \ItalyStrap\I18N\Translatable $translator)
     {
-
-        $this->translator = $translator;
 
         self::$config = $config;
 

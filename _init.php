@@ -33,21 +33,22 @@ if (is_admin()) {
     return;
 }
 
-$autoload_subscribers = array_merge($autoload_subscribers, array(
-        // 'option_name'            => 'Class\Name',
-        'lazyload_video'            => Video::class,
-        'lazyload'                  => ImageSubscriber::class,
-        'web_font_loading'          => Fonts::class, // 404
-        'activate_custom_css'       => Custom_Css::class,
-        'activate_analytics'        => Analytics::class,
-        'google_tag_manager_id'     => Tag_Manager::class,
-        'activate_social_share'     => Share::class,
-        'show_theme_hooks'          => Visual_Hook::class,
-        'media_carousel_shortcode'  => Gallery::class,
-        'activate_excerpt_more_mods' => Excerpt::class,
-        'custom_tag_cloud'          => Tag_Cloud::class,
-        Inline_Asset_Factory::class,
-    ));
+$autoload_subscribers = array_merge($autoload_subscribers, [
+    // 'option_name'            => 'Class\Name',
+    'lazyload_video'            => Video::class,
+    'lazyload'                  => ImageSubscriber::class,
+    'web_font_loading'          => Fonts::class,
+    // 404
+    'activate_custom_css'       => Custom_Css::class,
+    'activate_analytics'        => Analytics::class,
+    'google_tag_manager_id'     => Tag_Manager::class,
+    'activate_social_share'     => Share::class,
+    'show_theme_hooks'          => Visual_Hook::class,
+    'media_carousel_shortcode'  => Gallery::class,
+    'activate_excerpt_more_mods' => Excerpt::class,
+    'custom_tag_cloud'          => Tag_Cloud::class,
+    Inline_Asset_Factory::class,
+]);
 
 /**
  * Se ci sono più classi da instanziare con la stessa option valutare se
@@ -75,7 +76,7 @@ $autoload_subscribers = array_merge($autoload_subscribers, array(
 // }
 
 if (! empty($options['widget_visibility'])) {
-    \add_action('init', [Visibility::class, 'init']);
+    \add_action('init', Visibility::init(...));
 }
 
 /**
@@ -128,7 +129,7 @@ if (! empty($options['menu_cache']) && \version_compare(PHP_VERSION, '5.4.0', '>
 /**
  * Set CSS from admin option Script
  */
-Inline_Style::set(\strip_tags($options['custom_css']));
+Inline_Style::set(\strip_tags((string) $options['custom_css']));
 
 /**
  * Instantiate MobileDetect Class

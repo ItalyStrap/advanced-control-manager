@@ -5,7 +5,7 @@ Tags: custom post widget, custom post shortcode, image & video lazy loading, twi
 Requires at least: 6.0
 Tested up to: 6.3
 Stable tag: 2.16.0
-Requires PHP: 7.4
+Requires PHP: 8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

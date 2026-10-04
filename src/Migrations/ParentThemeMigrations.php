@@ -6,13 +6,8 @@ namespace ItalyStrap\Migrations;
 
 class ParentThemeMigrations
 {
-    private ?RenameDirectory $rename = null;
-    private ?Update_File $update = null;
-
-    public function __construct(RenameDirectory $rename, Update_File $update)
+    public function __construct(private readonly ?RenameDirectory $rename, private readonly ?Update_File $update)
     {
-        $this->rename = $rename;
-        $this->update = $update;
     }
 
     public function run()

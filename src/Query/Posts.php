@@ -19,6 +19,7 @@ use ItalyStrap\Config\Config;
  */
 class Posts extends Query
 {
+    public $current_post_id;
     /**
      * Constructor.
      *
@@ -72,7 +73,6 @@ class Posts extends Query
     /**
      * Get the query arguments
      *
-     * @param array $args
      * @return string        [description]
      */
     public function get_query_args(array $args = [])
@@ -157,7 +157,7 @@ class Posts extends Query
          * Display per post/page ID
          */
         if (! empty($this->config['post_id'])) {
-            $query_args['post__in'] = explode(',', $this->config['post_id']);
+            $query_args['post__in'] = explode(',', (string) $this->config['post_id']);
 
             /**
              * This delete last comma in case the input is like 1,2,
@@ -378,7 +378,7 @@ class Posts extends Query
     {
 
         if ($this->config['custom_fields']) :
-            $custom_field_name = explode(',', $this->config['custom_fields']); ?>
+            $custom_field_name = explode(',', (string) $this->config['custom_fields']); ?>
 
             <div class="entry-custom-fields">
             <?php

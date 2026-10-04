@@ -32,6 +32,17 @@ use ItalyStrap\Event\Subscriber_Interface;
  */
 class Settings implements Subscriber_Interface
 {
+    public $args;
+    /**
+     * @var mixed[]
+     */
+    public $theme_mods;
+    public $validation;
+    /**
+     * @var \ItalyStrap\Update\Sanitization
+     */
+    public $sanitization;
+    public $translator;
     /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
@@ -149,23 +160,23 @@ class Settings implements Subscriber_Interface
         /**
          * Add Admin menù page
          */
-        add_action('admin_menu', [$this, 'add_menu_page']);
+        add_action('admin_menu', $this->add_menu_page(...));
 
-        add_action('admin_init', [$this, 'settings_init']);
+        add_action('admin_init', $this->settings_init(...));
 
         /**
          * Load script for ItalyStrap\Admin
          */
-        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_style_script']);
+        add_action('admin_enqueue_scripts', $this->enqueue_admin_style_script(...));
 
         /**
          * Add link in plugin activation panel
          */
-        add_filter('plugin_action_links_' . ITALYSTRAP_BASENAME, [$this, 'plugin_action_links']);
+        add_filter('plugin_action_links_' . ITALYSTRAP_BASENAME, $this->plugin_action_links(...));
 
-        add_filter('plugin_row_meta', [$this, 'plugin_row_meta'], 10, 4);
+        add_filter('plugin_row_meta', $this->plugin_row_meta(...), 10, 4);
 
-        add_action('italystrap_after_settings_form', [$this, 'get_aside']);
+        add_action('italystrap_after_settings_form', $this->get_aside(...));
     }
 
     /**
@@ -218,7 +229,7 @@ class Settings implements Subscriber_Interface
             $this->args['menu_page']['menu_title'],
             $this->capability, // $this->args['menu_page']['capability'],
             $this->args['menu_page']['menu_slug'],
-            [$this, 'get_settings_view'],
+            $this->get_settings_view(...),
             $this->args['menu_page']['icon_url'],
             $this->args['menu_page']['position']
         );
@@ -249,7 +260,7 @@ class Settings implements Subscriber_Interface
                 $this->capability, // $submenu['capability'],
                 $submenu['menu_slug'],
                 // $submenu['function_cb']
-                [$this, 'get_settings_view']
+                $this->get_settings_view(...)
             );
         }
     }
@@ -376,7 +387,7 @@ class Settings implements Subscriber_Interface
             add_settings_section(
                 $setting['id'],
                 $setting['title'],
-                [$this, 'render_section_cb'], //array( $this, $field['callback'] ),
+                $this->render_section_cb(...), //array( $this, $field['callback'] ),
                 $this->args['options_group'] //$setting['page']
             );
 
@@ -392,7 +403,7 @@ class Settings implements Subscriber_Interface
                 add_settings_field(
                     $field['id'],
                     $field['title'],
-                    [$this, 'get_field_type'], //array( $this, $field['callback'] ),
+                    $this->get_field_type(...), //array( $this, $field['callback'] ),
                     $this->args['options_group'], //$field['page'],
                     $setting['id'],
                     $field['args']
@@ -413,7 +424,7 @@ class Settings implements Subscriber_Interface
         register_setting(
             $this->args['options_group'],
             $this->args['options_name'],
-            [$this, 'update']
+            $this->update(...)
         );
     }
 
@@ -439,7 +450,7 @@ class Settings implements Subscriber_Interface
              * Register string for translation
              */
             if (isset($field['translate']) && true === $field['translate']) {
-                $this->translator->register_string($field['id'], strip_tags($instance[ $field['id'] ]));
+                $this->translator->register_string($field['id'], strip_tags((string) $instance[ $field['id'] ]));
             }
 
             /**
@@ -456,7 +467,7 @@ class Settings implements Subscriber_Interface
             } elseif (isset($field['sanitize'])) {
                 $instance[ $field['id'] ] = $this->sanitization->sanitize($field['sanitize'], $instance[ $field['id'] ]);
             } else {
-                $instance[ $field['id'] ] = strip_tags($instance[ $field['id'] ]);
+                $instance[ $field['id'] ] = strip_tags((string) $instance[ $field['id'] ]);
             }
         }
 
@@ -595,7 +606,7 @@ class Settings implements Subscriber_Interface
      *
      * @return string            The name of the option.
      */
-    public function save($option, $old_value, $value)
+    public function save($option, mixed $old_value, mixed $value)
     {
 
         if (! isset($this->args['options_name'])) {

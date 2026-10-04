@@ -28,11 +28,10 @@ jobs:
 
     strategy:
       matrix:
-        php_versions: ['7.4']
+        php_versions: ['8.2']
         app_versions: ['6.0']
 
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.php_versions == '8.2' }}
     if: "!contains(github.event.head_commit.message, '--skip ci') && !github.event.pull_request.draft"
 
     steps:

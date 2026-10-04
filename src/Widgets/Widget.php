@@ -36,6 +36,16 @@ use InvalidArgumentException;
  */
 abstract class Widget extends WP_Widget
 {
+    public $id_base;
+    public $args;
+    public $instance;
+    public $validation;
+    /**
+     * @var \ItalyStrap\Update\Sanitization
+     */
+    public $sanitization;
+    public $translator;
+    public $id;
     /**
      * The type of fields to create
      */
@@ -291,9 +301,9 @@ abstract class Widget extends WP_Widget
      */
     protected function init_events()
     {
-        add_action('save_post', [$this, 'flush_widget_cache']);
-        add_action('deleted_post', [$this, 'flush_widget_cache']);
-        add_action('switch_theme', [$this, 'flush_widget_cache']);
+        add_action('save_post', $this->flush_widget_cache(...));
+        add_action('deleted_post', $this->flush_widget_cache(...));
+        add_action('switch_theme', $this->flush_widget_cache(...));
     }
 
     /**
@@ -384,7 +394,7 @@ abstract class Widget extends WP_Widget
              * Register string for translation
              */
             if (isset($field['translate']) && true === $field['translate']) {
-                $this->translator->registerString($field['id'], strip_tags($instance[ $field['id'] ]));
+                $this->translator->registerString($field['id'], strip_tags((string) $instance[ $field['id'] ]));
             }
 
             /**
@@ -401,7 +411,7 @@ abstract class Widget extends WP_Widget
             } elseif (isset($field['sanitize'])) {
                 $instance[ $field['id'] ] = $this->sanitization->sanitize($field['sanitize'], $instance[ $field['id'] ]);
             } else {
-                $instance[ $field['id'] ] = strip_tags($instance[ $field['id'] ]);
+                $instance[ $field['id'] ] = strip_tags((string) $instance[ $field['id'] ]);
             }
         }
 
@@ -490,7 +500,7 @@ abstract class Widget extends WP_Widget
         $i = 0;
 
         foreach ($this->sections_keys as $key) {
-            $tabs .= '<a class="upw-tab-item ' . ( ( 0 === $i ) ? 'active' : '' ) . '" data-toggle="upw-tab-' . $key . '">' . ucfirst($key) . '</a>';
+            $tabs .= '<a class="upw-tab-item ' . ( ( 0 === $i ) ? 'active' : '' ) . '" data-toggle="upw-tab-' . $key . '">' . ucfirst((string) $key) . '</a>';
             $i++;
         }
 

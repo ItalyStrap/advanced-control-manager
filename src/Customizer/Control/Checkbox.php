@@ -22,6 +22,7 @@ if (! class_exists('WP_Customize_Control')) {
  */
 class Checkbox extends WP_Customize_Control
 {
+    public $label;
     /**
      * @access public
      * @var string
@@ -45,6 +46,6 @@ class Checkbox extends WP_Customize_Control
             <?php echo esc_html($this->label); ?>
         </label>
         <input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr($this->value()); ?>" />
-        <?php
+<?php
     }
 }

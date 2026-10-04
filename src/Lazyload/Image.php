@@ -24,27 +24,15 @@ class Image
      *
      * @return string
      */
-    public const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    final public const DEFAULT_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-    public const PLACEHOLDER_FILTER_EVENT_NAME = 'italystrap_lazy_load_placeholder_image';
-
-    private \ItalyStrap\Config\Config $config;
-
-    private \ItalyStrap\Event\EventDispatcherInterface $dispatcher;
+    final public const PLACEHOLDER_FILTER_EVENT_NAME = 'italystrap_lazy_load_placeholder_image';
 
     /**
      * Init constructor
-     *
-     * @param Config $config
-     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(
-        Config $config,
-        EventDispatcherInterface $dispatcher
-    ) {
-
-        $this->config = $config;
-        $this->dispatcher = $dispatcher;
+    public function __construct(private readonly \ItalyStrap\Config\Config $config, private readonly \ItalyStrap\Event\EventDispatcherInterface $dispatcher)
+    {
     }
 
     /**
@@ -77,7 +65,6 @@ class Image
     }
 
     /**
-     * @param array $matches
      * @return string
      */
     private function replaceAttributes(array $matches)
@@ -102,8 +89,6 @@ class Image
     }
 
     /**
-     * @param array $matches
-     * @param string $content
      * @return string
      */
     private function appendNoscript(array $matches, string $content): string
@@ -130,12 +115,11 @@ class Image
     }
 
     /**
-     * @param string $content
      * @return bool
      */
     private function hasAlreadyLazyLoadedIn(string $content): bool
     {
-        return false !== \strpos($content, 'data-lazy-src');
+        return str_contains($content, 'data-lazy-src');
     }
 
     /**

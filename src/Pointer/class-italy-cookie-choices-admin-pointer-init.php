@@ -33,7 +33,7 @@ if (!class_exists('Italy_Cookie_Choices_Pointer_Init')) {
         {
 
             // Your prefix
-            add_filter('italy-cookie-choices' . '-pointerplus_list', [$this, 'custom_initial_pointers'], 10, 2);
+            add_filter('italy-cookie-choices' . '-pointerplus_list', $this->custom_initial_pointers(...), 10, 2);
         }
 
 

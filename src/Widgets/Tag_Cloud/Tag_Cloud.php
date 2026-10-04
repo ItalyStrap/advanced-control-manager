@@ -68,7 +68,6 @@ class Tag_Cloud implements Subscriber_Interface
     /**
      * Filters the tag cloud output.
      *
-     * @param array $tags_data
      * @return array HTML output of the tag cloud.
      */
     public function tag_cloud_data(array $tags_data)
