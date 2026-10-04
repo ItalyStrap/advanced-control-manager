@@ -31,7 +31,8 @@ class Areas extends Areas_Base implements Subscriber_Interface
      */
     private const THEME_EVENTS = [
         'italystrap_before_main' => 'ItalyStrap\\UI\\Components\\Main\\Events\\Header',
-        'italystrap_after_main' => 'ItalyStrap\\UI\\Components\\Main\\Events\\Footer',
+        // Footer\Events\Before renders right before <footer>, Main\Events\Footer would render after it.
+        'italystrap_after_main' => 'ItalyStrap\\UI\\Components\\Footer\\Events\\Before',
         'italystrap_after' => 'ItalyStrap\\UI\\Components\\Footer\\Events\\BodyClosing',
     ];
     public $sidebars;
