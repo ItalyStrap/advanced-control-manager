@@ -1,0 +1,54 @@
+name: Release package
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+env:
+  PLUGIN_SLUG: advanced-control-manager
+  RELEASE_VERSION: ${{ github.event.release.tag_name }}
+
+jobs:
+  package:
+    name: Build scoped release asset
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+
+      - name: Build scoped plugin
+        run: bin/build-scoped.sh
+
+      - name: Check the build
+        run: |
+          BUILD="build/$PLUGIN_SLUG"
+          test -f "$BUILD/italystrap.php"
+          test -f "$BUILD/vendor/autoload.php"
+          grep -q "^namespace ItalyStrapAcm" "$BUILD/bootstrap.php"
+          find "$BUILD" -name '*.php' -not -path '*/vendor/cmb2/*' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Create release archive
+        run: |
+          ZIP="$RUNNER_TEMP/$PLUGIN_SLUG-$RELEASE_VERSION.zip"
+          (cd build && zip -rq "$ZIP" "$PLUGIN_SLUG")
+          unzip -l "$ZIP" | tail -1
+          echo "ZIP=$ZIP" >> "$GITHUB_ENV"
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP }}
