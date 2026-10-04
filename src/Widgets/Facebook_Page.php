@@ -29,7 +29,7 @@ class Facebook_Page extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
+        add_action('admin_enqueue_scripts', $this->upload_scripts(...));
 
         /**
          * List of posts type
@@ -72,7 +72,7 @@ class Facebook_Page extends Widget
     {
 
         $facebook_page = new Page();
-        add_action('wp_footer', [$facebook_page, 'script_2'], 99);
+        add_action('wp_footer', $facebook_page->script_2(...), 99);
         // add_action( 'italystrap_sidebar', array( $facebook_page, 'output' ) );
 
         // $query_posts = Posts_Base::init();

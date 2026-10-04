@@ -107,7 +107,7 @@ class Size implements Subscriber_Interface
                 // $custom[ $_size ] = ucwords( str_replace( '-', ' ', $_size ) ) . ' ' . $sizes[ $_size ]['width'] . 'x' . $sizes[ $_size ]['height'];
                 $custom[ $_size ] = sprintf(
                     '%s %sx%spx',
-                    ucwords(str_replace('-', ' ', $_size)),
+                    ucwords(str_replace('-', ' ', (string) $_size)),
                     $sizes[ $_size ]['width'],
                     $sizes[ $_size ]['height']
                 );

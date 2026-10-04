@@ -20,6 +20,7 @@ use ItalyStrap\Query\Posts as Products_Base;
  */
 class Products extends Widget
 {
+    public $id_base;
     /**
      * Fire Before Create Fields
      *
@@ -65,7 +66,7 @@ class Products extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
+        add_action('admin_enqueue_scripts', $this->upload_scripts(...));
 
         /**
          * Configure widget array.
@@ -130,7 +131,7 @@ class Products extends Widget
 
         $query_posts->get_widget_args($instance);
 
-        add_filter("italystrap_{$this->id_base}_query_arg", [$this, 'parse_query_arguments']);
+        add_filter("italystrap_{$this->id_base}_query_arg", $this->parse_query_arguments(...));
 
         return $query_posts->output();
     }

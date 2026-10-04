@@ -26,6 +26,12 @@ use ItalyStrap\Config\ConfigInterface;
 class Fonts implements Subscriber_Interface
 {
     /**
+     * @var \ItalyStrap\Google\Fonts
+     */
+    public $fonts_obj;
+    public $fonts;
+    public $fonts_to_load;
+    /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
      *
@@ -92,7 +98,7 @@ class Fonts implements Subscriber_Interface
          */
         $type = $this->config[ $value . '_typography'] ?? '';
         // $typographyes = explode( ',', $this->config[ $value . '_typography'] );
-        $typographyes = explode(',', $type);
+        $typographyes = explode(',', (string) $type);
 
         $count = count($typographyes) - 1;
 
@@ -163,12 +169,12 @@ class Fonts implements Subscriber_Interface
             $fonts[ $key ]['family'] = $this->fonts[ $font_family ]->family;
 
             $fonts[ $key ]['variants'] = array_intersect(
-                explode(',', esc_attr($this->config[ $part . '_font_variants' ])),
+                explode(',', (string) esc_attr($this->config[ $part . '_font_variants' ])),
                 $this->fonts[ $font_family ]->variants
             );
 
             $fonts[ $key ]['subsets'] = array_intersect(
-                explode(',', esc_attr($this->config[ $part . '_font_subsets' ])),
+                explode(',', (string) esc_attr($this->config[ $part . '_font_subsets' ])),
                 $this->fonts[ $font_family ]->subsets
             );
 
@@ -246,7 +252,7 @@ class Fonts implements Subscriber_Interface
                 $comma
             );
 
-            $font['family'] = str_replace(' ', '+', $font['family']);
+            $font['family'] = str_replace(' ', '+', (string) $font['family']);
 
             $web_font_config['google']['families'][] = sprintf(
                 '%1$s:%2$s:%3$s',

@@ -18,6 +18,6 @@ class Update_File
 
     public function replaceContentFile($old_string, $new_string, $data)
     {
-        return \str_replace($old_string, $new_string, $data);
+        return \str_replace($old_string, $new_string, (string) $data);
     }
 }

@@ -30,11 +30,6 @@ namespace ItalyStrap\Sitemaps;
 class HTML
 {
     /**
-     * Arguments for class.
-     */
-    private array $args = [];
-
-    /**
      * The post HTML output
      */
     private string $posts_output = '';
@@ -44,10 +39,11 @@ class HTML
      *
      * @param array $args The array of arguments.
      */
-    function __construct($args = [])
+    function __construct(/**
+     * Arguments for class.
+     */
+    private array $args = [])
     {
-
-        $this->args = $args;
 
         if (! $this->args['print']) {
             $this->the_html_sitemaps($this->args);

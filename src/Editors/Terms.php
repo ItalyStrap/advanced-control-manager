@@ -56,8 +56,8 @@ class Terms implements Subscriber_Interface
     public function init()
     {
 
-        add_action('admin_print_footer_scripts', [$this, 'remove_default_taxonomy_description']);
-        add_action('admin_print_styles', [$this, 'add_inline_style']);
+        add_action('admin_print_footer_scripts', $this->remove_default_taxonomy_description(...));
+        add_action('admin_print_styles', $this->add_inline_style(...));
 
         /**
          * Get the taxonomy array
@@ -75,8 +75,8 @@ class Terms implements Subscriber_Interface
         unset($taxonomies['post_format']);
 
         foreach ($taxonomies as $taxonomy) {
-            add_filter($taxonomy . '_edit_form_fields', [$this, 'taxonomy_description']);
-            add_filter($taxonomy . '_add_form_fields', [$this, 'taxonomies_description']);
+            add_filter($taxonomy . '_edit_form_fields', $this->taxonomy_description(...));
+            add_filter($taxonomy . '_add_form_fields', $this->taxonomies_description(...));
         }
 
         /**

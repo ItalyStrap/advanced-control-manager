@@ -22,6 +22,7 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  */
 class Button extends Shortcode
 {
+    public $config;
     static $instance = 0;
 
     /**

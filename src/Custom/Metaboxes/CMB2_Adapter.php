@@ -26,6 +26,7 @@ use CMB2;
  */
 class CMB2_Adapter extends CMB2_Loader
 {
+    public $configs;
     /**
      * Merge config in configs
      *

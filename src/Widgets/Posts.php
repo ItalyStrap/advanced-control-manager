@@ -21,22 +21,18 @@ use ItalyStrap\Query\Posts as PostsBase;
 class Posts extends Widget
 {
     /**
-     * Instance of ItalyStrap\Query\Posts
-     */
-    private ?PostsBase $query_posts = null;
-
-    /**
      * Init the constructor
      */
-    function __construct(PostsBase $post)
+    function __construct(/**
+     * Instance of ItalyStrap\Query\Posts
+     */
+    private readonly PostsBase $query_posts)
     {
-
-        $this->query_posts = $post;
 
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
+        add_action('admin_enqueue_scripts', $this->upload_scripts(...));
 
         /**
          * List of posts type

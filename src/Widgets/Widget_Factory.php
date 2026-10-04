@@ -43,18 +43,9 @@ class Widget_Factory implements Subscriber_Interface
     }
 
     /**
-     * The plugin's options
-     *
-     * @var string
-     */
-    private $options = '';
-
-    /**
      * List of all widget classes name.
-     *
-     * @var array
      */
-    private $widget_list = [];
+    private array $widget_list = [];
 
     /**
      * Injector object
@@ -66,9 +57,11 @@ class Widget_Factory implements Subscriber_Interface
     /**
      * Fire the construct
      */
-    public function __construct(array $options = [], $injector = null)
+    public function __construct(/**
+     * The plugin's options
+     */
+    private array $options = [], $injector = null)
     {
-        $this->options = $options;
         $this->injector = $injector;
 
         $this->widget_list = [

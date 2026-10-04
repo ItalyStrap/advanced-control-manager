@@ -35,7 +35,7 @@ class Carousel extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
+        add_action('admin_enqueue_scripts', $this->upload_scripts(...));
 
         /**
          * Instance of list of image sizes
@@ -91,6 +91,6 @@ class Carousel extends Widget
     {
 
         $instance_value = null;
-        return (bool) preg_match('/(?:\d+\,)+?/', $instance_value);
+        return (bool) preg_match('/(?:\d+\,)+?/', (string) $instance_value);
     }
 } // class

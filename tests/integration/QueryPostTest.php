@@ -77,7 +77,7 @@ class QueryPostTest extends IntegrationTestCase
 
         foreach ($elements as $key => $element) {
             $this->assertNotNull($element->getAttribute('class'), 'Attribute class is empty');
-            $this->assertTrue(strpos($element, 'more-link'), 'Class more-link is empty');
+            $this->assertTrue(strpos((string) $element, 'more-link'), 'Class more-link is empty');
         }
     }
 }

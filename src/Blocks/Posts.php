@@ -24,6 +24,7 @@ use ItalyStrap\Query\Posts as Posts_Base;
  */
 class Posts extends Block
 {
+    public $posts;
     /**
      * [$var description]
      *

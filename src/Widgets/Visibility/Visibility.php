@@ -25,9 +25,9 @@ class Visibility extends Visibility_Base
     {
 
         if (! in_array($GLOBALS['pagenow'], ['wp-login.php', 'wp-register.php'], true)) {
-            add_filter('widget_display_callback', [self::class, 'filter_widget']);
-            add_filter('sidebars_widgets', [self::class, 'sidebars_widgets']);
-            add_action('template_redirect', [self::class, 'template_redirect']);
+            add_filter('widget_display_callback', self::filter_widget(...));
+            add_filter('sidebars_widgets', self::sidebars_widgets(...));
+            add_action('template_redirect', self::template_redirect(...));
         }
     }
 
@@ -56,7 +56,7 @@ class Visibility extends Visibility_Base
 
             foreach ($widgets as $position => $widget_id) {
                 // Find the conditions for this widget.
-                if (preg_match('/^(.+?)-(\d+)$/', $widget_id, $matches)) {
+                if (preg_match('/^(.+?)-(\d+)$/', (string) $widget_id, $matches)) {
                     $id_base = $matches[1];
                     $widget_number = intval($matches[2]);
                 } else {
@@ -182,8 +182,8 @@ class Visibility extends Visibility_Base
                                 }
                                 break;
                             default:
-                                if (substr($rule['minor'], 0, 10) == 'post_type-') {
-                                    $condition_result = is_singular(substr($rule['minor'], 10));
+                                if (str_starts_with((string) $rule['minor'], 'post_type-')) {
+                                    $condition_result = is_singular(substr((string) $rule['minor'], 10));
                                 } elseif ($rule['minor'] == get_option('page_for_posts')) {
                                     // If $rule['minor'] is a page ID which is also the posts page
                                     $condition_result = $wp_query->is_posts_page;
@@ -258,14 +258,14 @@ class Visibility extends Visibility_Base
                         }
                         break;
                     case 'post_type':
-                        if (substr($rule['minor'], 0, 10) == 'post_type-') {
-                            $condition_result = is_singular(substr($rule['minor'], 10));
-                        } elseif (substr($rule['minor'], 0, 18) == 'post_type_archive-') {
-                            $condition_result = is_post_type_archive(substr($rule['minor'], 18));
+                        if (str_starts_with((string) $rule['minor'], 'post_type-')) {
+                            $condition_result = is_singular(substr((string) $rule['minor'], 10));
+                        } elseif (str_starts_with((string) $rule['minor'], 'post_type_archive-')) {
+                            $condition_result = is_post_type_archive(substr((string) $rule['minor'], 18));
                         }
                         break;
                     case 'taxonomy':
-                        $term = explode('_tax_', $rule['minor']); // $term[0] = taxonomy name; $term[1] = term id
+                        $term = explode('_tax_', (string) $rule['minor']); // $term[0] = taxonomy name; $term[1] = term id
                         if (isset($term[0]) && isset($term[1])) {
                             $term[1] = self::maybe_get_split_term($term[1], $term[0]);
                         }

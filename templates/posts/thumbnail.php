@@ -39,7 +39,7 @@ $get_thumb_attr = ['itemprop'  => 'image', 'class'     => sprintf(
 if (has_post_thumbnail($post_ID)) : ?>
     <figure class="entry-image">
         <?php
-        $get_thumb_attr['alt'] = trim(strip_tags(get_post_meta(get_post_thumbnail_id($post_ID), '_wp_attachment_image_alt', true)));
+        $get_thumb_attr['alt'] = trim(strip_tags((string) get_post_meta(get_post_thumbnail_id($post_ID), '_wp_attachment_image_alt', true)));
 
         printf(
             '%1$s%2$s%3$s',
@@ -54,7 +54,7 @@ if (has_post_thumbnail($post_ID)) : ?>
 <?php elseif ($this->config['thumb_id']) :?>
     <figure class="entry-image">
         <?php
-        $get_thumb_attr['alt'] = trim(strip_tags(get_post_meta($this->config['thumb_id'], '_wp_attachment_image_alt', true)));
+        $get_thumb_attr['alt'] = trim(strip_tags((string) get_post_meta($this->config['thumb_id'], '_wp_attachment_image_alt', true)));
         $the_post_thumbnail = wp_get_attachment_image($this->config['thumb_id'], $thumb_size, false, $get_thumb_attr);
 
         printf(

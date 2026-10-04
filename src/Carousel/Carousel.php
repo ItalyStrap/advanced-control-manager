@@ -111,7 +111,7 @@ abstract class Carousel
      * @param string $property The $property argument is the name of the property being interacted with.
      * @param mixed  $value    The __set() method's $value argument specifies the value the $name'ed property should be set to.
      */
-    public function __set($property, $value)
+    public function __set($property, mixed $value)
     {
 
         if (property_exists($this, $property)) {
@@ -552,36 +552,24 @@ abstract class Carousel
 
         $post['post_title'] = apply_filters('the_title', $post['post_title'], $post['ID']);
 
-        switch ($this->args['link']) {
-            case 'file':
-                $post_title = sprintf(
-                    '<a href="%s" itemprop="url">%s</a>',
-                    esc_url($link_file),
-                    wp_kses_post($post['post_title'])
-                );
-                break;
-
-            case 'parent':
-                $post_title = sprintf(
-                    '<a href="%s" itemprop="url">%s</a>',
-                    esc_url(get_permalink($post['post_parent'])),
-                    wp_kses_post($post['post_title'])
-                );
-                break;
-
-            case 'none':
-                // $post_title = esc_attr( $post['post_title'] );
-                $post_title = wp_kses_post($post['post_title']);
-                break;
-
-            default:
-                $post_title = sprintf(
-                    '<a href="%s" itemprop="url">%s</a>',
-                    esc_url(get_permalink($post['ID'])),
-                    wp_kses_post($post['post_title'])
-                );
-                break;
-        }
+        $post_title = match ($this->args['link']) {
+            'file' => sprintf(
+                '<a href="%s" itemprop="url">%s</a>',
+                esc_url($link_file),
+                wp_kses_post($post['post_title'])
+            ),
+            'parent' => sprintf(
+                '<a href="%s" itemprop="url">%s</a>',
+                esc_url(get_permalink($post['post_parent'])),
+                wp_kses_post($post['post_title'])
+            ),
+            'none' => wp_kses_post($post['post_title']),
+            default => sprintf(
+                '<a href="%s" itemprop="url">%s</a>',
+                esc_url(get_permalink($post['ID'])),
+                wp_kses_post($post['post_title'])
+            ),
+        };
 
         $output .= sprintf(
             '<%1$s class="slide-title">%2$s</%1$s>',

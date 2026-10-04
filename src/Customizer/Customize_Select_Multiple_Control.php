@@ -21,6 +21,9 @@ if (! class_exists('WP_Customize_Control')) {
  */
 class Customize_Select_Multiple_Control extends WP_Customize_Control
 {
+    public $args;
+    public $label;
+    public $description;
     /**
      * The type of customize control being rendered.
      *
@@ -118,11 +121,11 @@ class Customize_Select_Multiple_Control extends WP_Customize_Control
 
         <?php if (! empty($this->description)) : ?>
         <span class="description customize-control-description"><?php echo $this->description; // XSS ok. ?></span>
-        <?php endif; ?>
+<?php endif; ?>
 
         <?php
 
-        $multi_values = ! is_array($this->value()) ? explode(',', $this->value()) : $this->value();
+        $multi_values = ! is_array($this->value()) ? explode(',', (string) $this->value()) : $this->value();
 
         ?>
 

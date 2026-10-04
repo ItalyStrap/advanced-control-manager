@@ -32,6 +32,13 @@ use ItalyStrap\Google\Fonts;
 class Customizer_Register implements Subscriber_Interface
 {
     /**
+     * @var \ItalyStrap\Google\Fonts
+     */
+    public $web_fonts;
+    public $fonts;
+    public $variants;
+    public $subsets;
+    /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
      *
@@ -54,19 +61,14 @@ class Customizer_Register implements Subscriber_Interface
     private string $capability = 'edit_theme_options';
 
     /**
-     * The plugin config
-     *
-     * @var array
-     */
-    private $config = [];
-
-    /**
      * Init the class
      */
-    function __construct(ConfigInterface $config, Fonts $web_fonts)
+    function __construct(/**
+     * The plugin config
+     */
+    private readonly ConfigInterface $config, Fonts $web_fonts)
     {
 
-        $this->config = $config;
         $this->web_fonts = $web_fonts;
 
         $this->fonts = $this->web_fonts->get_remote_fonts();

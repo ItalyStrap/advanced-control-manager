@@ -20,25 +20,23 @@ use ItalyStrap\I18N\Translator;
  */
 class Update implements Update_Interface
 {
-    /**
-     * Validation object
-     */
-    private ?\ItalyStrap\Update\Validation $validation = null;
-
-    /**
-     * Sanitization object
-     */
-    private \ItalyStrap\Update\Sanitization $sanitization;
-
+    public $translator;
     /**
      * [__construct description]
      *
      * @param [type] $argument [description].
      */
-    function __construct(Validation $validation, Sanitization $sanitization)
+    function __construct(
+        /**
+         * Validation object
+         */
+        private readonly \ItalyStrap\Update\Validation $validation,
+        /**
+         * Sanitization object
+         */
+        private readonly \ItalyStrap\Update\Sanitization $sanitization
+    )
     {
-        $this->validation = $validation;
-        $this->sanitization = $sanitization;
     }
 
     /**
@@ -59,7 +57,7 @@ class Update implements Update_Interface
              * Register string for translation
              */
             if (isset($field['translate']) && true === $field['translate']) {
-                $this->translator->register_string($field['id'], strip_tags($instance[ $field['id'] ]));
+                $this->translator->register_string($field['id'], strip_tags((string) $instance[ $field['id'] ]));
             }
 
             /**
@@ -87,7 +85,7 @@ class Update implements Update_Interface
             } elseif (isset($field['sanitize'])) {
                 $instance[ $field['id'] ] = $this->sanitization->sanitize($field['sanitize'], $instance[ $field['id'] ]);
             } else {
-                $instance[ $field['id'] ] = strip_tags($instance[ $field['id'] ]);
+                $instance[ $field['id'] ] = strip_tags((string) $instance[ $field['id'] ]);
             }
         }
 

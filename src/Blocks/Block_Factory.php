@@ -45,13 +45,6 @@ class Block_Factory implements Subscriber_Interface
     }
 
     /**
-     * The plugin's options
-     *
-     * @var string
-     */
-    private $options = '';
-
-    /**
      * List of all widget classes name.
      */
     private array $blocks_list = [];
@@ -66,9 +59,11 @@ class Block_Factory implements Subscriber_Interface
     /**
      * Fire the construct
      */
-    public function __construct(array $options = [], $injector = null)
+    public function __construct(/**
+     * The plugin's options
+     */
+    private readonly array $options = [], $injector = null)
     {
-        $this->options = $options;
         $this->injector = $injector;
 
         $this->blocks_list = ['block_posts'           => \ItalyStrap\Blocks\Posts::class];

@@ -30,6 +30,12 @@ use ItalyStrap\Update\Sanitization;
  */
 abstract class Settings_Base implements Settings_Interface
 {
+    public $args;
+    public $validation;
+    /**
+     * @var \ItalyStrap\Update\Sanitization
+     */
+    public $sanitization;
     /**
      * Definition of variables containing the configuration
      * to be applied to the various function calls wordpress
@@ -110,7 +116,7 @@ abstract class Settings_Base implements Settings_Interface
             $this->args['menu_page']['menu_title'],
             $this->capability, // $this->args['menu_page']['capability'],
             $this->args['menu_page']['menu_slug'],
-            [$this, 'get_settings_view'],
+            $this->get_settings_view(...),
             $this->args['menu_page']['icon_url'],
             $this->args['menu_page']['position']
         );
@@ -139,7 +145,7 @@ abstract class Settings_Base implements Settings_Interface
                 $this->capability, // $submenu['capability'],
                 $submenu['menu_slug'],
                 // $submenu['function_cb']
-                [$this, 'get_settings_view']
+                $this->get_settings_view(...)
             );
         }
     }
@@ -361,7 +367,7 @@ abstract class Settings_Base implements Settings_Interface
         register_setting(
             $this->args['options_group'],
             $this->args['options_name'],
-            [$this, 'update']
+            $this->update(...)
         );
     }
 
@@ -396,7 +402,7 @@ abstract class Settings_Base implements Settings_Interface
             } elseif (isset($field['sanitize'])) {
                 $instance[ $field['id'] ] = $this->sanitization->sanitize($field['sanitize'], $instance[ $field['id'] ]);
             } else {
-                $instance[ $field['id'] ] = strip_tags($instance[ $field['id'] ]);
+                $instance[ $field['id'] ] = strip_tags((string) $instance[ $field['id'] ]);
             }
         }
 
@@ -527,7 +533,7 @@ abstract class Settings_Base implements Settings_Interface
      *
      * @return string            The name of the option.
      */
-    public function save($option, $old_value, $value)
+    public function save($option, mixed $old_value, mixed $value)
     {
 
         if (! isset($this->args['options_name'])) {

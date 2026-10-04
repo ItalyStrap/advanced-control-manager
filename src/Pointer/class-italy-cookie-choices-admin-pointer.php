@@ -25,7 +25,7 @@ class Italy_Cookie_Choices_Pointer
         if (isset($args[ 'prefix' ])) {
             $this->prefix = $args[ 'prefix' ];
         }
-        add_action('current_screen', [$this, 'maybe_add_pointers']);
+        add_action('current_screen', $this->maybe_add_pointers(...));
     }
 
     /**
@@ -111,7 +111,7 @@ class Italy_Cookie_Choices_Pointer
         $default_keys = $this->initial_pointers();
 
         // Get pointers dismissed by user
-        $dismissed = explode(',', get_user_meta(get_current_user_id(), 'dismissed_wp_pointers', true));
+        $dismissed = explode(',', (string) get_user_meta(get_current_user_id(), 'dismissed_wp_pointers', true));
 
         // Check that our pointers haven't been dismissed already
         $diff = array_diff_key($default_keys, array_combine($dismissed, $dismissed));
@@ -119,7 +119,7 @@ class Italy_Cookie_Choices_Pointer
         // If we have some pointers to show, save them and start enqueuing assets to display them
         if (!empty($diff)) {
             $this->pointers = $diff;
-            add_action('admin_enqueue_scripts', [$this, 'admin_enqueue_assets']);
+            add_action('admin_enqueue_scripts', $this->admin_enqueue_assets(...));
 
             foreach ($diff as $pointer) {
                 if (isset($pointer[ 'phpcode' ])) {
@@ -149,7 +149,7 @@ class Italy_Cookie_Choices_Pointer
      */
     function reset_pointer()
     {
-        add_action('current_screen', [$this, '_reset_pointer'], 0);
+        add_action('current_screen', $this->_reset_pointer(...), 0);
     }
 
     /**
@@ -162,9 +162,9 @@ class Italy_Cookie_Choices_Pointer
         if ($id === 'me') {
             $id = get_current_user_id();
         }
-        $pointers = explode(',', get_user_meta($id, 'dismissed_wp_pointers', true));
+        $pointers = explode(',', (string) get_user_meta($id, 'dismissed_wp_pointers', true));
         foreach ($pointers as $key => $pointer) {
-            if (strpos($pointer, $this->prefix) === 0) {
+            if (str_starts_with($pointer, $this->prefix)) {
                 unset($pointers[ $key ]);
             }
         }

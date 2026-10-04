@@ -37,7 +37,7 @@ class Image extends Widget
         /**
          * I don't like this and I have to find a better solution for loading script and style for widgets.
          */
-        add_action('admin_enqueue_scripts', [$this, 'upload_scripts']);
+        add_action('admin_enqueue_scripts', $this->upload_scripts(...));
 
         $fields = array_merge($this->title_field(), $this->config);
 

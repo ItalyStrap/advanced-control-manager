@@ -21,11 +21,11 @@ class Visibility_Admin extends Visibility_Base
     public static function init()
     {
 
-        add_action('sidebar_admin_setup', [self::class, 'widget_admin_setup']);
-        add_filter('widget_update_callback', [self::class, 'widget_update'], 10, 3);
-        add_action('in_widget_form', [self::class, 'widget_conditions_admin'], 10, 3);
-        add_action('wp_ajax_widget_conditions_options', [self::class, 'widget_conditions_options']);
-        add_action('wp_ajax_widget_conditions_has_children', [self::class, 'widget_conditions_has_children']);
+        add_action('sidebar_admin_setup', self::widget_admin_setup(...));
+        add_filter('widget_update_callback', self::widget_update(...), 10, 3);
+        add_action('in_widget_form', self::widget_conditions_admin(...), 10, 3);
+        add_action('wp_ajax_widget_conditions_options', self::widget_conditions_options(...));
+        add_action('wp_ajax_widget_conditions_has_children', self::widget_conditions_has_children(...));
     }
 
     public static function widget_admin_setup()
@@ -172,7 +172,7 @@ class Visibility_Admin extends Visibility_Base
                                     <?php if (! ( defined('IS_WPCOM') && IS_WPCOM )) { // this doesn't work on .com because of caching ?>
                                         <option value="loggedin" <?php selected("loggedin", $rule['major']); ?>><?php echo esc_html_x('User', 'Noun', 'italystrap'); ?></option>
                                         <option value="role" <?php selected("role", $rule['major']); ?>><?php echo esc_html_x('Role', 'Noun, as in: "The user role of that can access this widget is..."', 'italystrap'); ?></option>
-                                    <?php } ?>
+<?php } ?>
 
                                     <option value="tag" <?php selected("tag", $rule['major']); ?>><?php echo esc_html_x('Tag', 'Noun, as in: "This post has one tag."', 'italystrap'); ?></option>
                                     <option value="date" <?php selected("date", $rule['major']); ?>><?php echo esc_html_x('Date', 'Noun, as in: "This page is a date archive."', 'italystrap'); ?></option>
@@ -211,7 +211,7 @@ class Visibility_Admin extends Visibility_Base
                 </div><!-- .conditions -->
             </div><!-- .widget-conditional-inner -->
         </div><!-- .widget-conditional -->
-        <?php
+<?php
     }
 
     /**
@@ -230,7 +230,7 @@ class Visibility_Admin extends Visibility_Base
                 <?php
 
                 $categories = get_categories(['number' => 1000, 'orderby' => 'count', 'order' => 'DESC']);
-                usort($categories, [self::class, 'strcasecmp_name']);
+                usort($categories, self::strcasecmp_name(...));
 
                 foreach ($categories as $category) {
                     ?>
@@ -270,7 +270,7 @@ class Visibility_Admin extends Visibility_Base
                 <?php
 
                 $tags = get_tags(['number' => 1000, 'orderby' => 'count', 'order' => 'DESC']);
-                usort($tags, [self::class, 'strcasecmp_name']);
+                usort($tags, self::strcasecmp_name(...));
 
                 foreach ($tags as $tag) {
                     ?>
@@ -316,7 +316,7 @@ class Visibility_Admin extends Visibility_Base
                 <optgroup label="<?php esc_attr_e('Static page:', 'italystrap'); ?>">
                     <?php
 
-                    echo str_replace(' value="' . esc_attr($minor) . '"', ' value="' . esc_attr($minor) . '" selected="selected"', preg_replace('/<\/?select[^>]*?>/i', '', wp_dropdown_pages(['echo' => false])));
+                    echo str_replace(' value="' . esc_attr($minor) . '"', ' value="' . esc_attr($minor) . '" selected="selected"', preg_replace('/<\/?select[^>]*?>/i', '', (string) wp_dropdown_pages(['echo' => false])));
 
                     ?>
                 </optgroup>
@@ -341,9 +341,9 @@ class Visibility_Admin extends Visibility_Base
                     apply_filters('italystrap_widget_visibility_tax_args', ['_builtin' => false]),
                     'objects'
                 );
-                usort($taxonomies, [self::class, 'strcasecmp_name']);
+                usort($taxonomies, self::strcasecmp_name(...));
 
-                $parts = explode('_tax_', $minor);
+                $parts = explode('_tax_', (string) $minor);
 
                 if (2 === count($parts)) {
                     $minor_id = self::maybe_get_split_term($parts[1], $parts[0]);
@@ -425,7 +425,7 @@ class Visibility_Admin extends Visibility_Base
     /**
      * This is the AJAX endpoint for the second level of conditions.
      */
-    public static function widget_conditions_options()
+    public static function widget_conditions_options(): never
     {
         self::widget_conditions_options_echo(esc_attr($_REQUEST['major']), isset($_REQUEST['minor']) ? esc_attr($_REQUEST['minor']) : '');
         die;
@@ -463,7 +463,7 @@ class Visibility_Admin extends Visibility_Base
     /**
      * This is the AJAX endpoint for the has_children input.
      */
-    public static function widget_conditions_has_children()
+    public static function widget_conditions_has_children(): never
     {
         self::widget_conditions_has_children_echo(esc_attr($_REQUEST['major']), isset($_REQUEST['minor']) ? esc_attr($_REQUEST['minor']) : '', isset($_REQUEST['has_children']) ? esc_attr($_REQUEST['has_children']) : false);
         die;

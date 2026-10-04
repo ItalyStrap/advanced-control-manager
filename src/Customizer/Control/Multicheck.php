@@ -16,6 +16,10 @@ namespace ItalyStrap\Customizer\Control;
  */
 class Multicheck extends Control_Base
 {
+    public $choices;
+    public $label;
+    public $description;
+    public $id;
     /**
      * Render the control's content.
      *
@@ -36,7 +40,7 @@ class Multicheck extends Control_Base
             <span class="description customize-control-description"><?php echo $this->description ; ?></span>
         <?php endif;
 
-        $multi_values = ! is_array($this->value()) ? explode(',', $this->value()) : $this->value();
+        $multi_values = ! is_array($this->value()) ? explode(',', (string) $this->value()) : $this->value();
         ?>
         <ul>
         <?php

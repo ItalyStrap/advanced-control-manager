@@ -24,6 +24,7 @@ use ItalyStrap\Event\Subscriber_Interface;
  */
 class CMB2_Factory implements Subscriber_Interface
 {
+    public $cmb;
     /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.

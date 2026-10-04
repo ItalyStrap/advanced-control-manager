@@ -53,7 +53,7 @@
                         <a href="<?php the_permalink(); ?>" rel="bookmark">
                             <?php the_post_thumbnail(
                                 $thumb_size,
-                                ['class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->config['image_class'], 'alt'   => trim(strip_tags(get_post_meta(get_post_thumbnail_id($this->post->ID), '_wp_attachment_image_alt', true))), 'itemprop'  => 'image']
+                                ['class' => 'attachment-' . $thumb_size . ' size-' . $thumb_size . ' ' . $this->config['image_class'], 'alt'   => trim(strip_tags((string) get_post_meta(get_post_thumbnail_id($this->post->ID), '_wp_attachment_image_alt', true))), 'itemprop'  => 'image']
                             ); ?>
                         </a>
                     </figure>
@@ -135,7 +135,7 @@
                                 <?php endif; ?>
                             </p>
                         </div>
-                    <?php elseif ($this->config['show_content']) : ?>
+<?php elseif ($this->config['show_content']) : ?>
                         <div class="entry-content" itemprop="text">
                             <?php the_content() ?>
                         </div>
@@ -177,7 +177,7 @@
                         // var_dump($_product->get_regular_price());
 
                         if ($this->config['custom_fields']) :
-                            $custom_field_name = explode(',', $this->config['custom_fields']);
+                            $custom_field_name = explode(',', (string) $this->config['custom_fields']);
 
                             ?>
 

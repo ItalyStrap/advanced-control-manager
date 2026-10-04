@@ -10,19 +10,21 @@ use WP_Query;
 class Grouped_Posts
 {
     /**
-     * Pluin options
+     * @var \ItalyStrap\Query\Posts|null
      */
-    private array $options = [];
-
+    public $query;
+    public $args;
+    public $categories;
     protected $term = null;
 
     /**
      * Inizializzo il costruttore
      */
-    function __construct(array $options = [], Posts $query = null)
+    function __construct(/**
+     * Pluin options
+     */
+    private readonly array $options = [], Posts $query = null)
     {
-
-        $this->options = $options;
 
         $this->query = $query;
     }
@@ -470,9 +472,9 @@ class Grouped_Posts
                 }
                 $hierarchical_slugs = array_reverse($hierarchical_slugs);
                 $hierarchical_slugs[] = $slug;
-                $termlink = str_replace("%$taxonomy%", implode('/', $hierarchical_slugs), $termlink);
+                $termlink = str_replace("%$taxonomy%", implode('/', $hierarchical_slugs), (string) $termlink);
             } else {
-                $termlink = str_replace("%$taxonomy%", $slug, $termlink);
+                $termlink = str_replace("%$taxonomy%", $slug, (string) $termlink);
             }
             $termlink = home_url(user_trailingslashit($termlink, 'category'));
         }
@@ -517,7 +519,7 @@ class Grouped_Posts
         }
 
         $category = '';
-        if (strpos($permalink_structure, '%category%') !== false) {
+        if (str_contains((string) $permalink_structure, '%category%')) {
             $cats = $this->get_the_category($post['term_id']);
 
             if ($cats) {
@@ -559,7 +561,7 @@ class Grouped_Posts
         //  $author = $authordata->user_nicename;
         // }
 
-        $unixtime = strtotime($post['post_date']);
+        $unixtime = strtotime((string) $post['post_date']);
 
         $date = explode(" ", date('Y m d H i s', $unixtime));
 
@@ -568,7 +570,7 @@ class Grouped_Posts
         $rewritereplace =
         [$date[0], $date[1], $date[2], $date[3], $date[4], $date[5], $post['post_name'], $post['post_id'], $category, $author, $post['post_name']];
         $permalink = '';
-        $permalink = home_url(str_replace($rewritecode, $rewritereplace, $permalink_structure));
+        $permalink = home_url(str_replace($rewritecode, $rewritereplace, (string) $permalink_structure));
         $permalink = user_trailingslashit($permalink, 'single');
 
         return $permalink;

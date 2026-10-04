@@ -22,6 +22,7 @@ if (! defined('ABSPATH') or ! ABSPATH) {
  */
 class Post_Title extends Shortcode
 {
+    public $config;
     static $instance = 0;
 
     /**

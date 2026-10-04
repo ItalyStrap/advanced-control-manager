@@ -6,13 +6,8 @@ namespace ItalyStrap\Migrations;
 
 class SettingsMigration
 {
-    private array $data = [];
-    private array $pattern;
-
-    public function __construct(array $pattern = [], array $data = [])
+    public function __construct(private readonly array $pattern = [], private readonly array $data = [])
     {
-        $this->data = $data;
-        $this->pattern = $pattern;
     }
 
     /**
@@ -35,7 +30,7 @@ class SettingsMigration
                 continue;
             }
 
-            if (preg_match('#png|jpg|gif#is', $data[ $old_key ])) {
+            if (preg_match('#png|jpg|gif#is', (string) $data[ $old_key ])) {
                 set_theme_mod($new_key, $this->getImageIdFromUrl($data[ $old_key ]));
                 continue;
             }
@@ -64,7 +59,7 @@ class SettingsMigration
                 continue;
             }
 
-            if (preg_match('#png|jpg|gif#is', $data[ $old_key ])) {
+            if (preg_match('#png|jpg|gif#is', (string) $data[ $old_key ])) {
                 update_option($new_key, $this->getImageIdFromUrl($data[ $old_key ]));
                 continue;
             }
@@ -101,7 +96,7 @@ class SettingsMigration
                 continue;
             }
 
-            if (preg_match('#png|jpg|gif#is', $data[ $old_key ])) {
+            if (preg_match('#png|jpg|gif#is', (string) $data[ $old_key ])) {
                 $options[ $new_key ] = $this->getImageIdFromUrl($data[ $old_key ]);
                 update_option($option_name, $options);
                 continue;

@@ -20,7 +20,7 @@ abstract class Visibility_Base implements Visibility_Interface
 {
     public static function strcasecmp_name($a, $b)
     {
-        return strcasecmp($a->name, $b->name);
+        return strcasecmp((string) $a->name, (string) $b->name);
     }
 
     public static function maybe_get_split_term($old_term_id = '', $taxonomy = '')
