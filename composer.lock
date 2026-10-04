@@ -493,16 +493,16 @@
         },
         {
             "name": "italystrap/edd",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/edd.git",
-                "reference": "b2511aa9593314994349709936774dcae2e37b4e"
+                "reference": "f3a865e016644c07ac036107edeea7dc224583f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/edd/zipball/b2511aa9593314994349709936774dcae2e37b4e",
-                "reference": "b2511aa9593314994349709936774dcae2e37b4e",
+                "url": "https://api.github.com/repos/ItalyStrap/edd/zipball/f3a865e016644c07ac036107edeea7dc224583f9",
+                "reference": "f3a865e016644c07ac036107edeea7dc224583f9",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +549,7 @@
                 "issues": "https://github.com/ItalyStrap/settings/issues",
                 "source": "https://github.com/ItalyStrap/settings"
             },
-            "time": "2020-01-09T06:43:26+00:00"
+            "time": "2026-10-04T14:37:16+00:00"
         },
         {
             "name": "italystrap/empress",
