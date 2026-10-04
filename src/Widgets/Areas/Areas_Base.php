@@ -25,6 +25,16 @@ use ItalyStrap\Update\Update;
  */
 class Areas_Base
 {
+    public $sidebars;
+    /**
+     * @var string
+     */
+    public $prefix;
+    /**
+     * @var string
+     */
+    public $_prefix;
+    public $default;
     /**
      * [$var description]
      *
@@ -58,7 +68,7 @@ class Areas_Base
      *
      * @param [type] $argument [description].
      */
-    function __construct(array $options = [], Update $update, CSS_Generator $css)
+    function __construct(Update $update, CSS_Generator $css, array $options = [])
     {
         // $this->sidebars = $options;
         $this->sidebars = apply_filters('italystrap_registered_widget_areas_config', get_option('italystrap_widget_area'));
@@ -185,7 +195,7 @@ class Areas_Base
             __('View %s', 'italystrap'),
             $singular
         ), 'search_items'          => sprintf(
-            __('Search %a', 'italystrap'),
+            __('Search %s', 'italystrap'),
             $plural
         ), 'not_found'             => sprintf(
             __('No %s Found', 'italystrap'),
