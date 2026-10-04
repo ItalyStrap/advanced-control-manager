@@ -50,7 +50,7 @@
 		"vimeo/psalm": "^5.7",
 		"phpbench/phpbench": "@dev",
 		"phpmetrics/phpmetrics": "^2.5",
-		"italystrap/debug": "^2.1",
+		"italystrap/debug": "dev-master",
 		"leafo/scssphp": "^0.6",
 		"rector/rector": "^0.17.7",
 		"franzl/studio": "^0.16.0",
