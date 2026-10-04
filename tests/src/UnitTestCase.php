@@ -86,6 +86,9 @@ class UnitTestCase extends Unit
 
         $this->config = $this->prophecy->prophesize(Config::class);
         $this->dispatcher = $this->prophecy->prophesize(EventDispatcherInterface::class);
+        // EventDispatcherInterface is now an alias of GlobalDispatcherInterface, addListener()
+        // lives on ListenerRegisterInterface.
+        $this->dispatcher->willImplement(\ItalyStrap\Event\ListenerRegisterInterface::class);
         $this->file = $this->prophecy->prophesize(SplFileObject::class);
         $this->image = $this->prophecy->prophesize(Image::class);
     }
