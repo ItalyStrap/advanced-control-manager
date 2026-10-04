@@ -57,7 +57,7 @@ class Settings implements Subscriber_Interface
         return [
             // 'hook_name'                          => 'method_name',
             'update_option' => ['function_to_add'   => 'save', 'accepted_args'     => 3],
-            'plugins_loaded'    => 'init',
+            'init'    => 'init',
         ];
     }
 

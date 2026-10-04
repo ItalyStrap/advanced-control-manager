@@ -25,4 +25,15 @@ namespace ItalyStrap;
 if (\did_action('italystrap_plugin_loaded') > 0) {
     return;
 }
-require_once __DIR__ . '/bootstrap.php';
+$bootstrap = static function (): void {
+    require_once __DIR__ . '/bootstrap.php';
+};
+
+// The configuration is translated, and since WordPress 6.7 translations must not be loaded
+// before after_setup_theme. Plugin activation runs later than that, so it boots immediately.
+if (\did_action('after_setup_theme') > 0) {
+    $bootstrap();
+    return;
+}
+
+\add_action('after_setup_theme', $bootstrap, 0);
