@@ -52,6 +52,24 @@ fi
 
 # 5. Rebuild the autoloader for the prefixed classes.
 composer dump-autoload --working-dir="$OUTPUT" --classmap-authoritative --no-dev --no-plugins --no-scripts
+
+# 6. Composer marks "files" autoloads as included by a hash of package name and path, shared by
+#    every vendor folder. The theme bundles the same packages, so without unique hashes whichever
+#    autoloader runs first wins and the other copy's helper functions are never defined.
+php -r '
+foreach (["autoload_files.php", "autoload_static.php"] as $file) {
+    $path = $argv[1] . "/vendor/composer/" . $file;
+    if (!is_file($path)) {
+        continue;
+    }
+    $contents = preg_replace_callback(
+        "/([\x27\x22])([0-9a-f]{32})\\1(\\s*=>)/",
+        static fn (array $m): string => $m[1] . md5("ItalyStrapAcm" . $m[2]) . $m[1] . $m[3],
+        file_get_contents($path)
+    );
+    file_put_contents($path, $contents);
+}
+' "$OUTPUT"
 rm -f "$OUTPUT/composer.json" "$OUTPUT/composer.lock"
 
 echo "Scoped build ready in $OUTPUT"
