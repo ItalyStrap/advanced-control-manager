@@ -24,6 +24,18 @@ use ItalyStrap\Update\Update;
  */
 class Areas extends Areas_Base implements Subscriber_Interface
 {
+
+    /**
+     * Legacy ItalyStrap action hooks mapped to the theme 4 events that render the same position.
+     * The event names are hooks owned by the theme, so they must stay unprefixed when scoped.
+     */
+    private const THEME_EVENTS = [
+        'italystrap_before_main' => 'ItalyStrap\\UI\\Components\\Main\\Events\\Header',
+        'italystrap_after_main' => 'ItalyStrap\\UI\\Components\\Main\\Events\\Footer',
+        'italystrap_after' => 'ItalyStrap\\UI\\Components\\Footer\\Events\\BodyClosing',
+    ];
+    public $sidebars;
+    public $default;
     /**
      * Returns an array of hooks that this subscriber wants to register with
      * the WordPress plugin API.
@@ -138,7 +150,7 @@ class Areas extends Areas_Base implements Subscriber_Interface
                 continue;
             }
 
-            if (strpos($sidebar['id'], '__trashed')) {
+            if (strpos((string) $sidebar['id'], '__trashed')) {
                 continue;
             }
 
@@ -151,7 +163,33 @@ class Areas extends Areas_Base implements Subscriber_Interface
             add_action($sidebar['action'], function () use ($sidebar_key, $areas_obj) {
                 $areas_obj->add_widget_area($sidebar_key);
             }, absint($sidebar['priotity']));
+
+            $this->listenToThemeEvent($sidebar_key, (string) $sidebar['action'], absint($sidebar['priotity']));
         }
+    }
+
+    /**
+     * ItalyStrap theme 4 renders its layout through PSR-14 events instead of the legacy
+     * action hooks. Each event is dispatched as a WordPress hook named after its class and
+     * collects output through appendContent(), so the area is appended to the event too.
+     */
+    private function listenToThemeEvent(int|string $sidebar_key, string $action, int $priority): void
+    {
+        $eventName = self::THEME_EVENTS[ $action ] ?? '';
+
+        if ('' === $eventName) {
+            return;
+        }
+
+        add_action($eventName, function (object $event) use ($sidebar_key): void {
+            if (! method_exists($event, 'appendContent')) {
+                return;
+            }
+
+            ob_start();
+            $this->add_widget_area($sidebar_key);
+            $event->appendContent((string) ob_get_clean());
+        }, $priority);
     }
 
     /**
