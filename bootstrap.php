@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Core;
 
-use ItalyStrap\Empress\Injector;
+use Auryn\Injector;
 use ItalyStrap\Config\Config;
 use ItalyStrap\Config\Config_Interface;
 use ItalyStrap\Config\ConfigInterface;
@@ -48,16 +48,14 @@ use ItalyStrap\Blocks\Block_Factory;
             self::PLUGIN_VERSION => 'Version',
         ]);
 
-        $plugin_data = \array_map(static function ($element) {
-            return \trim(\filter_var($element, \FILTER_SANITIZE_STRING));
-        }, $plugin_data);
+        $plugin_data = \array_map(static fn($element) => \trim(\strip_tags((string) $element)), $plugin_data);
 
         $requirementsList = [
             new \ItalyStrap\PlatformRequirementsCheck\RangeVersionRequirement(
                 'PHP',
                 \PHP_VERSION,
                 (string)$plugin_data[self::PHP_MIN_VERSION],
-                '8.0.' . PHP_INT_MAX
+                '8.4.' . PHP_INT_MAX
             ),
         ];
 
@@ -134,7 +132,9 @@ use ItalyStrap\Blocks\Block_Factory;
 
         $injector = new Injector();
         $injector->share($injector);
-        \add_filter('italystrap_injector', fn() => $injector);
+        // The plugin is shipped scoped, so its injector is not type compatible with the theme's.
+        // It is exposed under a plugin specific hook instead of the shared 'italystrap_injector'.
+        \add_filter('italystrap_acm_injector', fn() => $injector);
 
         $args = (array)require(ITALYSTRAP_PLUGIN_PATH . 'admin/config/plugin.php');
         $injector->defineParam('args', $args);
@@ -269,7 +269,7 @@ use ItalyStrap\Blocks\Block_Factory;
             \load_plugin_textdomain(
                 'italystrap',
                 false,
-                dirname(ITALYSTRAP_BASENAME) . '/lang'
+                dirname((string) ITALYSTRAP_BASENAME) . '/lang'
             );
         }, 100);
 
@@ -292,7 +292,7 @@ use ItalyStrap\Blocks\Block_Factory;
         ];
 
         $italystrap_plugin = new \ItalyStrap\Plugin\Loader($injector, $event_manager, $app, $options);
-        add_action('after_setup_theme', [$italystrap_plugin, 'load'], 10);
+        add_action('after_setup_theme', $italystrap_plugin->load(...), 10);
 
         \add_filter('italystrap_theme_updater_config', static function (array $edd_config) {
             $item_name = 'ItalyStrap Theme Framework';

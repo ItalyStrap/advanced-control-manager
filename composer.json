@@ -12,10 +12,11 @@
 			"role": "Developer"
 		}
 	],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
 	"require": {
 		"php": ">=7.4",
-		"italystrap/empress": "^1.0",
+		"italystrap/empress": "dev-modularized",
 		"italystrap/event": "dev-master",
 		"italystrap/edd": "^0.0",
 		"italystrap/breadcrumbs": "^2.0",
@@ -56,8 +57,7 @@
 	},
 	"autoload": {
 		"classmap": [
-			"admin",
-			"deprecated"
+			"admin"
 		],
 		"psr-4": {
 			"ItalyStrap\\": "src/"

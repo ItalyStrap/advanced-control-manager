@@ -19,11 +19,12 @@ infection/
 #Files
 *.local
 *.lock
+!/composer.lock
+!/tools/php-scoper/composer.lock
 .svn
 .php_cs.cache
 codeception.yml
 lang/ItalyStrap.po
-composer.lock
 package-lock.json
 wp-tests-config.php
 test_italystrap.php
@@ -36,3 +37,7 @@ rector.php
 studio.json
 
 
+
+#Scoped build output and tool dependencies
+/build/
+/tools/php-scoper/vendor/

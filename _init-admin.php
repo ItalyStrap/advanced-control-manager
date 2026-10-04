@@ -62,7 +62,7 @@ if ('edit-tags.php' === $pagenow || 'term.php' === $pagenow) {
 // add_action( 'admin_init', 'ItalyStrap\Core\_notice_plugin_update' );
 
 if (! empty($options['widget_visibility'])) {
-    \add_action('admin_init', [\ItalyStrap\Widgets\Visibility\Visibility_Admin::class, 'init']);
+    \add_action('admin_init', \ItalyStrap\Widgets\Visibility\Visibility_Admin::init(...));
 }
 
 /**
@@ -109,7 +109,7 @@ $settings->addPage(
     require 'admin/config/page-dashboard.php'
 );
 
-$settings_config = ConfigFactory::make(require 'admin/config/settings.php');
+$settings_config = (new ConfigFactory)->make(require 'admin/config/settings.php');
 // Settings page
 $settings->addPage(
     $settings_config->get('page'),
@@ -201,5 +201,5 @@ $event_manager->add_subscriber($register_metabox);
  * @todo Maybe add also a version like <=4.0
  */
 /** @var callable $callable */
-$callable = [$register_metabox, 'register_widget_areas_fields'];
+$callable = $register_metabox->register_widget_areas_fields(...);
 is_italystrap_active() && \add_action('cmb2_admin_init', $callable);
