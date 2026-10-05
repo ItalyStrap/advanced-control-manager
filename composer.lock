@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a355a5afd15ed141a1cc2916bd6c3f75",
+    "content-hash": "a9034ac38362734b80aaacffa601ec64",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -242,20 +242,20 @@
         },
         {
             "name": "italystrap/breadcrumbs",
-            "version": "2.0.1",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/breadcrumbs.git",
-                "reference": "9b8e79bcbf40cdf7d14c4f3c9acbb9d8a6f87163"
+                "reference": "0e1c8ecc054d52c57a0729c28447438d8075e378"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/breadcrumbs/zipball/9b8e79bcbf40cdf7d14c4f3c9acbb9d8a6f87163",
-                "reference": "9b8e79bcbf40cdf7d14c4f3c9acbb9d8a6f87163",
+                "url": "https://api.github.com/repos/ItalyStrap/breadcrumbs/zipball/0e1c8ecc054d52c57a0729c28447438d8075e378",
+                "reference": "0e1c8ecc054d52c57a0729c28447438d8075e378",
                 "shasum": ""
             },
             "require": {
-                "italystrap/config": "^2.0",
+                "italystrap/config": "^2.6",
                 "italystrap/helpers": "^1.0",
                 "php": ">=7.2"
             },
@@ -310,7 +310,7 @@
                 "issues": "https://github.com/ItalyStrap/breacrumbs/issues",
                 "source": "https://github.com/ItalyStrap/breacrumbs"
             },
-            "time": "2020-08-22T15:55:20+00:00"
+            "time": "2026-10-05T05:15:41+00:00"
         },
         {
             "name": "italystrap/cleaner",
