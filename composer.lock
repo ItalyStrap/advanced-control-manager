@@ -242,16 +242,16 @@
         },
         {
             "name": "italystrap/breadcrumbs",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/breadcrumbs.git",
-                "reference": "0e1c8ecc054d52c57a0729c28447438d8075e378"
+                "reference": "cad4ede24319950f52cdd51511f3316fbae4e343"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/breadcrumbs/zipball/0e1c8ecc054d52c57a0729c28447438d8075e378",
-                "reference": "0e1c8ecc054d52c57a0729c28447438d8075e378",
+                "url": "https://api.github.com/repos/ItalyStrap/breadcrumbs/zipball/cad4ede24319950f52cdd51511f3316fbae4e343",
+                "reference": "cad4ede24319950f52cdd51511f3316fbae4e343",
                 "shasum": ""
             },
             "require": {
@@ -310,7 +310,7 @@
                 "issues": "https://github.com/ItalyStrap/breacrumbs/issues",
                 "source": "https://github.com/ItalyStrap/breacrumbs"
             },
-            "time": "2026-10-05T05:15:41+00:00"
+            "time": "2026-10-05T06:43:10+00:00"
         },
         {
             "name": "italystrap/cleaner",
