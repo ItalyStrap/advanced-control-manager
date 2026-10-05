@@ -10,6 +10,8 @@ use ItalyStrap\Config\Config_Interface;
 use ItalyStrap\Config\ConfigInterface;
 use ItalyStrap\Event\EventDispatcher;
 use ItalyStrap\Event\EventDispatcherInterface;
+use ItalyStrap\Event\GlobalOrderedListenerProvider;
+use ItalyStrap\Event\ListenerRegisterInterface;
 use ItalyStrap\Event\Manager;
 use ItalyStrap\Excerpt\Excerpt;
 use ItalyStrap\Fields\Fields;
@@ -201,6 +203,7 @@ use ItalyStrap\Blocks\Block_Factory;
             ConfigInterface::class => Config::class,
             Config_Interface::class => Config::class,
             EventDispatcherInterface::class => EventDispatcher::class,
+            ListenerRegisterInterface::class => GlobalOrderedListenerProvider::class,
             ViewACM_Interface::class => ViewACM::class,
             Translatable::class => Translator::class
         ];

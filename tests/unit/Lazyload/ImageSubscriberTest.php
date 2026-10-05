@@ -16,7 +16,9 @@ class ImageSubscriberTest extends UnitTestCase
             $this->getConfig(),
             $this->getDispatcher(),
             $this->getFile(),
-            $this->getImage()
+            $this->getImage(),
+            // The dispatcher double also implements ListenerRegisterInterface.
+            $this->getDispatcher()
         );
         $this->assertInstanceOf(ImageSubscriber::class, $sut, '');
         return $sut;

@@ -30,7 +30,7 @@ class ImageSubscriber implements Subscriber_Interface
     /**
      * Init constructor
      */
-    public function __construct(private readonly \ItalyStrap\Config\Config $config, private readonly \ItalyStrap\Event\EventDispatcherInterface $dispatcher, private readonly \SplFileInfo $file, private readonly \ItalyStrap\Lazyload\Image $image)
+    public function __construct(private readonly \ItalyStrap\Config\Config $config, private readonly \ItalyStrap\Event\EventDispatcherInterface $dispatcher, private readonly \SplFileInfo $file, private readonly \ItalyStrap\Lazyload\Image $image, private readonly \ItalyStrap\Event\ListenerRegisterInterface $listenerRegister)
     {
     }
 
@@ -79,7 +79,7 @@ class ImageSubscriber implements Subscriber_Interface
                 return;
             }
 
-            $this->dispatcher->addListener(
+            $this->listenerRegister->addListener(
                 $event[0],
                 $this->image->replaceSrcImageWithSrcPlaceholders(...),
                 $event[1] ?? 10,
@@ -87,9 +87,9 @@ class ImageSubscriber implements Subscriber_Interface
             );
         });
 
-        $this->dispatcher->addListener('italystrap_custom_inline_script', fn(string $script) => $script . $this->script(), 10, 1);
+        $this->listenerRegister->addListener('italystrap_custom_inline_script', fn(string $script) => $script . $this->script(), 10, 1);
 
-        $this->dispatcher->addListener('italystrap_custom_inline_style', fn(string $style) => $style . $this->style(), 10, 1);
+        $this->listenerRegister->addListener('italystrap_custom_inline_style', fn(string $style) => $style . $this->style(), 10, 1);
     }
 
     /**
