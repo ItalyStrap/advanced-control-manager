@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ItalyStrap\Tests\Integration\Lazyload;
 
+use ItalyStrap\Event\GlobalOrderedListenerProvider;
 use ItalyStrap\Lazyload\ImageSubscriber;
 use ItalyStrap\Tests\IntegrationTestCase;
 use PHPUnit\Framework\Assert;
@@ -16,7 +17,8 @@ class ImageSubscriberTest extends IntegrationTestCase
             $this->getConfig(),
             $this->getDispatcher(),
             $this->getFile(),
-            $this->getImage()
+            $this->getImage(),
+            new GlobalOrderedListenerProvider()
         );
         $this->assertInstanceOf(ImageSubscriber::class, $sut, '');
         return $sut;
