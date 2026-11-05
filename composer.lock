@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9034ac38362734b80aaacffa601ec64",
+    "content-hash": "2c386e8e4f8319657070b556dfedd55d",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -940,7 +940,7 @@
         },
         {
             "name": "italystrap/settings",
-            "version": "dev-master",
+            "version": "0.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/settings.git",
@@ -970,7 +970,6 @@
                 "szepeviktor/phpstan-wordpress": "^0.5",
                 "wp-coding-standards/wpcs": "^2.1"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -13885,7 +13884,6 @@
         "italystrap/empress": 20,
         "italystrap/event": 20,
         "italystrap/platform-requirements-check": 20,
-        "italystrap/settings": 20,
         "phpbench/phpbench": 20
     },
     "prefer-stable": true,
@@ -13894,5 +13892,5 @@
         "php": ">=7.4"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
