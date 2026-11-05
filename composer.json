@@ -20,7 +20,7 @@
 		"italystrap/event": "dev-master",
 		"italystrap/edd": "^0.0",
 		"italystrap/breadcrumbs": "^2.1",
-		"italystrap/settings": "dev-master",
+		"italystrap/settings": "^0.0.6",
 		"italystrap/fields": "^2.0",
 		"italystrap/helpers": "^1.0",
 		"italystrap/platform-requirements-check": "dev-master",
