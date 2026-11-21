@@ -261,8 +261,7 @@
                 "issues": "https://github.com/ItalyStrap/breacrumbs/issues",
                 "source": "https://github.com/ItalyStrap/breacrumbs"
             },
-            "time": "2026-10-05T06:43:10+00:00",
-            "published-time": "2026-10-05T06:43:14+00:00"
+            "time": "2026-10-05T06:43:10+00:00"
         },
         {
             "name": "italystrap/cleaner",
@@ -317,8 +316,7 @@
                 "issues": "https://github.com/ItalyStrap/cleaner/issues",
                 "source": "https://github.com/ItalyStrap/cleaner"
             },
-            "time": "2019-12-27T12:37:48+00:00",
-            "published-time": "2019-12-27T12:49:43+00:00"
+            "time": "2019-12-27T12:37:48+00:00"
         },
         {
             "name": "italystrap/common",
@@ -504,8 +502,7 @@
                 "issues": "https://github.com/ItalyStrap/settings/issues",
                 "source": "https://github.com/ItalyStrap/settings"
             },
-            "time": "2026-10-04T14:37:16+00:00",
-            "published-time": "2026-10-04T14:37:20+00:00"
+            "time": "2026-10-04T14:37:16+00:00"
         },
         {
             "name": "italystrap/empress",
@@ -581,12 +578,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/event.git",
-                "reference": "39cf142101121538d6282df7c3facd0cc3253352"
+                "reference": "9d3013c30a26e655d44811b5394b619f0416cb5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/event/zipball/39cf142101121538d6282df7c3facd0cc3253352",
-                "reference": "39cf142101121538d6282df7c3facd0cc3253352",
+                "url": "https://api.github.com/repos/ItalyStrap/event/zipball/9d3013c30a26e655d44811b5394b619f0416cb5a",
+                "reference": "9d3013c30a26e655d44811b5394b619f0416cb5a",
                 "shasum": ""
             },
             "require": {
@@ -663,8 +660,7 @@
                 "issues": "https://github.com/ItalyStrap/event/issues",
                 "source": "https://github.com/ItalyStrap/event"
             },
-            "time": "2026-10-15T10:12:04+00:00",
-            "published-time": "2026-10-15T10:12:09+00:00"
+            "time": "2025-10-29T20:52:10+00:00"
         },
         {
             "name": "italystrap/fields",
@@ -719,8 +715,7 @@
                 "issues": "https://github.com/ItalyStrap/fields/issues",
                 "source": "https://github.com/ItalyStrap/fields"
             },
-            "time": "2020-08-27T18:20:43+00:00",
-            "published-time": "2020-08-27T18:24:48+00:00"
+            "time": "2020-08-27T18:20:43+00:00"
         },
         {
             "name": "italystrap/helpers",
@@ -770,8 +765,7 @@
                 "issues": "https://github.com/ItalyStrap/helpers/issues",
                 "source": "https://github.com/ItalyStrap/helpers/tree/master"
             },
-            "time": "2019-12-10T10:58:26+00:00",
-            "published-time": "2019-12-10T10:59:54+00:00"
+            "time": "2019-12-10T10:58:26+00:00"
         },
         {
             "name": "italystrap/html",
@@ -830,16 +824,21 @@
                 "issues": "https://github.com/ItalyStrap/html/issues",
                 "source": "https://github.com/ItalyStrap/html"
             },
-            "time": "2020-03-06T10:42:50+00:00",
-            "published-time": "2020-03-06T10:49:57+00:00"
+            "time": "2020-03-06T10:42:50+00:00"
         },
         {
             "name": "italystrap/platform-requirements-check",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../../../packages/platform-requirements-check",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ItalyStrap/platform-requirements-check.git",
                 "reference": "abaacc258d3a94a1b51bc7f704491ffb958e614b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ItalyStrap/platform-requirements-check/zipball/abaacc258d3a94a1b51bc7f704491ffb958e614b",
+                "reference": "abaacc258d3a94a1b51bc7f704491ffb958e614b",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
@@ -855,37 +854,14 @@
                 "squizlabs/php_codesniffer": "^3.7",
                 "vimeo/psalm": "^5.14"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "ItalyStrap\\PlatformRequirementsCheck\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "ItalyStrap\\PlatformRequirementsCheck\\Tests\\": "tests/src/",
-                    "ItalyStrap\\PlatformRequirementsCheck\\Tests\\Unit\\": "tests/unit/"
-                }
-            },
-            "scripts": {
-                "psalm": [
-                    "@php ./vendor/bin/psalm --no-cache"
-                ],
-                "tests": [
-                    "@php vendor/bin/codecept run unit"
-                ],
-                "cs": [
-                    "@php vendor/bin/phpcs -p"
-                ],
-                "cs:fix": [
-                    "@php vendor/bin/phpcbf -p"
-                ],
-                "qa": [
-                    "@cs",
-                    "@psalm",
-                    "@tests"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -902,9 +878,7 @@
                 "issues": "https://github.com/ItalyStrap/platform-requirements-checkcommon/issues",
                 "source": "https://github.com/ItalyStrap/platform-requirements-check"
             },
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2023-08-06T16:15:03+00:00"
         },
         {
             "name": "italystrap/settings",
@@ -969,8 +943,7 @@
                 "issues": "https://github.com/ItalyStrap/settings/issues",
                 "source": "https://github.com/ItalyStrap/settings"
             },
-            "time": "2024-12-19T11:02:57+00:00",
-            "published-time": "2024-12-19T11:06:13+00:00"
+            "time": "2024-12-19T11:02:57+00:00"
         },
         {
             "name": "italystrap/storage",
@@ -1289,8 +1262,7 @@
                 "issues": "https://github.com/php-fig/event-dispatcher/issues",
                 "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
             },
-            "time": "2019-01-08T18:20:26+00:00",
-            "published-time": "2019-03-25T15:31:44+00:00"
+            "time": "2019-01-08T18:20:26+00:00"
         },
         {
             "name": "psr/log",
@@ -1340,8 +1312,7 @@
             "support": {
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
-            "time": "2021-05-03T11:20:27+00:00",
-            "published-time": "2021-05-03T11:22:56+00:00"
+            "time": "2021-05-03T11:20:27+00:00"
         }
     ],
     "packages-dev": [
@@ -3837,16 +3808,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.19.3",
+            "version": "2.18.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "d5480d53f10069dc4620a39f87e38e8945d47322"
+                "reference": "7d0a2cde892089bb09372f4366e9b960eb3001a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/d5480d53f10069dc4620a39f87e38e8945d47322",
-                "reference": "d5480d53f10069dc4620a39f87e38e8945d47322",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/7d0a2cde892089bb09372f4366e9b960eb3001a9",
+                "reference": "7d0a2cde892089bb09372f4366e9b960eb3001a9",
                 "shasum": ""
             },
             "require": {
@@ -3896,7 +3867,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.19.3"
+                "source": "https://github.com/filp/whoops/tree/2.18.6"
             },
             "funding": [
                 {
@@ -3904,8 +3875,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-09T23:30:17+00:00",
-            "published-time": "2026-11-09T23:32:45+00:00"
+            "time": "2026-10-03T17:03:57+00:00"
         },
         {
             "name": "franzl/studio",
@@ -4849,8 +4819,7 @@
                 "issues": "https://github.com/ItalyStrap/debug/issues",
                 "source": "https://github.com/ItalyStrap/debug"
             },
-            "time": "2026-03-11T06:25:38+00:00",
-            "published-time": "2026-10-04T14:26:52+00:00"
+            "time": "2026-03-11T06:25:38+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4980,8 +4949,7 @@
                 "issues": "https://github.com/kint-php/kint/issues",
                 "source": "https://github.com/kint-php/kint/tree/5.1.1"
             },
-            "time": "2024-04-26T14:20:09+00:00",
-            "published-time": "2024-04-26T15:24:31+00:00"
+            "time": "2024-04-26T14:20:09+00:00"
         },
         {
             "name": "leafo/scssphp",
@@ -9976,16 +9944,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.43.3",
+            "version": "v1.43.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a"
+                "reference": "4d5d331bf731e0aedbc6b2f5e61135b7b7996a72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/122889ed24dc000165bcbfd77ec412f15cbdfc6a",
-                "reference": "122889ed24dc000165bcbfd77ec412f15cbdfc6a",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/4d5d331bf731e0aedbc6b2f5e61135b7b7996a72",
+                "reference": "4d5d331bf731e0aedbc6b2f5e61135b7b7996a72",
                 "shasum": ""
             },
             "require": {
@@ -10037,7 +10005,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.43.3"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.43.0"
             },
             "funding": [
                 {
@@ -10057,8 +10025,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-28T09:35:49+00:00",
-            "published-time": "2026-10-28T10:07:45+00:00"
+            "time": "2026-09-24T15:19:04+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -10222,8 +10189,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:50:05+00:00",
-            "published-time": "2026-09-30T10:23:35+00:00"
+            "time": "2026-09-25T15:50:05+00:00"
         },
         {
             "name": "symfony/polyfill-php81",
@@ -10969,16 +10935,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.4.54",
+            "version": "v5.4.48",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "616f4737ea3396bc09bf9c97a94083192c65af05"
+                "reference": "42f18f170aa86d612c3559cfb3bd11a375df32c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/616f4737ea3396bc09bf9c97a94083192c65af05",
-                "reference": "616f4737ea3396bc09bf9c97a94083192c65af05",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/42f18f170aa86d612c3559cfb3bd11a375df32c8",
+                "reference": "42f18f170aa86d612c3559cfb3bd11a375df32c8",
                 "shasum": ""
             },
             "require": {
@@ -11038,7 +11004,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v5.4.54"
+                "source": "https://github.com/symfony/var-dumper/tree/v5.4.48"
             },
             "funding": [
                 {
@@ -11050,16 +11016,11 @@
                     "type": "github"
                 },
                 {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-30T20:10:04+00:00",
-            "published-time": "2026-10-15T06:52:08+00:00"
+            "time": "2024-11-08T15:21:10+00:00"
         },
         {
             "name": "symfony/yaml",
