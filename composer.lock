@@ -4,57 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c386e8e4f8319657070b556dfedd55d",
+    "content-hash": "322a25ab86074e0d0d4226094839a502",
     "packages": [
-        {
-            "name": "brick/varexporter",
-            "version": "0.3.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/brick/varexporter.git",
-                "reference": "b5853edea6204ff8fa10633c3a4cccc4058410ed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/brick/varexporter/zipball/b5853edea6204ff8fa10633c3a4cccc4058410ed",
-                "reference": "b5853edea6204ff8fa10633c3a4cccc4058410ed",
-                "shasum": ""
-            },
-            "require": {
-                "nikic/php-parser": "^4.0",
-                "php": "^7.2 || ^8.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.2",
-                "phpunit/phpunit": "^8.5 || ^9.0",
-                "vimeo/psalm": "4.23.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Brick\\VarExporter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A powerful alternative to var_export(), which can export closures and objects without __set_state()",
-            "keywords": [
-                "var_export"
-            ],
-            "support": {
-                "issues": "https://github.com/brick/varexporter/issues",
-                "source": "https://github.com/brick/varexporter/tree/0.3.8"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/BenMorel",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-01-21T23:05:38+00:00"
-        },
         {
             "name": "cmb2/cmb2",
             "version": "v2.6.0",
@@ -419,20 +370,21 @@
                 "issues": "https://github.com/ItalyStrap/common/issues",
                 "source": "https://github.com/ItalyStrap/common"
             },
-            "time": "2024-10-09T16:46:25+00:00"
+            "time": "2024-10-09T16:46:25+00:00",
+            "published-time": "2024-10-09T16:53:17+00:00"
         },
         {
             "name": "italystrap/config",
-            "version": "2.11.1",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/config.git",
-                "reference": "ac014c305ee3bf986d3c4280dbb7cea34a31b27c"
+                "reference": "09345ca86ac7b1d8f721094880371e31bbcf63d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/config/zipball/ac014c305ee3bf986d3c4280dbb7cea34a31b27c",
-                "reference": "ac014c305ee3bf986d3c4280dbb7cea34a31b27c",
+                "url": "https://api.github.com/repos/ItalyStrap/config/zipball/09345ca86ac7b1d8f721094880371e31bbcf63d9",
+                "reference": "09345ca86ac7b1d8f721094880371e31bbcf63d9",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +441,8 @@
                 "issues": "https://github.com/ItalyStrap/config/issues",
                 "source": "https://github.com/ItalyStrap/config"
             },
-            "time": "2026-10-05T04:55:04+00:00"
+            "time": "2026-11-20T18:44:29+00:00",
+            "published-time": "2026-11-20T18:44:49+00:00"
         },
         {
             "name": "italystrap/edd",
@@ -553,58 +506,46 @@
         },
         {
             "name": "italystrap/empress",
-            "version": "dev-modularized",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ItalyStrap/empress.git",
-                "reference": "15ae482a1530715a533e514c989fc070789a7906"
+                "reference": "c27cd330e6a90e40eee58dd150a5c40bdf2ace4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ItalyStrap/empress/zipball/15ae482a1530715a533e514c989fc070789a7906",
-                "reference": "15ae482a1530715a533e514c989fc070789a7906",
+                "url": "https://api.github.com/repos/ItalyStrap/empress/zipball/c27cd330e6a90e40eee58dd150a5c40bdf2ace4a",
+                "reference": "c27cd330e6a90e40eee58dd150a5c40bdf2ace4a",
                 "shasum": ""
             },
             "require": {
-                "brick/varexporter": "^0.3.8",
-                "italystrap/config": "^2.11",
-                "overclokk/auryn": "dev-master",
-                "php": ">=7.4",
-                "psr/container": "^1.1 || ^2.0",
-                "webimpress/safe-writer": "^2.2"
+                "italystrap/config": "^2.12",
+                "overclokk/auryn": "^2.1",
+                "php": ">=8.2",
+                "psr/container": "^1.1 || ^2.0"
             },
             "require-dev": {
-                "behat/gherkin": ">=4.4 <4.11",
-                "codeception/module-asserts": "^1.0",
-                "crellbar/prophecy-extensions": "^1.1",
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
                 "friendsofphp/proxy-manager-lts": "^1.0",
-                "infection/codeception-adapter": "^0.4.1",
-                "infection/infection": "^0.26.6",
+                "infection/infection": "^0.29 || ^0.35",
                 "italystrap/debug": "dev-master",
                 "italystrap/finder": "dev-master",
-                "laminas/laminas-config-aggregator": "^1.9",
-                "lucatume/function-mocker-le": "^1.0.1",
-                "lucatume/wp-browser": ">=3.2.3 <3.5",
                 "phpbench/phpbench": "^1.2",
                 "phpcompatibility/php-compatibility": "^9.3",
                 "phpmetrics/phpmetrics": "^2.8",
-                "phpspec/prophecy-phpunit": "^2.0",
-                "phpstan/phpstan": "^1.12",
-                "rector/rector": "^1.2",
+                "phpspec/prophecy-phpunit": "^2.3",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^11.5",
+                "rector/rector": "^2.0",
                 "rector/swiss-knife": "^2.3",
                 "squizlabs/php_codesniffer": "^3.7"
             },
             "suggest": {
-                "elazar/auryn-container-interop": "Only if you want to add a psr/container adapter, not required for this package",
                 "friendsofphp/proxy-manager-lts": "Only if you want to add support for lazy loading classes",
-                "northwoods/container": "Only if you want to add a psr/container adapter, not required for this package"
+                "italystrap/empress-cache": "Only if you want to cache the aggregated providers configuration in a PHP file"
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "namespace-bc-aliases.php"
-                ],
                 "psr-4": {
                     "ItalyStrap\\Empress\\": [
                         "src/"
@@ -628,7 +569,8 @@
                 "issues": "https://github.com/ItalyStrap/empress/issues",
                 "source": "https://github.com/ItalyStrap/empress"
             },
-            "time": "2026-05-18T10:24:42+00:00"
+            "time": "2026-11-21T09:08:15+00:00",
+            "published-time": "2026-11-21T09:09:27+00:00"
         },
         {
             "name": "italystrap/event",
@@ -1071,7 +1013,8 @@
                 "issues": "https://github.com/ItalyStrap/storage/issues",
                 "source": "https://github.com/ItalyStrap/storage"
             },
-            "time": "2024-10-09T15:56:43+00:00"
+            "time": "2024-10-09T15:56:43+00:00",
+            "published-time": "2024-10-09T16:40:45+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -1136,86 +1079,37 @@
             "time": "2026-04-14T12:32:34+00:00"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v4.19.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "51bd93cc741b7fc3d63d20b6bdcd99fdaa359837"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/51bd93cc741b7fc3d63d20b6bdcd99fdaa359837",
-                "reference": "51bd93cc741b7fc3d63d20b6bdcd99fdaa359837",
-                "shasum": ""
-            },
-            "require": {
-                "ext-tokenizer": "*",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "ircmaxell/php-yacc": "^0.0.7",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Popov"
-                }
-            ],
-            "description": "A PHP parser written in PHP",
-            "keywords": [
-                "parser",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.5"
-            },
-            "time": "2025-12-06T11:45:25+00:00"
-        },
-        {
             "name": "overclokk/auryn",
-            "version": "dev-master",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overclokk/auryn.git",
-                "reference": "9f849d59eaf7e54e8b467aac7dd5a75f769877e4"
+                "reference": "062659cb6880144121f18fdfbf625cabdff3cbf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overclokk/auryn/zipball/9f849d59eaf7e54e8b467aac7dd5a75f769877e4",
-                "reference": "9f849d59eaf7e54e8b467aac7dd5a75f769877e4",
+                "url": "https://api.github.com/repos/overclokk/auryn/zipball/062659cb6880144121f18fdfbf625cabdff3cbf5",
+                "reference": "062659cb6880144121f18fdfbf625cabdff3cbf5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=8.2"
             },
             "replace": {
                 "rdlowrey/auryn": "^1.4"
             },
             "require-dev": {
-                "athletic/athletic": "~0.1",
-                "friendsofphp/php-cs-fixer": "^2",
+                "friendsofphp/php-cs-fixer": "^3.64",
                 "friendsofphp/proxy-manager-lts": "^1.0",
-                "phpunit/phpunit": "^7 || ^8"
+                "phpbench/phpbench": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^11.5",
+                "rector/rector": "^2.0"
             },
             "suggest": {
+                "ext-apcu": "Required by ReflectionCacheApc to share the reflection cache between requests.",
                 "friendsofphp/proxy-manager-lts": "Required for support for lazy-loading proxies."
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1263,7 +1157,8 @@
                 "issues": "https://github.com/overclokk/auryn/issues",
                 "source": "https://github.com/overclokk/auryn"
             },
-            "time": "2025-10-27T09:21:32+00:00"
+            "time": "2026-11-21T07:53:02+00:00",
+            "published-time": "2026-11-21T08:45:27+00:00"
         },
         {
             "name": "psr/container",
@@ -1316,7 +1211,8 @@
                 "issues": "https://github.com/php-fig/container/issues",
                 "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-11-05T16:47:00+00:00"
+            "time": "2021-11-05T16:47:00+00:00",
+            "published-time": "2021-11-05T16:53:27+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -1417,65 +1313,6 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
-        },
-        {
-            "name": "webimpress/safe-writer",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webimpress/safe-writer.git",
-                "reference": "9d37cc8bee20f7cb2f58f6e23e05097eab5072e6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webimpress/safe-writer/zipball/9d37cc8bee20f7cb2f58f6e23e05097eab5072e6",
-                "reference": "9d37cc8bee20f7cb2f58f6e23e05097eab5072e6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3 || ^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5.4",
-                "vimeo/psalm": "^4.7",
-                "webimpress/coding-standard": "^1.2.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2.x-dev",
-                    "dev-develop": "2.3.x-dev",
-                    "dev-release-1.0": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Webimpress\\SafeWriter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Tool to write files safely, to avoid race conditions",
-            "keywords": [
-                "concurrent write",
-                "file writer",
-                "race condition",
-                "safe writer",
-                "webimpress"
-            ],
-            "support": {
-                "issues": "https://github.com/webimpress/safe-writer/issues",
-                "source": "https://github.com/webimpress/safe-writer/tree/2.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/michalbundyra",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-04-19T16:34:45+00:00"
         }
     ],
     "packages-dev": [
@@ -5820,6 +5657,57 @@
                 "source": "https://github.com/cweiske/jsonmapper/tree/v4.5.0"
             },
             "time": "2024-09-08T10:13:13+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v4.19.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "51bd93cc741b7fc3d63d20b6bdcd99fdaa359837"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/51bd93cc741b7fc3d63d20b6bdcd99fdaa359837",
+                "reference": "51bd93cc741b7fc3d63d20b6bdcd99fdaa359837",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "ircmaxell/php-yacc": "^0.0.7",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/nikic/PHP-Parser/issues",
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.5"
+            },
+            "time": "2025-12-06T11:45:25+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -13881,7 +13769,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "italystrap/debug": 20,
-        "italystrap/empress": 20,
         "italystrap/event": 20,
         "italystrap/platform-requirements-check": 20,
         "phpbench/phpbench": 20
@@ -13892,5 +13779,5 @@
         "php": ">=7.4"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
