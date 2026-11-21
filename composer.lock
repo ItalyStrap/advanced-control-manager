@@ -370,8 +370,7 @@
                 "issues": "https://github.com/ItalyStrap/common/issues",
                 "source": "https://github.com/ItalyStrap/common"
             },
-            "time": "2024-10-09T16:46:25+00:00",
-            "published-time": "2024-10-09T16:53:17+00:00"
+            "time": "2024-10-09T16:46:25+00:00"
         },
         {
             "name": "italystrap/config",
@@ -441,8 +440,7 @@
                 "issues": "https://github.com/ItalyStrap/config/issues",
                 "source": "https://github.com/ItalyStrap/config"
             },
-            "time": "2026-11-20T18:44:29+00:00",
-            "published-time": "2026-11-20T18:44:49+00:00"
+            "time": "2026-11-20T18:44:29+00:00"
         },
         {
             "name": "italystrap/edd",
@@ -569,8 +567,7 @@
                 "issues": "https://github.com/ItalyStrap/empress/issues",
                 "source": "https://github.com/ItalyStrap/empress"
             },
-            "time": "2026-11-21T09:08:15+00:00",
-            "published-time": "2026-11-21T09:09:27+00:00"
+            "time": "2026-11-21T09:08:15+00:00"
         },
         {
             "name": "italystrap/event",
@@ -1013,8 +1010,7 @@
                 "issues": "https://github.com/ItalyStrap/storage/issues",
                 "source": "https://github.com/ItalyStrap/storage"
             },
-            "time": "2024-10-09T15:56:43+00:00",
-            "published-time": "2024-10-09T16:40:45+00:00"
+            "time": "2024-10-09T15:56:43+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -1157,8 +1153,7 @@
                 "issues": "https://github.com/overclokk/auryn/issues",
                 "source": "https://github.com/overclokk/auryn"
             },
-            "time": "2026-11-21T07:53:02+00:00",
-            "published-time": "2026-11-21T08:45:27+00:00"
+            "time": "2026-11-21T07:53:02+00:00"
         },
         {
             "name": "psr/container",
@@ -1211,8 +1206,7 @@
                 "issues": "https://github.com/php-fig/container/issues",
                 "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-11-05T16:47:00+00:00",
-            "published-time": "2021-11-05T16:53:27+00:00"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -9175,16 +9169,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.7.1",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d"
+                "reference": "feb1edf4e546af3b85c5caebe8359a20db230ca3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/f3202fa1b5097b0af062dc978b32ecf63404e31d",
-                "reference": "f3202fa1b5097b0af062dc978b32ecf63404e31d",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/feb1edf4e546af3b85c5caebe8359a20db230ca3",
+                "reference": "feb1edf4e546af3b85c5caebe8359a20db230ca3",
                 "shasum": ""
             },
             "require": {
@@ -9197,7 +9191,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.7-dev"
+                    "dev-main": "3.8-dev"
                 }
             },
             "autoload": {
@@ -9222,7 +9216,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.7.1"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.8.1"
             },
             "funding": [
                 {
@@ -9242,7 +9236,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T06:23:12+00:00"
+            "time": "2026-09-16T14:15:10+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -11024,16 +11018,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.4.53",
+            "version": "v5.4.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "ae0bbb46f77ff56591d0a0259c7f458f4b3e1f77"
+                "reference": "8ff81e554b0d78653a146b35e344e0a022d7e838"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/ae0bbb46f77ff56591d0a0259c7f458f4b3e1f77",
-                "reference": "ae0bbb46f77ff56591d0a0259c7f458f4b3e1f77",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/8ff81e554b0d78653a146b35e344e0a022d7e838",
+                "reference": "8ff81e554b0d78653a146b35e344e0a022d7e838",
                 "shasum": ""
             },
             "require": {
@@ -11079,7 +11073,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v5.4.53"
+                "source": "https://github.com/symfony/yaml/tree/v5.4.56"
             },
             "funding": [
                 {
@@ -11099,7 +11093,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-20T17:13:41+00:00"
+            "time": "2026-11-03T13:19:21+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -13779,5 +13773,5 @@
         "php": ">=7.4"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.11.0"
+    "plugin-api-version": "2.9.0"
 }
