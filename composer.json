@@ -16,7 +16,7 @@
     "prefer-stable": true,
 	"require": {
 		"php": ">=7.4",
-		"italystrap/empress": "dev-modularized",
+		"italystrap/empress": "^3.0",
 		"italystrap/event": "dev-master",
 		"italystrap/edd": "^0.0",
 		"italystrap/breadcrumbs": "^2.1",
